@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 화풍 시네마틱 키아트(cinematic_keyart) 추가 — 철 근본 판타지·스팀펑크 비교 두 장
+- data/style.json — cinematic_keyart v1 을 선택 화풍으로(신화 공방 mecha_cinematic_keyart 문장, 열쇠만 짧게). 사용자가 철 근본 판타지·스팀펑크는 CGI 와 살짝 안 어울린다 해서 비교용. 기본은 아직 game_cgi
+- data/img.json — 철 근본 세 장(fe_<세계>_cinematic_keyart_f.webp) 등록. 메카는 화풍 비교 때 뽑은 장을 그대로 썼다. 그림 저장소 기록은 <세계>.cinematic_keyart-ui.json
+
 ## 2026-10-30 · claude · 기본 화풍을 게임 시네마틱 CGI(game_cgi)로 — 철 근본 세 장
 - data/style.json — game_cgi v1 을 기본으로(철 메카 한 장을 2.5D·시네마틱 키아트·CGI 로 나란히 보고 사용자가 「재질이 테마에 어울린다」). 문장은 신화 공방 game_cgi 에서 weapon → prop, 일상컷은 옷감·장신구·자연광. game_keyart 는 선택지로(시안 열두 장의 열쇠)
 - data/img.json — 철 근본 세 장(fe_<세계>_game_cgi_f.webp) 등록. 그림 저장소 기록은 기본 화풍 밖이면 <세계>.<화풍>-ui.json

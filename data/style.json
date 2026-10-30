@@ -39,6 +39,23 @@
      ]
     }
    ]
+  },
+  "cinematic_keyart": {
+   "name": "시네마틱 키아트",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "adopted": "2026-10-30",
+     "by": "사용자 — 철 근본 판타지·스팀펑크가 CGI 와 살짝 안 어울려 비교용으로",
+     "text": "Illustration-first cinematic key art with a clear anime face, saturated campaign color, convincing material volume, strong rim and key light and a crisp readable environment. It reads as authored premium illustration rather than literal CGI.",
+     "casual": "Illustration-first cinematic illustration with a clear anime face, saturated but natural color, convincing fabric and accessory volume, soft key light and a crisp readable environment. It reads as authored premium illustration rather than literal CGI.",
+     "check": "cinematic key-art illustration with a clear anime face; the element’s traits carried by costume, ornament and scene — no readable text, one figure.",
+     "why": [
+      "신화 공방 mecha_cinematic_keyart 문장 그대로(열쇠만 짧게). 기본은 아직 game_cgi — 철 근본 셋을 두 화풍으로 나란히 두고 고른다"
+     ]
+    }
+   ]
   }
  }
 }
