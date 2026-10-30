@@ -1,0 +1,85 @@
+# 작업 지침
+
+**뼈대 · 설계표(일곱 나라) · 생성기 · 도감 · 그림 등록 자동화** 까지 왔다(2026-10-30). 지금은 철나라를 끝까지 그리는 단계 — `docs/ELEMENT_CONCEPT.md` 6절.
+껍데기는 game-atelier 에서 가져왔다 — 무엇을 어디서 가져왔는지는 `docs/PORT_NOTES.md`.
+
+## 먼저 읽을 것
+
+| 문서 | 무엇 |
+|---|---|
+| 이 문서 | 규칙과 자리 |
+| `docs/ELEMENT_CONCEPT.md` | 기획 — 왜 세 층인가·세계 셋·설계표 칸·지시문·첫 묶음·만드는 차례 |
+| `data/element-design.json` | 설계표. 나라(원소) › 가문(물질) › 주민(물건) |
+| `IMAGE_RULES.md` | 그림 만들기·파일 이름·기록·올리기 — 그림 작업 전에 |
+| `data/style.json` | 화풍 판 — 세계 그림은 `text`, 일상컷은 `casual` |
+| `docs/PORT_NOTES.md` | 어디서 무엇을 가져왔고, 무엇을 아직 안 가져왔나 |
+| `docs/PATCH.md` | 무엇을 고쳤나 — 고친 쪽이 직접 적는다 (아래 규칙 6) |
+
+## 화면
+
+| 화면 | 파일 | 무엇 |
+|---|---|---|
+| 첫 화면 | `index.html` · `lib/element.css` | 주기율표 118칸(설계된 나라만 색·누르면 도감) · 첫 묶음 나라 카드(인격·가문·주민·그림 수) · 패치 기록 · 공간 |
+| 도감 | `dex.html` · `lib/img.js` · `lib/element.css` | 나라 하나 — 사실 칸·인격·성질 · 근본 세 세계 · 가문마다 가문주 세 세계 + 주민들(사는 세계만) · 같은 물질 다른 나라 잇기 · 크게 보기 · 빈 자리를 누르면 그 카드의 생성기. 등록부 `data/img.json` 에 적힌 것만 |
+| 프롬프트 | `prompt.html` · `lib/prompt-spec.js`(표) · `lib/prompt-element.js`(조립) | 생성기 — 나라 › 카드(근본·가문주·주민) › 세계 › 덧붙임 → 지시문·올릴 파일 이름·기록 JSON. 고른 것은 이 브라우저에 저장(`element_prompt_v1`), 주소 `?card=&world=` |
+
+머리·항해·⚙ 설정은 `lib/workspace-ui.js`, 공간(테마)은 `lib/workspace-theme.js`·`lib/workspace.css`·`lib/room.css`.
+화면 차례는 `lib/workspace-ui.js` 의 `PAGES` 한 곳이다 — 화면을 붙이면 거기 더한다.
+`lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다. 여기서 따로 고치지 않는다.
+
+## 지켜야 할 것
+
+### 1. 주민은 물건이다
+
+형체 없는 것(물·숨·녹·피)은 가문(물질)으로 두고, 그 아래 주민은 재질·색·형태를 옷과 소품으로 옮길 수 있는 **물건**으로 적는다(물병·산소통·녹슨 갑옷·수혈팩).
+주민은 물건을 들지 않는다 — 모티브로만. 입는 물건(갑옷·헬멧·금관)은 `wear: true`.
+
+### 2. 성질은 시각 언어 한 줄, 세계는 연도·장소·기술
+
+나라의 `traits.en` 한 줄이 그림을 정한다 — 색·재질·움직임·냄새까지. 세계 글(`worlds.<세계>.en`)은 연도·장소·기술을 못 박는다.
+합성 원소(93번 이후)의 판타지는 「예언된 나라」(별지도의 빈칸). 가벼운 원소의 메카는 「판은 갑옷으로 읽혀야 한다」(표가 늘 싣는다).
+설계표를 고치면 `python3 tools/element-design.py check`.
+
+### 3. 사실은 지어내지 않는다
+
+번호·기호·이름·족·주기·분류·상태·합성 여부는 `elements` 칸에만 있고 `tools/seed-elements.py` 가 채운다. 발견 연도·발견자 같은 칸은 아직 없다 — 넣으려면 출처를 함께 둔다.
+
+### 4. 화면에 말을 적지 않는다
+
+사람이 읽는 말은 전부 `lib/words.js` 에서 온다(`W('nav.dex')`). 생성기의 영어 문구는 `lib/prompt-spec.js`. 둘은 한글 검사에서 빠지는 대신 "표뿐인가" 를 따로 본다 — `node tests/words.cjs`. `<title>` 은 `app.title` 과 같아야 한다. 설계표의 글은 자료라서 화면이 그대로 읽는다.
+
+### 5. 그림은 이 저장소에 두지 않는다
+
+그림은 `element-atelier-img` 에 올린다. `img/` 는 `.gitignore` 에 있다. 원본 PNG 는 올리지 않는다.
+그림 규칙은 `IMAGE_RULES.md`. 그림 저장소에 올리면 썸네일(`element-atelier-img` 워크플로)과 등록(`그림 등록` 워크플로 · `tools/register-images.py`)이 알아서 된다 — `data/img.json` 은 손으로 고치지 않는다.
+
+### 6. 고쳤으면 적는다
+
+파일을 고쳤으면 `docs/PATCH.md` 맨 위에 한 칸 적는다. 커밋 메시지로 갈음하지 않는다.
+
+```
+## 2026-10-30 · claude · 무엇을 바꿨나
+- data/foo.json — 왜 고쳤나
+```
+
+날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 맨 위로 간다. `node tests/patch.cjs` 가 모양을 본다.
+
+### 7. 올리기
+
+`main` 에 직접 올린다. 작업 브랜치·PR 은 만들지 않는다. 강제 push 와 남의 작업 지우기는 하지 않는다.
+
+## 검사
+
+```bash
+python3 tools/element-design.py check   # 설계표 — 빈칸·열쇠 꼴·세계 셋·가문의 원소·겹치는 가문·사실 칸 118
+python3 tests/element-design.py         # 검사기가 규칙마다 거는지
+node tests/prompt-element.cjs           # 지시문 — 모든 카드 × 사는 세계, 뼈대 줄, 입는 물건, 메카 설계, 덧붙임, 기록, 파일 이름
+node tests/words.cjs                    # 낱말 표
+node tests/patch.cjs                    # 패치 기록 모양
+python3 tests/register-images.py        # 그림 등록 — 이름 꼴·자리·등록한 날·틀린 이름은 저장 안 함
+python3 tests/make-thumbs.py            # 썸네일 도구
+node tests/img-shards.cjs               # 그림 주소·등록기·워크플로·.gitignore 가 같은 저장소 차례
+
+# 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 첫 화면·도감·생성기 — 폰·PC, 118칸, 세 층, 지시문, 콘솔 오류 없음
+```

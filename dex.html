@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f8f5fc">
+<title>원소의 공방</title>
+<!-- 도감 — 나라(원소) 하나를 세 층으로 보인다: 근본 세 세계 · 가문마다 가문주 세 세계 + 주민들의 세 세계.
+     화면은 data/img.json 에 적힌 것만 그린다. 그림 저장소에 파일이 있어도 등록부에 적기 전에는 없는 것이다.
+     글(인격·성질·가문·물건)은 data/element-design.json 에서 온다. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="lib/workspace.css?v=1">
+<script src="lib/workspace-theme.js?v=1"></script>
+<script src="lib/words.js?v=1"></script>
+<script src="lib/img.js?v=1"></script>
+<script src="lib/prompt-spec.js?v=1"></script>
+<script src="lib/prompt-element.js?v=1"></script>
+<script src="lib/fresh.js?v=1"></script>
+<link rel="stylesheet" href="lib/room.css?v=1">
+<link rel="stylesheet" href="lib/element.css?v=1">
+</head>
+<body class="prompt-page lab-page">
+<div class="wrap"><div id="app"></div></div>
+<script type="module">
+import {h,render} from 'https://esm.sh/preact@10.24.3';
+import {useState,useEffect} from 'https://esm.sh/preact@10.24.3/hooks';
+import {WorkspaceHeader} from './lib/workspace-ui.js?v=1';
+const W=window.W,IMG=window.AtelierImg,P=window.AtelierPrompt,T=window.AtelierSpec;
+const param=k=>{try{return new URLSearchParams(location.search).get(k)}catch{return null}};
+function useDocs(){
+  const [doc,setDoc]=useState(null);
+  useEffect(()=>{
+    Promise.all([
+      fetch('data/element-design.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error(String(r.status)))),
+      fetch('data/style.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error(String(r.status)))),
+      fetch(IMG.DATA,{cache:'no-cache'}).then(r=>r.ok?r.json():{img:{}}).catch(()=>({img:{}}))
+    ]).then(([d,s,i])=>{IMG.setShards(i);IMG.setAdded(i);setDoc({d,s,img:i.img||{}});}).catch(()=>setDoc({failed:true}));
+  },[]);
+  return doc;
+}
+/* 카드·세계 → 파일 이름(등록된 것) — 화풍은 기본 화풍 */
+function fileOf(doc,key,world){
+  const e=doc.img[key];if(!e)return null;
+  const b=IMG.styleMap(e)[doc.s.default]||Object.values(IMG.styleMap(e))[0];if(!b)return null;
+  const f=IMG.formMap(b)[world];return f&&f.f||null;
+}
+function casualsOf(doc,key){const e=doc.img[key];if(!e)return [];return Object.values(IMG.styleMap(e)).flatMap(b=>IMG.cuts(b,'casual','f'));}
+/* 세계 한 칸 — 그림이 있으면 누르면 크게, 없으면 자리표시. 주민이 그 세계에 없으면 흐리게 */
+function Slot({doc,card,world,live,onOpen}){
+  const f=live?fileOf(doc,card,world):null,ko=W('world.'+world);
+  const face=f?h('img',{loading:'lazy',src:IMG.thumbURL(f),alt:'',onError:e=>{e.target.onerror=null;e.target.src=IMG.imgURL(f);}}):h('span',{class:'ph'},live?W('art.missing'):W('world.none'));
+  const cap=h('span',{class:'cap'},ko,h('i',null,live&&!f?'':f?'':''));
+  if(!live)return h('span',{class:'slot',disabled:true},h('span',{class:'face'},face),cap);
+  if(!f)return h('a',{class:'slot',href:'prompt.html?card='+encodeURIComponent(card)+'&world='+world,title:W('dex.prompt')},h('span',{class:'face'},face),cap);
+  return h('button',{type:'button',class:'slot',onClick:()=>onOpen(f,card,world),title:W('dex.open')},h('span',{class:'face'},face),cap);
+}
+function Worlds({doc,card,worlds,onOpen}){
+  const all=doc.d.vocab.worlds;
+  return h('div',{class:'worlds'},all.map(w=>h(Slot,{key:w,doc,card,world:w,live:worlds.includes(w),onOpen})));
+}
+/* 같은 물질을 나누는 다른 나라 — elements 에 든 다른 나라에 같은 열쇠의 가문이 있으면 잇는다 */
+function sharedWith(d,nation,family){
+  return (family.elements||[]).filter(k=>k!==nation.key).map(k=>{const n=d.nations.find(x=>x.key===k);const f=n&&(n.families||[]).find(x=>x.key===family.key);return f?{nation:n,family:f,el:d.elements.find(e=>e.key===k)}:null;}).filter(Boolean);
+}
+function Nation({doc,n,onOpen}){
+  const d=doc.d,e=d.elements.find(x=>x.key===n.key)||{},all=d.vocab.worlds,famList=n.families||[];
+  let slots=all.length,done=all.filter(w=>fileOf(doc,n.key,w)).length;
+  for(const f of famList){const fk=n.key+'-'+f.key;slots+=all.length;done+=all.filter(w=>fileOf(doc,fk,w)).length;for(const c of f.citizens||[]){const ck=fk+'-'+c.key;slots+=(c.worlds||[]).length;done+=(c.worlds||[]).filter(w=>fileOf(doc,ck,w)).length;}}
+  const casuals=casualsOf(doc,n.key);
+  return h('section',{class:'ek-section','data-cat':e.category,'aria-label':e.ko},
+    h('div',{class:'dex-head'},h('span',{class:'sym'},e.symbol),h('div',null,h('h2',null,e.ko,' ',h('span',{class:'en'},e.en)),
+      h('ul',{class:'facts'},
+        h('li',null,W('fact.number'),h('b',null,e.number)),h('li',null,W('fact.period'),h('b',null,e.period)),
+        e.group&&h('li',null,W('fact.group'),h('b',null,e.group)),h('li',null,W('fact.category'),h('b',null,W('cat.'+e.category))),
+        h('li',null,W('fact.state'),h('b',null,W('state.'+e.state))),e.synthetic&&h('li',null,h('b',null,W('fact.synthetic')))))),
+    h('p',{style:'margin:12px 0 0;line-height:1.7'},n.persona),
+    h('ul',{class:'traits'},(n.traits&&n.traits.ko||[]).map((t,i)=>h('li',{key:i},t))),
+    h('p',{class:'dex-progress'},W('dex.progress',{done,all:slots})),
+    h('div',{class:'row-head'},h('h3',null,W('dex.root'))),
+    h(Worlds,{doc,card:n.key,worlds:all,onOpen}),
+    !!casuals.length&&h('div',null,h('div',{class:'row-head'},h('h3',null,W('dex.casual')),h('span',{class:'en'},W('art.count',{n:casuals.length}))),
+      h('div',{class:'worlds'},casuals.map(f=>h('button',{key:f,type:'button',class:'slot',onClick:()=>onOpen(f,n.key,'casual')},h('span',{class:'face'},h('img',{loading:'lazy',src:IMG.thumbURL(f),alt:'',onError:ev=>{ev.target.onerror=null;ev.target.src=IMG.imgURL(f);}})),h('span',{class:'cap'},W('dex.casual')))))),
+    famList.map(f=>{
+      const fk=n.key+'-'+f.key,shared=sharedWith(d,n,f);
+      return h('div',{key:f.key},
+        h('div',{class:'row-head'},h('h3',null,f.ko),h('span',{class:'en'},f.en),
+          h('span',{class:'elements'},(f.elements||[]).map(k=>{const el=d.elements.find(x=>x.key===k);return h('span',{key:k},el?el.symbol:k);})),
+          !!shared.length&&h('span',{class:'shared'},W('dex.shared',{n:shared.length+1}),' · ',shared.map((s,i)=>h('a',{key:i,href:'dex.html?nation='+s.nation.key},W('dex.shared.other',{nation:s.el.ko,family:s.family.ko}))))),
+        h('p',{class:'row-persona'},f.persona),
+        h('div',{class:'row-head',style:'margin-top:6px'},h('h3',{style:'font-size:14px'},W('dex.lord'))),
+        h(Worlds,{doc,card:fk,worlds:all,onOpen}),
+        h('div',{class:'row-head',style:'margin-top:14px'},h('h3',{style:'font-size:14px'},W('dex.citizens'))),
+        (f.citizens||[]).map(c=>h('div',{key:c.key,class:'citizen'},
+          h('div',{class:'who'},h('b',null,c.ko),h('i',null,c.en),h('p',null,c.object&&c.object.en)),
+          h(Worlds,{doc,card:fk+'-'+c.key,worlds:c.worlds||[],onOpen}))));
+    }));
+}
+function Lightbox({box,onClose}){
+  if(!box)return null;
+  return h('div',{class:'lightbox',role:'dialog','aria-modal':'true',onClick:e=>{if(e.target===e.currentTarget)onClose();}},
+    h('img',{src:IMG.imgURL(box.file),alt:''}),
+    h('div',{class:'bar'},h('span',null,box.file),
+      box.world!=='casual'&&h('a',{href:'prompt.html?card='+encodeURIComponent(box.card)+'&world='+box.world},W('dex.prompt')),
+      h('button',{type:'button',onClick:onClose},W('dex.close'))));
+}
+function Dex(){
+  const doc=useDocs(),[box,setBox]=useState(null);
+  useEffect(()=>{const esc=e=>{if(e.key==='Escape')setBox(null);};addEventListener('keydown',esc);return()=>removeEventListener('keydown',esc);},[]);
+  if(!doc)return h('p',{class:'ek-note'},W('dex.loading'));
+  if(doc.failed)return h('p',{class:'ek-note'},W('dex.fail'));
+  const d=doc.d,want=param('nation'),n=d.nations.find(x=>x.key===want)||d.nations[0];
+  if(!n)return h('p',{class:'ek-note'},W('dex.none'));
+  return h('div',null,
+    h('nav',{class:'dex-pick','aria-label':W('dex.pick')},d.nations.map(x=>{const e=d.elements.find(y=>y.key===x.key)||{};
+      return h('a',{key:x.key,href:'dex.html?nation='+x.key,'aria-current':x.key===n.key?'page':undefined,'data-cat':e.category},h('span',{class:'sym'},e.symbol),e.ko);})),
+    h(Nation,{doc,n,onOpen:(file,card,world)=>setBox({file,card,world})}),
+    h(Lightbox,{box,onClose:()=>setBox(null)}));
+}
+function App(){return h('div',null,h(WorkspaceHeader,{page:'dex'}),h(Dex));}
+render(h(App),document.getElementById('app'));
+window.AtelierFresh.watch();
+</script>
+</body>
+</html>
