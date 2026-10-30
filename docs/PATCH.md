@@ -7,6 +7,13 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 화풍은 CGI 하나로 · 일상컷은 세계 그림을 참고 그림으로(세계를 탄다)
+- data/style.json · IMAGE_RULES.md · AGENTS.md · docs/ELEMENT_CONCEPT.md — 화풍은 game_cgi 하나로 통일(사용자 「cgi로 통일하자」). game_keyart·cinematic_keyart 는 이미 뽑은 그림들의 열쇠로만. 일상컷은 그 세계 그림을 참고 그림으로 붙인 그 사람의 지금 평상시(사용자 「일상컷은 참고 이미지가 있어야 돼서 그 화풍을 따라가야 돼」) — 세계를 타고 화풍은 그 그림의 것
+- lib/prompt-spec.js · lib/prompt-element.js — 일상컷 INPUT·CHARACTER·WARDROBE·ANGLE 을 game 의 「첨부 그림의 그 여자」 꼴로(얼굴·머리·몸만 가져오고 옷·갑옷·배경은 버린다), buildCasual(…, {world}) — 카드가 안 사는 세계면 ''. 파일 이름 <카드>_<세계>_<화풍>_f_casualN.webp, 기록에 world·ref(참고 그림 파일)
+- lib/studio.js · lib/studio.css · prompt.html · lib/words.js — 일상컷 갈래의 첫 칸이 세계(참고 그림). 결과에 참고 그림 줄(등록돼 있으면 작은 그림, 없으면 「아직 없다 — 세계 그림을 먼저」), 주소 ?world= 는 일상컷에도. 랜덤·처음부터 다시가 세계도 다룬다
+- tools/register-images.py · lib/img.js · dex.html · index.html — 세계 붙은 일상컷은 그 세계 몫(byForm.<세계>.casual)에, 세계 없는 옛 시안 셋은 화풍 몫에 그대로. IMG.casualsOf([{file, world}])로 도감 일상컷 줄에 세계 이름, 첫 화면 그림 수도 센다. 특별컷은 세계를 안 탄다
+- tests/prompt-element.cjs · tests/screen.cjs(69가지) · tests/register-images.py — 첨부 줄 · 세 세계 · 안 사는 세계 거름 · 파일 이름·기록 · 생성기 세계 칸·참고 그림 줄·주소 · 등록기 세계 몫 일상컷·옛 시안·--prune
+
 ## 2026-10-30 · claude · 오가네손 근본도 세 화풍 나란히 — CGI 세 장 · 시네마틱 키아트 세 장 등록
 - data/img.json — og_<세계>_game_cgi_f.webp · og_<세계>_cinematic_keyart_f.webp 여섯 장 등록(사용자 「철 말고 오가네손도 똑같이, 다른 화풍 3개씩」). 2.5D 시안 세 장과 함께 도감 근본 칸에 세 줄로 보인다. 그림 저장소 기록은 records/og/<세계>-ui.json(기본 CGI) · <세계>.cinematic_keyart-ui.json
 

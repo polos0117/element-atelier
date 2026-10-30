@@ -5,9 +5,10 @@
 파일 이름이 곧 등록 정보다. 카드 열쇠·세계 열쇠는 data/element-design.json, 화풍 열쇠는 data/style.json 에 있다.
 카드 열쇠는 층마다 다르다 — 근본 fe · 가문주 fe-steel · 주민 fe-steel-sword. 층 사이는 붙임표(-)고 밑줄(_)은 안 들어간다.
     <카드>_<세계>_<화풍>_f.webp          세계 그림 — 세계는 fantasy(판타지) · steampunk(스팀펑크) · mecha(메카)
-    <카드>_<화풍>_f_casual3.webp         일상컷 3 — 폼(세계)을 안 탄다
-    <카드>_<화풍>_f_extra1.webp          특별컷 1 — 선택
-  예) fe_fantasy_game_keyart_f.webp · fe-steel-sword_mecha_game_keyart_f.webp · h-water-bottle_game_keyart_f_casual1.webp
+    <카드>_<세계>_<화풍>_f_casual3.webp   일상컷 3 — 그 세계 그림을 참고 그림으로 붙인 것이라 세계를 탄다(사용자 2026-10-30). 그 세계 몫(byForm) 안의 casual 에 든다
+    <카드>_<화풍>_f_casual3.webp         (옛 꼴) 세계 없는 일상컷 — 참고 그림 없이 뽑은 시안 셋. 화풍 몫의 casual 에 그대로 둔다. 새로 만들지 않는다
+    <카드>_<화풍>_f_extra1.webp          특별컷 1 — 선택(세계 없이)
+  예) fe_fantasy_game_cgi_f.webp · fe-steel-sword_mecha_game_cgi_f.webp · fe_mecha_game_cgi_f_casual1.webp · og_game_keyart_f_casual1.webp(시안)
 개방(_open)도 연출컷(action)도 없다 — 카드 하나에 세계 셋과 일상컷이 전부다.
 성별 표시(_f)는 반드시 붙인다 — 지금은 여성만 만들지만 남성을 더해도 옛 파일의 뜻이 안 바뀐다.
 화풍·세계는 목록에 있는 열쇠일 때만 떼어 낸다. 뒤에서부터 성별 → 화풍 → 세계 순으로 벗기고 남는 것이 카드 열쇠여야 한다.
@@ -130,7 +131,7 @@ def card_index():
 def split_form(head, forms):
     """'fe-steel_fantasy' → ('fe-steel', 'fantasy'). 세계가 없으면 form 자리가 None.
 
-    split_style 과 같은 방식이다 — 아는 세계일 때만 떼어낸다. 일상컷은 세계가 없어 이름이 그대로
+    split_style 과 같은 방식이다 — 아는 세계일 때만 떼어낸다. 세계 없는 옛 일상컷·특별컷은 이름이 그대로
     남고, 세계처럼 생겼지만 목록에 없는 토막이 끼면 뒤에서 '그런 카드가 없다'로 걸린다.
 
     이름 차례가 <카드>_<세계>_<화풍>_<성별> 인 까닭도 여기 있다. 뒤에서부터
@@ -255,7 +256,7 @@ def main():
             continue
         m = PAT.match(f)
         if not m:
-            unknown.append((f, "이름 꼴이 안 맞는다(<카드>_<세계>_<화풍>_f.webp · <카드>_<화풍>_f_casualN.webp)"))
+            unknown.append((f, "이름 꼴이 안 맞는다(<카드>_<세계>_<화풍>_f.webp · <카드>_<세계>_<화풍>_f_casualN.webp)"))
             continue
         kind = m.group(2).lower()
         head, gender = split_gender(m.group(1))
@@ -278,10 +279,10 @@ def main():
         e = img.setdefault(card, {})
         if style:
             e = e.setdefault("byStyle", {}).setdefault(style, {})
-        # 세계가 붙었으면 그 세계 몫으로 들어간다. 일상컷은 세계를 안 타므로 여기 안 온다
+        # 세계가 붙었으면 그 세계 몫으로 들어간다 — 세계 그림과, 그 그림을 참고 그림으로 붙인 일상컷. 특별컷은 세계를 안 탄다
         if form:
-            if kind not in ("m", "f"):
-                unknown.append((f, "세계에는 세계 그림만 붙는다 — 일상컷·특별컷은 세계를 안 탄다"))
+            if kind.startswith("extra"):
+                unknown.append((f, "특별컷은 세계를 안 탄다 — <카드>_<화풍>_f_extraN.webp"))
                 continue
             e = e.setdefault("byForm", {}).setdefault(form, {})
         elif kind in ("m", "f"):
@@ -345,7 +346,7 @@ def main():
                 else:
                     del e[k]
 
-    # 그림이 다 빠진 세계 칸·화풍 칸은 남겨봐야 하나 더 있는 것처럼 보인다
+    # 그림이 다 빠진 세계 칸·화풍 칸은 남겨봐야 하나 더 있는 것처럼 보인다(세계 칸은 세계 그림도 일상컷도 없을 때)
     for v in img.values():
         bs = v.get("byStyle")
         if bs is None:
@@ -353,7 +354,7 @@ def main():
         for b in bs.values():
             bf = b.get("byForm")
             if bf is not None:
-                for k in [k for k, x in bf.items() if not x]:
+                for k in [k for k, x in bf.items() if not x or not any(x.get(s) for s in ("m", "f", "casual"))]:
                     del bf[k]
                 if not bf:
                     del b["byForm"]

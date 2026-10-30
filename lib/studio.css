@@ -41,6 +41,11 @@
 .result .row small {color:var(--muted)}
 .result .file {margin:8px 0 0;font:12px ui-monospace,monospace;overflow-wrap:anywhere}
 .result .file span {font-family:inherit;color:var(--muted);margin-right:6px}
+/* 일상컷의 참고 그림(그 세계 그림) — 등록돼 있으면 작은 그림, 없으면 흐리게 */
+.ref {display:flex;gap:8px;align-items:center;margin:8px 0 0;font:12px ui-monospace,monospace;overflow-wrap:anywhere}
+.ref span {font-family:inherit;color:var(--muted);margin-right:2px}
+.ref img {width:36px;aspect-ratio:2/3;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.ref.none {color:var(--muted)}
 #unlocked-note {color:var(--warn);font-size:13px}
 .art-mini {display:flex;gap:10px;align-items:center;margin:8px 0 0}
 .art-mini img {width:72px;aspect-ratio:2/3;object-fit:cover;border-radius:8px;border:1px solid var(--line)}

@@ -43,7 +43,8 @@ with tempfile.TemporaryDirectory() as d:
     root = {w: f'fe_{w}_{S}_f.webp' for w in ('fantasy', 'steampunk', 'mecha')}
     lord = f'fe-steel_fantasy_{S}_f.webp'
     citizen = f'fe-steel-sword_mecha_{S}_f.webp'
-    cas = [f'fe_{S}_f_casual2.webp', f'h-water-bottle_{S}_f_casual1.webp']
+    # 일상컷은 세계를 탄다(그 세계 그림이 참고 그림) — 세계 몫 안의 casual. 세계 없는 옛 시안은 화풍 몫의 casual 에 그대로
+    cas = [f'fe_mecha_{S}_f_casual2.webp', f'fe_mecha_{S}_f_casual1.webp', f'fe-steel-sword_mecha_{S}_f_casual1.webp', f'h-water-bottle_{S}_f_casual1.webp']
     ext = f'og_{S}_f_extra1.webp'
     for n in [*root.values(), lord, citizen, *cas, ext, 'style-sample.webp']:
         (Path(d) / n).touch()
@@ -52,16 +53,24 @@ with tempfile.TemporaryDirectory() as d:
     fe = saved['img']['fe']['byStyle'][S]
     assert {k: v['f'] for k, v in fe['byForm'].items()} == root, fe
     assert list(fe['byForm']) == ['fantasy', 'steampunk', 'mecha'], '세계 차례'
-    assert fe['casual']['f'] == [cas[0]] and 'byForm' not in saved['img']['h-water-bottle']['byStyle'][S]
+    assert fe['byForm']['mecha']['casual']['f'] == [cas[1], cas[0]] and 'casual' not in fe, ('세계 몫 안의 일상컷, 번호 차례', fe)
+    assert 'byForm' not in saved['img']['h-water-bottle']['byStyle'][S]
     assert saved['img']['fe-steel']['byStyle'][S]['byForm'] == {'fantasy': {'f': lord}}
-    assert saved['img']['fe-steel-sword']['byStyle'][S]['byForm'] == {'mecha': {'f': citizen}}
-    assert saved['img']['h-water-bottle']['byStyle'][S]['casual']['f'] == [cas[1]]
+    assert saved['img']['fe-steel-sword']['byStyle'][S]['byForm'] == {'mecha': {'f': citizen, 'casual': {'f': [cas[2]]}}}
+    assert saved['img']['h-water-bottle']['byStyle'][S]['casual']['f'] == [cas[3]], '세계 없는 옛 시안'
     assert saved['img']['og']['byStyle'][S]['extra']['f'] == [ext]
     assert saved['count'] == 5 and 'where' not in saved, saved.keys()
     assert sorted(saved['added']) == sorted([*root.values(), lord, citizen, *cas, ext]) and set(saved['added'].values()) == {'2026-10-30'}
     # 다시 돌려도 겹치지 않는다
     code, again, out = run(saved, d)
     assert code == 0 and reg.listed_files(again['img']) == set([*root.values(), lord, citizen, *cas, ext]), out
+    # 세계 그림 없이 일상컷만 있는 세계 칸도 산다(참고 그림은 그림 저장소 밖에 있을 수 있다); --prune 으로 일상컷이 빠지면 칸도 빠진다
+    (Path(d) / f'og_fantasy_{S}_f_casual1.webp').touch()
+    code, s_c, out = run(saved, d)
+    assert code == 0 and s_c['img']['og']['byStyle'][S]['byForm'] == {'fantasy': {'casual': {'f': [f'og_fantasy_{S}_f_casual1.webp']}}}, out
+    (Path(d) / f'og_fantasy_{S}_f_casual1.webp').unlink()
+    code, s_p, out = run(s_c, d, ['--prune'])
+    assert code == 0 and 'byForm' not in s_p['img']['og']['byStyle'][S], out
 
     # 틀린 이름은 하나라도 있으면 아무것도 저장하지 않는다
     for bad, why in [(f'fe_modern_{S}_f.webp', '그런 카드가 없다'),            # 없는 세계 → 카드 이름으로 읽혀 실패
@@ -71,14 +80,14 @@ with tempfile.TemporaryDirectory() as d:
                      (f'og_fantasy_watercolor_f.webp', '그런 카드가 없다'),     # 없는 화풍 → 카드 이름으로 읽혀 실패
                      (f'og_fantasy_{S}.webp', '이름 꼴'),                      # 성별 표시 없음
                      (f'og_{S}_f.webp', '세계 열쇠가 없다'),                    # 세계 없는 세계 그림
-                     (f'og_fantasy_{S}_f_casual1.webp', '세계를 안 탄다'),       # 일상컷은 세계를 안 탄다
+                     (f'og_fantasy_{S}_f_extra1.webp', '세계를 안 탄다'),        # 특별컷은 세계를 안 탄다
                      (f'fe_fantasy_{S}_f_action1.webp', '이름 꼴')]:           # 연출컷은 없다
         p = Path(d) / bad; p.touch()
         code, s2, out = run(saved, d)
         assert code == 1 and s2 is None and why in out, (bad, out)
         p.unlink()
     # 같은 자리 둘
-    (Path(d) / f'fe_{S}_f_casual02.webp').touch()
+    (Path(d) / f'fe_mecha_{S}_f_casual02.webp').touch()
     code, s2, out = run({'img': {}}, d)
     assert code == 1 and '중복' in out, out
 
@@ -156,5 +165,5 @@ with tempfile.TemporaryDirectory() as t:
             got = reg.history_dates(str(clone))
         assert got == want, (name, got)
 print('PASS 그림 등록: 근본·가문주·주민의 세계 그림(fantasy·steampunk·mecha)·일상컷·특별컷 자리 · 다시 돌려도 그대로'
-      ' · 없는 세계·카드·화풍·성별 표시·밑줄 열쇠·세계 없는 세계 그림·세계 붙은 일상컷·연출컷·같은 자리는 저장 안 함'
+      ' · 일상컷은 세계 몫 안(참고 그림 = 세계 그림)·세계 없는 옛 시안은 화풍 몫 · 없는 세계·카드·화풍·성별 표시·밑줄 열쇠·세계 없는 세계 그림·세계 붙은 특별컷·연출컷·같은 자리는 저장 안 함'
       ' · 등록한 날(새 것만 오늘·있던 날짜 그대로·지어내지 않음·틀린 날짜 버림·--check·--prune) · git 이력 채우기(교체·지운 것·얕은 저장소 경계)')

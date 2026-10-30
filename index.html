@@ -12,10 +12,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="lib/workspace.css?v=2">
 <script src="lib/workspace-theme.js?v=2"></script>
-<script src="lib/words.js?v=3"></script>
+<script src="lib/words.js?v=4"></script>
 <script src="lib/patch.js?v=1"></script>
 <script src="lib/fresh.js?v=1"></script>
-<script src="lib/img.js?v=1"></script>
+<script src="lib/img.js?v=9"></script>
 <link rel="stylesheet" href="lib/room.css?v=2">
 <link rel="stylesheet" href="lib/element.css?v=3">
 </head>
@@ -37,10 +37,10 @@ function useDocs(){
   },[]);
   return doc;
 }
-/* 카드 하나의 그림 수 — 세계 셋 + 일상컷 */
+/* 카드 하나의 그림 수 — 세계 셋 + 일상컷(세계 몫 안의 것과 세계 없는 옛 시안) */
 function artCount(img,key){
   const e=img[key];if(!e)return 0;
-  return Object.values(IMG.styleMap(e)).reduce((n,b)=>n+Object.values(IMG.formMap(b)).filter(f=>f.f).length+IMG.cuts(b,'casual','f').length,0);
+  return Object.values(IMG.styleMap(e)).reduce((n,b)=>n+IMG.shotsOf(b,'f').length,0);
 }
 function nationArt(img,n){
   let keys=[n.key];for(const f of n.families||[]){keys.push(n.key+'-'+f.key);for(const c of f.citizens||[])keys.push(n.key+'-'+f.key+'-'+c.key);}

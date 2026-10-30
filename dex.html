@@ -14,8 +14,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="lib/workspace.css?v=2">
 <script src="lib/workspace-theme.js?v=2"></script>
-<script src="lib/words.js?v=3"></script>
-<script src="lib/img.js?v=1"></script>
+<script src="lib/words.js?v=4"></script>
+<script src="lib/img.js?v=9"></script>
 <script src="lib/prompt-spec.js?v=1"></script>
 <script src="lib/prompt-element.js?v=1"></script>
 <script src="lib/fresh.js?v=1"></script>
@@ -42,9 +42,9 @@ function useDocs(){
   return doc;
 }
 /* 카드에 세계 그림이 등록된 화풍들 — 기본 화풍이 먼저, 나머지는 style.json 차례 */
-function stylesOf(doc,key){
+function stylesOf(doc,key,any){
   const e=doc.img[key];if(!e)return [];const m=IMG.styleMap(e);
-  const ks=Object.keys(m).filter(k=>Object.keys(IMG.formMap(m[k])).length);
+  const ks=Object.keys(m).filter(k=>any||Object.values(IMG.formMap(m[k])).some(f=>f.f));
   const order=[doc.s.default,...Object.keys(doc.s.styles||{})];
   return ks.sort((a,b)=>{const ia=order.indexOf(a),ib=order.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib);});
 }
@@ -55,7 +55,8 @@ function fileOf(doc,key,world,style){
   const f=IMG.formMap(b)[world];return f&&f.f||null;
 }
 function styleName(doc,k){const s=doc.s.styles&&doc.s.styles[k];return s&&s.name||k;}
-function casualsOf(doc,key){const e=doc.img[key];if(!e)return [];return Object.values(IMG.styleMap(e)).flatMap(b=>IMG.cuts(b,'casual','f'));}
+/* 일상컷 — 세계 몫 안의 것(참고 그림 = 그 세계 그림)은 세계 이름을 달고, 세계 없는 옛 시안은 그냥 일상컷. 화풍은 기본 화풍 먼저 */
+function casualsOf(doc,key){const e=doc.img[key];if(!e)return [];return stylesOf(doc,key,true).flatMap(st=>IMG.casualsOf(IMG.styleMap(e)[st],doc.d.vocab.worlds,'f'));}
 /* 세계 한 칸 — 그림이 있으면 누르면 크게, 없으면 자리표시. 주민이 그 세계에 없으면 흐리게 */
 function Slot({doc,card,world,live,onOpen,style}){
   const f=live?fileOf(doc,card,world,style):null,ko=W('world.'+world);
@@ -71,8 +72,8 @@ function Worlds({doc,card,worlds,onOpen}){
     main&&main!==doc.s.default&&h('p',{class:'style-note'},W('dex.style.alt',{name:styleName(doc,main)})),
     alts.map(st=>h('div',{key:st,class:'alt-row'},h('p',{class:'style-note'},W('dex.style.alt',{name:styleName(doc,st)})),
       h('div',{class:'worlds alt'},all.map(w=>h(Slot,{key:w,doc,card,world:w,live:worlds.includes(w),onOpen,style:st}))))),
-    !!casuals.length&&h('div',{class:'worlds casuals'},casuals.map((f,i)=>h('button',{key:f,type:'button',class:'slot',onClick:()=>onOpen(f,card,'casual')},
-      h('span',{class:'face'},h('img',{loading:'lazy',src:IMG.thumbURL(f),alt:'',onError:ev=>{ev.target.onerror=null;ev.target.src=IMG.imgURL(f);}})),h('span',{class:'cap'},W('dex.casual'),h('i',null,i+1))))));
+    !!casuals.length&&h('div',{class:'worlds casuals'},casuals.map((c,i)=>h('button',{key:c.file,type:'button',class:'slot',onClick:()=>onOpen(c.file,card,'casual')},
+      h('span',{class:'face'},h('img',{loading:'lazy',src:IMG.thumbURL(c.file),alt:'',onError:ev=>{ev.target.onerror=null;ev.target.src=IMG.imgURL(c.file);}})),h('span',{class:'cap'},W('dex.casual'),h('i',null,c.world?W('world.'+c.world)+' '+(i+1):String(i+1)))))));
 }
 /* 같은 물질을 나누는 다른 나라 — elements 에 든 다른 나라에 같은 열쇠의 가문이 있으면 잇는다 */
 function sharedWith(d,nation,family){

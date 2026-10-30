@@ -1,6 +1,6 @@
 {
  "version": 1,
- "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 game_cgi(2026-10-30), 시안 열두 장은 game_keyart 로 남아 있다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
+ "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 화풍은 game_cgi 하나로 통일(2026-10-30 — 철·오가네손 근본을 세 화풍으로 나란히 보고 사용자가 「CGI 로 통일하자」). game_keyart(시안 열두 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로만 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
  "default": "game_cgi",
  "styles": {
   "game_cgi": {
@@ -35,7 +35,8 @@
      "why": [
       "myth 공방의 기본 화풍(game_keyart)과 같은 문장이라 여러 공방의 그림이 같은 맛으로 보인다",
       "시안 열두 장이 이 문장으로 나왔고 사용자가 그대로 채택했다(2026-10-30)",
-      "2026-10-30 기본을 game_cgi 로 바꿨다 — 시안 열두 장은 이 열쇠로 등록돼 있어 그대로 둔다(도감이 화풍별로 보여 준다)"
+      "2026-10-30 기본을 game_cgi 로 바꿨다 — 시안 열두 장은 이 열쇠로 등록돼 있어 그대로 둔다(도감이 화풍별로 보여 준다)",
+      "2026-10-30 사용자가 CGI 로 통일 — 새 그림은 만들지 않는다"
      ]
     }
    ]
@@ -52,7 +53,7 @@
      "casual": "Illustration-first cinematic illustration with a clear anime face, saturated but natural color, convincing fabric and accessory volume, soft key light and a crisp readable environment. It reads as authored premium illustration rather than literal CGI.",
      "check": "cinematic key-art illustration with a clear anime face; the element’s traits carried by costume, ornament and scene — no readable text, one figure.",
      "why": [
-      "신화 공방 mecha_cinematic_keyart 문장 그대로(열쇠만 짧게). 기본은 아직 game_cgi — 철 근본 셋을 두 화풍으로 나란히 두고 고른다"
+      "신화 공방 mecha_cinematic_keyart 문장 그대로(열쇠만 짧게). 철·오가네손 근본 여섯 장을 이 화풍으로 뽑아 CGI·2.5D 와 나란히 봤고, 2026-10-30 사용자가 CGI 로 통일 — 이 열쇠는 그 여섯 장의 것으로만 남는다"
      ]
     }
    ]

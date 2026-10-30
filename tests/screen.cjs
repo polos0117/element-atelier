@@ -112,9 +112,12 @@ function altRowsBelowRoot(n) {
     assert.match(p.url(), /card=fe-steel-sword&o=world&world=fantasy/, '주소에 적힌다');
     checks += 6;
 
-    /* 갈래 → 일상컷(버전2): 시대부터 한 칸씩 */
+    /* 갈래 → 일상컷(버전2): 세계(참고 그림이 되는 세계 그림 — 세계 그림 갈래에서 고른 판타지가 눌려 있다)부터 한 칸씩 */
     await p.click('[data-open="out"]'); await p.click('[data-out="casual"]');
-    assert.equal(await openOf(p), 'era', '일상컷은 시대부터');
+    assert.equal(await openOf(p), 'world', '일상컷은 참고 그림의 세계부터');
+    assert.equal(await p.locator('#panel .opt[data-pick="fantasy"][aria-pressed="true"]').count(), 1, '세계 그림 갈래에서 고른 세계가 눌려 있다');
+    assert.match(await p.locator('#panel .note').first().textContent(), /참고 그림/, '세계 칸의 안내가 참고 그림을 말한다');
+    await p.click('#panel .opt[data-pick="mecha"]'); assert.equal(await openOf(p), 'era', '세계 다음 시대');
     await p.click('[data-pick="now"]'); assert.equal(await openOf(p), 'place', '다음은 장소');
     assert((await p.locator('#panel .opt[data-pick]').count()) > 20, '장소 목록');
     const placeKey = await p.locator('#panel .opt[data-pick]:not([data-out])').first().getAttribute('data-pick');
@@ -135,11 +138,14 @@ function altRowsBelowRoot(n) {
     await toDone(p);
     assert.equal(await openOf(p), 'done');
     const t1 = await promptOf(p);
-    assert(t1.includes('POSTURE') && t1.includes('1024') && /overall_intensity: strong/.test(t1) && !/attached image/.test(t1), '일상컷 지시문 ' + t1.slice(0, 200));
-    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_game_cgi_f_casual1.webp'), '일상컷 파일 이름');
-    checks += 10;
+    assert(t1.includes('POSTURE') && t1.includes('1024') && /overall_intensity: strong/.test(t1) && t1.startsWith('INPUT: the attached image is the approved character — her Mecha card'), '일상컷 지시문 ' + t1.slice(0, 200));
+    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f_casual1.webp'), '일상컷 파일 이름(세계를 탄다)');
+    const refT = await p.locator(mob ? '.hres .ref' : '#ref .ref').textContent();
+    assert(refT.includes('fe-steel-sword_mecha_' + S.default + '_f.webp') && /아직 없다/.test(refT), '참고 그림 줄 — 그 세계 그림 이름, 아직 등록 안 됨 ' + refT);
+    assert.match(p.url(), /card=fe-steel-sword&o=casual&world=mecha/, '일상컷도 주소에 세계');
+    checks += 14;
     /* 랜덤 처음부터 — 다 찬다. 여기부터 다시 — 장소를 열면 뒤가 빈다 */
-    await randAll(p, 'era');
+    await randAll(p, 'world');
     assert.equal(await openOf(p), 'done', '랜덤 뒤 다 골랐다');
     sc = (await state(p)).scene; assert(sc.era && sc.place && sc.ofam && sc.posture && sc.frame, '랜덤이 다 채운다');
     await p.click('[data-open="place"]'); await menu(p); await p.click('[data-restart="place"]');
@@ -147,14 +153,15 @@ function altRowsBelowRoot(n) {
     assert.match(await p.locator('#status').textContent(), /여기부터 다시/);
     await randAll(p, 'place'); assert.equal(await openOf(p), 'done');
     /* 처음부터 다시 — 카드·갈래는 그대로 */
-    await p.click('[data-reset]'); assert.equal(await openOf(p), 'era'); sc = (await state(p)).scene; assert(!sc.place && !sc.posture, '모든 칸을 비웠다');
+    await p.click('[data-reset]'); assert.equal(await openOf(p), 'world'); sc = (await state(p)).scene; assert(!sc.place && !sc.posture && !(await state(p)).world, '모든 칸을 비웠다(세계도)');
+    await randAll(p, 'world'); assert((await state(p)).world && (await state(p)).scene.era, '랜덤이 세계도 채운다'); await p.click('[data-reset]'); await randAll(p, 'world');
     assert.equal((await state(p)).card, 'fe-steel-sword'); assert.equal((await state(p)).out, 'casual');
     /* 폰 — 레일 한 줄·아래 막대·시트 */
     if (mob) {
-      await randAll(p, 'era');
+      await randAll(p, 'world');
       const mb = await p.evaluate(() => { const hb = document.getElementById('hbar'), r = hb.getBoundingClientRect(); return { rail: document.querySelector('.hrail') ? document.querySelector('.hrail').getBoundingClientRect().height : 0, barIn: !hb.hidden && r.bottom <= innerHeight + 0.5, path: document.querySelectorAll('.hpath .hcrumb').length, hres: !!document.querySelector('.hres') }; });
       assert(mb.rail > 0 && mb.rail <= 60, '칩 레일 한 줄 ' + mb.rail); assert(mb.barIn, '아래 막대'); assert.equal(mb.path, 3, '경로 나라·카드·갈래'); assert(mb.hres, '결과 상자');
-      await p.click('[data-open="era"]'); await p.click('#hbar [data-act="sheet"]'); assert((await p.locator('#hsheet textarea').inputValue()).length > 200, '시트에 지시문'); await p.click('#hsheet [data-act="sheet-close"]');
+      await p.click('[data-open="world"]'); await p.click('#hbar [data-act="sheet"]'); assert((await p.locator('#hsheet textarea').inputValue()).length > 200, '시트에 지시문'); await p.click('#hsheet [data-act="sheet-close"]');
       checks += 3;
     }
     /* 새로 고쳐도 남는다 */

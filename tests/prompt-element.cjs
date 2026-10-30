@@ -35,7 +35,7 @@ for (const key of cards) {
   }
   /* 파일 이름 — IMAGE_RULES 3절 */
   assert.equal(P.fileName(key, 'mecha', 'game_keyart'), key + '_mecha_game_keyart_f.webp');
-  assert.equal(P.fileName(key, '', 'game_keyart', 3), key + '_game_keyart_f_casual3.webp');
+  assert.equal(P.fileName(key, 'fantasy', 'game_keyart', 3), key + '_fantasy_game_keyart_f_casual3.webp');
 }
 assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.stringify(byTier));
 
@@ -60,7 +60,8 @@ for (const f of ['lib/casual-tree.js', 'lib/casual-tree-v2.js']) vm.runInContext
 const C2 = ctx.window.AtelierCasualTreeV2, C1 = ctx.window.AtelierCasualTree;
 const tree = JSON.parse(fs.readFileSync(pick('data/casual-tree.json'), 'utf8')), tree2 = JSON.parse(fs.readFileSync(pick('data/casual-tree-v2.json'), 'utf8'));
 const ownTables = !borrowed.includes('data/casual-tree.json');
-const t2 = C2.make(tree2, tree), opts = { tree, tree2 }, CL = T.CASUAL, cur = S.styles[S.default].versions[0];
+/* 참고 그림의 세계 — 근본·가문주는 판타지로, 주민(검)은 메카로. 일상컷은 그 세계 그림의 그 사람(사용자 2026-10-30) */
+const t2 = C2.make(tree2, tree), opts = { world: 'fantasy', tree, tree2 }, CL = T.CASUAL, cur = S.styles[S.default].versions[0];
 const words = s => (String(s).match(/\S+/g) || []).length;
 const eras = tree.eras.map(e => e.key);
 if (ownTables) assert(same(eras, ['now', 'site', 'nation', 'fantasy']), '원소 트리의 시대 넷 ' + eras);
@@ -68,11 +69,17 @@ if (ownTables) assert(same(eras, ['now', 'site', 'nation', 'fantasy']), '원소 
 const placeOf = era => (tree.places.find(p => p.eras.includes(era) && !C1.screens(tree, p.key)) || tree.places.find(p => p.eras.includes(era))).key;
 const famOf = era => tree.eras.find(e => e.key === era).outfits[0];
 const base = era => ({ treeV: 2, era, place: placeOf(era), ofam: famOf(era) });
-/* 지시문 공통 검사 — 뼈대 줄, 고정값, 첨부 그림 말 없음, 한국어 없음(괄호 밖), 게임 말 없음(화풍 문장은 뺀다 — 「game key art」) */
+/* 지시문 공통 검사 — 뼈대 줄, 고정값, 첨부 그림(그 세계 그림) 말, 한국어 없음(괄호 밖), 게임 말 없음(화풍 문장은 뺀다 — 「game key art」) */
 const GAME_WORDS = /\b(game|games|gaming|arcade|game console|games console)\b/i;   // 「console of dials」(제어실)은 게임 말이 아니다
-const checkCasual = (key, sc, txt, label) => {
-  const c = P.card(D, key), scene = (txt.split('SCENE (chosen):\n')[1] || '').split('\n\n')[0];
-  assert(txt.startsWith(CL.input) && txt.includes('CHARACTER: one adult woman — ') && !/attached image|same woman/i.test(txt), label + ' 글만 — 첨부 그림 말이 없다');
+const WORLD_EN = { fantasy: 'Fantasy', steampunk: 'Steampunk', mecha: 'Mecha' };
+/* 카드가 안 사는 세계면(물병은 판타지에 없다) 사는 첫 세계를 참고 그림으로 */
+const wOf = key => P.worldsOf(D, key).includes(opts.world) ? opts.world : P.worldsOf(D, key)[0], optsFor = key => ({ ...opts, world: wOf(key) });
+const checkCasual = (key, sc, txt, label, world) => {
+  const c = P.card(D, key), scene = (txt.split('SCENE (chosen):\n')[1] || '').split('\n\n')[0], wk = world || wOf(key);
+  assert(txt.startsWith('INPUT: the attached image is the approved character — her ' + WORLD_EN[wk] + ' card; keep her.'), label + ' 첨부 그림은 그 세계 그림');
+  assert(txt.includes('CHARACTER: the same woman as the attached image — ') && txt.includes('Keep her face, eye and hair colors'), label + ' 첨부의 그 여자');
+  assert(txt.includes('WARDROBE: change her clothes completely. From the attached image take only her face, hair and body') && txt.includes('ANGLE: the attached image fixes who she is'), label + ' 옷·각도 줄이 첨부를 말한다');
+  assert(!/natural human's/.test(txt), label + ' 피부·머리·눈은 첨부 그대로');
   assert(txt.includes('STYLE: ' + cur.casual) && !txt.includes('STYLE: ' + cur.text), label + ' 화풍은 판의 casual 문장');
   assert(txt.includes('FRAME: a vertical 2:3 (1024×1536) image.'), label + ' FRAME 2:3');
   assert(/overall_intensity: strong — /.test(txt) && /skin_exposure: bold — /.test(txt), label + ' 고정값 두 축');
@@ -97,7 +104,7 @@ const full = { posture: 'stand', support: 'none', frame: 'waist_up', body: 'fron
   scene: 'late afternoon, warm light', custom: 'a thin iron ring on a chain', axes: { overall_intensity: 'strong', skin_exposure: 'bold' }, aspect: '2:3' };
 let nc = 0; const eraLines = {};
 for (const key of CARDS) for (const era of eras) {
-  const sc = { ...base(era), ...full }, txt = P.buildCasual(D, S, key, sc, opts);
+  const sc = { ...base(era), ...full }, txt = P.buildCasual(D, S, key, sc, optsFor(key));
   checkCasual(key, sc, txt, key + ' ' + era);
   assert(txt.includes('GAZE: ') && txt.includes('EXPRESSION: ') && !/EXPRESSION: .*gaze/.test(txt), key + ' ' + era + ' 시선·표정(시선 말 없음)');
   assert(txt.includes('RIGHT HAND: ') && txt.includes('LEFT HAND: '), key + ' ' + era + ' 두 손 줄');
@@ -116,7 +123,7 @@ if (ownTables) {
 /* 2. 트리의 랜덤 장면 — 카드마다 몇 번(정해진 난수) */
 let seed = 7; const rnd = () => { seed = (seed * 48271) % 2147483647; return (seed - 1) / 2147483646; };
 for (const key of CARDS) for (let i = 0; i < 6; i++) {
-  const sc = C2.random(t2, { treeV: 2 }, null, rnd), txt = P.buildCasual(D, S, key, sc, opts);
+  const sc = C2.random(t2, { treeV: 2 }, null, rnd), txt = P.buildCasual(D, S, key, sc, optsFor(key));
   checkCasual(key, { ...sc, random: true }, txt, key + ' 랜덤 ' + i + ' ' + JSON.stringify([sc.era, sc.place, sc.frame]));
   if (sc.gaze) assert(txt.includes('GAZE: '), key + ' 랜덤 시선');
   nc++;
@@ -148,14 +155,22 @@ assert.equal(P.exprNoGaze(T.EXPRESSION_DETAIL.confident), 'level brow, unhurried
 assert(same(P.casualFixed({}), { axes: { overall_intensity: 'strong', skin_exposure: 'bold' }, aspect: '2:3' }), '빈 장면은 고정값');
 assert(same(P.casualFixed({ axes: { skin_exposure: 'moderate', overall_intensity: 'AUTO' }, aspect: '3:2' }), { axes: { skin_exposure: 'moderate', overall_intensity: 'strong' }, aspect: '3:2' }), '고른 값은 그대로, AUTO 만 고정값');
 assert(P.buildCasual(D, S, 'fe', { ...base(eras[0]), ...full, aspect: '1:1' }, opts).includes('FRAME: a square 1:1 (1024×1024) image.'), '화면비를 고르면 그 FRAME');
-/* 파일 이름 · 기록 */
-assert.equal(P.casualFile('fe-steel-sword', 'game_keyart', 2), 'fe-steel-sword_game_keyart_f_casual2.webp');
-const cr = P.casualRecord(D, S, 'og', { ...base(eras[0]), ...full }, opts, 3);
-assert.equal(cr.atelier, 'element'); assert.equal(cr.slot, 'casual3'); assert.equal(cr.treeV, 2); assert.equal(cr.tier, 'root'); assert.equal(cr.file, 'og_' + S.default + '_f_casual3.webp');
-assert.equal(cr.scene.treeV, 2); assert.equal(cr.scene.aspect, '2:3'); assert.equal(cr.scene.axes.overall_intensity, 'strong'); assert.equal(cr.prompt, P.buildCasual(D, S, 'og', { ...base(eras[0]), ...full }, opts));
+/* 세계마다 — 세 세계의 일상컷은 INPUT 만 다르고(첨부가 그 세계 그림), 주민은 사는 세계만 */
+for (const wk of ['steampunk', 'mecha']) checkCasual('fe', { ...base(eras[0]), ...full }, P.buildCasual(D, S, 'fe', { ...base(eras[0]), ...full }, { ...opts, world: wk }), 'fe ' + wk, wk);
+assert.equal(P.casualWorld(D, 'fe', 'mecha'), 'mecha'); assert.equal(P.casualWorld(D, 'fe', 'modern'), ''); assert.equal(P.casualWorld(D, 'fe', ''), '');
+const sword = P.card(D, 'fe-steel-sword'), swordOut = D.vocab.worlds.find(w => !sword.citizen.worlds.includes(w));
+if (swordOut) assert.equal(P.buildCasual(D, S, 'fe-steel-sword', { ...base(eras[0]), ...full }, { ...opts, world: swordOut }), '', '주민이 안 사는 세계의 그림은 참고 그림이 될 수 없다');
+assert.equal(P.buildCasual(D, S, 'fe', { ...base(eras[0]), ...full }, { tree, tree2 }), '', '참고 그림의 세계가 없으면 지시문이 없다');
+/* 파일 이름 · 기록 — 세계를 탄다, ref 는 참고 그림 */
+assert.equal(P.casualFile('fe-steel-sword', 'mecha', 'game_keyart', 2), 'fe-steel-sword_mecha_game_keyart_f_casual2.webp');
+const cr = P.casualRecord(D, S, 'og', { ...base(eras[0]), ...full }, { ...opts, world: 'mecha' }, 3);
+assert.equal(cr.atelier, 'element'); assert.equal(cr.slot, 'casual3'); assert.equal(cr.treeV, 2); assert.equal(cr.tier, 'root'); assert.equal(cr.world, 'mecha');
+assert.equal(cr.file, 'og_mecha_' + S.default + '_f_casual3.webp'); assert.equal(cr.ref, 'og_mecha_' + S.default + '_f.webp');
+assert.equal(cr.scene.treeV, 2); assert.equal(cr.scene.aspect, '2:3'); assert.equal(cr.scene.axes.overall_intensity, 'strong'); assert.equal(cr.prompt, P.buildCasual(D, S, 'og', { ...base(eras[0]), ...full }, { ...opts, world: 'mecha' }));
+const cr0 = P.casualRecord(D, S, 'og', { ...base(eras[0]), ...full }, { tree, tree2 }, 1); assert.equal(cr0.world, ''); assert.equal(cr0.file, ''); assert.equal(cr0.ref, ''); assert.equal(cr0.prompt, '');
 /* 없는 카드 · 표 없음 */
 assert.equal(P.buildCasual(D, S, 'xx', { ...base(eras[0]) }, opts), '');
-assert.throws(() => P.buildCasual(D, S, 'fe', { ...base(eras[0]) }, { tree }), /Casual tree v2/);
+assert.throws(() => P.buildCasual(D, S, 'fe', { ...base(eras[0]) }, { tree, world: 'fantasy' }), /Casual tree v2/);
 /* 표 파일은 함수가 없고, 조립기는 표정 표를 다 가진다 */
 assert(same(Object.keys(T.EXPRESSION_DETAIL).sort(), T.EXPRESSION_OPTIONS.map(o => o[0]).filter(Boolean).sort()), '표정 선택지와 풀이가 같다');
-console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + ' × 시대 ' + eras.length + ' · 랜덤 · 해방 · 돌아보기 · 클로즈업 · 두 손 소품 · 고정값 · 파일 이름 · 기록' + (ownTables ? ' · 원소 표' : ' · (game 표를 빌림)'));
+console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + ' × 시대 ' + eras.length + ' · 참고 그림 = 세계 그림(세 세계·안 사는 세계 거름) · 랜덤 · 해방 · 돌아보기 · 클로즈업 · 두 손 소품 · 고정값 · 파일 이름 · 기록(world·ref)' + (ownTables ? ' · 원소 표' : ' · (game 표를 빌림)'));
