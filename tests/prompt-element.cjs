@@ -43,7 +43,7 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
 const t = P.build(D, S, 'fe-steel-sword', 'fantasy', { notes: { scene: 'a windy ridge', outfit: 'red sash', custom: 'low angle' } });
 assert(t.includes('SCENE NOTE: a windy ridge') && t.includes('OUTFIT NOTE: red sash') && t.includes('EXTRA: low angle'));
 const r = P.record(D, S, 'og', 'steampunk', {});
-assert.equal(r.atelier, 'element'); assert.equal(r.tier, 'root'); assert.equal(r.file, 'og_steampunk_game_keyart_f.webp'); assert.equal(r.styleVersion, 'v1'); assert.equal(r.prompt, P.build(D, S, 'og', 'steampunk', {}));
+assert.equal(r.atelier, 'element'); assert.equal(r.tier, 'root'); assert.equal(r.file, 'og_steampunk_' + S.default + '_f.webp'); assert.equal(r.styleVersion, 'v1'); assert.equal(r.prompt, P.build(D, S, 'og', 'steampunk', {}));
 /* 같은 물질 다른 나라 — 수소의 물과 산소의 물은 다른 지시문 */
 assert.notEqual(P.build(D, S, 'h-water', 'fantasy', {}), P.build(D, S, 'o-water', 'fantasy', {}));
 /* 없는 열쇠·없는 세계 */
@@ -151,7 +151,7 @@ assert(P.buildCasual(D, S, 'fe', { ...base(eras[0]), ...full, aspect: '1:1' }, o
 /* 파일 이름 · 기록 */
 assert.equal(P.casualFile('fe-steel-sword', 'game_keyart', 2), 'fe-steel-sword_game_keyart_f_casual2.webp');
 const cr = P.casualRecord(D, S, 'og', { ...base(eras[0]), ...full }, opts, 3);
-assert.equal(cr.atelier, 'element'); assert.equal(cr.slot, 'casual3'); assert.equal(cr.treeV, 2); assert.equal(cr.tier, 'root'); assert.equal(cr.file, 'og_game_keyart_f_casual3.webp');
+assert.equal(cr.atelier, 'element'); assert.equal(cr.slot, 'casual3'); assert.equal(cr.treeV, 2); assert.equal(cr.tier, 'root'); assert.equal(cr.file, 'og_' + S.default + '_f_casual3.webp');
 assert.equal(cr.scene.treeV, 2); assert.equal(cr.scene.aspect, '2:3'); assert.equal(cr.scene.axes.overall_intensity, 'strong'); assert.equal(cr.prompt, P.buildCasual(D, S, 'og', { ...base(eras[0]), ...full }, opts));
 /* 없는 카드 · 표 없음 */
 assert.equal(P.buildCasual(D, S, 'xx', { ...base(eras[0]) }, opts), '');

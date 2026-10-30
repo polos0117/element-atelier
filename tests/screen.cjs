@@ -87,7 +87,7 @@ const D = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/element-design.json')
     assert.equal(await openOf(p), 'done');
     let t0 = await promptOf(p);
     assert(t0.startsWith('CONCEPT: a citizen of the Iron Nation, of the Steel House.') && t0.includes('MECHA DESIGN:') && t0.includes('SCENE NOTE: a windy ridge'), '세계 지시문');
-    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_game_keyart_f.webp'), '파일 이름');
+    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_game_cgi_f.webp'), '파일 이름');
     await p.click('[data-open="world"]'); await p.click('[data-pick="fantasy"]');
     assert.equal(await openOf(p), 'notes', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
     await toDone(p); assert.equal(await openOf(p), 'done', '「다 골랐다로」');
@@ -119,7 +119,7 @@ const D = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/element-design.json')
     assert.equal(await openOf(p), 'done');
     const t1 = await promptOf(p);
     assert(t1.includes('POSTURE') && t1.includes('1024') && /overall_intensity: strong/.test(t1) && !/attached image/.test(t1), '일상컷 지시문 ' + t1.slice(0, 200));
-    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_game_keyart_f_casual1.webp'), '일상컷 파일 이름');
+    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_game_cgi_f_casual1.webp'), '일상컷 파일 이름');
     checks += 10;
     /* 랜덤 처음부터 — 다 찬다. 여기부터 다시 — 장소를 열면 뒤가 빈다 */
     await randAll(p, 'era');

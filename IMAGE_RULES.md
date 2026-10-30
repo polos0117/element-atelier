@@ -13,7 +13,8 @@ game-atelier 의 `IMAGE_RULES.md` 에서 왔다. 등록은 올리면 자동이�
 - **세계마다 다른 사람이다.** 같은 카드라도 판타지·스팀펑크·메카는 얼굴·생김새·자세를 따로 뽑는다(사용자 2026-10-30). 기준 그림을 첨부하지 않는다.
   그래서 한 번에 한 장씩, 첨부 없이 만든다.
 - 프롬프트는 **생성기(`prompt.html`)에서 실제로 고른 값으로** 만든다. 손으로 고쳐 쓰지 않는다 — 고칠 것이 있으면 덧붙임 칸(장소·상황 / 의상·소품 / 추가 연출 요청)에 적는다.
-- 화풍은 **게임 키아트 2.5D(`game_keyart`)** 하나다. 파일 이름에 그 열쇠를 넣고, 판(`v1`)은 기록에 남긴다(`data/style.json`).
+- 화풍은 **게임 시네마틱 CGI(`game_cgi`)** 가 기본이다(2026-10-30 — 철 메카 한 장을 2.5D·시네마틱 키아트·CGI 로 나란히 보고 「재질이 테마에 어울린다」). 파일 이름에 그 열쇠를 넣고, 판(`v1`)은 기록에 남긴다(`data/style.json`).
+  게임 키아트 2.5D(`game_keyart`)는 선택지로 남아 있다 — 시안 열두 장이 그 열쇠다. 도감은 기본 화풍 그림을 먼저, 없으면 있는 화풍을 보인다.
 - 그림은 세로 2:3, **1024×1536** 이다. 주인공은 그녀 한 명. 틀은 그림에 그리지 않는다. 배경 속 흐릿한 사람은 괜찮다.
 - 성별 표시 `_f` 는 반드시 붙인다(지금은 여성만 만든다).
 - **원본 PNG 는 올리지 않는다.** webp 로 바꿔 올리고, 기록에는 원본의 sha256 만 남긴다.
@@ -65,13 +66,13 @@ game·pkm 이 쓰는 일상컷 트리 버전2(`lib/casual-tree-v2.js`, 설계는
 ```
 <카드>_<세계>_<화풍>_f.webp         세계 그림 — 세계는 fantasy · steampunk · mecha
 <카드>_<화풍>_f_casual3.webp        일상컷 3 — 세계를 안 탄다(생성기 덧붙임 칸의 「일상컷 번호」)
-예) fe_fantasy_game_keyart_f.webp · fe-steel_mecha_game_keyart_f.webp · fe-rust-armor_fantasy_game_keyart_f.webp · og_game_keyart_f_casual1.webp
+예) fe_fantasy_game_cgi_f.webp · fe-steel_mecha_game_cgi_f.webp · fe-rust-armor_fantasy_game_keyart_f.webp(시안) · og_game_keyart_f_casual1.webp
 ```
 
 카드 열쇠는 `fe`(근본) · `fe-steel`(가문주) · `fe-steel-sword`(주민) — 하이픈으로 잇는다. 세계·화풍 열쇠는 설계표·화풍 판 그대로.
 생성기의 "올릴 파일 이름" 이 이 꼴로 보여 준다.
 
-**기록**: 생성기의 "기록 내보내기" 가 주는 JSON 을 그림 저장소의 `records/<카드>/<세계>-ui.json` 에 둔다(일상컷은 `casualN-ui.json`).
+**기록**: 생성기의 "기록 내보내기" 가 주는 JSON 을 그림 저장소의 `records/<카드>/<세계>-ui.json` 에 둔다(일상컷은 `casualN-ui.json`). 기본 화풍이 아닌 그림은 `<세계>.<화풍>-ui.json`(시안 2.5D 는 `fantasy.game_keyart-ui.json`).
 원본 PNG 의 sha256 과 만들 때 쓴 크기·품질·사용량은 올릴 때 `generation` 칸으로 더한다.
 
 ## 4. 등록 — 올리면 자동이다

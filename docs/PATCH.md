@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 기본 화풍을 게임 시네마틱 CGI(game_cgi)로 — 철 근본 세 장
+- data/style.json — game_cgi v1 을 기본으로(철 메카 한 장을 2.5D·시네마틱 키아트·CGI 로 나란히 보고 사용자가 「재질이 테마에 어울린다」). 문장은 신화 공방 game_cgi 에서 weapon → prop, 일상컷은 옷감·장신구·자연광. game_keyart 는 선택지로(시안 열두 장의 열쇠)
+- data/img.json — 철 근본 세 장(fe_<세계>_game_cgi_f.webp) 등록. 그림 저장소 기록은 기본 화풍 밖이면 <세계>.<화풍>-ui.json
+- IMAGE_RULES.md — 화풍·기록 이름 규칙. tests/screen.cjs · tests/prompt-element.cjs — 기본 화풍 열쇠를 style.json 에서 읽는다
+
 ## 2026-10-30 · claude · 생성기를 공방 모음 통합 생성기 꼴로 · 일상컷 트리 버전2 · 공간 다섯 리뉴얼
 - prompt.html · lib/studio.js · lib/studio.css — 생성기 판을 공방 모음 통합 생성기(prompt/hub.js) 꼴로 다시 썼다(사용자 「UI 는 허브 통합 생성기」): 나라 › 카드 › 갈래(세계 그림 · 일상컷) › 단계 한 칸씩, 칩·해방(트리 밖 + 까닭)·랜덤·여기부터 다시·처음부터, 폰 레일·아래 막대·시트. 일상컷은 버전2 칸(시대 → 장소 → 계절·날씨 → 의상 → 옷 → 자세 추천 → 몸 자세 → 받침 → 프레이밍 → 몸·머리 방향 → 카메라 → 오른손·왼손 → 소품 동작 → 다리 → 시선 → 표정 → 덧붙임). 고른 것은 element_studio_v1
 - lib/casual-tree.js · lib/casual-tree-v2.js — game·pkm 과 같은 공용 모듈(글자 하나 다르지 않게). data/casual-tree.json · data/casual-tree-v2.json — 원소 몫 트리 표(시대 now·site·nation·fantasy, 원소의 현장 site_* 열 곳, 나라 안 nation_* 일곱 곳, 원소 소품 여섯). tools/casual-tree*.py · tests/casual-tree* — 검사. 무엇을 바꿨나는 docs/CASUAL_TREE_PORT.md
