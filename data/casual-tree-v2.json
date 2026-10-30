@@ -2299,6 +2299,15 @@
     "nation_inn",
     "bakery_kitchen"
    ]
+  },
+  {
+   "key": "signature",
+   "ko": "그 원소의 물건",
+   "en": "her own object",
+   "signature": true,
+   "places": [
+    "*"
+   ]
   }
  ],
  "prop_uses": [
@@ -4425,6 +4434,112 @@
    "needs_any": [
     "table",
     "worktable"
+   ]
+  },
+  {
+   "key": "sig_hold",
+   "prop": "signature",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "chest",
+   "ko": "그 물건을 든다",
+   "en": "holds {prop} at chest height",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "sit_chair",
+    "sit_edge",
+    "sit_floor",
+    "kneel",
+    "squat",
+    "recline",
+    "lie_side",
+    "lie_front",
+    "lean_counter",
+    "sit_lean"
+   ]
+  },
+  {
+   "key": "sig_raise",
+   "prop": "signature",
+   "kind": "raise",
+   "hands": "one",
+   "zone": "face",
+   "ko": "그 물건을 얼굴 옆에 든다",
+   "en": "holds {prop} up beside her face",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "sit_chair",
+    "sit_edge",
+    "sit_floor",
+    "kneel",
+    "squat",
+    "recline",
+    "lie_side",
+    "lie_front",
+    "lean_counter",
+    "sit_lean"
+   ]
+  },
+  {
+   "key": "sig_both",
+   "prop": "signature",
+   "kind": "both",
+   "hands": "both",
+   "zone": "chest",
+   "ko": "그 물건을 두 손으로 든다",
+   "en": "holds {prop} in both hands in front of her",
+   "grip": {
+    "right": "holds one side",
+    "left": "holds the other side"
+   },
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "sit_chair",
+    "sit_edge",
+    "sit_floor",
+    "kneel",
+    "squat",
+    "recline",
+    "lie_side",
+    "lie_front",
+    "lean_counter",
+    "sit_lean"
    ]
   }
  ],

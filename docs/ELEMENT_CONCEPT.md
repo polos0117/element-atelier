@@ -43,8 +43,8 @@ game-atelier(게임이 사람이 된 세계)의 껍데기를 바탕으로 만든
 ```
 CONCEPT(층마다 한 문장) → ELEMENT TRAITS(나라 성질 + 팔레트) → HOUSE TRAITS(가문 성질 + 팔레트, 가문주·주민만)
 → AGE → SILHOUETTE(체형 · 머리 윤곽 · 머리색) → FACE(윤곽 · 눈 · 눈썹 · 코 · 입 · 눈 색)   ← 설계표 look(나라 ← 가문), 직접 고른 묶음은 빠진다
-→ WORLD — <세계>: 나라(또는 가문)의 세계 글 + 주민의 세계 메모 + 세계 꼬리(메카는 MECHA DESIGN 설계 문장)
-→ STYLE(화풍 판) → EXPOSURE(노출 — 비우면 없다) → 덧붙임(SCENE NOTE · OUTFIT NOTE · EXTRA) → OUTPUT · BODY → IDENTITY(직접 고른 외형 목록) → ONE FIGURE ONLY · ANATOMY
+→ WORLD — <세계>: 나라(또는 가문)의 세계 글 + 주민의 세계 메모 + 세계 꼬리(메카는 MECHA DESIGN 설계 문장) → SETTING(장면 변주 — 고르면) → TIME & WEATHER(고르면)
+→ STYLE(화풍 판) → EXPOSURE(노출 — 비우면 없다) → 덧붙임(SCENE NOTE · OUTFIT NOTE · EXTRA) → OUTPUT(자세 자리 — 비우면 카드 자세) → EXPRESSION(고르면) · BODY → IDENTITY(직접 고른 외형 목록) → ONE FIGURE ONLY · ANATOMY
 ```
 
 - **외형(2026-10-30)**: game 공방과 같은 외형 선택지(`lib/look-spec.js` — game 표를 `tools/port-look-spec.cjs` 로 글자 그대로 옮기고 원소 몫 색만 더함)와 설계표 `look` 칸.

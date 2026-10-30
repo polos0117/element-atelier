@@ -12,7 +12,7 @@ game-atelier 의 일상컷 트리 버전1·버전2 를 가져왔다. 모듈 둘�
 | `tools/casual-tree-v2.py` | game 과 byte-identical | 없음 |
 | `tests/casual-tree.py` · `tests/casual-tree-v2.py` | game | 오락실·휴대용 게임기 사례를 현장·원소 소품으로, 시대 넷·필수 갈래(현장·나라 안)·since 없음 사례를 더했다 |
 | `tests/casual-tree.cjs` | game | 생성기 표(`prompt-spec` POSE_OPTIONS·ORIENTATION_OPTIONS) 대조는 뺐다 — 원소 생성기엔 자세 표가 없다. CLOSE_FRAMES·LOOK_BACK 은 game 값을 파일 안에 적었다. 시대·required.world·year() null 사례를 더했다 |
-| `tests/casual-tree-v2.cjs` | game | 알아볼 거리(`signature`·`signature_hold`·game-design.json)와 휴대용 게임기 since 사례를 뺐다. 13절(현장·나라 안·원소 소품) 을 더했다 |
+| `tests/casual-tree-v2.cjs` | game | 휴대용 게임기 since 사례를 뺐다. 13절(현장·나라 안·원소 소품) 을 더했다. 알아볼 거리(`signature`)는 2026-10-30 「그 원소의 물건」 으로 되살렸다(설계표 `hold.en`·주민 `object.en`, 동작 셋) |
 | `data/casual-tree.json` · `data/casual-tree-v2.json` | game 표에서 변환 | 아래 |
 
 ## 시대 열쇠

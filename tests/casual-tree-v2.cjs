@@ -161,8 +161,11 @@ assert.equal(C.why(t, Object.assign({}, dress, { ofeat: ['pocket'] }), 'right', 
 assert.equal(C.why(t, fx({ item: 'jeans_tee' }), 'right', 'pocket'), null);
 assert.notEqual(C.repair(t, Object.assign({}, dress, { right: 'pocket' })).right, 'pocket', '다시 검사가 주머니 손을 고친다');
 // 소품 동작과 손 자세는 같은 공간을 쓰지 않는다 — 카드(game 자리)는 없이, 랜덤 수백 번
-assert(!t.v2.props.some(p => p.signature), '알아볼 거리 소품이 없다');
+/* 손에 드는 그 원소의 물건(signature) — 2026-10-30 사용자 「일상컷에서 손에 드는 소품까지」. 카드가 signature_hold 를 주면 들고, 없으면(검사기 견주기) 된다고 본다 */
+assert.equal(t.v2.props.filter(p => p.signature).length, 1, '그 원소의 물건 소품 하나');
+assert.equal(t.v2.prop_uses.filter(u => u.prop === 'signature').length, 3, '들기 · 얼굴 옆 · 두 손');
 assert(C.signatureHold(null, { prop: '' }), '카드 없이 부르면 된다고 본다(검사기 견주기)');
+assert(C.signatureHold({ signature: ['x'], signature_hold: [0] }, { prop: '' }) && !C.signatureHold({ signature: [], signature_hold: [] }, { prop: '' }), '카드의 signature_hold 가 정한다');
 for (let i = 0; i < 300; i++) {
   const sc = C.random(t, {}, null, seeded(i + 1)), u = C.use(t, sc.use);
   if (u && u.space) assert(![sc.right, sc.left].some(k => (C.hand(t, k) || {}).space === u.space), i + ' 입 공간 겹침');

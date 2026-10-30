@@ -41,7 +41,8 @@
    "gas": "기체",
    "unknown": "모름"
   },
-  "look_note": "나라 look = 얼굴 여섯(face_shape·eyes·brows·nose·lips·eye_color) + 실루엣 셋(body·hair·hair_color) — 어휘는 lib/look-spec.js VOCAB_EN. 가문 look 은 덮어쓸 것만(보통 hair_color·eye_color), 주민은 가문 것을 물려받는다. 팔레트 색이 머리·눈 색이 된다(사용자 2026-10-30). 세계마다 사람이 달라도 이 성향은 같다 — 생성기 외형 칸에서 직접 고른 값이 이긴다."
+  "look_note": "나라 look = 얼굴 여섯(face_shape·eyes·brows·nose·lips·eye_color) + 실루엣 셋(body·hair·hair_color) — 어휘는 lib/look-spec.js VOCAB_EN. 가문 look 은 덮어쓸 것만(보통 hair_color·eye_color), 주민은 가문 것을 물려받는다. 팔레트 색이 머리·눈 색이 된다(사용자 2026-10-30). 세계마다 사람이 달라도 이 성향은 같다 — 생성기 외형 칸에서 직접 고른 값이 이긴다.",
+  "scenes_note": "worlds.<세계>.scenes = 그 세계 안의 장소 변주(key·ko·en) — 생성기 「장면」 칸. 비우면(자동) 세계 글의 장소. hold.en = 일상컷에서 손에 들 수 있는 그 원소·물질의 작은 물건(주민은 object.en). 2026-10-30"
  },
  "elements": [
   {
@@ -1480,16 +1481,67 @@
    "worlds": {
     "fantasy": {
      "ko": "대장장이 왕국 — 용광로를 둘러싼 산성, 쇳물 수로, 마법 자성으로 춤추는 쇳가루",
-     "en": "a fantasy kingdom of smiths: a mountain fortress built around a great forge, rivers of molten iron glowing in channels, hammered-iron gates, anvils as altars, iron filings drawn into patterns by magic magnetism, ember sparks in the air"
+     "en": "a fantasy kingdom of smiths: a mountain fortress built around a great forge, rivers of molten iron glowing in channels, hammered-iron gates, anvils as altars, iron filings drawn into patterns by magic magnetism, ember sparks in the air",
+     "scenes": [
+      {
+       "key": "forge",
+       "ko": "대장간 안",
+       "en": "inside the great forge: anvils, hammers hung on the wall, a river of molten iron glowing in a channel behind her"
+      },
+      {
+       "key": "gate",
+       "ko": "쇠 성문",
+       "en": "before the hammered-iron fortress gate on the mountainside, ember sparks drifting in the air"
+      },
+      {
+       "key": "mine",
+       "ko": "자철석 광산",
+       "en": "a magnetite mine shaft where iron filings hang in the air in magnetic patterns"
+      }
+     ]
     },
     "steampunk": {
      "ko": "산업혁명 1860 — 주철 철교, 증기 기관차, 용광로 굴뚝, 리벳 거더",
-     "en": "the Industrial Revolution around 1860: a cast-iron railway bridge over a river, a steam locomotive with a glowing firebox, blast furnaces and chimneys, riveted iron girders, gauges and valves, coal smoke under a copper sunset"
+     "en": "the Industrial Revolution around 1860: a cast-iron railway bridge over a river, a steam locomotive with a glowing firebox, blast furnaces and chimneys, riveted iron girders, gauges and valves, coal smoke under a copper sunset",
+     "scenes": [
+      {
+       "key": "bridge",
+       "ko": "철교 위",
+       "en": "on the cast-iron railway bridge over the river, a locomotive steaming past"
+      },
+      {
+       "key": "furnace",
+       "ko": "용광로 앞",
+       "en": "at the mouth of a blast furnace, orange heat and soot-black chimneys"
+      },
+      {
+       "key": "workshop",
+       "ko": "리벳 공장",
+       "en": "a riveting workshop with girders, chains and gas lamps"
+      }
+     ]
     },
     "mecha": {
      "ko": "2150 궤도 주조소 — 무중력 쇳물, 자기 레일, I빔 어깨판, 용광로 왕관 백팩",
      "en": "year 2150, an orbital iron foundry over a red-dust asteroid: molten metal pouring in zero gravity into glowing molds, magnetic rails, stars and a distant sun, hard rim light",
-     "design": "heavy dark-iron plating with brushed-steel edges, visible rivets and I-beam girder shapes in the pauldrons and greaves, a magnetic field drawn as hovering iron-filing arcs and a halo of orbiting shards, forge-orange glow lines along the seams, a rusted patina band across one shoulder, a back unit shaped like a blast-furnace crown"
+     "design": "heavy dark-iron plating with brushed-steel edges, visible rivets and I-beam girder shapes in the pauldrons and greaves, a magnetic field drawn as hovering iron-filing arcs and a halo of orbiting shards, forge-orange glow lines along the seams, a rusted patina band across one shoulder, a back unit shaped like a blast-furnace crown",
+     "scenes": [
+      {
+       "key": "foundry",
+       "ko": "궤도 주조소",
+       "en": "the orbital foundry floor, molten metal pouring in zero gravity into glowing molds"
+      },
+      {
+       "key": "rail",
+       "ko": "자기 레일",
+       "en": "a magnetic rail platform over the red-dust asteroid, stars behind"
+      },
+      {
+       "key": "dock",
+       "ko": "수리 도크",
+       "en": "a repair dock lined with I-beams and welding light"
+      }
+     ]
     }
    },
    "families": [
@@ -1588,6 +1640,9 @@
        "body": "athletic"
       },
       "why": "brushed steel silver·tempered blue → 머리, 눈. 곧고 믿음직 → 운동형"
+     },
+     "hold": {
+      "en": "a polished steel rivet with a tempered-blue sheen"
      }
     },
     {
@@ -1659,6 +1714,9 @@
        "hair_color": "rust_orange"
       },
       "why": "rust orange·ochre → 머리·눈"
+     },
+     "hold": {
+      "en": "a flake of rust-orange iron on a leather cord"
      }
     },
     {
@@ -1711,6 +1769,9 @@
        "hair_color": "ash_gray"
       },
       "why": "iron grey → 잿빛 머리, deep blue pole tips → 눈"
+     },
+     "hold": {
+      "en": "a small horseshoe magnet with red and blue tips"
      }
     },
     {
@@ -1751,6 +1812,9 @@
        "hair_color": "wine_red"
       },
       "why": "crimson·dark wine red → 머리·눈"
+     },
+     "hold": {
+      "en": "a small vial of dark red liquid"
      }
     }
    ],
@@ -1769,6 +1833,9 @@
      "hair_color": "iron_grey"
     },
     "why": "팔레트의 iron grey 가 머리, ember red 가 눈. 단단함·무게 → 넓은 어깨, 땋은 머리는 쇠사슬·거더의 선"
+   },
+   "hold": {
+    "en": "a palm-sized lodestone with iron filings clinging to it"
    }
   },
   {
@@ -1789,16 +1856,67 @@
    "worlds": {
     "fantasy": {
      "ko": "구름 위 떠 있는 왕국 — 하늘섬, 떠다니는 기구, 별의 불을 모신 신전",
-     "en": "a kingdom floating above the clouds: sky islands tethered by ropes, drifting balloon-lanterns, a temple that keeps a star's pale fire, endless morning sky"
+     "en": "a kingdom floating above the clouds: sky islands tethered by ropes, drifting balloon-lanterns, a temple that keeps a star's pale fire, endless morning sky",
+     "scenes": [
+      {
+       "key": "island",
+       "ko": "하늘 섬",
+       "en": "on a sky island tethered by ropes, drifting balloon-lanterns around her"
+      },
+      {
+       "key": "temple",
+       "ko": "별불 신전",
+       "en": "inside the temple that keeps a star's pale fire"
+      },
+      {
+       "key": "cloud",
+       "ko": "구름 다리",
+       "en": "on a rope bridge between cloud islands at endless morning"
+      }
+     ]
     },
     "steampunk": {
      "ko": "1900 비행선 항구 — 수소 기낭, 황동 밸브, 전기분해 실험실, 분광기",
-     "en": "around 1900, an airship harbour: great hydrogen gas envelopes under a mooring mast, brass valves and gauges, an electrolysis laboratory with glass jars and a spectroscope, telegraph wires, dawn haze"
+     "en": "around 1900, an airship harbour: great hydrogen gas envelopes under a mooring mast, brass valves and gauges, an electrolysis laboratory with glass jars and a spectroscope, telegraph wires, dawn haze",
+     "scenes": [
+      {
+       "key": "harbour",
+       "ko": "비행선 항구",
+       "en": "under a great hydrogen envelope at the airship mooring mast"
+      },
+      {
+       "key": "lab",
+       "ko": "전기분해 실험실",
+       "en": "an electrolysis laboratory of glass jars, brass valves and gauges"
+      },
+      {
+       "key": "gondola",
+       "ko": "곤돌라",
+       "en": "in the brass-railed gondola of an airship above the clouds"
+      }
+     ]
     },
     "mecha": {
      "ko": "2200 핵융합 항만 도시 — 흰 불의 토카막, 수소 연료 탱크, 궤도 승강기",
      "en": "year 2200, a fusion harbour city: a ring-shaped tokamak glowing white-blue, cryogenic hydrogen tanks, a space elevator cable rising into a pale sky, clean hard light",
-     "design": "light white-and-silver armor with translucent pale-blue panels, thin frame joints, a single electron-shell ring as a halo, cryogenic frost along the seams, pale-blue flame glow lines, a slim back unit shaped like a fuel tank; the plates must read as solid armor, not cloth"
+     "design": "light white-and-silver armor with translucent pale-blue panels, thin frame joints, a single electron-shell ring as a halo, cryogenic frost along the seams, pale-blue flame glow lines, a slim back unit shaped like a fuel tank; the plates must read as solid armor, not cloth",
+     "scenes": [
+      {
+       "key": "tokamak",
+       "ko": "토카막",
+       "en": "before the ring-shaped tokamak glowing white-blue"
+      },
+      {
+       "key": "tanks",
+       "ko": "극저온 탱크",
+       "en": "among cryogenic hydrogen tanks venting white vapour"
+      },
+      {
+       "key": "elevator",
+       "ko": "우주 엘리베이터",
+       "en": "at the base of the space elevator cable rising into a pale sky"
+      }
+     ]
     }
    },
    "families": [
@@ -1882,6 +2000,9 @@
        "hair_color": "rain_blue"
       },
       "why": "rain blue → 머리·눈"
+     },
+     "hold": {
+      "en": "a clear glass of water catching the light"
      }
     },
     {
@@ -1933,6 +2054,9 @@
        "hair_color": "cream"
       },
       "why": "cream canvas → 머리, pale blue → 눈"
+     },
+     "hold": {
+      "en": "a small cream balloon on a string"
      }
     },
     {
@@ -1989,6 +2113,9 @@
        "body": "athletic"
       },
       "why": "frost white·tank silver → 머리, pale blue flame → 눈"
+     },
+     "hold": {
+      "en": "a frost-white fuel canister the size of a thermos"
      }
     },
     {
@@ -2039,6 +2166,9 @@
        "hair_color": "antique_gold"
       },
       "why": "fusion white·gold → 머리·눈"
+     },
+     "hold": {
+      "en": "a small glass sphere of fusion-white light"
      }
     }
    ],
@@ -2057,6 +2187,9 @@
      "hair_color": "silver_white"
     },
     "why": "팔레트의 white·silver 가 머리, pale sky blue 가 눈. 가볍고 늘 떠오름 → 가는 몸, 위로 흩날리는 풍성한 머리"
+   },
+   "hold": {
+    "en": "a small glass vial of pale-blue flame that drifts upward"
    }
   },
   {
@@ -2077,16 +2210,67 @@
    "worlds": {
     "fantasy": {
      "ko": "숲과 바다의 성소 — 숨 쉬는 나무, 산호 신전, 꺼지지 않는 성화",
-     "en": "a sanctuary of forest and sea: breathing ancient trees, a coral temple at the shore, an eternal sacred flame that never consumes its altar, clean bright air"
+     "en": "a sanctuary of forest and sea: breathing ancient trees, a coral temple at the shore, an eternal sacred flame that never consumes its altar, clean bright air",
+     "scenes": [
+      {
+       "key": "grove",
+       "ko": "숨 쉬는 숲",
+       "en": "among breathing ancient trees in clean bright light"
+      },
+      {
+       "key": "coral",
+       "ko": "산호 신전",
+       "en": "at the coral temple on the shore, sea foam at her feet"
+      },
+      {
+       "key": "flame",
+       "ko": "꺼지지 않는 불",
+       "en": "beside the eternal sacred flame that never consumes its altar"
+      }
+     ]
     },
     "steampunk": {
      "ko": "1800 기체 실험실·잠수종 항구 — 유리 종, 황동 밸브, 산소 램프",
-     "en": "around 1800, a gas laboratory and a diving-bell harbour: glass bell jars, brass valves, an oxy-hydrogen limelight lamp, copper diving helmets, a lighthouse"
+     "en": "around 1800, a gas laboratory and a diving-bell harbour: glass bell jars, brass valves, an oxy-hydrogen limelight lamp, copper diving helmets, a lighthouse",
+     "scenes": [
+      {
+       "key": "lab",
+       "ko": "기체 실험실",
+       "en": "a gas laboratory of glass bell jars and brass valves"
+      },
+      {
+       "key": "diving",
+       "ko": "잠수종 항구",
+       "en": "at the diving-bell harbour with copper diving helmets and ropes"
+      },
+      {
+       "key": "lighthouse",
+       "ko": "석회광 등대",
+       "en": "inside a lighthouse lit by a hissing oxy-hydrogen limelight"
+      }
+     ]
     },
     "mecha": {
      "ko": "2200 해양 테라포밍 기지 — 산소 발생 탑, 산호 돔, 푸른 플라즈마",
      "en": "year 2200, an ocean terraforming station: oxygen-generation towers venting white plumes, coral-glass domes, blue-green plasma light",
-     "design": "white and sea-blue armor with clear visor panels, bubble-shaped pauldrons, tank-and-valve motifs, combustion-orange glow lines, a back unit of two rounded tanks"
+     "design": "white and sea-blue armor with clear visor panels, bubble-shaped pauldrons, tank-and-valve motifs, combustion-orange glow lines, a back unit of two rounded tanks",
+     "scenes": [
+      {
+       "key": "tower",
+       "ko": "산소 탑",
+       "en": "at the foot of an oxygen-generation tower venting white plumes"
+      },
+      {
+       "key": "dome",
+       "ko": "산호 유리 돔",
+       "en": "inside a coral-glass dome over the sea"
+      },
+      {
+       "key": "plasma",
+       "ko": "플라즈마 홀",
+       "en": "a hall of blue-green plasma light"
+      }
+     ]
     }
    },
    "families": [
@@ -2141,6 +2325,9 @@
        "hair_color": "navy"
       },
       "why": "deep sea blue → 머리, river green → 눈"
+     },
+     "hold": {
+      "en": "a blue glass bottle of sea water"
      }
     },
     {
@@ -2192,6 +2379,9 @@
        "hair_color": "pale_aqua"
       },
       "why": "clear white·pale aqua → 머리·눈"
+     },
+     "hold": {
+      "en": "a small brass oxygen mask with a clear tube"
      }
     }
    ],
@@ -2210,6 +2400,9 @@
      "hair_color": "ocean_blue"
     },
     "why": "팔레트의 sea blue 가 머리, forest green 이 눈. 숨과 불 → 건강한 운동형, 물결 머리"
+   },
+   "hold": {
+    "en": "a clear glass bubble-sphere of fresh air with a tiny flame inside"
    }
   },
   {
@@ -2229,16 +2422,67 @@
    "worlds": {
     "fantasy": {
      "ko": "숯꾼의 숲과 다이아몬드 광산 — 육각 수정 동굴",
-     "en": "a charcoal-burner's forest and a diamond mine: hexagonal crystal caves, smoking charcoal kilns, a world tree with lattice-patterned bark"
+     "en": "a charcoal-burner's forest and a diamond mine: hexagonal crystal caves, smoking charcoal kilns, a world tree with lattice-patterned bark",
+     "scenes": [
+      {
+       "key": "cave",
+       "ko": "결정 동굴",
+       "en": "in a hexagonal crystal cave of raw diamond"
+      },
+      {
+       "key": "kiln",
+       "ko": "숯가마",
+       "en": "among smoking charcoal kilns in the forest"
+      },
+      {
+       "key": "tree",
+       "ko": "세계수",
+       "en": "under the world tree with lattice-patterned bark"
+      }
+     ]
     },
     "steampunk": {
      "ko": "1850 석탄 시대 — 탄광, 코크스로, 연필 공장, 아크등",
-     "en": "around 1850, the age of coal: a colliery headframe, coke ovens, a pencil factory, a carbon-arc lamp hissing blue-white"
+     "en": "around 1850, the age of coal: a colliery headframe, coke ovens, a pencil factory, a carbon-arc lamp hissing blue-white",
+     "scenes": [
+      {
+       "key": "colliery",
+       "ko": "탄광 권양탑",
+       "en": "under a colliery headframe, coal dust in the air"
+      },
+      {
+       "key": "coke",
+       "ko": "코크스 가마",
+       "en": "before glowing coke ovens"
+      },
+      {
+       "key": "arc",
+       "ko": "탄소 아크등",
+       "en": "in a workshop lit by a hissing blue-white carbon-arc lamp"
+      }
+     ]
     },
     "mecha": {
      "ko": "2200 그래핀 탑 도시 — 육각 격자 외장, 탄소섬유 직조",
      "en": "year 2200, a city of graphene towers: hexagonal lattice facades, carbon-fibre weave surfaces, diamond-glass bridges",
-     "design": "matte carbon-fibre weave armor with hexagonal lattice panels, diamond-clear visor and joint crystals, graphite-grey plates, a thin hexagonal halo"
+     "design": "matte carbon-fibre weave armor with hexagonal lattice panels, diamond-clear visor and joint crystals, graphite-grey plates, a thin hexagonal halo",
+     "scenes": [
+      {
+       "key": "tower",
+       "ko": "그래핀 탑",
+       "en": "before a graphene tower with a hexagonal lattice facade"
+      },
+      {
+       "key": "bridge",
+       "ko": "다이아몬드 다리",
+       "en": "on a diamond-glass bridge between towers"
+      },
+      {
+       "key": "weave",
+       "ko": "탄소섬유 홀",
+       "en": "a hall of carbon-fibre weave surfaces"
+      }
+     ]
     }
    },
    "families": [
@@ -2292,6 +2536,9 @@
        "hair_color": "silver_white"
       },
       "why": "diamond white·cold silver → 머리·눈"
+     },
+     "hold": {
+      "en": "a cut diamond held up to the light"
      }
     },
     {
@@ -2329,6 +2576,9 @@
        "eye_color": "graphite_grey"
       },
       "why": "graphite grey → 눈. 머리는 나라의 soot_black 그대로"
+     },
+     "hold": {
+      "en": "a graphite pencil and a sketch scrap"
      }
     }
    ],
@@ -2347,6 +2597,9 @@
      "hair_color": "soot_black"
     },
     "why": "팔레트의 charcoal black·graphite grey 가 머리, living green 이 눈. 격자·결정 → 각진 윤곽, 단정한 보브"
+   },
+   "hold": {
+    "en": "a stick of charcoal and a small raw diamond in one hand"
    }
   },
   {
@@ -2366,16 +2619,67 @@
    "worlds": {
     "fantasy": {
      "ko": "소금 사막의 전사 부족 — 소금 기둥 도시, 노란 불의 횃불",
-     "en": "a warrior tribe of the salt desert: a city of salt pillars, yellow-fire torches, a forbidden lake that must never be touched"
+     "en": "a warrior tribe of the salt desert: a city of salt pillars, yellow-fire torches, a forbidden lake that must never be touched",
+     "scenes": [
+      {
+       "key": "pillars",
+       "ko": "소금 기둥 도시",
+       "en": "among the salt pillars of the desert city"
+      },
+      {
+       "key": "torch",
+       "ko": "노란 불 횃불",
+       "en": "by yellow-fire torches at dusk"
+      },
+      {
+       "key": "lake",
+       "ko": "금지된 호수",
+       "en": "at the shore of the forbidden lake that must never be touched"
+      }
+     ]
     },
     "steampunk": {
      "ko": "1880 가스등 거리와 소다 공장 — 염전, 나트륨 램프",
-     "en": "around 1880, a street of gas lamps and a soda works: salt pans, evaporating basins, a sodium lamp glowing orange, brass and white crust"
+     "en": "around 1880, a street of gas lamps and a soda works: salt pans, evaporating basins, a sodium lamp glowing orange, brass and white crust",
+     "scenes": [
+      {
+       "key": "street",
+       "ko": "가스등 거리",
+       "en": "a street of gas lamps at evening"
+      },
+      {
+       "key": "soda",
+       "ko": "소다 공장",
+       "en": "in the soda works among evaporating basins"
+      },
+      {
+       "key": "lamp",
+       "ko": "나트륨 등",
+       "en": "under a sodium lamp glowing orange, brass and white crust around"
+      }
+     ]
     },
     "mecha": {
      "ko": "2150 소금 결정 도시 — 정육면체 외장, 노란 플라즈마",
      "en": "year 2150, a cubic crystal city on a salt flat: cube-faceted towers, yellow plasma vents, mirror-flat white ground",
-     "design": "cube-faceted white-and-silver armor, sharp right-angle plates, sodium-yellow glow lines, an oil-dark undersuit, a back unit of stacked cubes"
+     "design": "cube-faceted white-and-silver armor, sharp right-angle plates, sodium-yellow glow lines, an oil-dark undersuit, a back unit of stacked cubes",
+     "scenes": [
+      {
+       "key": "cubes",
+       "ko": "입방 결정 도시",
+       "en": "among cube-faceted towers on the salt flat"
+      },
+      {
+       "key": "vent",
+       "ko": "노란 플라즈마 분출구",
+       "en": "beside a yellow plasma vent"
+      },
+      {
+       "key": "flat",
+       "ko": "거울 소금 평원",
+       "en": "on the mirror-flat white ground under a hard sky"
+      }
+     ]
     }
    },
    "families": [
@@ -2430,6 +2734,9 @@
        "hair_color": "salt_white"
       },
       "why": "salt white → 머리, sea blue → 눈"
+     },
+     "hold": {
+      "en": "a small wooden salt box with a white crust"
      }
     }
    ],
@@ -2448,6 +2755,9 @@
      "hair_color": "lemon_yellow"
     },
     "why": "팔레트의 sodium yellow 가 머리·눈. 물에 닿으면 터지는 불꽃 → 작고 튀는 몸, 양갈래"
+   },
+   "hold": {
+    "en": "a small jar of cube salt crystals that glows faintly yellow"
    }
   },
   {
@@ -2467,16 +2777,67 @@
    "worlds": {
     "fantasy": {
      "ko": "황금 왕국 — 금관 신전, 금박 벽, 영원히 꺼지지 않는 황금빛",
-     "en": "a golden kingdom: a temple of beaten gold, gold-leaf walls, a treasury that glows without lamps, dry sunlit hills"
+     "en": "a golden kingdom: a temple of beaten gold, gold-leaf walls, a treasury that glows without lamps, dry sunlit hills",
+     "scenes": [
+      {
+       "key": "temple",
+       "ko": "황금 신전",
+       "en": "inside the temple of beaten gold"
+      },
+      {
+       "key": "treasury",
+       "ko": "보물고",
+       "en": "in the treasury that glows without lamps"
+      },
+      {
+       "key": "hills",
+       "ko": "햇빛 언덕",
+       "en": "on dry sunlit hills before gold-leaf walls"
+      }
+     ]
     },
     "steampunk": {
      "ko": "1849 골드러시 — 광산 수차, 황동 저울, 은행 금고",
-     "en": "around 1849, a gold-rush town: a mine stamp mill and water wheel, brass assay scales, a bank vault with a brass dial, dust and lamplight"
+     "en": "around 1849, a gold-rush town: a mine stamp mill and water wheel, brass assay scales, a bank vault with a brass dial, dust and lamplight",
+     "scenes": [
+      {
+       "key": "mill",
+       "ko": "광산 분쇄기",
+       "en": "by the mine stamp mill and water wheel"
+      },
+      {
+       "key": "assay",
+       "ko": "감정소",
+       "en": "at an assay office with brass scales and lamplight"
+      },
+      {
+       "key": "vault",
+       "ko": "은행 금고",
+       "en": "before a bank vault with a brass dial"
+      }
+     ]
     },
     "mecha": {
      "ko": "2200 금 접점 반도체 도시 — 회로 금선, 거울 금박 위성",
      "en": "year 2200, a gold-circuit city: gold trace lines running over dark panels, gold-foil satellites and mirrors in orbit, warm hard light",
-     "design": "dark armor etched with fine gold circuit lines, gold-plated joints and contacts, a gold-foil mirror disc as a back unit, amber glow lines"
+     "design": "dark armor etched with fine gold circuit lines, gold-plated joints and contacts, a gold-foil mirror disc as a back unit, amber glow lines",
+     "scenes": [
+      {
+       "key": "traces",
+       "ko": "금 회로 거리",
+       "en": "on a street where gold trace lines run over dark panels"
+      },
+      {
+       "key": "orbit",
+       "ko": "금박 위성",
+       "en": "before a window onto gold-foil satellites and mirrors in orbit"
+      },
+      {
+       "key": "hall",
+       "ko": "따뜻한 빛의 홀",
+       "en": "a hall of warm hard light on gold"
+      }
+     ]
     }
    },
    "families": [
@@ -2532,6 +2893,9 @@
        "eye_color": "amber"
       },
       "why": "amber shadow → 눈. 머리는 나라의 golden_blonde 그대로"
+     },
+     "hold": {
+      "en": "a stack of gold coins"
      }
     },
     {
@@ -2586,6 +2950,9 @@
        "hair_color": "rose_gold"
       },
       "why": "rose gold → 머리, ruby red → 눈"
+     },
+     "hold": {
+      "en": "a gold ring set with a ruby"
      }
     }
    ],
@@ -2604,6 +2971,9 @@
      "hair_color": "golden_blonde"
     },
     "why": "팔레트의 yellow gold 가 머리·눈. 변치 않는 광택·왕권 → 조각상 같은 키, 올려 묶은 머리, 매부리코"
+   },
+   "hold": {
+    "en": "a single hammered gold coin"
    }
   },
   {
@@ -2624,16 +2994,67 @@
    "worlds": {
     "fantasy": {
      "ko": "예언된 나라 — 옛 별지도의 빈칸, 바닥 끝 허공 너머에 생겼다 사라지는 유령 도시, 미완성 별지도 망토",
-     "en": "a prophesied kingdom that does not yet exist — the blank space beyond the last charted country on an ancient star-map: the final tile of a vast mosaic floor that ends in void, a half-formed ghost city flickering into being and dissolving again, towers of violet light and falling ash; an oracle's unfinished star-chart embroidered on her cloak, hems dissolving into drifting motes"
+     "en": "a prophesied kingdom that does not yet exist — the blank space beyond the last charted country on an ancient star-map: the final tile of a vast mosaic floor that ends in void, a half-formed ghost city flickering into being and dissolving again, towers of violet light and falling ash; an oracle's unfinished star-chart embroidered on her cloak, hems dissolving into drifting motes",
+     "scenes": [
+      {
+       "key": "map",
+       "ko": "별지도의 빈칸",
+       "en": "on the blank space beyond the last charted country of an ancient star-map"
+      },
+      {
+       "key": "mosaic",
+       "ko": "마지막 타일",
+       "en": "before the final tile of a vast mosaic, the rest complete"
+      },
+      {
+       "key": "threshold",
+       "ko": "예언의 문턱",
+       "en": "at a threshold of a kingdom that does not yet exist, mist and faint light"
+      }
+     ]
     },
     "steampunk": {
      "ko": "1869 화학자의 서재 — 황동 주기율표 서랍장, 마지막 서랍만 열린 채 비어 있고 그 유령",
-     "en": "a chemist's study in 1869 — a giant brass periodic-table cabinet filling the wall, drawers marked only by engraved symbols (no readable letters or numbers), most drawers full of glowing vials, the very last drawer at the far corner open and empty, lit from inside by violet light; gaslight, copper pipes, a spectroscope; she is the ghost of that empty drawer, her skirt dissolving into faint violet motes"
+     "en": "a chemist's study in 1869 — a giant brass periodic-table cabinet filling the wall, drawers marked only by engraved symbols (no readable letters or numbers), most drawers full of glowing vials, the very last drawer at the far corner open and empty, lit from inside by violet light; gaslight, copper pipes, a spectroscope; she is the ghost of that empty drawer, her skirt dissolving into faint violet motes",
+     "scenes": [
+      {
+       "key": "cabinet",
+       "ko": "주기율표 서랍장",
+       "en": "before the giant brass periodic-table cabinet, drawers marked only by engraved symbols"
+      },
+      {
+       "key": "desk",
+       "ko": "화학자의 책상",
+       "en": "at the chemist's desk with a lamp, a blank last drawer open"
+      },
+      {
+       "key": "window",
+       "ko": "1869 년 창가",
+       "en": "by the study window at night, gaslight below"
+      }
+     ]
     },
     "mecha": {
      "ko": "2200 안정의 섬 — 초중량 물질의 검은 수정 도시, 전자껍질 일곱 고리 후광",
      "en": "year 2200, the Island of Stability made real — a stable city of superheavy matter floating in deep space, crystalline black towers lit from within by violet light, a calm nebula sky; she stands firm for the first time, flickering only at the very edges",
-     "design": "void-black armor with deep indigo panels, fractured light-lines running across the plates like cracks that leak pale violet glow, parts of the armor phasing translucent as if decaying and re-forming, a halo of seven orbiting shells (electron-shell rings), a gold noble-crest at the collar, hem plates dissolving into drifting motes; the plates must read as solid armor, not a gown"
+     "design": "void-black armor with deep indigo panels, fractured light-lines running across the plates like cracks that leak pale violet glow, parts of the armor phasing translucent as if decaying and re-forming, a halo of seven orbiting shells (electron-shell rings), a gold noble-crest at the collar, hem plates dissolving into drifting motes; the plates must read as solid armor, not a gown",
+     "scenes": [
+      {
+       "key": "towers",
+       "ko": "검은 결정 탑",
+       "en": "among crystalline black towers lit from within by violet light"
+      },
+      {
+       "key": "edge",
+       "ko": "안정의 섬 가장자리",
+       "en": "at the edge of the Island of Stability, deep space and a calm nebula behind"
+      },
+      {
+       "key": "core",
+       "ko": "위상 핵",
+       "en": "in a core chamber where matter phases translucent and re-forms"
+      }
+     ]
     }
    },
    "families": [],
@@ -2652,6 +3073,9 @@
      "hair_color": "violet_white"
     },
     "why": "팔레트의 pale violet-white decay glow 가 머리(끝이 빛으로 흩어진다)·눈. 비활성 귀족·찰나의 존재 → 길고 가는 몸, 긴 생머리"
+   },
+   "hold": {
+    "en": "a flickering violet-white mote cupped in her palm, half-dissolving"
    }
   }
  ]

@@ -9,6 +9,7 @@
 - 나라는 persona · traits.ko(둘 이상) · traits.en · palette.en · worlds 셋(fantasy·steampunk·mecha — 각 en, mecha 는 design 도).
 - 가문은 ko·en·persona·traits.en·elements(나라 자신을 포함, 전부 아는 원소)·citizens(비어 있어도 된다).
 - 주민은 ko·en·object.en·worlds(비지 않고 전부 아는 세계). notes 의 세계도 아는 세계.
+- 나라는 worlds.<세계>.scenes(그 세계 안 장소 변주 둘 이상 — key·ko·en) 과 hold.en(일상컷에서 손에 드는 그 원소의 물건). 가문은 hold.en, scenes 는 세계 글을 덮어썼을 때만.
 - 나라는 look(face 여섯: face_shape·eyes·brows·nose·lips·eye_color + silhouette 셋: body·hair·hair_color, 값은 lib/look-spec.js VOCAB_EN 의 열쇠 — 어휘 대조는 tests/prompt-element.cjs).
   가문의 look 은 덮어쓸 것만(같은 칸 이름). 주민에겐 look 이 없다(가문 것을 물려받는다). 팔레트 색이 머리·눈 색이 된다(2026-10-30).
 - 성질·세계 문장에 한국어가 섞이지 않는다(en 칸). 시각 언어 한 줄이 비어 있으면 그림이 흔들린다 — en 칸은 40자 이상.
@@ -23,6 +24,29 @@ import roster  # noqa: E402
 
 KEY = re.compile(r"^[a-z0-9]+$")
 LOOK = {"face": ("face_shape", "eyes", "brows", "nose", "lips", "eye_color"), "silhouette": ("body", "hair", "hair_color")}
+
+
+def check_scenes(where, scenes, need, errs):
+    """세계 안 장소 변주 — 나라는 둘 이상(need), 가문은 있으면 본다. key 는 소문자 열쇠, ko 와 en(12자 이상)"""
+    if scenes is None:
+        if need:
+            errs.append(where + " scenes 가 없다")
+        return
+    if not isinstance(scenes, list) or (need and len(scenes) < 2):
+        errs.append(where + " scenes 는 둘 이상의 목록"); return
+    seen = set()
+    for r in scenes:
+        k = (r or {}).get("key")
+        if not k or not KEY.match(k):
+            errs.append(where + " scenes 열쇠는 소문자·숫자만 — %r" % k)
+        if k in seen:
+            errs.append(where + " scenes 열쇠 %r 가 두 번" % k)
+        seen.add(k)
+        if not (r.get("ko") or "").strip():
+            errs.append(where + " scenes.%s ko 가 비었다" % k)
+        en_ = (r.get("en") or "").strip()
+        if len(en_) < 12 or re.search(r"[가-힣]", en_):
+            errs.append(where + " scenes.%s en 이 짧거나 한국어" % k)
 
 
 def check_look(where, look, full, errs):
@@ -99,6 +123,8 @@ def check(doc):
             en(here + " worlds." + w, ws[w].get("en"))
             if w == "mecha":
                 en(here + " worlds.mecha.design", ws[w].get("design"))
+            check_scenes(here + " worlds." + w, ws[w].get("scenes"), True, errs)
+        en(here + " hold.en", (n.get("hold") or {}).get("en"), 12)
         seen_f = set()
         for f in n.get("families") or []:
             fk = f.get("key")
@@ -125,6 +151,8 @@ def check(doc):
                     errs.append(fhere + " worlds 의 %r 는 아는 세계가 아니다" % w)
                 else:
                     en(fhere + " worlds." + w, body.get("en"))
+                    check_scenes(fhere + " worlds." + w, body.get("scenes"), False, errs)
+            en(fhere + " hold.en", (f.get("hold") or {}).get("en"), 12)
             seen_c = set()
             for c in f.get("citizens") or []:
                 ck = c.get("key")

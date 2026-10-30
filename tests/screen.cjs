@@ -97,7 +97,14 @@ function altRowsBelowRoot(n) {
     const p = v.page; await p.waitForSelector('.hchip');
     assert.equal(await openOf(p), 'world', '처음 밟는 갈래는 첫 단계부터(세계는 주소대로 눌려 있다)');
     assert.equal(await p.locator('#panel .opt[data-pick="mecha"][aria-pressed="true"]').count(), 1, '주소의 세계가 눌려 있다');
-    await p.click('#panel .opt[data-pick="mecha"]'); assert.equal(await openOf(p), 'design', '세계 다음 설계 줄');
+    await p.click('#panel .opt[data-pick="mecha"]'); assert.equal(await openOf(p), 'scene', '세계 다음 장면');
+    /* 장면 — 세계 글대로 + 설계표 scenes, 시간대 고르개. 자세·표정 — 카드 자세 + 자세 일곱, 표정 고르개 */
+    assert.equal(await p.locator('#panel .opt[data-pick]').count(), 1 + D.nations.find(n => n.key === 'fe').worlds.mecha.scenes.length, '장면 선택지');
+    await p.selectOption('#panel select[data-shot="time"]', 'night');
+    await p.click('#panel .opt[data-pick="foundry"]'); assert.equal(await openOf(p), 'pose', '장면 다음 자세');
+    assert.match(await p.locator('.hchip[data-open="scene"]').textContent(), /궤도 주조소 · 밤/, '장면 칩');
+    await p.selectOption('#panel select[data-shot="expr"]', 'confident');
+    await p.click('#panel .opt[data-pick="stride"]'); assert.equal(await openOf(p), 'design', '자세 다음 설계 줄');
     assert.equal(await p.locator('.hchip[data-open="world"]').count(), 1, '세계 칩');
     /* 설계 줄 — 실루엣·얼굴 싣기 체크(설계표 look 값 목록), 노출. 얼굴을 끄면 FACE 줄이 빠진다 */
     assert.equal(await p.locator('#panel [data-lookcheck]').count(), 2, '실루엣·얼굴 싣기');
@@ -118,13 +125,14 @@ function altRowsBelowRoot(n) {
     let t0 = await promptOf(p);
     assert(t0.startsWith('CONCEPT: a citizen of the Iron Nation, of the Steel House.') && t0.includes('MECHA DESIGN:') && t0.includes('SCENE NOTE: a windy ridge'), '세계 지시문');
     assert(t0.includes('EXPOSURE (moderate)') && !t0.includes('FACE (') && t0.includes('SILHOUETTE: ') && !t0.includes('tempered-blue') && t0.includes('hair color: silver'), '설계 줄·외형 칸이 지시문에 ' + t0.slice(0, 150));
+    assert(t0.includes('SETTING: this card is set the orbital foundry floor') && t0.includes('TIME & WEATHER: night') && t0.includes('Mid-stride toward the camera') && t0.includes('EXPRESSION: level brow'), '장면·시간대·자세·표정이 지시문에');
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_game_cgi_f.webp'), '파일 이름');
     await p.click('[data-open="world"]'); await p.click('[data-pick="fantasy"]');
-    assert.equal(await openOf(p), 'design', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
+    assert.equal(await openOf(p), 'scene', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
     await toDone(p); assert.equal(await openOf(p), 'done', '「다 골랐다로」');
-    assert(!(await promptOf(p)).includes('MECHA DESIGN') && (await promptOf(p)).includes('FACE (') && !(await promptOf(p)).includes('hair color: silver'), '세계가 바뀌면 외형 칸도 그 세계 것(판타지는 아직 설계표대로)');
+    assert(!(await promptOf(p)).includes('MECHA DESIGN') && (await promptOf(p)).includes('FACE (') && !(await promptOf(p)).includes('hair color: silver') && !(await promptOf(p)).includes('SETTING: ') && (await promptOf(p)).includes('Standing, card-ready pose'), '세계가 바뀌면 외형·장면 칸도 그 세계 것(판타지는 아직 설계표대로)');
     assert.match(p.url(), /card=fe-steel-sword&o=world&world=fantasy/, '주소에 적힌다');
-    checks += 14;
+    checks += 20;
 
     /* 갈래 → 일상컷(버전2): 세계(참고 그림이 되는 세계 그림 — 세계 그림 갈래에서 고른 판타지가 눌려 있다)부터 한 칸씩 */
     await p.click('[data-open="out"]'); await p.click('[data-out="casual"]');
@@ -136,9 +144,12 @@ function altRowsBelowRoot(n) {
     assert((await p.locator('#panel .opt[data-pick]').count()) > 20, '장소 목록');
     const placeKey = await p.locator('#panel .opt[data-pick]:not([data-out])').first().getAttribute('data-pick');
     await p.click('#panel .opt[data-pick="' + placeKey + '"]'); assert.equal(await openOf(p), 'weather', '다음은 계절·날씨');
-    await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'ofam');
+    await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'time', '날씨 다음 시간대');
+    await p.click('#panel .opt[data-pick="neon"]'); assert.equal(await openOf(p), 'ofam');
     await p.click('#panel .opt[data-pick="everyday"]'); assert.equal(await openOf(p), 'item');
-    await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'preset', '옷 다음 자세 추천');
+    await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'hair', '옷 다음 머리 변화');
+    assert.match(await p.locator('#panel .opt[data-pick=""]').textContent(), /그대로/, '머리 그대로가 첫 선택지');
+    await p.click('#panel .opt[data-pick="tied"]'); assert.equal(await openOf(p), 'preset', '머리 다음 자세 추천');
     /* 추천 하나 → 몸 쪽이 다 차고 시선으로 뛴다 */
     const presetKey = await p.locator('#panel .opt[data-pick]:not([data-out])').nth(1).getAttribute('data-pick');
     await p.click('#panel .opt[data-pick="' + presetKey + '"]');
@@ -162,11 +173,20 @@ function altRowsBelowRoot(n) {
     await toDone(p); assert.equal(await openOf(p), 'done');
     const t1 = await promptOf(p);
     assert(t1.includes('POSTURE') && t1.includes('1024') && /overall_intensity: strong/.test(t1) && t1.startsWith('INPUT: the attached image is the approved character — her Mecha card'), '일상컷 지시문 ' + t1.slice(0, 200));
+    assert(t1.includes('Time of day: night under neon') && t1.includes('Hair: her hair tied up'), '시간대·머리가 일상컷 지시문에');
+    assert.match(await p.locator('.hchip[data-open="time"]').textContent(), /네온 밤/, '시간대 칩'); assert.match(await p.locator('.hchip[data-open="hair"]').textContent(), /묶음/, '머리 칩');
+    /* 손에 드는 그 원소의 물건 — 오른손을 「소품 동작」 으로 하면 소품 동작 칸에 「그 물건을 든다」 가 보인다(검의 주민은 검) */
+    await p.click('[data-open="right"]'); await p.click('#panel .opt[data-pick="prop"]'); assert.equal(await openOf(p), 'left', '오른손 다음 왼손');
+    await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'use', '소품 동작 칸');
+    if (!(await p.locator('#panel .opt[data-pick^="sig_"]').count()) && mob) { await p.click('#panel [data-gtab=""]'); }
+    assert((await p.locator('#panel .opt[data-pick^="sig_"]').count()) >= 1, '그 물건을 드는 동작 선택지(컷에 맞는 꼴 — 얼굴 클로즈업이면 얼굴 옆에)');
+    await p.click('#panel .opt[data-pick^="sig_"]'); await toDone(p);
+    assert(/PROP: with her own right hand she holds a forged/.test(await promptOf(p)), '검의 주민이 검을 든다 ' + ((await promptOf(p)).split('PROP: ')[1] || '').slice(0, 80));
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f_casual1.webp'), '일상컷 파일 이름(세계를 탄다)');
     const refT = await p.locator(mob ? '.hres .ref' : '#ref .ref').textContent();
     assert(refT.includes('fe-steel-sword_mecha_' + S.default + '_f.webp') && /아직 없다/.test(refT), '참고 그림 줄 — 그 세계 그림 이름, 아직 등록 안 됨 ' + refT);
     assert.match(p.url(), /card=fe-steel-sword&o=casual&world=mecha/, '일상컷도 주소에 세계');
-    checks += 18;
+    checks += 28;
     /* 랜덤 처음부터 — 다 찬다. 여기부터 다시 — 장소를 열면 뒤가 빈다 */
     await randAll(p, 'world');
     assert.equal(await openOf(p), 'done', '랜덤 뒤 다 골랐다');

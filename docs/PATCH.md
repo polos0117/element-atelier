@@ -7,6 +7,14 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 세계 그림에 장면·시간대·자세·표정 · 일상컷에 손에 드는 물건·시간대·머리 변화 · 나라 안은 참고 세계로
+- data/element-design.json · tools/element-design.py — 나라마다 세계마다 장소 변주 scenes 셋(63) · 일상컷에서 손에 드는 그 원소의 물건 hold.en(나라 7 · 가문 15, 주민은 object.en). 검사기가 본다(사용자 「응」 + 「일상컷에서 손에 드는 소품까지」)
+- data/casual-tree-v2.json · tests/casual-tree-v2.cjs — 소품 signature(그 원소의 물건, 모든 장소)와 동작 셋(들기 · 얼굴 옆 · 두 손). 카드가 signature_hold 를 주면 든다
+- lib/prompt-spec.js · lib/prompt-element.js — 세계 그림: SETTING(장면) · TIME & WEATHER(일곱) · OUTPUT 의 자세 자리(WORLD_POSES 일곱, 비우면 카드 자세) · EXPRESSION, opts.shot(normShot 이 바로잡고 기록에 남는다). 일상컷: PROP 에 그 물건(hold), 시대 「나라 안」 이 참고 그림의 세계 글(전엔 늘 판타지), Time of day(일곱) · Hair(다섯 — 색·길이는 지키고 매무새만), CHARACTER 가 머리 변화·물건 들기를 허락
+- lib/studio.js · lib/words.js — 세계 그림 단계 세계 → 장면(+시간대 고르개) → 자세·표정(+표정 고르개) → 설계 줄 → 외형 → 덧붙임, 카드×세계마다 저장(shots). 일상컷 단계에 시간대(날씨 뒤)·머리 변화(옷 뒤). 랜덤·여기부터 다시가 같이 다룬다
+- tests/prompt-element.cjs · tests/screen.cjs(125가지) — 장면·시간대·자세·표정 줄과 차례 · 다른 세계 열쇠 비움 · 손에 드는 물건(근본·가문주·주민, 트리 허락) · 나라 안 세계 · 시간대·머리 · 화면 흐름
+- IMAGE_RULES.md · AGENTS.md · docs/ELEMENT_CONCEPT.md · docs/CASUAL_TREE_PORT.md — 규칙
+
 ## 2026-10-30 · claude · 외형 칸의 「설계표」 표를 라벨 옆에 · 일상컷 덧붙임에 전체 강도·피부 노출 고르개
 - lib/studio.js · lib/studio.css · lib/words.js — 외형 칸에서 설계 줄이 채우는 항목의 표(「설계표」)가 폰에서 빈 칸처럼 보였다(사용자 「설계 라고 나오는 건 뭐야」) → 라벨과 한 덩이로. 일상컷 덧붙임 칸에 두 축(전체 강도 · 피부 노출) 고르개 — 기본은 고정값(가장 강함 · 많이), 바꾸면 지시문·칩에 따라온다(사용자 「일상컷에 세부 강도 설정이 빠졌네」). 화면비는 2:3 그대로
 - tests/screen.cjs — 93가지

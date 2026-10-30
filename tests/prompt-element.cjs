@@ -67,6 +67,20 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
   const rec = P.record(D, S, 'fe-rust', 'fantasy', { look: { params: { 'hair color': 'silver' } } });
   assert.equal(rec.look.params['hair color'], 'silver'); assert.equal(rec.design.silhouette.hair_color, 'rust_orange'); assert.equal(rec.look.exposure, 'bold', '기록에 외형 칸과 설계 look');
 }
+/* 장면·시간대·자세·표정(opts.shot) — 설계표 scenes(나라마다 세계마다 둘 이상), 비우면 세계 글의 장소·카드 자세, 모르는 열쇠는 비운다 */
+{
+  for (const n of D.nations) for (const w of worlds) assert(P.scenesOf(P.card(D, n.key), w).length >= 2, n.key + ' ' + w + ' 장면 변주');
+  assert(same(P.scenesOf(P.card(D, 'fe-steel-sword'), 'mecha'), P.scenesOf(P.card(D, 'fe'), 'mecha')), '가문이 세계 글을 안 덮어썼으면 나라의 장면');
+  const base = P.build(D, S, 'fe', 'fantasy', {});
+  assert(base.includes(T.POSE_DEFAULT) && !base.includes('SETTING: ') && !base.includes('TIME & WEATHER') && !base.includes('EXPRESSION: '), '비우면 카드 자세, 장면·시간대·표정 줄 없음');
+  const sc = P.scenesOf(P.card(D, 'fe'), 'fantasy')[1], shot = { scene: sc.key, time: 'night', pose: 'stride', expr: 'confident', zzz: 1 };
+  const t3 = P.build(D, S, 'fe', 'fantasy', { shot });
+  assert(t3.includes('SETTING: this card is set ' + sc.en + '.') && t3.includes(T.WORLD_TIMES.find(r => r.key === 'night').en) && t3.includes(T.WORLD_POSES.find(r => r.key === 'stride').en) && !t3.includes(T.POSE_DEFAULT) && t3.includes('EXPRESSION: ' + T.EXPRESSION_DETAIL.confident + '.'), '장면·시간대·자세·표정 줄 ' + t3.slice(-900));
+  const order3 = ['WORLD — ', 'SETTING: ', 'TIME & WEATHER', 'STYLE: ', 'OUTPUT: ', 'EXPRESSION: ', 'BODY: '].map(x => t3.indexOf(x)); assert(same(order3, order3.slice().sort((a, b) => a - b)), '줄 차례 ' + order3);
+  assert(same(P.normShot(D, 'fe', 'mecha', shot), { scene: '', time: 'night', pose: 'stride', expr: 'confident' }), '다른 세계의 장면 열쇠는 비운다');
+  assert(same(P.normShot(D, 'fe', 'fantasy', { scene: 'nope', time: 'x', pose: 'y', expr: 'z' }), { scene: '', time: '', pose: '', expr: '' }), '모르는 열쇠는 비운다');
+  assert.equal(P.record(D, S, 'fe', 'fantasy', { shot }).shot.scene, sc.key, '기록에 shot');
+}
 /* 덧붙임이 실린다 · 기록 꼴 */
 const t = P.build(D, S, 'fe-steel-sword', 'fantasy', { notes: { scene: 'a windy ridge', outfit: 'red sash', custom: 'low angle' } });
 assert(t.includes('SCENE NOTE: a windy ridge') && t.includes('OUTFIT NOTE: red sash') && t.includes('EXTRA: low angle'));
@@ -77,7 +91,7 @@ assert.notEqual(P.build(D, S, 'h-water', 'fantasy', {}), P.build(D, S, 'o-water'
 /* 없는 열쇠·없는 세계 */
 assert.equal(P.card(D, 'xx'), null); assert.equal(P.card(D, 'fe-nope'), null); assert.equal(P.card(D, 'fe-steel-sword-x'), null);
 assert.equal(P.build(D, S, 'fe', 'modern', {}), '');
-console.log('PASS 지시문: 카드 ' + cards.length + ' · 지시문 ' + n + ' · 근본 ' + byTier.root + ' 가문주 ' + byTier.lord + ' 주민 ' + byTier.citizen + ' · 뼈대 줄 · 외형(나이·실루엣·얼굴·노출 — 설계표 look, 직접 고른 것이 이김, IDENTITY) · 입는 물건 · 메카 설계 · 덧붙임 · 기록 · 파일 이름');
+console.log('PASS 지시문: 카드 ' + cards.length + ' · 지시문 ' + n + ' · 근본 ' + byTier.root + ' 가문주 ' + byTier.lord + ' 주민 ' + byTier.citizen + ' · 뼈대 줄 · 외형(나이·실루엣·얼굴·노출 — 설계표 look, 직접 고른 것이 이김, IDENTITY) · 장면·시간대·자세·표정 · 입는 물건 · 메카 설계 · 덧붙임 · 기록 · 파일 이름');
 
 /* ══ 일상컷(트리 버전2) ══ 공용 모듈·표는 이 저장소 것을 먼저, 아직 없으면 game-atelier 것으로(알림을 찍는다) */
 const GAME = '../game-atelier/';
@@ -145,7 +159,23 @@ if (ownTables) {
   const fe = era => P.buildCasual(D, S, 'fe', { ...base(era), ...full }, opts);
   assert(fe('now').includes('ERA: the present-day real world'), '지금 현실');
   assert(fe('site').includes('SETTING: a real present-day place where Iron (Fe) is actually made, worked or used'), '쓰임의 현장');
-  assert(fe('nation').includes('WORLD: this scene happens inside her own kingdom, the Iron Nation') && fe('nation').includes(D.nations.find(x => x.key === 'fe').worlds.fantasy.en.trim()), '나라 안 — 판타지 세계 글');
+  assert(fe('nation').includes('WORLD: this scene happens inside her own kingdom, the Iron Nation') && fe('nation').includes(D.nations.find(x => x.key === 'fe').worlds.fantasy.en.trim()), '나라 안 — 참고 그림(판타지)의 세계 글');
+  const feM = P.buildCasual(D, S, 'fe', { ...base('nation'), ...full }, { ...opts, world: 'mecha' });
+  assert(feM.includes(D.nations.find(x => x.key === 'fe').worlds.mecha.en.trim()) && !feM.includes(D.nations.find(x => x.key === 'fe').worlds.fantasy.en.trim()), '나라 안 — 참고 그림이 메카면 메카 세계 글');
+  /* 손에 드는 그 원소의 물건 — 근본·가문주는 설계표 hold.en, 주민은 object.en. 소품 동작 sig_hold 가 PROP 줄에 그 물건을 싣는다 */
+  assert.equal(P.holdOf(P.card(D, 'fe')), D.nations.find(x => x.key === 'fe').hold.en.trim()); assert.equal(P.holdOf(P.card(D, 'fe-rust')), 'a flake of rust-orange iron on a leather cord'); assert.equal(P.holdOf(P.card(D, 'fe-steel-sword')), P.card(D, 'fe-steel-sword').citizen.object.en.trim());
+  for (const key of ['fe', 'fe-rust', 'h-water-bottle']) {
+    const sig = { ...base(wOf(key) && eras[0]), posture: 'stand', support: 'none', frame: 'waist_up', body: 'front_3q', head: 'with_body', camera: 'eye', right: 'prop', left: 'natural', use: 'sig_hold', gaze: 'camera' };
+    const st = P.buildCasual(D, S, key, sig, optsFor(key));
+    assert(st.includes('PROP: with her own right hand she holds ' + P.holdOf(P.card(D, key)) + ' at chest height; it is all she holds.'), key + ' 손에 드는 물건 ' + (st.split('PROP: ')[1] || '').slice(0, 120));
+    assert(C2.useFits(t2, sig, C2.use(t2, 'sig_hold'), 1, { key, signature: [P.holdOf(P.card(D, key))], signature_hold: [0] }), key + ' 트리가 그 물건 동작을 허락한다');
+  }
+  assert(!C2.useFits(t2, { ...base(eras[0]), posture: 'stand', frame: 'waist_up', right: 'prop', left: 'natural' }, C2.use(t2, 'sig_hold'), 1, { key: 'x', signature: [], signature_hold: [] }), '물건이 없는 카드는 못 든다');
+  /* 시간대 · 머리 변화 — 비우면 없고, 고르면 SCENE 에 */
+  const th = P.buildCasual(D, S, 'fe', { ...base(eras[0]), ...full, time: 'neon', hair: 'tied' }, opts);
+  assert(th.includes('Time of day: ' + CL.times.find(r => r.key === 'neon').en + '.') && th.includes('Hair: ' + CL.hairs.find(r => r.key === 'tied').en + '.'), '시간대·머리 줄');
+  assert(!fe('now').includes('Time of day: ') && !fe('now').includes('Hair: '), '비우면 없다');
+  assert(th.includes("her hair may be worn differently only as SCENE's Hair line says"), 'CHARACTER 가 머리 변화를 허락한다');
   assert(fe('fantasy').includes(CL.era.fantasy), '무대·환상');
 }
 /* 2. 트리의 랜덤 장면 — 카드마다 몇 번(정해진 난수) */
@@ -201,4 +231,4 @@ assert.equal(P.buildCasual(D, S, 'xx', { ...base(eras[0]) }, opts), '');
 assert.throws(() => P.buildCasual(D, S, 'fe', { ...base(eras[0]) }, { tree, world: 'fantasy' }), /Casual tree v2/);
 /* 표 파일은 함수가 없고, 조립기는 표정 표를 다 가진다 */
 assert(same(Object.keys(T.EXPRESSION_DETAIL).sort(), T.EXPRESSION_OPTIONS.map(o => o[0]).filter(Boolean).sort()), '표정 선택지와 풀이가 같다');
-console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + ' × 시대 ' + eras.length + ' · 참고 그림 = 세계 그림(세 세계·안 사는 세계 거름) · 랜덤 · 해방 · 돌아보기 · 클로즈업 · 두 손 소품 · 고정값 · 파일 이름 · 기록(world·ref)' + (ownTables ? ' · 원소 표' : ' · (game 표를 빌림)'));
+console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + ' × 시대 ' + eras.length + ' · 참고 그림 = 세계 그림(세 세계·안 사는 세계 거름·나라 안은 그 세계) · 손에 드는 물건 · 시간대·머리 · 랜덤 · 해방 · 돌아보기 · 클로즈업 · 두 손 소품 · 고정값 · 파일 이름 · 기록(world·ref)' + (ownTables ? ' · 원소 표' : ' · (game 표를 빌림)'));
