@@ -14,13 +14,13 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="lib/workspace.css?v=2">
 <script src="lib/workspace-theme.js?v=2"></script>
-<script src="lib/words.js?v=2"></script>
+<script src="lib/words.js?v=3"></script>
 <script src="lib/img.js?v=1"></script>
 <script src="lib/prompt-spec.js?v=1"></script>
 <script src="lib/prompt-element.js?v=1"></script>
 <script src="lib/fresh.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=2">
-<link rel="stylesheet" href="lib/element.css?v=2">
+<link rel="stylesheet" href="lib/element.css?v=3">
 </head>
 <body class="prompt-page lab-page">
 <div class="wrap"><div id="app"></div></div>
@@ -41,16 +41,24 @@ function useDocs(){
   },[]);
   return doc;
 }
-/* 카드·세계 → 파일 이름(등록된 것) — 화풍은 기본 화풍 */
-function fileOf(doc,key,world){
+/* 카드에 세계 그림이 등록된 화풍들 — 기본 화풍이 먼저, 나머지는 style.json 차례 */
+function stylesOf(doc,key){
+  const e=doc.img[key];if(!e)return [];const m=IMG.styleMap(e);
+  const ks=Object.keys(m).filter(k=>Object.keys(IMG.formMap(m[k])).length);
+  const order=[doc.s.default,...Object.keys(doc.s.styles||{})];
+  return ks.sort((a,b)=>{const ia=order.indexOf(a),ib=order.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib);});
+}
+/* 카드·세계 → 파일 이름(등록된 것). 화풍을 안 주면 기본 화풍(없으면 첫 화풍) */
+function fileOf(doc,key,world,style){
   const e=doc.img[key];if(!e)return null;
-  const b=IMG.styleMap(e)[doc.s.default]||Object.values(IMG.styleMap(e))[0];if(!b)return null;
+  const b=IMG.styleMap(e)[style||doc.s.default]||(style?null:IMG.styleMap(e)[stylesOf(doc,key)[0]]);if(!b)return null;
   const f=IMG.formMap(b)[world];return f&&f.f||null;
 }
+function styleName(doc,k){const s=doc.s.styles&&doc.s.styles[k];return s&&s.name||k;}
 function casualsOf(doc,key){const e=doc.img[key];if(!e)return [];return Object.values(IMG.styleMap(e)).flatMap(b=>IMG.cuts(b,'casual','f'));}
 /* 세계 한 칸 — 그림이 있으면 누르면 크게, 없으면 자리표시. 주민이 그 세계에 없으면 흐리게 */
-function Slot({doc,card,world,live,onOpen}){
-  const f=live?fileOf(doc,card,world):null,ko=W('world.'+world);
+function Slot({doc,card,world,live,onOpen,style}){
+  const f=live?fileOf(doc,card,world,style):null,ko=W('world.'+world);
   const face=f?h('img',{loading:'lazy',src:IMG.thumbURL(f),alt:'',onError:e=>{e.target.onerror=null;e.target.src=IMG.imgURL(f);}}):h('span',{class:'ph'},live?W('art.missing'):W('world.none'));
   const cap=h('span',{class:'cap'},ko,h('i',null,live&&!f?'':f?'':''));
   if(!live)return h('span',{class:'slot',disabled:true},h('span',{class:'face'},face),cap);
@@ -58,8 +66,11 @@ function Slot({doc,card,world,live,onOpen}){
   return h('button',{type:'button',class:'slot',onClick:()=>onOpen(f,card,world),title:W('dex.open')},h('span',{class:'face'},face),cap);
 }
 function Worlds({doc,card,worlds,onOpen}){
-  const all=doc.d.vocab.worlds,casuals=casualsOf(doc,card);
+  const all=doc.d.vocab.worlds,casuals=casualsOf(doc,card),styles=stylesOf(doc,card),main=styles[0],alts=styles.slice(1);
   return h('div',null,h('div',{class:'worlds'},all.map(w=>h(Slot,{key:w,doc,card,world:w,live:worlds.includes(w),onOpen}))),
+    main&&main!==doc.s.default&&h('p',{class:'style-note'},W('dex.style.alt',{name:styleName(doc,main)})),
+    alts.map(st=>h('div',{key:st,class:'alt-row'},h('p',{class:'style-note'},W('dex.style.alt',{name:styleName(doc,st)})),
+      h('div',{class:'worlds alt'},all.map(w=>h(Slot,{key:w,doc,card,world:w,live:worlds.includes(w),onOpen,style:st}))))),
     !!casuals.length&&h('div',{class:'worlds casuals'},casuals.map((f,i)=>h('button',{key:f,type:'button',class:'slot',onClick:()=>onOpen(f,card,'casual')},
       h('span',{class:'face'},h('img',{loading:'lazy',src:IMG.thumbURL(f),alt:'',onError:ev=>{ev.target.onerror=null;ev.target.src=IMG.imgURL(f);}})),h('span',{class:'cap'},W('dex.casual'),h('i',null,i+1))))));
 }

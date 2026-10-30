@@ -15,6 +15,18 @@ const server = http.createServer((q, s) => {
 });
 const ESM = { 'https://esm.sh/preact@10.24.3': 'preact/dist/preact.mjs', 'https://esm.sh/preact@10.24.3/hooks': 'preact/hooks/dist/hooks.mjs' };
 const D = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/element-design.json'), 'utf8'));
+const S = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style.json'), 'utf8'));
+const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'));
+/* 가문주·주민 카드 가운데 기본 화풍 밖 세계 그림이 등록된 (카드, 화풍) 쌍의 수 — 도감의 「다른 화풍」 줄 하나씩. 기본 화풍 그림이 없는 카드는 첫 화풍이 본 줄이 되니 뺀다 */
+function altRowsBelowRoot(n) {
+  let rows = 0;
+  for (const f of n.families) for (const key of [f.key, ...f.citizens.map(c => f.key + '-' + c.key)]) {
+    const m = (IMGJ.img[n.key + '-' + key] || {}).byStyle || {};
+    const ks = Object.keys(m).filter(k => m[k].byForm && Object.keys(m[k].byForm).length);
+    if (ks.length) rows += ks.length - 1;
+  }
+  return rows;
+}
 
 (async () => {
   await new Promise(r => server.listen(PORT, r));
@@ -66,7 +78,12 @@ const D = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/element-design.json')
     v = await open('/dex.html?nation=fe', vp);
     await v.page.waitForSelector('.dex-head');
     const fe = D.nations.find(n => n.key === 'fe'), fams = fe.families.length, cit = fe.families.reduce((s, f) => s + f.citizens.length, 0);
-    assert.equal(await v.page.locator('.worlds:not(.casuals) .slot').count(), 3 + fams * 3 + cit * 3, '근본 3 + 가문주 3×' + fams + ' + 주민 3×' + cit);
+    assert.equal(await v.page.locator('.worlds:not(.casuals):not(.alt) .slot').count(), 3 + fams * 3 + cit * 3, '근본 3 + 가문주 3×' + fams + ' + 주민 3×' + cit);
+    /* 기본 화풍 밖에 등록된 세계 그림은 「다른 화풍」 줄로 — img.json 의 fe 근본에서 센다 */
+    const altStyles = Object.entries((IMGJ.img.fe || {}).byStyle || {}).filter(([k, b]) => k !== S.default && b.byForm && Object.keys(b.byForm).length).map(([k]) => k);
+    assert.equal(await v.page.locator('.worlds.alt').count(), altStyles.length + altRowsBelowRoot(fe), '다른 화풍 줄 수(철 근본 ' + altStyles.length + ')');
+    for (const k of altStyles) assert((await v.page.locator('.style-note', { hasText: S.styles[k].name }).count()) >= 1, '다른 화풍 이름 ' + k);
+    assert.equal(await v.page.locator('.worlds.alt img[src*="_' + (altStyles[0] || 'game_keyart') + '_f.webp"]').count() > 0, altStyles.length > 0, '다른 화풍 줄에 그 화풍 그림');
     const dead = fe.families.reduce((s, f) => s + f.citizens.reduce((x, c) => x + (3 - c.worlds.length), 0), 0);
     assert.equal(await v.page.locator('.slot[disabled]').count(), dead, '안 사는 세계는 흐린 칸');
     assert((await v.page.locator('a.slot[href^="prompt.html?card=fe-steel&world=fantasy"]').count()) >= 1, '빈 자리는 생성기로');

@@ -109,3 +109,6 @@
 
 /* 일상컷 줄 — 세계 셋 아래, 같은 칸 크기로 이어 붙는다 */
 .worlds.casuals {margin-top:8px}
+.alt-row {margin-top:8px}
+.style-note {margin:6px 0 4px;color:var(--muted);font-size:12px}
+.worlds.alt .slot {border-style:dotted}

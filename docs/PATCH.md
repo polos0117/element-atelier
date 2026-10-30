@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 도감 — 기본 화풍 밖에 등록된 세계 그림도 「다른 화풍」 줄로 보인다
+- dex.html — 카드마다 기본 화풍 줄 아래에, 다른 화풍으로 등록된 세계 그림을 화풍 이름 붙여 한 줄씩(점선 테두리). 기본을 game_cgi 로 바꾼 뒤 2.5D 시안 열두 장이 도감에서 안 보이던 것(사용자 「처음 2.5D 뽑은 이미지는 어디 갔지」). 기본 화풍 그림이 없는 카드는 첫 화풍이 본 줄
+- lib/element.css · lib/words.js — .alt-row · .style-note · dex.style.alt. tests/screen.cjs — 다른 화풍 줄 수·이름·그림 검사
+
 ## 2026-10-30 · claude · 화풍 시네마틱 키아트(cinematic_keyart) 추가 — 철 근본 판타지·스팀펑크 비교 두 장
 - data/style.json — cinematic_keyart v1 을 선택 화풍으로(신화 공방 mecha_cinematic_keyart 문장, 열쇠만 짧게). 사용자가 철 근본 판타지·스팀펑크는 CGI 와 살짝 안 어울린다 해서 비교용. 기본은 아직 game_cgi
 - data/img.json — 철 근본 세 장(fe_<세계>_cinematic_keyart_f.webp) 등록. 메카는 화풍 비교 때 뽑은 장을 그대로 썼다. 그림 저장소 기록은 <세계>.cinematic_keyart-ui.json
