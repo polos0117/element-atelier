@@ -29,7 +29,11 @@ for (const key of cards) {
     assert(!t.includes('IDENTITY ('), key + ' ' + w + ' 고른 외형이 없으면 IDENTITY 가 없다');
     const order = ['HOUSE TRAITS', 'AGE: ', 'SILHOUETTE: ', 'FACE (', 'WORLD — ', 'STYLE: ', 'EXPOSURE (', 'OUTPUT: '].map(x => t.indexOf(x)).filter(i => i >= 0);
     assert(same(order, order.slice().sort((a, b) => a - b)), key + ' ' + w + ' 외형 줄 차례');
-    if (w === 'steampunk') assert(t.includes('bare shoulders, arms or thighs'), key + ' 스팀펑크 과감은 열린 재단'); else assert(t.includes('her outer layer (coat, cloak, robe or armor) stays on both shoulders'), key + ' ' + w + ' 과감은 겉옷');
+    /* 과감 노출은 세계마다 — 판타지·스팀펑크는 제 문장(코르셋 없이), 메카는 공용 겉옷 문장. 세계 옷 뼈대가 서로 다르다(2026-10-30 — 둘이 같은 코르셋 옷으로 나왔다) */
+    if (w === 'fantasy') assert(t.includes('between pauldron and bracer') && t.includes('COSTUME (fantasy)') && t.includes('No corset, no bustle') && !/corset-like/.test(t), key + ' 판타지 옷·과감');
+    else if (w === 'steampunk') assert(t.includes('sleeves rolled above the elbow') && t.includes('COSTUME (steampunk)') && t.includes('high-necked blouse') && !/corset-like/.test(t), key + ' 스팀펑크 옷·과감');
+    else assert(t.includes('her outer layer (coat, cloak, robe or armor) stays on both shoulders'), key + ' 메카 과감은 겉옷');
+    if (w !== 'mecha') assert(/LIGHT: .*unless TIME & WEATHER says otherwise/.test(t), key + ' ' + w + ' 기본 빛');
     assert(t.includes(c.element.en), key + ' 원소 이름');
     if (c.family) assert(t.includes('HOUSE TRAITS of ' + c.family.en), key + ' 가문 성질');
     if (c.tier === 'citizen') {
@@ -72,11 +76,11 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
   for (const n of D.nations) for (const w of worlds) assert(P.scenesOf(P.card(D, n.key), w).length >= 2, n.key + ' ' + w + ' 장면 변주');
   assert(same(P.scenesOf(P.card(D, 'fe-steel-sword'), 'mecha'), P.scenesOf(P.card(D, 'fe'), 'mecha')), '가문이 세계 글을 안 덮어썼으면 나라의 장면');
   const base = P.build(D, S, 'fe', 'fantasy', {});
-  assert(base.includes(T.POSE_DEFAULT) && !base.includes('SETTING (this card)') && !base.includes('TIME & WEATHER') && !base.includes('EXPRESSION: '), '비우면 카드 자세, 장면·시간대·표정 줄 없음');
+  assert(base.includes(T.POSE_DEFAULT) && !base.includes('SETTING (this card)') && !base.includes('TIME & WEATHER: ') && !base.includes('EXPRESSION: '), '비우면 카드 자세, 장면·시간대·표정 줄 없음');
   const sc = P.scenesOf(P.card(D, 'fe'), 'fantasy')[1], shot = { scene: sc.key, time: 'night', pose: 'stride', expr: 'confident', zzz: 1 };
   const t3 = P.build(D, S, 'fe', 'fantasy', { shot });
   assert(t3.includes('SETTING (this card): ' + sc.en + '.') && t3.includes(T.WORLD_TIMES.find(r => r.key === 'night').en) && t3.includes(T.WORLD_POSES.find(r => r.key === 'stride').en) && !t3.includes(T.POSE_DEFAULT) && t3.includes('EXPRESSION: ' + T.EXPRESSION_DETAIL.confident + '.'), '장면·시간대·자세·표정 줄 ' + t3.slice(-900));
-  const order3 = ['WORLD — ', 'SETTING (this card)', 'TIME & WEATHER', 'STYLE: ', 'OUTPUT: ', 'EXPRESSION: ', 'BODY: '].map(x => t3.indexOf(x)); assert(same(order3, order3.slice().sort((a, b) => a - b)), '줄 차례 ' + order3);
+  const order3 = ['WORLD — ', 'SETTING (this card)', 'TIME & WEATHER: ', 'STYLE: ', 'OUTPUT: ', 'EXPRESSION: ', 'BODY: '].map(x => t3.indexOf(x)); assert(same(order3, order3.slice().sort((a, b) => a - b)), '줄 차례 ' + order3);
   assert(same(P.normShot(D, 'fe', 'mecha', shot), { scene: '', time: 'night', pose: 'stride', expr: 'confident' }), '다른 세계의 장면 열쇠는 비운다');
   assert(same(P.normShot(D, 'fe', 'fantasy', { scene: 'nope', time: 'x', pose: 'y', expr: 'z' }), { scene: '', time: '', pose: '', expr: '' }), '모르는 열쇠는 비운다');
   assert.equal(P.record(D, S, 'fe', 'fantasy', { shot }).shot.scene, sc.key, '기록에 shot');

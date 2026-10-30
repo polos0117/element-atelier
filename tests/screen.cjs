@@ -86,7 +86,14 @@ function altRowsBelowRoot(n) {
     assert.equal(await v.page.locator('.worlds.alt img[src*="_' + (altStyles[0] || 'game_keyart') + '_f.webp"]').count() > 0, altStyles.length > 0, '다른 화풍 줄에 그 화풍 그림');
     const dead = fe.families.reduce((s, f) => s + f.citizens.reduce((x, c) => x + (3 - c.worlds.length), 0), 0);
     assert.equal(await v.page.locator('.slot[disabled]').count(), dead, '안 사는 세계는 흐린 칸');
-    assert((await v.page.locator('a.slot[href^="prompt.html?card=fe-steel&world=fantasy"]').count()) >= 1, '빈 자리는 생성기로');
+    /* 빈 자리는 생성기로 — 그림이 없는 (카드, 세계) 하나를 등록부에서 찾는다(그림이 차면 자리가 옮겨 간다) */
+    const holes = [fe.key, ...fe.families.flatMap(f => [fe.key + '-' + f.key, ...f.citizens.map(c => fe.key + '-' + f.key + '-' + c.key)])].flatMap(k => {
+      const fam = fe.families.find(f => k.split('-')[1] === f.key), cit = fam && fam.citizens.find(c => k.split('-')[2] === c.key);
+      const ws = cit ? cit.worlds : ['fantasy', 'steampunk', 'mecha'], have = (((IMGJ.img[k] || {}).byStyle || {})[S.default] || {}).byForm || {};
+      return ws.filter(w => !(have[w] && have[w].f)).map(w => [k, w]);
+    });
+    assert(holes.length, '철나라에 빈 자리가 없다 — 검사할 자리를 다른 나라로');
+    assert((await v.page.locator('a.slot[href^="prompt.html?card=' + holes[0][0] + '&world=' + holes[0][1] + '"]').count()) >= 1, '빈 자리는 생성기로 ' + holes[0]);
     await noOverflow(v.page, vp.width); assert.deepEqual(v.errors, []); checks += 3; await v.ctx.close();
     v = await open('/dex.html?nation=h', vp); await v.page.waitForSelector('.dex-head');
     assert.equal(await v.page.locator('.row-head .shared a[href="dex.html?nation=o"]').count(), 1, '물 가문은 산소나라와 나눈다');
