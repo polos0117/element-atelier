@@ -7,6 +7,9 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 오가네손 근본도 세 화풍 나란히 — CGI 세 장 · 시네마틱 키아트 세 장 등록
+- data/img.json — og_<세계>_game_cgi_f.webp · og_<세계>_cinematic_keyart_f.webp 여섯 장 등록(사용자 「철 말고 오가네손도 똑같이, 다른 화풍 3개씩」). 2.5D 시안 세 장과 함께 도감 근본 칸에 세 줄로 보인다. 그림 저장소 기록은 records/og/<세계>-ui.json(기본 CGI) · <세계>.cinematic_keyart-ui.json
+
 ## 2026-10-30 · claude · 도감 — 기본 화풍 밖에 등록된 세계 그림도 「다른 화풍」 줄로 보인다
 - dex.html — 카드마다 기본 화풍 줄 아래에, 다른 화풍으로 등록된 세계 그림을 화풍 이름 붙여 한 줄씩(점선 테두리). 기본을 game_cgi 로 바꾼 뒤 2.5D 시안 열두 장이 도감에서 안 보이던 것(사용자 「처음 2.5D 뽑은 이미지는 어디 갔지」). 기본 화풍 그림이 없는 카드는 첫 화풍이 본 줄
 - lib/element.css · lib/words.js — .alt-row · .style-note · dex.style.alt. tests/screen.cjs — 다른 화풍 줄 수·이름·그림 검사
