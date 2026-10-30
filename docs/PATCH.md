@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 철나라 가문주 열두 장(CGI) · 강철·자석 가문 외형 가르기
+- data/element-design.json — 강철 가문 look 에 짧게 친 머리·타원 얼굴·아몬드 눈·곧은 눈썹, 자석 가문 look 에 양갈래·곡선형 몸·하트 얼굴·큰 둥근 눈·하트 입술. 첫 뽑기에서 둘이 같은 은회색 땋은 머리라 자매처럼 닮았다(사용자 「2번」 — 강철·자석만 다시)
+- data/img.json — fe-<가문>_<세계>_game_cgi_f.webp 열두 장 등록(강철·녹·자석·피 × 판타지·스팀펑크·메카). 장면은 가문마다 변주로 갈랐다(강철 대장간·리벳 공장·수리 도크, 녹 세계 글·철교·세계 글, 자석 자철석 광산·세계 글·자기 레일, 피 쇠 성문·용광로·궤도 주조소). 안전 필터에 걸린 두 장은 같은 지시문으로 한 번 다시 돌려 통과
+
 ## 2026-10-30 · claude · 세계 그림 장면 줄 머리말을 「SETTING (this card): 」 로
 - lib/prompt-spec.js · prompt.html — 「SETTING: this card is set a magnetite mine…」 처럼 장면 글이 명사로 시작하면 문장이 어긋났다(철 가문주 지시문을 뽑다 봤다). 머리말은 콜론까지만. tests/prompt-element.cjs · tests/screen.cjs 의 문자열도
 

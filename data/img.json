@@ -1,9 +1,32 @@
 {
- "img": {"au-coin-goldcoin": {"byStyle": {"game_keyart": {"byForm": {"fantasy": {"f": "au-coin-goldcoin_fantasy_game_keyart_f.webp"}}}}}, "fe": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "fe_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "fe_steampunk_game_cgi_f.webp"}, "mecha": {"f": "fe_mecha_game_cgi_f.webp"}}}, "game_keyart": {"casual": {"f": ["fe_game_keyart_f_casual1.webp"]}, "byForm": {"fantasy": {"f": "fe_fantasy_game_keyart_f.webp"}, "steampunk": {"f": "fe_steampunk_game_keyart_f.webp"}, "mecha": {"f": "fe_mecha_game_keyart_f.webp"}}}, "cinematic_keyart": {"byForm": {"fantasy": {"f": "fe_fantasy_cinematic_keyart_f.webp"}, "steampunk": {"f": "fe_steampunk_cinematic_keyart_f.webp"}, "mecha": {"f": "fe_mecha_cinematic_keyart_f.webp"}}}}}, "fe-rust-armor": {"byStyle": {"game_keyart": {"byForm": {"fantasy": {"f": "fe-rust-armor_fantasy_game_keyart_f.webp"}}}}}, "fe-steel-nail": {"byStyle": {"game_keyart": {"byForm": {"mecha": {"f": "fe-steel-nail_mecha_game_keyart_f.webp"}}}}}, "h-water-bottle": {"byStyle": {"game_keyart": {"casual": {"f": ["h-water-bottle_game_keyart_f_casual1.webp"]}}}}, "og": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "og_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "og_steampunk_game_cgi_f.webp"}, "mecha": {"f": "og_mecha_game_cgi_f.webp"}}}, "game_keyart": {"casual": {"f": ["og_game_keyart_f_casual1.webp"]}, "byForm": {"fantasy": {"f": "og_fantasy_game_keyart_f.webp"}, "steampunk": {"f": "og_steampunk_game_keyart_f.webp"}, "mecha": {"f": "og_mecha_game_keyart_f.webp"}}}, "cinematic_keyart": {"byForm": {"fantasy": {"f": "og_fantasy_cinematic_keyart_f.webp"}, "steampunk": {"f": "og_steampunk_cinematic_keyart_f.webp"}, "mecha": {"f": "og_mecha_cinematic_keyart_f.webp"}}}}}},
+ "img": {
+  "au-coin-goldcoin": {"byStyle": {"game_keyart": {"byForm": {"fantasy": {"f": "au-coin-goldcoin_fantasy_game_keyart_f.webp"}}}}},
+  "fe": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "fe_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "fe_steampunk_game_cgi_f.webp"}, "mecha": {"f": "fe_mecha_game_cgi_f.webp"}}}, "game_keyart": {"casual": {"f": ["fe_game_keyart_f_casual1.webp"]}, "byForm": {"fantasy": {"f": "fe_fantasy_game_keyart_f.webp"}, "steampunk": {"f": "fe_steampunk_game_keyart_f.webp"}, "mecha": {"f": "fe_mecha_game_keyart_f.webp"}}}, "cinematic_keyart": {"byForm": {"fantasy": {"f": "fe_fantasy_cinematic_keyart_f.webp"}, "steampunk": {"f": "fe_steampunk_cinematic_keyart_f.webp"}, "mecha": {"f": "fe_mecha_cinematic_keyart_f.webp"}}}}},
+  "fe-blood": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "fe-blood_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "fe-blood_steampunk_game_cgi_f.webp"}, "mecha": {"f": "fe-blood_mecha_game_cgi_f.webp"}}}}},
+  "fe-magnet": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "fe-magnet_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "fe-magnet_steampunk_game_cgi_f.webp"}, "mecha": {"f": "fe-magnet_mecha_game_cgi_f.webp"}}}}},
+  "fe-rust": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "fe-rust_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "fe-rust_steampunk_game_cgi_f.webp"}, "mecha": {"f": "fe-rust_mecha_game_cgi_f.webp"}}}}},
+  "fe-rust-armor": {"byStyle": {"game_keyart": {"byForm": {"fantasy": {"f": "fe-rust-armor_fantasy_game_keyart_f.webp"}}}}},
+  "fe-steel": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "fe-steel_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "fe-steel_steampunk_game_cgi_f.webp"}, "mecha": {"f": "fe-steel_mecha_game_cgi_f.webp"}}}}},
+  "fe-steel-nail": {"byStyle": {"game_keyart": {"byForm": {"mecha": {"f": "fe-steel-nail_mecha_game_keyart_f.webp"}}}}},
+  "h-water-bottle": {"byStyle": {"game_keyart": {"casual": {"f": ["h-water-bottle_game_keyart_f_casual1.webp"]}}}},
+  "og": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "og_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "og_steampunk_game_cgi_f.webp"}, "mecha": {"f": "og_mecha_game_cgi_f.webp"}}}, "game_keyart": {"casual": {"f": ["og_game_keyart_f_casual1.webp"]}, "byForm": {"fantasy": {"f": "og_fantasy_game_keyart_f.webp"}, "steampunk": {"f": "og_steampunk_game_keyart_f.webp"}, "mecha": {"f": "og_mecha_game_keyart_f.webp"}}}, "cinematic_keyart": {"byForm": {"fantasy": {"f": "og_fantasy_cinematic_keyart_f.webp"}, "steampunk": {"f": "og_steampunk_cinematic_keyart_f.webp"}, "mecha": {"f": "og_mecha_cinematic_keyart_f.webp"}}}}}
+ },
  "added": {
   "au-coin-goldcoin_fantasy_game_keyart_f.webp": "2026-10-30",
+  "fe-blood_fantasy_game_cgi_f.webp": "2026-10-30",
+  "fe-blood_mecha_game_cgi_f.webp": "2026-10-30",
+  "fe-blood_steampunk_game_cgi_f.webp": "2026-10-30",
+  "fe-magnet_fantasy_game_cgi_f.webp": "2026-10-30",
+  "fe-magnet_mecha_game_cgi_f.webp": "2026-10-30",
+  "fe-magnet_steampunk_game_cgi_f.webp": "2026-10-30",
   "fe-rust-armor_fantasy_game_keyart_f.webp": "2026-10-30",
+  "fe-rust_fantasy_game_cgi_f.webp": "2026-10-30",
+  "fe-rust_mecha_game_cgi_f.webp": "2026-10-30",
+  "fe-rust_steampunk_game_cgi_f.webp": "2026-10-30",
   "fe-steel-nail_mecha_game_keyart_f.webp": "2026-10-30",
+  "fe-steel_fantasy_game_cgi_f.webp": "2026-10-30",
+  "fe-steel_mecha_game_cgi_f.webp": "2026-10-30",
+  "fe-steel_steampunk_game_cgi_f.webp": "2026-10-30",
   "fe_fantasy_cinematic_keyart_f.webp": "2026-10-30",
   "fe_fantasy_game_cgi_f.webp": "2026-10-30",
   "fe_fantasy_game_keyart_f.webp": "2026-10-30",
@@ -26,5 +49,5 @@
   "og_steampunk_game_cgi_f.webp": "2026-10-30",
   "og_steampunk_game_keyart_f.webp": "2026-10-30"
  },
- "count": 6
+ "count": 10
 }

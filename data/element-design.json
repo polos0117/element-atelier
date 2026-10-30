@@ -1633,13 +1633,17 @@
      ],
      "look": {
       "face": {
-       "eye_color": "steel_blue"
+       "eye_color": "steel_blue",
+       "face_shape": "oval",
+       "eyes": "almond_wide",
+       "brows": "straight_thick"
       },
       "silhouette": {
        "hair_color": "tempered_steel",
-       "body": "athletic"
+       "body": "athletic",
+       "hair": "short_crop"
       },
-      "why": "brushed steel silver·tempered blue → 머리, 눈. 곧고 믿음직 → 운동형"
+      "why": "brushed steel silver·tempered blue → 머리·눈. 곧고 믿음직 → 운동형, 짧게 친 머리, 곧은 눈썹(2026-10-30 — 첫 뽑기에서 자석 가문과 자매처럼 닮아 머리·얼굴을 갈랐다)"
      },
      "hold": {
       "en": "a polished steel rivet with a tempered-blue sheen"
@@ -1763,12 +1767,17 @@
      ],
      "look": {
       "face": {
-       "eye_color": "navy"
+       "eye_color": "navy",
+       "face_shape": "heart",
+       "eyes": "round_large",
+       "lips": "heart_full"
       },
       "silhouette": {
-       "hair_color": "ash_gray"
+       "hair_color": "ash_gray",
+       "body": "curvy",
+       "hair": "twin_tails"
       },
-      "why": "iron grey → 잿빛 머리, deep blue pole tips → 눈"
+      "why": "iron grey → 잿빛 머리, deep blue pole tips → 눈. 두 극(N·S) → 양갈래, 끌어당김 → 곡선형 몸(2026-10-30 — 첫 뽑기에서 강철 가문과 닮아 머리·얼굴을 갈랐다)"
      },
      "hold": {
       "en": "a small horseshoe magnet with red and blue tips"
