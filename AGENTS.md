@@ -21,9 +21,10 @@
 |---|---|---|
 | 첫 화면 | `index.html` · `lib/element.css` | 주기율표 118칸(설계된 나라만 색·누르면 도감) · 첫 묶음 나라 카드(인격·가문·주민·그림 수) · 패치 기록 · 공간 |
 | 도감 | `dex.html` · `lib/img.js` · `lib/element.css` | 나라 하나 — 사실 칸·인격·성질 · 근본 세 세계 · 가문마다 가문주 세 세계 + 주민들(사는 세계만) · 같은 물질 다른 나라 잇기 · 크게 보기 · 빈 자리를 누르면 그 카드의 생성기. 등록부 `data/img.json` 에 적힌 것만 |
-| 프롬프트 | `prompt.html` · `lib/prompt-spec.js`(표) · `lib/prompt-element.js`(조립) | 생성기 — 나라 › 카드(근본·가문주·주민) › 세계 › 덧붙임 → 지시문·올릴 파일 이름·기록 JSON. 고른 것은 이 브라우저에 저장(`element_prompt_v1`), 주소 `?card=&world=` |
+| 프롬프트 | `prompt.html` · `lib/studio.js` · `lib/studio.css`(판) · `lib/prompt-spec.js`(표) · `lib/prompt-element.js`(조립) · `lib/casual-tree.js` · `lib/casual-tree-v2.js` · `data/casual-tree.json` · `data/casual-tree-v2.json`(일상컷 트리) | 생성기 — 공방 모음 통합 생성기 꼴(한 단계씩, 칩·판·폰 아래 막대·시트). 나라 › 카드(근본·가문주·주민) › 갈래(세계 그림 · 일상컷) › 단계 → 지시문·올릴 파일 이름·기록 JSON. 세계 그림은 세계 → 덧붙임. 일상컷은 트리 버전2 — 시대 → 장소 → 계절·날씨 → 의상 → 옷 → 자세 추천 → 몸 자세 → 받침 → 프레이밍 → 몸·머리 방향 → 카메라 → 오른손·왼손 → 소품 동작 → 다리 → 시선 → 표정 → 덧붙임. 해방(트리 밖 + 까닭)·랜덤·여기부터 다시·처음부터. 고른 것은 이 브라우저에(`element_studio_v1`), 주소 `?card=&o=&world=` |
 
-머리·항해·⚙ 설정은 `lib/workspace-ui.js`, 공간(테마)은 `lib/workspace-theme.js`·`lib/workspace.css`·`lib/room.css`.
+머리·항해·⚙ 설정은 `lib/workspace-ui.js`, 공간(테마)은 `lib/workspace-theme.js`·`lib/workspace.css`·`lib/room.css` — 공간 다섯(실험실·천문대·연금술 공방·광산·제어실)은 색과 배경 그림(그림 저장소 `backgrounds/room-<공간>.webp`, 기록 `records/backgrounds/`)을 원소에 맞게 새로 짰다(2026-10-30).
+`lib/casual-tree.js`·`lib/casual-tree-v2.js` 는 game·book·myth·pkm 이 글자 하나 다르지 않게 복사해 쓰는 공용 모듈이다 — 여기서 따로 고치지 않는다(고치면 다섯 저장소에 같이). 트리 표(`data/casual-tree*.json`)는 원소 몫 — 시대는 지금 현실·쓰임의 현장·나라 안·무대·환상, 원소의 현장(`site_*`)·나라 안(`nation_*`) 장소. 무엇을 바꿨나는 `docs/CASUAL_TREE_PORT.md`, 설계는 game 의 `docs/CASUAL_TREE_V2.md`.
 화면 차례는 `lib/workspace-ui.js` 의 `PAGES` 한 곳이다 — 화면을 붙이면 거기 더한다.
 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다. 여기서 따로 고치지 않는다.
 
@@ -33,6 +34,11 @@
 
 형체 없는 것(물·숨·녹·피)은 가문(물질)으로 두고, 그 아래 주민은 재질·색·형태를 옷과 소품으로 옮길 수 있는 **물건**으로 적는다(물병·산소통·녹슨 갑옷·수혈팩).
 주민은 물건을 들지 않는다 — 모티브로만. 입는 물건(갑옷·헬멧·금관)은 `wear: true`.
+
+### 1-1. 일상컷은 트리 버전2로, 세계마다 다른 사람
+
+일상컷(현대)은 트리 버전2(`lib/casual-tree-v2.js`)로 고른다 — 하는 일 칸이 없고, 구도가 보이는 부위를 정한 뒤 손·다리를 그 안에서만 고른다. 생성기 판이 한 칸씩 연다.
+세계 그림도 일상컷도 기준 그림을 붙이지 않는다 — 얼굴·생김새·자세는 장마다 따로(사용자 2026-10-30). 원소 성질은 일상컷에선 장신구·주변 사물로만(옷의 색·무늬로 옮기지 않는다).
 
 ### 2. 성질은 시각 언어 한 줄, 세계는 연도·장소·기술
 
@@ -73,7 +79,10 @@
 ```bash
 python3 tools/element-design.py check   # 설계표 — 빈칸·열쇠 꼴·세계 셋·가문의 원소·겹치는 가문·사실 칸 118
 python3 tests/element-design.py         # 검사기가 규칙마다 거는지
-node tests/prompt-element.cjs           # 지시문 — 모든 카드 × 사는 세계, 뼈대 줄, 입는 물건, 메카 설계, 덧붙임, 기록, 파일 이름
+node tests/prompt-element.cjs           # 지시문 — 모든 카드 × 사는 세계, 뼈대 줄, 입는 물건, 메카 설계, 덧붙임, 기록, 파일 이름 · 일상컷 버전2 줄
+python3 tools/casual-tree.py check      # 일상컷 트리 표(버전1 몫 — 시대·장소·의상) · audit — 하는 일 문장의 고정물이 장소에 없는 쌍
+python3 tools/casual-tree-v2.py check   # 일상컷 트리 버전2 표 — 없는 열쇠·두 손 칸·보이는 손 자리·다리 칸·다 되는 장소 없는 자세 추천
+python3 tests/casual-tree-v2.py · node tests/casual-tree-v2.cjs   # 검사기·거르기 모듈이 규칙마다 거는지
 node tests/words.cjs                    # 낱말 표
 node tests/patch.cjs                    # 패치 기록 모양
 python3 tests/register-images.py        # 그림 등록 — 이름 꼴·자리·등록한 날·틀린 이름은 저장 안 함
@@ -81,5 +90,5 @@ python3 tests/make-thumbs.py            # 썸네일 도구
 node tests/img-shards.cjs               # 그림 주소·등록기·워크플로·.gitignore 가 같은 저장소 차례
 
 # 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
-ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 첫 화면·도감·생성기 — 폰·PC, 118칸, 세 층, 지시문, 콘솔 오류 없음
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 첫 화면·도감·생성기 — 폰·PC, 118칸, 세 층, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
 ```

@@ -106,3 +106,6 @@
 .art-preview {margin-top:12px;display:flex;gap:10px;align-items:flex-start}
 .art-preview img {width:120px;aspect-ratio:2/3;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
 .art-preview p {margin:0;color:var(--muted);font-size:12px}
+
+/* 일상컷 줄 — 세계 셋 아래, 같은 칸 크기로 이어 붙는다 */
+.worlds.casuals {margin-top:8px}

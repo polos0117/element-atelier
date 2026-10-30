@@ -4,111 +4,69 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f8f5fc">
+<meta name="theme-color" content="#f7f9fc">
 <title>원소의 공방</title>
-<!-- 생성기 — 나라 › 카드(근본·가문주·주민) › 세계 › 덧붙임 → 지시문·파일 이름·기록. 표는 lib/prompt-spec.js, 조립은 lib/prompt-element.js.
-     지시문은 생성기가 고른 값으로만 짓는다 — 손으로 고쳐 쓰지 않는다(IMAGE_RULES.md 1절). 고른 것은 이 브라우저에 저장한다(element_prompt_v1). -->
+<!-- 생성기 — 공방 모음 통합 생성기 꼴(한 단계씩, 칩·판·아래 막대). 나라 › 카드(근본·가문주·주민) › 갈래(세계 그림 · 일상컷) › 단계 → 지시문·파일 이름·기록.
+     세계 그림은 lib/prompt-element.js build, 일상컷은 트리 버전2(lib/casual-tree-v2.js + data/casual-tree-v2.json, 시대·장소·의상은 버전1 표)로 buildCasual.
+     지시문은 생성기가 고른 값으로만 짓는다 — 손으로 고쳐 쓰지 않는다(IMAGE_RULES.md 1절). 고른 것은 이 브라우저에 저장한다(element_studio_v1). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="lib/workspace.css?v=1">
-<script src="lib/workspace-theme.js?v=1"></script>
-<script src="lib/words.js?v=1"></script>
+<link rel="stylesheet" href="lib/workspace.css?v=2">
+<script src="lib/workspace-theme.js?v=2"></script>
+<script src="lib/words.js?v=2"></script>
 <script src="lib/img.js?v=1"></script>
-<script src="lib/prompt-spec.js?v=1"></script>
-<script src="lib/prompt-element.js?v=1"></script>
+<script src="lib/prompt-spec.js?v=2"></script>
+<script src="lib/casual-tree.js?v=1"></script>
+<script src="lib/casual-tree-v2.js?v=1"></script>
+<script src="lib/prompt-element.js?v=2"></script>
 <script src="lib/fresh.js?v=1"></script>
-<link rel="stylesheet" href="lib/room.css?v=1">
-<link rel="stylesheet" href="lib/element.css?v=1">
+<link rel="stylesheet" href="lib/room.css?v=2">
+<link rel="stylesheet" href="lib/element.css?v=2">
+<link rel="stylesheet" href="lib/studio.css?v=1">
 </head>
 <body class="prompt-page lab-page">
-<div class="wrap"><div id="app"></div></div>
+<div class="wrap"><div id="app"></div>
+<main class="studio-wrap">
+  <p class="lede" id="lede"></p>
+  <button type="button" id="help" aria-label="?">?</button>
+  <p id="status" role="status"></p>
+  <nav class="hchips" id="chips"></nav>
+  <section class="panel" id="panel" aria-live="polite"></section>
+  <section class="result" id="out" hidden>
+    <div class="row"><h3 id="out-title"></h3><small id="count"></small></div>
+    <p id="unlocked-note"></p>
+    <textarea id="prompt" readonly></textarea>
+    <div class="row"><button type="button" class="btn pri" id="copy"></button><button type="button" class="btn" id="record"></button></div>
+    <p class="file" id="file-name"></p>
+    <div class="art-mini" id="art-mini"></div>
+    <div id="record-out" hidden><textarea id="record-text" readonly></textarea></div>
+  </section>
+</main>
+</div>
+<nav class="hbar" id="hbar" hidden></nav>
+<div class="hsheet" id="hsheet" hidden></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
-import {useState,useEffect,useMemo} from 'https://esm.sh/preact@10.24.3/hooks';
 import {WorkspaceHeader} from './lib/workspace-ui.js?v=1';
-const W=window.W,IMG=window.AtelierImg,P=window.AtelierPrompt,T=window.AtelierSpec;
-const STORE='element_prompt_v1';
-const param=k=>{try{return new URLSearchParams(location.search).get(k)}catch{return null}};
-const load=()=>{try{return JSON.parse(localStorage.getItem(STORE))||{}}catch{return {}}};
-const save=s=>{try{localStorage.setItem(STORE,JSON.stringify(s))}catch{}};
-function useDocs(){
-  const [doc,setDoc]=useState(null);
-  useEffect(()=>{
-    Promise.all([
-      fetch('data/element-design.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error(String(r.status)))),
-      fetch('data/style.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error(String(r.status)))),
-      fetch(IMG.DATA,{cache:'no-cache'}).then(r=>r.ok?r.json():{img:{}}).catch(()=>({img:{}}))
-    ]).then(([d,s,i])=>{IMG.setShards(i);IMG.setAdded(i);setDoc({d,s,img:i.img||{}});}).catch(()=>setDoc({failed:true}));
-  },[]);
-  return doc;
-}
-function fileOf(doc,key,world,style){
-  const e=doc.img[key];if(!e)return null;const b=IMG.styleMap(e)[style];if(!b)return null;const f=IMG.formMap(b)[world];return f&&f.f||null;
-}
-function Studio({doc}){
-  const d=doc.d,S=doc.s,saved=useMemo(load,[]);
-  const first=d.nations[0]&&d.nations[0].key;
-  const [card,setCard]=useState(()=>P.card(d,param('card'))?param('card'):(P.card(d,saved.card)?saved.card:first));
-  const [world,setWorld]=useState(()=>param('world')||saved.world||d.vocab.worlds[0]);
-  const [style,setStyle]=useState(()=>(S.styles[saved.style]?saved.style:S.default));
-  const [notes,setNotes]=useState(()=>saved.notes||{});
-  const [status,setStatus]=useState('');
-  const c=P.card(d,card),nation=c?c.nation:d.nations[0];
-  const worlds=P.worldsOf(d,card),w=worlds.includes(world)?world:worlds[0];
-  const myNotes=notes[card+'|'+w]||{};
-  const text=P.build(d,S,card,w,{style,notes:myNotes}),file=P.fileName(card,w,style);
-  const rec=P.record(d,S,card,w,{style,notes:myNotes});
-  useEffect(()=>{save({card,world:w,style,notes});
-    try{const u=new URL(location.href);u.searchParams.set('card',card);u.searchParams.set('world',w);history.replaceState(null,'',u);}catch{}
-  },[card,w,style,notes]);
-  const copy=(t,ok)=>{
-    const done=()=>{setStatus(ok);setTimeout(()=>setStatus(''),1500);};
-    if(navigator.clipboard)navigator.clipboard.writeText(t).then(done,()=>setStatus(W('prompt.copy.fail')));else setStatus(W('prompt.copy.fail'));
-  };
-  const el=k=>d.elements.find(x=>x.key===k)||{};
-  const art=fileOf(doc,card,w,style);
-  return h('div',{class:'studio'},
-    h('div',{class:'pane'},
-      h('label',{class:'field'},W('prompt.nation'),
-        h('select',{value:nation.key,onChange:e=>setCard(e.target.value)},d.nations.map(n=>h('option',{key:n.key,value:n.key},el(n.key).symbol+' '+el(n.key).ko)))),
-      h('label',{class:'field'},W('prompt.card'),
-        h('select',{value:card,onChange:e=>setCard(e.target.value)},
-          h('option',{value:nation.key},W('prompt.card.root')),
-          (nation.families||[]).map(f=>h('optgroup',{key:f.key,label:f.ko},
-            h('option',{value:nation.key+'-'+f.key},W('prompt.card.lord',{family:f.ko})),
-            (f.citizens||[]).map(x=>h('option',{key:x.key,value:nation.key+'-'+f.key+'-'+x.key},W('prompt.card.citizen',{family:f.ko,citizen:x.ko}))))))),
-      h('div',{class:'field'},W('prompt.world'),
-        h('div',{class:'chips'},d.vocab.worlds.map(k=>h('button',{key:k,type:'button','aria-pressed':k===w,disabled:!worlds.includes(k),onClick:()=>setWorld(k)},W('world.'+k))))),
-      h('label',{class:'field'},W('prompt.style'),
-        h('select',{value:style,onChange:e=>setStyle(e.target.value)},Object.entries(S.styles).map(([k,v])=>h('option',{key:k,value:k},v.name+' · '+v.current)))),
-      h('h3',null,W('prompt.notes')),h('p',{class:'ek-note',style:'margin:0 0 8px'},W('prompt.notes.help')),
-      T.NOTES.map(f=>h('label',{key:f.id,class:'field'},f.ko,
-        h('textarea',{value:myNotes[f.id]||'',onInput:e=>setNotes(n=>({...n,[card+'|'+w]:{...myNotes,[f.id]:e.target.value}}))}))),
-      h('div',{class:'info'},
-        h('b',null,W('prompt.persona')),h('div',null,c&&c.tier==='root'?nation.persona:c&&c.tier==='lord'?c.family.persona:c?c.family.persona:''),
-        c&&c.tier==='citizen'&&h('div',null,h('b',null,W('prompt.object')),h('div',null,c.citizen.object&&c.citizen.object.en)),
-        h('b',null,W('prompt.traits')),h('div',null,(c&&c.family?c.family.traits.ko:(nation.traits.ko||[]).join(' · ')))),
-      art&&h('div',{class:'art-preview'},h('img',{src:IMG.thumbURL(art),alt:'',onError:e=>{e.target.onerror=null;e.target.src=IMG.imgURL(art);}}),h('p',null,W('prompt.art'),h('br'),art))),
-    h('div',{class:'pane'},
-      h('div',{class:'out-head'},h('b',null,W('prompt.out'),' ',h('small',null,W('prompt.words',{n:(text.match(/\S+/g)||[]).length}))),
-        h('button',{type:'button',class:'btn pri',onClick:()=>copy(text,W('prompt.copied'))},W('prompt.copy'))),
-      h('textarea',{class:'out',readonly:true,value:text,onFocus:e=>e.target.select()}),
-      h('p',{class:'status','aria-live':'polite'},status),
-      h('p',{class:'file'},h('span',null,W('prompt.file')),file),
-      h('details',{class:'record'},h('summary',null,W('prompt.record')),
-        h('p',{class:'ek-note',style:'margin:4px 0 8px'},W('prompt.record.note',{card,world:w})),
-        h('textarea',{class:'out',style:'min-height:200px',readonly:true,value:JSON.stringify(rec,null,1),onFocus:e=>e.target.select()}),
-        h('p',null,h('button',{type:'button',class:'btn',onClick:()=>copy(JSON.stringify(rec,null,1),W('prompt.copied'))},W('prompt.copy')))),
-      h('p',{style:'margin-top:10px'},h('a',{class:'btn',href:'dex.html?nation='+nation.key},W('nav.dex')))));
-}
-function App(){
-  const doc=useDocs();
-  return h('div',null,h(WorkspaceHeader,{page:'prompt'}),
-    !doc?h('p',{class:'ek-note'},W('prompt.loading')):doc.failed?h('p',{class:'ek-note'},W('prompt.fail')):h(Studio,{doc}));
-}
-render(h(App),document.getElementById('app'));
+render(h(WorkspaceHeader,{page:'prompt'}),document.getElementById('app'));
 window.AtelierFresh.watch();
 </script>
+<script>
+/* 고정 글은 낱말 표에서 — 그 뒤 판은 lib/studio.js 가 그린다 */
+(function () {
+  var W = window.W;
+  document.getElementById('lede').textContent = W('studio.lede');
+  document.getElementById('help').setAttribute('aria-label', W('studio.help'));
+  document.getElementById('chips').setAttribute('aria-label', W('studio.chips'));
+  document.getElementById('hbar').setAttribute('aria-label', W('studio.bar'));
+  document.getElementById('out-title').textContent = W('studio.prompt');
+  document.getElementById('prompt').setAttribute('aria-label', W('studio.prompt'));
+  document.getElementById('record-text').setAttribute('aria-label', W('studio.record'));
+  document.getElementById('copy').textContent = W('studio.copy');
+  document.getElementById('record').textContent = W('studio.record');
+})();
+</script>
+<script src="lib/studio.js?v=1"></script>
 </body>
 </html>

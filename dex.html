@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f8f5fc">
+<meta name="theme-color" content="#f7f9fc">
 <title>원소의 공방</title>
 <!-- 도감 — 나라(원소) 하나를 세 층으로 보인다: 근본 세 세계 · 가문마다 가문주 세 세계 + 주민들의 세 세계.
      화면은 data/img.json 에 적힌 것만 그린다. 그림 저장소에 파일이 있어도 등록부에 적기 전에는 없는 것이다.
@@ -12,15 +12,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="lib/workspace.css?v=1">
-<script src="lib/workspace-theme.js?v=1"></script>
-<script src="lib/words.js?v=1"></script>
+<link rel="stylesheet" href="lib/workspace.css?v=2">
+<script src="lib/workspace-theme.js?v=2"></script>
+<script src="lib/words.js?v=2"></script>
 <script src="lib/img.js?v=1"></script>
 <script src="lib/prompt-spec.js?v=1"></script>
 <script src="lib/prompt-element.js?v=1"></script>
 <script src="lib/fresh.js?v=1"></script>
-<link rel="stylesheet" href="lib/room.css?v=1">
-<link rel="stylesheet" href="lib/element.css?v=1">
+<link rel="stylesheet" href="lib/room.css?v=2">
+<link rel="stylesheet" href="lib/element.css?v=2">
 </head>
 <body class="prompt-page lab-page">
 <div class="wrap"><div id="app"></div></div>
@@ -58,8 +58,10 @@ function Slot({doc,card,world,live,onOpen}){
   return h('button',{type:'button',class:'slot',onClick:()=>onOpen(f,card,world),title:W('dex.open')},h('span',{class:'face'},face),cap);
 }
 function Worlds({doc,card,worlds,onOpen}){
-  const all=doc.d.vocab.worlds;
-  return h('div',{class:'worlds'},all.map(w=>h(Slot,{key:w,doc,card,world:w,live:worlds.includes(w),onOpen})));
+  const all=doc.d.vocab.worlds,casuals=casualsOf(doc,card);
+  return h('div',null,h('div',{class:'worlds'},all.map(w=>h(Slot,{key:w,doc,card,world:w,live:worlds.includes(w),onOpen}))),
+    !!casuals.length&&h('div',{class:'worlds casuals'},casuals.map((f,i)=>h('button',{key:f,type:'button',class:'slot',onClick:()=>onOpen(f,card,'casual')},
+      h('span',{class:'face'},h('img',{loading:'lazy',src:IMG.thumbURL(f),alt:'',onError:ev=>{ev.target.onerror=null;ev.target.src=IMG.imgURL(f);}})),h('span',{class:'cap'},W('dex.casual'),h('i',null,i+1))))));
 }
 /* 같은 물질을 나누는 다른 나라 — elements 에 든 다른 나라에 같은 열쇠의 가문이 있으면 잇는다 */
 function sharedWith(d,nation,family){
@@ -69,7 +71,6 @@ function Nation({doc,n,onOpen}){
   const d=doc.d,e=d.elements.find(x=>x.key===n.key)||{},all=d.vocab.worlds,famList=n.families||[];
   let slots=all.length,done=all.filter(w=>fileOf(doc,n.key,w)).length;
   for(const f of famList){const fk=n.key+'-'+f.key;slots+=all.length;done+=all.filter(w=>fileOf(doc,fk,w)).length;for(const c of f.citizens||[]){const ck=fk+'-'+c.key;slots+=(c.worlds||[]).length;done+=(c.worlds||[]).filter(w=>fileOf(doc,ck,w)).length;}}
-  const casuals=casualsOf(doc,n.key);
   return h('section',{class:'ek-section','data-cat':e.category,'aria-label':e.ko},
     h('div',{class:'dex-head'},h('span',{class:'sym'},e.symbol),h('div',null,h('h2',null,e.ko,' ',h('span',{class:'en'},e.en)),
       h('ul',{class:'facts'},
@@ -81,8 +82,6 @@ function Nation({doc,n,onOpen}){
     h('p',{class:'dex-progress'},W('dex.progress',{done,all:slots})),
     h('div',{class:'row-head'},h('h3',null,W('dex.root'))),
     h(Worlds,{doc,card:n.key,worlds:all,onOpen}),
-    !!casuals.length&&h('div',null,h('div',{class:'row-head'},h('h3',null,W('dex.casual')),h('span',{class:'en'},W('art.count',{n:casuals.length}))),
-      h('div',{class:'worlds'},casuals.map(f=>h('button',{key:f,type:'button',class:'slot',onClick:()=>onOpen(f,n.key,'casual')},h('span',{class:'face'},h('img',{loading:'lazy',src:IMG.thumbURL(f),alt:'',onError:ev=>{ev.target.onerror=null;ev.target.src=IMG.imgURL(f);}})),h('span',{class:'cap'},W('dex.casual')))))),
     famList.map(f=>{
       const fk=n.key+'-'+f.key,shared=sharedWith(d,n,f);
       return h('div',{key:f.key},

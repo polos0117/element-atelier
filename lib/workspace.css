@@ -5,48 +5,48 @@
   --ui-font:13px;--ui-small:12px;--ui-height:40px;--ui-pad:8px;--ui-gap:8px;--gap:12px;
 }
 :root, :root[data-theme="sunlit"] {
-  /* 한낮의 실험실 — 햇살 든 유리 기구, 분홍·하늘색 */
+  /* 한낮의 실험실 — 흰 벤치와 유리 기구에 드는 햇살, 플라스크의 하늘색·분홍, 구리 밸브 */
   color-scheme:light;
-  --bg:#f6f3fb;--deck:#f8f5fc;--card:#ffffff;--card2:#ece7f5;--text:#241f30;
-  --muted:#5e5670;--line:#d8cfe8;--accent:#b8236f;--accent-soft:#f7dfeb;--on-accent:#ffffff;
-  --signal:#13789a;--gold:#956300;--ok:#23774a;--warn:#a4520e;--pattern:#b8236f10;
-  --g-reflex:#c4285a;--g-growth:#956300;--g-mind:#1a6fb0;--g-explore:#23774a;
-  --shadow:0 8px 26px #3a1f5a14;
+  --bg:#f3f6fa;--deck:#f7f9fc;--card:#ffffff;--card2:#e8eef6;--text:#1e2733;
+  --muted:#5a6675;--line:#cfd9e6;--accent:#0f7fb0;--accent-soft:#dbeef8;--on-accent:#ffffff;
+  --signal:#c2457a;--gold:#9a6b12;--ok:#22774d;--warn:#a85a12;--pattern:#0f7fb010;
+  --g-reflex:#c2457a;--g-growth:#9a6b12;--g-mind:#0f7fb0;--g-explore:#22774d;
+  --shadow:0 8px 26px #1e3a5a14;
 }
 :root[data-theme="moonlit"] {
-  /* 심야 천문대 — 남보라 어둠에 분홍·청록 별빛 */
+  /* 심야 천문대 — 남색 밤하늘, 황동 망원경, 보랏빛 성운 */
   color-scheme:dark;
-  --bg:#110e1c;--deck:#151127;--card:#1b1730;--card2:#251f40;--text:#f3effa;
-  --muted:#bdb4d4;--line:#3c345f;--accent:#ff6ad5;--accent-soft:#3b2149;--on-accent:#24101e;
-  --signal:#55d8ea;--gold:#f2c65c;--ok:#7fe3a8;--warn:#f7b56a;--pattern:#ff6ad510;
-  --g-reflex:#ff7a9c;--g-growth:#f2c65c;--g-mind:#6cc7ff;--g-explore:#7fe3a8;
-  --shadow:0 10px 30px #00000059;
+  --bg:#0e1020;--deck:#12152a;--card:#181c34;--card2:#212646;--text:#eef0fa;
+  --muted:#b6bbd6;--line:#353c62;--accent:#c9a0ff;--accent-soft:#342a55;--on-accent:#140f24;
+  --signal:#5fd3e8;--gold:#e6c27a;--ok:#7fe3a8;--warn:#f7b56a;--pattern:#c9a0ff10;
+  --g-reflex:#ff7fa0;--g-growth:#e6c27a;--g-mind:#7fb7ff;--g-explore:#7fe3a8;
+  --shadow:0 10px 30px #00000066;
 }
 :root[data-theme="hanok"] {
-  /* 연금술 공방 — 누런 종이 바탕, 도가니의 붉음과 구리 녹 */
+  /* 연금술 공방 — 누런 종이, 벽돌 화로의 붉음, 구리 도가니의 녹청 */
   color-scheme:light;
-  --bg:#fbf4e6;--deck:#fcf6ea;--card:#fffbf3;--card2:#f3e5cb;--text:#33271b;
-  --muted:#6b5a45;--line:#e3cfa9;--accent:#b5341e;--accent-soft:#fae3da;--on-accent:#ffffff;
-  --signal:#1d7a73;--gold:#946207;--ok:#2f7346;--warn:#9a5410;--pattern:#b5341e10;
-  --g-reflex:#b5341e;--g-growth:#946207;--g-mind:#2364a8;--g-explore:#2f7346;
+  --bg:#f6eedd;--deck:#f8f1e2;--card:#fdf8ee;--card2:#eedfc3;--text:#352a1c;
+  --muted:#6c5a43;--line:#dcc6a1;--accent:#b4461c;--accent-soft:#f6ddd0;--on-accent:#ffffff;
+  --signal:#1f7a6c;--gold:#946207;--ok:#2f7346;--warn:#9a5410;--pattern:#b4461c10;
+  --g-reflex:#b4461c;--g-growth:#946207;--g-mind:#2a5f98;--g-explore:#2f7346;
   --shadow:0 8px 26px #5a321414;
 }
 :root[data-theme="forest"] {
-  /* 숲속 광산 — 흙과 나무, 갱도 등불, 광석의 청록 */
+  /* 숲속 광산 — 흙과 이끼, 갱도 등불의 호박빛, 광석의 구리·청록 */
   color-scheme:light;
-  --bg:#f2ece2;--deck:#f5f0e7;--card:#fcf9f3;--card2:#e6dccb;--text:#2b261f;
-  --muted:#5e5546;--line:#d2c4ab;--accent:#2b6f74;--accent-soft:#d6e8e7;--on-accent:#ffffff;
-  --signal:#a14f28;--gold:#86651d;--ok:#3a6b40;--warn:#8f5416;--pattern:#2b6f7410;
-  --g-reflex:#b1443a;--g-growth:#86651d;--g-mind:#2f5f96;--g-explore:#3a6b40;
-  --shadow:0 8px 26px #3a2a1414;
+  --bg:#eef0e6;--deck:#f2f3ea;--card:#fafbf4;--card2:#dfe4d0;--text:#26301f;
+  --muted:#596650;--line:#c7d0b2;--accent:#3f7a3a;--accent-soft:#dbe9d4;--on-accent:#ffffff;
+  --signal:#b06a2a;--gold:#8a6a1c;--ok:#3f7a3a;--warn:#8f5416;--pattern:#3f7a3a10;
+  --g-reflex:#b1443a;--g-growth:#8a6a1c;--g-mind:#2f5f96;--g-explore:#3f7a3a;
+  --shadow:0 8px 26px #2a3a1414;
 }
 :root[data-theme="phosphor"] {
-  /* 가속기 제어실 — 검은 화면, 형광 초록 글자와 호박색 불빛 */
+  /* 가속기 제어실 — 검푸른 홀, 초록 화면, 호박색 표시등 */
   color-scheme:dark;
-  --bg:#0b110d;--deck:#0e1611;--card:#121b16;--card2:#19251e;--text:#e4f3e7;
-  --muted:#a3bba9;--line:#2c4335;--accent:#5df28a;--accent-soft:#1d3a27;--on-accent:#07150c;
-  --signal:#ffb547;--gold:#ffd166;--ok:#7fe3a8;--warn:#ffb547;--pattern:#5df28a10;
-  --g-reflex:#ff8a7a;--g-growth:#ffd166;--g-mind:#7cc8ff;--g-explore:#5df28a;
+  --bg:#0a1216;--deck:#0d171c;--card:#122027;--card2:#182b33;--text:#e3f1f1;
+  --muted:#a3bbbf;--line:#294650;--accent:#5fe3a3;--accent-soft:#1a3d33;--on-accent:#07150f;
+  --signal:#ffb547;--gold:#ffd166;--ok:#7fe3a8;--warn:#ffb547;--pattern:#5fe3a310;
+  --g-reflex:#ff8a7a;--g-growth:#ffd166;--g-mind:#6cc2ff;--g-explore:#5fe3a3;
   --shadow:0 10px 30px #0000005e;
 }
 :root[data-density="relaxed"] {

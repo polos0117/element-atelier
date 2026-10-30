@@ -60,5 +60,5 @@ CONCEPT(층마다 한 문장) → ELEMENT TRAITS(나라 성질 + 팔레트) → 
 2. 시안 그림 올리기 — 그림 저장소 `element-atelier-img`
 3. 공방 모음(polos0117.github.io) 잇기 — 공방 지도 카드, 통합 생성기 받침(prompt/adapters.js · steps.js — 나라 › 가문 › 주민 › 세계), 도트 공방
 4. 철나라 끝까지(가문주 넷 × 3, 주민 ~25장)
-5. 일상컷 트리(`lib/casual-tree.js` 는 game·book·myth·pkm 이 같이 쓰는 모듈 — 복사해 오고 트리 표는 원소 몫으로) — 현대 컷은 여기서
+5. 일상컷 트리 버전2(`lib/casual-tree.js`·`lib/casual-tree-v2.js` 공용 모듈 복사, 트리 표는 원소 몫) + 생성기 판을 공방 모음 통합 생성기 꼴로 + 공간·배경 리뉴얼 (2026-10-30, 됐다 — `docs/CASUAL_TREE_PORT.md`)
 6. 다음 나라들, 도시 공방(city-atelier)과 세계 조립기 나누기
