@@ -7,6 +7,9 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 세계 그림 장면 줄 머리말을 「SETTING (this card): 」 로
+- lib/prompt-spec.js · prompt.html — 「SETTING: this card is set a magnetite mine…」 처럼 장면 글이 명사로 시작하면 문장이 어긋났다(철 가문주 지시문을 뽑다 봤다). 머리말은 콜론까지만. tests/prompt-element.cjs · tests/screen.cjs 의 문자열도
+
 ## 2026-10-30 · claude · 세계 그림에 장면·시간대·자세·표정 · 일상컷에 손에 드는 물건·시간대·머리 변화 · 나라 안은 참고 세계로
 - data/element-design.json · tools/element-design.py — 나라마다 세계마다 장소 변주 scenes 셋(63) · 일상컷에서 손에 드는 그 원소의 물건 hold.en(나라 7 · 가문 15, 주민은 object.en). 검사기가 본다(사용자 「응」 + 「일상컷에서 손에 드는 소품까지」)
 - data/casual-tree-v2.json · tests/casual-tree-v2.cjs — 소품 signature(그 원소의 물건, 모든 장소)와 동작 셋(들기 · 얼굴 옆 · 두 손). 카드가 signature_hold 를 주면 든다

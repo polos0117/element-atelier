@@ -72,11 +72,11 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
   for (const n of D.nations) for (const w of worlds) assert(P.scenesOf(P.card(D, n.key), w).length >= 2, n.key + ' ' + w + ' 장면 변주');
   assert(same(P.scenesOf(P.card(D, 'fe-steel-sword'), 'mecha'), P.scenesOf(P.card(D, 'fe'), 'mecha')), '가문이 세계 글을 안 덮어썼으면 나라의 장면');
   const base = P.build(D, S, 'fe', 'fantasy', {});
-  assert(base.includes(T.POSE_DEFAULT) && !base.includes('SETTING: ') && !base.includes('TIME & WEATHER') && !base.includes('EXPRESSION: '), '비우면 카드 자세, 장면·시간대·표정 줄 없음');
+  assert(base.includes(T.POSE_DEFAULT) && !base.includes('SETTING (this card)') && !base.includes('TIME & WEATHER') && !base.includes('EXPRESSION: '), '비우면 카드 자세, 장면·시간대·표정 줄 없음');
   const sc = P.scenesOf(P.card(D, 'fe'), 'fantasy')[1], shot = { scene: sc.key, time: 'night', pose: 'stride', expr: 'confident', zzz: 1 };
   const t3 = P.build(D, S, 'fe', 'fantasy', { shot });
-  assert(t3.includes('SETTING: this card is set ' + sc.en + '.') && t3.includes(T.WORLD_TIMES.find(r => r.key === 'night').en) && t3.includes(T.WORLD_POSES.find(r => r.key === 'stride').en) && !t3.includes(T.POSE_DEFAULT) && t3.includes('EXPRESSION: ' + T.EXPRESSION_DETAIL.confident + '.'), '장면·시간대·자세·표정 줄 ' + t3.slice(-900));
-  const order3 = ['WORLD — ', 'SETTING: ', 'TIME & WEATHER', 'STYLE: ', 'OUTPUT: ', 'EXPRESSION: ', 'BODY: '].map(x => t3.indexOf(x)); assert(same(order3, order3.slice().sort((a, b) => a - b)), '줄 차례 ' + order3);
+  assert(t3.includes('SETTING (this card): ' + sc.en + '.') && t3.includes(T.WORLD_TIMES.find(r => r.key === 'night').en) && t3.includes(T.WORLD_POSES.find(r => r.key === 'stride').en) && !t3.includes(T.POSE_DEFAULT) && t3.includes('EXPRESSION: ' + T.EXPRESSION_DETAIL.confident + '.'), '장면·시간대·자세·표정 줄 ' + t3.slice(-900));
+  const order3 = ['WORLD — ', 'SETTING (this card)', 'TIME & WEATHER', 'STYLE: ', 'OUTPUT: ', 'EXPRESSION: ', 'BODY: '].map(x => t3.indexOf(x)); assert(same(order3, order3.slice().sort((a, b) => a - b)), '줄 차례 ' + order3);
   assert(same(P.normShot(D, 'fe', 'mecha', shot), { scene: '', time: 'night', pose: 'stride', expr: 'confident' }), '다른 세계의 장면 열쇠는 비운다');
   assert(same(P.normShot(D, 'fe', 'fantasy', { scene: 'nope', time: 'x', pose: 'y', expr: 'z' }), { scene: '', time: '', pose: '', expr: '' }), '모르는 열쇠는 비운다');
   assert.equal(P.record(D, S, 'fe', 'fantasy', { shot }).shot.scene, sc.key, '기록에 shot');
