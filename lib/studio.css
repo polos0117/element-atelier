@@ -121,4 +121,5 @@
 .grp summary {min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:700}
 .grp[open] {padding-bottom:8px}
 .grp .axis {margin:6px 0}
-.axis .dz {font-style:normal;margin-left:6px;padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:11px}
+.axis .lbl {display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap}
+.axis .dz {font-style:normal;padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:11px;white-space:nowrap}

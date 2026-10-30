@@ -151,13 +151,22 @@ function altRowsBelowRoot(n) {
     const unlock = p.locator('#unlock'); if (await unlock.count()) { await unlock.check(); assert((await p.locator('#panel .opt.out .why').count()) >= 1, '트리 밖 까닭'); await unlock.uncheck(); }
     await toDone(p);
     assert.equal(await openOf(p), 'done');
+    /* 덧붙임 칸의 두 축 — 기본은 고정값(가장 강함·많이), 바꾸면 지시문이 따라오고 칩에 보인다 */
+    await p.click('[data-open="notes"]');
+    assert.equal(await p.locator('#panel select[data-axis]').count(), 2, '전체 강도·피부 노출 고르개');
+    assert.equal(await p.locator('#panel select[data-axis="skin_exposure"]').inputValue(), 'bold', '기본은 고정값');
+    await p.selectOption('#panel select[data-axis="skin_exposure"]', 'moderate');
+    assert.match(await p.locator('.hchip[data-open="notes"]').textContent(), /보통/, '덧붙임 칩에 축');
+    assert((await promptOf(p)).includes('skin_exposure: moderate — '), '바꾼 축이 지시문에');
+    await p.selectOption('#panel select[data-axis="skin_exposure"]', 'bold');
+    await toDone(p); assert.equal(await openOf(p), 'done');
     const t1 = await promptOf(p);
     assert(t1.includes('POSTURE') && t1.includes('1024') && /overall_intensity: strong/.test(t1) && t1.startsWith('INPUT: the attached image is the approved character — her Mecha card'), '일상컷 지시문 ' + t1.slice(0, 200));
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f_casual1.webp'), '일상컷 파일 이름(세계를 탄다)');
     const refT = await p.locator(mob ? '.hres .ref' : '#ref .ref').textContent();
     assert(refT.includes('fe-steel-sword_mecha_' + S.default + '_f.webp') && /아직 없다/.test(refT), '참고 그림 줄 — 그 세계 그림 이름, 아직 등록 안 됨 ' + refT);
     assert.match(p.url(), /card=fe-steel-sword&o=casual&world=mecha/, '일상컷도 주소에 세계');
-    checks += 14;
+    checks += 18;
     /* 랜덤 처음부터 — 다 찬다. 여기부터 다시 — 장소를 열면 뒤가 빈다 */
     await randAll(p, 'world');
     assert.equal(await openOf(p), 'done', '랜덤 뒤 다 골랐다');
