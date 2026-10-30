@@ -33,9 +33,13 @@ game-atelier 의 `IMAGE_RULES.md` 에서 왔다. 등록은 올리면 자동이�
 
 | 층 | 생성기 카드 | 지시문이 싣는 것 |
 |---|---|---|
-| 근본 | 나라 | CONCEPT(원소 그 자체) · ELEMENT TRAITS · WORLD(나라의 세계 글, 메카는 설계 문장) |
-| 가문주 | 나라 › 가문 | + HOUSE TRAITS(가문 성질·팔레트) |
-| 주민 | 나라 › 가문 › 주민 | CONCEPT 에 물건 설명 · + 그 주민의 세계 메모(`notes`) |
+| 근본 | 나라 | CONCEPT(원소 그 자체) · ELEMENT TRAITS · AGE · SILHOUETTE · FACE(설계표 `look`) · WORLD(나라의 세계 글, 메카는 설계 문장) · EXPOSURE |
+| 가문주 | 나라 › 가문 | + HOUSE TRAITS(가문 성질·팔레트) · 가문이 덮어쓴 머리색·눈 색 |
+| 주민 | 나라 › 가문 › 주민 | CONCEPT 에 물건 설명 · + 그 주민의 세계 메모(`notes`) · 외형은 가문 것 |
+
+세계 그림 갈래의 단계는 **세계 → 설계 줄 → 외형 → 덧붙임**(2026-10-30). 설계 줄은 실루엣(체형·머리 윤곽·머리색)·얼굴(윤곽·눈·눈썹·코·입·눈 색) 싣기와 노출(자동·적게·보통·과감, 기본 과감).
+외형은 game 공방과 같은 선택지 네 묶음(기본·체형·얼굴·머리, `lib/look-spec.js`) — 세계마다 사람이 다르니 **세계마다 따로** 고르고, 직접 고른 항목이 설계 묶음을 이긴다(IDENTITY 줄).
+설계표 `look` 은 팔레트 색이 머리·눈 색(철 iron grey · ember, 금 golden blonde · gold). 기록 JSON 에 `look`(고른 것)과 `design`(설계표 값)이 같이 남는다.
 
 나라 하나를 끝까지 그린 뒤 다음 나라로 간다(철이 처음). 시안 그림은 `docs/ELEMENT_CONCEPT.md` 5절.
 

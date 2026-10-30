@@ -7,6 +7,14 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-30 · claude · 세계 그림에 외형 — 설계표 look(팔레트 → 머리·눈 색) · 설계 줄 · 외형 선택지(game 과 같은 표)
+- data/element-design.json · tools/element-design.py — 나라 일곱에 look(얼굴 여섯 + 실루엣 셋 — 팔레트 색이 머리·눈 색: 철 iron_grey·ember, 수소 silver_white·sky_blue, 산소 ocean_blue·forest_green, 탄소 soot_black·leaf_green, 나트륨 lemon_yellow·sodium_yellow, 금 golden_blonde·gold, 오가네손 violet_white·violet), 가문 열다섯은 제 팔레트로 머리색·눈 색만 덮어쓴다, 주민은 가문 것. 검사기가 칸·꼴을 본다(사용자 「게임 공방처럼 원소·물질의 특성을 살려 외형 특징을 잡자, 팔레트 색을 머리·눈 색으로」)
+- lib/look-spec.js · tools/port-look-spec.cjs · tests/look-spec.cjs — game 의 외형 선택지(34) · 얼굴 다섯 묶음 · 실루엣 어휘 · 나이 줄 · 노출 문장을 글자 그대로 옮겨 AtelierSpec 에 붙인다(「게임 설계표」→「나라 설계표」, FORM costume → the costume WORLD describes). 원소 몫 머리색 10 · 눈 색 4 만 더했다. 검사가 game 표와 대조하고 설계표 look 값이 어휘에 다 있는지 본다
+- lib/prompt-element.js — build 가 AGE · SILHOUETTE · FACE(설계표 look, 직접 고른 묶음은 빠진다) · EXPOSURE(세계로 겉옷 꼴) · IDENTITY(직접 고른 외형 목록, game 의 paramValues 그대로)를 싣는다. opts.look = {params, faceDesignOn, silhouetteOn, exposure}, normLook 이 저장값을 바로잡고 기록에 look·design 이 남는다
+- lib/studio.js · lib/studio.css · lib/words.js · prompt.html — 세계 그림 갈래가 세계 → 설계 줄(실루엣·얼굴 싣기 + 설계표 값 목록 + 왜 + 노출) → 외형(네 묶음 접는 칸, 무작위·초기화, 설계가 쥔 칸 표시, 직접 입력) → 덧붙임. 외형은 카드×세계마다 저장(element_studio_v1 looks). 폰 막대도
+- tests/prompt-element.cjs · tests/screen.cjs(85가지) · tests/words.cjs — 외형 줄·차례·이김·끄기·노출·기록, 생성기 두 칸, 표 파일 셋
+- AGENTS.md · IMAGE_RULES.md · docs/ELEMENT_CONCEPT.md · docs/PORT_NOTES.md — 외형 규칙
+
 ## 2026-10-30 · claude · 화풍은 CGI 하나로 · 일상컷은 세계 그림을 참고 그림으로(세계를 탄다)
 - data/style.json · IMAGE_RULES.md · AGENTS.md · docs/ELEMENT_CONCEPT.md — 화풍은 game_cgi 하나로 통일(사용자 「cgi로 통일하자」). game_keyart·cinematic_keyart 는 이미 뽑은 그림들의 열쇠로만. 일상컷은 그 세계 그림을 참고 그림으로 붙인 그 사람의 지금 평상시(사용자 「일상컷은 참고 이미지가 있어야 돼서 그 화풍을 따라가야 돼」) — 세계를 타고 화풍은 그 그림의 것
 - lib/prompt-spec.js · lib/prompt-element.js — 일상컷 INPUT·CHARACTER·WARDROBE·ANGLE 을 game 의 「첨부 그림의 그 여자」 꼴로(얼굴·머리·몸만 가져오고 옷·갑옷·배경은 버린다), buildCasual(…, {world}) — 카드가 안 사는 세계면 ''. 파일 이름 <카드>_<세계>_<화풍>_f_casualN.webp, 기록에 world·ref(참고 그림 파일)

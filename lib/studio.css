@@ -115,3 +115,10 @@
   .hmenu {position:fixed;right:10px;bottom:calc(68px + env(safe-area-inset-bottom));z-index:7;display:grid;gap:6px;padding:8px;border:1px solid var(--line);border-radius:14px;background:var(--card);box-shadow:var(--shadow)}
   .hmenu .btn {justify-content:flex-start;width:100%}
 }
+/* 설계 줄·외형(세계 그림) — 설계표 값 목록, 외형 묶음은 접는 칸 */
+.design-list {margin:4px 0 10px 28px;padding:0;color:var(--muted);font-size:12px;line-height:1.7}
+.grp {margin:0 0 8px;border:1px solid var(--line);border-radius:10px;padding:0 12px}
+.grp summary {min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:700}
+.grp[open] {padding-bottom:8px}
+.grp .axis {margin:6px 0}
+.axis .dz {font-style:normal;margin-left:6px;padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:11px}

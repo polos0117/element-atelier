@@ -42,9 +42,14 @@ game-atelier(게임이 사람이 된 세계)의 껍데기를 바탕으로 만든
 
 ```
 CONCEPT(층마다 한 문장) → ELEMENT TRAITS(나라 성질 + 팔레트) → HOUSE TRAITS(가문 성질 + 팔레트, 가문주·주민만)
+→ AGE → SILHOUETTE(체형 · 머리 윤곽 · 머리색) → FACE(윤곽 · 눈 · 눈썹 · 코 · 입 · 눈 색)   ← 설계표 look(나라 ← 가문), 직접 고른 묶음은 빠진다
 → WORLD — <세계>: 나라(또는 가문)의 세계 글 + 주민의 세계 메모 + 세계 꼬리(메카는 MECHA DESIGN 설계 문장)
-→ STYLE(화풍 판) → 덧붙임(SCENE NOTE · OUTFIT NOTE · EXTRA) → OUTPUT · BODY · ONE FIGURE ONLY · ANATOMY
+→ STYLE(화풍 판) → EXPOSURE(노출 — 비우면 없다) → 덧붙임(SCENE NOTE · OUTFIT NOTE · EXTRA) → OUTPUT · BODY → IDENTITY(직접 고른 외형 목록) → ONE FIGURE ONLY · ANATOMY
 ```
+
+- **외형(2026-10-30)**: game 공방과 같은 외형 선택지(`lib/look-spec.js` — game 표를 `tools/port-look-spec.cjs` 로 글자 그대로 옮기고 원소 몫 색만 더함)와 설계표 `look` 칸.
+  나라 `look` 은 얼굴 여섯 + 실루엣 셋 — **팔레트 색이 머리·눈 색이 된다**(철: iron grey 머리 · ember 눈, 오가네손: 보랏빛 흰 머리가 끝에서 빛으로 흩어진다). 가문은 제 팔레트로 머리색·눈 색만 덮어쓰고 주민은 가문 것을 물려받는다.
+  세계마다 사람이 달라도 이 성향은 같다 — 생성기 외형 칸(세계마다 따로)에서 직접 고른 값이 이긴다. 일상컷은 참고 그림이 있어 외형 칸이 없다.
 
 - 주민은 「물건을 들지도 지니지도 않는다 — 모티브로만」. 입는 물건(갑옷·헬멧·금관)은 `wear: true` 로 「입은 것 그대로 전신 크기」(myth 공방에서 배운 것).
 - 지시문은 생성기가 고른 값으로만 짓는다. 손으로 고치지 않고 덧붙임 칸에 적는다.

@@ -2,7 +2,7 @@
    Run: node tests/prompt-element.cjs */
 const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:assert/strict');
 const ctx = { window: {} }; vm.createContext(ctx);
-for (const f of ['lib/prompt-spec.js', 'lib/prompt-element.js']) vm.runInContext(fs.readFileSync(f, 'utf8'), ctx);
+for (const f of ['lib/prompt-spec.js', 'lib/look-spec.js', 'lib/prompt-element.js']) vm.runInContext(fs.readFileSync(f, 'utf8'), ctx);
 const P = ctx.window.AtelierPrompt, T = ctx.window.AtelierSpec;
 const D = JSON.parse(fs.readFileSync('data/element-design.json', 'utf8')), S = JSON.parse(fs.readFileSync('data/style.json', 'utf8'));
 
@@ -19,9 +19,17 @@ for (const key of cards) {
   if (c.tier !== 'citizen') assert(same(ws, worlds), key + ' 근본·가문주는 세 세계 다');
   for (const w of ws) {
     const t = P.build(D, S, key, w, {});
-    assert(t.length > 600 && t.length < 3200, key + ' ' + w + ' 길이 ' + t.length);
+    assert(t.length > 900 && t.length < 4200, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30)
     assert(t.startsWith('CONCEPT: '), key + ' ' + w + ' CONCEPT 첫 줄');
-    for (const line of ['ELEMENT TRAITS of ', 'WORLD — ', 'STYLE: ', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');
+    for (const line of ['ELEMENT TRAITS of ', 'AGE: in her twenties', 'SILHOUETTE: ', 'FACE (her own structure', 'WORLD — ', 'STYLE: ', 'EXPOSURE (bold)', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');
+    /* 외형 줄은 설계표 look(나라 ← 가문) 의 어휘 — 가문이 덮어쓴 머리색이 실리고, 직접 고른 것은 없으니 IDENTITY 가 없다 */
+    const dz = P.lookOf(c), silLine = t.split('\n').find(l => l.startsWith('SILHOUETTE: ')), faceLine = t.split('\n').find(l => l.startsWith('FACE ('));
+    assert(silLine.includes(T.VOCAB_EN.hair_color[dz.silhouette.hair_color]) && silLine.includes(T.VOCAB_EN.body[dz.silhouette.body] + ' build') && silLine.includes(T.VOCAB_EN.hair[dz.silhouette.hair]), key + ' ' + w + ' 실루엣 줄 ' + silLine);
+    for (const k of Object.keys(T.FACE_PARAM)) assert(faceLine.includes(T.VOCAB_EN[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
+    assert(!t.includes('IDENTITY ('), key + ' ' + w + ' 고른 외형이 없으면 IDENTITY 가 없다');
+    const order = ['HOUSE TRAITS', 'AGE: ', 'SILHOUETTE: ', 'FACE (', 'WORLD — ', 'STYLE: ', 'EXPOSURE (', 'OUTPUT: '].map(x => t.indexOf(x)).filter(i => i >= 0);
+    assert(same(order, order.slice().sort((a, b) => a - b)), key + ' ' + w + ' 외형 줄 차례');
+    if (w === 'steampunk') assert(t.includes('bare shoulders, arms or thighs'), key + ' 스팀펑크 과감은 열린 재단'); else assert(t.includes('her outer layer (coat, cloak, robe or armor) stays on both shoulders'), key + ' ' + w + ' 과감은 겉옷');
     assert(t.includes(c.element.en), key + ' 원소 이름');
     if (c.family) assert(t.includes('HOUSE TRAITS of ' + c.family.en), key + ' 가문 성질');
     if (c.tier === 'citizen') {
@@ -39,6 +47,26 @@ for (const key of cards) {
 }
 assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.stringify(byTier));
 
+/* 외형 칸 — 직접 고른 항목이 설계 묶음을 이기고 IDENTITY 에 실린다 · 끄기 · 노출 · 나이 · 직접 입력 · 모르는 열쇠 버림 */
+{
+  const dz = P.lookOf(P.card(D, 'fe-rust'));
+  assert.equal(dz.silhouette.hair_color, 'rust_orange'); assert.equal(dz.face.eye_color, 'rust_amber'); assert.equal(dz.silhouette.body, 'broad_strong', '가문은 덮어쓴 것만, 나머지는 나라');
+  assert(same(P.lookOf(P.card(D, 'fe-rust-armor')), dz), '주민은 가문 것을 물려받는다');
+  const t1 = P.build(D, S, 'fe-rust', 'fantasy', { look: { params: { 'hair color': 'silver', 'eye shape': 'sharp', 'apparent age': '30s', 'body type': '__custom__', 'body type_custom': 'wiry and tall', zzz: 'x' } } });
+  const sil1 = t1.split('\n').find(l => l.startsWith('SILHOUETTE: ')), face1 = t1.split('\n').find(l => l.startsWith('FACE ('));
+  assert(!sil1.includes('rust-orange hair') && !sil1.includes(' build') && sil1.includes('long braids'), '머리색·체형을 고르면 실루엣에서 빠진다 ' + sil1);
+  assert(!face1.includes('deep-set eyes') && face1.includes('softly square face'), '눈을 고르면 얼굴 줄에서 빠진다 ' + face1);
+  assert(t1.includes('AGE: a woman in her thirties'), '나이');
+  assert(t1.includes('IDENTITY (chosen details override the automatic look)\nhair color: silver') && t1.includes('eye shape: sharp — ') && t1.includes('body type: wiry and tall') && t1.includes('body scope: ') && !t1.includes('zzz') && !t1.includes('apparent age:'), 'IDENTITY 목록 ' + t1.split('IDENTITY')[1]);
+  const t2 = P.build(D, S, 'fe-rust', 'mecha', { look: { faceDesignOn: false, silhouetteOn: false, exposure: '' } });
+  assert(!t2.includes('SILHOUETTE: ') && !t2.includes('FACE (') && !t2.includes('EXPOSURE') && t2.includes('AGE: in her twenties'), '끄면 빠진다, 노출 비우면 안 싣는다');
+  assert(P.build(D, S, 'fe', 'mecha', { look: { exposure: 'low' } }).includes('EXPOSURE (low): a mostly covered version of the costume WORLD describes'), '노출 적게');
+  assert(P.build(D, S, 'fe', 'mecha', { look: { exposure: 'nope' } }).includes('EXPOSURE (bold)'), '모르는 노출은 기본');
+  const nl = P.normLook({ params: { 'hair color': 'silver', bogus: 'x', 'hair color_custom': '' }, exposure: 'moderate', faceDesignOn: false });
+  assert(same(nl, { params: { 'hair color': 'silver' }, faceDesignOn: false, silhouetteOn: true, exposure: 'moderate' }), '외형 칸 바로잡기 ' + JSON.stringify(nl));
+  const rec = P.record(D, S, 'fe-rust', 'fantasy', { look: { params: { 'hair color': 'silver' } } });
+  assert.equal(rec.look.params['hair color'], 'silver'); assert.equal(rec.design.silhouette.hair_color, 'rust_orange'); assert.equal(rec.look.exposure, 'bold', '기록에 외형 칸과 설계 look');
+}
 /* 덧붙임이 실린다 · 기록 꼴 */
 const t = P.build(D, S, 'fe-steel-sword', 'fantasy', { notes: { scene: 'a windy ridge', outfit: 'red sash', custom: 'low angle' } });
 assert(t.includes('SCENE NOTE: a windy ridge') && t.includes('OUTFIT NOTE: red sash') && t.includes('EXTRA: low angle'));
@@ -49,7 +77,7 @@ assert.notEqual(P.build(D, S, 'h-water', 'fantasy', {}), P.build(D, S, 'o-water'
 /* 없는 열쇠·없는 세계 */
 assert.equal(P.card(D, 'xx'), null); assert.equal(P.card(D, 'fe-nope'), null); assert.equal(P.card(D, 'fe-steel-sword-x'), null);
 assert.equal(P.build(D, S, 'fe', 'modern', {}), '');
-console.log('PASS 지시문: 카드 ' + cards.length + ' · 지시문 ' + n + ' · 근본 ' + byTier.root + ' 가문주 ' + byTier.lord + ' 주민 ' + byTier.citizen + ' · 뼈대 줄 · 입는 물건 · 메카 설계 · 덧붙임 · 기록 · 파일 이름');
+console.log('PASS 지시문: 카드 ' + cards.length + ' · 지시문 ' + n + ' · 근본 ' + byTier.root + ' 가문주 ' + byTier.lord + ' 주민 ' + byTier.citizen + ' · 뼈대 줄 · 외형(나이·실루엣·얼굴·노출 — 설계표 look, 직접 고른 것이 이김, IDENTITY) · 입는 물건 · 메카 설계 · 덧붙임 · 기록 · 파일 이름');
 
 /* ══ 일상컷(트리 버전2) ══ 공용 모듈·표는 이 저장소 것을 먼저, 아직 없으면 game-atelier 것으로(알림을 찍는다) */
 const GAME = '../game-atelier/';

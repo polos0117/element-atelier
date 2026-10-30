@@ -97,20 +97,34 @@ function altRowsBelowRoot(n) {
     const p = v.page; await p.waitForSelector('.hchip');
     assert.equal(await openOf(p), 'world', '처음 밟는 갈래는 첫 단계부터(세계는 주소대로 눌려 있다)');
     assert.equal(await p.locator('#panel .opt[data-pick="mecha"][aria-pressed="true"]').count(), 1, '주소의 세계가 눌려 있다');
-    await p.click('#panel .opt[data-pick="mecha"]'); assert.equal(await openOf(p), 'notes', '세계 다음 덧붙임');
+    await p.click('#panel .opt[data-pick="mecha"]'); assert.equal(await openOf(p), 'design', '세계 다음 설계 줄');
     assert.equal(await p.locator('.hchip[data-open="world"]').count(), 1, '세계 칩');
+    /* 설계 줄 — 실루엣·얼굴 싣기 체크(설계표 look 값 목록), 노출. 얼굴을 끄면 FACE 줄이 빠진다 */
+    assert.equal(await p.locator('#panel [data-lookcheck]').count(), 2, '실루엣·얼굴 싣기');
+    assert((await p.locator('#panel .design-list').first().textContent()).includes('tempered-blue'), '설계표 머리색(강철 가문)이 목록에');
+    await p.selectOption('#panel select[data-exposure]', 'moderate');
+    await p.uncheck('#panel [data-lookcheck="face"]');
+    if (mob) await p.click('#hbar [data-next="design"]'); else await p.click('[data-next="design"]');
+    assert.equal(await openOf(p), 'look', '설계 줄 다음 외형');
+    assert.equal(await p.locator('#panel details.grp').count(), 4, '외형 네 묶음');
+    await p.evaluate(() => { document.querySelector('#panel details.grp[data-grp="hair"]').open = true; });   // 머리 묶음은 접혀 있다
+    await p.selectOption('#panel select[data-param="hair color"]', 'silver');
+    if (mob) await p.click('#hbar [data-next="look"]'); else await p.click('[data-next="look"]');
+    assert.equal(await openOf(p), 'notes', '외형 다음 덧붙임');
+    assert.match(await p.locator('.hchip[data-open="look"]').textContent(), /1칸/, '외형 칩');
     await p.fill('textarea[data-note="scene"]', 'a windy ridge');
-    await p.click('[data-next="notes"]');
+    if (mob) await p.click('#hbar [data-next="notes"]'); else await p.click('[data-next="notes"]');
     assert.equal(await openOf(p), 'done');
     let t0 = await promptOf(p);
     assert(t0.startsWith('CONCEPT: a citizen of the Iron Nation, of the Steel House.') && t0.includes('MECHA DESIGN:') && t0.includes('SCENE NOTE: a windy ridge'), '세계 지시문');
+    assert(t0.includes('EXPOSURE (moderate)') && !t0.includes('FACE (') && t0.includes('SILHOUETTE: ') && !t0.includes('tempered-blue') && t0.includes('hair color: silver'), '설계 줄·외형 칸이 지시문에 ' + t0.slice(0, 150));
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_game_cgi_f.webp'), '파일 이름');
     await p.click('[data-open="world"]'); await p.click('[data-pick="fantasy"]');
-    assert.equal(await openOf(p), 'notes', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
+    assert.equal(await openOf(p), 'design', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
     await toDone(p); assert.equal(await openOf(p), 'done', '「다 골랐다로」');
-    assert(!(await promptOf(p)).includes('MECHA DESIGN'), '세계가 바뀐다');
+    assert(!(await promptOf(p)).includes('MECHA DESIGN') && (await promptOf(p)).includes('FACE (') && !(await promptOf(p)).includes('hair color: silver'), '세계가 바뀌면 외형 칸도 그 세계 것(판타지는 아직 설계표대로)');
     assert.match(p.url(), /card=fe-steel-sword&o=world&world=fantasy/, '주소에 적힌다');
-    checks += 6;
+    checks += 14;
 
     /* 갈래 → 일상컷(버전2): 세계(참고 그림이 되는 세계 그림 — 세계 그림 갈래에서 고른 판타지가 눌려 있다)부터 한 칸씩 */
     await p.click('[data-open="out"]'); await p.click('[data-out="casual"]');

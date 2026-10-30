@@ -10,7 +10,8 @@
 | `lib/workspace.css` · `lib/room.css` | 테마·화면 밀도·껍데기·공간 풍경 | 색은 그대로, 공간 이름만(실험실·천문대·연금술 공방·광산·제어실). 배경 그림 자리는 `element-atelier-img/backgrounds/` |
 | `lib/workspace-theme.js` | 테마·배경 고르기 | 열쇠 `element_room_v1`·`element_background_v1` |
 | `lib/workspace-ui.js` | 머리·항해·⚙ 설정·머리 접기·공간 고르개 | 문양을 원소 물건(플라스크·궤도·도가니·결정·원자 고리)으로, 접기 열쇠 `element_header_fold`, `PAGES=['index','dex','prompt']` |
-| `lib/words.js` · `tests/words.cjs` | 낱말 표 — 화면에 말을 박지 않는다 | 원소 낱말. 표 파일은 `lib/words.js`·`lib/prompt-spec.js` |
+| `lib/words.js` · `tests/words.cjs` | 낱말 표 — 화면에 말을 박지 않는다 | 원소 낱말. 표 파일은 `lib/words.js`·`lib/prompt-spec.js`·`lib/look-spec.js` |
+| `lib/prompt-spec.js` 의 외형 선택지(PARAM_DEFS · 얼굴 다섯 묶음 · 실루엣 어휘) | 외형 칸 · FACE · SILHOUETTE · IDENTITY | `lib/look-spec.js` 로 — `tools/port-look-spec.cjs` 가 game 표에서 글자 그대로 만들고(원소 몫 머리·눈 색만 더함) `tests/look-spec.cjs` 가 같은지 본다(2026-10-30) |
 | `lib/fresh.js` · `lib/patch.js` · `tests/patch.cjs` | 새 판 살피기 · 패치 기록 | 그대로 |
 | `lib/favorites.js` | 즐겨찾기 공용 모듈(공방 모음 원본) | 글자 하나 다르지 않게. 도감에 아직 안 붙였다 |
 | `lib/img.js` | 그림 자료 계층 | 그림 저장소 `element-atelier-img`. 폼 = 세계(fantasy·steampunk·mecha), 개방 없음 |
@@ -23,7 +24,7 @@
 ## 새로 만든 것
 
 - `data/element-design.json` · `tools/seed-elements.py` · `tools/element-design.py` · `tests/element-design.py` — 설계표(세 층)와 검사.
-- `lib/prompt-spec.js` · `lib/prompt-element.js` · `tests/prompt-element.cjs` — 지시문 표·조립. game 의 5,000줄 표를 옮기지 않았다 — 시안이 한 문단 CONCEPT 로 잘 나왔다(myth 공방과 같은 길).
+- `lib/prompt-spec.js` · `lib/prompt-element.js` · `tests/prompt-element.cjs` — 지시문 표·조립. game 의 5,000줄 표 가운데 외형 선택지만 `lib/look-spec.js` 로 옮겼다(2026-10-30) — 나머지(폼·개방·연출)는 안 옮긴다, 시안이 한 문단 CONCEPT 로 잘 나왔다(myth 공방과 같은 길).
 - `index.html`(주기율표·첫 묶음) · `dex.html`(세 층 도감 + 일상컷 줄) · `prompt.html` + `lib/studio.js`(생성기 판) · `lib/element.css` · `tests/screen.cjs`.
 - 공간 다섯의 색(`lib/workspace.css`)·배경(`lib/room.css` + 그림 저장소 `backgrounds/room-*.webp`, 도트 공방 호출기로 받은 가로 그림 1536×1024).
 

@@ -9,6 +9,8 @@
 - 나라는 persona · traits.ko(둘 이상) · traits.en · palette.en · worlds 셋(fantasy·steampunk·mecha — 각 en, mecha 는 design 도).
 - 가문은 ko·en·persona·traits.en·elements(나라 자신을 포함, 전부 아는 원소)·citizens(비어 있어도 된다).
 - 주민은 ko·en·object.en·worlds(비지 않고 전부 아는 세계). notes 의 세계도 아는 세계.
+- 나라는 look(face 여섯: face_shape·eyes·brows·nose·lips·eye_color + silhouette 셋: body·hair·hair_color, 값은 lib/look-spec.js VOCAB_EN 의 열쇠 — 어휘 대조는 tests/prompt-element.cjs).
+  가문의 look 은 덮어쓸 것만(같은 칸 이름). 주민에겐 look 이 없다(가문 것을 물려받는다). 팔레트 색이 머리·눈 색이 된다(2026-10-30).
 - 성질·세계 문장에 한국어가 섞이지 않는다(en 칸). 시각 언어 한 줄이 비어 있으면 그림이 흔들린다 — en 칸은 40자 이상.
 - 가문이 여러 나라에 걸치면(elements 둘 이상) 그 나라들 모두에 같은 열쇠의 가문이 있어야 하는 것은 아니다 — 있으면 도감이 잇는다. 다만 elements 에 적힌 원소는 전부 있어야 한다.
 """
@@ -20,6 +22,31 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import roster  # noqa: E402
 
 KEY = re.compile(r"^[a-z0-9]+$")
+LOOK = {"face": ("face_shape", "eyes", "brows", "nose", "lips", "eye_color"), "silhouette": ("body", "hair", "hair_color")}
+
+
+def check_look(where, look, full, errs):
+    """나라는 아홉 칸이 다 차야 하고(full), 가문은 아는 칸만 덮어쓴다. 값은 소문자 열쇠(어휘 대조는 node 검사)."""
+    if not isinstance(look, dict):
+        errs.append(where + " look 이 없다" if full else where + " look 은 dict"); return
+    for grp, keys in LOOK.items():
+        box = look.get(grp)
+        if box is None:
+            if full:
+                errs.append("%s look.%s 가 없다" % (where, grp))
+            continue
+        for k, v in box.items():
+            if k not in keys:
+                errs.append("%s look.%s 의 %r 는 모르는 칸" % (where, grp, k))
+            elif not isinstance(v, str) or not KEY.match(v.replace("_", "")):
+                errs.append("%s look.%s.%s 값은 소문자 열쇠 — %r" % (where, grp, k, v))
+        if full:
+            for k in keys:
+                if not box.get(k):
+                    errs.append("%s look.%s.%s 가 비었다" % (where, grp, k))
+    for k in look:
+        if k not in ("face", "silhouette", "why"):
+            errs.append("%s look 의 %r 는 모르는 칸" % (where, k))
 
 
 def check(doc):
@@ -64,6 +91,7 @@ def check(doc):
             errs.append(here + " traits.ko 는 둘 이상")
         en(here + " traits.en", tr.get("en"))
         en(here + " palette.en", (n.get("palette") or {}).get("en"), 10)
+        check_look(here, n.get("look"), True, errs)
         ws = n.get("worlds") or {}
         for w in worlds:
             if w not in ws:
@@ -84,6 +112,8 @@ def check(doc):
                 if not (f.get(c) or "").strip():
                     errs.append(fhere + " %s 가 비었다" % c)
             en(fhere + " traits.en", (f.get("traits") or {}).get("en"))
+            if "look" in f:
+                check_look(fhere, f.get("look"), False, errs)
             fe = f.get("elements") or []
             if k not in fe:
                 errs.append(fhere + " elements 에 제 나라 %s 가 없다" % k)
@@ -107,6 +137,8 @@ def check(doc):
                 for col in ("ko", "en"):
                     if not (c.get(col) or "").strip():
                         errs.append(chere + " %s 가 비었다" % col)
+                if "look" in c:
+                    errs.append(chere + " 에 look 이 있다 — 주민은 가문 것을 물려받는다")
                 en(chere + " object.en", (c.get("object") or {}).get("en"), 12)
                 cw = c.get("worlds") or []
                 if not cw:
