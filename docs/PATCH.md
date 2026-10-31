@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 기구 스팀펑크 일상컷 5번 오른손 교체
+- element-atelier-img의 img/h-balloon_steampunk_game_keyart_f_casual5.webp — 사용자가 승인한 국소 수정 시안으로 교체했다. 화면 왼쪽 인사하는 오른손을 엄지 포함 다섯 손가락으로 보정하고 얼굴·의상·배경·기존 프레이밍을 대체로 유지했다.
+- element-atelier-img의 records/h-balloon/steampunk-casual5.game_keyart-ui.json · records/replacement.json — 최초 생성·실패 QA는 그대로 두고 repairs에 보정 및 승인 이력을 추가했다. 이전 WebP/PNG와 새 그림의 SHA256·교체 사유를 기록했다. 나침반 시안은 등록하지 않았다. 같은 파일 이름을 유지하므로 data/img.json은 수동 변경하지 않았다.
+
 ## 2026-11-01 · gpt · 수소 나라 우물 세계 그림과 일상컷 등록
 - data/img.json — 그림 등록 워크플로가 h-water-well의 판타지·스팀펑크 세계 그림 각 1장과 일상컷 각 5장, 총 12장을 등록했다. 기존 그림·기록·다른 작업은 보존했다.
 - element-atelier-img의 img/·records/h-water-well/ — built-in image_gen으로 세계 그림은 참조 없이, 일상컷은 해당 세계 그림을 붙여 자리마다 한 번 생성했다. 생성기 원문·계획·원본/참고 SHA256·컷별 QA를 보존하고 WebP 품질90·method6으로 변환했다. 12장 모두 1024×1536 크기와 디코딩을 확인하고 두 세계 일상컷 묶음 검사 및 썸네일·그림 등록 자동화 성공을 확인했다.
