@@ -107,6 +107,10 @@ assert 'site_saltpan' not in T.preset_places(doc, v1, pre(doc, 'swim_close')) an
 assert 'site_lab' in T.prop_places(doc, v1, row(doc, 'props', 'test_tube')) and 'street_park' not in T.prop_places(doc, v1, row(doc, 'props', 'test_tube'))
 assert not {'nation_room', 'nation_inn'} & T.prop_places(doc, v1, row(doc, 'props', 'phone')), '휴대폰은 나라 안에 없다(지금 현실만)'
 assert {'nation_room', 'nation_bath', 'nation_market', 'nation_field', 'nation_square', 'nation_roof', 'nation_inn'} <= set(doc['places'])
-assert {p['key'] for p in doc['props']} >= {'test_tube', 'flask', 'compass', 'magnifier', 'hammer', 'salt_jar'} and not {'gamepad', 'coin', 'handheld', 'arcade_panel', 'signature'} & {p['key'] for p in doc['props']}
-assert not any('since' in p for p in doc['props']) and not any(p.get('signature') for p in doc['props'])
+assert {p['key'] for p in doc['props']} >= {'test_tube', 'flask', 'compass', 'magnifier', 'hammer', 'salt_jar'} and not {'gamepad', 'coin', 'handheld', 'arcade_panel'} & {p['key'] for p in doc['props']}
+assert not any('since' in p for p in doc['props'])
+# 그 원소의 물건(2026-10-30 되살림 — 설계표 hold.en · 주민 object.en) — 알아볼 거리 소품은 signature 하나, 모든 장소, 동작 셋(들기 · 얼굴 옆 · 두 손)
+sig = [p for p in doc['props'] if p.get('signature')]
+assert [p['key'] for p in sig] == ['signature'] and sig[0]['places'] == ['*'], sig
+assert len([u for u in doc['prop_uses'] if u['prop'] == 'signature']) == 3
 print('casual-tree-v2 ok — 추천', len(doc['presets']), '· 장소', len(doc['places']), '· 원소 소품 여섯')

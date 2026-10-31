@@ -7,6 +7,9 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · claude · 늘 빨간 casual-tree-v2.py 고치기
+- tests/casual-tree-v2.py — 원소 표에 소품 signature 가 있으면 실패로 보던 단정을 바꿨다. signature(그 원소의 물건)는 2026-10-30 일부러 되살린 소품이고(docs/CASUAL_TREE_PORT.md · tests/casual-tree-v2.cjs 는 이미 반영) 이 파이썬 검사만 옛 단정을 남겨 늘 실패했다. 이제 알아볼 거리 소품은 signature 하나 · 모든 장소 · 동작 셋(들기 · 얼굴 옆 · 두 손)인지 본다
+
 ## 2026-11-01 · claude · 가문주 · 주민 외형을 제 물질 · 물건에서 — 글래머러스한 체형 넷 더함
 - tools/port-look-spec.cjs · lib/look-spec.js — 체형 어휘에 hourglass · voluptuous · busty_slender · curvy_athletic 넷을 더했다(SILHOUETTE 줄의 「 build」 꼴로 읽히게). 사용자 「hourglass, voluptuous 등 글래머러스한 몸매가 더 많았으면 해」
 - data/element-design.json — 가문주 열다섯 · 주민 서른셋 모두 look 을 그 물질 · 물건에서 떠오르는 외형으로 다 적었다: 체형 · 머리색 · 눈썹 · 코 · 입(가문주는 눈 색도), 사는 세계마다 헤어 · 얼굴형 · 눈, why 에 이유. 사용자 「가문주 외형도 근본 쪽 따라갈 필요가 없을거 같아. 각자 그 물질이나 물건을 생각했을 때 떠오르는 이미지로」. 체형은 글래머러스한 다섯 갈래가 마흔여덟 중 서른여섯. 흑연 가문주 머리색 iron_grey · 주화 가문주 brass_gold 를 새로 적었다(전엔 근본 것). 머리 · 눈 색은 그 전 값 그대로
