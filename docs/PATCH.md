@@ -7,6 +7,9 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-31 · claude · 철나라 게임 키아트 2.5D 판 열다섯 — 가문주 12 새로 · 근본 3 교체
+- data/img.json — fe-<가문>_<세계>_game_keyart_f.webp 열둘 등록(사용자 「게임 키아트 2.5d로도 다 다시 뽑아줘」). CGI 판과 같은 장면·외형·옷으로 화풍 줄만 game_keyart. 근본 2.5D 셋(fe_<세계>_game_keyart_f.webp)은 외형 설계 전 시안이라 같은 이름으로 교체 — 그림 저장소 records/replacement.json. 도감은 기본 화풍(CGI) 줄 아래 「다른 화풍 · 게임 키아트 2.5D」 줄로 보인다
+
 ## 2026-10-31 · claude · 세계마다 헤어스타일·얼굴형·눈 · 철 판타지·스팀펑크 열 장 다시 뽑아 교체
 - data/element-design.json · tools/element-design.py — 나라 일곱에 look.worlds(세계마다 헤어스타일·얼굴형·눈 모양, 세 세계가 서로 다른 사람이어야 검사 통과). 색·체형은 공통. 강철·자석 가문의 머리·얼굴도 세계마다로 옮겼다. 철나라·강철·자석의 메카 값은 먼저 올린 메카 그림 그대로(지시문이 글자까지 같다)(사용자 「기본 세팅값에 헤어스타일이랑 얼굴 모양은 다르게」)
 - lib/prompt-element.js · lib/studio.js — lookOf(카드, 세계): 나라 → 나라 세계 → 가문 → 가문 세계 차례. FACE·SILHOUETTE 줄 · 설계 줄 목록 · 기록 design 이 그 세계 값
