@@ -115,7 +115,7 @@ function altRowsBelowRoot(n) {
     assert.equal(await p.locator('.hchip[data-open="world"]').count(), 1, '세계 칩');
     /* 설계 줄 — 실루엣·얼굴 싣기 체크(설계표 look 값 목록), 노출. 얼굴을 끄면 FACE 줄이 빠진다 */
     assert.equal(await p.locator('#panel [data-lookcheck]').count(), 2, '실루엣·얼굴 싣기');
-    assert((await p.locator('#panel .design-list').first().textContent()).includes('tempered-blue'), '설계표 머리색(강철 가문)이 목록에');
+    assert((await p.locator('#panel .design-list').first().textContent()).includes('mirror-polished steel-silver'), '설계표 머리색(검 주민 — 물건 재질)이 목록에');
     await p.selectOption('#panel select[data-exposure]', 'moderate');
     await p.uncheck('#panel [data-lookcheck="face"]');
     if (mob) await p.click('#hbar [data-next="design"]'); else await p.click('[data-next="design"]');

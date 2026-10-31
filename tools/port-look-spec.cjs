@@ -12,7 +12,14 @@ const EXTRA = {
   hair_color: {
     iron_grey: 'iron-grey hair with a brushed-steel sheen', tempered_steel: 'brushed-steel silver hair with a tempered-blue sheen', rust_orange: 'rust-orange hair',
     soot_black: 'soot-black hair with a graphite sheen', violet_white: 'pale violet-white hair that dissolves into light at the ends',
-    rain_blue: 'clear rain-blue hair', pale_aqua: 'pale aqua hair', cream: 'cream-blonde hair', rose_gold: 'rose-gold hair', salt_white: 'salt-white hair'
+    rain_blue: 'clear rain-blue hair', pale_aqua: 'pale aqua hair', cream: 'cream-blonde hair', rose_gold: 'rose-gold hair', salt_white: 'salt-white hair',
+    /* 주민의 물건 재질 색(2026-10-31 — 주민 머리색은 물건, 눈 색은 가문) */
+    mirror_steel: 'mirror-polished steel-silver hair with a cold blue glint', dark_iron: 'dark wrought-iron grey hair', cast_iron_black: 'cast-iron black hair with a dull sheen',
+    rust_brown: 'rust-streaked dark brown-black hair', old_brass: 'tarnished old-brass brown hair', verdigris: 'sea-weathered verdigris-teal hair streaked with rust',
+    brass_gold: 'polished brass-gold hair', pole_tipped: 'silver-grey hair dipped red on one side and blue on the other', deep_blood: 'deep translucent blood-red hair',
+    glass_clear: 'clear glass-blue hair with bright highlights', stone_grey: 'mossy stone-grey hair', rain_grey: 'rain-grey hair with a wet sheen', pastel_sky: 'pale pastel sky-blue hair',
+    ice_white: 'frost-white hair with pale blue tips', white_gold: 'white-gold hair that glows at the edges', plasma_blue: 'white-blue plasma-bright hair', copper: 'polished copper hair',
+    prism_white: 'diamond-white hair with prism-rainbow glints', cedar: 'cedar-brown hair', terracotta: 'glazed terracotta-brown hair', bright_gold: 'bright cast-gold hair'
   },
   eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes' }
 };

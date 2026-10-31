@@ -41,7 +41,7 @@
    "gas": "기체",
    "unknown": "모름"
   },
-  "look_note": "나라 look = 얼굴 여섯(face_shape·eyes·brows·nose·lips·eye_color) + 실루엣 셋(body·hair·hair_color) — 어휘는 lib/look-spec.js VOCAB_EN. 가문 look 은 덮어쓸 것만(보통 hair_color·eye_color), 주민은 가문 것을 물려받는다. 팔레트 색이 머리·눈 색이 된다(사용자 2026-10-30). 세계마다 사람이 달라도 이 성향은 같다 — 생성기 외형 칸에서 직접 고른 값이 이긴다. 나라 look.worlds.<세계> 가 헤어스타일·얼굴형·눈 모양을 세계마다 덮어쓴다(나라 → 나라 세계 → 가문 → 가문 세계 차례). 색·체형은 세 세계 공통(2026-10-30).",
+  "look_note": "나라 look = 얼굴 여섯(face_shape·eyes·brows·nose·lips·eye_color) + 실루엣 셋(body·hair·hair_color) — 어휘는 lib/look-spec.js VOCAB_EN. 가문 look 은 덮어쓸 것만(보통 hair_color·eye_color), 주민은 가문 것을 물려받는다. 팔레트 색이 머리·눈 색이 된다(사용자 2026-10-30). 세계마다 사람이 달라도 이 성향은 같다 — 생성기 외형 칸에서 직접 고른 값이 이긴다. 나라 look.worlds.<세계> 가 헤어스타일·얼굴형·눈 모양을 세계마다 덮어쓴다(나라 → 나라 세계 → 가문 → 가문 세계 차례). 색·체형은 세 세계 공통(2026-10-30). 주민 look 은 머리색(물건의 재질 색)만 적는다 — 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 그 세계 가문주와 다르게 자동으로 돌린다(2026-10-31 「주민이 가문주 복사본」).",
   "scenes_note": "worlds.<세계>.scenes = 그 세계 안의 장소 변주(key·ko·en) — 생성기 「장면」 칸. 비우면(자동) 세계 글의 장소. hold.en = 일상컷에서 손에 들 수 있는 그 원소·물질의 작은 물건(주민은 object.en). 2026-10-30"
  },
  "elements": [
@@ -1581,6 +1581,12 @@
         "mecha": {
          "en": "the blade becomes a plasma-edged fin on her back unit and blade-shaped shin guards"
         }
+       },
+       "look": {
+        "silhouette": {
+         "hair_color": "mirror_steel"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
        }
       },
       {
@@ -1599,6 +1605,12 @@
         "mecha": {
          "en": "the flat round nail-head as a helmet disc, a tall slim pointed silhouette, rivet and bolt details, hazard-orange accents; practical engineering gear, an orbital construction site above Earth"
         }
+       },
+       "look": {
+        "silhouette": {
+         "hair_color": "dark_iron"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
        }
       },
       {
@@ -1616,6 +1628,12 @@
         "steampunk": {
          "en": "truss patterns as a corset structure and skirt frame, arch shapes in her collar"
         }
+       },
+       "look": {
+        "silhouette": {
+         "hair_color": "cast_iron_black"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
        }
       },
       {
@@ -1628,7 +1646,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "rust_brown"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -1709,6 +1733,12 @@
         "fantasy": {
          "en": "a hill fort smithy of the early Iron Age: a stone forge, bog-iron bloom, hammered bars, a wooden palisade and autumn hills"
         }
+       },
+       "look": {
+        "silhouette": {
+         "hair_color": "rust_orange"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
        }
       },
       {
@@ -1721,7 +1751,13 @@
        "worlds": [
         "fantasy",
         "steampunk"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "old_brass"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "wreck",
@@ -1733,7 +1769,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "verdigris"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -1776,7 +1818,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "brass_gold"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "horseshoe",
@@ -1788,7 +1836,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "pole_tipped"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -1862,7 +1916,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "deep_blood"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2042,6 +2102,12 @@
         "steampunk": {
          "en": "a brass-banded glass canteen with a cork and a leather strap"
         }
+       },
+       "look": {
+        "silhouette": {
+         "hair_color": "glass_clear"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
        }
       },
       {
@@ -2054,7 +2120,13 @@
        "worlds": [
         "fantasy",
         "steampunk"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "stone_grey"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "rain",
@@ -2067,7 +2139,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "rain_grey"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "steam",
@@ -2079,7 +2157,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "silver_white"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2122,7 +2206,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "pastel_sky"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "airship",
@@ -2133,7 +2223,13 @@
        },
        "worlds": [
         "steampunk"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "silver_white"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2180,6 +2276,12 @@
         "steampunk": {
          "en": "an 1839 gas voltaic battery: glass tubes of hydrogen and oxygen over acid, platinum strips, brass clamps"
         }
+       },
+       "look": {
+        "silhouette": {
+         "hair_color": "cyan"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
        }
       },
       {
@@ -2191,7 +2293,13 @@
        },
        "worlds": [
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "ice_white"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2234,7 +2342,13 @@
        "worlds": [
         "fantasy",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "white_gold"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "fusion",
@@ -2245,7 +2359,13 @@
        },
        "worlds": [
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "plasma_blue"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2420,7 +2540,13 @@
        "worlds": [
         "fantasy",
         "steampunk"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "stone_grey"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "sea",
@@ -2433,7 +2559,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "ocean_blue"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2475,7 +2607,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "teal"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "helmet",
@@ -2487,7 +2625,13 @@
        "worlds": [
         "steampunk"
        ],
-       "wear": true
+       "wear": true,
+       "look": {
+        "silhouette": {
+         "hair_color": "copper"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2661,7 +2805,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "prism_white"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "drill",
@@ -2673,7 +2823,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "dark_iron"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2716,7 +2872,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "cedar"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -2887,7 +3049,13 @@
        "worlds": [
         "fantasy",
         "steampunk"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "terracotta"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "saltpan",
@@ -2900,7 +3068,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "cream"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -3079,6 +3253,12 @@
         "fantasy": {
          "en": "the Kingdom of Lydia around 600 BC where the first coins were struck: a stone mint courtyard with an anvil die and a furnace, limestone columns, a river with gold sand; a long chiton and himation in gold-dyed linen"
         }
+       },
+       "look": {
+        "silhouette": {
+         "hair_color": "antique_gold"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
        }
       },
       {
@@ -3091,7 +3271,13 @@
        "worlds": [
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "bright_gold"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {
@@ -3132,7 +3318,13 @@
         "steampunk",
         "mecha"
        ],
-       "wear": true
+       "wear": true,
+       "look": {
+        "silhouette": {
+         "hair_color": "antique_gold"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       },
       {
        "key": "ring",
@@ -3145,7 +3337,13 @@
         "fantasy",
         "steampunk",
         "mecha"
-       ]
+       ],
+       "look": {
+        "silhouette": {
+         "hair_color": "golden_blonde"
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 헤어스타일·얼굴형·눈 모양은 주민 열쇠로 가문주와 다르게 돌린다(lib/prompt-element.js lookOf)"
+       }
       }
      ],
      "look": {

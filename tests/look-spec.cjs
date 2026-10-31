@@ -49,7 +49,8 @@ for (const n of D.nations) {
     if (f.look.silhouette) checkBox('가문 ' + f.key, 'silhouette', f.look.silhouette, false);
     for (const [w, lk] of Object.entries(f.look.worlds || {})) { assert(['fantasy', 'steampunk', 'mecha'].includes(w), '가문 ' + f.key + ' 모르는 세계 ' + w); checkBox('가문 ' + f.key + ' ' + w, 'face', lk.face || {}, false); checkBox('가문 ' + f.key + ' ' + w, 'silhouette', lk.silhouette || {}, false); }
     assert((f.look.face || {}).eye_color || (f.look.silhouette || {}).hair_color, '가문 ' + n.key + '-' + f.key + ' 은 눈 색이나 머리색 하나는 제 팔레트로');
-    for (const c of f.citizens) assert(!c.look, '주민 ' + c.key + ' 에 look — 가문 것을 물려받는다');
+    /* 주민 look 은 머리색(물건 재질)만 — 헤어스타일·얼굴형·눈 모양은 조립기가 돌린다 */
+    for (const c of f.citizens) { assert(c.look && c.look.silhouette && c.look.why, '주민 ' + c.key + ' look'); assert.equal(JSON.stringify(Object.keys(c.look.silhouette)), '["hair_color"]', '주민 ' + c.key + ' 은 머리색만'); assert(!c.look.face && !c.look.worlds, '주민 ' + c.key + ' 얼굴·세계 칸 없음'); checkBox('주민 ' + c.key, 'silhouette', c.look.silhouette, false); }
   }
 }
 /* 화면 이름(LOOK_KO)은 설계 칸과 같은 열쇠 */

@@ -7,6 +7,12 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-31 · claude · 주민이 가문주 복사본이 되지 않게 — 물건 재질 머리색 · 외형 돌리기 · 물건이 먼저인 옷
+- data/element-design.json · tools/element-design.py — 주민 서른셋에 look.silhouette.hair_color(물건의 재질 색 — 검 거울 강철, 나침반 놋쇠 금빛, 수혈팩 짙은 피빛 …). 철 주민 스물네 장을 뽑아 보니 가문주와 외형 줄이 글자까지 같고 물건이 안 보였다(사용자 「머리색도 좀 바꾸는 건 어떨까」 「그렇게 해줘」)
+- tools/port-look-spec.cjs · lib/look-spec.js — 원소 몫 머리색 21 더함(물건 재질 색)
+- lib/prompt-element.js — lookOf 가 주민이면 헤어스타일·얼굴형·눈 모양을 주민 열쇠로 돌려 그 세계 가문주와 다르게(세계끼리도 다르게), 머리색은 설계표. 주민 세계 그림은 세계 옷 뼈대 대신 citizenTail(물건이 먼저 — 그 모양이 옷·머리 장식에서 한눈에), 주민 과감 노출(옷 뼈대 말 없이), 메카는 「물건이 설계를 이끈다」
+- lib/prompt-spec.js — citizenTail(판타지·스팀펑크) · CITIZEN_MECHA · CITIZEN_EXPOSURE_BOLD. tests — 주민 75 (주민, 세계) 가 가문주와 머리·얼굴형·눈이 다 다르고 세계끼리도 다르다 · 옷 줄 · 검사기. IMAGE_RULES.md · AGENTS.md. 시험 세 장(나침반 스팀펑크 · 못 판타지 · 레일 메카)으로 봤다 — 첫 스물네 장은 안 올렸다
+
 ## 2026-10-31 · claude · 기본 화풍을 게임 키아트 2.5D 로 · 기록 이름에 화풍을 늘 붙인다
 - data/style.json · IMAGE_RULES.md · AGENTS.md — 기본을 game_keyart 로(사용자 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi 철나라 열여덟 장은 그 열쇠로 남아 도감 「다른 화풍」 줄에
 - lib/studio.js — 생성기는 늘 기본 화풍(화풍 고르개가 없는데 저장된 옛 화풍을 따르고 있었다 — 기본을 바꿔도 이 기기에선 CGI 로 지었을 것)

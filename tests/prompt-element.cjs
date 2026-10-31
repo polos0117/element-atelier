@@ -30,9 +30,12 @@ for (const key of cards) {
     const order = ['HOUSE TRAITS', 'AGE: ', 'SILHOUETTE: ', 'FACE (', 'WORLD — ', 'STYLE: ', 'EXPOSURE (', 'OUTPUT: '].map(x => t.indexOf(x)).filter(i => i >= 0);
     assert(same(order, order.slice().sort((a, b) => a - b)), key + ' ' + w + ' 외형 줄 차례');
     /* 과감 노출은 세계마다 — 판타지·스팀펑크는 제 문장(코르셋 없이), 메카는 공용 겉옷 문장. 세계 옷 뼈대가 서로 다르다(2026-10-30 — 둘이 같은 코르셋 옷으로 나왔다) */
-    if (w === 'fantasy') assert(t.includes('between pauldron and bracer') && t.includes('COSTUME (fantasy)') && t.includes('No corset, no bustle') && !/corset-like/.test(t), key + ' 판타지 옷·과감');
+    /* 주민은 물건이 먼저(2026-10-31) — 세계 옷 뼈대 대신 citizenTail · 주민 과감(옷 뼈대 말 없이) · 메카는 물건이 설계를 이끈다 */
+    const cit = c.tier === 'citizen';
+    if (cit && w !== 'mecha') assert(t.includes('COSTUME (citizen, ' + w + '): her object leads') && t.includes(T.CITIZEN_EXPOSURE_BOLD) && !t.includes('pauldron') && !t.includes('high-necked blouse') && !/corset-like/.test(t), key + ' ' + w + ' 주민 옷·과감');
+    else if (w === 'fantasy') assert(t.includes('between pauldron and bracer') && t.includes('COSTUME (fantasy)') && t.includes('No corset, no bustle') && !/corset-like/.test(t), key + ' 판타지 옷·과감');
     else if (w === 'steampunk') assert(t.includes('sleeves rolled above the elbow') && t.includes('COSTUME (steampunk)') && t.includes('high-necked blouse') && !/corset-like/.test(t), key + ' 스팀펑크 옷·과감');
-    else assert(t.includes('her outer layer (coat, cloak, robe or armor) stays on both shoulders'), key + ' 메카 과감은 겉옷');
+    else assert(t.includes('her outer layer (coat, cloak, robe or armor) stays on both shoulders') && t.includes(T.CITIZEN_MECHA) === cit, key + ' 메카 과감은 겉옷 · 주민은 물건이 설계를 이끈다');
     if (w !== 'mecha') assert(/LIGHT: .*unless TIME & WEATHER says otherwise/.test(t), key + ' ' + w + ' 기본 빛');
     assert(t.includes(c.element.en), key + ' 원소 이름');
     if (c.family) assert(t.includes('HOUSE TRAITS of ' + c.family.en), key + ' 가문 성질');
@@ -55,7 +58,18 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
 {
   const dz = P.lookOf(P.card(D, 'fe-rust'));
   assert.equal(dz.silhouette.hair_color, 'rust_orange'); assert.equal(dz.face.eye_color, 'rust_amber'); assert.equal(dz.silhouette.body, 'broad_strong', '가문은 덮어쓴 것만, 나머지는 나라');
-  assert(same(P.lookOf(P.card(D, 'fe-rust-armor')), dz) && same(P.lookOf(P.card(D, 'fe-rust-armor'), 'steampunk'), P.lookOf(P.card(D, 'fe-rust'), 'steampunk')), '주민은 가문 것을 물려받는다');
+  /* 주민 — 눈 색·체형은 가문 것, 머리색은 물건 재질(설계표), 헤어스타일·얼굴형·눈 모양은 그 세계 가문주와 다르고 세계끼리도 다르다(2026-10-31 「주민이 가문주 복사본」) */
+  for (const n of D.nations) for (const f of n.families) for (const ci of f.citizens) {
+    const k = n.key + '-' + f.key + '-' + ci.key, ws = P.worldsOf(D, k), sig = l => [l.silhouette.hair, l.face.face_shape, l.face.eyes].join('/');
+    for (const w of ws) {
+      const l = P.lookOf(P.card(D, k), w), lo = P.lookOf(P.card(D, n.key + '-' + f.key), w);
+      assert.equal(l.face.eye_color, lo.face.eye_color, k + ' 눈 색은 가문'); assert.equal(l.silhouette.body, lo.silhouette.body, k + ' 체형은 가문');
+      assert.equal(l.silhouette.hair_color, ci.look.silhouette.hair_color, k + ' 머리색은 물건');
+      assert(l.silhouette.hair !== lo.silhouette.hair && l.face.face_shape !== lo.face.face_shape && l.face.eyes !== lo.face.eyes, k + ' ' + w + ' 가문주와 다른 사람');
+    }
+    assert.equal(new Set(ws.map(w => sig(P.lookOf(P.card(D, k), w)))).size, ws.length, k + ' 세계끼리 다른 사람');
+  }
+  assert(same(P.lookOf(P.card(D, 'fe-rust-armor'), 'mecha'), P.lookOf(P.card(D, 'fe-rust-armor'), 'mecha')), '같은 값이 늘 같다');
   /* 세계마다 다른 사람 — 나라마다 세 세계의 (머리·얼굴형·눈) 이 서로 다르고, 색·체형은 같다. 가문의 세계 값이 나라의 세계 값을 이긴다 */
   for (const n of D.nations) {
     const sig = w => { const l = P.lookOf(P.card(D, n.key), w); return [l.silhouette.hair, l.face.face_shape, l.face.eyes].join('/'); };
