@@ -28,7 +28,7 @@ if (fs.existsSync(GAME)) {
   console.log('  game 표와 같다(PARAM_DEFS ' + S.PARAM_DEFS.length + ' · 어휘 ' + Object.keys(S.VOCAB_EN).length + ' 묶음)');
 } else console.log('  (알림) ../game-atelier 가 없어 game 표와 대조하지 않았다');
 
-/* 3. 설계표의 look — 나라는 아홉 칸, 가문은 덮어쓸 것만, 값은 전부 어휘에 있고 가문 색은 팔레트와 맞물린다(머리색이 나라와 다르거나 눈 색이 있다) */
+/* 3. 설계표의 look — 나라는 아홉 칸, 가문주 · 주민은 제 물질 · 물건에서 다 적고(2026-11-01), 값은 전부 어휘에 있고 가문 색은 팔레트와 맞물린다(머리색이 나라와 다르거나 눈 색이 있다) */
 const D = JSON.parse(fs.readFileSync('data/element-design.json', 'utf8'));
 let nLook = 0;
 const checkBox = (where, grp, box, full) => {
@@ -49,8 +49,12 @@ for (const n of D.nations) {
     if (f.look.silhouette) checkBox('가문 ' + f.key, 'silhouette', f.look.silhouette, false);
     for (const [w, lk] of Object.entries(f.look.worlds || {})) { assert(['fantasy', 'steampunk', 'mecha'].includes(w), '가문 ' + f.key + ' 모르는 세계 ' + w); checkBox('가문 ' + f.key + ' ' + w, 'face', lk.face || {}, false); checkBox('가문 ' + f.key + ' ' + w, 'silhouette', lk.silhouette || {}, false); }
     assert((f.look.face || {}).eye_color || (f.look.silhouette || {}).hair_color, '가문 ' + n.key + '-' + f.key + ' 은 눈 색이나 머리색 하나는 제 팔레트로');
-    /* 주민 look 은 머리색(물건 재질)만 — 헤어스타일·얼굴형·눈 모양은 조립기가 돌린다 */
-    for (const c of f.citizens) { assert(c.look && c.look.silhouette && c.look.why, '주민 ' + c.key + ' look'); assert.equal(JSON.stringify(Object.keys(c.look.silhouette)), '["hair_color"]', '주민 ' + c.key + ' 은 머리색만'); assert(!c.look.face && !c.look.worlds, '주민 ' + c.key + ' 얼굴·세계 칸 없음'); checkBox('주민 ' + c.key, 'silhouette', c.look.silhouette, false); }
+    /* 주민도 제 물건에서 떠오르는 외형을 다 적는다(2026-11-01) — 칸 이름 · 값이 어휘에 있고 사는 세계만 */
+    for (const c of f.citizens) {
+      assert(c.look && c.look.silhouette && c.look.face && c.look.why, '주민 ' + c.key + ' look');
+      checkBox('주민 ' + c.key, 'silhouette', c.look.silhouette, false); checkBox('주민 ' + c.key, 'face', c.look.face, false);
+      for (const [w, lk] of Object.entries(c.look.worlds || {})) { assert((c.worlds || []).includes(w), '주민 ' + c.key + ' 사는 세계가 아닌 ' + w); checkBox('주민 ' + c.key + ' ' + w, 'face', lk.face || {}, false); checkBox('주민 ' + c.key + ' ' + w, 'silhouette', lk.silhouette || {}, false); }
+    }
   }
 }
 /* 화면 이름(LOOK_KO)은 설계 칸과 같은 열쇠 */

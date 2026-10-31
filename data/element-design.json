@@ -1583,10 +1583,45 @@
         }
        },
        "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "aquiline",
+         "lips": "thin_long"
+        },
         "silhouette": {
+         "body": "busty_slender",
          "hair_color": "mirror_steel"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "deep_set"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 긴 검 — 곧은 양날, 날 선 끝: 길고 가는 몸에 풍만한 가슴, 날 선 눈썹, 칼날처럼 곧은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -1607,10 +1642,45 @@
         }
        },
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "straight_narrow",
+         "lips": "thin_long"
+        },
         "silhouette": {
+         "body": "lanky",
          "hair_color": "dark_iron"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "round_large"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "droopy_soft"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 못 — 납작한 머리에 길고 가는 몸대: 키 크고 가는 몸, 납작하게 짧은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -1630,10 +1700,36 @@
         }
        },
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "broad_soft",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "broad_strong",
          "hair_color": "cast_iron_black"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "deep_set"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 철교 — 리벳 박은 트러스, 버팀: 넓은 어깨의 튼튼한 몸, 엮은 듯 땋은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -1648,52 +1744,80 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "straight_narrow",
+         "lips": "thin_long"
+        },
         "silhouette": {
+         "body": "tall_statuesque",
          "hair_color": "rust_brown"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "almond_wide"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 철길 — 길게 뻗은 I자 단면, 닳아 빛나는 윗면: 길게 뻗은 몸, 곧은 긴 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
-       "eye_color": "steel_blue",
-       "brows": "straight_thick"
+       "brows": "straight_thick",
+       "nose": "straight_narrow",
+       "lips": "thin_long",
+       "eye_color": "steel_blue"
       },
       "silhouette": {
-       "hair_color": "tempered_steel",
-       "body": "athletic"
+       "body": "curvy_athletic",
+       "hair_color": "tempered_steel"
       },
-      "why": "brushed steel silver·tempered blue → 머리·눈. 곧고 믿음직 → 운동형, 짧게 친 머리, 곧은 눈썹(2026-10-30 — 첫 뽑기에서 자석 가문과 자매처럼 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값)",
       "worlds": {
        "fantasy": {
-        "face": {
-         "face_shape": "long",
-         "eyes": "narrow_upturned"
-        },
         "silhouette": {
-         "hair": "ponytail"
+         "hair": "long_straight"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "narrow_upturned"
         }
        },
        "steampunk": {
-        "face": {
-         "face_shape": "diamond",
-         "eyes": "deep_set"
-        },
         "silhouette": {
          "hair": "bob"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "deep_set"
         }
        },
        "mecha": {
-        "face": {
-         "face_shape": "oval",
-         "eyes": "almond_wide"
-        },
         "silhouette": {
          "hair": "short_crop"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
         }
        }
-      }
+      },
+      "why": "brushed steel silver·tempered blue → 머리·눈. 곧고 믿음직 → 운동형, 짧게 친 머리, 곧은 눈썹(2026-10-30 — 첫 뽑기에서 자석 가문과 자매처럼 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값) · 외형 — 벼린 강철 — 곧고 단단한 선, 담금질한 탄력: 다부지면서 굴곡 있는 몸, 곧은 눈썹 · 곧은 콧날 · 얇은 입, 반듯한 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a polished steel rivet with a tempered-blue sheen"
@@ -1735,10 +1859,45 @@
         }
        },
        "look": {
+        "face": {
+         "brows": "low_heavy",
+         "nose": "aquiline",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "curvy_athletic",
          "hair_color": "rust_orange"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "deep_set"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "almond_wide"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 녹슨 갑옷 — 싸운 세월, 벗겨지는 판: 다부진 굴곡, 무거운 눈썹, 전사의 땋은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -1753,10 +1912,36 @@
         "steampunk"
        ],
        "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "small_button",
+         "lips": "small_bow"
+        },
         "silhouette": {
+         "body": "busty_slender",
          "hair_color": "old_brass"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "round_large"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "droopy_soft"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 녹슨 열쇠 — 고리 머리, 긴 몸대, 홈 파인 끝: 가는 몸, 동그란 눈, 긴 몸대 같은 꼬리 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -1771,21 +1956,80 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "broad_soft",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "voluptuous",
          "hair_color": "verdigris"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_wavy"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "droopy_soft"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "voluminous"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 좌초한 철선 — 바닷바람에 삭은 큰 선체: 풍만한 몸, 바닷바람에 흐트러진 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "soft_round",
+       "nose": "broad_soft",
+       "lips": "full_wide",
        "eye_color": "rust_amber"
       },
       "silhouette": {
+       "body": "curvy",
        "hair_color": "rust_orange"
       },
-      "why": "rust orange·ochre → 머리·눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "droopy_soft"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "voluminous"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "monolid_long"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "side_swept"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "round_large"
+        }
+       }
+      },
+      "why": "rust orange·ochre → 머리·눈 · 외형 — 녹 — 겹겹이 일어난 부드러운 녹, 세월의 무게: 둥글고 너그러운 얼굴, 처진 눈, 흐트러진 물결 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a flake of rust-orange iron on a leather cord"
@@ -1820,10 +2064,45 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "upturned",
+         "lips": "heart_full"
+        },
         "silhouette": {
+         "body": "curvy",
          "hair_color": "brass_gold"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "droopy_soft"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 나침반 — 둥근 황동 함, 떨리는 바늘: 둥근 얼굴 · 동그란 눈, 둥근 단발, 한쪽으로 쏠린 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -1838,52 +2117,80 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "small_button",
+         "lips": "wide_smile"
+        },
         "silhouette": {
+         "body": "hourglass",
          "hair_color": "pole_tipped"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "twin_tails"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 말굽자석 — U자, 붉은 극 · 푸른 극: 모래시계 몸, 두 극 같은 양 갈래 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
-       "eye_color": "navy",
-       "lips": "heart_full"
+       "brows": "arched_thin",
+       "nose": "small_button",
+       "lips": "heart_full",
+       "eye_color": "navy"
       },
       "silhouette": {
-       "hair_color": "ash_gray",
-       "body": "curvy"
+       "body": "hourglass",
+       "hair_color": "ash_gray"
       },
-      "why": "iron grey → 잿빛 머리, deep blue pole tips → 눈. 두 극(N·S) → 양갈래, 끌어당김 → 곡선형 몸(2026-10-30 — 첫 뽑기에서 강철 가문과 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값)",
       "worlds": {
        "fantasy": {
-        "face": {
-         "face_shape": "round",
-         "eyes": "droopy_soft"
-        },
         "silhouette": {
-         "hair": "long_wavy"
+         "hair": "twin_tails"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
         }
        },
        "steampunk": {
-        "face": {
-         "face_shape": "long",
-         "eyes": "narrow_upturned"
-        },
         "silhouette": {
          "hair": "side_swept"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "narrow_upturned"
         }
        },
        "mecha": {
-        "face": {
-         "face_shape": "heart",
-         "eyes": "round_large"
-        },
         "silhouette": {
-         "hair": "twin_tails"
+         "hair": "bob"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "deep_set"
         }
        }
-      }
+      },
+      "why": "iron grey → 잿빛 머리, deep blue pole tips → 눈. 두 극(N·S) → 양갈래, 끌어당김 → 곡선형 몸(2026-10-30 — 첫 뽑기에서 강철 가문과 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값) · 외형 — 자석 — 끌어당기는 힘과 두 극: 모래시계 몸, 하트형 얼굴과 도톰한 입, 두 갈래로 갈린 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a small horseshoe magnet with red and blue tips"
@@ -1918,21 +2225,80 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "voluptuous",
          "hair_color": "deep_blood"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "droopy_soft"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "long_wavy"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 혈액 팩 — 말랑하고 반투명한 짙은 붉음: 부드럽고 풍만한 몸, 순한 눈(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "arched_thin",
+       "nose": "aquiline",
+       "lips": "full_wide",
        "eye_color": "crimson"
       },
       "silhouette": {
+       "body": "voluptuous",
        "hair_color": "wine_red"
       },
-      "why": "crimson·dark wine red → 머리·눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "deep_set"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "braids"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "voluminous"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "narrow_upturned"
+        }
+       }
+      },
+      "why": "crimson·dark wine red → 머리·눈 · 외형 — 피 — 맥박과 체온, 진한 진홍: 풍만하고 따뜻한 몸, 깊은 눈매, 흐르는 긴 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a small vial of dark red liquid"
@@ -2104,10 +2470,36 @@
         }
        },
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "straight_narrow",
+         "lips": "small_bow"
+        },
         "silhouette": {
+         "body": "busty_slender",
          "hair_color": "glass_clear"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "round_large"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "droopy_soft"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 유리 물병 — 맑은 원통: 가늘고 매끈한 몸에 풍만한 가슴, 맑은 눈, 곧은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2122,10 +2514,36 @@
         "steampunk"
        ],
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "broad_soft",
+         "lips": "wide_smile"
+        },
         "silhouette": {
+         "body": "curvy",
          "hair_color": "stone_grey"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 우물 — 돌벽, 나무 지붕, 밧줄과 두레박: 넉넉한 굴곡, 밧줄처럼 땋은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2141,10 +2559,45 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "small_bow"
+        },
         "silhouette": {
+         "body": "slender",
          "hair_color": "rain_grey"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "monolid_long"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 비 — 떨어지는 물줄기, 우산과 비옷: 가는 몸, 빗줄기처럼 곧게 떨어지는 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2159,21 +2612,80 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "upturned",
+         "lips": "wide_smile"
+        },
         "silhouette": {
+         "body": "curvy_athletic",
          "hair_color": "silver_white"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "voluminous"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "almond_wide"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 증기 보일러 — 기적과 압력계, 뿜는 흰 김: 다부진 굴곡, 김처럼 부푼 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "soft_round",
+       "nose": "small_button",
+       "lips": "small_bow",
        "eye_color": "azure"
       },
       "silhouette": {
+       "body": "busty_slender",
        "hair_color": "rain_blue"
       },
-      "why": "rain blue → 머리·눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_straight"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "droopy_soft"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "long_wavy"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "monolid_long"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "side_swept"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "round_large"
+        }
+       }
+      },
+      "why": "rain blue → 머리·눈 · 외형 — 하늘의 물(구름 · 비 · 안개) — 얇게 겹친 베일, 흘러내림: 가늘지만 풍만한 몸, 순한 눈, 흘러내리는 긴 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a clear glass of water catching the light"
@@ -2208,10 +2720,45 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "heart_full"
+        },
         "silhouette": {
+         "body": "petite",
          "hair_color": "pastel_sky"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "twin_tails"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "voluminous"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 풍선 다발 — 가볍게 떠오르는 동그란 풍선들: 작고 가벼운 몸, 풍선 끈 같은 양 갈래 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2225,21 +2772,71 @@
         "steampunk"
        ],
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "aquiline",
+         "lips": "thin_long"
+        },
         "silhouette": {
+         "body": "tall_statuesque",
          "hair_color": "silver_white"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 비행선 — 길고 은빛인 기낭, 꼬리 날개: 길고 큰 몸, 길게 뻗은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "soft_round",
+       "nose": "upturned",
+       "lips": "wide_smile",
        "eye_color": "sky_blue"
       },
       "silhouette": {
+       "body": "voluptuous",
        "hair_color": "cream"
       },
-      "why": "cream canvas → 머리, pale blue → 눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "voluminous"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "round_large"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "twin_tails"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "droopy_soft"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "monolid_long"
+        }
+       }
+      },
+      "why": "cream canvas → 머리, pale blue → 눈 · 외형 — 기구 — 둥글게 부푼 풍선, 떠오름: 둥글고 풍만한 몸, 동그란 눈과 활짝 웃는 입, 부푼 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a small cream balloon on a string"
@@ -2278,10 +2875,36 @@
         }
        },
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "straight_narrow",
+         "lips": "thin_long"
+        },
         "silhouette": {
+         "body": "athletic",
          "hair_color": "cyan"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "monolid_long"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 연료 전지 — 층층이 쌓은 판, 희미한 푸른 빛: 단단하고 가지런한 몸, 층진 단발(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2295,22 +2918,71 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "straight_narrow",
+         "lips": "heart_full"
+        },
         "silhouette": {
+         "body": "busty_slender",
          "hair_color": "ice_white"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "mecha": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 액체수소 로켓 — 희고 매끈하게 좁아지는 몸체: 늘씬하고 풍만한 몸, 분사 불꽃 같은 높은 꼬리 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "angled_sharp",
+       "nose": "straight_narrow",
+       "lips": "thin_long",
        "eye_color": "ice_blue"
       },
       "silhouette": {
-       "hair_color": "silver_white",
-       "body": "athletic"
+       "body": "curvy_athletic",
+       "hair_color": "silver_white"
       },
-      "why": "frost white·tank silver → 머리, pale blue flame → 눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "ponytail"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "short_crop"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "deep_set"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "almond_wide"
+        }
+       }
+      },
+      "why": "frost white·tank silver → 머리, pale blue flame → 눈 · 외형 — 연료 — 압력 · 극저온 · 보이지 않는 푸른 불: 다부진 몸, 날 선 눈썹과 다이아몬드형 얼굴, 짧고 단정한 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a frost-white fuel canister the size of a thermos"
@@ -2344,10 +3016,36 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "aquiline",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "voluptuous",
          "hair_color": "white_gold"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "voluminous"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "almond_wide"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "long_wavy"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 해 — 흰 금빛 불의 원반, 코로나: 풍만하고 빛나는 몸, 코로나처럼 퍼진 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2361,21 +3059,71 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "straight_narrow",
+         "lips": "heart_full"
+        },
         "silhouette": {
+         "body": "hourglass",
          "hair_color": "plasma_blue"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "mecha": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 핵융합로 — 자석 고리에 붙잡힌 흰 푸른 플라스마: 모래시계 몸, 깊은 눈매(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "arched_thin",
+       "nose": "aquiline",
+       "lips": "heart_full",
        "eye_color": "gold"
       },
       "silhouette": {
+       "body": "hourglass",
        "hair_color": "antique_gold"
       },
-      "why": "fusion white·gold → 머리·눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "voluminous"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "long_wavy"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "long_straight"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "deep_set"
+        }
+       }
+      },
+      "why": "fusion white·gold → 머리·눈 · 외형 — 별 — 하얀 핵융합 불과 코로나: 빛나는 모래시계 몸, 코로나처럼 퍼진 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a small glass sphere of fusion-white light"
@@ -2542,10 +3290,36 @@
         "steampunk"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "straight_narrow",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "hourglass",
          "hair_color": "stone_grey"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_wavy"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 우물(땅의 물) — 깊이 고인 물: 모래시계 몸, 깊은 눈, 물결 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2561,21 +3335,89 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "upturned",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "voluptuous",
          "hair_color": "ocean_blue"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_wavy"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "voluminous"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 바다 — 파도 망토, 조개, 물마루: 풍만한 몸, 파도치는 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "soft_round",
+       "nose": "straight_narrow",
+       "lips": "full_wide",
        "eye_color": "leaf_green"
       },
       "silhouette": {
+       "body": "curvy",
        "hair_color": "navy"
       },
-      "why": "deep sea blue → 머리, river green → 눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "almond_wide"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "braids"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "side_swept"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "deep_set"
+        }
+       }
+      },
+      "why": "deep sea blue → 머리, river green → 눈 · 외형 — 땅의 물(바다 · 강) — 깊은 물결: 굴곡진 몸, 물결치는 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a blue glass bottle of sea water"
@@ -2609,10 +3451,36 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "small_button",
+         "lips": "wide_smile"
+        },
         "silhouette": {
+         "body": "curvy_athletic",
          "hair_color": "teal"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 산소통 — 원통과 밸브, 호스: 다부진 굴곡, 단정히 묶은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2627,21 +3495,71 @@
        ],
        "wear": true,
        "look": {
+        "face": {
+         "brows": "low_heavy",
+         "nose": "broad_soft",
+         "lips": "heart_full"
+        },
         "silhouette": {
+         "body": "curvy",
          "hair_color": "copper"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 잠수 헬멧 — 둥근 구리 투구와 둥근 유리창: 둥근 얼굴 · 동그란 눈, 투구처럼 둥근 단발(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "soft_round",
+       "nose": "small_button",
+       "lips": "small_bow",
        "eye_color": "teal"
       },
       "silhouette": {
+       "body": "slender",
        "hair_color": "pale_aqua"
       },
-      "why": "clear white·pale aqua → 머리·눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_straight"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "droopy_soft"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "ponytail"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "monolid_long"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "round_large"
+        }
+       }
+      },
+      "why": "clear white·pale aqua → 머리·눈 · 외형 — 숨 — 맑은 공기와 거품, 느린 호흡: 가볍고 가는 몸, 고요한 눈(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a small brass oxygen mask with a clear tube"
@@ -2807,10 +3725,45 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "straight_narrow",
+         "lips": "small_bow"
+        },
         "silhouette": {
+         "body": "hourglass",
          "hair_color": "prism_white"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "updo_bun"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 다이아몬드 반지 — 고리 위에 솟은 한 알: 모래시계 몸, 반지 알처럼 올린 머리(판타지)(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -2825,21 +3778,80 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "aquiline",
+         "lips": "thin_long"
+        },
         "silhouette": {
+         "body": "curvy_athletic",
          "hair_color": "dark_iron"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 다이아몬드 드릴 — 나선 날과 단단한 끝: 다부진 굴곡, 나선처럼 꼰 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "angled_sharp",
+       "nose": "straight_narrow",
+       "lips": "thin_long",
        "eye_color": "ice_blue"
       },
       "silhouette": {
+       "body": "tall_statuesque",
        "hair_color": "silver_white"
       },
-      "why": "diamond white·cold silver → 머리·눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "side_swept"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "almond_wide"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "bob"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "short_crop"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "deep_set"
+        }
+       }
+      },
+      "why": "diamond white·cold silver → 머리·눈 · 외형 — 다이아몬드 — 깎은 면, 차가운 투명, 단단함: 큰 키의 조각 같은 몸, 각진 눈썹 · 다이아몬드형 얼굴, 기하학적인 단발(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a cut diamond held up to the light"
@@ -2874,18 +3886,89 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "upturned",
+         "lips": "small_bow"
+        },
         "silhouette": {
+         "body": "lanky",
          "hair_color": "cedar"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 연필 — 길고 가는 나무 몸, 깎은 끝: 키 크고 가는 몸, 곧은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "low_heavy",
+       "nose": "broad_soft",
+       "lips": "full_wide",
        "eye_color": "graphite_grey"
       },
-      "why": "graphite grey → 눈. 머리는 나라의 soot_black 그대로"
+      "silhouette": {
+       "body": "curvy",
+       "hair_color": "iron_grey"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "voluminous"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "deep_set"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "braids"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "almond_wide"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "side_swept"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "narrow_upturned"
+        }
+       }
+      },
+      "why": "graphite grey → 눈. 외형 — 흑연의 금속빛 도는 짙은 회색 머리 · 흑연 — 부드럽게 번지는 연필 자국, 겹겹이 벗겨지는 결: 부드러운 굴곡, 짙은 눈썹, 헝클어진 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a graphite pencil and a sketch scrap"
@@ -3051,10 +4134,36 @@
         "steampunk"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "broad_soft",
+         "lips": "wide_smile"
+        },
         "silhouette": {
+         "body": "voluptuous",
          "hair_color": "terracotta"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "updo_bun"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "voluminous"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 소금 항아리 — 둥근 질그릇, 나무 뚜껑: 둥글고 풍만한 몸, 뚜껑처럼 올린 머리(판타지)(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -3070,21 +4179,89 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "upturned",
+         "lips": "wide_smile"
+        },
         "silhouette": {
+         "body": "curvy_athletic",
          "hair_color": "cream"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "round_large"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "droopy_soft"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 염전 — 얕은 흰 못, 나무 갈퀴, 풍차 펌프: 일하는 다부진 몸, 묶은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "soft_round",
+       "nose": "small_button",
+       "lips": "heart_full",
        "eye_color": "sky_blue"
       },
       "silhouette": {
+       "body": "curvy_athletic",
        "hair_color": "salt_white"
       },
-      "why": "salt white → 머리, sea blue → 눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "braids"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "ponytail"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "short_crop"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "deep_set"
+        }
+       }
+      },
+      "why": "salt white → 머리, sea blue → 눈 · 외형 — 소금 — 하얀 결정, 염전의 노동: 다부진 굴곡, 땋거나 묶은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a small wooden salt box with a white crust"
@@ -3255,10 +4432,45 @@
         }
        },
        "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "aquiline",
+         "lips": "heart_full"
+        },
         "silhouette": {
+         "body": "hourglass",
          "hair_color": "antique_gold"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "voluminous"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "deep_set"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_wavy"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "almond_wide"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 금화 — 사자 머리 돋을새김, 톱니 테: 모래시계 몸, 사자 갈기 같은 풍성한 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -3273,18 +4485,80 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "straight_narrow",
+         "lips": "full_wide"
+        },
         "silhouette": {
+         "body": "broad_strong",
          "hair_color": "bright_gold"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 금괴 — 사다리꼴로 부은 덩어리: 넓고 묵직한 몸, 반듯한 단발(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "arched_thin",
+       "nose": "small_button",
+       "lips": "heart_full",
        "eye_color": "amber"
       },
-      "why": "amber shadow → 눈. 머리는 나라의 golden_blonde 그대로"
+      "silhouette": {
+       "body": "voluptuous",
+       "hair_color": "brass_gold"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "voluminous"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "round_large"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "side_swept"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "droopy_soft"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "monolid_long"
+        }
+       }
+      },
+      "why": "amber shadow → 눈. 외형 — 손때 묻은 동전의 황동빛 금색 머리 · 주화 — 둥근 원반, 돋을새김, 부: 풍만하고 둥근 몸, 동그란 얼굴, 풍성한 곱슬(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a stack of gold coins"
@@ -3320,10 +4594,45 @@
        ],
        "wear": true,
        "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "aquiline",
+         "lips": "small_bow"
+        },
         "silhouette": {
+         "body": "tall_statuesque",
          "hair_color": "antique_gold"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "long_wavy"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 금관 — 나뭇가지 · 사슴뿔 세움 장식, 늘어진 곱은옥: 큰 키의 위엄 있는 몸, 길게 늘어뜨린 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       },
       {
@@ -3339,21 +4648,89 @@
         "mecha"
        ],
        "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "heart_full"
+        },
         "silhouette": {
+         "body": "busty_slender",
          "hair_color": "golden_blonde"
         },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf)"
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "ponytail"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "round_large"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "droopy_soft"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "side_swept"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 금반지 — 매끈한 고리: 가늘고 풍만한 몸, 고리처럼 묶은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
        }
       }
      ],
      "look": {
       "face": {
+       "brows": "arched_thin",
+       "nose": "straight_narrow",
+       "lips": "small_bow",
        "eye_color": "crimson"
       },
       "silhouette": {
+       "body": "hourglass",
        "hair_color": "rose_gold"
       },
-      "why": "rose gold → 머리, ruby red → 눈"
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "deep_set"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "braids"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "long_straight"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "narrow_upturned"
+        }
+       }
+      },
+      "why": "rose gold → 머리, ruby red → 눈 · 외형 — 보석 · 세공 — 섬세한 금실 세공과 보석 받침: 모래시계 몸, 섬세한 얼굴, 금실처럼 땋은 머리(근본을 따라가지 않는다, 사용자 2026-11-01)"
      },
      "hold": {
       "en": "a gold ring set with a ruby"

@@ -7,6 +7,14 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · claude · 가문주 · 주민 외형을 제 물질 · 물건에서 — 글래머러스한 체형 넷 더함
+- tools/port-look-spec.cjs · lib/look-spec.js — 체형 어휘에 hourglass · voluptuous · busty_slender · curvy_athletic 넷을 더했다(SILHOUETTE 줄의 「 build」 꼴로 읽히게). 사용자 「hourglass, voluptuous 등 글래머러스한 몸매가 더 많았으면 해」
+- data/element-design.json — 가문주 열다섯 · 주민 서른셋 모두 look 을 그 물질 · 물건에서 떠오르는 외형으로 다 적었다: 체형 · 머리색 · 눈썹 · 코 · 입(가문주는 눈 색도), 사는 세계마다 헤어 · 얼굴형 · 눈, why 에 이유. 사용자 「가문주 외형도 근본 쪽 따라갈 필요가 없을거 같아. 각자 그 물질이나 물건을 생각했을 때 떠오르는 이미지로」. 체형은 글래머러스한 다섯 갈래가 마흔여덟 중 서른여섯. 흑연 가문주 머리색 iron_grey · 주화 가문주 brass_gold 를 새로 적었다(전엔 근본 것). 머리 · 눈 색은 그 전 값 그대로
+- lib/prompt-element.js — lookOf: 주민 look.worlds.<세계> 도 싣는다. 돌림은 안 적은 칸의 대비로만
+- tools/element-design.py — 가문주 · 주민 look 이 다 찼는지(사는 세계마다 헤어 · 얼굴형 · 눈, 세계끼리 다름, 스팀펑크 올림머리 아님). 전엔 주민은 머리색 하나만 허락했다
+- tests/prompt-element.cjs · tests/look-spec.cjs — 지시문 값이 설계표 값 · 눈 색은 가문 · 글래머러스한 체형이 절반 넘게 · 한 갈래 30% 이하 · 안 적은 칸 대비 돌림
+- IMAGE_RULES.md 2절 — 가문주 · 주민 외형 · 체형 규칙. prompt.html · dex.html 판 올림. 이미 그린 그림은 그대로 둔다
+
 ## 2026-11-01 · claude · 스팀펑크 올림머리 줄이기
 - lib/prompt-element.js — lookOf: 스팀펑크에선 가문주 · 주민을 올림머리(updo_bun)로 돌리지 않는다. 사용자 「스팀펑크 쪽은 모든 물체에서 헤어스타일이 위로 묶은 머리가 너무 많아」 — 그린 스팀펑크 스물하나 가운데 아홉이 설계부터 올림머리였다(근본 넷의 스팀펑크 머리가 올림머리이고 가문주가 물려받았다)
 - lib/prompt-spec.js — 스팀펑크 의상(근본 · 가문주 · 주민 꼬리 둘): 고글은 「이마 위」 → 「목에 건」, 끝에 HAIR 줄(SILHOUETTE 대로, 올림머리라고 할 때만 올린다 · 고글이나 모자 밑에 넣지 않는다) — 다른 머리도 고글 · 시대 옷차림에 끌려 올라갔다

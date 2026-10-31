@@ -21,7 +21,14 @@ const EXTRA = {
     ice_white: 'frost-white hair with pale blue tips', white_gold: 'white-gold hair that glows at the edges', plasma_blue: 'white-blue plasma-bright hair', copper: 'polished copper hair',
     prism_white: 'diamond-white hair with prism-rainbow glints', cedar: 'cedar-brown hair', terracotta: 'glazed terracotta-brown hair', bright_gold: 'bright cast-gold hair'
   },
-  eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes' }
+  eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes' },
+  /* 글래머러스한 체형 — SILHOUETTE 줄이 뒤에 「 build」 를 붙이니 그 꼴로 읽히게(사용자 2026-11-01 「hourglass, voluptuous 등 글래머러스한 몸매가 더 많았으면」) — game 어휘의 일곱(아담·슬렌더·마른 장신·애슬레틱·글래머·장신·건장)에 더한다 */
+  body: {
+    hourglass: 'hourglass-figured — full bust and hips, distinctly narrow-waisted',
+    voluptuous: 'voluptuous, generously curved at bust, hips and thighs',
+    busty_slender: 'slender and full-busted, narrow-waisted',
+    curvy_athletic: 'toned athletic-curvy, full-busted with rounded hips'
+  }
 };
 const KO = {   // 설계표의 얼굴·실루엣 열쇠 → 화면 이름(lib/words.js 의 look.* 와 같다 — 검사가 맞춰 본다)
   face: { face_shape: '윤곽', eyes: '눈', brows: '눈썹', nose: '코', lips: '입', eye_color: '눈 색' },
@@ -35,7 +42,7 @@ for (const k of ['body', 'hair', 'hair_color', 'eye_color', 'face_shape', 'eyes'
 /* 노출 — game 의 FORM_EXPOSURE 에서 「FORM costume」 을 「the costume WORLD describes」 로. 과감은 세계로 겉옷 꼴을 고른다(판타지·메카는 겉옷, 스팀펑크는 열린 재단) */
 const exposure = JSON.parse(JSON.stringify(G.FORM_EXPOSURE).replace(/the FORM costume/g, 'the costume WORLD describes').replace(/FORM costume/g, 'costume WORLD describes'));
 const out = `/* 외형 표 — game-atelier lib/prompt-spec.js 의 외형 선택지(PARAM_DEFS)·얼굴 다섯 묶음·실루엣 어휘를 글자 그대로 옮겼다(tools/port-look-spec.cjs, 2026-10-30).
-   손으로 고치지 않는다 — game 표가 바뀌면 스크립트를 다시 돌린다(tests/look-spec.cjs 가 같은지 본다). 원소 몫으로 더한 것은 스크립트의 EXTRA(머리·눈 색)뿐.
+   손으로 고치지 않는다 — game 표가 바뀌면 스크립트를 다시 돌린다(tests/look-spec.cjs 가 같은지 본다). 원소 몫으로 더한 것은 스크립트의 EXTRA(머리·눈 색 · 글래머러스한 체형 넷)뿐.
    window.AtelierSpec 에 붙는다(lib/prompt-spec.js 뒤에 싣는다). 생성기·허브 통합 생성기의 외형 칸(base·build·face·hair)과 설계표 look 칸의 어휘가 여기서 나온다.
    사용자 2026-10-30 「게임 공방처럼 원소나 물질의 특성을 살려 외형 특징을 잡고 가자 — 팔레트 색을 머리·눈 색으로」. */
 (function (root) {

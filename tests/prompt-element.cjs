@@ -59,35 +59,41 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
 {
   const dz = P.lookOf(P.card(D, 'fe-rust'));
   assert.equal(dz.silhouette.hair_color, 'rust_orange'); assert.equal(dz.face.eye_color, 'rust_amber');
-  assert.notEqual(dz.silhouette.body, P.lookOf(P.card(D, 'fe')).silhouette.body, '가문주는 적은 칸만 가문 것, 안 적은 칸(체형 …)은 근본과 다르게(2026-11-01)');
-  assert.equal(P.lookOf(P.card(D, 'fe-steel')).silhouette.body, 'athletic', '가문 look 에 적은 체형은 그대로');
-  /* 가문주가 근본을 따라가지 않는다 — 체형 · 헤어 · 얼굴형 · 눈 · 눈썹 · 코 · 입 일곱 가운데 가문 look 에 안 적은 칸은 근본과 다르다. 체형이 한쪽으로 몰리지 않는다(사용자 2026-11-01 「슬랜더로 치우친」) */
+  /* 가문주 · 주민은 근본을 따라가지 않고 제 물질 · 물건에서 떠오르는 외형(사용자 2026-11-01 「각자 그 물질이나 물건을 생각했을 때 떠오르는 이미지로」) —
+     설계표에 적은 칸이 그대로 지시문 값이 된다. 체형은 글래머러스한 쪽이 많고(「hourglass, voluptuous 등 글래머러스한 몸매가 더 많았으면」) 한쪽으로 몰리지 않는다 */
   {
-    const AX = [['silhouette', 'body'], ['silhouette', 'hair'], ['face', 'face_shape'], ['face', 'eyes'], ['face', 'brows'], ['face', 'nose'], ['face', 'lips']], bodies = {};
+    const GLAM = ['curvy', 'hourglass', 'voluptuous', 'busty_slender', 'curvy_athletic'], bodies = {};
+    for (const g of GLAM) assert(T.VOCAB_EN.body[g], g + ' 체형이 어휘에 없다');
     for (const k of P.cards(D)) {
-      const c = P.card(D, k); bodies[P.lookOf(c).silhouette.body] = (bodies[P.lookOf(c).silhouette.body] || 0) + 1;
-      if (c.tier !== 'lord') continue;
-      const fl = c.family.look || {};
-      for (const w of P.worldsOf(D, k)) {
-        const r = P.lookOf(P.card(D, c.nation.key), w), l = P.lookOf(c, w), fw = ((fl.worlds || {})[w]) || {};
-        for (const [g, a] of AX) if (!(fl[g] || {})[a] && !(fw[g] || {})[a]) assert.notEqual(l[g][a], r[g][a], k + ' ' + w + ' ' + a + ' 가 근본과 같다');
+      const c = P.card(D, k); if (c.tier === 'root') continue;
+      const own = c.tier === 'lord' ? c.family.look : c.citizen.look, l0 = P.lookOf(c);
+      bodies[l0.silhouette.body] = (bodies[l0.silhouette.body] || 0) + 1;
+      for (const [g, a] of [['silhouette', 'body'], ['silhouette', 'hair_color'], ['face', 'brows'], ['face', 'nose'], ['face', 'lips']]) assert.equal(l0[g][a], own[g][a], k + ' ' + a + ' 는 설계표 값');
+      assert.equal(l0.face.eye_color, c.family.look.face.eye_color, k + ' 눈 색은 가문(핏줄)');
+      const ws = P.worldsOf(D, k), sig = l => [l.silhouette.hair, l.face.face_shape, l.face.eyes].join('/');
+      for (const w of ws) {
+        const l = P.lookOf(c, w), ow = own.worlds[w];
+        assert.equal(sig(l), [ow.silhouette.hair, ow.face.face_shape, ow.face.eyes].join('/'), k + ' ' + w + ' 머리 · 얼굴형 · 눈은 설계표의 그 세계 값');
+        if (w === 'steampunk') assert.notEqual(l.silhouette.hair, 'updo_bun', k + ' 스팀펑크 올림머리');
       }
+      assert.equal(new Set(ws.map(w => sig(P.lookOf(c, w)))).size, ws.length, k + ' 세계끼리 다른 사람');
     }
-    const most = Math.max(...Object.values(bodies)), all = Object.values(bodies).reduce((x, y) => x + y, 0);
-    assert(most <= all * 0.3 && Object.keys(bodies).length >= 6, '체형이 한쪽으로 몰렸다 ' + JSON.stringify(bodies));
+    const most = Math.max(...Object.values(bodies)), all = Object.values(bodies).reduce((x, y) => x + y, 0), glam = GLAM.reduce((x, g) => x + (bodies[g] || 0), 0);
+    assert(glam > all / 2 && most <= all * 0.3 && Object.keys(bodies).length >= 6, '체형 ' + JSON.stringify(bodies));
+    assert.notEqual(P.lookOf(P.card(D, 'fe-steel')).silhouette.body, P.lookOf(P.card(D, 'fe')).silhouette.body, '가문주 체형이 근본과 다르다');
   }
-  /* 주민 — 눈 색은 가문 것, 머리색은 물건 재질(설계표), 체형 · 헤어 · 얼굴형 · 눈 · 눈썹 · 코 · 입은 그 세계 가문주와 다르고 세계끼리도 다르다(2026-10-31 「주민이 가문주 복사본」 · 2026-11-01 체형 · 눈썹 · 코 · 입도) */
-  for (const n of D.nations) for (const f of n.families) for (const ci of f.citizens) {
-    const k = n.key + '-' + f.key + '-' + ci.key, ws = P.worldsOf(D, k), sig = l => [l.silhouette.hair, l.face.face_shape, l.face.eyes].join('/');
-    for (const w of ws) {
-      const l = P.lookOf(P.card(D, k), w), lo = P.lookOf(P.card(D, n.key + '-' + f.key), w);
-      assert.equal(l.face.eye_color, lo.face.eye_color, k + ' 눈 색은 가문');
-      for (const a of ['body']) assert.notEqual(l.silhouette[a], lo.silhouette[a], k + ' 체형은 가문주와 다르다');
-      for (const a of ['brows', 'nose', 'lips']) assert.notEqual(l.face[a], lo.face[a], k + ' ' + a + ' 는 가문주와 다르다');
-      assert.equal(l.silhouette.hair_color, ci.look.silhouette.hair_color, k + ' 머리색은 물건');
-      assert(l.silhouette.hair !== lo.silhouette.hair && l.face.face_shape !== lo.face.face_shape && l.face.eyes !== lo.face.eyes, k + ' ' + w + ' 가문주와 다른 사람');
+  /* 설계표에 안 적은 칸만 대비로 돌린다 — 가문주는 근본과, 주민은 가문주 · 근본과 다르게 */
+  {
+    const D2 = JSON.parse(JSON.stringify(D)), fe = D2.nations.find(n => n.key === 'fe'), rust = fe.families.find(f => f.key === 'rust'), armor = rust.citizens.find(c => c.key === 'armor');
+    rust.look = { face: { eye_color: rust.look.face.eye_color }, silhouette: { hair_color: rust.look.silhouette.hair_color } }; armor.look = { silhouette: { hair_color: armor.look.silhouette.hair_color } };
+    for (const w of worlds) {
+      const r = P.lookOf(P.card(D2, 'fe'), w), l = P.lookOf(P.card(D2, 'fe-rust'), w), c = P.lookOf(P.card(D2, 'fe-rust-armor'), w);
+      for (const [g, a] of [['silhouette', 'body'], ['silhouette', 'hair'], ['face', 'face_shape'], ['face', 'eyes'], ['face', 'brows'], ['face', 'nose'], ['face', 'lips']]) {
+        assert.notEqual(l[g][a], r[g][a], 'fe-rust ' + w + ' ' + a + ' 대비 돌림이 근본과 같다');
+        assert(c[g][a] !== l[g][a] && c[g][a] !== r[g][a], 'fe-rust-armor ' + w + ' ' + a + ' 대비 돌림');
+      }
+      if (w === 'steampunk') assert(l.silhouette.hair !== 'updo_bun' && c.silhouette.hair !== 'updo_bun', '스팀펑크 대비 돌림에 올림머리 없음');
     }
-    assert.equal(new Set(ws.map(w => sig(P.lookOf(P.card(D, k), w)))).size, ws.length, k + ' 세계끼리 다른 사람');
   }
   assert(same(P.lookOf(P.card(D, 'fe-rust-armor'), 'mecha'), P.lookOf(P.card(D, 'fe-rust-armor'), 'mecha')), '같은 값이 늘 같다');
   /* 세계마다 다른 사람 — 나라마다 세 세계의 (머리·얼굴형·눈) 이 서로 다르고, 색·체형은 같다. 가문의 세계 값이 나라의 세계 값을 이긴다 */
@@ -97,9 +103,10 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
     const col = w => { const l = P.lookOf(P.card(D, n.key), w); return [l.silhouette.hair_color, l.face.eye_color, l.silhouette.body].join('/'); };
     assert.equal(new Set(worlds.map(col)).size, 1, n.key + ' 색·체형은 공통');
   }
-  assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'fantasy').silhouette.hair, 'ponytail'); assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'mecha').silhouette.hair, 'short_crop'); assert.notEqual(P.lookOf(P.card(D, 'fe-rust'), 'mecha').silhouette.hair, P.lookOf(P.card(D, 'fe'), 'mecha').silhouette.hair, '가문의 세계 값이 없으면 근본의 그 세계와 다르게 돌린다(2026-11-01)');
+  const steelW = P.card(D, 'fe-steel').family.look.worlds;
+  assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'fantasy').silhouette.hair, steelW.fantasy.silhouette.hair); assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'mecha').silhouette.hair, steelW.mecha.silhouette.hair);
   assert(P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.updo_bun) && !P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.braids), '지시문이 그 세계의 머리');
-  assert.equal(P.record(D, S, 'fe-steel', 'fantasy', {}).design.silhouette.hair, 'ponytail', '기록의 design 은 그 세계 값');
+  assert.equal(P.record(D, S, 'fe-steel', 'fantasy', {}).design.silhouette.hair, steelW.fantasy.silhouette.hair, '기록의 design 은 그 세계 값');
   const t1 = P.build(D, S, 'fe-rust', 'fantasy', { look: { params: { 'hair color': 'silver', 'eye shape': 'sharp', 'apparent age': '30s', 'body type': '__custom__', 'body type_custom': 'wiry and tall', zzz: 'x' } } });
   const sil1 = t1.split('\n').find(l => l.startsWith('SILHOUETTE: ')), face1 = t1.split('\n').find(l => l.startsWith('FACE ('));
   const dzF = P.lookOf(P.card(D, 'fe-rust'), 'fantasy');

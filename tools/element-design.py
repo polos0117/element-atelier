@@ -11,7 +11,8 @@
 - 주민은 ko·en·object.en·worlds(비지 않고 전부 아는 세계). notes 의 세계도 아는 세계.
 - 나라는 worlds.<세계>.scenes(그 세계 안 장소 변주 둘 이상 — key·ko·en) 과 hold.en(일상컷에서 손에 드는 그 원소의 물건). 가문은 hold.en, scenes 는 세계 글을 덮어썼을 때만.
 - 나라는 look(face 여섯: face_shape·eyes·brows·nose·lips·eye_color + silhouette 셋: body·hair·hair_color, 값은 lib/look-spec.js VOCAB_EN 의 열쇠 — 어휘 대조는 tests/prompt-element.cjs).
-  가문의 look 은 덮어쓸 것만(같은 칸 이름). 주민 look 은 머리색(물건 재질 색) 하나 — 나머지는 가문 것, 헤어스타일·얼굴형·눈은 조립기가 돌린다. 팔레트 색이 머리·눈 색이 된다(2026-10-30).
+  가문주·주민은 근본을 따라가지 않고 그 물질·물건에서 떠오르는 외형을 다 적는다(2026-11-01) — face 의 brows·nose·lips, silhouette 의 body·hair_color
+  (가문주는 eye_color 도, 주민 눈 색은 가문 핏줄), worlds 에 사는 세계마다 hair·face_shape·eyes(세계끼리 서로 다르게). 팔레트 색이 머리·눈 색이 된다(2026-10-30).
 - 성질·세계 문장에 한국어가 섞이지 않는다(en 칸). 시각 언어 한 줄이 비어 있으면 그림이 흔들린다 — en 칸은 40자 이상.
 - 가문이 여러 나라에 걸치면(elements 둘 이상) 그 나라들 모두에 같은 열쇠의 가문이 있어야 하는 것은 아니다 — 있으면 도감이 잇는다. 다만 elements 에 적힌 원소는 전부 있어야 한다.
 """
@@ -89,6 +90,33 @@ def check_look(where, look, full, errs):
             errs.append(where + " look.worlds — 두 세계가 같은 사람(머리·얼굴형·눈): %s" % sig)
 
 
+def check_designed(where, look, lived, eye, errs):
+    """가문주·주민 외형 — 근본을 따라가지 않고 제 물질·물건에서 다 적는다(사용자 2026-11-01). lived 는 사는 세계, eye 는 눈 색까지 적어야 하는지(가문주)"""
+    if not isinstance(look, dict):
+        errs.append(where + " look 이 없다(제 물질·물건에서 떠오르는 외형)"); return
+    check_look(where, look, False, errs)
+    need = {"face": ["brows", "nose", "lips"] + (["eye_color"] if eye else []), "silhouette": ["body", "hair_color"]}
+    for grp, keys in need.items():
+        for k in keys:
+            if not (look.get(grp) or {}).get(k):
+                errs.append("%s look.%s.%s 가 비었다" % (where, grp, k))
+    ws = look.get("worlds") or {}
+    sig = []
+    for w in lived:
+        sub = ws.get(w) or {}
+        hair, fs, ey = (sub.get("silhouette") or {}).get("hair"), (sub.get("face") or {}).get("face_shape"), (sub.get("face") or {}).get("eyes")
+        if not (hair and fs and ey):
+            errs.append("%s look.worlds.%s 에 머리·얼굴형·눈이 다 있어야 한다" % (where, w))
+        if w == "steampunk" and hair == "updo_bun":
+            errs.append(where + " look.worlds.steampunk 는 올림머리로 두지 않는다(사용자 2026-10-31 「스팀펑크 쪽은 위로 묶은 머리가 너무 많아」)")
+        sig.append("%s/%s/%s" % (hair, fs, ey))
+    if len(set(sig)) < len(sig):
+        errs.append(where + " look.worlds — 두 세계가 같은 사람(머리·얼굴형·눈): %s" % sig)
+    for w in ws:
+        if w not in lived:
+            errs.append("%s look.worlds 의 %r 는 사는 세계가 아니다" % (where, w))
+
+
 def check(doc):
     errs, warns = [], []
     v = doc.get("vocab") or {}
@@ -154,8 +182,7 @@ def check(doc):
                 if not (f.get(c) or "").strip():
                     errs.append(fhere + " %s 가 비었다" % c)
             en(fhere + " traits.en", (f.get("traits") or {}).get("en"))
-            if "look" in f:
-                check_look(fhere, f.get("look"), False, errs)
+            check_designed(fhere, f.get("look"), ("fantasy", "steampunk", "mecha"), True, errs)
             fe = f.get("elements") or []
             if k not in fe:
                 errs.append(fhere + " elements 에 제 나라 %s 가 없다" % k)
@@ -181,12 +208,8 @@ def check(doc):
                 for col in ("ko", "en"):
                     if not (c.get(col) or "").strip():
                         errs.append(chere + " %s 가 비었다" % col)
-                # 주민 look 은 머리색(물건 재질 색)만 — 헤어스타일·얼굴형·눈 모양은 조립기가 가문주와 다르게 돌린다(2026-10-31)
-                cl = c.get("look")
-                if not isinstance(cl, dict) or set((cl.get("silhouette") or {}).keys()) != {"hair_color"} or cl.get("face") or cl.get("worlds"):
-                    errs.append(chere + " look 은 silhouette.hair_color 하나(물건 재질 색)만")
-                else:
-                    check_look(chere, cl, False, errs)
+                # 주민도 제 물건에서 떠오르는 외형을 다 적는다(2026-11-01) — 눈 색만 가문 핏줄
+                check_designed(chere, c.get("look"), [w for w in ("fantasy", "steampunk", "mecha") if w in (c.get("worlds") or [])], False, errs)
                 en(chere + " object.en", (c.get("object") or {}).get("en"), 12)
                 cw = c.get("worlds") or []
                 if not cw:
