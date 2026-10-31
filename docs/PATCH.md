@@ -7,6 +7,9 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-31 · claude · 수소 근본 스팀펑크 — 세계 그림 1 · 일상컷 2(사용자가 만들어 올림)
+- data/img.json — h_steampunk_game_keyart_f.webp(비행선 항구의 수소 근본) · casual3(실험실에서 푸른 불꽃 유리관) · casual4(네온 화장실의 가죽 코르셋) 등록(사용자 「수소 스팀펑크 올려줘」). 일상컷 번호는 판타지 1·2 다음. 그림 저장소 기록엔 원본 sha256 만
+
 ## 2026-10-31 · claude · 수소 근본 판타지 — 세계 그림 1 · 일상컷 2(사용자가 만들어 올림)
 - data/img.json — h_fantasy_game_keyart_f.webp(하늘 섬 왕국의 수소 근본) · h_fantasy_game_keyart_f_casual1.webp(하늘 섬 계단의 투명 우산) · casual2(해 질 녘 옥상 수영장) 등록(사용자 「수소 판타지 올려줘」). 그림 저장소 기록엔 원본 sha256 만 — 지시문 기록은 없다
 
