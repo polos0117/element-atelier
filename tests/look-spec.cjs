@@ -39,10 +39,15 @@ const checkBox = (where, grp, box, full) => {
 for (const n of D.nations) {
   assert(n.look && n.look.face && n.look.silhouette && n.look.why, '나라 ' + n.key + ' look');
   checkBox('나라 ' + n.key, 'face', n.look.face, true); checkBox('나라 ' + n.key, 'silhouette', n.look.silhouette, true);
+  /* 세계마다 — 셋 다 있고, 헤어스타일·얼굴형·눈 모양이 있다(값은 어휘에) */
+  assert(n.look.worlds && ['fantasy', 'steampunk', 'mecha'].every(w => n.look.worlds[w]), '나라 ' + n.key + ' look.worlds 셋');
+  for (const [w, lk] of Object.entries(n.look.worlds)) { checkBox('나라 ' + n.key + ' ' + w, 'face', lk.face || {}, false); checkBox('나라 ' + n.key + ' ' + w, 'silhouette', lk.silhouette || {}, false);
+    assert((lk.silhouette || {}).hair && (lk.face || {}).face_shape && (lk.face || {}).eyes, '나라 ' + n.key + ' ' + w + ' 머리·얼굴형·눈'); }
   for (const f of n.families) {
     assert(f.look && f.look.why, '가문 ' + n.key + '-' + f.key + ' look.why');
     if (f.look.face) checkBox('가문 ' + f.key, 'face', f.look.face, false);
     if (f.look.silhouette) checkBox('가문 ' + f.key, 'silhouette', f.look.silhouette, false);
+    for (const [w, lk] of Object.entries(f.look.worlds || {})) { assert(['fantasy', 'steampunk', 'mecha'].includes(w), '가문 ' + f.key + ' 모르는 세계 ' + w); checkBox('가문 ' + f.key + ' ' + w, 'face', lk.face || {}, false); checkBox('가문 ' + f.key + ' ' + w, 'silhouette', lk.silhouette || {}, false); }
     assert((f.look.face || {}).eye_color || (f.look.silhouette || {}).hair_color, '가문 ' + n.key + '-' + f.key + ' 은 눈 색이나 머리색 하나는 제 팔레트로');
     for (const c of f.citizens) assert(!c.look, '주민 ' + c.key + ' 에 look — 가문 것을 물려받는다');
   }

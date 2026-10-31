@@ -41,7 +41,7 @@
    "gas": "기체",
    "unknown": "모름"
   },
-  "look_note": "나라 look = 얼굴 여섯(face_shape·eyes·brows·nose·lips·eye_color) + 실루엣 셋(body·hair·hair_color) — 어휘는 lib/look-spec.js VOCAB_EN. 가문 look 은 덮어쓸 것만(보통 hair_color·eye_color), 주민은 가문 것을 물려받는다. 팔레트 색이 머리·눈 색이 된다(사용자 2026-10-30). 세계마다 사람이 달라도 이 성향은 같다 — 생성기 외형 칸에서 직접 고른 값이 이긴다.",
+  "look_note": "나라 look = 얼굴 여섯(face_shape·eyes·brows·nose·lips·eye_color) + 실루엣 셋(body·hair·hair_color) — 어휘는 lib/look-spec.js VOCAB_EN. 가문 look 은 덮어쓸 것만(보통 hair_color·eye_color), 주민은 가문 것을 물려받는다. 팔레트 색이 머리·눈 색이 된다(사용자 2026-10-30). 세계마다 사람이 달라도 이 성향은 같다 — 생성기 외형 칸에서 직접 고른 값이 이긴다. 나라 look.worlds.<세계> 가 헤어스타일·얼굴형·눈 모양을 세계마다 덮어쓴다(나라 → 나라 세계 → 가문 → 가문 세계 차례). 색·체형은 세 세계 공통(2026-10-30).",
   "scenes_note": "worlds.<세계>.scenes = 그 세계 안의 장소 변주(key·ko·en) — 생성기 「장면」 칸. 비우면(자동) 세계 글의 장소. hold.en = 일상컷에서 손에 들 수 있는 그 원소·물질의 작은 물건(주민은 object.en). 2026-10-30"
  },
  "elements": [
@@ -1634,16 +1634,42 @@
      "look": {
       "face": {
        "eye_color": "steel_blue",
-       "face_shape": "oval",
-       "eyes": "almond_wide",
        "brows": "straight_thick"
       },
       "silhouette": {
        "hair_color": "tempered_steel",
-       "body": "athletic",
-       "hair": "short_crop"
+       "body": "athletic"
       },
-      "why": "brushed steel silver·tempered blue → 머리·눈. 곧고 믿음직 → 운동형, 짧게 친 머리, 곧은 눈썹(2026-10-30 — 첫 뽑기에서 자석 가문과 자매처럼 닮아 머리·얼굴을 갈랐다)"
+      "why": "brushed steel silver·tempered blue → 머리·눈. 곧고 믿음직 → 운동형, 짧게 친 머리, 곧은 눈썹(2026-10-30 — 첫 뽑기에서 자석 가문과 자매처럼 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값)",
+      "worlds": {
+       "fantasy": {
+        "face": {
+         "face_shape": "long",
+         "eyes": "narrow_upturned"
+        },
+        "silhouette": {
+         "hair": "ponytail"
+        }
+       },
+       "steampunk": {
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "deep_set"
+        },
+        "silhouette": {
+         "hair": "bob"
+        }
+       },
+       "mecha": {
+        "face": {
+         "face_shape": "oval",
+         "eyes": "almond_wide"
+        },
+        "silhouette": {
+         "hair": "short_crop"
+        }
+       }
+      }
      },
      "hold": {
       "en": "a polished steel rivet with a tempered-blue sheen"
@@ -1768,16 +1794,42 @@
      "look": {
       "face": {
        "eye_color": "navy",
-       "face_shape": "heart",
-       "eyes": "round_large",
        "lips": "heart_full"
       },
       "silhouette": {
        "hair_color": "ash_gray",
-       "body": "curvy",
-       "hair": "twin_tails"
+       "body": "curvy"
       },
-      "why": "iron grey → 잿빛 머리, deep blue pole tips → 눈. 두 극(N·S) → 양갈래, 끌어당김 → 곡선형 몸(2026-10-30 — 첫 뽑기에서 강철 가문과 닮아 머리·얼굴을 갈랐다)"
+      "why": "iron grey → 잿빛 머리, deep blue pole tips → 눈. 두 극(N·S) → 양갈래, 끌어당김 → 곡선형 몸(2026-10-30 — 첫 뽑기에서 강철 가문과 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값)",
+      "worlds": {
+       "fantasy": {
+        "face": {
+         "face_shape": "round",
+         "eyes": "droopy_soft"
+        },
+        "silhouette": {
+         "hair": "long_wavy"
+        }
+       },
+       "steampunk": {
+        "face": {
+         "face_shape": "long",
+         "eyes": "narrow_upturned"
+        },
+        "silhouette": {
+         "hair": "side_swept"
+        }
+       },
+       "mecha": {
+        "face": {
+         "face_shape": "heart",
+         "eyes": "round_large"
+        },
+        "silhouette": {
+         "hair": "twin_tails"
+        }
+       }
+      }
      },
      "hold": {
       "en": "a small horseshoe magnet with red and blue tips"
@@ -1841,7 +1893,36 @@
      "hair": "braids",
      "hair_color": "iron_grey"
     },
-    "why": "팔레트의 iron grey 가 머리, ember red 가 눈. 단단함·무게 → 넓은 어깨, 땋은 머리는 쇠사슬·거더의 선"
+    "why": "팔레트의 iron grey 가 머리, ember red 가 눈. 단단함·무게 → 넓은 어깨, 땋은 머리는 쇠사슬·거더의 선 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통. 메카는 먼저 올린 가문주 메카 그림의 값 그대로",
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "long",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "long_wavy"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "updo_bun"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "square_soft",
+       "eyes": "deep_set"
+      },
+      "silhouette": {
+       "hair": "braids"
+      }
+     }
+    }
    },
    "hold": {
     "en": "a palm-sized lodestone with iron filings clinging to it"
@@ -2195,7 +2276,36 @@
      "hair": "voluminous",
      "hair_color": "silver_white"
     },
-    "why": "팔레트의 white·silver 가 머리, pale sky blue 가 눈. 가볍고 늘 떠오름 → 가는 몸, 위로 흩날리는 풍성한 머리"
+    "why": "팔레트의 white·silver 가 머리, pale sky blue 가 눈. 가볍고 늘 떠오름 → 가는 몸, 위로 흩날리는 풍성한 머리 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통",
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "round_large"
+      },
+      "silhouette": {
+       "hair": "voluminous"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "updo_bun"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "short_crop"
+      }
+     }
+    }
    },
    "hold": {
     "en": "a small glass vial of pale-blue flame that drifts upward"
@@ -2408,7 +2518,36 @@
      "hair": "long_wavy",
      "hair_color": "ocean_blue"
     },
-    "why": "팔레트의 sea blue 가 머리, forest green 이 눈. 숨과 불 → 건강한 운동형, 물결 머리"
+    "why": "팔레트의 sea blue 가 머리, forest green 이 눈. 숨과 불 → 건강한 운동형, 물결 머리 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통",
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "long_wavy"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "droopy_soft"
+      },
+      "silhouette": {
+       "hair": "braids"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "side_swept"
+      }
+     }
+    }
    },
    "hold": {
     "en": "a clear glass bubble-sphere of fresh air with a tiny flame inside"
@@ -2605,7 +2744,36 @@
      "hair": "bob",
      "hair_color": "soot_black"
     },
-    "why": "팔레트의 charcoal black·graphite grey 가 머리, living green 이 눈. 격자·결정 → 각진 윤곽, 단정한 보브"
+    "why": "팔레트의 charcoal black·graphite grey 가 머리, living green 이 눈. 격자·결정 → 각진 윤곽, 단정한 보브 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통",
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "long",
+       "eyes": "deep_set"
+      },
+      "silhouette": {
+       "hair": "long_straight"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "square_soft",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "ponytail"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "bob"
+      }
+     }
+    }
    },
    "hold": {
     "en": "a stick of charcoal and a small raw diamond in one hand"
@@ -2763,7 +2931,36 @@
      "hair": "twin_tails",
      "hair_color": "lemon_yellow"
     },
-    "why": "팔레트의 sodium yellow 가 머리·눈. 물에 닿으면 터지는 불꽃 → 작고 튀는 몸, 양갈래"
+    "why": "팔레트의 sodium yellow 가 머리·눈. 물에 닿으면 터지는 불꽃 → 작고 튀는 몸, 양갈래 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통",
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "round",
+       "eyes": "round_large"
+      },
+      "silhouette": {
+       "hair": "braids"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "droopy_soft"
+      },
+      "silhouette": {
+       "hair": "twin_tails"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "short_crop"
+      }
+     }
+    }
    },
    "hold": {
     "en": "a small jar of cube salt crystals that glows faintly yellow"
@@ -2979,7 +3176,36 @@
      "hair": "updo_bun",
      "hair_color": "golden_blonde"
     },
-    "why": "팔레트의 yellow gold 가 머리·눈. 변치 않는 광택·왕권 → 조각상 같은 키, 올려 묶은 머리, 매부리코"
+    "why": "팔레트의 yellow gold 가 머리·눈. 변치 않는 광택·왕권 → 조각상 같은 키, 올려 묶은 머리, 매부리코 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통",
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "long",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "long_wavy"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "deep_set"
+      },
+      "silhouette": {
+       "hair": "updo_bun"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "side_swept"
+      }
+     }
+    }
    },
    "hold": {
     "en": "a single hammered gold coin"
@@ -3081,7 +3307,36 @@
      "hair": "long_straight",
      "hair_color": "violet_white"
     },
-    "why": "팔레트의 pale violet-white decay glow 가 머리(끝이 빛으로 흩어진다)·눈. 비활성 귀족·찰나의 존재 → 길고 가는 몸, 긴 생머리"
+    "why": "팔레트의 pale violet-white decay glow 가 머리(끝이 빛으로 흩어진다)·눈. 비활성 귀족·찰나의 존재 → 길고 가는 몸, 긴 생머리 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통",
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "long",
+       "eyes": "monolid_long"
+      },
+      "silhouette": {
+       "hair": "long_straight"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "droopy_soft"
+      },
+      "silhouette": {
+       "hair": "updo_bun"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "bob"
+      }
+     }
+    }
    },
    "hold": {
     "en": "a flickering violet-white mote cupped in her palm, half-dissolving"

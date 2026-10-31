@@ -69,8 +69,24 @@ def check_look(where, look, full, errs):
                 if not box.get(k):
                     errs.append("%s look.%s.%s 가 비었다" % (where, grp, k))
     for k in look:
-        if k not in ("face", "silhouette", "why"):
+        if k not in ("face", "silhouette", "why", "worlds"):
             errs.append("%s look 의 %r 는 모르는 칸" % (where, k))
+    # 세계마다 다른 사람(2026-10-30) — 나라는 세 세계 다, 머리·얼굴형·눈이 차고 세 세계가 서로 다르다. 가문은 있으면 본다
+    ws = look.get("worlds")
+    if ws is None:
+        if full:
+            errs.append(where + " look.worlds 가 없다(세계마다 머리·얼굴형·눈)")
+        return
+    for w, sub in ws.items():
+        if w not in ("fantasy", "steampunk", "mecha"):
+            errs.append("%s look.worlds 의 %r 는 아는 세계가 아니다" % (where, w)); continue
+        check_look(where + " look.worlds." + w, sub, False, errs)
+        if full and not ((sub.get("silhouette") or {}).get("hair") and (sub.get("face") or {}).get("face_shape") and (sub.get("face") or {}).get("eyes")):
+            errs.append("%s look.worlds.%s 에 머리·얼굴형·눈이 다 있어야 한다" % (where, w))
+    if full:
+        sig = [((ws.get(w) or {}).get("silhouette") or {}).get("hair", "") + "/" + ((ws.get(w) or {}).get("face") or {}).get("face_shape", "") + "/" + ((ws.get(w) or {}).get("face") or {}).get("eyes", "") for w in ("fantasy", "steampunk", "mecha")]
+        if len(set(sig)) < 3:
+            errs.append(where + " look.worlds — 두 세계가 같은 사람(머리·얼굴형·눈): %s" % sig)
 
 
 def check(doc):

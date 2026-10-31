@@ -23,7 +23,7 @@ for (const key of cards) {
     assert(t.startsWith('CONCEPT: '), key + ' ' + w + ' CONCEPT 첫 줄');
     for (const line of ['ELEMENT TRAITS of ', 'AGE: in her twenties', 'SILHOUETTE: ', 'FACE (her own structure', 'WORLD — ', 'STYLE: ', 'EXPOSURE (bold)', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');
     /* 외형 줄은 설계표 look(나라 ← 가문) 의 어휘 — 가문이 덮어쓴 머리색이 실리고, 직접 고른 것은 없으니 IDENTITY 가 없다 */
-    const dz = P.lookOf(c), silLine = t.split('\n').find(l => l.startsWith('SILHOUETTE: ')), faceLine = t.split('\n').find(l => l.startsWith('FACE ('));
+    const dz = P.lookOf(c, w), silLine = t.split('\n').find(l => l.startsWith('SILHOUETTE: ')), faceLine = t.split('\n').find(l => l.startsWith('FACE ('));
     assert(silLine.includes(T.VOCAB_EN.hair_color[dz.silhouette.hair_color]) && silLine.includes(T.VOCAB_EN.body[dz.silhouette.body] + ' build') && silLine.includes(T.VOCAB_EN.hair[dz.silhouette.hair]), key + ' ' + w + ' 실루엣 줄 ' + silLine);
     for (const k of Object.keys(T.FACE_PARAM)) assert(faceLine.includes(T.VOCAB_EN[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
     assert(!t.includes('IDENTITY ('), key + ' ' + w + ' 고른 외형이 없으면 IDENTITY 가 없다');
@@ -55,11 +55,22 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
 {
   const dz = P.lookOf(P.card(D, 'fe-rust'));
   assert.equal(dz.silhouette.hair_color, 'rust_orange'); assert.equal(dz.face.eye_color, 'rust_amber'); assert.equal(dz.silhouette.body, 'broad_strong', '가문은 덮어쓴 것만, 나머지는 나라');
-  assert(same(P.lookOf(P.card(D, 'fe-rust-armor')), dz), '주민은 가문 것을 물려받는다');
+  assert(same(P.lookOf(P.card(D, 'fe-rust-armor')), dz) && same(P.lookOf(P.card(D, 'fe-rust-armor'), 'steampunk'), P.lookOf(P.card(D, 'fe-rust'), 'steampunk')), '주민은 가문 것을 물려받는다');
+  /* 세계마다 다른 사람 — 나라마다 세 세계의 (머리·얼굴형·눈) 이 서로 다르고, 색·체형은 같다. 가문의 세계 값이 나라의 세계 값을 이긴다 */
+  for (const n of D.nations) {
+    const sig = w => { const l = P.lookOf(P.card(D, n.key), w); return [l.silhouette.hair, l.face.face_shape, l.face.eyes].join('/'); };
+    assert.equal(new Set(worlds.map(sig)).size, 3, n.key + ' 세 세계가 다른 사람 ' + worlds.map(sig));
+    const col = w => { const l = P.lookOf(P.card(D, n.key), w); return [l.silhouette.hair_color, l.face.eye_color, l.silhouette.body].join('/'); };
+    assert.equal(new Set(worlds.map(col)).size, 1, n.key + ' 색·체형은 공통');
+  }
+  assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'fantasy').silhouette.hair, 'ponytail'); assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'mecha').silhouette.hair, 'short_crop'); assert.equal(P.lookOf(P.card(D, 'fe-rust'), 'mecha').silhouette.hair, 'braids', '가문 세계 값 · 나라 세계 값');
+  assert(P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.updo_bun) && !P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.braids), '지시문이 그 세계의 머리');
+  assert.equal(P.record(D, S, 'fe-steel', 'fantasy', {}).design.silhouette.hair, 'ponytail', '기록의 design 은 그 세계 값');
   const t1 = P.build(D, S, 'fe-rust', 'fantasy', { look: { params: { 'hair color': 'silver', 'eye shape': 'sharp', 'apparent age': '30s', 'body type': '__custom__', 'body type_custom': 'wiry and tall', zzz: 'x' } } });
   const sil1 = t1.split('\n').find(l => l.startsWith('SILHOUETTE: ')), face1 = t1.split('\n').find(l => l.startsWith('FACE ('));
-  assert(!sil1.includes('rust-orange hair') && !sil1.includes(' build') && sil1.includes('long braids'), '머리색·체형을 고르면 실루엣에서 빠진다 ' + sil1);
-  assert(!face1.includes('deep-set eyes') && face1.includes('softly square face'), '눈을 고르면 얼굴 줄에서 빠진다 ' + face1);
+  const dzF = P.lookOf(P.card(D, 'fe-rust'), 'fantasy');
+  assert(!sil1.includes('rust-orange hair') && !sil1.includes(' build') && sil1.includes(T.VOCAB_EN.hair[dzF.silhouette.hair]), '머리색·체형을 고르면 실루엣에서 빠진다 ' + sil1);
+  assert(!face1.includes(T.VOCAB_EN.eyes[dzF.face.eyes]) && face1.includes(T.VOCAB_EN.face_shape[dzF.face.face_shape]), '눈을 고르면 얼굴 줄에서 빠진다 ' + face1);
   assert(t1.includes('AGE: a woman in her thirties'), '나이');
   assert(t1.includes('IDENTITY (chosen details override the automatic look)\nhair color: silver') && t1.includes('eye shape: sharp — ') && t1.includes('body type: wiry and tall') && t1.includes('body scope: ') && !t1.includes('zzz') && !t1.includes('apparent age:'), 'IDENTITY 목록 ' + t1.split('IDENTITY')[1]);
   const t2 = P.build(D, S, 'fe-rust', 'mecha', { look: { faceDesignOn: false, silhouetteOn: false, exposure: '' } });

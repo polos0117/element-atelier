@@ -7,6 +7,12 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-31 · claude · 세계마다 헤어스타일·얼굴형·눈 · 철 판타지·스팀펑크 열 장 다시 뽑아 교체
+- data/element-design.json · tools/element-design.py — 나라 일곱에 look.worlds(세계마다 헤어스타일·얼굴형·눈 모양, 세 세계가 서로 다른 사람이어야 검사 통과). 색·체형은 공통. 강철·자석 가문의 머리·얼굴도 세계마다로 옮겼다. 철나라·강철·자석의 메카 값은 먼저 올린 메카 그림 그대로(지시문이 글자까지 같다)(사용자 「기본 세팅값에 헤어스타일이랑 얼굴 모양은 다르게」)
+- lib/prompt-element.js · lib/studio.js — lookOf(카드, 세계): 나라 → 나라 세계 → 가문 → 가문 세계 차례. FACE·SILHOUETTE 줄 · 설계 줄 목록 · 기록 design 이 그 세계 값
+- data/img.json 은 그대로(같은 이름) — 그림 저장소에서 근본 판타지·스팀펑크 2 · 가문주 판타지·스팀펑크 8 을 교체했다(records/replacement.json). 안전 필터에 걸린 한 장은 같은 지시문으로 한 번 다시 돌려 통과
+- tests/prompt-element.cjs · tests/look-spec.cjs — 나라마다 세 세계가 다른 사람·색·체형 공통·가문 세계 값·지시문·기록. IMAGE_RULES.md · AGENTS.md
+
 ## 2026-10-30 · claude · 판타지·스팀펑크 옷 뼈대 가르기 — 세계 꼬리·과감 노출·기본 빛
 - lib/prompt-spec.js · lib/prompt-element.js — 철 가문주 판타지·스팀펑크가 같은 코르셋 + 트임 치마로 나왔다(사용자 「판타지와 스팀펑크 의상이 비슷해 보이지 않아?」). 공용 과감 노출의 「corset-like waist · slits」 와 스팀펑크 꼬리의 「fitted bodice」 가 둘을 끌어당겼다. 판타지 COSTUME(견갑·고르젯·사슬·타바드·서클릿·망토, 코르셋·버슬 금지) · 스팀펑크 COSTUME(하이넥 블라우스·조끼·연미 코트·장갑·앞치마·고글·짧은 버슬 + 승마 바지, 갑옷판·망토·왕관 금지 — 입는 물건 주민은 예외), 세계마다 exposureBold, 기본 LIGHT(판타지 햇빛·마법 빛 · 스팀펑크 가스등·흐린 하늘, 시간대가 이긴다). 메카는 그대로. 강철 가문주 시험 두 장으로 갈리는 것을 봤다
 - tests/prompt-element.cjs — 세계마다 옷·과감·빛. tests/screen.cjs — 「빈 자리는 생성기로」 가 등록부에서 빈 자리를 찾는다(가문주가 차서 옛 자리가 없어졌다). docs/ELEMENT_CONCEPT.md
