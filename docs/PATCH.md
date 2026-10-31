@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 연료 가문주 일상컷 부족분 9장 완료
+- data/img.json — 그림 등록 워크플로가 h-fuel 판타지 3·4·5번, 스팀펑크 1·2·5번, 메카 1·2·3번을 추가했다. 세 세계 각각 일상컷 다섯 장을 채웠다. h-balloon은 이미 세 세계 다섯 장씩 있어 새 그림 없이 확인만 했다.
+- element-atelier-img의 img/·records/h-fuel/ — 생성기 원문·세계별 참조 이미지로 built-in image_gen 편집을 수행했다. 9장 모두 1024×1536을 확인하고 WebP 품질90·method6으로 저장했으며 계획·참조/원본 SHA256·검수 결과를 보존했다. 크롭 확대·기준 장식 잔존·표정/자세 차이는 qa.passed=false로 명시하고 규칙에 따라 재생성 없이 반영했다. 스팀펑크5는 첫 안전 거절 뒤 동일 지시문 1회 재시도에 성공했다. 세 세계 묶음 검사와 썸네일 자동화가 통과했다.
+
 ## 2026-11-01 · gpt · 기구 스팀펑크 일상컷 5번 오른손 교체
 - element-atelier-img의 img/h-balloon_steampunk_game_keyart_f_casual5.webp — 사용자가 승인한 국소 수정 시안으로 교체했다. 화면 왼쪽 인사하는 오른손을 엄지 포함 다섯 손가락으로 보정하고 얼굴·의상·배경·기존 프레이밍을 대체로 유지했다.
 - element-atelier-img의 records/h-balloon/steampunk-casual5.game_keyart-ui.json · records/replacement.json — 최초 생성·실패 QA는 그대로 두고 repairs에 보정 및 승인 이력을 추가했다. 이전 WebP/PNG와 새 그림의 SHA256·교체 사유를 기록했다. 나침반 시안은 등록하지 않았다. 같은 파일 이름을 유지하므로 data/img.json은 수동 변경하지 않았다.
