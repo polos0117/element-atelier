@@ -112,3 +112,49 @@
 .alt-row {margin-top:8px}
 .style-note {margin:6px 0 4px;color:var(--muted);font-size:12px}
 .worlds.alt .slot {border-style:dotted}
+
+/* 도감 판(2026-10-31) — 위에 붙는 판 · 카드마다 접기 · 작은 칸 · 크게 보기 넘기기 · 즐겨찾기 */
+.about {margin:10px 0 0;font-size:13px;color:var(--muted)}
+.about summary {cursor:pointer;min-height:40px;display:flex;align-items:center;font-weight:600}
+.about p {margin:4px 0 0;color:var(--text);line-height:1.7;font-size:14px}
+.dex-toc {position:sticky;top:0;z-index:5;margin:12px -4px 4px;padding:8px 4px;background:var(--bg);border-bottom:1px solid var(--line)}
+.toc-row {display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.seg {display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
+.seg button {min-height:40px;padding:0 12px;border:0;background:none;color:var(--text);font:600 13px/1 inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
+.seg button+button {border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"] {background:var(--accent);color:var(--on-accent)}
+.dex-toc .fav-count {margin-left:auto;min-height:40px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap}
+.toc-jump {display:flex;gap:6px;margin-top:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.toc-jump::-webkit-scrollbar {display:none}
+.toc-jump .jump {flex:0 0 auto;min-height:36px;padding:0 11px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font:500 12px/1 inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
+.toc-jump .jump.tier-root,.toc-jump .jump.tier-lord {font-weight:800;border-color:var(--accent)}
+.ek-card {scroll-margin-top:150px;padding:10px 0;border-top:1px solid var(--line)}
+.cards {display:grid;gap:0}
+.card-head {display:flex;align-items:baseline;gap:8px;margin:0 0 6px}
+.card-head b {font-size:15px} .card-head i {font-style:normal;color:var(--muted);font-size:12px}
+.card-head .fav-mark {margin-left:auto;color:var(--accent);font-size:12px;font-weight:700}
+.ek-card .obj {margin:-2px 0 8px;color:var(--muted);font-size:12px;line-height:1.5}
+.worlds.main {max-width:560px}
+.worlds.casuals,.worlds.alt {grid-template-columns:repeat(auto-fill,minmax(112px,1fr));margin-top:8px}
+.slot .cap {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.slot.dead {opacity:.45;border-style:dashed;cursor:default;align-self:start}
+.slot.dead .face {aspect-ratio:auto;height:44px}
+.slot.dead .ph {font-size:10px}
+.more-row {display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.more-row .more {min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font:600 13px/1 inherit;font-family:inherit;cursor:pointer}
+.more-row .more[aria-expanded="true"] {border-color:var(--accent);color:var(--accent)}
+.none-note {margin:0;color:var(--muted);font-size:12px}
+@media (min-width:900px) {.cards .ek-card.tier-citizen {display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:16px;align-items:start} .ek-card.tier-citizen .obj {margin:0}}
+/* 폰 — 위에 붙는 판은 두 줄(보기·세계·즐겨찾기 한 줄을 옆으로 밀고, 바로 가기 한 줄) */
+@media (max-width:700px) {.toc-row {flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none} .toc-row::-webkit-scrollbar {display:none} .seg,.dex-toc .fav-count {flex:0 0 auto} .dex-toc .fav-count {margin-left:0} .seg button {padding:0 10px;min-height:38px}
+  .ek-card {scroll-margin-top:110px}}
+.lightbox {justify-content:center}
+.lightbox .lb-top {display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;justify-content:center;color:#fff;font-size:13px;max-width:100%}
+.lightbox .lb-top b {font-size:15px} .lightbox .lb-n {opacity:.7;font-family:ui-monospace,monospace}
+.lb-stage {position:relative;display:flex;align-items:center;justify-content:center;max-width:100%}
+.lb-stage img {max-height:76vh}
+.lb-nav {position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:1px solid #fff4;border-radius:10px;background:#0007;color:#fff;font-size:30px;line-height:1;cursor:pointer}
+.lb-nav.prev {left:6px} .lb-nav.next {right:6px}
+.lightbox .fav-heart[aria-pressed="true"] {border-color:#ff8fb1;color:#ffb3c8}
+.fav-toast {position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:90;max-width:calc(100vw - 32px);padding:9px 16px;border-radius:999px;background:#fff;color:#111;font-size:13px;font-weight:700;text-align:center;pointer-events:none}
+.fav-toast:empty {display:none}

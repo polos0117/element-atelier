@@ -100,3 +100,8 @@ node tests/img-shards.cjs               # 그림 주소·등록기·워크플로
 # 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 첫 화면·도감·생성기 — 폰·PC, 118칸, 세 층, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
 ```
+
+### 도감과 즐겨찾기(2026-10-31)
+
+도감(`dex.html`)은 위에 붙는 판(보기: 세계 그림·일상컷·전부 / 세계 / 바로 가기 / 즐겨찾기 수) 아래 카드마다 세계 그림 셋만 펴고, 일상컷·다른 화풍은 접은 단추로 연다. 크게 보기는 그 카드 그림을 차례로 넘기고(← → · 밀기 · Esc) 하트로 공방 모음 즐겨찾기에 담는다 —
+`lib/favorites.js`(공방 모음 `favorites.js` 와 글자 하나 다르지 않게, `node tests/favorites.cjs`), 공방 열쇠 `a: element`, link 는 `/element-atelier/dex.html?nation=&card=&pic=`(그 그림을 크게 보기로 연다). 공방 모음 `favorites.html` 이 「원소의 섬」 칩으로 모아 보인다.
