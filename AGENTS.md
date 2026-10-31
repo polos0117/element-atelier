@@ -11,6 +11,7 @@
 | `docs/ELEMENT_CONCEPT.md` | 기획 — 왜 세 층인가·세계 셋·설계표 칸·지시문·첫 묶음·만드는 차례 |
 | `data/element-design.json` | 설계표. 나라(원소) › 가문(물질) › 주민(물건) |
 | `IMAGE_RULES.md` | 그림 만들기·파일 이름·기록·올리기 — 그림 작업 전에 |
+| `docs/IMAGE_AUTOMATION.md` | GPT 세션(사람이 안 지켜보는) 이미지 작업 — 잠금(`tools/image-claim.cjs`) · 일상컷 계획기(`tools/casual-plan.cjs`, 세계마다 다섯 장) · 지시문 묶음(`tools/prompt-pack.cjs`) · 검수 · 묻지 않고 올리기 |
 | `data/style.json` | 화풍 판 — 세계 그림은 `text`, 일상컷은 `casual` |
 | `docs/PORT_NOTES.md` | 어디서 무엇을 가져왔고, 무엇을 아직 안 가져왔나 |
 | `docs/PATCH.md` | 무엇을 고쳤나 — 고친 쪽이 직접 적는다 (아래 규칙 6) |
@@ -91,6 +92,8 @@ node tests/prompt-element.cjs           # 지시문 — 모든 카드 × 사는 
 python3 tools/casual-tree.py check      # 일상컷 트리 표(버전1 몫 — 시대·장소·의상) · audit — 하는 일 문장의 고정물이 장소에 없는 쌍
 python3 tools/casual-tree-v2.py check   # 일상컷 트리 버전2 표 — 없는 열쇠·두 손 칸·보이는 손 자리·다리 칸·다 되는 장소 없는 자세 추천
 python3 tests/casual-tree-v2.py · node tests/casual-tree-v2.cjs   # 검사기·거르기 모듈이 규칙마다 거는지
+node tests/casual-plan.cjs              # 일상컷 묶음 계획기 — 카드 × 사는 세계 × 씨앗이 다섯 장 · 묶음 규칙 · 네 시대 · 기록 꼴, 있는 컷 위에 모자란 만큼
+node tests/image-claim.cjs              # 이미지 작업 잠금 — bare 저장소로 잡기 · 겹침 · 실행마다 하나 · push 경합 되돌림 · 하루 몫
 node tests/words.cjs                    # 낱말 표
 node tests/patch.cjs                    # 패치 기록 모양
 python3 tests/register-images.py        # 그림 등록 — 이름 꼴·자리·등록한 날·틀린 이름은 저장 안 함
@@ -98,6 +101,7 @@ python3 tests/make-thumbs.py            # 썸네일 도구
 node tests/img-shards.cjs               # 그림 주소·등록기·워크플로·.gitignore 가 같은 저장소 차례
 
 # 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
+CHROMIUM_PATH=<chrome> node tests/prompt-pack-screen.cjs   # 지시문 묶음(tools/prompt-pack.cjs)의 기록을 생성기에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 씀
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 첫 화면·도감·생성기 — 폰·PC, 118칸, 세 층, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
 ```
 
