@@ -7,6 +7,9 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 태양 판타지·메카 그림 12장 등록
+- data/img.json — 그림 등록 워크플로로 태양(h-star-sun)의 두 세계 기본 그림과 세계마다 일상컷 다섯 장을 등록했다. 지시문·참고 그림 해시·원본 해시·구도·손·장식 차이 검수는 그림 저장소 records/h-star-sun/에 남겼다. 메카 일상컷 3번의 0바이트 WebP는 같은 생성 원본으로 복구하고 upload-repair.json에 기록했다.
+
 ## 2026-11-01 · claude · 늘 빨간 casual-tree-v2.py 고치기
 - tests/casual-tree-v2.py — 원소 표에 소품 signature 가 있으면 실패로 보던 단정을 바꿨다. signature(그 원소의 물건)는 2026-10-30 일부러 되살린 소품이고(docs/CASUAL_TREE_PORT.md · tests/casual-tree-v2.cjs 는 이미 반영) 이 파이썬 검사만 옛 단정을 남겨 늘 실패했다. 이제 알아볼 거리 소품은 signature 하나 · 모든 장소 · 동작 셋(들기 · 얼굴 옆 · 두 손)인지 본다
 
