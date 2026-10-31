@@ -22,7 +22,9 @@ try {
   let r = run(a, 'claim', x, '--execution', 'e1');
   assert.equal(r.code, 0, r.out);
   assert.equal(git(a, 'rev-parse', 'HEAD'), git(a, 'ls-remote', 'origin', 'refs/heads/main').split(/\s/)[0], '일반 push 됐다');
-  assert.match(run(a, 'claim', y, '--execution', 'e1').out, /실행마다 1개/);
+  /* 실행마다 몫 — 있으면 둘째를 못 잡고, 없으면(원소) 잡는다 */
+  if (K.EXECUTION_MAX) assert.match(run(a, 'claim', y, '--execution', 'e1').out, /실행마다 1개/);
+  else { r = run(a, 'claim', y, '--execution', 'e1'); assert.equal(r.code, 0, r.out); r = run(a, 'release', y, '--execution', 'e1', '--approval', '시험 — 둘째도 잡히는지만'); assert.equal(r.code, 0, r.out); }
   git(b, 'pull', '-q', 'origin', 'main');
   assert.match(run(b, 'claim', x, '--execution', 'e2').out, /이미 잡혀 있다/);
   assert.equal(JSON.parse(run(b, 'next').out).next, y, '잡힌 것은 건너뛴다');
@@ -57,8 +59,9 @@ try {
   /* 하루 몫 — 오늘 잡은 것이 열둘이면 더 못 잡는다 */
   const now = new Date(), kst = new Date(now.getTime() + 9 * 3600e3).toISOString().slice(0, 10), utc = now.toISOString().slice(0, 10);
   const dir = path.join(a, 'records/automation/claims');
-  for (let i = 0; i < K.DAILY_MAX; i++) fs.writeFileSync(path.join(dir, 'old' + i + '.json'), JSON.stringify({ key: 'old' + i, runs: [{ key: 'old' + i, execution: 'o' + i, status: 'complete', date_kst: kst, date_utc: utc }] }));
+  for (let i = 0; i < (K.DAILY_MAX || 12); i++) fs.writeFileSync(path.join(dir, 'old' + i + '.json'), JSON.stringify({ key: 'old' + i, runs: [{ key: 'old' + i, execution: 'o' + i, status: 'complete', date_kst: kst, date_utc: utc }] }));
   git(a, 'add', '.'); git(a, 'commit', '-q', '-m', 'full day'); git(a, 'push', '-q', 'origin', 'main');
-  assert.match(run(a, 'claim', z, '--execution', 'e5').out, /오늘 몫\(12\)을 다 썼다/);
+  if (K.DAILY_MAX) assert.match(run(a, 'claim', z, '--execution', 'e5').out, /오늘 몫\(12\)을 다 썼다/);
+  else { r = run(a, 'claim', z, '--execution', 'e5'); assert.equal(r.code, 0, '몫이 없으면 열둘 뒤에도 잡는다 ' + r.out); }
   console.log(`PASS 이미지 작업 잠금: 잡기 · 겹침 · 실행마다 하나 · push 경합 되돌림 · 멈춤 · 끝 검사 · 하루 몫 (${x} · ${y} · ${z})`);
 } finally { fs.rmSync(tmp, { recursive: true, force: true }); }

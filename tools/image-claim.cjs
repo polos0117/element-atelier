@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* 이미지 작업 잠금 — GPT 세션이 같은 카드를 둘이 그리지 않게, 하루 · 실행마다 몇 카드까지 그리는지(docs/IMAGE_AUTOMATION.md). game-atelier 와 같은 도구(맨 위 몇 줄만 원소 몫).
+/* 이미지 작업 잠금 — GPT 세션이 같은 카드를 둘이 그리지 않게(docs/IMAGE_AUTOMATION.md). 원소는 하루 · 실행마다의 몫이 없다(사용자 2026-10-31 「원소공방 저장소 이미지 저장 제한 없애줘」). game-atelier 와 같은 도구(맨 위 몇 줄만 원소 몫).
    pkm-atelier 의 image-runner 가 하는 일 가운데 「누가 무엇을 그리나」 만 — 지시문은 tools/prompt-pack.cjs, 검수 · 올리기는 문서대로 한다.
 
    잠금은 그림 저장소(옆의 element-atelier-img)의 records/automation/claims/<카드>.json 하나다. 바꿀 때마다 그 파일만 커밋해 일반 push 한다 —
@@ -7,7 +7,7 @@
 
      node tools/image-claim.cjs status                                   # 잠금 · 오늘 쓴 몫 · 다음 차례
      node tools/image-claim.cjs next                                     # 다음에 그릴 카드와 빈 자리(읽기만)
-     node tools/image-claim.cjs claim <카드> --execution <실행 ID>        # 잡는다 — 실행마다 1개, 하루(Asia/Seoul · UTC 따로) 12개
+     node tools/image-claim.cjs claim <카드> --execution <실행 ID>        # 잡는다 — 잡힌 카드만 못 잡는다(몫 없음)
      node tools/image-claim.cjs block <카드> --execution <실행 ID> --reason <까닭>   # 멈춘다(안전 거절 · 도구 오류 …). 잠금은 그대로 남는다
      node tools/image-claim.cjs done <카드> --execution <실행 ID>         # 끝 — data/img.json 에 빈 자리가 없어야 한다(코드 저장소를 pull 한 뒤).
                                                                          등록은 늦게 될 수 있어 다음 실행이 끝내도 된다(누가 끝냈는지 남는다)
@@ -17,7 +17,8 @@
 const fs = require('node:fs'), path = require('node:path'), cp = require('node:child_process');
 const ROOT = path.join(__dirname, '..');
 const read = f => JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8'));
-const DAILY_MAX = 12, EXECUTION_MAX = 1, CASUAL_N = 5;
+/* 몫 — null 이면 없다. game · book 은 하루 12 · 실행마다 1, 원소는 없다(사용자 2026-10-31) */
+const DAILY_MAX = null, EXECUTION_MAX = null, CASUAL_N = 5;
 
 /* ── 공방마다 다른 것: 그림 저장소 이름 · 차례 · 한 캐릭터의 빈 자리 ── */
 const IMG_REPO = 'element-atelier-img', WHAT = '카드';
@@ -95,7 +96,7 @@ function main(argv) {
     const nx = nextOf(all);
     if (cmd === 'next') { console.log(JSON.stringify(nx ? { next: nx.key, title: nx.title, missing: nx.missing } : { next: null, reason: '빈 자리가 있는 ' + WHAT + '이 없다(잠긴 것 빼고)' }, null, 1)); return 0; }
     const u = used(all, now);
-    console.log(`오늘 잡은 ${WHAT}: Asia/Seoul ${u.kst}/${DAILY_MAX} · UTC ${u.utc}/${DAILY_MAX}`);
+    console.log(`오늘 잡은 ${WHAT}: Asia/Seoul ${u.kst}${DAILY_MAX ? '/' + DAILY_MAX : ''} · UTC ${u.utc}${DAILY_MAX ? '/' + DAILY_MAX : ''}${DAILY_MAX ? '' : ' (몫 없음)'}`);
     for (const [k, c] of Object.entries(all)) { const r = last(c); console.log(`  ${k} — ${r.status} · ${r.execution} · ${r.claimed_at}${r.reason ? ' · ' + r.reason : ''}${r.status === 'working' && !missing(k).length ? ' · 빈 자리 없음 — done 으로 끝낸다' : ''}`); }
     console.log('다음 차례: ' + (nx ? `${nx.key}(${nx.title}) — 빈 자리 ${nx.missing.length}` : '없음'));
     return 0;
@@ -106,9 +107,9 @@ function main(argv) {
   if (cmd === 'claim') {
     if (r) throw new Error(o.key + ' 는 이미 잡혀 있다(' + r.status + ' · ' + r.execution + ') — 시간이 지났다고 가져가지 않는다');
     const mine = Object.values(all).flatMap(x => x.runs || []).filter(x => x.execution === o.execution);
-    if (mine.length >= EXECUTION_MAX) throw new Error('이 실행(' + o.execution + ')은 벌써 ' + mine.map(x => x.key).join(',') + ' 를 잡았다 — 실행마다 ' + EXECUTION_MAX + '개');
+    if (EXECUTION_MAX && mine.length >= EXECUTION_MAX) throw new Error('이 실행(' + o.execution + ')은 벌써 ' + mine.map(x => x.key).join(',') + ' 를 잡았다 — 실행마다 ' + EXECUTION_MAX + '개');
     const u = used(all, now);
-    if (u.kst >= DAILY_MAX || u.utc >= DAILY_MAX) throw new Error('오늘 몫(' + DAILY_MAX + ')을 다 썼다 — Asia/Seoul ' + u.kst + ' · UTC ' + u.utc);
+    if (DAILY_MAX && (u.kst >= DAILY_MAX || u.utc >= DAILY_MAX)) throw new Error('오늘 몫(' + DAILY_MAX + ')을 다 썼다 — Asia/Seoul ' + u.kst + ' · UTC ' + u.utc);
     const m = missing(o.key);
     if (!m.length) throw new Error(o.key + ' 는 빈 자리가 없다');
     c.runs.push({ key: o.key, execution: o.execution, status: 'working', claimed_at: now.toISOString(), date_kst: kst(now), date_utc: now.toISOString().slice(0, 10), missing: m });
@@ -130,5 +131,5 @@ function main(argv) {
   console.log(JSON.stringify({ key: o.key, status: last(c).status, commit: sha, missing: last(c).missing }, null, 1));
   return 0;
 }
-module.exports = { missing, order, claims, nextOf, used, DAILY_MAX, CASUAL_N };
+module.exports = { missing, order, claims, nextOf, used, DAILY_MAX, EXECUTION_MAX, CASUAL_N };
 if (require.main === module) { try { process.exit(main(process.argv.slice(2))); } catch (e) { console.error(e.message); process.exit(1); } }
