@@ -86,15 +86,17 @@ function altRowsBelowRoot(n) {
     assert.equal(await v.page.locator('.worlds.alt img[src*="_' + (altStyles[0] || 'game_keyart') + '_f.webp"]').count() > 0, altStyles.length > 0, '다른 화풍 줄에 그 화풍 그림');
     const dead = fe.families.reduce((s, f) => s + f.citizens.reduce((x, c) => x + (3 - c.worlds.length), 0), 0);
     assert.equal(await v.page.locator('.slot[disabled]').count(), dead, '안 사는 세계는 흐린 칸');
-    /* 빈 자리는 생성기로 — 그림이 없는 (카드, 세계) 하나를 등록부에서 찾는다(그림이 차면 자리가 옮겨 간다) */
-    const holes = [fe.key, ...fe.families.flatMap(f => [fe.key + '-' + f.key, ...f.citizens.map(c => fe.key + '-' + f.key + '-' + c.key)])].flatMap(k => {
-      const fam = fe.families.find(f => k.split('-')[1] === f.key), cit = fam && fam.citizens.find(c => k.split('-')[2] === c.key);
+    await noOverflow(v.page, vp.width); assert.deepEqual(v.errors, []); checks += 2; await v.ctx.close();
+    /* 빈 자리는 생성기로 — 그림이 없는 (카드, 세계) 하나를 등록부에서 찾아(나라 차례대로 — 그림이 차면 자리가 옮겨 간다) 그 나라 도감에서 본다 */
+    const holes = D.nations.flatMap(n => [n.key, ...n.families.flatMap(f => [n.key + '-' + f.key, ...f.citizens.map(c => n.key + '-' + f.key + '-' + c.key)])].flatMap(k => {
+      const fam = n.families.find(f => k.split('-')[1] === f.key), cit = fam && fam.citizens.find(c => k.split('-')[2] === c.key);
       const ws = cit ? cit.worlds : ['fantasy', 'steampunk', 'mecha'], have = (((IMGJ.img[k] || {}).byStyle || {})[S.default] || {}).byForm || {};
-      return ws.filter(w => !(have[w] && have[w].f)).map(w => [k, w]);
-    });
-    assert(holes.length, '철나라에 빈 자리가 없다 — 검사할 자리를 다른 나라로');
-    assert((await v.page.locator('a.slot[href^="prompt.html?card=' + holes[0][0] + '&world=' + holes[0][1] + '"]').count()) >= 1, '빈 자리는 생성기로 ' + holes[0]);
-    await noOverflow(v.page, vp.width); assert.deepEqual(v.errors, []); checks += 3; await v.ctx.close();
+      return ws.filter(w => !(have[w] && have[w].f)).map(w => [n.key, k, w]);
+    }));
+    assert(holes.length, '빈 자리가 하나도 없다 — 이 검사를 다시 생각할 때');
+    v = await open('/dex.html?nation=' + holes[0][0], vp); await v.page.waitForSelector('.dex-head');
+    assert((await v.page.locator('a.slot[href^="prompt.html?card=' + holes[0][1] + '&world=' + holes[0][2] + '"]').count()) >= 1, '빈 자리는 생성기로 ' + holes[0]);
+    assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
     v = await open('/dex.html?nation=h', vp); await v.page.waitForSelector('.dex-head');
     assert.equal(await v.page.locator('.row-head .shared a[href="dex.html?nation=o"]').count(), 1, '물 가문은 산소나라와 나눈다');
     assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
@@ -191,7 +193,10 @@ function altRowsBelowRoot(n) {
     assert(/PROP: with her own right hand she holds a forged/.test(await promptOf(p)), '검의 주민이 검을 든다 ' + ((await promptOf(p)).split('PROP: ')[1] || '').slice(0, 80));
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f_casual1.webp'), '일상컷 파일 이름(세계를 탄다)');
     const refT = await p.locator(mob ? '.hres .ref' : '#ref .ref').textContent();
-    assert(refT.includes('fe-steel-sword_mecha_' + S.default + '_f.webp') && /아직 없다/.test(refT), '참고 그림 줄 — 그 세계 그림 이름, 아직 등록 안 됨 ' + refT);
+    /* 등록돼 있으면 작은 그림, 없으면 「아직 없다」 — 등록부를 보고 판정한다(그림이 차면 바뀐다) */
+    const refHave = !!((((((IMGJ.img['fe-steel-sword'] || {}).byStyle || {})[S.default] || {}).byForm || {}).mecha || {}).f);
+    assert(refT.includes('fe-steel-sword_mecha_' + S.default + '_f.webp') && /아직 없다/.test(refT) === !refHave, '참고 그림 줄 — 그 세계 그림 이름, 등록 ' + refHave + ' ' + refT);
+    assert.equal(await p.locator((mob ? '.hres' : '#ref') + ' .ref img').count(), refHave ? 1 : 0, '등록된 참고 그림은 작은 그림으로');
     assert.match(p.url(), /card=fe-steel-sword&o=casual&world=mecha/, '일상컷도 주소에 세계');
     checks += 28;
     /* 랜덤 처음부터 — 다 찬다. 여기부터 다시 — 장소를 열면 뒤가 빈다 */
