@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-31 · claude · 원자 번호도 허용 — 지시문도 기호 · 번호 둘만 허용
+- lib/prompt-spec.js · lib/prompt-element.js — 「no text, no numbers」 를 「그 원소의 기호({symbol})와 원자 번호({number})만 읽히게 나와도 된다, 그 밖엔 안 쓴다」 로(세계 그림 RULES · 일상컷 ONE MAIN FIGURE · SCREENS · 나라 안 WORLD). 사용자 「원자 번호랑 기호도 허용해줘」
+- IMAGE_RULES.md 1절 · docs/IMAGE_AUTOMATION.md — 기호와 원자 번호는 나와도 다시 만들지 않는다. 일부러 그리라고 하지는 않는다
+- prompt.html · dex.html — 스크립트 판 올림
+
 ## 2026-10-31 · claude · 읽히는 원소 기호는 허용
 - IMAGE_RULES.md 1절 — 그림에 그 원소의 기호(Fe · Au …)가 읽히게 보여도 다시 만들지 않는다(사용자 「읽히는 기호는 허용해줘도 돼. 여기는 저작권 문제 같은게 없잖아」). 다른 글자·숫자 · 로고는 지금처럼 그리지 않는 쪽, 지시문의 no text 줄은 그대로
 - docs/IMAGE_AUTOMATION.md — GPT 세션의 멈춤 목록에서 「읽히는 글자·숫자」 를 빼고, 검수 항목은 원소 기호 말고 다른 글자만 적는다

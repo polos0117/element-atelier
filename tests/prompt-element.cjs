@@ -21,6 +21,7 @@ for (const key of cards) {
     const t = P.build(D, S, key, w, {});
     assert(t.length > 900 && t.length < 4200, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30)
     assert(t.startsWith('CONCEPT: '), key + ' ' + w + ' CONCEPT 첫 줄');
+    assert(t.includes("except her element's own chemical symbol (" + c.element.symbol + ') and atomic number (' + c.element.number + ')') && !t.includes('no text, no lettering, no numbers'), key + ' ' + w + ' 기호 · 원자 번호만 허용(2026-10-31)');
     for (const line of ['ELEMENT TRAITS of ', 'AGE: in her twenties', 'SILHOUETTE: ', 'FACE (her own structure', 'WORLD — ', 'STYLE: ', 'EXPOSURE (bold)', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');
     /* 외형 줄은 설계표 look(나라 ← 가문) 의 어휘 — 가문이 덮어쓴 머리색이 실리고, 직접 고른 것은 없으니 IDENTITY 가 없다 */
     const dz = P.lookOf(c, w), silLine = t.split('\n').find(l => l.startsWith('SILHOUETTE: ')), faceLine = t.split('\n').find(l => l.startsWith('FACE ('));
@@ -154,7 +155,10 @@ const checkCasual = (key, sc, txt, label, world) => {
   assert(txt.includes('STYLE: ' + cur.casual) && !txt.includes('STYLE: ' + cur.text), label + ' 화풍은 판의 casual 문장');
   assert(txt.includes('FRAME: a vertical 2:3 (1024×1536) image.'), label + ' FRAME 2:3');
   assert(/overall_intensity: strong — /.test(txt) && /skin_exposure: bold — /.test(txt), label + ' 고정값 두 축');
-  for (const line of [CL.output, CL.angle, CL.figure, CL.body, CL.hands, 'SCENE (chosen):\n']) assert(txt.includes(line), label + ' 에 ' + line.slice(0, 20) + ' 가 없다');
+  /* 그 원소의 기호 · 원자 번호만 읽혀도 된다(사용자 2026-10-31) — ONE MAIN FIGURE 줄이 그 둘을 채워 싣는다 */
+  const fig = CL.figure.replace('{symbol}', c.element.symbol).replace('{number}', c.element.number);
+  assert(fig.includes('(' + c.element.symbol + ') and atomic number (' + c.element.number + ')') && !/No text, no lettering, no numbers/.test(txt), label + ' 기호 · 원자 번호만 허용');
+  for (const line of [CL.output, CL.angle, fig, CL.body, CL.hands, 'SCENE (chosen):\n']) assert(txt.includes(line), label + ' 에 ' + line.slice(0, 20) + ' 가 없다');
   assert(scene.includes('POSTURE: ') && scene.includes('COMPOSITION: ') && /^(RIGHT|LEFT|BOTH) HANDS?: /m.test(scene) || !(sc.right || sc.left), label + ' 자세·구도·손 줄');
   assert(txt.includes(c.element.en), label + ' 나라 이름 ' + c.element.en);
   if (c.tier === 'citizen') assert(txt.includes(c.citizen.object.en.trim()) && txt.includes('a citizen of the ' + c.element.en + ' Nation'), label + ' 주민의 물건');
