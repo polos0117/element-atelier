@@ -7,6 +7,12 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · claude · 가문주 · 주민이 근본 외형을 덜 따라가게 — 체형 고르게
+- lib/prompt-element.js — lookOf: 가문주는 가문 look 에 적은 칸만 가문 것, 안 적은 칸(체형 · 헤어 · 얼굴형 · 눈 · 눈썹 · 코 · 입)은 가문주 열쇠로 근본과 다르게 돌린다. 주민은 일곱 칸을 가문주와도 근본과도 다르게(그 전엔 헤어 · 얼굴형 · 눈만, 체형 · 눈썹 · 코 · 입은 가문 = 근본 그대로). 사용자 「가주나 다른 물건들이 근본원소의 외형값을 너무 많이 따라가. 특히 체형은 슬랜더로 치우친」 — 카드 55 의 체형이 슬렌더 45 · 애슬레틱 36 · 장신 20 · 건장 18 · 아담 11 · 글래머 8 · 마른 장신 3(세계마다 센 것)에서 카드마다 건장 10 · 마른 장신 9 · 슬렌더 8 · 장신 8 · 글래머 7 · 아담 7 · 애슬레틱 6 으로. 가문주가 근본과 같은 칸은 일곱 중 평균 0.06
+- data/element-design.json — 주민 why 글 · IMAGE_RULES.md 2절 — 가문주 · 주민 규칙. 이미 그린 그림은 그대로 둔다
+- tests/prompt-element.cjs — 가문주의 안 적은 칸은 근본과 다르다 · 체형이 한 가지에 30% 넘게 몰리지 않는다 · 주민의 체형 · 눈썹 · 코 · 입도 가문주와 다르다
+- prompt.html · dex.html — prompt-element 판 올림
+
 ## 2026-11-01 · gpt · 나침반 판타지 일상컷 5번 승인 시안으로 교체
 - element-atelier-img의 img/fe-magnet-compass_fantasy_game_keyart_f_casual5.webp — 기존 중복 팔과 국소 보정의 연결 문제 뒤 사용자가 요청한 새 계획으로 제작한 시안을 명시 승인받아 교체했다. 같은 판타지 카드 인물·카페·레트로 의상·전신을 유지하며 정면 사선, 오른손 창턱, 왼손 몸 옆 구도로 정리했다.
 - element-atelier-img의 records/fe-magnet-compass/fantasy-casual5.game_keyart-ui.json · records/fe-magnet-compass/history/ · records/replacement.json — 새 생성기 계획·원문·참조/원본 SHA256·검수·승인을 기록하고, 이전 생성·실패 QA 기록은 이력 파일에 그대로 보존했다. 이전 WebP/PNG SHA256과 교체 사유를 남겼으며 같은 이름의 썸네일은 자동 재생성한다. data/img.json은 수동 변경하지 않았다.

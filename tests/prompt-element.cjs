@@ -58,13 +58,32 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
 /* 외형 칸 — 직접 고른 항목이 설계 묶음을 이기고 IDENTITY 에 실린다 · 끄기 · 노출 · 나이 · 직접 입력 · 모르는 열쇠 버림 */
 {
   const dz = P.lookOf(P.card(D, 'fe-rust'));
-  assert.equal(dz.silhouette.hair_color, 'rust_orange'); assert.equal(dz.face.eye_color, 'rust_amber'); assert.equal(dz.silhouette.body, 'broad_strong', '가문은 덮어쓴 것만, 나머지는 나라');
-  /* 주민 — 눈 색·체형은 가문 것, 머리색은 물건 재질(설계표), 헤어스타일·얼굴형·눈 모양은 그 세계 가문주와 다르고 세계끼리도 다르다(2026-10-31 「주민이 가문주 복사본」) */
+  assert.equal(dz.silhouette.hair_color, 'rust_orange'); assert.equal(dz.face.eye_color, 'rust_amber');
+  assert.notEqual(dz.silhouette.body, P.lookOf(P.card(D, 'fe')).silhouette.body, '가문주는 적은 칸만 가문 것, 안 적은 칸(체형 …)은 근본과 다르게(2026-11-01)');
+  assert.equal(P.lookOf(P.card(D, 'fe-steel')).silhouette.body, 'athletic', '가문 look 에 적은 체형은 그대로');
+  /* 가문주가 근본을 따라가지 않는다 — 체형 · 헤어 · 얼굴형 · 눈 · 눈썹 · 코 · 입 일곱 가운데 가문 look 에 안 적은 칸은 근본과 다르다. 체형이 한쪽으로 몰리지 않는다(사용자 2026-11-01 「슬랜더로 치우친」) */
+  {
+    const AX = [['silhouette', 'body'], ['silhouette', 'hair'], ['face', 'face_shape'], ['face', 'eyes'], ['face', 'brows'], ['face', 'nose'], ['face', 'lips']], bodies = {};
+    for (const k of P.cards(D)) {
+      const c = P.card(D, k); bodies[P.lookOf(c).silhouette.body] = (bodies[P.lookOf(c).silhouette.body] || 0) + 1;
+      if (c.tier !== 'lord') continue;
+      const fl = c.family.look || {};
+      for (const w of P.worldsOf(D, k)) {
+        const r = P.lookOf(P.card(D, c.nation.key), w), l = P.lookOf(c, w), fw = ((fl.worlds || {})[w]) || {};
+        for (const [g, a] of AX) if (!(fl[g] || {})[a] && !(fw[g] || {})[a]) assert.notEqual(l[g][a], r[g][a], k + ' ' + w + ' ' + a + ' 가 근본과 같다');
+      }
+    }
+    const most = Math.max(...Object.values(bodies)), all = Object.values(bodies).reduce((x, y) => x + y, 0);
+    assert(most <= all * 0.3 && Object.keys(bodies).length >= 6, '체형이 한쪽으로 몰렸다 ' + JSON.stringify(bodies));
+  }
+  /* 주민 — 눈 색은 가문 것, 머리색은 물건 재질(설계표), 체형 · 헤어 · 얼굴형 · 눈 · 눈썹 · 코 · 입은 그 세계 가문주와 다르고 세계끼리도 다르다(2026-10-31 「주민이 가문주 복사본」 · 2026-11-01 체형 · 눈썹 · 코 · 입도) */
   for (const n of D.nations) for (const f of n.families) for (const ci of f.citizens) {
     const k = n.key + '-' + f.key + '-' + ci.key, ws = P.worldsOf(D, k), sig = l => [l.silhouette.hair, l.face.face_shape, l.face.eyes].join('/');
     for (const w of ws) {
       const l = P.lookOf(P.card(D, k), w), lo = P.lookOf(P.card(D, n.key + '-' + f.key), w);
-      assert.equal(l.face.eye_color, lo.face.eye_color, k + ' 눈 색은 가문'); assert.equal(l.silhouette.body, lo.silhouette.body, k + ' 체형은 가문');
+      assert.equal(l.face.eye_color, lo.face.eye_color, k + ' 눈 색은 가문');
+      for (const a of ['body']) assert.notEqual(l.silhouette[a], lo.silhouette[a], k + ' 체형은 가문주와 다르다');
+      for (const a of ['brows', 'nose', 'lips']) assert.notEqual(l.face[a], lo.face[a], k + ' ' + a + ' 는 가문주와 다르다');
       assert.equal(l.silhouette.hair_color, ci.look.silhouette.hair_color, k + ' 머리색은 물건');
       assert(l.silhouette.hair !== lo.silhouette.hair && l.face.face_shape !== lo.face.face_shape && l.face.eyes !== lo.face.eyes, k + ' ' + w + ' 가문주와 다른 사람');
     }
@@ -78,7 +97,7 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
     const col = w => { const l = P.lookOf(P.card(D, n.key), w); return [l.silhouette.hair_color, l.face.eye_color, l.silhouette.body].join('/'); };
     assert.equal(new Set(worlds.map(col)).size, 1, n.key + ' 색·체형은 공통');
   }
-  assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'fantasy').silhouette.hair, 'ponytail'); assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'mecha').silhouette.hair, 'short_crop'); assert.equal(P.lookOf(P.card(D, 'fe-rust'), 'mecha').silhouette.hair, 'braids', '가문 세계 값 · 나라 세계 값');
+  assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'fantasy').silhouette.hair, 'ponytail'); assert.equal(P.lookOf(P.card(D, 'fe-steel'), 'mecha').silhouette.hair, 'short_crop'); assert.notEqual(P.lookOf(P.card(D, 'fe-rust'), 'mecha').silhouette.hair, P.lookOf(P.card(D, 'fe'), 'mecha').silhouette.hair, '가문의 세계 값이 없으면 근본의 그 세계와 다르게 돌린다(2026-11-01)');
   assert(P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.updo_bun) && !P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.braids), '지시문이 그 세계의 머리');
   assert.equal(P.record(D, S, 'fe-steel', 'fantasy', {}).design.silhouette.hair, 'ponytail', '기록의 design 은 그 세계 값');
   const t1 = P.build(D, S, 'fe-rust', 'fantasy', { look: { params: { 'hair color': 'silver', 'eye shape': 'sharp', 'apparent age': '30s', 'body type': '__custom__', 'body type_custom': 'wiry and tall', zzz: 'x' } } });
