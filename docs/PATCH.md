@@ -7,6 +7,12 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-31 · claude · 기본 화풍을 게임 키아트 2.5D 로 · 기록 이름에 화풍을 늘 붙인다
+- data/style.json · IMAGE_RULES.md · AGENTS.md — 기본을 game_keyart 로(사용자 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi 철나라 열여덟 장은 그 열쇠로 남아 도감 「다른 화풍」 줄에
+- lib/studio.js — 생성기는 늘 기본 화풍(화풍 고르개가 없는데 저장된 옛 화풍을 따르고 있었다 — 기본을 바꿔도 이 기기에선 CGI 로 지었을 것)
+- lib/prompt-element.js · IMAGE_RULES.md — 기록 이름은 <세계>.<화풍>-ui.json 으로 늘 화풍을 붙인다. 그림 저장소의 옛 <세계>-ui.json 열여덟을 <세계>.game_cgi-ui.json 으로 옮겼다(git mv)
+- tests/screen.cjs — 파일 이름이 기본 화풍을 따른다
+
 ## 2026-10-31 · claude · 철나라 게임 키아트 2.5D 판 열다섯 — 가문주 12 새로 · 근본 3 교체
 - data/img.json — fe-<가문>_<세계>_game_keyart_f.webp 열둘 등록(사용자 「게임 키아트 2.5d로도 다 다시 뽑아줘」). CGI 판과 같은 장면·외형·옷으로 화풍 줄만 game_keyart. 근본 2.5D 셋(fe_<세계>_game_keyart_f.webp)은 외형 설계 전 시안이라 같은 이름으로 교체 — 그림 저장소 records/replacement.json. 도감은 기본 화풍(CGI) 줄 아래 「다른 화풍 · 게임 키아트 2.5D」 줄로 보인다
 

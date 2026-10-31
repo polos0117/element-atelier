@@ -133,7 +133,7 @@ function altRowsBelowRoot(n) {
     assert(t0.startsWith('CONCEPT: a citizen of the Iron Nation, of the Steel House.') && t0.includes('MECHA DESIGN:') && t0.includes('SCENE NOTE: a windy ridge'), '세계 지시문');
     assert(t0.includes('EXPOSURE (moderate)') && !t0.includes('FACE (') && t0.includes('SILHOUETTE: ') && !t0.includes('tempered-blue') && t0.includes('hair color: silver'), '설계 줄·외형 칸이 지시문에 ' + t0.slice(0, 150));
     assert(t0.includes('SETTING (this card): the orbital foundry floor') && t0.includes('TIME & WEATHER: night') && t0.includes('Mid-stride toward the camera') && t0.includes('EXPRESSION: level brow'), '장면·시간대·자세·표정이 지시문에');
-    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_game_cgi_f.webp'), '파일 이름');
+    assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f.webp'), '파일 이름');
     await p.click('[data-open="world"]'); await p.click('[data-pick="fantasy"]');
     assert.equal(await openOf(p), 'scene', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
     await toDone(p); assert.equal(await openOf(p), 'done', '「다 골랐다로」');
