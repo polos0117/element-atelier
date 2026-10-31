@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-10-31 · gpt · 철교·레일 일상컷 부족분 보충
+- data/img.json — 그림 등록 워크플로로 철교·레일의 스팀펑크·메카 일상컷을 각각 다섯 장으로 보충(새 그림은 캐릭터별 여섯 장, 총 열두 장). 기존 그림·기록은 보존
+- element-atelier-img의 img/·records/fe-steel-bridge/·records/fe-steel-rail/ — 세계 그림을 참고한 이미지 편집, 1024×1536 WebP 품질90·method6, 생성기 원문·원본/참고 SHA256·QA 기록. 프레이밍·고개 방향·복수 장식·허용 외 글자 등 어긋남은 passed:false로 남기고 임의 재생성하지 않음
+- 철교 스팀펑크 묶음 검사 — 기존 1·3번의 수영복 계열 중복은 보존. 계획기의 기존 컷 허용 규칙을 적용한 새 2·4·5번 증분 검사는 통과, 메카·레일 두 세계 전체 다섯 장 검사 통과
+
 ## 2026-10-31 · claude · 원자 번호도 허용 — 지시문도 기호 · 번호 둘만 허용
 - lib/prompt-spec.js · lib/prompt-element.js — 「no text, no numbers」 를 「그 원소의 기호({symbol})와 원자 번호({number})만 읽히게 나와도 된다, 그 밖엔 안 쓴다」 로(세계 그림 RULES · 일상컷 ONE MAIN FIGURE · SCREENS · 나라 안 WORLD). 사용자 「원자 번호랑 기호도 허용해줘」
 - IMAGE_RULES.md 1절 · docs/IMAGE_AUTOMATION.md — 기호와 원자 번호는 나와도 다시 만들지 않는다. 일부러 그리라고 하지는 않는다
