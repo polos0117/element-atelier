@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 나침반 판타지 일상컷 5번 승인 시안으로 교체
+- element-atelier-img의 img/fe-magnet-compass_fantasy_game_keyart_f_casual5.webp — 기존 중복 팔과 국소 보정의 연결 문제 뒤 사용자가 요청한 새 계획으로 제작한 시안을 명시 승인받아 교체했다. 같은 판타지 카드 인물·카페·레트로 의상·전신을 유지하며 정면 사선, 오른손 창턱, 왼손 몸 옆 구도로 정리했다.
+- element-atelier-img의 records/fe-magnet-compass/fantasy-casual5.game_keyart-ui.json · records/fe-magnet-compass/history/ · records/replacement.json — 새 생성기 계획·원문·참조/원본 SHA256·검수·승인을 기록하고, 이전 생성·실패 QA 기록은 이력 파일에 그대로 보존했다. 이전 WebP/PNG SHA256과 교체 사유를 남겼으며 같은 이름의 썸네일은 자동 재생성한다. data/img.json은 수동 변경하지 않았다.
+
 ## 2026-11-01 · gpt · 연료 가문주 일상컷 부족분 9장 완료
 - data/img.json — 그림 등록 워크플로가 h-fuel 판타지 3·4·5번, 스팀펑크 1·2·5번, 메카 1·2·3번을 추가했다. 세 세계 각각 일상컷 다섯 장을 채웠다. h-balloon은 이미 세 세계 다섯 장씩 있어 새 그림 없이 확인만 했다.
 - element-atelier-img의 img/·records/h-fuel/ — 생성기 원문·세계별 참조 이미지로 built-in image_gen 편집을 수행했다. 9장 모두 1024×1536을 확인하고 WebP 품질90·method6으로 저장했으며 계획·참조/원본 SHA256·검수 결과를 보존했다. 크롭 확대·기준 장식 잔존·표정/자세 차이는 qa.passed=false로 명시하고 규칙에 따라 재생성 없이 반영했다. 스팀펑크5는 첫 안전 거절 뒤 동일 지시문 1회 재시도에 성공했다. 세 세계 묶음 검사와 썸네일 자동화가 통과했다.
