@@ -115,7 +115,16 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     assert.match(await pg.locator('#dex-fav-count').textContent(), /즐겨찾기 1/, '즐겨찾기 수');
     assert.equal(await pg.locator('#dex-fav-count').getAttribute('href'), '/favorites.html', '공방 모음 즐겨찾기로');
     await pg.keyboard.press('Escape'); assert.equal(await pg.locator('.lightbox').count(), 0, 'Esc');
-    await noOverflow(pg, vp.width); assert.deepEqual(v.errors, []); checks += 20;
+    /* 뒤로 가기는 팝업만 닫는다 — 페이지는 그대로(일상컷 크게 보기에서). Esc 로 닫은 뒤의 뒤로 가기도 남은 칸이 없다 */
+    const before = pg.url();
+    await pg.click('#c-fe [data-more="casual"]').catch(() => {}); if (!(await pg.locator('#c-fe .worlds.casuals .slot').count())) await pg.click('#c-fe [data-more="casual"]');
+    await pg.click('#c-fe .worlds.casuals .slot >> nth=0'); await pg.waitForSelector('.lightbox');
+    await pg.goBack(); await pg.waitForTimeout(300);
+    assert.equal(await pg.locator('.lightbox').count(), 0, '뒤로 가기 — 팝업이 닫힌다'); assert.equal(pg.url(), before, '뒤로 가기 — 도감에 그대로');
+    assert(await pg.locator('.dex-head').count(), '뒤로 가기 — 이전 화면으로 안 넘어간다');
+    await pg.click('#c-fe .worlds.casuals .slot >> nth=0'); await pg.waitForSelector('.lightbox'); await pg.click('.lightbox .bar button:last-child'); await pg.waitForTimeout(300);
+    assert.equal(await pg.locator('.lightbox').count(), 0, '닫기'); assert.equal(await pg.evaluate(() => !!(history.state && history.state.elementLb)), false, '닫기가 기록 칸을 지웠다');
+    await noOverflow(pg, vp.width); assert.deepEqual(v.errors, []); checks += 25;
     /* 공방 모음 즐겨찾기의 link 로 다시 오면 그 그림이 열린다 */
     const pic = favs[0].file; await v.ctx.close();
     v = await open(favs[0].link.replace(/^.*dex\.html/, '/dex.html'), vp); await v.page.waitForSelector('.lightbox img');
