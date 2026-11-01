@@ -3401,6 +3401,186 @@
      "hold": {
       "en": "a small glass sphere of fusion-white light"
      }
+    },
+    {
+     "key": "oil",
+     "ko": "기름",
+     "en": "Oil",
+     "elements": [
+      "c",
+      "h"
+     ],
+     "persona": "수소에서 본 기름 — 기름 속에 갇힌 가벼움. 불을 붙이면 맑게 타오르는 양초와 가스등. 탄소나라의 기름 가문과 같은 물질(탄화수소), 다른 사람 — 저쪽이 검은 무게면 이쪽은 그 속의 빛.",
+     "traits": {
+      "ko": "기름 속에 갇힌 빛 — 양초, 가스등, 맑은 푸른 불꽃",
+      "en": "hydrocarbons as the light locked inside: pale paraffin wax, clean gaslight flames, rising heat shimmer, glowing mantles and soft candlelight; creamy whites and pale golds with clear blue gas flames; the light, luminous side of hydrogen"
+     },
+     "palette": {
+      "en": "wax cream, candle gold, gas-flame blue, warm white"
+     },
+     "citizens": [
+      {
+       "key": "candle",
+       "ko": "양초",
+       "en": "candle",
+       "object": {
+        "en": "a tall white paraffin pillar candle with dripping wax and a bright still flame"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "heart_full",
+         "age": "late_20s",
+         "impression": "melancholic",
+         "skin_tone": "fair",
+         "eye_size": "medium",
+         "eye_tilt": "down",
+         "mark": "mole_eye",
+         "expr": "pensive"
+        },
+        "silhouette": {
+         "body": "hourglass",
+         "hair_color": "salt_white"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_wavy",
+           "bangs": "one_eye"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "none"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "외형 — 양초 — 제 몸을 녹여 밝히는 불: 모래시계 몸, 흰 밀랍 머리, 쓸쓸한 인상 · 얼굴 — 20대 후반 · 눈밑 점(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "gaslamp",
+       "ko": "가스등",
+       "en": "gas lamp",
+       "object": {
+        "en": "a Victorian street gas lamp — a cast-iron post with a glass lantern head and a glowing white mantle"
+       },
+       "worlds": [
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "aquiline",
+         "lips": "thin_long",
+         "age": "mid_20s",
+         "impression": "cool",
+         "skin_tone": "olive",
+         "eye_size": "small",
+         "eye_tilt": "up",
+         "mark": "winged_liner",
+         "expr": "calm"
+        },
+        "silhouette": {
+         "body": "tall_statuesque",
+         "hair_color": "plasma_blue"
+        },
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "외형 — 가스등 — 거리를 지키는 푸른 불꽃: 장신, 푸른 불빛 머리, 차가운 미인 · 얼굴 — 20대 중반 · 아이라인(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "arched_thin",
+       "nose": "straight_narrow",
+       "lips": "small_bow",
+       "age": "early_20s",
+       "impression": "innocent",
+       "skin_tone": "porcelain",
+       "eye_size": "large",
+       "eye_tilt": "level",
+       "mark": "blush",
+       "expr": "soft_smile",
+       "eye_color": "gold"
+      },
+      "silhouette": {
+       "body": "busty_slender",
+       "hair_color": "cream"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_straight",
+         "bangs": "parted"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "round_large"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "braids",
+         "bangs": "curtain"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob",
+         "bangs": "side_swept"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "droopy_soft"
+        }
+       }
+      },
+      "why": "밀랍 크림 → 머리, 촛불 금빛 → 눈 · 외형 — 기름 속 빛: 가늘고 풍만한 몸, 맑은 인상, 창백한 피부(촛불에 비친)(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a small glass gas burner with a clean blue flame"
+     }
     }
    ],
    "look": {
@@ -3552,7 +3732,7 @@
       "h",
       "o"
      ],
-     "persona": "산소에서 본 물 — 땅에 고여 생명을 품는 물. 바다·강·우물·마실 물. 수소나라의 물 가문과 같은 물질, 다른 사람.",
+     "persona": "산소에서 본 물 — 땅에 고여 생명을 품는 물. 바다·샘·빙하·연못. 수소나라의 물 가문과 같은 물질, 다른 사람 — 저쪽 주민(물병·우물·비·증기)과 겹치지 않는다.",
      "traits": {
       "ko": "바다와 강, 우물과 마실 물 — 고이고 흐르는 물",
       "en": "water as it lives on the ground: sea, river, well and drinking water — deep blues and greens, flowing fabric, reflected light; the holding, life-giving side of water"
@@ -3561,59 +3741,6 @@
       "en": "deep sea blue, river green, white foam, sand"
      },
      "citizens": [
-      {
-       "key": "well",
-       "ko": "우물",
-       "en": "well",
-       "object": {
-        "en": "a stone well with a wooden roof, a rope and a bucket"
-       },
-       "worlds": [
-        "fantasy",
-        "steampunk"
-       ],
-       "look": {
-        "face": {
-         "brows": "soft_round",
-         "nose": "straight_narrow",
-         "lips": "full_wide",
-         "age": "late_20s",
-         "impression": "mature",
-         "skin_tone": "warm_beige",
-         "eye_size": "medium",
-         "eye_tilt": "level",
-         "mark": "freckles",
-         "expr": "pensive"
-        },
-        "silhouette": {
-         "body": "hourglass",
-         "hair_color": "stone_grey"
-        },
-        "worlds": {
-         "fantasy": {
-          "silhouette": {
-           "hair": "long_wavy",
-           "bangs": "choppy"
-          },
-          "face": {
-           "face_shape": "oval",
-           "eyes": "deep_set"
-          }
-         },
-         "steampunk": {
-          "silhouette": {
-           "hair": "braids",
-           "bangs": "side_swept"
-          },
-          "face": {
-           "face_shape": "heart",
-           "eyes": "almond_wide"
-          }
-         }
-        },
-        "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 우물(땅의 물) — 깊이 고인 물: 모래시계 몸, 깊은 눈, 물결 머리(근본을 따라가지 않는다, 사용자 2026-11-01) · 얼굴 — 20대 후반 · 성숙 · 따뜻한 베이지 피부 · 주근깨 · 표정 pensive(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」)"
-       }
-      },
       {
        "key": "sea",
        "ko": "바다",
@@ -3676,6 +3803,175 @@
          }
         },
         "why": "머리색은 물건의 재질 색, 눈 색은 가문 것(2026-10-31). 체형·헤어스타일·얼굴형·눈 모양·눈썹·코·입은 주민 열쇠로 가문주와도 근본과도 다르게 돌린다(2026-11-01, lib/prompt-element.js lookOf) · 외형 — 바다 — 파도 망토, 조개, 물마루: 풍만한 몸, 파도치는 머리(근본을 따라가지 않는다, 사용자 2026-11-01) · 얼굴 — 20대 중반 · 화려 · 구릿빛 피부 · 윤기 나는 입술 · 표정 confident(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」)"
+       }
+      },
+      {
+       "key": "spring",
+       "ko": "샘",
+       "en": "spring",
+       "object": {
+        "en": "a mountain spring welling up between mossy stones into a clear pool, with a carved stone spout"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "small_bow",
+         "age": "early_20s",
+         "impression": "innocent",
+         "skin_tone": "fair",
+         "eye_size": "large",
+         "eye_tilt": "level",
+         "mark": "blush",
+         "expr": "curious"
+        },
+        "silhouette": {
+         "body": "busty_slender",
+         "hair_color": "glass_clear"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "round_large"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "외형 — 샘 — 돌 틈에서 솟는 맑은 물: 가늘고 풍만한 몸, 맑은 유리빛 머리 · 얼굴 — 스물 남짓 · 맑은 · 발그레한 볼 · 호기심(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       },
+       "notes": {
+        "steampunk": {
+         "en": "a Victorian mineral spa built around the spring: a glass-domed pump room, brass taps and tiled basins"
+        }
+       }
+      },
+      {
+       "key": "glacier",
+       "ko": "빙하",
+       "en": "glacier",
+       "object": {
+        "en": "a glacier — a deep blue-white river of ancient ice with crevasses and meltwater streams"
+       },
+       "worlds": [
+        "fantasy",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "straight_narrow",
+         "lips": "thin_long",
+         "age": "early_30s",
+         "impression": "stoic",
+         "skin_tone": "porcelain",
+         "eye_size": "small",
+         "eye_tilt": "level",
+         "mark": "bare",
+         "expr": "calm"
+        },
+        "silhouette": {
+         "body": "tall_statuesque",
+         "hair_color": "ice_white"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "none"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "deep_set"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "외형 — 빙하 — 천천히 흐르는 오래된 얼음: 장신, 얼음빛 머리, 무표정 · 얼굴 — 30대 초반 · 무표정 · 창백한 피부 · 맨얼굴(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       },
+       "notes": {
+        "mecha": {
+         "en": "a polar ice-core research station: drill towers, sample cylinders of blue ice, cold-weather plated suit"
+        }
+       }
+      },
+      {
+       "key": "pond",
+       "ko": "연꽃 연못",
+       "en": "lotus pond",
+       "object": {
+        "en": "a still lotus pond with broad round leaves, pink lotus flowers and a small arched footbridge"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "upturned",
+         "lips": "heart_full",
+         "age": "mid_20s",
+         "impression": "elegant",
+         "skin_tone": "warm_beige",
+         "eye_size": "medium",
+         "eye_tilt": "down",
+         "mark": "gloss",
+         "expr": "gentle"
+        },
+        "silhouette": {
+         "body": "hourglass",
+         "hair_color": "sunset_pink"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "updo_bun",
+           "bangs": "parted"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_wavy",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "외형 — 연꽃 연못 — 고요한 물 위의 꽃: 모래시계 몸, 연분홍 머리 · 얼굴 — 20대 중반 · 우아 · 윤기 나는 입술 · 온화(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
        }
       }
      ],
@@ -3902,6 +4198,859 @@
      },
      "hold": {
       "en": "a small brass oxygen mask with a clear tube"
+     }
+    },
+    {
+     "key": "rust",
+     "ko": "녹",
+     "en": "Rust",
+     "elements": [
+      "fe",
+      "o"
+     ],
+     "persona": "산소에서 본 녹 — 쇠를 먹어 들어가는 쪽. 바닷바람과 비가 쇠를 붉게 물들이고, 땅과 별을 붉게 만든다. 철나라의 녹 가문과 같은 물질, 다른 사람 — 저쪽이 스러지는 쪽이면 이쪽은 먹어 들어가는 쪽.",
+     "traits": {
+      "ko": "쇠를 먹어 들어가는 산화 — 붉은 흙, 화성의 먼지, 바닷바람",
+      "en": "oxidation as an active, creeping force: salt wind and rain eating into iron, red ochre earth, the red dust of Mars — bloom-like orange-red patina spreading over blue-grey metal, flaking edges, mineral reds and browns; the hungry, transforming side of oxygen"
+     },
+     "palette": {
+      "en": "ochre red, iron-oxide orange, sea-salt white, weathered blue-grey"
+     },
+     "citizens": [
+      {
+       "key": "ochre",
+       "ko": "황토 안료",
+       "en": "red ochre",
+       "object": {
+        "en": "a clay pot of red ochre pigment with a daubed red handprint and a bristle brush"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "low_heavy",
+         "nose": "broad_soft",
+         "lips": "wide_smile",
+         "age": "late_20s",
+         "impression": "rugged",
+         "skin_tone": "bronze",
+         "eye_size": "medium",
+         "eye_tilt": "level",
+         "mark": "freckles",
+         "expr": "amused"
+        },
+        "silhouette": {
+         "body": "curvy",
+         "hair_color": "terracotta"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "braids",
+           "bangs": "straight"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "외형 — 황토 안료 — 가장 오래된 붉은 물감(산화철): 굴곡진 몸, 흙빛 머리, 거친 인상 · 얼굴 — 20대 후반 · 구릿빛 피부 · 주근깨(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "mars",
+       "ko": "화성",
+       "en": "Mars",
+       "object": {
+        "en": "the planet Mars — a rust-red disc with swirling dust storms, white polar caps and two tiny moons"
+       },
+       "worlds": [
+        "fantasy",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "straight_narrow",
+         "lips": "small_bow",
+         "age": "mid_20s",
+         "impression": "cool",
+         "skin_tone": "fair",
+         "eye_size": "large",
+         "eye_tilt": "up",
+         "mark": "smoky",
+         "expr": "unimpressed"
+        },
+        "silhouette": {
+         "body": "hourglass",
+         "hair_color": "bright_red"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_wavy",
+           "bangs": "none"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "twin_tails",
+           "bangs": "straight"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "round_large"
+          }
+         }
+        },
+        "why": "외형 — 화성 — 녹슨 먼지로 붉은 별(태양 주민처럼 천체를 사람으로): 모래시계 몸, 붉은 머리, 차가운 인상 · 얼굴 — 20대 중반 · 스모키(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "anchor",
+       "ko": "녹슨 닻",
+       "en": "rusted anchor",
+       "object": {
+        "en": "a heavy rusted ship's anchor with flukes and a salt-crusted iron chain"
+       },
+       "worlds": [
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "aquiline",
+         "lips": "thin_long",
+         "age": "early_30s",
+         "impression": "stoic",
+         "skin_tone": "golden_tan",
+         "eye_size": "small",
+         "eye_tilt": "down",
+         "mark": "scar",
+         "expr": "serious"
+        },
+        "silhouette": {
+         "body": "broad_strong",
+         "hair_color": "verdigris"
+        },
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "deep_set"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "외형 — 녹슨 닻 — 바닷바람이 먹어 들어간 쇠: 건장한 몸, 소금기 밴 청록 머리, 흉터 · 얼굴 — 30대 초반 · 무표정 · 그은 피부(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "angled_sharp",
+       "nose": "aquiline",
+       "lips": "full_wide",
+       "age": "late_20s",
+       "impression": "fierce",
+       "skin_tone": "olive",
+       "eye_size": "medium",
+       "eye_tilt": "up",
+       "mark": "dark_lip",
+       "expr": "provocative",
+       "eye_color": "coral"
+      },
+      "silhouette": {
+       "body": "voluptuous",
+       "hair_color": "rust_brown"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "voluminous",
+         "bangs": "one_eye"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "side_swept",
+         "bangs": "parted"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "deep_set"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob",
+         "bangs": "choppy"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "almond_wide"
+        }
+       }
+      },
+      "why": "coral → 눈(먹어 들어가는 붉은 빛), 녹슨 갈색 → 머리 · 외형 — 먹어 들어가는 녹: 풍만한 몸, 날 선 눈썹 · 매부리코 · 사나운 인상, 짙은 입술 · 도발적인 표정(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a lump of red ochre and a small rusted iron ring"
+     }
+    },
+    {
+     "key": "blood",
+     "ko": "피",
+     "en": "Blood",
+     "elements": [
+      "fe",
+      "o"
+     ],
+     "persona": "산소에서 본 피 — 숨을 싣고 온몸을 도는 붉은 강. 철나라의 피 가문과 같은 물질, 다른 사람 — 저쪽이 피를 붉게 하는 철이면 이쪽은 그 피가 나르는 숨.",
+     "traits": {
+      "ko": "숨을 싣고 도는 붉은 강 — 맥박, 갈라지는 핏줄, 붉은 뺨",
+      "en": "blood as a living current carrying breath: bright arterial scarlet, branching vessel patterns like river deltas, a steady pulse, warm flushed pinks against deep venous blue; the circulating, life-carrying side of oxygen"
+     },
+     "palette": {
+      "en": "arterial scarlet, venous blue, pulse pink, pale bone"
+     },
+     "citizens": [
+      {
+       "key": "heart",
+       "ko": "심장",
+       "en": "heart",
+       "object": {
+        "en": "an anatomical heart rendered as a ruby-and-gold reliquary locket, its vessels worked as gold filigree"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "small_button",
+         "lips": "heart_full",
+         "age": "late_20s",
+         "impression": "glamorous",
+         "skin_tone": "olive",
+         "eye_size": "medium",
+         "eye_tilt": "up",
+         "mark": "red_lip",
+         "expr": "sensual"
+        },
+        "silhouette": {
+         "body": "voluptuous",
+         "hair_color": "wine_red"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "voluminous",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_wavy",
+           "bangs": "one_eye"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "droopy_soft"
+          }
+         }
+        },
+        "why": "외형 — 심장 — 뛰는 붉은 보석함: 풍만한 몸, 포도주빛 머리, 붉은 입술 · 얼굴 — 20대 후반 · 화려(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "cell",
+       "ko": "적혈구",
+       "en": "red blood cell",
+       "object": {
+        "en": "a red blood cell — a soft biconcave scarlet disc, drifting in a stream of many"
+       },
+       "worlds": [
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "small_bow",
+         "age": "early_20s",
+         "impression": "cute",
+         "skin_tone": "warm_beige",
+         "eye_size": "large",
+         "eye_tilt": "down",
+         "mark": "blush",
+         "expr": "curious"
+        },
+        "silhouette": {
+         "body": "petite",
+         "hair_color": "bright_red"
+        },
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob",
+           "bangs": "straight"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "twin_tails",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "droopy_soft"
+          }
+         }
+        },
+        "why": "외형 — 적혈구 — 작고 동그란 붉은 원반: 아담한 몸, 동글한 얼굴, 일자 앞머리 · 얼굴 — 스물 남짓 · 귀여운(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       },
+       "notes": {
+        "steampunk": {
+         "en": "seen as if under a brass Victorian microscope: lens rings, slide glass and specimen labels as costume motifs"
+        }
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "soft_round",
+       "nose": "upturned",
+       "lips": "heart_full",
+       "age": "early_20s",
+       "impression": "cheerful",
+       "skin_tone": "fair",
+       "eye_size": "large",
+       "eye_tilt": "level",
+       "mark": "blush",
+       "expr": "laughing_open",
+       "eye_color": "azure"
+      },
+      "silhouette": {
+       "body": "curvy_athletic",
+       "hair_color": "crimson"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy",
+         "bangs": "curtain"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "round_large"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "ponytail",
+         "bangs": "straight"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "almond_wide"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "side_swept",
+         "bangs": "parted"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "narrow_upturned"
+        }
+       }
+      },
+      "why": "진홍 → 머리, 정맥의 푸름 → 눈 · 외형 — 숨을 나르는 피: 탄탄하고 굴곡진 몸, 발그레한 볼, 밝은 웃음(맥박이 뛰는 쪽)(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a glass vial of bright red blood on a silver chain"
+     }
+    },
+    {
+     "key": "fire",
+     "ko": "불",
+     "en": "Fire",
+     "elements": [
+      "c",
+      "o"
+     ],
+     "persona": "산소에서 본 불 — 태우는 쪽. 바람을 불어넣어 불을 살리고 키운다. 탄소나라의 불 가문과 같은 물질(연소), 다른 사람 — 저쪽이 타는 땔감이면 이쪽은 불을 살리는 숨.",
+     "traits": {
+      "ko": "불을 살리는 숨 — 풀무, 횃불, 그어 붙이는 성냥",
+      "en": "combustion as the breath that feeds it: roaring draft, bellows and blown air, white-hot flame cores, flaring torches and struck sparks; pale blue flame bases rising into gold and white; the feeding, fanning side of oxygen"
+     },
+     "palette": {
+      "en": "flame gold, blue flame base, white heat, soot"
+     },
+     "citizens": [
+      {
+       "key": "bellows",
+       "ko": "풀무",
+       "en": "bellows",
+       "object": {
+        "en": "a blacksmith's leather-and-wood bellows with a brass nozzle, blowing a spray of sparks"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "broad_soft",
+         "lips": "full_wide",
+         "age": "late_20s",
+         "impression": "rugged",
+         "skin_tone": "golden_tan",
+         "eye_size": "medium",
+         "eye_tilt": "level",
+         "mark": "scar",
+         "expr": "determined"
+        },
+        "silhouette": {
+         "body": "curvy",
+         "hair_color": "copper"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "braids",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "외형 — 풀무 — 불에 숨을 불어넣는 가죽 허파: 굴곡진 몸, 구리빛 머리, 거친 인상 · 얼굴 — 20대 후반 · 흉터(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "torch",
+       "ko": "횃불",
+       "en": "torch",
+       "object": {
+        "en": "a flaming torch of oil-soaked cloth wrapped on a wooden shaft, throwing a tall bright flame"
+       },
+       "worlds": [
+        "fantasy",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "straight_narrow",
+         "lips": "small_bow",
+         "age": "early_30s",
+         "impression": "regal",
+         "skin_tone": "olive",
+         "eye_size": "medium",
+         "eye_tilt": "up",
+         "mark": "red_lip",
+         "expr": "proud"
+        },
+        "silhouette": {
+         "body": "tall_statuesque",
+         "hair_color": "flame_orange"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "parted"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "deep_set"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "bob",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "외형 — 횃불 — 높이 들어 길을 밝히는 불: 장신, 위엄, 붉은 입술 · 얼굴 — 30대 초반 · 올리브 피부(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       },
+       "notes": {
+        "mecha": {
+         "en": "the torch becomes an oxy-fuel cutting blowtorch with a sharp blue flame, hoses and twin gas tanks"
+        }
+       }
+      },
+      {
+       "key": "match",
+       "ko": "성냥",
+       "en": "match",
+       "object": {
+        "en": "a box of safety matches with one match just struck and flaring at its red head"
+       },
+       "worlds": [
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "upturned",
+         "lips": "small_bow",
+         "age": "early_20s",
+         "impression": "cute",
+         "skin_tone": "porcelain",
+         "eye_size": "large",
+         "eye_tilt": "down",
+         "mark": "blush",
+         "expr": "surprised"
+        },
+        "silhouette": {
+         "body": "petite",
+         "hair_color": "bright_red"
+        },
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob",
+           "bangs": "straight"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "twin_tails",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "droopy_soft"
+          }
+         }
+        },
+        "why": "외형 — 성냥 — 작고 가는 몸, 붉은 머리(성냥 머리): 아담한 몸, 귀여운 인상, 놀란 표정(확 붙는 순간) · 얼굴 — 스물 남짓(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "angled_sharp",
+       "nose": "small_button",
+       "lips": "heart_full",
+       "age": "mid_20s",
+       "impression": "fierce",
+       "skin_tone": "fair",
+       "eye_size": "large",
+       "eye_tilt": "up",
+       "mark": "winged_liner",
+       "expr": "confident",
+       "eye_color": "sky_blue"
+      },
+      "silhouette": {
+       "body": "hourglass",
+       "hair_color": "golden_blonde"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy",
+         "bangs": "none"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "twin_tails",
+         "bangs": "straight"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "round_large"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "side_swept",
+         "bangs": "one_eye"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "almond_wide"
+        }
+       }
+      },
+      "why": "불꽃 금빛 → 머리, 푸른 불꽃 밑동 → 눈 · 외형 — 불을 키우는 바람: 모래시계 몸, 사나운 인상, 아이라인, 자신감(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a small hand bellows puffing a flame bright"
+     }
+    },
+    {
+     "key": "wood",
+     "ko": "숲",
+     "en": "Forest",
+     "elements": [
+      "c",
+      "h",
+      "o"
+     ],
+     "persona": "산소에서 본 나무 — 숨 쉬는 숲. 잎이 빛을 받아 산소를 내쉬고, 오래된 나무가 숲을 품는다. 탄소나라의 나무 가문과 같은 물질, 다른 사람 — 저쪽이 베어 낸 결이면 이쪽은 살아 숨 쉬는 숲.",
+     "traits": {
+      "ko": "살아 숨 쉬는 숲 — 햇빛 받는 잎, 이끼, 고목, 꽃가루",
+      "en": "wood as a living, breathing forest: sunlit leaves exhaling air, moss and ferns, towering old trunks, dappled green light and drifting pollen; layered greens from lime to deep moss with warm bark browns; the living, breathing side of oxygen"
+     },
+     "palette": {
+      "en": "leaf green, moss, sunlit lime, bark brown"
+     },
+     "citizens": [
+      {
+       "key": "leaf",
+       "ko": "나뭇잎",
+       "en": "leaf",
+       "object": {
+        "en": "a large green leaf with branching veins, glowing translucent where the sun shines through it"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "small_button",
+         "lips": "small_bow",
+         "age": "early_20s",
+         "impression": "innocent",
+         "skin_tone": "fair",
+         "eye_size": "large",
+         "eye_tilt": "level",
+         "mark": "bare",
+         "expr": "soft_smile"
+        },
+        "silhouette": {
+         "body": "busty_slender",
+         "hair_color": "grass_green"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "round_large"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "twin_tails",
+           "bangs": "straight"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "외형 — 나뭇잎 — 햇빛에 비치는 얇은 초록: 가늘고 풍만한 몸, 맑은 인상, 맨얼굴(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       },
+       "notes": {
+        "mecha": {
+         "en": "a hydroponic greenhouse ring on a space station: leaf-shaped solar panels and vein-like light lines"
+        }
+       }
+      },
+      {
+       "key": "oldtree",
+       "ko": "고목",
+       "en": "ancient tree",
+       "object": {
+        "en": "an ancient gnarled oak with a hollow trunk, spreading roots, hanging moss and a wide crown"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "low_heavy",
+         "nose": "aquiline",
+         "lips": "thin_long",
+         "age": "early_30s",
+         "impression": "stoic",
+         "skin_tone": "bronze",
+         "eye_size": "small",
+         "eye_tilt": "down",
+         "mark": "scar",
+         "expr": "calm"
+        },
+        "silhouette": {
+         "body": "broad_strong",
+         "hair_color": "cedar"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "voluminous",
+           "bangs": "none"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "deep_set"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "long_wavy",
+           "bangs": "one_eye"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "외형 — 고목 — 숲을 품은 오래된 나무: 건장한 몸, 무표정, 흉터(갈라진 껍질) · 얼굴 — 30대 초반 · 구릿빛(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "soft_round",
+       "nose": "upturned",
+       "lips": "heart_full",
+       "age": "early_20s",
+       "impression": "cheerful",
+       "skin_tone": "olive",
+       "eye_size": "large",
+       "eye_tilt": "down",
+       "mark": "freckles",
+       "expr": "playful",
+       "eye_color": "emerald"
+      },
+      "silhouette": {
+       "body": "hourglass",
+       "hair_color": "grass_green"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy",
+         "bangs": "side_swept"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "round_large"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "braids",
+         "bangs": "parted"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "droopy_soft"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "ponytail",
+         "bangs": "straight"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "almond_wide"
+        }
+       }
+      },
+      "why": "잎 초록 → 머리, 에메랄드 → 눈 · 외형 — 숨 쉬는 숲: 모래시계 몸, 명랑하고 장난스러운 인상, 주근깨(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a fresh green leafy sprig beaded with dew"
      }
     }
    ],
@@ -4370,6 +5519,796 @@
      },
      "hold": {
       "en": "a graphite pencil and a sketch scrap"
+     }
+    },
+    {
+     "key": "steel",
+     "ko": "강철",
+     "en": "Steel",
+     "elements": [
+      "fe",
+      "c"
+     ],
+     "persona": "탄소에서 본 강철 — 쇠를 단단하게 만드는 한 줌의 숯. 숯가마와 무쇠, 물결무늬 칼. 철나라의 강철 가문과 같은 물질, 다른 사람 — 저쪽이 쇠라면 이쪽은 그 속에 스민 탄소.",
+     "traits": {
+      "ko": "쇠 속에 스민 탄소 — 숯가마, 무쇠의 검은 결, 물결무늬 칼",
+      "en": "carbon hidden inside iron: charcoal kilns and black soot, the dark grain of cast iron, watery folded-steel patterns on a blade, quench smoke; matte black and graphite set against bright steel edges; the hardening, tempering side of carbon"
+     },
+     "palette": {
+      "en": "charcoal black, soot grey, cast-iron dark, a cold steel edge"
+     },
+     "citizens": [
+      {
+       "key": "charcoal",
+       "ko": "숯",
+       "en": "charcoal",
+       "object": {
+        "en": "a kiln of hardwood charcoal — glossy black sticks cracked with ember-red glow, a jute sack beside it"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "low_heavy",
+         "nose": "broad_soft",
+         "lips": "full_wide",
+         "age": "mid_20s",
+         "impression": "languid",
+         "skin_tone": "golden_tan",
+         "eye_size": "medium",
+         "eye_tilt": "down",
+         "mark": "smoky",
+         "expr": "sleepy"
+        },
+        "silhouette": {
+         "body": "curvy",
+         "hair_color": "soot_black"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_wavy",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids",
+           "bangs": "parted"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "deep_set"
+          }
+         }
+        },
+        "why": "외형 — 숯 — 속이 타는 검은 나무: 굴곡진 몸, 그을음 머리, 나른한 인상, 스모키 · 얼굴 — 20대 중반(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "castpot",
+       "ko": "무쇠솥",
+       "en": "cast-iron pot",
+       "object": {
+        "en": "a heavy black cast-iron cauldron pot with a lid, loop handles and a soot-blackened base"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "broad_soft",
+         "lips": "wide_smile",
+         "age": "late_20s",
+         "impression": "cheerful",
+         "skin_tone": "bronze",
+         "eye_size": "medium",
+         "eye_tilt": "level",
+         "mark": "bare",
+         "expr": "amused"
+        },
+        "silhouette": {
+         "body": "broad_strong",
+         "hair_color": "dark_iron"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "braids",
+           "bangs": "straight"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "almond_wide"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "bob",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "ponytail",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "외형 — 무쇠솥 — 탄소가 많은 무겁고 든든한 쇠: 건장한 몸, 명랑한 인상, 맨얼굴 · 얼굴 — 20대 후반 · 구릿빛 피부(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       },
+       "notes": {
+        "mecha": {
+         "en": "a space-station galley: the pot as a heavy induction cauldron with magnetic clamps"
+        }
+       }
+      },
+      {
+       "key": "damascus",
+       "ko": "물결무늬 단검",
+       "en": "Damascus dagger",
+       "object": {
+        "en": "a Damascus-steel dagger whose blade shows flowing watery layered patterns, with a dark wood grip"
+       },
+       "worlds": [
+        "fantasy",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "angled_sharp",
+         "nose": "aquiline",
+         "lips": "thin_long",
+         "age": "late_20s",
+         "impression": "cool",
+         "skin_tone": "porcelain",
+         "eye_size": "small",
+         "eye_tilt": "up",
+         "mark": "scar",
+         "expr": "focused"
+        },
+        "silhouette": {
+         "body": "busty_slender",
+         "hair_color": "mirror_steel"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "side_swept",
+           "bangs": "one_eye"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "narrow_upturned"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "none"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         }
+        },
+        "why": "외형 — 물결무늬 단검 — 접어 두드린 강철의 물결: 가늘고 풍만한 몸, 거울빛 머리, 흉터 · 얼굴 — 차가운 미인(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "angled_sharp",
+       "nose": "straight_narrow",
+       "lips": "thin_long",
+       "age": "early_30s",
+       "impression": "sharp",
+       "skin_tone": "warm_beige",
+       "eye_size": "small",
+       "eye_tilt": "up",
+       "mark": "winged_liner",
+       "expr": "cold_smile",
+       "eye_color": "ember"
+      },
+      "silhouette": {
+       "body": "tall_statuesque",
+       "hair_color": "cast_iron_black"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_straight",
+         "bangs": "none"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "monolid_long"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "ponytail",
+         "bangs": "side_swept"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "short_crop",
+         "bangs": "choppy"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "deep_set"
+        }
+       }
+      },
+      "why": "무쇠 검정 → 머리, 숯불 → 눈 · 외형 — 쇠를 벼리는 탄소: 장신, 날카로운 인상, 아이라인, 차가운 미소(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a lump of glowing charcoal held in iron tongs"
+     }
+    },
+    {
+     "key": "fire",
+     "ko": "불",
+     "en": "Fire",
+     "elements": [
+      "c",
+      "o"
+     ],
+     "persona": "탄소에서 본 불 — 타는 쪽. 장작과 석탄, 숯불이 제 몸을 내주어 빛과 열이 된다. 산소나라의 불 가문과 같은 물질(연소), 다른 사람 — 저쪽이 불을 살리는 바람이면 이쪽은 타는 땔감.",
+     "traits": {
+      "ko": "제 몸을 내주어 타는 땔감 — 장작, 석탄, 숯불, 재",
+      "en": "combustion as the fuel giving itself up: split firewood, black coal glowing from within, embers and drifting ash, smoke curling upward; charred black and ash grey cracked with deep orange glow; the burning, self-giving side of carbon"
+     },
+     "palette": {
+      "en": "ember orange, coal black, ash grey, smoke white"
+     },
+     "citizens": [
+      {
+       "key": "campfire",
+       "ko": "모닥불",
+       "en": "campfire",
+       "object": {
+        "en": "a campfire of crossed split logs with leaping flames, glowing embers and a ring of stones"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "upturned",
+         "lips": "wide_smile",
+         "age": "early_20s",
+         "impression": "boyish",
+         "skin_tone": "bronze",
+         "eye_size": "large",
+         "eye_tilt": "up",
+         "mark": "freckles",
+         "expr": "laughing_open"
+        },
+        "silhouette": {
+         "body": "curvy_athletic",
+         "hair_color": "bronze"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "ponytail",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "short_crop",
+           "bangs": "side_swept"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "외형 — 모닥불 — 둘러앉는 불: 탄탄하고 굴곡진 몸, 말괄량이, 주근깨, 활짝 웃음 · 얼굴 — 스물 남짓(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "coal",
+       "ko": "석탄",
+       "en": "coal",
+       "object": {
+        "en": "a lump of black coal glowing at its cracks, piled in a miner's iron scuttle"
+       },
+       "worlds": [
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "low_heavy",
+         "nose": "aquiline",
+         "lips": "thin_long",
+         "age": "early_30s",
+         "impression": "mature",
+         "skin_tone": "deep_brown",
+         "eye_size": "small",
+         "eye_tilt": "level",
+         "mark": "smoky",
+         "expr": "determined"
+        },
+        "silhouette": {
+         "body": "hourglass",
+         "hair_color": "soot_black"
+        },
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "side_swept",
+           "bangs": "parted"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "none"
+          },
+          "face": {
+           "face_shape": "diamond",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "외형 — 석탄 — 땅속에서 눌린 검은 불씨: 모래시계 몸, 그을음 머리, 성숙 · 얼굴 — 30대 초반 · 짙은 갈색 피부(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "soft_round",
+       "nose": "straight_narrow",
+       "lips": "full_wide",
+       "age": "mid_20s",
+       "impression": "melancholic",
+       "skin_tone": "golden_tan",
+       "eye_size": "medium",
+       "eye_tilt": "down",
+       "mark": "mole_eye",
+       "expr": "wistful",
+       "eye_color": "amber"
+      },
+      "silhouette": {
+       "body": "voluptuous",
+       "hair_color": "flame_orange"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "voluminous",
+         "bangs": "side_swept"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "droopy_soft"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "long_wavy",
+         "bangs": "curtain"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "deep_set"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob",
+         "bangs": "straight"
+        },
+        "face": {
+         "face_shape": "round",
+         "eyes": "almond_wide"
+        }
+       }
+      },
+      "why": "불꽃 주황 → 머리, 호박빛 → 눈 · 외형 — 제 몸을 내주는 땔감: 풍만한 몸, 쓸쓸한 인상(타 없어지는 쪽), 눈밑 점(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a burning ember cupped in a small iron brazier"
+     }
+    },
+    {
+     "key": "oil",
+     "ko": "기름",
+     "en": "Oil",
+     "elements": [
+      "c",
+      "h"
+     ],
+     "persona": "탄소에서 본 기름 — 땅속 깊은 검은 금. 석유와 아스팔트, 등잔불. 수소나라의 기름 가문과 같은 물질(탄화수소), 다른 사람 — 저쪽이 기름 속 가벼움이면 이쪽은 그 검은 무게.",
+     "traits": {
+      "ko": "땅속 깊은 검은 금 — 원유, 유정탑, 드럼통, 등잔불",
+      "en": "hydrocarbons as black gold from deep underground: glossy crude oil with a rainbow film, drilling derricks, barrels, tar and asphalt, lamp light; slick black with iridescent purple-green sheen; the heavy, dark-rich side of carbon"
+     },
+     "palette": {
+      "en": "crude black, rainbow oil sheen, tar brown, lamp amber"
+     },
+     "citizens": [
+      {
+       "key": "oillamp",
+       "ko": "석유등",
+       "en": "kerosene lamp",
+       "object": {
+        "en": "a glass-chimney kerosene lamp with a brass base, a wick knob and a warm steady flame"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "soft_round",
+         "nose": "small_button",
+         "lips": "small_bow",
+         "age": "mid_20s",
+         "impression": "soft",
+         "skin_tone": "warm_beige",
+         "eye_size": "medium",
+         "eye_tilt": "down",
+         "mark": "gloss",
+         "expr": "gentle"
+        },
+        "silhouette": {
+         "body": "busty_slender",
+         "hair_color": "old_brass"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "droopy_soft"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "side_swept",
+           "bangs": "parted"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "외형 — 석유등 — 밤을 지키는 따뜻한 불: 가늘고 풍만한 몸, 황동빛 머리, 온화 · 얼굴 — 20대 중반(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "drum",
+       "ko": "석유 드럼통",
+       "en": "oil drum",
+       "object": {
+        "en": "a steel oil drum barrel with a dented rim, hazard stripes and glossy black oil spilled over its lip"
+       },
+       "worlds": [
+        "steampunk",
+        "mecha"
+       ],
+       "look": {
+        "face": {
+         "brows": "straight_thick",
+         "nose": "broad_soft",
+         "lips": "wide_smile",
+         "age": "early_20s",
+         "impression": "boyish",
+         "skin_tone": "deep_brown",
+         "eye_size": "medium",
+         "eye_tilt": "up",
+         "mark": "bare",
+         "expr": "mischievous"
+        },
+        "silhouette": {
+         "body": "curvy_athletic",
+         "hair_color": "cast_iron_black"
+        },
+        "worlds": {
+         "steampunk": {
+          "silhouette": {
+           "hair": "ponytail",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "square_soft",
+           "eyes": "round_large"
+          }
+         },
+         "mecha": {
+          "silhouette": {
+           "hair": "short_crop",
+           "bangs": "straight"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "narrow_upturned"
+          }
+         }
+        },
+        "why": "외형 — 석유 드럼통 — 작업장의 든든한 통: 탄탄하고 굴곡진 몸, 말괄량이, 맨얼굴 · 얼굴 — 짙은 갈색 피부(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "arched_thin",
+       "nose": "aquiline",
+       "lips": "full_wide",
+       "age": "late_20s",
+       "impression": "glamorous",
+       "skin_tone": "olive",
+       "eye_size": "medium",
+       "eye_tilt": "up",
+       "mark": "dark_lip",
+       "expr": "smug",
+       "eye_color": "violet"
+      },
+      "silhouette": {
+       "body": "voluptuous",
+       "hair_color": "soot_black"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "long_wavy",
+         "bangs": "side_swept"
+        },
+        "face": {
+         "face_shape": "diamond",
+         "eyes": "almond_wide"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "voluminous",
+         "bangs": "none"
+        },
+        "face": {
+         "face_shape": "heart",
+         "eyes": "narrow_upturned"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "long_straight",
+         "bangs": "one_eye"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "monolid_long"
+        }
+       }
+      },
+      "why": "원유의 검정 → 머리, 기름막의 보랏빛 → 눈 · 외형 — 검은 금: 풍만한 몸, 화려한 인상, 짙은 입술, 우쭐한 미소(부를 쥔 쪽)(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a small glass flask of crude oil with a rainbow sheen"
+     }
+    },
+    {
+     "key": "wood",
+     "ko": "나무",
+     "en": "Wood",
+     "elements": [
+      "c",
+      "h",
+      "o"
+     ],
+     "persona": "탄소에서 본 나무 — 베어 내 쓰는 나무. 목재와 종이, 통과 숯이 되는 몸. 산소나라의 숲 가문과 같은 물질, 다른 사람 — 저쪽이 숨 쉬는 숲이면 이쪽은 베어 낸 결.",
+     "traits": {
+      "ko": "베어 낸 결 — 목재, 나이테, 종이, 통, 톱밥",
+      "en": "wood as worked material: planed timber with visible grain and growth rings, paper and scrolls, coopered barrels, carved joints and curls of sawdust; warm honey browns, pale birch and dark walnut with ink black; the shaped, made side of carbon"
+     },
+     "palette": {
+      "en": "honey oak, walnut brown, pale birch, ink black"
+     },
+     "citizens": [
+      {
+       "key": "scroll",
+       "ko": "종이 두루마리",
+       "en": "paper scroll",
+       "object": {
+        "en": "a long paper scroll on carved wooden rollers, covered in abstract ink brush strokes with no readable writing"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "arched_thin",
+         "nose": "small_button",
+         "lips": "small_bow",
+         "age": "early_20s",
+         "impression": "elegant",
+         "skin_tone": "porcelain",
+         "eye_size": "medium",
+         "eye_tilt": "level",
+         "mark": "bare",
+         "expr": "pensive"
+        },
+        "silhouette": {
+         "body": "slender",
+         "hair_color": "ice_white"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "long_straight",
+           "bangs": "none"
+          },
+          "face": {
+           "face_shape": "long",
+           "eyes": "monolid_long"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "side_swept",
+           "bangs": "parted"
+          },
+          "face": {
+           "face_shape": "oval",
+           "eyes": "almond_wide"
+          }
+         }
+        },
+        "why": "외형 — 종이 두루마리 — 얇고 흰 종이: 슬렌더, 흰 머리, 우아, 맨얼굴 · 얼굴 — 스물 남짓(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      },
+      {
+       "key": "barrel",
+       "ko": "나무통",
+       "en": "oak barrel",
+       "object": {
+        "en": "a coopered oak barrel bound with iron hoops, a wooden tap and a branded lid"
+       },
+       "worlds": [
+        "fantasy",
+        "steampunk"
+       ],
+       "look": {
+        "face": {
+         "brows": "low_heavy",
+         "nose": "broad_soft",
+         "lips": "wide_smile",
+         "age": "mid_20s",
+         "impression": "cheerful",
+         "skin_tone": "golden_tan",
+         "eye_size": "large",
+         "eye_tilt": "level",
+         "mark": "blush",
+         "expr": "laughing_open"
+        },
+        "silhouette": {
+         "body": "voluptuous",
+         "hair_color": "rust_brown"
+        },
+        "worlds": {
+         "fantasy": {
+          "silhouette": {
+           "hair": "voluminous",
+           "bangs": "choppy"
+          },
+          "face": {
+           "face_shape": "round",
+           "eyes": "round_large"
+          }
+         },
+         "steampunk": {
+          "silhouette": {
+           "hair": "braids",
+           "bangs": "curtain"
+          },
+          "face": {
+           "face_shape": "heart",
+           "eyes": "droopy_soft"
+          }
+         }
+        },
+        "why": "외형 — 나무통 — 둥글고 넉넉한 통(술창고): 풍만한 몸, 명랑한 인상, 발그레한 볼 · 얼굴 — 그은 피부(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+       }
+      }
+     ],
+     "look": {
+      "face": {
+       "brows": "straight_thick",
+       "nose": "straight_narrow",
+       "lips": "full_wide",
+       "age": "late_20s",
+       "impression": "mature",
+       "skin_tone": "warm_beige",
+       "eye_size": "medium",
+       "eye_tilt": "level",
+       "mark": "freckles",
+       "expr": "calm",
+       "eye_color": "forest_green"
+      },
+      "silhouette": {
+       "body": "curvy",
+       "hair_color": "cedar"
+      },
+      "worlds": {
+       "fantasy": {
+        "silhouette": {
+         "hair": "braids",
+         "bangs": "straight"
+        },
+        "face": {
+         "face_shape": "square_soft",
+         "eyes": "almond_wide"
+        }
+       },
+       "steampunk": {
+        "silhouette": {
+         "hair": "ponytail",
+         "bangs": "side_swept"
+        },
+        "face": {
+         "face_shape": "oval",
+         "eyes": "deep_set"
+        }
+       },
+       "mecha": {
+        "silhouette": {
+         "hair": "bob",
+         "bangs": "curtain"
+        },
+        "face": {
+         "face_shape": "long",
+         "eyes": "narrow_upturned"
+        }
+       }
+      },
+      "why": "삼나무 갈색 → 머리, 숲의 초록 → 눈 · 외형 — 베어 낸 결: 굴곡진 몸, 단정한 성숙, 나뭇결 같은 주근깨(사용자 2026-11-01 「여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 각 원소의 특징을 살려서」)"
+     },
+     "hold": {
+      "en": "a block of planed oak showing its growth rings"
      }
     }
    ],

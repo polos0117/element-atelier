@@ -257,6 +257,15 @@ def check(doc):
                 for o in others:
                     if o not in fe:
                         warns.append("가문 %s — %s 나라의 elements 에 %s 가 없어 도감이 잇지 못한다" % (fk, nk, o))
+    # 같은 물질의 가문은 나라마다 다른 주민 — 그 원소가 그 물질에서 맡는 몫의 물건(사용자 2026-11-01 「수소쪽에는 물 밑에 물병, 우물, 비가 있는데, 산소쪽은 다른 주민을 편성하는 구조로」)
+    cit_at = {}
+    for n in doc.get("nations") or []:
+        for f in n.get("families") or []:
+            for c in f.get("citizens") or []:
+                cit_at.setdefault((f["key"], c.get("key")), []).append(n["key"])
+    for (fk, ck), ns in cit_at.items():
+        if len(ns) > 1:
+            errs.append("가문 %s 의 주민 %r 가 %s 나라에 다 있다 — 같은 물질도 나라마다 다른 주민" % (fk, ck, "·".join(ns)))
     return errs, warns
 
 
