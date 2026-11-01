@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 산소나라 물 가문주 세계 그림 세 장
+- element-atelier-img 의 img/o-water_* — 판타지·스팀펑크·메카 세계 그림 각 한 장을 game_keyart v2와 최신 물 가문주 외형 설계로 생성했다. 사용자 요청대로 일상컷은 제외하고 기존 수소나라 물 그림은 보존했다
+- element-atelier-img 의 records/o-water — 생성기 지시문·설정·설계값, 원본 PNG 및 WebP sha256, 크기·변환 설정과 시각 검수를 기록했다. 원본 PNG는 올리지 않았다
+- data/img.json — 그림 등록 자동화로 산소나라 물 가문주의 세 세계 그림을 등록했다
+
 ## 2026-11-01 · claude · 녹 · 자석 세계 그림 여섯 · 일상컷 서른 다시 그림
 - element-atelier-img 의 img/fe-rust_* · img/fe-magnet_* — 얼굴 설계(나이감 · 인상 · 피부 · 눈 · 표식 · 기본 표정 · 앞머리)와 화풍 v2 로 세계 그림 여섯 장(장면 열쇠는 앞 그림 그대로)을 다시 그리고, 일상컷 서른 장(장면 칸은 앞 컷 그대로)을 새 세계 그림을 참고 그림으로 다시 그렸다. 사용자 「녹이랑 자석은 새설계로 다시 이미지 뽑아줘」 · 「응 올리고 일상컷도 새로 그려줘」 · 「응 올려줘」
 - element-atelier-img 의 records/fe-rust · records/fe-magnet — 새 기록(생성 · 원본 PNG · 참고 그림 sha256), 앞 기록은 history/ 에 그대로. records/replacement.json 에 서른여섯 장의 앞 그림 sha256 · 까닭. 자석 스팀펑크 일상 5번은 첫 안전 거절 뒤 같은 지시문 한 번 더로 됐다. 파일 이름이 같아 data/img.json 은 그대로, 썸네일은 자동화가 다시 만든다
