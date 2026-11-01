@@ -33,7 +33,11 @@ const D = JSON.parse(fs.readFileSync('data/element-design.json', 'utf8'));
 let nLook = 0;
 const checkBox = (where, grp, box, full) => {
   const keys = grp === 'face' ? Object.keys(S.FACE_PARAM) : Object.keys(S.SIL_PARAM);
-  for (const k of Object.keys(box)) { assert(keys.includes(k), where + ' look.' + grp + '.' + k + ' 는 모르는 칸'); assert(S.VOCAB_EN[k] && S.VOCAB_EN[k][box[k]], where + ' look.' + grp + '.' + k + ' = ' + box[k] + ' 는 어휘에 없다'); nLook++; }
+  /* 얼굴 설계 칸(2026-11-01)은 lib/prompt-spec.js FACE_DESIGN 어휘 — 표정은 EXPRESSION_DETAIL */
+  const FD = S.FACE_DESIGN || null, own = grp === 'face' ? ['age', 'impression', 'skin_tone', 'eye_size', 'eye_tilt', 'mark', 'expr'] : ['bangs'];
+  for (const k of Object.keys(box)) {
+    if (own.includes(k)) { assert(FD && (k === 'expr' ? S.EXPRESSION_DETAIL[box[k]] : FD[k][box[k]]), where + ' look.' + grp + '.' + k + ' = ' + box[k] + ' 는 얼굴 설계 어휘에 없다'); nLook++; continue; }
+    assert(keys.includes(k), where + ' look.' + grp + '.' + k + ' 는 모르는 칸'); assert(S.VOCAB_EN[k] && S.VOCAB_EN[k][box[k]], where + ' look.' + grp + '.' + k + ' = ' + box[k] + ' 는 어휘에 없다'); nLook++; }
   if (full) for (const k of keys) assert(box[k], where + ' look.' + grp + '.' + k + ' 가 비었다');
 };
 for (const n of D.nations) {

@@ -13,6 +13,7 @@
 - 나라는 look(face 여섯: face_shape·eyes·brows·nose·lips·eye_color + silhouette 셋: body·hair·hair_color, 값은 lib/look-spec.js VOCAB_EN 의 열쇠 — 어휘 대조는 tests/prompt-element.cjs).
   가문주·주민은 근본을 따라가지 않고 그 물질·물건에서 떠오르는 외형을 다 적는다(2026-11-01) — face 의 brows·nose·lips, silhouette 의 body·hair_color
   (가문주는 eye_color 도, 주민 눈 색은 가문 핏줄), worlds 에 사는 세계마다 hair·face_shape·eyes(세계끼리 서로 다르게). 팔레트 색이 머리·눈 색이 된다(2026-10-30).
+- 얼굴 설계(2026-11-01, 근본 · 가문주 · 주민 모두): face 에 age·impression·skin_tone·eye_size·eye_tilt·mark·expr, 사는 세계마다 silhouette.bangs. 물려받지 않는다.
 - 성질·세계 문장에 한국어가 섞이지 않는다(en 칸). 시각 언어 한 줄이 비어 있으면 그림이 흔들린다 — en 칸은 40자 이상.
 - 가문이 여러 나라에 걸치면(elements 둘 이상) 그 나라들 모두에 같은 열쇠의 가문이 있어야 하는 것은 아니다 — 있으면 도감이 잇는다. 다만 elements 에 적힌 원소는 전부 있어야 한다.
 """
@@ -25,6 +26,8 @@ import roster  # noqa: E402
 
 KEY = re.compile(r"^[a-z0-9]+$")
 LOOK = {"face": ("face_shape", "eyes", "brows", "nose", "lips", "eye_color"), "silhouette": ("body", "hair", "hair_color")}
+# 얼굴 설계 칸(2026-11-01 — 얼굴 느낌이 비슷하게 나왔다) — 있으면 본다. 값 대조는 tests/prompt-element.cjs(lib/prompt-spec.js FACE_DESIGN)
+FACE_DESIGN = {"face": ("age", "impression", "skin_tone", "eye_size", "eye_tilt", "mark", "expr"), "silhouette": ("bangs",)}
 
 
 def check_scenes(where, scenes, need, errs):
@@ -61,7 +64,7 @@ def check_look(where, look, full, errs):
                 errs.append("%s look.%s 가 없다" % (where, grp))
             continue
         for k, v in box.items():
-            if k not in keys:
+            if k not in keys and k not in FACE_DESIGN[grp]:
                 errs.append("%s look.%s 의 %r 는 모르는 칸" % (where, grp, k))
             elif not isinstance(v, str) or not KEY.match(v.replace("_", "")):
                 errs.append("%s look.%s.%s 값은 소문자 열쇠 — %r" % (where, grp, k, v))
@@ -90,11 +93,24 @@ def check_look(where, look, full, errs):
             errs.append(where + " look.worlds — 두 세계가 같은 사람(머리·얼굴형·눈): %s" % sig)
 
 
+def check_face_design(where, look, lived, errs):
+    """얼굴 설계 칸이 다 찼는지(2026-11-01 — 얼굴 느낌이 비슷하게 나왔다): 나이감 · 인상 · 피부 · 눈 크기 · 눈꼬리 · 표식 · 표정, 사는 세계마다 앞머리"""
+    if not isinstance(look, dict):
+        return
+    for k in FACE_DESIGN["face"]:
+        if not (look.get("face") or {}).get(k):
+            errs.append("%s look.face.%s 가 비었다(얼굴 설계)" % (where, k))
+    for w in lived:
+        if not (((look.get("worlds") or {}).get(w) or {}).get("silhouette") or {}).get("bangs"):
+            errs.append("%s look.worlds.%s.silhouette.bangs 가 비었다(앞머리)" % (where, w))
+
+
 def check_designed(where, look, lived, eye, errs):
     """가문주·주민 외형 — 근본을 따라가지 않고 제 물질·물건에서 다 적는다(사용자 2026-11-01). lived 는 사는 세계, eye 는 눈 색까지 적어야 하는지(가문주)"""
     if not isinstance(look, dict):
         errs.append(where + " look 이 없다(제 물질·물건에서 떠오르는 외형)"); return
     check_look(where, look, False, errs)
+    check_face_design(where, look, lived, errs)
     need = {"face": ["brows", "nose", "lips"] + (["eye_color"] if eye else []), "silhouette": ["body", "hair_color"]}
     for grp, keys in need.items():
         for k in keys:
@@ -160,6 +176,7 @@ def check(doc):
         en(here + " traits.en", tr.get("en"))
         en(here + " palette.en", (n.get("palette") or {}).get("en"), 10)
         check_look(here, n.get("look"), True, errs)
+        check_face_design(here, n.get("look"), ("fantasy", "steampunk", "mecha"), errs)
         ws = n.get("worlds") or {}
         for w in worlds:
             if w not in ws:

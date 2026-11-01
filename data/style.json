@@ -24,7 +24,7 @@
   },
   "game_keyart": {
    "name": "게임 키아트 2.5D",
-   "current": "v1",
+   "current": "v2",
    "versions": [
     {
      "v": "v1",
@@ -39,6 +39,17 @@
       "2026-10-30 기본을 game_cgi 로 바꿨다 — 시안 열두 장은 이 열쇠로 등록돼 있어 그대로 둔다(도감이 화풍별로 보여 준다)",
       "2026-10-30 사용자가 CGI 로 통일 — 새 그림은 만들지 않는다",
       "2026-10-31 다시 기본으로 — 철나라 근본·가문주 열다섯 장을 CGI 판과 같은 지시문으로 뽑아 나란히 봤다. CGI 는 얼굴이 각지고 거칠게 나오는 컷이 있었다"
+     ]
+    },
+    {
+     "v": "v2",
+     "adopted": "2026-11-01",
+     "by": "사용자 「얼굴형이나 이목구비를 설계로 나눠놔도 얼굴 느낌이 비슷하게 나오는것 같아」 → 「응 그렇게 진행해줘」 — 얼굴 낱말만 바꿨다",
+     "text": "Polished 2.5D game key art with clean linework, anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face, layered cel-to-soft shading and crisp costume and prop detail. Use a vivid, readable silhouette and campaign-quality lighting.",
+     "casual": "Polished 2.5D game key art with clean linework, anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face, layered cel-to-soft shading and crisp fabric and accessory detail. Use a vivid, readable silhouette and natural lighting.",
+     "check": "2.5D game key art rendering with clean linework; the element's traits carried by costume, ornament and scene — no readable text, one figure.",
+     "why": [
+      "v1 의 「controlled anime facial design」 이 모델의 기본 미형 얼굴로 끌어당겼다 — 판타지 열여섯 장이 큰 눈 · 갸름한 턱 · 흰 피부로 같았다(2026-11-01). 나머지 낱말은 v1 그대로"
      ]
     }
    ]

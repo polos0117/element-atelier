@@ -19,16 +19,22 @@ for (const key of cards) {
   if (c.tier !== 'citizen') assert(same(ws, worlds), key + ' 근본·가문주는 세 세계 다');
   for (const w of ws) {
     const t = P.build(D, S, key, w, {});
-    assert(t.length > 900 && t.length < 4200, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30)
+    assert(t.length > 900 && t.length < 4800, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30) · 얼굴 설계 · 기본 표정(2026-11-01)
     assert(t.startsWith('CONCEPT: '), key + ' ' + w + ' CONCEPT 첫 줄');
     assert(t.includes("except her element's own chemical symbol (" + c.element.symbol + ') and atomic number (' + c.element.number + ')') && !t.includes('no text, no lettering, no numbers'), key + ' ' + w + ' 기호 · 원자 번호만 허용(2026-10-31)');
-    for (const line of ['ELEMENT TRAITS of ', 'AGE: in her twenties', 'SILHOUETTE: ', 'FACE (her own structure', 'WORLD — ', 'STYLE: ', 'EXPOSURE (bold)', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');
+    for (const line of ['ELEMENT TRAITS of ', 'AGE: ', 'SILHOUETTE: ', 'FACE — she must read as her own person', 'WORLD — ', 'STYLE: ', 'EXPOSURE (bold)', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');
     /* 외형 줄은 설계표 look(나라 ← 가문) 의 어휘 — 가문이 덮어쓴 머리색이 실리고, 직접 고른 것은 없으니 IDENTITY 가 없다 */
-    const dz = P.lookOf(c, w), silLine = t.split('\n').find(l => l.startsWith('SILHOUETTE: ')), faceLine = t.split('\n').find(l => l.startsWith('FACE ('));
+    const dz = P.lookOf(c, w), silLine = t.split('\n').find(l => l.startsWith('SILHOUETTE: ')), faceLine = t.split('\n').find(l => l.startsWith('FACE'));
     assert(silLine.includes(T.VOCAB_EN.hair_color[dz.silhouette.hair_color]) && silLine.includes(T.VOCAB_EN.body[dz.silhouette.body] + ' build') && silLine.includes(T.VOCAB_EN.hair[dz.silhouette.hair]), key + ' ' + w + ' 실루엣 줄 ' + silLine);
     for (const k of Object.keys(T.FACE_PARAM)) assert(faceLine.includes(T.VOCAB_EN[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
+    /* 얼굴 설계(2026-11-01 — 얼굴 느낌이 비슷하게 나왔다) — 나이감 · 인상 · 피부 · 눈 크기 · 눈꼬리 · 표식이 실리고, 기본 표정 · 앞머리도. 모두에게 같던 「soft full cheeks · soft smile」 은 없다 */
+    const FD = T.FACE_DESIGN;
+    assert(t.includes(FD.age[dz.face.age]) && faceLine.startsWith(FD.head.split(':')[0]) && faceLine.includes('first impression — ' + FD.impression[dz.face.impression]), key + ' ' + w + ' 나이감 · 인상');
+    for (const k of ['skin_tone', 'eye_size', 'eye_tilt', 'mark']) assert(faceLine.includes(FD[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
+    assert(t.includes(T.EXPR_HEAD + T.EXPRESSION_DETAIL[dz.face.expr] + '.') && silLine.includes(' with ' + FD.bangs[dz.silhouette.bangs]), key + ' ' + w + ' 기본 표정 · 앞머리');
+    assert(!t.includes('soft full cheeks') && !t.includes('controlled anime facial design'), key + ' ' + w + ' 얼굴을 하나로 만들던 말');
     assert(!t.includes('IDENTITY ('), key + ' ' + w + ' 고른 외형이 없으면 IDENTITY 가 없다');
-    const order = ['HOUSE TRAITS', 'AGE: ', 'SILHOUETTE: ', 'FACE (', 'WORLD — ', 'STYLE: ', 'EXPOSURE (', 'OUTPUT: '].map(x => t.indexOf(x)).filter(i => i >= 0);
+    const order = ['HOUSE TRAITS', 'AGE: ', 'SILHOUETTE: ', 'FACE — ', 'WORLD — ', 'STYLE: ', 'EXPOSURE (', 'OUTPUT: '].map(x => t.indexOf(x)).filter(i => i >= 0);
     assert(same(order, order.slice().sort((a, b) => a - b)), key + ' ' + w + ' 외형 줄 차례');
     /* 과감 노출은 세계마다 — 판타지·스팀펑크는 제 문장(코르셋 없이), 메카는 공용 겉옷 문장. 세계 옷 뼈대가 서로 다르다(2026-10-30 — 둘이 같은 코르셋 옷으로 나왔다) */
     /* 주민은 물건이 먼저(2026-10-31) — 세계 옷 뼈대 대신 citizenTail · 주민 과감(옷 뼈대 말 없이) · 메카는 물건이 설계를 이끈다 */
@@ -108,14 +114,14 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
   assert(P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.updo_bun) && !P.build(D, S, 'fe', 'steampunk', {}).includes(T.VOCAB_EN.hair.braids), '지시문이 그 세계의 머리');
   assert.equal(P.record(D, S, 'fe-steel', 'fantasy', {}).design.silhouette.hair, steelW.fantasy.silhouette.hair, '기록의 design 은 그 세계 값');
   const t1 = P.build(D, S, 'fe-rust', 'fantasy', { look: { params: { 'hair color': 'silver', 'eye shape': 'sharp', 'apparent age': '30s', 'body type': '__custom__', 'body type_custom': 'wiry and tall', zzz: 'x' } } });
-  const sil1 = t1.split('\n').find(l => l.startsWith('SILHOUETTE: ')), face1 = t1.split('\n').find(l => l.startsWith('FACE ('));
+  const sil1 = t1.split('\n').find(l => l.startsWith('SILHOUETTE: ')), face1 = t1.split('\n').find(l => l.startsWith('FACE'));
   const dzF = P.lookOf(P.card(D, 'fe-rust'), 'fantasy');
   assert(!sil1.includes('rust-orange hair') && !sil1.includes(' build') && sil1.includes(T.VOCAB_EN.hair[dzF.silhouette.hair]), '머리색·체형을 고르면 실루엣에서 빠진다 ' + sil1);
   assert(!face1.includes(T.VOCAB_EN.eyes[dzF.face.eyes]) && face1.includes(T.VOCAB_EN.face_shape[dzF.face.face_shape]), '눈을 고르면 얼굴 줄에서 빠진다 ' + face1);
   assert(t1.includes('AGE: a woman in her thirties'), '나이');
   assert(t1.includes('IDENTITY (chosen details override the automatic look)\nhair color: silver') && t1.includes('eye shape: sharp — ') && t1.includes('body type: wiry and tall') && t1.includes('body scope: ') && !t1.includes('zzz') && !t1.includes('apparent age:'), 'IDENTITY 목록 ' + t1.split('IDENTITY')[1]);
   const t2 = P.build(D, S, 'fe-rust', 'mecha', { look: { faceDesignOn: false, silhouetteOn: false, exposure: '' } });
-  assert(!t2.includes('SILHOUETTE: ') && !t2.includes('FACE (') && !t2.includes('EXPOSURE') && t2.includes('AGE: in her twenties'), '끄면 빠진다, 노출 비우면 안 싣는다');
+  assert(!t2.includes('SILHOUETTE: ') && !t2.includes('FACE') && !t2.includes('EXPOSURE') && !t2.includes('EXPRESSION: ') && t2.includes('AGE: in her twenties'), '끄면 빠진다(얼굴 설계 · 기본 표정도), 노출 비우면 안 싣는다');
   assert(P.build(D, S, 'fe', 'mecha', { look: { exposure: 'low' } }).includes('EXPOSURE (low): a mostly covered version of the costume WORLD describes'), '노출 적게');
   assert(P.build(D, S, 'fe', 'mecha', { look: { exposure: 'nope' } }).includes('EXPOSURE (bold)'), '모르는 노출은 기본');
   const nl = P.normLook({ params: { 'hair color': 'silver', bogus: 'x', 'hair color_custom': '' }, exposure: 'moderate', faceDesignOn: false });
@@ -128,7 +134,7 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
   for (const n of D.nations) for (const w of worlds) assert(P.scenesOf(P.card(D, n.key), w).length >= 2, n.key + ' ' + w + ' 장면 변주');
   assert(same(P.scenesOf(P.card(D, 'fe-steel-sword'), 'mecha'), P.scenesOf(P.card(D, 'fe'), 'mecha')), '가문이 세계 글을 안 덮어썼으면 나라의 장면');
   const base = P.build(D, S, 'fe', 'fantasy', {});
-  assert(base.includes(T.POSE_DEFAULT) && !base.includes('SETTING (this card)') && !base.includes('TIME & WEATHER: ') && !base.includes('EXPRESSION: '), '비우면 카드 자세, 장면·시간대·표정 줄 없음');
+  assert(base.includes(T.POSE_DEFAULT) && !base.includes('SETTING (this card)') && !base.includes('TIME & WEATHER: ') && base.includes('EXPRESSION: ' + T.EXPRESSION_DETAIL[P.lookOf(P.card(D, 'fe')).face.expr] + '.'), '비우면 카드 자세, 장면·시간대 줄 없음, 표정은 설계표 기본 표정(2026-11-01)');
   const sc = P.scenesOf(P.card(D, 'fe'), 'fantasy')[1], shot = { scene: sc.key, time: 'night', pose: 'stride', expr: 'confident', zzz: 1 };
   const t3 = P.build(D, S, 'fe', 'fantasy', { shot });
   assert(t3.includes('SETTING (this card): ' + sc.en + '.') && t3.includes(T.WORLD_TIMES.find(r => r.key === 'night').en) && t3.includes(T.WORLD_POSES.find(r => r.key === 'stride').en) && !t3.includes(T.POSE_DEFAULT) && t3.includes('EXPRESSION: ' + T.EXPRESSION_DETAIL.confident + '.'), '장면·시간대·자세·표정 줄 ' + t3.slice(-900));
@@ -141,7 +147,7 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
 const t = P.build(D, S, 'fe-steel-sword', 'fantasy', { notes: { scene: 'a windy ridge', outfit: 'red sash', custom: 'low angle' } });
 assert(t.includes('SCENE NOTE: a windy ridge') && t.includes('OUTFIT NOTE: red sash') && t.includes('EXTRA: low angle'));
 const r = P.record(D, S, 'og', 'steampunk', {});
-assert.equal(r.atelier, 'element'); assert.equal(r.tier, 'root'); assert.equal(r.file, 'og_steampunk_' + S.default + '_f.webp'); assert.equal(r.styleVersion, 'v1'); assert.equal(r.prompt, P.build(D, S, 'og', 'steampunk', {}));
+assert.equal(r.atelier, 'element'); assert.equal(r.tier, 'root'); assert.equal(r.file, 'og_steampunk_' + S.default + '_f.webp'); assert.equal(r.styleVersion, S.styles[S.default].current); assert.equal(r.prompt, P.build(D, S, 'og', 'steampunk', {}));
 /* 같은 물질 다른 나라 — 수소의 물과 산소의 물은 다른 지시문 */
 assert.notEqual(P.build(D, S, 'h-water', 'fantasy', {}), P.build(D, S, 'o-water', 'fantasy', {}));
 /* 없는 열쇠·없는 세계 */
@@ -159,7 +165,7 @@ const C2 = ctx.window.AtelierCasualTreeV2, C1 = ctx.window.AtelierCasualTree;
 const tree = JSON.parse(fs.readFileSync(pick('data/casual-tree.json'), 'utf8')), tree2 = JSON.parse(fs.readFileSync(pick('data/casual-tree-v2.json'), 'utf8'));
 const ownTables = !borrowed.includes('data/casual-tree.json');
 /* 참고 그림의 세계 — 근본·가문주는 판타지로, 주민(검)은 메카로. 일상컷은 그 세계 그림의 그 사람(사용자 2026-10-30) */
-const t2 = C2.make(tree2, tree), opts = { world: 'fantasy', tree, tree2 }, CL = T.CASUAL, cur = S.styles[S.default].versions[0];
+const t2 = C2.make(tree2, tree), opts = { world: 'fantasy', tree, tree2 }, CL = T.CASUAL, cur = S.styles[S.default].versions.find(v => v.v === S.styles[S.default].current);
 const words = s => (String(s).match(/\S+/g) || []).length;
 const eras = tree.eras.map(e => e.key);
 if (ownTables) assert(same(eras, ['now', 'site', 'nation', 'fantasy']), '원소 트리의 시대 넷 ' + eras);
@@ -179,6 +185,7 @@ const checkCasual = (key, sc, txt, label, world) => {
   assert(txt.includes('WARDROBE: change her clothes completely. From the attached image take only her face, hair and body') && txt.includes('ANGLE: the attached image fixes who she is'), label + ' 옷·각도 줄이 첨부를 말한다');
   assert(!/natural human's/.test(txt), label + ' 피부·머리·눈은 첨부 그대로');
   assert(txt.includes('STYLE: ' + cur.casual) && !txt.includes('STYLE: ' + cur.text), label + ' 화풍은 판의 casual 문장');
+  assert(txt.includes(CL.age) && !txt.includes('soft full cheeks') && !txt.includes('soft smile'), label + ' 나이 줄은 첨부 그림의 얼굴 그대로(2026-11-01)');
   assert(txt.includes('FRAME: a vertical 2:3 (1024×1536) image.'), label + ' FRAME 2:3');
   assert(/overall_intensity: strong — /.test(txt) && /skin_exposure: bold — /.test(txt), label + ' 고정값 두 축');
   /* 그 원소의 기호 · 원자 번호만 읽혀도 된다(사용자 2026-10-31) — ONE MAIN FIGURE 줄이 그 둘을 채워 싣는다 */
