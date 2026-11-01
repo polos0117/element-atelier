@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 비 일상 3·13번 팔 연결 수정, 증기 1번 수정 시도 기록
+- element-atelier-img/img/h-water-rain_fantasy_game_keyart_f_casual3.webp · img/h-water-rain_mecha_game_keyart_f_casual3.webp — 사용자가 지적한 등 뒤로 솟는 팔과 추가 팔을 수정했다. 몸·얼굴을 같은 정면 사선으로 정렬하고, 난간 손과 머리 손을 각각 같은 쪽 어깨·팔꿈치·손목에 연결했다. 기존 얼굴·의상·배경을 유지했고 1024×1536·전신·두 팔 연결을 검수했다.
+- element-atelier-img/records/h-water-rain/ · records/replacement.json — 수정 전 기록 원문과 이전 PNG·WebP 해시를 보존하고, 생성기로 조립한 수정 선택값·지시문·두 첨부 역할·수정본 해시와 해부학 검수를 남겼다. 파일 이름은 유지하며 썸네일은 변경 파일 자동 재생성으로 갱신한다. 도감 등록 데이터는 수동 변경하지 않는다.
+- element-atelier-img/records/h-water-steam/corrections/steampunk-casual1.anatomy-2026-11-01.blocked.json — 몸·얼굴 방향과 빗질 팔 교정은 동일 지시문 두 번 모두 출력 안전 필터(moderation_blocked)에 거절되어 원본을 유지했다. 지시문 해시·응답 코드·요청 ID를 남겼고 추가 재시도는 하지 않았다.
+
 ## 2026-11-01 · gpt · 핵융합로 메카 그림 6장 등록
 - data/img.json — 그림 등록 워크플로로 핵융합로(h-star-fusion)의 메카 기본 그림과 일상컷 다섯 장을 등록했다. 지시문·참고 그림 해시·원본 및 WebP 해시·구도·손·장식 차이 검수는 그림 저장소 records/h-star-fusion/에 남겼다. 여섯 WebP의 디코딩·1024×1536 크기와 업로드 객체 해시를 확인했다.
 
