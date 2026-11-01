@@ -31,6 +31,7 @@
   "h-water-rain": {"byStyle": {"game_keyart": {"byForm": {"fantasy": {"f": "h-water-rain_fantasy_game_keyart_f.webp", "casual": {"f": ["h-water-rain_fantasy_game_keyart_f_casual1.webp", "h-water-rain_fantasy_game_keyart_f_casual2.webp", "h-water-rain_fantasy_game_keyart_f_casual3.webp", "h-water-rain_fantasy_game_keyart_f_casual4.webp", "h-water-rain_fantasy_game_keyart_f_casual5.webp"]}}, "steampunk": {"f": "h-water-rain_steampunk_game_keyart_f.webp", "casual": {"f": ["h-water-rain_steampunk_game_keyart_f_casual1.webp", "h-water-rain_steampunk_game_keyart_f_casual2.webp", "h-water-rain_steampunk_game_keyart_f_casual3.webp", "h-water-rain_steampunk_game_keyart_f_casual4.webp", "h-water-rain_steampunk_game_keyart_f_casual5.webp"]}}, "mecha": {"f": "h-water-rain_mecha_game_keyart_f.webp", "casual": {"f": ["h-water-rain_mecha_game_keyart_f_casual1.webp", "h-water-rain_mecha_game_keyart_f_casual2.webp", "h-water-rain_mecha_game_keyart_f_casual3.webp", "h-water-rain_mecha_game_keyart_f_casual4.webp", "h-water-rain_mecha_game_keyart_f_casual5.webp"]}}}}}},
   "h-water-steam": {"byStyle": {"game_keyart": {"byForm": {"steampunk": {"f": "h-water-steam_steampunk_game_keyart_f.webp", "casual": {"f": ["h-water-steam_steampunk_game_keyart_f_casual1.webp", "h-water-steam_steampunk_game_keyart_f_casual2.webp", "h-water-steam_steampunk_game_keyart_f_casual3.webp", "h-water-steam_steampunk_game_keyart_f_casual4.webp", "h-water-steam_steampunk_game_keyart_f_casual5.webp"]}}, "mecha": {"f": "h-water-steam_mecha_game_keyart_f.webp", "casual": {"f": ["h-water-steam_mecha_game_keyart_f_casual1.webp", "h-water-steam_mecha_game_keyart_f_casual2.webp", "h-water-steam_mecha_game_keyart_f_casual3.webp", "h-water-steam_mecha_game_keyart_f_casual4.webp", "h-water-steam_mecha_game_keyart_f_casual5.webp"]}}}}}},
   "h-water-well": {"byStyle": {"game_keyart": {"byForm": {"fantasy": {"f": "h-water-well_fantasy_game_keyart_f.webp", "casual": {"f": ["h-water-well_fantasy_game_keyart_f_casual1.webp", "h-water-well_fantasy_game_keyart_f_casual2.webp", "h-water-well_fantasy_game_keyart_f_casual3.webp", "h-water-well_fantasy_game_keyart_f_casual4.webp", "h-water-well_fantasy_game_keyart_f_casual5.webp"]}}, "steampunk": {"f": "h-water-well_steampunk_game_keyart_f.webp", "casual": {"f": ["h-water-well_steampunk_game_keyart_f_casual1.webp", "h-water-well_steampunk_game_keyart_f_casual2.webp", "h-water-well_steampunk_game_keyart_f_casual3.webp", "h-water-well_steampunk_game_keyart_f_casual4.webp", "h-water-well_steampunk_game_keyart_f_casual5.webp"]}}}}}},
+  "o": {"byStyle": {"game_keyart": {"byForm": {"fantasy": {"f": "o_fantasy_game_keyart_f.webp", "casual": {"f": ["o_fantasy_game_keyart_f_casual1.webp", "o_fantasy_game_keyart_f_casual2.webp", "o_fantasy_game_keyart_f_casual3.webp", "o_fantasy_game_keyart_f_casual4.webp", "o_fantasy_game_keyart_f_casual5.webp"]}}, "steampunk": {"f": "o_steampunk_game_keyart_f.webp", "casual": {"f": ["o_steampunk_game_keyart_f_casual1.webp", "o_steampunk_game_keyart_f_casual2.webp", "o_steampunk_game_keyart_f_casual3.webp", "o_steampunk_game_keyart_f_casual4.webp", "o_steampunk_game_keyart_f_casual5.webp"]}}, "mecha": {"f": "o_mecha_game_keyart_f.webp", "casual": {"f": ["o_mecha_game_keyart_f_casual1.webp", "o_mecha_game_keyart_f_casual2.webp", "o_mecha_game_keyart_f_casual3.webp", "o_mecha_game_keyart_f_casual4.webp", "o_mecha_game_keyart_f_casual5.webp"]}}}}}},
   "og": {"byStyle": {"game_cgi": {"byForm": {"fantasy": {"f": "og_fantasy_game_cgi_f.webp"}, "steampunk": {"f": "og_steampunk_game_cgi_f.webp"}, "mecha": {"f": "og_mecha_game_cgi_f.webp"}}}, "game_keyart": {"casual": {"f": ["og_game_keyart_f_casual1.webp"]}, "byForm": {"fantasy": {"f": "og_fantasy_game_keyart_f.webp", "casual": {"f": ["og_fantasy_game_keyart_f_casual2.webp", "og_fantasy_game_keyart_f_casual3.webp", "og_fantasy_game_keyart_f_casual4.webp"]}}, "steampunk": {"f": "og_steampunk_game_keyart_f.webp", "casual": {"f": ["og_steampunk_game_keyart_f_casual5.webp", "og_steampunk_game_keyart_f_casual6.webp", "og_steampunk_game_keyart_f_casual7.webp"]}}, "mecha": {"f": "og_mecha_game_keyart_f.webp", "casual": {"f": ["og_mecha_game_keyart_f_casual8.webp", "og_mecha_game_keyart_f_casual9.webp", "og_mecha_game_keyart_f_casual10.webp"]}}}}, "cinematic_keyart": {"byForm": {"fantasy": {"f": "og_fantasy_cinematic_keyart_f.webp"}, "steampunk": {"f": "og_steampunk_cinematic_keyart_f.webp"}, "mecha": {"f": "og_mecha_cinematic_keyart_f.webp"}}}}}
  },
  "added": {
@@ -493,6 +494,24 @@
   "h_steampunk_game_keyart_f_casual3.webp": "2026-10-31",
   "h_steampunk_game_keyart_f_casual4.webp": "2026-10-31",
   "h_steampunk_game_keyart_f_casual5.webp": "2026-10-31",
+  "o_fantasy_game_keyart_f.webp": "2026-11-01",
+  "o_fantasy_game_keyart_f_casual1.webp": "2026-11-01",
+  "o_fantasy_game_keyart_f_casual2.webp": "2026-11-01",
+  "o_fantasy_game_keyart_f_casual3.webp": "2026-11-01",
+  "o_fantasy_game_keyart_f_casual4.webp": "2026-11-01",
+  "o_fantasy_game_keyart_f_casual5.webp": "2026-11-01",
+  "o_mecha_game_keyart_f.webp": "2026-11-01",
+  "o_mecha_game_keyart_f_casual1.webp": "2026-11-01",
+  "o_mecha_game_keyart_f_casual2.webp": "2026-11-01",
+  "o_mecha_game_keyart_f_casual3.webp": "2026-11-01",
+  "o_mecha_game_keyart_f_casual4.webp": "2026-11-01",
+  "o_mecha_game_keyart_f_casual5.webp": "2026-11-01",
+  "o_steampunk_game_keyart_f.webp": "2026-11-01",
+  "o_steampunk_game_keyart_f_casual1.webp": "2026-11-01",
+  "o_steampunk_game_keyart_f_casual2.webp": "2026-11-01",
+  "o_steampunk_game_keyart_f_casual3.webp": "2026-11-01",
+  "o_steampunk_game_keyart_f_casual4.webp": "2026-11-01",
+  "o_steampunk_game_keyart_f_casual5.webp": "2026-11-01",
   "og_fantasy_cinematic_keyart_f.webp": "2026-10-30",
   "og_fantasy_game_cgi_f.webp": "2026-10-30",
   "og_fantasy_game_keyart_f.webp": "2026-10-30",
@@ -513,5 +532,5 @@
   "og_steampunk_game_keyart_f_casual6.webp": "2026-10-31",
   "og_steampunk_game_keyart_f_casual7.webp": "2026-10-31"
  },
- "count": 32
+ "count": 33
 }
