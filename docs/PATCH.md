@@ -14,6 +14,25 @@
 - data/element-design.json — 근본 7 · 가문주 15 · 주민 33 모두 얼굴 칸 일곱 + 사는 세계마다 앞머리를 그 원소 · 물질 · 물건에서. 철나라 가문주 셋 판타지 시험(올리지 않음)에서 녹 · 자석이 겹쳐 자석을 바꿨다
 - tools/element-design.py · tests/prompt-element.cjs · tests/look-spec.cjs — 얼굴 칸이 다 찼는지 · 어휘에 있는지 · 지시문에 실리는지 · 얼굴을 하나로 만들던 말이 없는지
 - IMAGE_RULES.md 2절 · prompt.html · dex.html(판 올림). 이미 그린 그림은 그대로 둔다
+## 2026-11-01 · gpt · 풍선·비행선 세계 그림과 일상컷 등록
+- data/img.json — 그림 저장소 main의 새 WebP를 자동 등록했다. 풍선은 판타지·스팀펑크·메카 각각 세계 그림 한 장과 일상 다섯 장(18장), 비행선은 스팀펑크 세계 그림 한 장과 일상 다섯 장(6장)으로 빈 자리를 채웠다.
+- element-atelier-img/img/ · records/h-balloon-balloon/ · records/h-balloon-airship/ — 내장 image_gen으로 한 자리씩 생성하고 원본 SHA-256·참조 해시·생성기 지시문·계획·컷별 QA를 보존했다. 24장 모두 1024×1536 WebP 품질 90이며 네 세계 묶음 계획 검사를 통과했다. 프레이밍·잔존 장신구·소품 동작 차이와 풍선 메카 일상 3번 화면 오른쪽 신발 끝 잘림은 QA 실패로 기록했다. 자동화 규칙에 따라 재생성 없이 결과를 올렸고 두 캐릭터의 도감 등록·썸네일 성공을 확인했다.
+
+
+## 2026-11-01 · gpt · 증기 스팀펑크 일상 1번 새 설계로 교체
+- element-atelier-img/img/h-water-steam_steampunk_game_keyart_f_casual1.webp — 사용자 「다른 설계로 다시 그려서 올려줘」에 따라 승인된 세계 카드의 얼굴·머리를 참조해 새로 그렸다. 불투명 터틀넥 니트·퀼팅 조끼와 밝은 방의 창가 휴식, 몸과 얼굴 같은 방향·앞쪽 팔짱으로 역회전과 팔 연결 문제를 해소했다.
+- element-atelier-img/records/h-water-steam/ · records/replacement.json — 기존 기록·계획 원문과 PNG·WebP 해시를 보존하고 새 트리 선택값·덧붙임·지시문·세계 카드 참조 해시·출력 해시·검수를 남겼다. 계획의 chest_up보다 허리까지 넓은 크롭과 몸 방향 차이는 QA에 기록했다. 기록 기준 다섯 장 묶음 검사 통과. 썸네일은 변경 이미지 자동 재생성으로 갱신하며 도감 파일 이름은 유지한다.
+
+## 2026-11-01 · gpt · 비 일상 3·13번 팔 연결 수정, 증기 1번 수정 시도 기록
+- element-atelier-img/img/h-water-rain_fantasy_game_keyart_f_casual3.webp · img/h-water-rain_mecha_game_keyart_f_casual3.webp — 사용자가 지적한 등 뒤로 솟는 팔과 추가 팔을 수정했다. 몸·얼굴을 같은 정면 사선으로 정렬하고, 난간 손과 머리 손을 각각 같은 쪽 어깨·팔꿈치·손목에 연결했다. 기존 얼굴·의상·배경을 유지했고 1024×1536·전신·두 팔 연결을 검수했다.
+- element-atelier-img/records/h-water-rain/ · records/replacement.json — 수정 전 기록 원문과 이전 PNG·WebP 해시를 보존하고, 생성기로 조립한 수정 선택값·지시문·두 첨부 역할·수정본 해시와 해부학 검수를 남겼다. 파일 이름은 유지하며 썸네일은 변경 파일 자동 재생성으로 갱신한다. 도감 등록 데이터는 수동 변경하지 않는다.
+- element-atelier-img/records/h-water-steam/corrections/steampunk-casual1.anatomy-2026-11-01.blocked.json — 몸·얼굴 방향과 빗질 팔 교정은 동일 지시문 두 번 모두 출력 안전 필터(moderation_blocked)에 거절되어 원본을 유지했다. 지시문 해시·응답 코드·요청 ID를 남겼고 추가 재시도는 하지 않았다.
+
+## 2026-11-01 · gpt · 핵융합로 메카 그림 6장 등록
+- data/img.json — 그림 등록 워크플로로 핵융합로(h-star-fusion)의 메카 기본 그림과 일상컷 다섯 장을 등록했다. 지시문·참고 그림 해시·원본 및 WebP 해시·구도·손·장식 차이 검수는 그림 저장소 records/h-star-fusion/에 남겼다. 여섯 WebP의 디코딩·1024×1536 크기와 업로드 객체 해시를 확인했다.
+
+## 2026-11-01 · gpt · 태양 판타지·메카 그림 12장 등록
+- data/img.json — 그림 등록 워크플로로 태양(h-star-sun)의 두 세계 기본 그림과 세계마다 일상컷 다섯 장을 등록했다. 지시문·참고 그림 해시·원본 해시·구도·손·장식 차이 검수는 그림 저장소 records/h-star-sun/에 남겼다. 메카 일상컷 3번의 0바이트 WebP는 같은 생성 원본으로 복구하고 upload-repair.json에 기록했다.
 
 ## 2026-11-01 · claude · 늘 빨간 casual-tree-v2.py 고치기
 - tests/casual-tree-v2.py — 원소 표에 소품 signature 가 있으면 실패로 보던 단정을 바꿨다. signature(그 원소의 물건)는 2026-10-30 일부러 되살린 소품이고(docs/CASUAL_TREE_PORT.md · tests/casual-tree-v2.cjs 는 이미 반영) 이 파이썬 검사만 옛 단정을 남겨 늘 실패했다. 이제 알아볼 거리 소품은 signature 하나 · 모든 장소 · 동작 셋(들기 · 얼굴 옆 · 두 손)인지 본다
