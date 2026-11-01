@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · claude · 녹 · 자석 세계 그림 여섯 · 일상컷 서른 다시 그림
+- element-atelier-img 의 img/fe-rust_* · img/fe-magnet_* — 얼굴 설계(나이감 · 인상 · 피부 · 눈 · 표식 · 기본 표정 · 앞머리)와 화풍 v2 로 세계 그림 여섯 장(장면 열쇠는 앞 그림 그대로)을 다시 그리고, 일상컷 서른 장(장면 칸은 앞 컷 그대로)을 새 세계 그림을 참고 그림으로 다시 그렸다. 사용자 「녹이랑 자석은 새설계로 다시 이미지 뽑아줘」 · 「응 올리고 일상컷도 새로 그려줘」 · 「응 올려줘」
+- element-atelier-img 의 records/fe-rust · records/fe-magnet — 새 기록(생성 · 원본 PNG · 참고 그림 sha256), 앞 기록은 history/ 에 그대로. records/replacement.json 에 서른여섯 장의 앞 그림 sha256 · 까닭. 자석 스팀펑크 일상 5번은 첫 안전 거절 뒤 같은 지시문 한 번 더로 됐다. 파일 이름이 같아 data/img.json 은 그대로, 썸네일은 자동화가 다시 만든다
+
 ## 2026-11-01 · claude · 얼굴 설계 — 얼굴 느낌이 비슷하게 나오는 것 고치기
 - lib/prompt-spec.js — FACE_DESIGN(나이감 넷 · 인상 · 피부 톤 일곱 · 눈 크기 · 눈꼬리 · 표식 · 앞머리 어휘, FACE 줄 머리). 일상컷 AGE 줄에서 「soft full cheeks · soft smile」 을 빼고 첨부 그림의 얼굴 그대로. 사용자 「얼굴형이나 이목구비를 설계로 나눠놔도 얼굴 느낌이 비슷하게 나오는것 같아」 → 「응 일상컷도 같이 바꿔서 다 채워줘」
 - lib/prompt-element.js — 설계표 얼굴 칸이 있으면 AGE 줄은 설계 나이감, FACE 줄은 인상 먼저 + 피부 · 눈 크기 · 눈꼬리 · 표식, SILHOUETTE 머리에 앞머리, 표정을 안 고르면 설계 기본 표정. 얼굴 설계 칸은 근본 → 가문주 → 주민으로 물려받지 않는다. 생성기에서 고른 칸(facial character · skin tone · eye size · eye tilt · bangs · apparent age)이 이긴다
