@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 탄소의 불 가문주 그림 18장 등록
+- data/img.json — 그림 등록 자동화로 c-fire 판타지·스팀펑크·메카 세계 그림 3장과 각 세계 일상 5장(총 18장)을 등록했다.
+- element-atelier-img의 records/c-fire — 생성기 원문·트리 계획·참고 이미지와 원본 해시·검수를 보존했다. 손 좌우·구도·장식 잔존과 메카 일상5의 추가/분리 팔은 검수 실패로 기록했다.
+- element-atelier-img의 img/c-fire_steampunk_game_keyart_f_casual5.webp — 0바이트 저장 오류를 같은 원본 PNG로 재변환해 복구했다. 새 이미지 생성이나 기존 작업 삭제는 없다.
+
 ## 2026-11-01 · claude · 「난간에서 돌아보기」 빼기 — 뒷모습으로 돌아보며 얼굴 · 머리에 손 안 대기
 - data/casual-tree-v2.json — 자세 추천 rail_lookback(뒤 3/4 · 어깨 너머 · 오른손 난간 · 왼손 머리 넘기기)을 뺐다. 좌우 · 팔 줄을 적은 시험 세 장도 사용자가 「아니 지금도 이상해. 그냥 지금 구도는 갈래에서 없애줘」
 - lib/casual-tree-v2.js(공용) — 몸이 뒤쪽(far)이고 머리가 어깨 너머(look_back)면 얼굴 · 머리에 대는 손(zone face)을 못 고른다(why lookback — 화면 · 랜덤 · 계획기가 같이 막는다). backLook 은 팔 줄 없이 왼쪽 어깨 · 손의 화면 쪽만. 예전 기록의 그 손은 다시 검사(repair)가 비운다
