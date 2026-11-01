@@ -9,6 +9,8 @@
      - 자세 추천은 서로 다르게 · 프레이밍은 서로 다르게(먼 컷 · 가까운 컷 하나씩은 꼭) · 몸 방향 한 가지는 두 번까지 · 머리 「어깨 너머」 는 한 장까지
      - 소품은 칸마다 다르게 · 그 원소의 물건(설계표 hold, 주민은 object)을 든 컷은 한두 장 · 마실 것은 한 장까지 · ⚠ 어색한 조합은 한 장까지
      - 소품 동작은 다른 카드 기록(--usage, 기본 옆의 element-atelier-img/records)에서 덜 쓴 소품 쪽으로
+     - 카드 사이에서도 안 쓴 트리 쪽 먼저(2026-11-01, pkm 의 「덜 쓴 · 안 쓴 길 먼저」 를 원소 꼴로): 같은 --usage 기록에서 장소 · 옷 · 자세 추천 · 자세 · 표정을
+       센다 — 한 번도 안 쓴 값은 무게 4, 쓴 값은 1/(1+횟수)². 사용자 「element쪽도 pkm 처럼 일상컷 만들때 안 쓴 트리 쪽으로 먼저 쓰게」 → 「응 그렇게 넣어줘」
    이미 그림이 있는 번호는 짜지 않고, 그 세계의 기록(--records)은 겹침 검사에만 쓴다.
 
      node tools/casual-plan.cjs <카드> --world <세계> [--slots 1,2,3] [--records <그림 저장소>/records/<카드>] [--seed N] [--out <폴더>] [--usage <폴더>|none]
@@ -71,14 +73,27 @@ function presetsAt(sc, g) {
 }
 const sigProp = c => { const u = C2.use(T2, c.use); return !!u && u.prop === 'signature'; };
 
+/* 카드 사이 쓴 횟수의 무게 — 한 번도 안 쓴 값이 먼저(4), 쓴 값은 1/(1+횟수)² */
+const WEIGHT_UNUSED = 4;
+const wOf = n => n ? 1 / Math.pow(1 + n, 2) : WEIGHT_UNUSED;
+function lean(r, list, count, key = x => x) {
+  if (!list.length) return undefined;
+  const w = list.map(x => wOf((count || {})[key(x)] || 0)), sum = w.reduce((a, b) => a + b, 0);
+  let x = r() * sum; for (let i = 0; i < list.length; i++) { x -= w[i]; if (x < 0) return list[i]; }
+  return list[list.length - 1];
+}
+/* 쓴 횟수 꼴 바로잡기 — 옛 꼴(소품 → 횟수)도 받는다 */
+const usageOf = u => (u && (u.place || u.prop || u.preset)) ? { prop: {}, place: {}, item: {}, preset: {}, posture: {}, expr: {}, ...u } : { prop: u || {}, place: {}, item: {}, preset: {}, posture: {}, expr: {} };
+
 /* 한 칸 — 시대 · 장소 · 의상 · 옷, 그 장소에서 쓸 수 있는 자세 추천 하나(frame 을 주면 그 프레이밍의 추천만).
-   wantSig 면 소품 동작을 그 원소의 물건으로. 소품 동작은 덜 쓴 소품 쪽으로(무게 1/(1+횟수)², 따로 된 난수 흐름 — game 과 같다) */
+   wantSig 면 소품 동작을 그 원소의 물건으로. 소품 동작은 덜 쓴 소품 쪽으로(무게 1/(1+횟수)², 따로 된 난수 흐름 — game 과 같다).
+   장소 · 옷 · 자세 추천(그 자세) · 표정은 다른 카드에서 안 쓴 · 덜 쓴 쪽으로(lean — 2026-11-01) */
 function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = '', usage = {}, rUse = r } = {}) {
-  const g = card.g;
+  const g = card.g, U = usageOf(usage);
   let sc;
-  if (reqType) { const paths = requiredPaths(reqType).filter(x => !wantEra || x.era === wantEra); if (!paths.length) return null; sc = { ...pick(r, paths) }; }
+  if (reqType) { const paths = requiredPaths(reqType).filter(x => !wantEra || x.era === wantEra); if (!paths.length) return null; sc = { ...lean(r, paths, U.place, x => x.place) }; }
   else {
-    const era = wantEra || weighted(r, ERA_WEIGHT), place = pick(r, C2.choices(T2, { era }, 'place', null));
+    const era = wantEra || weighted(r, ERA_WEIGHT), place = lean(r, C2.choices(T2, { era }, 'place', null), U.place);
     if (!place) return null;
     sc = { era, place, ofam: pick(r, C2.choices(T2, { era, place }, 'ofam', null)) };
   }
@@ -86,19 +101,23 @@ function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = ''
   const presets = presetsAt(sc, g).filter(p => (!frame || p.frame === frame) && (!wantSig || p.prop_kind));
   if (!presets.length) return null;
   const rp = list => pick(r, list);
-  sc = C2.repair(T2, C2.applyPreset(T2, sc, pick(r, presets).key), g, rp);
+  /* 자세 추천 — 그 추천과 그 자세의 횟수를 함께(선 자세가 절반이 넘었다 — 2026-11-01 기록 434장) */
+  const pw = presets.map(p => wOf(U.preset[p.key] || 0) * Math.sqrt(wOf(U.posture[p.posture] || 0)));
+  let px = r() * pw.reduce((a, b) => a + b, 0), chosen = presets[presets.length - 1];
+  for (let i = 0; i < presets.length; i++) { px -= pw[i]; if (px < 0) { chosen = presets[i]; break; } }
+  sc = C2.repair(T2, C2.applyPreset(T2, sc, chosen.key), g, rp);
   if (wantSig) {
     const sig = C2.choices(T2, sc, 'use', g).filter(k => C2.use(T2, k).prop === 'signature');
     if (!sig.length) return null;
     sc = { ...sc, use: pick(r, sig) };
   }
   const items = C2.choices(T2, sc, 'item', g);
-  sc.item = items.length ? pick(r, items) : '';
+  sc.item = items.length ? lean(r, items, U.item) : '';
   sc = C2.repair(T2, sc, g, rp);
   if (!wantSig && sc.use && !sigProp(sc)) {
     const alt = C2.choices(T2, sc, 'use', g).filter(k => C2.use(T2, k).prop !== 'signature');
     if (alt.length > 1) {
-      const n = p => DRINKS.includes(p) ? DRINKS.reduce((a, d) => a + (usage[d] || 0), 0) : (usage[p] || 0);
+      const n = p => DRINKS.includes(p) ? DRINKS.reduce((a, d) => a + (U.prop[d] || 0), 0) : (U.prop[p] || 0);
       const u = weighted(rUse, Object.fromEntries(alt.map(k => [k, 1 / Math.pow(1 + n(C2.use(T2, k).prop), 2)])));
       const next = C2.set(T2, sc, 'use', u, g, rp);
       if (next.use === u) sc = next;
@@ -106,7 +125,7 @@ function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = ''
   }
   if (wantSig && !sigProp(sc)) return null;
   const body = by(tree2.body, sc.body), head = by(tree2.head, sc.head);
-  sc.expr = body && body.face_hidden && !(head && head.look_back) ? '' : pick(r, EXPRS);
+  sc.expr = body && body.face_hidden && !(head && head.look_back) ? '' : lean(r, EXPRS, U.expr);
   sc.axes = { ...FIXED_AXES }; sc.aspect = '2:3'; sc.unlocked = [];
   return sc;
 }
@@ -173,7 +192,7 @@ function plan(card, slots, old, { seed = Date.now(), required = '', usage = {} }
     for (let i = 0; i < slots.length; i++) {
       let got = null;
       for (let k = 0; k < 60 && !got; k++) {
-        const here = { ...usage }; cuts.forEach(c => { const u = C2.use(T2, c.use); if (u) here[u.prop] = (here[u.prop] || 0) + 10; });
+        const U0 = usageOf(usage), here = { ...U0, prop: { ...U0.prop } }; cuts.forEach(c => { const u = C2.use(T2, c.use); if (u) here.prop[u.prop] = (here.prop[u.prop] || 0) + 10; });
         const sc = slot(r, card, i === 0 ? want : '', { frame: frames[i], wantSig: i === sigAt, era: eras[i], usage: here, rUse });
         if (!sc) continue;
         const cand = { n: slots[i], ...sc };
@@ -212,20 +231,24 @@ function freeSlots(card, world, want = CASUAL_N) {
   for (let n = 1; taken.size + out.length < want; n++) if (!taken.has(n)) out.push(n);
   return out;
 }
-/* 소품을 쓴 횟수 — 그림 저장소의 모든 카드 기록에서(그 카드는 빼고) */
-function propUsage(dir, skip) {
-  const out = {};
+/* 쓴 횟수 — 그림 저장소의 모든 카드 기록에서(그 카드는 빼고): 소품(그 원소의 물건은 빼고) · 장소 · 옷 · 자세 추천 · 자세 · 표정 */
+function sceneUsage(dir, skip) {
+  const out = { prop: {}, place: {}, item: {}, preset: {}, posture: {}, expr: {} };
   if (!dir || !fs.existsSync(dir)) return out;
+  const add = (m, k) => { if (k) m[k] = (m[k] || 0) + 1; };
   for (const k of fs.readdirSync(dir)) {
     if (k === skip || !fs.statSync(path.join(dir, k)).isDirectory()) continue;
     for (const f of fs.readdirSync(path.join(dir, k)).filter(x => /-casual\d+\.[a-z_]+-ui\.json$/.test(x))) {
       let sc; try { sc = JSON.parse(fs.readFileSync(path.join(dir, k, f), 'utf8')).scene; } catch (e) { continue; }
-      const u = sc && C2.use(T2, sc.use);
-      if (u && u.prop !== 'signature') out[u.prop] = (out[u.prop] || 0) + 1;
+      if (!sc) continue;
+      const u = C2.use(T2, sc.use);
+      if (u && u.prop !== 'signature') add(out.prop, u.prop);
+      add(out.place, sc.place); add(out.item, sc.item); add(out.preset, sc.preset); add(out.posture, sc.posture); add(out.expr, sc.expr);
     }
   }
   return out;
 }
+const propUsage = (dir, skip) => sceneUsage(dir, skip).prop;
 function line(c) {
   const p = C2.place(T2, c.place) || {}, f = CT.family(tree, c.ofam) || {}, it = CT.item(tree, c.ofam, c.item), u = C2.use(T2, c.use), pr = by(tree2.presets, c.preset);
   const ko = (list, k) => (by(list, k) || {}).ko || k || '—', hand = k => k === 'prop' ? '소품' : ko(tree2.hands, k);
@@ -253,7 +276,7 @@ function main(argv) {
   const old = oldCuts(opt.records, card, world).filter(c => !slots.includes(c.n));
   const seed = Number(opt.seed || Date.now() % 1e9);
   const usageDir = opt.usage === 'none' ? '' : (opt.usage || path.join(ROOT, '..', 'element-atelier-img', 'records'));
-  const res = plan(card, slots, old, { seed, required: opt.required || '', usage: propUsage(usageDir, key) });
+  const res = plan(card, slots, old, { seed, required: opt.required || '', usage: sceneUsage(usageDir, key) });
   console.log(`${key}(${card.c.ko}) ${world} 일상컷 묶음 — 칸 ${slots.join(',')} · 필수 갈래 ${res.required} · 시도 ${res.attempt} · seed ${seed}`);
   for (const c of [...old, ...res.cuts].sort((a, b) => a.n - b.n)) console.log(line(c));
   if (opt.out) {
@@ -268,5 +291,5 @@ function main(argv) {
   }
   return 0;
 }
-module.exports = { cardOf, plan, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, CASUAL_N, STYLE };
+module.exports = { cardOf, plan, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, sceneUsage, CASUAL_N, STYLE, WEIGHT_UNUSED };
 if (require.main === module) process.exit(main(process.argv.slice(2)));
