@@ -14,7 +14,8 @@
    자리 — <세계>(세계 그림 — 첨부 없이 한 장씩) · <세계>-casualN(일상컷 — 그 세계 그림 첨부). 화풍은 늘 기본(data/style.json default). 고칠 수 있는 칸:
      worlds.<세계>   notes(scene · outfit · custom — 직접 입력, why) · look(params · faceDesignOn · silhouetteOn · exposure — 표에 없는 외형은 직접 입력이라 why) ·
                      shot(scene — 설계표 장면 변주 열쇠 · time · pose · expr — 표의 값)
-     casual.<자리>   scene · outfit · custom(직접 입력 — why) · 나머지는 계획 그대로 */
+     casual.<자리>   scene · outfit · custom(직접 입력 — why) · exposure(moderate · low — 그 컷만 피부 노출 축을 낮춘다, why 필요) · 나머지는 계획 그대로
+     세계 그림의 노출은 worlds.<세계>.look.exposure. 낮추는 것은 필터 거절 뒤 노출 낮추기(사용자 2026-11-01 「필터 문제로 막히면 재시도 후, 노출 수위를 낮춰가며 재시도로」 — IMAGE_RULES 1절) 에만 */
 'use strict';
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), crypto = require('node:crypto');
 const ROOT = path.join(__dirname, '..');
@@ -94,7 +95,8 @@ function validate(set, card, plans) {
   for (const s of cs) {
     const x = (set.casual || {})[s];
     if (!x) { errs.push('casual.' + s + ' 가 없다'); continue; }
-    unknown(x, [...TEXT, 'why'], 'casual.' + s);
+    unknown(x, [...TEXT, 'exposure', 'why'], 'casual.' + s);
+    if (x.exposure != null && x.exposure !== '') { if (!['moderate', 'low'].includes(x.exposure)) errs.push('casual.' + s + '.exposure 는 moderate · low(낮추기만)'); else if (!(x.why || '').trim()) errs.push('casual.' + s + '.exposure 를 낮췄는데 why(막힌 까닭)가 비었다'); }
     if (TEXT.some(k => (x[k] || '').trim()) && !(x.why || '').trim()) errs.push('casual.' + s + ' 에 직접 입력이 있는데 why 가 비었다');
   }
   for (const p of plans) {
@@ -124,6 +126,7 @@ function recordOf(card, set, s) {
   const { n, ...cut } = s.cut, x = set.casual[s.slot];
   const scene = { ...cut, axes: { ...FIXED, ...(cut.axes || {}) }, aspect: '2:3', unlocked: cut.unlocked || [] };
   for (const k of TEXT) if ((x[k] || '').trim()) scene[k] = x[k]; else delete scene[k];
+  if (x.exposure) scene.axes.skin_exposure = x.exposure;
   return { ...P.casualRecord(D, S, card.key, scene, { world: s.world, style: STYLE, tree, tree2 }, n), record: PLAN.recordRel(card.key, s.world, n), storage: storageOf(card, s, x, scene) };
 }
 

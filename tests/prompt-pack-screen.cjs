@@ -21,7 +21,7 @@ const server = http.createServer((q, s) => {
       const w = card.worlds[0];
       set.worlds[w].look.params = { 'hair color': '#8a8f99', hairstyle: '__custom__', hairstyle_custom: 'a low braided knot' };
       set.worlds[w].notes = { custom: 'sparks drifting from a forge' }; set.worlds[w].shot = { time: 'night', pose: 'kneel' }; set.worlds[w].why = '검사';
-      const c = Object.keys(set.casual)[1]; set.casual[c].custom = 'Her right hand holds the sword hilt; her left hand rests on her hip.'; set.casual[c].why = '검사';
+      const c = Object.keys(set.casual)[1]; set.casual[c].custom = 'Her right hand holds the sword hilt; her left hand rests on her hip.'; set.casual[c].why = '검사'; const c2 = Object.keys(set.casual)[2]; set.casual[c2].exposure = 'low'; set.casual[c2].why = '필터 거절 뒤 노출 낮추기 검사'; set.worlds[w].look.exposure = 'moderate';
     }]]) {
       const card = C.cardOf(key), dir = path.join(tmp, key), plans = [];
       fs.mkdirSync(dir);
@@ -41,6 +41,7 @@ const server = http.createServer((q, s) => {
       for (const s of list) {
         const rec = JSON.parse(fs.readFileSync(path.join(dir, s.slot + '-ui.json'), 'utf8'));
         assert.equal(fs.readFileSync(path.join(dir, s.slot + '-prompt.txt'), 'utf8'), rec.prompt);
+        if (edit && s.slot === Object.keys(JSON.parse(fs.readFileSync(path.join(dir, 'settings.json'), 'utf8')).casual)[2]) assert(/skin_exposure: low/.test(rec.prompt), '일상 노출 낮추기가 지시문에');
         const ctx = await br.newContext({ viewport: { width: 1280, height: 900 } });
         await ctx.addInitScript(v => { if (!sessionStorage.getItem('__seeded')) { localStorage.setItem('element_studio_v1', v); sessionStorage.setItem('__seeded', '1'); } }, JSON.stringify(rec.storage));
         await ctx.route(/^https?:\/\/(?!127\.0\.0\.1)/, r => r.abort());
