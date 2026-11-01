@@ -7,6 +7,10 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-01 · gpt · 증기 스팀펑크 일상 1번 새 설계로 교체
+- element-atelier-img/img/h-water-steam_steampunk_game_keyart_f_casual1.webp — 사용자 「다른 설계로 다시 그려서 올려줘」에 따라 승인된 세계 카드의 얼굴·머리를 참조해 새로 그렸다. 불투명 터틀넥 니트·퀼팅 조끼와 밝은 방의 창가 휴식, 몸과 얼굴 같은 방향·앞쪽 팔짱으로 역회전과 팔 연결 문제를 해소했다.
+- element-atelier-img/records/h-water-steam/ · records/replacement.json — 기존 기록·계획 원문과 PNG·WebP 해시를 보존하고 새 트리 선택값·덧붙임·지시문·세계 카드 참조 해시·출력 해시·검수를 남겼다. 계획의 chest_up보다 허리까지 넓은 크롭과 몸 방향 차이는 QA에 기록했다. 기록 기준 다섯 장 묶음 검사 통과. 썸네일은 변경 이미지 자동 재생성으로 갱신하며 도감 파일 이름은 유지한다.
+
 ## 2026-11-01 · gpt · 비 일상 3·13번 팔 연결 수정, 증기 1번 수정 시도 기록
 - element-atelier-img/img/h-water-rain_fantasy_game_keyart_f_casual3.webp · img/h-water-rain_mecha_game_keyart_f_casual3.webp — 사용자가 지적한 등 뒤로 솟는 팔과 추가 팔을 수정했다. 몸·얼굴을 같은 정면 사선으로 정렬하고, 난간 손과 머리 손을 각각 같은 쪽 어깨·팔꿈치·손목에 연결했다. 기존 얼굴·의상·배경을 유지했고 1024×1536·전신·두 팔 연결을 검수했다.
 - element-atelier-img/records/h-water-rain/ · records/replacement.json — 수정 전 기록 원문과 이전 PNG·WebP 해시를 보존하고, 생성기로 조립한 수정 선택값·지시문·두 첨부 역할·수정본 해시와 해부학 검수를 남겼다. 파일 이름은 유지하며 썸네일은 변경 파일 자동 재생성으로 갱신한다. 도감 등록 데이터는 수동 변경하지 않는다.
