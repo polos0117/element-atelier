@@ -14,22 +14,24 @@
 /* 주기율표 — 18열. 란타넘·악티늄족은 아래 두 줄 */
 .ptable {display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:3px;margin:8px 0 0}
 .ptable .gap {grid-column:span 1}
-.pcell {position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;min-width:0;padding:2px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--muted);text-decoration:none;font:600 11px/1.1 ui-monospace,monospace}
-.pcell small {font-size:7px;font-weight:400;opacity:.8}
-.pcell b {font-size:12px;font-weight:700}
+.pcell {position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;min-width:0;padding:2px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--muted);text-decoration:none;font:600 11px/1.1 inherit;font-family:inherit;font-variant-numeric:tabular-nums}
+.pcell small {font-size:10px;font-weight:500;opacity:.8}
+.pcell b {font-size:14px;font-weight:700}
 .pcell.on {color:var(--on-accent);background:var(--cat);border-color:var(--cat);box-shadow:var(--shadow)}
 .pcell.on:hover,.pcell.on:focus-visible {filter:brightness(1.08);outline:2px solid var(--text);outline-offset:1px}
 .pcell.f {opacity:.9}
 .ptable-f {margin-top:8px}
 @media (max-width:760px) {
-  .ptable {gap:2px} .pcell {border-radius:4px;font-size:8px} .pcell b {font-size:9px} .pcell small {display:none}
+  /* 폰 — 18열을 손가락 크기(44px)로 두고 옆으로 민다. 오른쪽 끝이 흐려 더 있다는 표시(2026-11-02 점검) */
+  .ptable-scroll {overflow-x:auto;margin:0 -12px;padding:0 28px 6px 12px;scrollbar-width:thin;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000)}
+  .ptable {width:max-content;grid-template-columns:repeat(18,44px);gap:3px} .pcell {border-radius:5px} .pcell b {font-size:13px} .pcell small {font-size:10px}
 }
 
 /* 첫 묶음 — 나라 카드 */
 .nations {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .nation-card {padding:14px 16px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cat,var(--accent));border-radius:14px;box-shadow:var(--shadow)}
 .nation-top {display:flex;align-items:baseline;gap:10px}
-.nation-top .sym {font:700 26px/1 ui-monospace,monospace;color:var(--cat,var(--accent))}
+.nation-top .sym {font:700 28px/1 var(--gallery-serif,inherit);color:var(--cat,var(--accent))}
 .nation-top a {color:var(--text);text-decoration:none;font-size:16px;font-weight:700}
 .nation-top a:hover,.nation-top a:focus-visible {color:var(--accent);text-decoration:underline}
 .nation-top .en {color:var(--muted);font-size:12px}
@@ -40,9 +42,9 @@
 .dex-pick {display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
 .dex-pick a {min-height:40px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);text-decoration:none;font-size:13px;font-weight:600}
 .dex-pick a[aria-current="page"] {border-color:var(--cat,var(--accent));background:var(--cat,var(--accent));color:var(--on-accent)}
-.dex-pick a .sym {font:700 13px ui-monospace,monospace}
+.dex-pick a .sym {font:700 14px inherit;font-family:inherit}
 .dex-head {display:flex;flex-wrap:wrap;align-items:flex-end;gap:12px 18px}
-.dex-head .sym {font:700 44px/1 ui-monospace,monospace;color:var(--cat,var(--accent))}
+.dex-head .sym {font:700 48px/1 var(--gallery-serif,inherit);color:var(--cat,var(--accent))}
 .dex-head h2 {margin:0;font:700 26px/1.3 var(--gallery-serif,sans-serif)}
 .dex-head .en {color:var(--muted)}
 .facts {display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0 0;padding:0;list-style:none;color:var(--muted);font-size:12px}
@@ -55,7 +57,7 @@
 .row-head .shared {color:var(--muted);font-size:12px}
 .row-head .shared a {color:var(--accent)}
 .row-head .elements {display:inline-flex;gap:4px}
-.row-head .elements span {padding:1px 7px;border-radius:999px;border:1px solid var(--line);font:600 11px ui-monospace,monospace;color:var(--muted)}
+.row-head .elements span {padding:1px 7px;border-radius:999px;border:1px solid var(--line);font:600 12px inherit;font-family:inherit;color:var(--muted)}
 .row-persona {margin:0 0 8px;color:var(--muted);font-size:13px;line-height:1.6}
 .worlds {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .worlds.wide {grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -63,9 +65,9 @@
 .slot[disabled] {cursor:default;opacity:.55;border-style:dashed}
 .slot .face {display:block;position:relative;width:100%;aspect-ratio:2/3;background:var(--card2);overflow:hidden}
 .slot .face img {display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
-.slot .ph {display:flex;align-items:center;justify-content:center;height:100%;padding:6px;color:var(--muted);font:11px/1.4 ui-monospace,monospace;letter-spacing:.04em;text-align:center}
+.slot .ph {display:flex;align-items:center;justify-content:center;height:100%;padding:6px;color:var(--muted);font:12px/1.4 inherit;font-family:inherit;text-align:center}
 .slot .cap {display:flex;justify-content:space-between;align-items:baseline;gap:6px;padding:6px 9px;font-size:12px;font-weight:700}
-.slot .cap i {font-style:normal;font-weight:400;color:var(--muted);font-size:11px}
+.slot .cap i {font-style:normal;font-weight:400;color:var(--muted);font-size:12px}
 .citizen {display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
 .citizen .who b {display:block;font-size:15px}
 .citizen .who i {display:block;font-style:normal;color:var(--muted);font-size:12px}
@@ -115,9 +117,13 @@
 
 /* 도감 판(2026-10-31) — 위에 붙는 판 · 카드마다 접기 · 작은 칸 · 크게 보기 넘기기 · 즐겨찾기 */
 .about {margin:10px 0 0;font-size:13px;color:var(--muted)}
-.about summary {cursor:pointer;min-height:40px;display:flex;align-items:center;font-weight:600}
+.about summary {cursor:pointer;min-height:44px;display:flex;align-items:center;gap:8px;font-weight:600;list-style:none;color:var(--accent)}
+.about summary::-webkit-details-marker {display:none}
+.about summary::before {content:'▸';display:inline-block;transition:transform .15s}
+.about[open] summary::before {transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce) {.about summary::before {transition:none}}
 .about p {margin:4px 0 0;color:var(--text);line-height:1.7;font-size:14px}
-.dex-toc {position:sticky;top:0;z-index:5;margin:12px -4px 4px;padding:8px 4px;background:var(--bg);border-bottom:1px solid var(--line)}
+.dex-toc {position:sticky;top:0;z-index:5;margin:12px -4px 4px;padding:10px 4px;background:color-mix(in srgb,var(--bg) 78%,transparent);-webkit-backdrop-filter:blur(10px) saturate(1.1);backdrop-filter:blur(10px) saturate(1.1);border-block:1px solid var(--line)}   /* 붙는 판 — 평평한 바탕 대신 비치는 막(2026-11-02 점검) */
 .toc-row {display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
 .seg {display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
 .seg button {min-height:40px;padding:0 12px;border:0;background:none;color:var(--text);font:600 13px/1 inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
@@ -139,18 +145,18 @@
 .slot .cap {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .slot.dead {opacity:.45;border-style:dashed;cursor:default;align-self:start}
 .slot.dead .face {aspect-ratio:auto;height:44px}
-.slot.dead .ph {font-size:10px}
+.slot.dead .ph {font-size:12px}
 .more-row {display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .more-row .more {min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--text);font:600 13px/1 inherit;font-family:inherit;cursor:pointer}
 .more-row .more[aria-expanded="true"] {border-color:var(--accent);color:var(--accent)}
 .none-note {margin:0;color:var(--muted);font-size:12px}
 @media (min-width:900px) {.cards .ek-card.tier-citizen {display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:16px;align-items:start} .ek-card.tier-citizen .obj {margin:0}}
 /* 폰 — 위에 붙는 판은 두 줄(보기·세계·즐겨찾기 한 줄을 옆으로 밀고, 바로 가기 한 줄) */
-@media (max-width:700px) {.toc-row {flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none} .toc-row::-webkit-scrollbar {display:none} .seg,.dex-toc .fav-count {flex:0 0 auto} .dex-toc .fav-count {margin-left:0} .seg button {padding:0 10px;min-height:38px}
-  .ek-card {scroll-margin-top:110px}}
+@media (max-width:700px) {.toc-row {flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:8px;padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000)} .toc-row::-webkit-scrollbar {display:none} .seg,.dex-toc .fav-count {flex:0 0 auto} .dex-toc .fav-count {margin-left:0} .seg button {padding:0 10px}
+  .ek-card {scroll-margin-top:140px}}   
 .lightbox {justify-content:center}
 .lightbox .lb-top {display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;justify-content:center;color:#fff;font-size:13px;max-width:100%}
-.lightbox .lb-top b {font-size:15px} .lightbox .lb-n {opacity:.7;font-family:ui-monospace,monospace}
+.lightbox .lb-top b {font-size:15px} .lightbox .lb-n {opacity:.7;font-variant-numeric:tabular-nums}
 .lb-stage {position:relative;display:flex;align-items:center;justify-content:center;max-width:100%}
 .lb-stage img {max-height:76vh}
 .lb-nav {position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:1px solid #fff4;border-radius:10px;background:#0007;color:#fff;font-size:30px;line-height:1;cursor:pointer}
@@ -158,3 +164,15 @@
 .lightbox .fav-heart[aria-pressed="true"] {border-color:#ff8fb1;color:#ffb3c8}
 .fav-toast {position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:90;max-width:calc(100vw - 32px);padding:9px 16px;border-radius:999px;background:#fff;color:#111;font-size:13px;font-weight:700;text-align:center;pointer-events:none}
 .fav-toast:empty {display:none}
+/* ── 점검(2026-11-02, frontend-design · ui-ux-pro-max) — 손가락 크기 · 나라 카드 전체가 도감 길 ── */
+@media (max-width:700px) {
+  .seg button,.toc-jump .jump,.dex-pick a,.dex-toc .fav-count,.more-row .more {min-height:44px}
+  .toc-jump .jump {min-width:44px}
+  .toc-jump {padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000)}   /* 옆으로 더 있다는 표시 */
+}
+.nations .nation-card {position:relative}
+.nations .nation-top a::after {content:'';position:absolute;inset:0;border-radius:inherit}
+.nations .nation-card:hover {filter:brightness(1.04)}
+.nations .nation-card:focus-within {outline:2px solid var(--accent);outline-offset:3px}
+html:root :is(.room-choice,.room-background-toggle,.patch-open) {min-height:44px}
+.row-head .shared a {display:inline-block;padding:13px 4px;margin:-13px 0}   /* 같은 물질 다른 나라 — 글 줄은 그대로, 누르는 자리만 44px */

@@ -12,3 +12,6 @@ html {font-synthesis:none}
 .ek-section h2,.dex-head h2,.room-preview-copy h2 {letter-spacing:0}
 /* Orbit 은 낱말 사이가 넓다 — 제목 글꼴을 쓰는 자리만 좁힌다 */
 :root:is([data-theme="sunlit"],[data-theme="phosphor"],:not([data-theme])) :is(.workspace-heading h1,.ek-section h2,.dex-head h2,.room-preview-copy h2,.panel h3,.result h3,.title-plaque h1,.menu-btn > span,.title-space .name b) {word-spacing:-.24em}
+/* 프롬프트 판 — 바탕 장면 위에 글이 바로 앉아 읽기 힘들던 것(2026-11-02 점검): 판에 카드 바탕 */
+.prompt-page .panel#panel,.prompt-page .result#out {background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.prompt-page .lede {padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--card) 80%,transparent);width:fit-content;max-width:100%}

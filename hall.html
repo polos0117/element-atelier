@@ -10,15 +10,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Song+Myung&family=Hahmlet:wght@600;700&family=Orbit&family=Black+Han+Sans&display=swap">
-<link rel="stylesheet" href="lib/workspace.css?v=2">
+<link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=2"></script>
 <script src="lib/words.js?v=9"></script>
 <script src="lib/patch.js?v=1"></script>
 <script src="lib/fresh.js?v=1"></script>
 <script src="lib/img.js?v=9"></script>
 <link rel="stylesheet" href="lib/room.css?v=2">
-<link rel="stylesheet" href="lib/element.css?v=4">
-<link rel="stylesheet" href="lib/material.css?v=1">
+<link rel="stylesheet" href="lib/element.css?v=7">
+<link rel="stylesheet" href="lib/material.css?v=2">
 </head>
 <body class="prompt-page lab-page">
 <div class="wrap"><div id="app"></div></div>
@@ -59,12 +59,11 @@ function Table({d}){
   /* 번호 → (줄, 열). 란타넘·악티늄족(족 없음)은 아래 표 */
   const main=[];for(let p=1;p<=7;p++){for(let g=1;g<=18;g++){const e=d.elements.find(x=>x.period===p&&x.group===g);main.push(cell(e));}}
   const fblock=[];for(const [a,b] of [[57,71],[89,103]]){fblock.push(h('span',{class:'gap'}),h('span',{class:'gap'}),h('span',{class:'gap'}));for(let n=a;n<=b;n++)fblock.push(cell(byNum.get(n),true));}
-  return h('div',null,h('div',{class:'ptable',role:'list'},main),h('div',{class:'ptable ptable-f',role:'list'},fblock));
+  return h('div',{class:'ptable-scroll'},h('div',{class:'ptable',role:'list'},main),h('div',{class:'ptable ptable-f',role:'list'},fblock));
 }
 function Home(){
   const doc=useDocs();
   return h('section',{class:'ek-section','aria-label':W('home.title')},
-    h('p',{class:'ek-kicker'},W('app.title')),
     h('h2',null,W('home.title')),
     h('p',null,W('home.intro')),
     h('p',{class:'ek-tag'},W('home.tag')),
