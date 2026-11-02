@@ -33,7 +33,7 @@
 
 ## 꾸밈 · 글꼴
 
-- 공간 다섯의 장식 틀(`--frame`, 그림 저장소 `backgrounds/frames/frame-<공간>.webp` — 투명 여백을 잘라낸 9칸 틀, 자르기 %는 기록 `processing`), 그림 단추(`--ui-*`, 그림 저장소 `backgrounds/ui/ui-<공간>-<title|main|btn|round>.webp`)와 제목 글꼴(`--gallery-serif` — 실험실 · 제어실 Orbit · 천문대 Hahmlet · 연금술 공방 Song Myung · 광산 Black Han Sans)은 `lib/material.css` 한 곳. 본문 글꼴은 IBM Plex Sans KR. 글꼴을 바꾸면 네 화면의 Google Fonts 줄을 같이 고친다.
+- 공간 다섯의 장식 틀(`--frame`, 그림 저장소 `backgrounds/frames/frame-<공간>.webp` — 투명 여백을 잘라낸 9칸 틀, 자르기 %는 기록 `processing`), 그림 단추(`--ui-*`, 그림 저장소 `backgrounds/ui/ui-<공간>-<title|main|btn|round>.webp`)와 제목 글꼴(`--gallery-serif` — 실험실 · 제어실 Orbit · 천문대 Hahmlet · 연금술 공방 Song Myung · 광산 Black Han Sans)은 `lib/material.css` 한 곳. 본문 글꼴은 IBM Plex Sans KR(400 · 700 두 굵기). 제목 글꼴은 `lib/workspace-theme.js` 가 지금 공간의 것 하나만 붙이고, 글꼴 줄은 전부 화면 그리기를 막지 않는다(`media="print"` → onload — 2026-11-02 「화면 로딩이 엄청 느린데」 — 다섯 글꼴을 모든 화면이 받아 글꼴 목록만 514KB 였다).
 - 디자인 점검 skill: `.claude/skills/frontend-design`(방향 · 글꼴 · 테두리), `.claude/skills/ui-ux-pro-max`(글꼴 짝 · 스타일 · UX 규칙 검색 — `python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<질문>" --domain typography`), `.claude/skills/web-design-guidelines`(규칙 점검). sam-atelier 에서 옮겼다(2026-11-02).
 
 ## 지켜야 할 것

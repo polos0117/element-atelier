@@ -15,15 +15,16 @@
      주소 ?n=&f=&c=&w=&v=1 — 층마다 뒤로 가기가 한 층씩 올라간다. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Song+Myung&family=Hahmlet:wght@600;700&family=Orbit&family=Black+Han+Sans&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">   <!-- 본문 글꼴 — 화면 그리기를 막지 않게(오면 바뀐다). 제목 글꼴은 lib/workspace-theme.js 가 공간 것 하나만 -->
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="lib/workspace.css?v=3">
-<script src="lib/workspace-theme.js?v=2"></script>
+<script src="lib/workspace-theme.js?v=3"></script>
 <script src="lib/words.js?v=10"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/fresh.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=3">
 <link rel="stylesheet" href="lib/material.css?v=5">
-<link rel="stylesheet" href="lib/gallery.css?v=3">
+<link rel="stylesheet" href="lib/gallery.css?v=4">
 </head>
 <body class="gallery-page">
 <div id="app"></div>
@@ -80,7 +81,8 @@ const has=(doc,card)=>!!pick(doc,card,doc.d.vocab.worlds[0]);
 function Pic({doc,card,w,big,cls}){
   const p=pick(doc,card,w);if(!p)return null;
   const src=big?IMG.imgURL(p.file):IMG.thumbURL(p.file);
-  return h('span',{class:'pic'+(cls?' '+cls:''),style:{viewTransitionName:'c-'+card.key}},
+  /* 큰 그림은 원본(약 480KB)이 오는 동안 썸네일(약 40KB)을 먼저 깔아 둔다 */
+  return h('span',{class:'pic'+(cls?' '+cls:''),style:Object.assign({viewTransitionName:'c-'+card.key},big?{backgroundImage:'url("'+IMG.thumbURL(p.file)+'")'}:{})},
     h('img',{src,alt:'',loading:big?'eager':'lazy',decoding:'async',onError:e=>{e.target.onerror=null;e.target.src=IMG.imgURL(p.file);}}),
     p.from&&h('span',{class:'from'},W('gallery.from',{world:W('world.'+p.world)})));
 }
