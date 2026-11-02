@@ -26,11 +26,13 @@ for (const key of cards) {
     /* 외형 줄은 설계표 look(나라 ← 가문) 의 어휘 — 가문이 덮어쓴 머리색이 실리고, 직접 고른 것은 없으니 IDENTITY 가 없다 */
     const dz = P.lookOf(c, w), silLine = t.split('\n').find(l => l.startsWith('SILHOUETTE: ')), faceLine = t.split('\n').find(l => l.startsWith('FACE'));
     assert(silLine.includes(T.VOCAB_EN.hair_color[dz.silhouette.hair_color]) && silLine.includes(T.VOCAB_EN.body[dz.silhouette.body] + ' build') && silLine.includes(T.VOCAB_EN.hair[dz.silhouette.hair]), key + ' ' + w + ' 실루엣 줄 ' + silLine);
-    for (const k of Object.keys(T.FACE_PARAM)) assert(faceLine.includes(T.VOCAB_EN[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
+    /* 화풍 판의 얼굴 낱말(v3 — 2026-11-02)이 있으면 그 글로 바뀌어 실린다 */
+    const FW = (S.styles[S.default].versions.find(v => v.v === S.styles[S.default].current) || {}).face || {}, fw = (k, v) => FW[k + '.' + v];
+    for (const k of Object.keys(T.FACE_PARAM)) assert(faceLine.includes(fw(k, dz.face[k]) || T.VOCAB_EN[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
     /* 얼굴 설계(2026-11-01 — 얼굴 느낌이 비슷하게 나왔다) — 나이감 · 인상 · 피부 · 눈 크기 · 눈꼬리 · 표식이 실리고, 기본 표정 · 앞머리도. 모두에게 같던 「soft full cheeks · soft smile」 은 없다 */
     const FD = T.FACE_DESIGN;
-    assert(t.includes(FD.age[dz.face.age]) && faceLine.startsWith(FD.head.split(':')[0]) && faceLine.includes('first impression — ' + FD.impression[dz.face.impression]), key + ' ' + w + ' 나이감 · 인상');
-    for (const k of ['skin_tone', 'eye_size', 'eye_tilt', 'mark']) assert(faceLine.includes(FD[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
+    assert(t.includes(FD.age[dz.face.age]) && faceLine.startsWith(FD.head.split(':')[0]) && faceLine.includes('first impression — ' + (fw('impression', dz.face.impression) || FD.impression[dz.face.impression])), key + ' ' + w + ' 나이감 · 인상');
+    for (const k of ['skin_tone', 'eye_size', 'eye_tilt', 'mark']) assert(faceLine.includes(fw(k, dz.face[k]) || FD[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
     assert(t.includes(T.EXPR_HEAD + T.EXPRESSION_DETAIL[dz.face.expr] + '.') && silLine.includes(' with ' + FD.bangs[dz.silhouette.bangs]), key + ' ' + w + ' 기본 표정 · 앞머리');
     assert(!t.includes('soft full cheeks') && !t.includes('controlled anime facial design'), key + ' ' + w + ' 얼굴을 하나로 만들던 말');
     assert(!t.includes('IDENTITY ('), key + ' ' + w + ' 고른 외형이 없으면 IDENTITY 가 없다');
@@ -153,6 +155,19 @@ assert.notEqual(P.build(D, S, 'h-water', 'fantasy', {}), P.build(D, S, 'o-water'
 /* 없는 열쇠·없는 세계 */
 assert.equal(P.card(D, 'xx'), null); assert.equal(P.card(D, 'fe-nope'), null); assert.equal(P.card(D, 'fe-steel-sword-x'), null);
 assert.equal(P.build(D, S, 'fe', 'modern', {}), '');
+/* 화풍 v3(2026-11-02 「원소 공방 화풍이 2d 식으로 나오는 경우가」) — 문장이 바뀌고, 귀여운 얼굴 낱말은 v3 에서만 바꿔 적는다. v2 로 돌리면 옛 지시문 그대로 */
+{
+  const GK = S.styles.game_keyart, v3 = GK.versions.find(v => v.v === 'v3'), v2 = GK.versions.find(v => v.v === 'v2');
+  assert.equal(GK.current, 'v3'); assert(v3.text.includes('Not flat cel-shaded 2D anime') && !v3.text.includes('clean linework') && !v3.text.includes('cel-to-soft'), 'v3 문장');
+  const t3 = P.build(D, S, 'o-blood-cell', 'mecha', { style: 'game_keyart' }), f3 = t3.split('\n').find(l => l.startsWith('FACE'));
+  assert(t3.includes('STYLE: ' + v3.text) && f3.includes(v3.face['impression.cute']) && f3.includes(v3.face['eye_size.large']) && f3.includes(v3.face['nose.small_button']) && f3.includes(v3.face['mark.blush']), '적혈구 v3 얼굴 낱말 ' + f3);
+  assert(!f3.includes('a cute, bright-eyed sweetness') && !f3.includes('rosy flushed cheeks'), '옛 낱말은 빠진다');
+  const S2 = JSON.parse(JSON.stringify(S)); S2.styles.game_keyart.current = 'v2';
+  const t2 = P.build(D, S2, 'o-blood-cell', 'mecha', { style: 'game_keyart' });
+  assert(t2.includes('STYLE: ' + v2.text) && t2.includes('a cute, bright-eyed sweetness') && t2.includes('small button nose') && t2.includes('rosy flushed cheeks'), 'v2 는 옛 지시문 그대로');
+  const c3 = P.build(D, S, 'na', 'fantasy', { style: 'game_keyart' });
+  assert(c3.includes(v3.face['eyes.round_large']) && !c3.includes('large round eyes'), '나트륨 둥근 큰 눈');
+}
 console.log('PASS 지시문: 카드 ' + cards.length + ' · 지시문 ' + n + ' · 근본 ' + byTier.root + ' 가문주 ' + byTier.lord + ' 주민 ' + byTier.citizen + ' · 뼈대 줄 · 외형(나이·실루엣·얼굴·노출 — 설계표 look, 직접 고른 것이 이김, IDENTITY) · 장면·시간대·자세·표정 · 입는 물건 · 메카 설계 · 덧붙임 · 기록 · 파일 이름');
 
 /* ══ 일상컷(트리 버전2) ══ 공용 모듈·표는 이 저장소 것을 먼저, 아직 없으면 game-atelier 것으로(알림을 찍는다) */
