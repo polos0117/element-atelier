@@ -15,3 +15,20 @@ html {font-synthesis:none}
 /* 프롬프트 판 — 바탕 장면 위에 글이 바로 앉아 읽기 힘들던 것(2026-11-02 점검): 판에 카드 바탕 */
 .prompt-page .panel#panel,.prompt-page .result#out {background:color-mix(in srgb,var(--card) 92%,transparent);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
 .prompt-page .lede {padding:8px 12px;border-radius:10px;background:color-mix(in srgb,var(--card) 80%,transparent);width:fit-content;max-width:100%}
+
+/* ══ 장식 틀(2026-11-02, 사용자 「응 장식 틀도 만들어줘」) — sam-atelier 의 공간별 틀과 같은 방식 ══
+   공간마다 생성한 틀 한 장(가운데 투명, 그림 저장소 backgrounds/frames/frame-<공간>.webp, 기록 records/backgrounds/frame-<공간>.json)을
+   9칸 틀(border-image)로 섹션 · 판 · 패치 · 공간 고르기 · 나라 카드 · 결과 · 머리 메뉴에. 모서리 장식은 그대로, 변만 늘어난다(나무 · 리벳 변은 round 로 되풀이).
+   레이아웃이 움직이지 않게 테 두께는 그대로 두고 그림 폭(border-image-width)만 키워 밖으로 조금 내민다. 「배경 끄기」 면 틀도 끈다. */
+:root[data-theme="sunlit"], :root:not([data-theme]) {--frame:url("https://polos0117.github.io/element-atelier-img/backgrounds/frames/frame-sunlit.webp");--frame-slice:14%;--frame-rep:stretch}
+:root[data-theme="moonlit"] {--frame:url("https://polos0117.github.io/element-atelier-img/backgrounds/frames/frame-moonlit.webp");--frame-slice:16%;--frame-rep:stretch}
+:root[data-theme="hanok"] {--frame:url("https://polos0117.github.io/element-atelier-img/backgrounds/frames/frame-hanok.webp");--frame-slice:13%;--frame-rep:round}
+:root[data-theme="forest"] {--frame:url("https://polos0117.github.io/element-atelier-img/backgrounds/frames/frame-forest.webp");--frame-slice:14%;--frame-rep:round}
+:root[data-theme="phosphor"] {--frame:url("https://polos0117.github.io/element-atelier-img/backgrounds/frames/frame-phosphor.webp");--frame-slice:14%;--frame-rep:stretch}
+html:not([data-background="off"]) :is(.ek-section,.prompt-page .panel#panel,.patch-panel,.room-preview) {border-image:var(--frame) var(--frame-slice) / 30px / 4px var(--frame-rep)}
+html:not([data-background="off"]) :is(.nation-card,.prompt-page .result#out) {border-image:var(--frame) var(--frame-slice) / 20px / 3px var(--frame-rep)}
+html:not([data-background="off"]) .workspace-nav {border-image:var(--frame) var(--frame-slice) / 16px / 2px var(--frame-rep)}
+html:not([data-background="off"]) .nation-card {border-left-width:1px}   /* 나라 색 왼쪽 띠는 틀이 덮는다 — 색은 기호(.sym)가 가진다 */
+html:not([data-background="off"]) :is(.ek-section,.prompt-page .panel#panel,.patch-panel) {padding:28px 30px 26px;margin-top:22px}   /* 글이 틀 그림(30px) 안쪽에 앉게 */
+html:not([data-background="off"]) .prompt-page .result#out {padding:22px 24px}
+@media (max-width:599px) {html:not([data-background="off"]) :is(.ek-section,.prompt-page .panel#panel,.patch-panel) {padding:26px 22px 22px}}
