@@ -32,6 +32,12 @@
 import {h,render} from 'https://esm.sh/preact@10.24.3';
 import {useState,useEffect,useRef} from 'https://esm.sh/preact@10.24.3/hooks';
 import {PAGES} from './lib/workspace-ui.js?v=3';
+import * as FX from './lib/motion-fx.js?v=1';
+/* 누른 것의 자리 — 다음 층 · 미리 보기 · 한 장의 그림이 거기서 날아와 커진다(lib/motion-fx.js flyFrom, 뷰 전환 대신 한 장만) */
+let FROM=null;
+const from=e=>{try{FROM=e.currentTarget.getBoundingClientRect();}catch(x){FROM=null;}};
+const fromSel=sel=>{const el=document.querySelector(sel);FROM=el?el.getBoundingClientRect():null;};
+const land=sel=>{FX.flyFrom(FROM,document.querySelector(sel));FROM=null;};
 const W=window.W,IMG=window.AtelierImg;
 /* 한 장 보기의 키 — 페이지에 한 번 걸고, 그리는 한 장이 처리기를 바꿔 끼운다 */
 let LORE_KEY=null;
@@ -104,7 +110,7 @@ function Island({doc,st,go}){
   return h('section',{class:'g-island'},
     h('h1',null,W('gallery.island',{n:ns.length})),h('p',{class:'g-note'},W('gallery.island.note')),
     h('ul',{class:'g-nations'},ns.map(n=>{const {root,lords}=nationCards(doc,n),el=root.el;
-      return h('li',{key:n.key},h('button',{type:'button',class:'g-tile','data-n':n.key,'aria-label':W('gallery.enter',{name:el.ko}),onClick:()=>go({n:n.key,f:'',c:'',v:false})},
+      return h('li',{key:n.key},h('button',{type:'button',class:'g-tile','data-n':n.key,'aria-label':W('gallery.enter',{name:el.ko}),onClick:e=>{from(e);go({n:n.key,f:'',c:'',v:false});}},
         h(Pic,{doc,card:root,w:st.w}),
         h('span',{class:'g-tile-cap'},h('span',{class:'sym'},el.symbol),h('span',{class:'num'},el.number),h('b',null,el.ko),h('small',null,el.en+' · '+W('gallery.families',{n:lords.filter(l=>has(doc,l)).length})))));})));
 }
@@ -116,30 +122,33 @@ const RING={fe:.43,h:.407,o:.419,c:.398,na:.43,au:.428,og:.405};
 /* 미리 보기 — 이름표를 누르면 뜨는 큰 그림. 여기서 크게 보기(한 장) · 주민 보기(가문) */
 function Peek({doc,st,go,card,close}){
   useEffect(()=>{const k=e=>{if(e.key==='Escape')close();};addEventListener('keydown',k);return ()=>removeEventListener('keydown',k);},[]);
+  useEffect(()=>{FX.pop(document.querySelector('.g-peek'),.96);land('.g-peek-pic .pic');},[card.key]);   /* 이름표에서 그림이 날아와 커진다 */
   const text=card.tier==='root'?card.nation.persona:card.family.persona,n=card.tier==='lord'?card.citizens.filter(c=>has(doc,c)).length:0;
   return h('div',{class:'g-peek-wrap',onClick:e=>{if(e.target===e.currentTarget)close();}},
     h('section',{class:'g-peek',role:'dialog','aria-modal':'true','aria-label':card.name},
-      h('button',{type:'button',class:'g-peek-pic','data-act':'open','aria-label':W('gallery.open',{name:card.name}),onClick:()=>go({c:card.key,v:true})},h(Pic,{doc,card,w:st.w,big:true})),
+      h('button',{type:'button',class:'g-peek-pic','data-act':'open','aria-label':W('gallery.open',{name:card.name}),onClick:()=>{fromSel('.g-peek-pic .pic');go({c:card.key,v:true});}},h(Pic,{doc,card,w:st.w,big:true})),
       h('div',{class:'g-peek-text'},
         h('p',{class:'g-tier'},W('gallery.tier.'+card.tier)+' · '+card.el.symbol+' '+card.el.ko),
         h('h2',null,card.name,h('small',null,card.en)),
         h('p',{class:'g-peek-persona'},text),
         h('div',{class:'g-peek-acts'},
-          h('button',{type:'button',class:'g-act main','data-act':'open',onClick:()=>go({c:card.key,v:true})},W('gallery.peek.open')),
-          card.tier==='lord'&&n>0&&h('button',{type:'button',class:'g-act','data-act':'family',onClick:()=>go({f:card.family.key,c:'',v:false})},W('gallery.peek.family',{n})),
+          h('button',{type:'button',class:'g-act main','data-act':'open',onClick:()=>{fromSel('.g-peek-pic .pic');go({c:card.key,v:true});}},W('gallery.peek.open')),
+          card.tier==='lord'&&n>0&&h('button',{type:'button',class:'g-act','data-act':'family',onClick:()=>{fromSel('.g-peek-pic .pic');go({f:card.family.key,c:'',v:false});}},W('gallery.peek.family',{n})),
           h('button',{type:'button',class:'g-act','data-act':'close',onClick:close},W('gallery.close'))))));
 }
 function Nation({doc,st,go,n}){
   const {root,lords}=nationCards(doc,n),el=root.el,shown=lords.filter(l=>has(doc,l)),N=shown.length,r=(RING[n.key]||.41)*100;
   const world=n.worlds&&n.worlds[st.w],[peek,setPeek]=useState(null);
   useEffect(()=>setPeek(null),[n.key]);
+  /* 나라에 들어오면 — 누른 카드에서 무대가 커지고, 가문 이름표가 핵에서 튀어나와 궤도 자리로 */
+  useEffect(()=>{land('.g-stage');FX.burst(document.querySelectorAll('.g-node'),(document.querySelector('.g-nucleus')||{getBoundingClientRect:()=>null}).getBoundingClientRect());},[n.key]);
   return h('section',{class:'g-nation'},
     h('div',{class:'g-stage',style:{'--orbit':'url("'+ORBIT+n.key+'.webp")'}},
       h('svg',{class:'g-spin',viewBox:'0 0 100 100','aria-hidden':'true'},h('circle',{cx:50,cy:50,r:r})),
-      h('button',{type:'button',class:'g-nucleus','data-card':root.key,'aria-label':W('gallery.node',{name:root.name}),onClick:()=>setPeek(root)},
+      h('button',{type:'button',class:'g-nucleus','data-card':root.key,'aria-label':W('gallery.node',{name:root.name}),onClick:e=>{from(e);setPeek(root);}},
         h('span',{class:'g-nuc-cap'},h('b',null,el.symbol),' '+el.ko)),
       shown.map((l,i)=>{const a=(i/N)*2*Math.PI-Math.PI/2,x=50+Math.cos(a)*r,y=50+Math.sin(a)*r;
-        return h('button',{key:l.key,type:'button',class:'g-node'+(x<38?' l':x>62?' r':''),'data-f':l.family.key,style:{left:x.toFixed(2)+'%',top:y.toFixed(2)+'%','--i':i},'aria-label':W('gallery.node',{name:l.name}),onClick:()=>setPeek(l)},l.family.ko);})),
+        return h('button',{key:l.key,type:'button',class:'g-node'+(x<38?' l':x>62?' r':''),'data-f':l.family.key,style:{left:x.toFixed(2)+'%',top:y.toFixed(2)+'%','--i':i},'aria-label':W('gallery.node',{name:l.name}),onClick:e=>{from(e);setPeek(l);}},l.family.ko);})),
     h('div',{class:'g-text'},
       h('p',{class:'g-sym'},h('span',null,el.symbol),h('small',null,el.number)),
       h('h1',null,el.ko,h('small',null,el.en)),
@@ -152,11 +161,12 @@ function Nation({doc,st,go,n}){
 }
 /* 가문 — 가문주 크게, 주민은 액자 */
 function Family({doc,st,go,n,lord}){
+  useEffect(()=>{land('.g-hero .pic');FX.stagger(document.querySelectorAll('.g-cit'),{y:16,each:.06});},[lord.key]);   /* 미리 보기 그림이 가문주 자리로, 주민 액자는 차례로 */
   const f=lord.family,cits=lord.citizens.filter(c=>has(doc,c));
   const shared=(f.elements||[]).filter(k=>k!==n.key).map(k=>doc.d.elements.find(e=>e.key===k)).filter(Boolean);
   return h('section',{class:'g-family'},
     h('div',{class:'g-fam-top'},
-      h('button',{type:'button',class:'g-hero','aria-label':W('gallery.open',{name:lord.name}),onClick:()=>go({c:lord.key,v:true})},h(Pic,{doc,card:lord,w:st.w,big:true})),
+      h('button',{type:'button',class:'g-hero','aria-label':W('gallery.open',{name:lord.name}),onClick:()=>{fromSel('.g-hero .pic');go({c:lord.key,v:true});}},h(Pic,{doc,card:lord,w:st.w,big:true})),
       h('div',{class:'g-text'},
         h('p',{class:'g-tier'},W('gallery.tier.lord')+' · '+lord.el.symbol+' '+lord.el.ko),
         h('h1',null,lord.name,h('small',null,f.en)),
@@ -166,7 +176,7 @@ function Family({doc,st,go,n,lord}){
         h('a',{class:'g-dex',href:'dex.html?nation='+n.key+'&card='+encodeURIComponent(lord.key)},W('gallery.dex')))),
     cits.length>0&&h('div',{class:'g-cits'},
       h('h2',null,W('gallery.citizens',{n:cits.length})),
-      h('ul',null,cits.map(c=>h('li',{key:c.key},h('button',{type:'button',class:'g-cit','data-c':c.key,'aria-label':W('gallery.open',{name:c.name}),onClick:()=>go({c:c.key,v:true})},
+      h('ul',null,cits.map(c=>h('li',{key:c.key},h('button',{type:'button',class:'g-cit','data-c':c.key,'aria-label':W('gallery.open',{name:c.name}),onClick:e=>{from(e);go({c:c.key,v:true});}},
         h(Pic,{doc,card:c,w:st.w}),h('span',{class:'g-cit-cap'},h('b',null,c.name),h('small',null,c.en))))))));
 }
 /* 한 장 — 화면 가득. ← → 로 세계, Esc 로 닫기, 밀어서 넘기기 */
@@ -176,6 +186,7 @@ function Lore({doc,st,go,setW,card}){
   const close=()=>{if(history.state&&history.state.g)history.back();else go({c:'',v:false});};   /* 이 전시관 안에서 열었으면 뒤로 — 닫은 뒤 뒤로 가기가 다시 한 장을 열지 않게 */
   LORE_KEY=e=>{if(e.key==='Escape')close();else if(e.key==='ArrowLeft')step(-1);else if(e.key==='ArrowRight')step(1);};   /* 그리는 순간부터 받는다(효과를 기다리지 않는다) */
   /* 다른 세계 그림을 미리 받아 둔다 — ← → 로 넘길 때 기다리지 않게 */
+  useEffect(()=>{land('.g-lore-pic');},[card.key]);   /* 누른 그림에서 날아와 화면 가득 */
   useEffect(()=>{lives.filter(w=>w!==st.w).forEach(w=>{const f=fileOf(doc,card.key,w);if(f){const i=new Image();i.decoding='async';i.src=IMG.imgURL(f);}});},[card.key]);
   const p=pick(doc,card,st.w),el=card.el,world=card.tier==='root'&&card.nation.worlds&&card.nation.worlds[st.w];
   const motif=card.citizen&&card.citizen.object&&card.citizen.object.en,note=card.citizen&&card.citizen.notes&&card.citizen.notes[st.w];
