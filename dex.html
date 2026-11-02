@@ -11,10 +11,10 @@
      글(인격·성질·가문·물건)은 data/element-design.json 에서 온다. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Song+Myung&family=Hahmlet:wght@600;700&family=Orbit&family=Black+Han+Sans&display=swap">
 <link rel="stylesheet" href="lib/workspace.css?v=2">
 <script src="lib/workspace-theme.js?v=2"></script>
-<script src="lib/words.js?v=8"></script>
+<script src="lib/words.js?v=9"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/prompt-spec.js?v=4"></script>
 <script src="lib/prompt-element.js?v=7"></script>
@@ -23,13 +23,14 @@
 <script src="lib/favorites.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=2">
 <link rel="stylesheet" href="lib/element.css?v=4">
+<link rel="stylesheet" href="lib/material.css?v=1">
 </head>
 <body class="prompt-page lab-page">
 <div class="wrap"><div id="app"></div></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
 import {useState,useEffect,useRef} from 'https://esm.sh/preact@10.24.3/hooks';
-import {WorkspaceHeader} from './lib/workspace-ui.js?v=1';
+import {WorkspaceHeader} from './lib/workspace-ui.js?v=2';
 /* 도감 판(2026-10-31, 사용자 「도감 보기가 좀 불편해」) — 한 나라가 3만 픽셀이 넘어 주민 하나 찾기가 어려웠다.
    · 위에 붙는 판: 보기(세계 그림 · 일상컷 · 전부) · 세계(모두 · 판타지 · 스팀펑크 · 메카) · 바로 가기(근본 · 가문 · 주민 칩) · 즐겨찾기 수
    · 카드마다 세계 그림 셋만 펴고, 일상컷 · 다른 화풍은 접은 단추로. 안 사는 세계는 작고 흐린 칸

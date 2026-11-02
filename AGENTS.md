@@ -20,7 +20,8 @@
 
 | 화면 | 파일 | 무엇 |
 |---|---|---|
-| 첫 화면 | `index.html` · `lib/element.css` | 주기율표 118칸(설계된 나라만 색·누르면 도감) · 첫 묶음 나라 카드(인격·가문·주민·그림 수) · 패치 기록 · 공간 |
+| 타이틀 | `index.html` · `lib/material.css` | 게임 첫 진입 화면처럼(2026-11-02 「메인화면 구성을 지금 삼국지처럼」): 공간의 배경 장면을 화면 가득, 공간마다 생성한 그림 현판 · 단추(그림 저장소 `backgrounds/ui/`)로 메뉴 셋(머리 메뉴와 같은 차례 — 주기율표 · 도감 · 프롬프트), ◀ ▶ · ← → 로 공간 넘기기, 빈 곳을 누르면 배경만 |
+| 주기율표 | `hall.html` · `lib/element.css` | 주기율표 118칸(설계된 나라만 색·누르면 도감) · 첫 묶음 나라 카드(인격·가문·주민·그림 수) · 패치 기록 · 공간 |
 | 도감 | `dex.html` · `lib/img.js` · `lib/element.css` | 나라 하나 — 사실 칸·인격·성질 · 근본 세 세계 · 가문마다 가문주 세 세계 + 주민들(사는 세계만) · 같은 물질 다른 나라 잇기 · 크게 보기 · 빈 자리를 누르면 그 카드의 생성기. 등록부 `data/img.json` 에 적힌 것만 |
 | 프롬프트 | `prompt.html` · `lib/studio.js` · `lib/studio.css`(판) · `lib/prompt-spec.js`(표) · `lib/prompt-element.js`(조립) · `lib/casual-tree.js` · `lib/casual-tree-v2.js` · `data/casual-tree.json` · `data/casual-tree-v2.json`(일상컷 트리) | 생성기 — 공방 모음 통합 생성기 꼴(한 단계씩, 칩·판·폰 아래 막대·시트). 나라 › 카드(근본·가문주·주민) › 갈래(세계 그림 · 일상컷) › 단계 → 지시문·올릴 파일 이름·기록 JSON. 세계 그림은 세계 → 덧붙임. 일상컷은 트리 버전2 — 시대 → 장소 → 계절·날씨 → 의상 → 옷 → 자세 추천 → 몸 자세 → 받침 → 프레이밍 → 몸·머리 방향 → 카메라 → 오른손·왼손 → 소품 동작 → 다리 → 시선 → 표정 → 덧붙임. 해방(트리 밖 + 까닭)·랜덤·여기부터 다시·처음부터. 고른 것은 이 브라우저에(`element_studio_v1`), 주소 `?card=&o=&world=` |
 
@@ -28,6 +29,11 @@
 `lib/casual-tree.js`·`lib/casual-tree-v2.js` 는 game·book·myth·pkm 이 글자 하나 다르지 않게 복사해 쓰는 공용 모듈이다 — 여기서 따로 고치지 않는다(고치면 다섯 저장소에 같이). 트리 표(`data/casual-tree*.json`)는 원소 몫 — 시대는 지금 현실·쓰임의 현장·나라 안·무대·환상, 원소의 현장(`site_*`)·나라 안(`nation_*`) 장소. 무엇을 바꿨나는 `docs/CASUAL_TREE_PORT.md`, 설계는 game 의 `docs/CASUAL_TREE_V2.md`.
 화면 차례는 `lib/workspace-ui.js` 의 `PAGES` 한 곳이다 — 화면을 붙이면 거기 더한다.
 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다. 여기서 따로 고치지 않는다.
+
+## 꾸밈 · 글꼴
+
+- 공간 다섯의 그림 단추(`--ui-*`, 그림 저장소 `backgrounds/ui/ui-<공간>-<title|main|btn|round>.webp`)와 제목 글꼴(`--gallery-serif` — 실험실 · 제어실 Orbit · 천문대 Hahmlet · 연금술 공방 Song Myung · 광산 Black Han Sans)은 `lib/material.css` 한 곳. 본문 글꼴은 IBM Plex Sans KR. 글꼴을 바꾸면 네 화면의 Google Fonts 줄을 같이 고친다.
+- 디자인 점검 skill: `.claude/skills/frontend-design`(방향 · 글꼴 · 테두리), `.claude/skills/ui-ux-pro-max`(글꼴 짝 · 스타일 · UX 규칙 검색 — `python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<질문>" --domain typography`), `.claude/skills/web-design-guidelines`(규칙 점검). sam-atelier 에서 옮겼다(2026-11-02).
 
 ## 지켜야 할 것
 
@@ -102,7 +108,7 @@ node tests/img-shards.cjs               # 그림 주소·등록기·워크플로
 
 # 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
 CHROMIUM_PATH=<chrome> node tests/prompt-pack-screen.cjs   # 지시문 묶음(tools/prompt-pack.cjs)의 기록을 생성기에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 씀
-ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 첫 화면·도감·생성기 — 폰·PC, 118칸, 세 층, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 타이틀·주기율표·도감·생성기 — 폰·PC, 118칸, 세 층, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
 ```
 
 ### 도감과 즐겨찾기(2026-10-31)

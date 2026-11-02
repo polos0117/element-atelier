@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-02 · claude · 타이틀 화면 — 배경 장면 가득 · 그림 현판·단추, 옛 첫 화면은 주기율표(hall.html)로
+- index.html 을 게임 첫 진입 화면처럼 — 공간 배경 장면을 화면 가득, 공간 다섯마다 생성한 투명 그림 한 벌(현판 · 주 단추 · 보통 단추 · 둥근 단추, 그림 저장소 backgrounds/ui/)로 메뉴 셋(주기율표 · 도감 · 프롬프트, 머리 메뉴 차례), ◀ ▶ · ← → 공간 넘기기, 빈 곳 누르면 배경만(사용자 「메인화면 구성을 지금 삼국지처럼」 — sam-atelier 의 타이틀을 옮김).
+- 옛 첫 화면(주기율표 118 · 첫 묶음 · 패치 · 공간)은 hall.html(머리 메뉴 「주기율표」)로 내용 그대로. lib/material.css 새로 — 그림 단추 변수와 공간별 제목 글꼴(실험실 · 제어실 Orbit · 천문대 Hahmlet · 연금술 Song Myung · 광산 Black Han Sans).
+- 디자인 점검 skill 셋(frontend-design · ui-ux-pro-max · web-design-guidelines)을 .claude/skills 에 설치(AGENTS 「꾸밈 · 글꼴」).
+
 ## 2026-11-02 · gpt · 황토 안료 12장 등록
 - data/img.json — 등록 스크립트로 판타지·스팀펑크 세계 그림과 세계마다 일상컷 다섯 장을 추가했다. 기존 등록·날짜는 보존했다.
 

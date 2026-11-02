@@ -56,8 +56,22 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
 
   for (const vp of [{ width: 390, height: 844 }, { width: 1280, height: 900 }]) {
     const mob = vp.width <= 768;
-    /* 첫 화면 */
-    let v = await open('/index.html', vp);
+    /* 타이틀(2026-11-02) — 메뉴 셋(머리 메뉴 차례) · 공간 ◀ ▶ · 배경 장면 · 그림 현판 · 단추 · 빈 곳 누르면 배경만 */
+    let tv = await open('/index.html', vp);
+    await tv.page.waitForSelector('#m-dex span');
+    assert.deepEqual(await tv.page.locator('.menu-btn').evaluateAll(es => es.map(e => e.getAttribute('href'))), ['hall.html', 'dex.html', 'prompt.html'], '메뉴 셋 — 머리 메뉴와 같은 차례');
+    const tt0 = await tv.page.evaluate(() => document.documentElement.dataset.theme);
+    await tv.page.click('#next'); assert.notEqual(await tv.page.evaluate(() => document.documentElement.dataset.theme), tt0, '◀ ▶ 로 공간이 바뀐다');
+    await tv.page.keyboard.press('ArrowLeft'); assert.equal(await tv.page.evaluate(() => document.documentElement.dataset.theme), tt0, '← 로 돌아온다');
+    assert.match(await tv.page.evaluate(() => getComputedStyle(document.querySelector('.title-bg')).backgroundImage), /room-/, '배경 장면');
+    assert.match(await tv.page.evaluate(() => [getComputedStyle(document.querySelector('.title-plaque')).backgroundImage, getComputedStyle(document.querySelector('.menu-btn.main')).backgroundImage, getComputedStyle(document.querySelector('.menu-btn:not(.main)')).backgroundImage, getComputedStyle(document.querySelector('#next')).backgroundImage].join(' ')), /ui-\w+-title.*ui-\w+-main.*ui-\w+-btn.*ui-\w+-round/, '현판 · 단추 그림');
+    await tv.page.mouse.click(vp.width - 20, 20); await tv.page.waitForTimeout(450);
+    assert.equal(await tv.page.locator('#menu').isVisible(), false, '빈 곳 → 배경만');
+    await tv.page.mouse.click(vp.width - 20, 20); await tv.page.waitForTimeout(450);
+    assert.ok(await tv.page.locator('#menu').isVisible(), '다시 → 메뉴');
+    await noOverflow(tv.page, vp.width); assert.deepEqual(tv.errors, [], '타이틀 콘솔'); checks += 6; await tv.ctx.close();
+    /* 주기율표(옛 첫 화면, hall.html) */
+    let v = await open('/hall.html', vp);
     await v.page.waitForSelector('.pcell');
     assert.equal(await v.page.locator('.pcell').count(), 118, '주기율표 118칸');
     assert.equal(await v.page.locator('a.pcell').count(), D.nations.length, '설계된 나라만 링크');
@@ -268,5 +282,5 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     await noOverflow(p, vp.width); assert.deepEqual(v.errors, []); checks += 6; await v.ctx.close();
   }
   await br.close(); server.close();
-  console.log('PASS 화면: 첫 화면(주기율표 118·나라 링크·첫 묶음) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
+  console.log('PASS 화면: 타이틀(메뉴 셋·공간 넘기기·배경 장면·현판·단추 그림·빈 곳 누르면 배경만) · 주기율표(118·나라 링크·첫 묶음) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
 })().catch(e => { console.error(e); server.close(); process.exit(1); });
