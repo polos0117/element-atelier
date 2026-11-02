@@ -139,7 +139,7 @@ body.gallery-page::before {content:'';position:fixed;inset:0;z-index:0;pointer-e
 @keyframes g-rise {from {opacity:0;transform:translateY(12px)} to {opacity:1;transform:none}}
 
 /* 층 바꾸기 움직임 */
-.g-main > * {animation:g-zoom .32s cubic-bezier(.2,.7,.2,1) both}   /* 층이 바뀌면 살짝 커지며 — 투명도 · 크기만이라 가볍다 */
+.g-main > * {animation:g-zoom .32s cubic-bezier(.2,.7,.2,1) backwards}   /* 층이 바뀌면 살짝 커지며 — 투명도 · 크기만이라 가볍다. 끝난 뒤엔 아무것도 남기지 않는다(남기면 미리 보기 · 닫기의 고정 자리가 이 층에 갇힌다) */
 @keyframes g-zoom {from {opacity:0;transform:scale(.97)}}
 .g-main > .g-lore {animation-name:g-fade}
 
@@ -148,17 +148,17 @@ body.gallery-page::before {content:'';position:fixed;inset:0;z-index:0;pointer-e
   .g-nation,.g-fam-top {grid-template-columns:minmax(0,1fr)}
   .g-stage {width:100%}
   .g-node {padding:0 12px 0 10px;font-size:15px}
-  .g-peek-wrap {place-items:end stretch;padding:0}
-  .g-peek {grid-template-columns:minmax(0,1fr);gap:14px;max-width:none;max-height:92dvh;overflow-y:auto;padding:16px 16px calc(16px + env(safe-area-inset-bottom));border-image:none;border-radius:18px 18px 0 0}
+  .g-peek-wrap {place-items:start stretch;padding:calc(10px + env(safe-area-inset-top)) 10px 10px;overflow-y:auto}   /* 폰 — 판을 위로 붙인다(2026-11-02 「이미지 뜨는 위치를 조금 더 위로」) */
+  .g-peek {grid-template-columns:minmax(0,1fr);gap:14px;max-width:none;padding:12px 14px 16px;border-image:none;border-radius:18px}
   .g-peek-pic {justify-self:center}
   .g-peek-pic .pic {height:min(52dvh,520px)}
   .g-hero {max-width:420px;margin:0 auto}
-  .g-lore {display:block;overflow-y:auto;padding:14px 14px 32px}
+  .g-lore {display:block;overflow-y:auto;padding:10px 12px 32px}
   .g-lore-stage {height:auto}
   .g-lore-pic {height:auto;width:min(100%,calc((100dvh - var(--bar-h,68px) - 90px) * 2 / 3))}
   .g-step {width:44px;height:60px}
   .g-lore-text {max-height:none;overflow:visible;margin-top:18px}
-  .g-close {position:sticky;display:block;margin:0 0 10px auto;top:0}
+  .g-close {position:fixed;top:calc(var(--bar-h,68px) + 22px);right:22px;z-index:4;min-height:40px;padding:0 14px;background:#000c}   /* 그림 위 모서리 — 줄 하나를 따로 먹지 않게 */
 }
 @media (max-width:640px) {
   .g-bar {grid-template-columns:auto 1fr;gap:4px 10px}
