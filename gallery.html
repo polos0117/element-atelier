@@ -9,7 +9,7 @@
 <!-- 전시관(2026-11-02, 사용자 「감상용 디지털 아카이브 — 레이어 줌인 · 원형 구조」).
      도감(dex.html)은 그림을 채우는 작업 화면(빈 칸 → 생성기 · 장 수)이고, 여기는 그려진 카드만 거는 감상 화면이다.
      층: 섬(나라들) → 나라(가운데 근본, 둘레 궤도에 가문주 — 원자와 전자) → 가문(가문주 크게, 주민은 액자) → 한 장(화면 가득).
-     세계(판타지 · 스팀펑크 · 메카)는 어느 층에서든 위에 늘 있고, 바꾸면 같은 카드가 그 세계 그림으로 넘어간다(뷰 전환 — 되면 그림이 이어져 바뀐다).
+     세계(판타지 · 스팀펑크 · 메카)는 어느 층에서든 위에 늘 있고, 바꾸면 같은 카드가 그 세계 그림으로 넘어간다(새 그림이 스르르).
      그 세계에 안 살거나 아직 안 그린 카드는 다른 세계의 그림을 「…의 그림」 표시와 함께 건다. 그림이 하나도 없는 카드는 걸지 않는다.
      사실 칸은 설계표 elements 의 것만(번호 · 기호 · 주기 · 족 · 분류 · 상태) — 지어낸 수치는 없다(AGENTS 3).
      주소 ?n=&f=&c=&w=&v=1 — 층마다 뒤로 가기가 한 층씩 올라간다. -->
@@ -24,7 +24,7 @@
 <script src="lib/fresh.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=3">
 <link rel="stylesheet" href="lib/material.css?v=5">
-<link rel="stylesheet" href="lib/gallery.css?v=5">
+<link rel="stylesheet" href="lib/gallery.css?v=9">
 </head>
 <body class="gallery-page">
 <div id="app"></div>
@@ -36,12 +36,9 @@ const W=window.W,IMG=window.AtelierImg;
 /* 한 장 보기의 키 — 페이지에 한 번 걸고, 그리는 한 장이 처리기를 바꿔 끼운다 */
 let LORE_KEY=null;
 addEventListener('keydown',e=>{if(LORE_KEY&&!e.defaultPrevented)LORE_KEY(e);});
-const reduce=()=>{try{return matchMedia('(prefers-reduced-motion: reduce)').matches}catch{return false}};
-/* 뷰 전환 — 되는 브라우저에선 같은 이름(view-transition-name)의 그림이 이어서 커지고 바뀐다. 안 되면 그냥 바꾼다 */
-function transition(fn){
-  if(!document.startViewTransition||reduce()){fn();return;}
-  try{document.startViewTransition(()=>new Promise(r=>{fn();requestAnimationFrame(()=>requestAnimationFrame(r));})).finished.catch(()=>{});}catch(e){fn();}
-}
+/* 층 바꾸기 — 뷰 전환(화면을 찍어 섞기)은 폰에서 한 번에 3초 넘게 터치를 붙잡아 뺐다(2026-11-02 「여기만 화면 로딩이랑 전환이 느리다」).
+   새 층이 살짝 커지며 나타나는 CSS 움직임(.g-main > * — 투명도 · 크기만)으로 대신한다 */
+function transition(fn){fn();}
 const readURL=()=>{const q=new URLSearchParams(location.search);return {n:q.get('n')||'',f:q.get('f')||'',c:q.get('c')||'',w:q.get('w')||'',v:q.get('v')==='1'};};
 const writeURL=(st,push)=>{const q=new URLSearchParams();for(const k of ['n','f','c','w'])if(st[k])q.set(k,st[k]);if(st.v)q.set('v','1');const u=location.pathname+(q.toString()?'?'+q:'');try{history[push?'pushState':'replaceState'](push?{g:1}:history.state,'',u);}catch(e){}};
 function useDocs(){
@@ -82,8 +79,8 @@ function Pic({doc,card,w,big,cls}){
   const p=pick(doc,card,w);if(!p)return null;
   const src=big?IMG.imgURL(p.file):IMG.thumbURL(p.file);
   /* 큰 그림은 원본(약 480KB)이 오는 동안 썸네일(약 40KB)을 먼저 깔아 둔다 */
-  return h('span',{class:'pic'+(cls?' '+cls:''),style:Object.assign({viewTransitionName:'c-'+card.key},big?{backgroundImage:'url("'+IMG.thumbURL(p.file)+'")'}:{})},
-    h('img',{src,alt:'',loading:big?'eager':'lazy',decoding:'async',onError:e=>{e.target.onerror=null;e.target.src=IMG.imgURL(p.file);}}),
+  return h('span',{class:'pic'+(cls?' '+cls:''),style:Object.assign({},big?{backgroundImage:'url("'+IMG.thumbURL(p.file)+'")'}:{})},
+    h('img',{key:p.file+(big?'#b':''),src,alt:'',loading:big?'eager':'lazy',decoding:'async',onError:e=>{e.target.onerror=null;e.target.src=IMG.imgURL(p.file);}}),
     p.from&&h('span',{class:'from'},W('gallery.from',{world:W('world.'+p.world)})));
 }
 const list=v=>Array.isArray(v)?v:(v?String(v).split(/\s*,\s*/).filter(Boolean):[]);   /* 성질 — 나라는 줄 목록, 가문은 쉼표 한 줄 */
@@ -137,7 +134,7 @@ function Nation({doc,st,go,n}){
   const world=n.worlds&&n.worlds[st.w],[peek,setPeek]=useState(null);
   useEffect(()=>setPeek(null),[n.key]);
   return h('section',{class:'g-nation'},
-    h('div',{class:'g-stage',style:{backgroundImage:'url("'+ORBIT+n.key+'.webp")'}},
+    h('div',{class:'g-stage',style:{'--orbit':'url("'+ORBIT+n.key+'.webp")'}},
       h('svg',{class:'g-spin',viewBox:'0 0 100 100','aria-hidden':'true'},h('circle',{cx:50,cy:50,r:r})),
       h('button',{type:'button',class:'g-nucleus','data-card':root.key,'aria-label':W('gallery.node',{name:root.name}),onClick:()=>setPeek(root)},
         h('span',{class:'g-nuc-cap'},h('b',null,el.symbol),' '+el.ko)),
@@ -178,6 +175,8 @@ function Lore({doc,st,go,setW,card}){
   const step=d=>{if(lives.length<2)return;const i=lives.indexOf(st.w);setW(lives[((i<0?0:i)+d+lives.length)%lives.length]);};
   const close=()=>{if(history.state&&history.state.g)history.back();else go({c:'',v:false});};   /* 이 전시관 안에서 열었으면 뒤로 — 닫은 뒤 뒤로 가기가 다시 한 장을 열지 않게 */
   LORE_KEY=e=>{if(e.key==='Escape')close();else if(e.key==='ArrowLeft')step(-1);else if(e.key==='ArrowRight')step(1);};   /* 그리는 순간부터 받는다(효과를 기다리지 않는다) */
+  /* 다른 세계 그림을 미리 받아 둔다 — ← → 로 넘길 때 기다리지 않게 */
+  useEffect(()=>{lives.filter(w=>w!==st.w).forEach(w=>{const f=fileOf(doc,card.key,w);if(f){const i=new Image();i.decoding='async';i.src=IMG.imgURL(f);}});},[card.key]);
   const p=pick(doc,card,st.w),el=card.el,world=card.tier==='root'&&card.nation.worlds&&card.nation.worlds[st.w];
   const motif=card.citizen&&card.citizen.object&&card.citizen.object.en,note=card.citizen&&card.citizen.notes&&card.citizen.notes[st.w];
   const persona=card.tier==='root'?card.nation.persona:card.family.persona;
@@ -202,7 +201,8 @@ function App(){
   const doc=useDocs(),[st,setSt]=useState(()=>{const u=readURL();return Object.assign(u,{w:u.w||'fantasy'});});
   useEffect(()=>{const pop=()=>transition(()=>setSt(s=>Object.assign({},readURL(),{w:readURL().w||s.w})));addEventListener('popstate',pop);return ()=>removeEventListener('popstate',pop);},[]);
   const go=patch=>transition(()=>setSt(s=>{const n=Object.assign({},s,patch);writeURL(n,true);window.scrollTo(0,0);return n;}));
-  const setW=w=>transition(()=>setSt(s=>{const n=Object.assign({},s,{w});writeURL(n,false);return n;}));
+  /* 세계 바꾸기는 뷰 전환 없이 — 화면 전체를 찍어 섞는 값이 폰에서 3초 넘게 걸렸다(2026-11-02 「여기만 느리다」). 그림만 새로 깔리며 스르르 */
+  const setW=w=>setSt(s=>{const n=Object.assign({},s,{w});writeURL(n,false);return n;});
   useEffect(()=>{document.documentElement.dataset.world=st.w;},[st.w]);
   /* 위 막대 높이 — 한 장 보기가 그 아래에 앉는다(폰에선 막대가 세 줄) */
   useEffect(()=>{const set=()=>{const b=document.querySelector('.g-bar');if(b)document.documentElement.style.setProperty('--bar-h',b.offsetHeight+'px');};set();const ro=window.ResizeObserver?new ResizeObserver(set):null;const b=document.querySelector('.g-bar');if(ro&&b)ro.observe(b);addEventListener('resize',set);return ()=>{if(ro)ro.disconnect();removeEventListener('resize',set);};},[doc]);
@@ -218,7 +218,7 @@ function App(){
   else if(lord)body=h(Family,{doc,st,go,n,lord});
   else if(n)body=h(Nation,{doc,st,go,n});
   else body=h(Island,{doc,st,go});
-  return h('div',{class:'g-shell'},h(Bar,{doc,st,go,setW}),h('main',{class:'g-main'},body));
+  return h('div',{class:'g-shell'},h(Bar,{doc,st,go,setW}),h('main',{class:'g-main',key:(st.n||'')+'/'+(st.f||'')+'/'+(st.v?st.c:'')},body));
 }
 render(h(App),document.getElementById('app'));
 window.AtelierFresh.watch();

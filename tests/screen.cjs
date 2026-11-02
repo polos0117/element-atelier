@@ -80,7 +80,7 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
       await gp.click('.g-tile[data-n="h"]'); await gp.waitForSelector('.g-stage');
       const hn = D.nations.find(n => n.key === 'h'), lordsH = hn.families.filter(f => anyPic('h-' + f.key));
       assert.equal(await gp.locator('.g-node').count(), lordsH.length, '나라 — 궤도 그림 위 가문 이름표');
-      assert.match(await gp.locator('.g-stage').evaluate(e => getComputedStyle(e).backgroundImage), /orbits\/orbit-h\.webp/, '원소마다 궤도 그림');
+      assert.match(await gp.locator('.g-stage').evaluate(e => getComputedStyle(e, '::before').backgroundImage), /orbits\/orbit-h\.webp/, '원소마다 궤도 그림');
       assert.match(gp.url(), /n=h/);
       await gp.click('.g-worlds [data-w="mecha"]'); await gp.waitForTimeout(600);
       assert.equal(await gp.getAttribute('.g-worlds [data-w="mecha"]', 'aria-pressed'), 'true');
