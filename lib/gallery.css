@@ -1,0 +1,160 @@
+/* 전시관(gallery.html, 2026-11-02) — 감상용. 그림이 주인공이라 바탕은 어둡게 가라앉히고, 세계(판타지 · 스팀펑크 · 메카)마다 빛 색 하나가 바뀐다.
+   한 가지만 대담하게: 나라 층의 궤도(가운데 근본, 둘레 가문주 — 원자와 전자). 나머지는 조용히.
+   글꼴은 공간의 제목 글꼴(--gallery-serif, lib/material.css)과 본문 IBM Plex Sans KR. 움직임 줄이기면 회전 · 떠오름을 끈다. */
+:root {--g-bg:#07080c;--g-ink:#ece9f2;--g-mute:#a9a5b8;--g-line:#ffffff1f;--acc:#c9a7ff;--acc2:#f1d48a}
+html[data-world="steampunk"] {--acc:#e3ad62;--acc2:#9fd6c8}
+html[data-world="mecha"] {--acc:#62d6ff;--acc2:#ff7fb0}
+body.gallery-page {margin:0;min-height:100vh;min-height:100dvh;background:var(--g-bg);color:var(--g-ink);font:15px/1.6 'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif}
+body.gallery-page::before {content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(60% 50% at 20% 0%,color-mix(in srgb,var(--acc) 16%,transparent),transparent 70%),
+  radial-gradient(50% 45% at 90% 100%,color-mix(in srgb,var(--acc2) 10%,transparent),transparent 70%);transition:background .6s}
+.g-shell {position:relative;z-index:1}
+.gallery-page button {font:inherit;color:inherit}
+.gallery-page :focus-visible {outline:2px solid var(--acc);outline-offset:3px;border-radius:6px}
+.g-note {color:var(--g-mute);max-width:60ch}
+.g-wait {padding:40px 24px}
+
+/* 위 막대 */
+.g-bar {position:sticky;top:0;z-index:40;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:10px 18px;padding:10px clamp(12px,3vw,32px);background:color-mix(in srgb,var(--g-bg) 72%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--g-line)}
+.g-home {display:inline-flex;align-items:center;gap:8px;min-height:44px;color:var(--g-ink);text-decoration:none}
+.g-home span {color:var(--acc);font-size:18px}
+.g-home b {font:400 17px/1 var(--gallery-serif,serif);letter-spacing:.02em}
+.g-crumbs {display:flex;align-items:center;gap:4px;min-width:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.g-crumbs::-webkit-scrollbar {display:none}
+.g-crumbs button {min-height:44px;min-width:44px;padding:0 8px;border:0;background:none;color:var(--g-mute);cursor:pointer;font-size:13px}
+.g-crumbs button:last-child {color:var(--g-ink);font-weight:600}
+.g-crumbs button:hover {color:var(--acc)}
+.g-crumbs i {font-style:normal;color:var(--g-mute);opacity:.6}
+.g-worlds {display:inline-flex;padding:3px;border:1px solid var(--g-line);border-radius:999px;background:#ffffff0a}
+.g-worlds button {min-height:38px;min-width:44px;padding:0 14px;border:0;border-radius:999px;background:none;color:var(--g-mute);cursor:pointer;font-size:13px;font-weight:600;transition:background-color .25s,color .25s}
+.g-worlds button[aria-pressed="true"] {background:var(--acc);color:#0b0a10}
+.g-pages {display:flex;gap:2px}
+.g-pages a {display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 10px;color:var(--g-mute);text-decoration:none;font-size:13px}
+.g-pages a:hover {color:var(--g-ink)}
+.g-main {padding:clamp(18px,4vw,48px) clamp(14px,4vw,48px) 64px;max-width:1440px;margin:0 auto}
+
+/* 그림 한 칸 — 세로 2:3 그대로(그림이 전부 1024×1536) */
+.pic {position:relative;display:block;aspect-ratio:2/3;overflow:hidden;border-radius:10px;background:#ffffff08}
+.pic img {display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.pic .from {position:absolute;left:8px;bottom:8px;padding:2px 8px;border-radius:999px;background:#000a;color:#fff;font-size:12px}
+
+/* 섬 — 나라들 */
+.g-island h1 {margin:0;font:400 clamp(30px,5vw,52px)/1.1 var(--gallery-serif,serif);letter-spacing:.01em}
+.g-island .g-note {margin:10px 0 28px}
+.g-nations {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,44vw),1fr));gap:clamp(10px,2vw,22px)}
+.g-tile {position:relative;display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;text-align:left;border-radius:12px;transition:transform .25s}
+.g-tile .pic {border-radius:12px;box-shadow:0 18px 40px #0009}
+.g-tile:hover {transform:translateY(-4px)}
+.g-tile:hover .pic {box-shadow:0 18px 40px #0009,0 0 0 1px var(--acc),0 0 30px color-mix(in srgb,var(--acc) 40%,transparent)}
+.g-tile-cap {position:absolute;inset:auto 0 0 0;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:10px;align-items:end;padding:40px 14px 12px;border-radius:0 0 12px 12px;background:linear-gradient(0deg,#000d,#0000)}
+.g-tile-cap .sym {grid-row:1/3;font:400 40px/1 var(--gallery-serif,serif);color:var(--acc)}
+.g-tile-cap .num {position:absolute;left:14px;top:22px;font-size:12px;color:var(--g-mute)}
+.g-tile-cap b {font-size:17px;line-height:1.2}
+.g-tile-cap small {color:var(--g-mute);font-size:12px}
+
+/* 나라 — 궤도 */
+.g-nation {display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(20px,4vw,56px);align-items:center}
+.g-orbit {position:relative;width:min(100%,calc((100dvh - var(--bar-h,68px) - 60px) / 1.16));max-width:760px;margin:0 auto;aspect-ratio:1/1.16}
+.g-rings {position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.g-rings ellipse {fill:none;stroke:color-mix(in srgb,var(--acc) 55%,transparent);stroke-width:.18;vector-effect:non-scaling-stroke}
+.g-rings .r2 {stroke-dasharray:1 3;stroke:color-mix(in srgb,var(--acc2) 45%,transparent);transform-origin:0 0;animation:g-spin 90s linear infinite}
+.g-rings .nuc {fill:var(--acc)}
+@keyframes g-spin {to {transform:rotate(360deg)}}
+.g-core,.g-lord {position:absolute;padding:0;border:0;background:none;cursor:pointer;transform:translate(-50%,-50%)}
+.g-core {left:50%;top:50%;width:36%;z-index:2}
+.g-core .pic {border-radius:14px;box-shadow:0 0 0 1px color-mix(in srgb,var(--acc) 60%,transparent),0 0 60px color-mix(in srgb,var(--acc) 35%,transparent),0 30px 60px #000c}
+.g-lord {left:calc(50% + var(--x) * 1%);top:calc(50% + var(--y) * 1%);width:19%;z-index:3;transition:transform .25s}
+.g-lord .pic {border-radius:999px 999px 10px 10px;box-shadow:0 0 0 1px var(--g-line),0 14px 30px #000b}
+.g-lord:hover {transform:translate(-50%,-50%) scale(1.06)}
+.g-lord:hover .pic {box-shadow:0 0 0 1px var(--acc),0 0 26px color-mix(in srgb,var(--acc) 45%,transparent)}
+.g-lord-cap {display:block;margin-top:6px;text-align:center;font:400 14px/1.2 var(--gallery-serif,serif);text-shadow:0 1px 3px #000}
+.g-orbit.solo {aspect-ratio:auto;max-width:420px}
+.g-orbit.solo .g-rings {display:none}
+.g-orbit.solo .g-core {position:relative;left:auto;top:auto;width:100%;transform:none}
+
+/* 글 칸 — 연구 일지처럼 얇게 */
+.g-text {max-width:58ch}
+.g-sym {display:flex;align-items:baseline;gap:10px;margin:0;color:var(--acc)}
+.g-sym span {font:400 clamp(56px,8vw,96px)/1 var(--gallery-serif,serif)}
+.g-sym small {font-size:14px;color:var(--g-mute)}
+.g-text h1 {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:6px 0 8px;font:400 clamp(28px,3.4vw,40px)/1.15 var(--gallery-serif,serif)}
+.g-text h1 small {font:400 15px 'IBM Plex Sans KR',sans-serif;color:var(--g-mute)}
+.g-tier {margin:0;color:var(--acc);font-size:13px;letter-spacing:.04em}
+.g-facts {margin:0 0 14px;padding:8px 0;border-block:1px solid var(--g-line);color:var(--g-mute);font-size:13px;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.g-persona {margin:0 0 16px;font-size:16px;line-height:1.8}
+.g-world {margin:0 0 16px;padding:2px 0 2px 14px;border-left:2px solid var(--acc)}
+.g-world h2 {margin:0 0 4px;font-size:13px;font-weight:600;color:var(--acc)}
+.g-world p {margin:0;color:var(--g-ink);line-height:1.7}
+.g-traits {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
+.g-traits li {padding:4px 10px;border:1px solid var(--g-line);border-radius:999px;color:var(--g-mute);font-size:13px}
+.g-shared {color:var(--g-mute);font-size:13px}
+.g-shared button {min-height:44px;padding:0 4px;border:0;background:none;color:var(--acc2);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.g-dex {display:inline-flex;align-items:center;min-height:44px;color:var(--g-mute);font-size:13px;text-underline-offset:3px}
+.g-dex:hover {color:var(--acc)}
+
+/* 가문 */
+.g-fam-top {display:grid;grid-template-columns:minmax(0,420px) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center}
+.g-hero {display:block;width:100%;padding:0;border:0;background:none;cursor:pointer}
+.g-hero .pic {border-radius:14px;box-shadow:0 0 0 1px color-mix(in srgb,var(--acc) 50%,transparent),0 0 60px color-mix(in srgb,var(--acc) 25%,transparent),0 30px 60px #000c}
+.g-cits {margin-top:clamp(28px,5vw,56px)}
+.g-cits h2 {margin:0 0 16px;font:400 22px/1.2 var(--gallery-serif,serif)}
+.g-cits ul {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,42vw),1fr));gap:clamp(14px,2.4vw,26px)}
+.g-cit {display:block;width:100%;padding:10px;border:1px solid var(--g-line);border-image:var(--frame) var(--frame-slice) / 18px / 3px var(--frame-rep);background:#ffffff08;cursor:pointer;text-align:left;transition:transform .25s}
+.g-cit:hover {transform:translateY(-3px)}
+.g-cit .pic {border-radius:4px}
+.g-cit-cap {display:block;padding:10px 4px 2px}
+.g-cit-cap b {display:block;font:400 17px/1.3 var(--gallery-serif,serif)}
+.g-cit-cap small {color:var(--g-mute);font-size:12px}
+
+/* 한 장 — 화면 가득 */
+.g-lore {position:fixed;inset:var(--bar-h,68px) 0 0 0;z-index:30;display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,400px);align-items:center;padding:20px clamp(14px,3vw,40px) 20px;gap:clamp(16px,3vw,40px);background:#05060a;overflow:hidden}
+.g-lore-bg {position:absolute;inset:-40px;background-size:cover;background-position:center;filter:blur(40px) brightness(.35) saturate(1.2);transform:scale(1.1)}
+.g-lore-stage {position:relative;display:flex;align-items:center;justify-content:center;min-height:0;height:100%}
+.g-lore-pic {height:calc(100dvh - var(--bar-h,68px) - 40px);width:auto;max-width:100%;border-radius:12px;box-shadow:0 0 0 1px #ffffff22,0 40px 80px #000}
+.g-lore-pic img {object-fit:contain}
+.g-step {position:absolute;top:50%;z-index:2;width:48px;height:72px;transform:translateY(-50%);border:1px solid #ffffff33;border-radius:12px;background:#0008;color:#fff;font-size:34px;line-height:1;cursor:pointer}
+.g-step.prev {left:0} .g-step.next {right:0}
+.g-step:hover {border-color:var(--acc);color:var(--acc)}
+.g-lore-text {position:relative;max-height:100%;overflow-y:auto;padding:4px 4px 4px 0;animation:g-rise .6s ease both}
+.g-lore-text .g-persona {font-size:15px}
+.g-world-line {margin:0 0 14px;padding-left:12px;border-left:2px solid var(--acc);line-height:1.7}
+.g-motif {margin:0 0 12px;color:var(--g-mute);font-size:13px}
+.g-motif b {color:var(--acc2);font-weight:600}
+.g-lives {margin:0;color:var(--g-mute);font-size:13px}
+.g-close {position:absolute;right:clamp(12px,2vw,24px);top:14px;z-index:3;min-height:44px;padding:0 16px;border:1px solid #ffffff33;border-radius:999px;background:#0009;cursor:pointer}
+.g-close:hover {border-color:var(--acc)}
+@keyframes g-rise {from {opacity:0;transform:translateY(12px)} to {opacity:1;transform:none}}
+
+/* 뷰 전환 — 세계를 바꾸면 그림이 이어서 바뀌고, 층을 내려가면 누른 그림이 커진다 */
+::view-transition-group(*) {animation-duration:.45s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+
+/* 폰 */
+@media (max-width:860px) {
+  .g-nation,.g-fam-top {grid-template-columns:minmax(0,1fr)}
+  .g-orbit {display:flex;flex-wrap:wrap;justify-content:center;gap:12px;aspect-ratio:auto;width:100%;max-width:520px}
+  .g-rings {display:none}
+  .g-core,.g-lord {position:relative;left:auto;top:auto;transform:none}
+  .g-core {width:78%}
+  .g-lord {width:calc((100% - 24px) / 3)}
+  .g-lord:hover {transform:none}
+  .g-hero {max-width:420px;margin:0 auto}
+  .g-lore {display:block;overflow-y:auto;padding:14px 14px 32px}
+  .g-lore-stage {height:auto}
+  .g-lore-pic {height:auto;width:min(100%,calc((100dvh - var(--bar-h,68px) - 90px) * 2 / 3))}
+  .g-step {width:44px;height:60px}
+  .g-lore-text {max-height:none;overflow:visible;margin-top:18px}
+  .g-close {position:sticky;display:block;margin:0 0 10px auto;top:0}
+}
+@media (max-width:640px) {
+  .g-bar {grid-template-columns:auto 1fr;gap:4px 10px}
+  .g-worlds {grid-column:1/-1;justify-self:stretch;display:grid;grid-template-columns:repeat(3,1fr)}
+  .g-worlds button {min-height:44px}
+  .g-home {order:0} .g-pages {order:1;justify-self:end} .g-worlds {order:2} .g-crumbs {grid-column:1/-1;order:3}
+  .g-pages a {padding:0 6px;font-size:12px}
+}
+@media (prefers-reduced-motion:reduce) {
+  .g-rings .r2 {animation:none}
+  .g-lore-text {animation:none}
+  .g-tile,.g-lord,.g-cit {transition:none}
+  ::view-transition-group(*) {animation:none}
+}

@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Song+Myung&family=Hahmlet:wght@600;700&family=Orbit&family=Black+Han+Sans&display=swap">
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=2"></script>
-<script src="lib/words.js?v=9"></script>
+<script src="lib/words.js?v=10"></script>
 <script src="lib/fresh.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=3">
 <link rel="stylesheet" href="lib/material.css?v=5">
@@ -77,7 +77,8 @@ html[data-background="off"] .title-bg {background-image:none}
     <p class="title-kicker" id="kicker"></p>
     <div class="title-plaque"><h1 id="t-name"></h1><p id="t-sub"></p></div>
     <a class="menu-btn" href="hall.html" id="m-hall"></a>
-    <a class="menu-btn main" href="dex.html" id="m-dex"></a>
+    <a class="menu-btn main" href="gallery.html" id="m-gallery"></a>
+    <a class="menu-btn" href="dex.html" id="m-dex"></a>
     <a class="menu-btn" href="prompt.html" id="m-prompt"></a>
     <div class="title-space" role="group" id="space">
       <button type="button" class="arrow" id="prev">◀</button>
@@ -94,7 +95,7 @@ html[data-background="off"] .title-bg {background-image:none}
   var W = window.W, A = window.AtelierAppearance, $ = function (id) { return document.getElementById(id); };
   $('kicker').textContent = W('title.kicker'); $('t-name').textContent = W('app.title'); $('t-sub').textContent = W('title.sub');
   $('menu').setAttribute('aria-label', W('title.menu')); $('space').setAttribute('aria-label', W('title.space'));
-  ['hall', 'dex', 'prompt'].forEach(function (k) {
+  ['hall', 'gallery', 'dex', 'prompt'].forEach(function (k) {
     var a = $('m-' + k), b = document.createElement('span'), s = document.createElement('small');
     b.textContent = W('title.' + k); s.textContent = W('title.' + k + '.sub'); a.appendChild(b); a.appendChild(s);
   });

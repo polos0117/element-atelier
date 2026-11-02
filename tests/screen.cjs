@@ -59,7 +59,7 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     /* 타이틀(2026-11-02) — 메뉴 셋(머리 메뉴 차례) · 공간 ◀ ▶ · 배경 장면 · 그림 현판 · 단추 · 빈 곳 누르면 배경만 */
     let tv = await open('/index.html', vp);
     await tv.page.waitForSelector('#m-dex span');
-    assert.deepEqual(await tv.page.locator('.menu-btn').evaluateAll(es => es.map(e => e.getAttribute('href'))), ['hall.html', 'dex.html', 'prompt.html'], '메뉴 셋 — 머리 메뉴와 같은 차례');
+    assert.deepEqual(await tv.page.locator('.menu-btn').evaluateAll(es => es.map(e => e.getAttribute('href'))), ['hall.html', 'gallery.html', 'dex.html', 'prompt.html'], '메뉴 넷 — 머리 메뉴와 같은 차례');
     const tt0 = await tv.page.evaluate(() => document.documentElement.dataset.theme);
     await tv.page.click('#next'); assert.notEqual(await tv.page.evaluate(() => document.documentElement.dataset.theme), tt0, '◀ ▶ 로 공간이 바뀐다');
     await tv.page.keyboard.press('ArrowLeft'); assert.equal(await tv.page.evaluate(() => document.documentElement.dataset.theme), tt0, '← 로 돌아온다');
@@ -70,6 +70,33 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     await tv.page.mouse.click(vp.width - 20, 20); await tv.page.waitForTimeout(450);
     assert.ok(await tv.page.locator('#menu').isVisible(), '다시 → 메뉴');
     await noOverflow(tv.page, vp.width); assert.deepEqual(tv.errors, [], '타이틀 콘솔'); checks += 6; await tv.ctx.close();
+    /* 전시관(2026-11-02) — 섬(그림 걸린 나라) → 나라(가운데 근본 · 궤도의 가문주) → 가문(주민 액자) → 한 장, 세계는 늘 위에서 바꾼다 */
+    {
+      const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b => Object.values(b.byForm || {}).some(f => f.f));
+      const ns = D.nations.filter(n => anyPic(n.key));
+      let gv = await open('/gallery.html', vp), gp = gv.page;
+      await gp.waitForSelector('.g-tile');
+      assert.equal(await gp.locator('.g-tile').count(), ns.length, '섬 — 그림 걸린 나라 ' + ns.length);
+      await gp.click('.g-tile[data-n="h"]'); await gp.waitForSelector('.g-core');
+      const hn = D.nations.find(n => n.key === 'h'), lordsH = hn.families.filter(f => anyPic('h-' + f.key));
+      assert.equal(await gp.locator('.g-lord').count(), lordsH.length, '나라 — 궤도의 가문주');
+      assert.match(gp.url(), /n=h/);
+      await gp.click('.g-worlds [data-w="mecha"]'); await gp.waitForTimeout(600);
+      assert.equal(await gp.getAttribute('.g-worlds [data-w="mecha"]', 'aria-pressed'), 'true');
+      assert.match(await gp.locator('.g-core img').getAttribute('src'), /_mecha_/, '세계를 바꾸면 그림이 그 세계로');
+      assert.match(gp.url(), /w=mecha/);
+      const fam = lordsH[0];
+      await gp.click('.g-lord[data-f="' + fam.key + '"]'); await gp.waitForSelector('.g-hero');
+      const cits = fam.citizens.filter(c => anyPic('h-' + fam.key + '-' + c.key));
+      assert.equal(await gp.locator('.g-cit').count(), cits.length, '가문 — 주민 액자');
+      if (cits.length) {
+        await gp.locator('.g-cit').first().click(); await gp.waitForSelector('.g-lore');
+        assert.ok(await gp.locator('.g-lore-pic img').count(), '한 장 — 화면 가득');
+        await gp.keyboard.press('Escape'); await gp.waitForSelector('.g-hero');
+      }
+      await gp.goBack(); await gp.waitForSelector('.g-core'); assert.ok(await gp.locator('.g-orbit').count(), '뒤로 — 한 층 위(나라)');
+      await noOverflow(gp, vp.width); assert.deepEqual(gv.errors, [], '전시관 콘솔'); checks += 8; await gv.ctx.close();
+    }
     /* 주기율표(옛 첫 화면, hall.html) */
     let v = await open('/hall.html', vp);
     await v.page.waitForSelector('.pcell');
@@ -282,5 +309,5 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     await noOverflow(p, vp.width); assert.deepEqual(v.errors, []); checks += 6; await v.ctx.close();
   }
   await br.close(); server.close();
-  console.log('PASS 화면: 타이틀(메뉴 셋·공간 넘기기·배경 장면·현판·단추 그림·빈 곳 누르면 배경만) · 주기율표(118·나라 링크·첫 묶음) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
+  console.log('PASS 화면: 타이틀(메뉴 넷·공간 넘기기·배경 장면·현판·단추 그림·빈 곳 누르면 배경만) · 전시관(섬·궤도·세계 바꾸기·주민 액자·한 장·뒤로) · 주기율표(118·나라 링크·첫 묶음) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
 })().catch(e => { console.error(e); server.close(); process.exit(1); });

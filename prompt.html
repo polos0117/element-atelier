@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Song+Myung&family=Hahmlet:wght@600;700&family=Orbit&family=Black+Han+Sans&display=swap">
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=2"></script>
-<script src="lib/words.js?v=9"></script>
+<script src="lib/words.js?v=10"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/prompt-spec.js?v=10"></script>
 <script src="lib/look-spec.js?v=3"></script>
@@ -51,7 +51,7 @@
 <div class="hsheet" id="hsheet" hidden></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
-import {WorkspaceHeader} from './lib/workspace-ui.js?v=2';
+import {WorkspaceHeader} from './lib/workspace-ui.js?v=3';
 render(h(WorkspaceHeader,{page:'prompt'}),document.getElementById('app'));
 window.AtelierFresh.watch();
 </script>
