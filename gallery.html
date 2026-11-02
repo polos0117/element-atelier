@@ -19,12 +19,12 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=3"></script>
-<script src="lib/words.js?v=10"></script>
+<script src="lib/words.js?v=11"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/fresh.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=3">
 <link rel="stylesheet" href="lib/material.css?v=5">
-<link rel="stylesheet" href="lib/gallery.css?v=4">
+<link rel="stylesheet" href="lib/gallery.css?v=5">
 </head>
 <body class="gallery-page">
 <div id="app"></div>
@@ -112,16 +112,37 @@ function Island({doc,st,go}){
         h('span',{class:'g-tile-cap'},h('span',{class:'sym'},el.symbol),h('span',{class:'num'},el.number),h('b',null,el.ko),h('small',null,el.en+' · '+W('gallery.families',{n:lords.filter(l=>has(doc,l)).length})))));})));
 }
 /* 나라 — 가운데 근본, 둘레 궤도에 가문주 */
+/* 나라 무대 — 원소마다 생성한 궤도 그림(그림 저장소 backgrounds/orbits/orbit-<나라>.webp, 기록 records/backgrounds/orbit-<나라>.json)에 글자만 얹는다.
+   큰 고리 반지름(너비 대비)은 그림마다 재서 기록의 ring 에 둔 값 — 가문 이름표가 그 고리 위에 앉는다(2026-11-02 「궤도 이미지를 원소별로, 텍스트로만, 누르면 큰 이미지, 거기서 크게 보기」) */
+const ORBIT='https://polos0117.github.io/element-atelier-img/backgrounds/orbits/orbit-';
+const RING={fe:.43,h:.407,o:.419,c:.398,na:.43,au:.428,og:.405};
+/* 미리 보기 — 이름표를 누르면 뜨는 큰 그림. 여기서 크게 보기(한 장) · 주민 보기(가문) */
+function Peek({doc,st,go,card,close}){
+  useEffect(()=>{const k=e=>{if(e.key==='Escape')close();};addEventListener('keydown',k);return ()=>removeEventListener('keydown',k);},[]);
+  const text=card.tier==='root'?card.nation.persona:card.family.persona,n=card.tier==='lord'?card.citizens.filter(c=>has(doc,c)).length:0;
+  return h('div',{class:'g-peek-wrap',onClick:e=>{if(e.target===e.currentTarget)close();}},
+    h('section',{class:'g-peek',role:'dialog','aria-modal':'true','aria-label':card.name},
+      h('button',{type:'button',class:'g-peek-pic','data-act':'open','aria-label':W('gallery.open',{name:card.name}),onClick:()=>go({c:card.key,v:true})},h(Pic,{doc,card,w:st.w,big:true})),
+      h('div',{class:'g-peek-text'},
+        h('p',{class:'g-tier'},W('gallery.tier.'+card.tier)+' · '+card.el.symbol+' '+card.el.ko),
+        h('h2',null,card.name,h('small',null,card.en)),
+        h('p',{class:'g-peek-persona'},text),
+        h('div',{class:'g-peek-acts'},
+          h('button',{type:'button',class:'g-act main','data-act':'open',onClick:()=>go({c:card.key,v:true})},W('gallery.peek.open')),
+          card.tier==='lord'&&n>0&&h('button',{type:'button',class:'g-act','data-act':'family',onClick:()=>go({f:card.family.key,c:'',v:false})},W('gallery.peek.family',{n})),
+          h('button',{type:'button',class:'g-act','data-act':'close',onClick:close},W('gallery.close'))))));
+}
 function Nation({doc,st,go,n}){
-  const {root,lords}=nationCards(doc,n),el=root.el,shown=lords.filter(l=>has(doc,l)),N=shown.length;
-  const world=n.worlds&&n.worlds[st.w];
+  const {root,lords}=nationCards(doc,n),el=root.el,shown=lords.filter(l=>has(doc,l)),N=shown.length,r=(RING[n.key]||.41)*100;
+  const world=n.worlds&&n.worlds[st.w],[peek,setPeek]=useState(null);
+  useEffect(()=>setPeek(null),[n.key]);
   return h('section',{class:'g-nation'},
-    h('div',{class:'g-orbit'+(N?'':' solo'),style:{'--n':N}},
-      h('svg',{class:'g-rings',viewBox:'-50 -50 100 100',preserveAspectRatio:'none','aria-hidden':'true'},h('ellipse',{rx:42,ry:40}),h('ellipse',{class:'r2',rx:47,ry:45}),h('circle',{class:'nuc',r:1.2})),
-      h('button',{type:'button',class:'g-core','aria-label':W('gallery.open',{name:root.name}),onClick:()=>go({c:root.key,v:true})},h(Pic,{doc,card:root,w:st.w,big:true})),
-      shown.map((l,i)=>{const a=(i/N)*2*Math.PI-Math.PI/2;
-        return h('button',{key:l.key,type:'button',class:'g-lord','data-f':l.family.key,style:{'--x':(Math.cos(a)*42).toFixed(2),'--y':(Math.sin(a)*40).toFixed(2)},'aria-label':W('gallery.enter',{name:l.name}),onClick:()=>go({f:l.family.key,c:'',v:false})},
-          h(Pic,{doc,card:l,w:st.w}),h('span',{class:'g-lord-cap'},l.family.ko));})),
+    h('div',{class:'g-stage',style:{backgroundImage:'url("'+ORBIT+n.key+'.webp")'}},
+      h('svg',{class:'g-spin',viewBox:'0 0 100 100','aria-hidden':'true'},h('circle',{cx:50,cy:50,r:r})),
+      h('button',{type:'button',class:'g-nucleus','data-card':root.key,'aria-label':W('gallery.node',{name:root.name}),onClick:()=>setPeek(root)},
+        h('span',{class:'g-nuc-cap'},h('b',null,el.symbol),' '+el.ko)),
+      shown.map((l,i)=>{const a=(i/N)*2*Math.PI-Math.PI/2,x=50+Math.cos(a)*r,y=50+Math.sin(a)*r;
+        return h('button',{key:l.key,type:'button',class:'g-node'+(x<38?' l':x>62?' r':''),'data-f':l.family.key,style:{left:x.toFixed(2)+'%',top:y.toFixed(2)+'%','--i':i},'aria-label':W('gallery.node',{name:l.name}),onClick:()=>setPeek(l)},l.family.ko);})),
     h('div',{class:'g-text'},
       h('p',{class:'g-sym'},h('span',null,el.symbol),h('small',null,el.number)),
       h('h1',null,el.ko,h('small',null,el.en)),
@@ -129,7 +150,8 @@ function Nation({doc,st,go,n}){
       h('p',{class:'g-persona'},n.persona),
       world&&h('div',{class:'g-world'},h('h2',null,W('gallery.world.text')+' · '+W('world.'+st.w)),h('p',null,world.ko)),
       n.traits&&list(n.traits.ko).length>0&&h('ul',{class:'g-traits'},list(n.traits.ko).map((t,i)=>h('li',{key:i},t))),
-      h('a',{class:'g-dex',href:'dex.html?nation='+n.key},W('gallery.dex'))));
+      h('a',{class:'g-dex',href:'dex.html?nation='+n.key},W('gallery.dex'))),
+    peek&&h(Peek,{doc,st,go,card:peek,close:()=>setPeek(null)}));
 }
 /* 가문 — 가문주 크게, 주민은 액자 */
 function Family({doc,st,go,n,lord}){
