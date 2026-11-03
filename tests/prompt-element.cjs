@@ -19,7 +19,7 @@ for (const key of cards) {
   if (c.tier !== 'citizen') assert(same(ws, worlds), key + ' 근본·가문주는 세 세계 다');
   for (const w of ws) {
     const t = P.build(D, S, key, w, {});
-    assert(t.length > 900 && t.length < 4800, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30) · 얼굴 설계 · 기본 표정(2026-11-01)
+    assert(t.length > 900 && t.length < 5000, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30) · 얼굴 설계 · 기본 표정(2026-11-01) · 화풍 v3 문장 · FACE 끝 한 마디(2026-11-02)
     assert(t.startsWith('CONCEPT: '), key + ' ' + w + ' CONCEPT 첫 줄');
     assert(t.includes("except her element's own chemical symbol (" + c.element.symbol + ') and atomic number (' + c.element.number + ')') && !t.includes('no text, no lettering, no numbers'), key + ' ' + w + ' 기호 · 원자 번호만 허용(2026-10-31)');
     for (const line of ['ELEMENT TRAITS of ', 'AGE: ', 'SILHOUETTE: ', 'FACE — she must read as her own person', 'WORLD — ', 'STYLE: ', 'EXPOSURE (bold)', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');
@@ -33,7 +33,7 @@ for (const key of cards) {
     const FD = T.FACE_DESIGN;
     assert(t.includes(FD.age[dz.face.age]) && faceLine.startsWith(FD.head.split(':')[0]) && faceLine.includes('first impression — ' + (fw('impression', dz.face.impression) || FD.impression[dz.face.impression])), key + ' ' + w + ' 나이감 · 인상');
     for (const k of ['skin_tone', 'eye_size', 'eye_tilt', 'mark']) assert(faceLine.includes(fw(k, dz.face[k]) || FD[k][dz.face[k]]), key + ' ' + w + ' 얼굴 줄에 ' + k);
-    assert(t.includes(T.EXPR_HEAD + T.EXPRESSION_DETAIL[dz.face.expr] + '.') && silLine.includes(' with ' + FD.bangs[dz.silhouette.bangs]), key + ' ' + w + ' 기본 표정 · 앞머리');
+    assert(t.includes(T.EXPR_HEAD + (((S.styles[S.default].versions.find(v => v.v === S.styles[S.default].current) || {}).expr || {})[dz.face.expr] || T.EXPRESSION_DETAIL[dz.face.expr]) + '.') && silLine.includes(' with ' + FD.bangs[dz.silhouette.bangs]), key + ' ' + w + ' 기본 표정 · 앞머리');
     assert(!t.includes('soft full cheeks') && !t.includes('controlled anime facial design'), key + ' ' + w + ' 얼굴을 하나로 만들던 말');
     assert(!t.includes('IDENTITY ('), key + ' ' + w + ' 고른 외형이 없으면 IDENTITY 가 없다');
     const order = ['HOUSE TRAITS', 'AGE: ', 'SILHOUETTE: ', 'FACE — ', 'WORLD — ', 'STYLE: ', 'EXPOSURE (', 'OUTPUT: '].map(x => t.indexOf(x)).filter(i => i >= 0);
@@ -165,6 +165,10 @@ assert.equal(P.build(D, S, 'fe', 'modern', {}), '');
   const S2 = JSON.parse(JSON.stringify(S)); S2.styles.game_keyart.current = 'v2';
   const t2 = P.build(D, S2, 'o-blood-cell', 'mecha', { style: 'game_keyart' });
   assert(t2.includes('STYLE: ' + v2.text) && t2.includes('a cute, bright-eyed sweetness') && t2.includes('small button nose') && t2.includes('rosy flushed cheeks'), 'v2 는 옛 지시문 그대로');
+  /* v3b — 놀람을 낮추고 FACE 끝에 한 마디(같은 날 「2번은 넣어주고」) */
+  const m3 = P.build(D, S, 'o-fire-match', 'mecha', { style: 'game_keyart' });
+  assert(m3.includes(v3.expr.surprised) && !m3.includes('mouth open in a small round shape') && m3.split('\n').find(l => l.startsWith('FACE')).includes(v3.face_tail), '성냥 v3 놀람 · FACE 끝');
+  assert(P.build(D, S2, 'o-fire-match', 'mecha', { style: 'game_keyart' }).includes('mouth open in a small round shape'), 'v2 놀람은 그대로');
   const c3 = P.build(D, S, 'na', 'fantasy', { style: 'game_keyart' });
   assert(c3.includes(v3.face['eyes.round_large']) && !c3.includes('large round eyes'), '나트륨 둥근 큰 눈');
 }

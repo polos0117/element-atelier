@@ -55,7 +55,7 @@
     {
      "v": "v3",
      "adopted": "2026-11-02",
-     "by": "사용자 「원소 공방 화풍이 2d 식으로 나오는 경우가 가끔 있어서」 → 시험 여섯 장(적혈구 · 성냥 메카 — v2 · 화풍만 v3 · 화풍+얼굴 v3) → 「추천대로 진행해줘」",
+     "by": "사용자 「원소 공방 화풍이 2d 식으로 나오는 경우가 가끔 있어서」 → 시험 여섯 장(적혈구 · 성냥 메카 — v2 · 화풍만 v3 · 화풍+얼굴 v3) → 「추천대로 진행해줘」 · 같은 날 「2번은 넣어주고」 — 놀람 표정 낮추기와 얼굴 줄 끝 한 마디(성냥 v3b 시험)",
      "text": "Polished 2.5D game key art — painterly semi-realistic rendering with soft volumetric light. Her face is modelled with gentle three-dimensional shading on the nose bridge, cheekbones, lips and jawline, drawn with thin soft-coloured contour lines instead of dark ink outlines; glossy layered hair with depth; she keeps her own facial structure, eye proportions and skin tone instead of one house face. Even in a bright, high-key scene her face keeps soft form shadows. Crisp costume and prop detail, a vivid, readable silhouette and campaign-quality lighting. Not flat cel-shaded 2D anime, not a sketch or line drawing, not photoreal.",
      "casual": "Polished 2.5D game key art — painterly semi-realistic rendering with soft volumetric light. Her face is modelled with gentle three-dimensional shading on the nose bridge, cheekbones, lips and jawline, drawn with thin soft-coloured contour lines instead of dark ink outlines; glossy layered hair with depth; she keeps her own facial structure, eye proportions and skin tone instead of one house face. Even in a bright, high-key scene her face keeps soft form shadows. Crisp fabric and accessory detail, a vivid, readable silhouette and natural lighting. Not flat cel-shaded 2D anime, not a sketch or line drawing, not photoreal.",
      "check": "2.5D game key art rendering with clean linework; the element's traits carried by costume, ornament and scene — no readable text, one figure.",
@@ -70,8 +70,13 @@
      "why": [
       "v2 의 「clean linework · anime facial design · layered cel-to-soft shading」 에 얼굴 설계의 어리고 귀여운 낱말(귀여움 · 큰 눈 · 단추코 · 들창코 · 홍조 · 20대 초반)이 겹치면 평면 셀 2D 애니 얼굴로 넘어갔다 — 적혈구 · 성냥 · 나트륨 · 연필 · 피 · 화성 녹. 같은 날 같은 세션의 심장(글래머 · 보통 눈)은 2.5D 였다(2026-11-02)",
       "윤곽선은 옅은 색선, 얼굴은 코 · 광대 · 입술 · 턱 입체 명암, 밝은 장면에서도 얼굴 그림자, 「평면 2D 애니 · 스케치 아님」. face 는 지시문으로 옮길 때만 바꿔 적는 얼굴 낱말(설계표 값은 그대로) — 열쇠는 「칸.값」",
-      "시험: 적혈구 메카는 화풍만으로 2.5D 쪽, 화풍+얼굴이 가장 나았다. 성냥 메카(놀람 표정 · 쌍갈래)는 조금만 나아졌다"
-     ]
+      "시험: 적혈구 메카는 화풍만으로 2.5D 쪽, 화풍+얼굴이 가장 나았다. 성냥 메카(놀람 표정 · 쌍갈래)는 조금만 나아졌다",
+      "v3b(같은 날, 그림 없이 v3 에 더했다): 놀람의 「동그랗게 벌린 입 · 흰자 보이게 큰 눈」 이 애니 쪽 신호라 「입술만 살짝 벌림」 으로(expr — 세계 그림 기본 표정 · 일상컷 표정 둘 다), FACE 줄 끝에 face_tail(「치비 · 모에 애니 얼굴 아님」). 성냥 메카 시험에서 v3 보다 눈이 줄고 입이 작아졌다"
+     ],
+     "expr": {
+      "surprised": "brows lifted, eyes a little wider, lips just parted in surprise"
+     },
+     "face_tail": "semi-realistic game-illustration facial proportions, not a chibi or moe anime face"
     }
    ]
   },

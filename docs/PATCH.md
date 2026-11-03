@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-02 · claude · 화풍 v3 에 놀람 표정 낮추기 · FACE 끝 한 마디(v3b)
+- data/style.json — game_keyart v3 에 expr(놀람 → 「입술만 살짝 벌림」)과 face_tail(「치비 · 모에 애니 얼굴 아님」). 사용자 「2번은 넣어주고」(성냥 메카 v3b 시험 — v3 보다 눈이 줄고 입이 작아졌다). v3 로 그린 그림이 아직 없어 같은 판에 더했다
+- lib/prompt-element.js — styleVer · exprText: 세계 그림 기본 표정 · 일상컷 EXPRESSION 이 판의 expr 를 먼저, 설계 얼굴이 있는 FACE 줄 끝에 face_tail
+- tests/prompt-element.cjs — 성냥 v3 놀람 · FACE 끝 · v2 는 그대로, 기본 표정 검사가 판의 expr 를 따른다, 길이 상한 5000(화풍 v3 문장 · FACE 끝)
+
 ## 2026-11-02 · claude · 화풍 game_keyart v3 — 평면 2D 로 나오던 것 보정(문장 · 얼굴 낱말)
 - data/style.json — game_keyart v3(current). 사용자 「원소 공방 화풍이 2d 식으로 나오는 경우가 가끔 있어서 … 연필그림도 그렇고 몇몇개가」 · 「나트륨쪽도」 · 「성냥도」 → 시험 → 「추천대로 진행해줘」. 윤곽선은 옅은 색선, 얼굴은 코 · 광대 · 입술 · 턱 입체 명암, 밝은 장면에서도 얼굴 그림자, 「평면 셀 2D 애니 · 스케치 · 실사 아님」. face 칸 — 귀여움 · 큰 눈 · 둥근 큰 눈 · 단추코 · 들창코 · 홍조를 지시문에서만 바꿔 적는다. v2 · v1 은 남는다
 - lib/prompt-element.js — styleFace(현재 판의 face), faceItems 가 그 글을 먼저 쓴다(세계 그림 FACE 줄). 옛 판엔 face 가 없어 옛 지시문 그대로
