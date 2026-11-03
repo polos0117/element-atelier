@@ -1,0 +1,1130 @@
+[
+ {
+  "key": "he",
+  "persona": "가장 가벼운 비활성 기체의 나라. 무엇과도 섞이지 않는 귀족인데, 늘 땅에서 조금 떠 있다. 지구가 아니라 햇빛 속에서 먼저 발견됐다 — 일식 때 태양 가장자리의 노란 선 하나로.",
+  "traits": {
+   "ko": [
+    "가장 가벼운 비활성 기체 — 무엇과도 반응하지 않는 고고함",
+    "떠오름 — 풍선 · 비행선 · 땅에서 살짝 뜬 발끝",
+    "일식 때 햇빛 속 노란 분광선으로 처음 찾았다",
+    "방전관의 옅은 복숭앗빛 · 극저온 초유체가 벽을 타고 오른다"
+   ],
+   "en": "the lightest noble gas: aloof and never reacting with anything, yet always lifting — balloons, airships, feet hovering just above the ground; first found not on Earth but in sunlight, as a single golden spectral line at the edge of an eclipsed sun; a gas-discharge tube glowing soft peach-pink; chilled near absolute zero it becomes a superfluid that creeps up the walls of its glass"
+  },
+  "palette": {
+   "en": "pale peach-pink discharge glow, cloud white, high-altitude sky blue, a thin golden spectral line"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "해가 사라진 날의 나라 — 산꼭대기 일식 신전, 프리즘이 가른 햇빛의 금빛 선, 저절로 떠오르는 복숭앗빛 등불",
+    "en": "a kingdom built for the day the sun goes dark: a mountaintop eclipse temple above the clouds, great crystal prisms splitting the last sunlight into a spectrum with one thin golden line, peach-pink lanterns that rise on their own and drift into the darkened sky",
+    "scenes": [
+     {
+      "key": "temple",
+      "ko": "일식 신전",
+      "en": "in a mountaintop eclipse temple as the sun goes dark"
+     },
+     {
+      "key": "prism",
+      "ko": "프리즘 회랑",
+      "en": "in a hall of great crystal prisms casting spectra on the floor"
+     },
+     {
+      "key": "lanterns",
+      "ko": "떠오르는 등불",
+      "en": "among peach-pink lanterns rising by themselves into the dusk"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1868 일식 원정대 — 산 위 관측 천막, 태양을 겨눈 황동 망원경 · 분광기, 옅은 복숭앗빛 방전관 실험대",
+    "en": "around 1868, an eclipse expedition camp on a high plateau: canvas observing tents, a brass telescope and spectroscope aimed at the darkened sun, glass gas-discharge tubes glowing peach-pink on a field bench, tethered observation balloons",
+    "scenes": [
+     {
+      "key": "camp",
+      "ko": "관측 천막",
+      "en": "at the eclipse expedition's canvas observing tents"
+     },
+     {
+      "key": "telescope",
+      "ko": "분광 망원경",
+      "en": "beside a brass telescope and spectroscope aimed at the sun"
+     },
+     {
+      "key": "tubes",
+      "ko": "방전관 실험대",
+      "en": "at a field bench of glowing peach-pink gas-discharge tubes"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 달 헬륨-3 채굴 기지 — 레골리스 수확기, 핵융합 돔, 검은 하늘의 지구",
+    "en": "year 2200, a lunar helium-3 mining colony: regolith harvesters crawling over grey dunes, fusion-reactor domes glowing peach-pink, the blue Earth hanging in a black sky",
+    "scenes": [
+     {
+      "key": "dunes",
+      "ko": "레골리스 언덕",
+      "en": "on grey regolith dunes with harvesters crawling behind"
+     },
+     {
+      "key": "dome",
+      "ko": "핵융합 돔",
+      "en": "under a fusion-reactor dome glowing soft peach-pink"
+     },
+     {
+      "key": "earthrise",
+      "ko": "지구돋이",
+      "en": "at the colony's edge as Earth rises over the horizon"
+     }
+    ],
+    "design": "cloud-white and pale peach armor with rounded balloon-like pauldrons, ring units hovering weightless around her waist and wrists, soft peach-pink discharge glow lines, a clear visor ring, frost-white superfluid shimmer at the joints, heels that never quite touch the ground; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a small round glow of peach-pink gas floating just above her open palm"
+  },
+  "look": {
+   "face": {
+    "face_shape": "heart",
+    "eyes": "droopy_soft",
+    "brows": "soft_round",
+    "nose": "straight_narrow",
+    "lips": "heart_full",
+    "eye_color": "peach",
+    "age": "mid_20s",
+    "impression": "soft",
+    "skin_tone": "fair",
+    "eye_size": "medium",
+    "eye_tilt": "down",
+    "mark": "gloss",
+    "expr": "soft_smile"
+   },
+   "silhouette": {
+    "body": "busty_slender",
+    "hair": "mermaid_waves",
+    "hair_color": "helium_peach"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "heart",
+      "eyes": "droopy_soft"
+     },
+     "silhouette": {
+      "hair": "mermaid_waves",
+      "bangs": "curtain"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "oval",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "finger_waves",
+      "bangs": "side_swept"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "diamond",
+      "eyes": "narrow_upturned"
+     },
+     "silhouette": {
+      "hair": "pixie_cut",
+      "bangs": "choppy"
+     }
+    }
+   },
+   "why": "방전관의 복숭앗빛이 머리 · 눈. 떠오르는 귀족 → 가늘고 풍만, 물속처럼 떠오르는 긴 웨이브. 고고하지만 부드러운 인상 — 귀여움 · 큰 눈을 피했다(화풍 v3, 2026-11-02)"
+  }
+ },
+ {
+  "key": "si",
+  "persona": "모래와 유리와 생각하는 돌의 나라. 땅껍질에서 산소 다음으로 많은, 가장 흔하고 참을성 있는 원소 — 바위와 모래로 수억 년을 버티다 이제는 칩이 되어 생각한다.",
+  "traits": {
+   "ko": [
+    "모래 · 석영 · 녹인 유리",
+    "결정 — 무지갯빛 웨이퍼 광택의 청회색",
+    "회로 — 금선이 새겨진 칩, 생각하는 돌",
+    "가장 흔하고 참을성 있는 땅의 원소"
+   ],
+   "en": "silicon: beach sand and desert quartz, molten glass glowing orange in the furnace, blue-grey metallic crystal with a rainbow silicon-wafer sheen, gold circuit traces etched into chips; the most patient element of the earth's crust, stone that learned to think"
+  },
+  "palette": {
+   "en": "wafer blue-grey with a rainbow sheen, clear quartz, desert sand, molten-glass orange, circuit gold"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "노래하는 모래의 사막 — 유리 불는 장인의 도시, 번개가 녹인 유리 탑, 석영 동굴",
+    "en": "a desert of singing sands: a glassblowers' city of furnaces and coloured glass domes, towers of lightning-fused glass rising from the dunes, a cave of giant clear quartz crystals",
+    "scenes": [
+     {
+      "key": "dunes",
+      "ko": "노래하는 사구",
+      "en": "on wind-carved singing dunes under a hard blue sky"
+     },
+     {
+      "key": "furnace",
+      "ko": "유리 불는 거리",
+      "en": "in the glassblowers' street of glowing furnaces"
+     },
+     {
+      "key": "quartz",
+      "ko": "석영 동굴",
+      "en": "in a cave of giant clear quartz crystals"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1880 유리 공장과 렌즈 깎는 방 — 녹인 유리 화로, 쇠와 유리판의 수정궁 온실",
+    "en": "around 1880, a great glassworks and a lens-grinding hall: furnaces of molten glass, glassblowers' pipes, telescope lenses on brass grinding wheels, an iron-and-glass crystal-palace conservatory next door",
+    "scenes": [
+     {
+      "key": "furnace",
+      "ko": "유리 화로 홀",
+      "en": "in the furnace hall of a great glassworks"
+     },
+     {
+      "key": "lens",
+      "ko": "렌즈 깎는 방",
+      "en": "in a lens-grinding room of brass wheels and polished glass"
+     },
+     {
+      "key": "palace",
+      "ko": "수정궁 온실",
+      "en": "inside an iron-and-glass crystal-palace conservatory"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 화성 태양광 유리 사막 — 끝없는 실리콘 태양판 들판, 모래를 녹여 지은 유리 아콜로지",
+    "en": "year 2200, a Martian dune sea paved with endless silicon solar fields, a glass arcology fused from the red sand itself, data-light pulsing through its transparent walls",
+    "scenes": [
+     {
+      "key": "solar",
+      "ko": "태양판 들판",
+      "en": "among endless silicon solar fields on a red dune sea"
+     },
+     {
+      "key": "arcology",
+      "ko": "유리 아콜로지",
+      "en": "inside a glass arcology fused from red sand"
+     },
+     {
+      "key": "core",
+      "ko": "데이터 코어",
+      "en": "in a transparent data core of stacked wafers"
+     }
+    ],
+    "design": "blue-grey crystalline armor plates with a rainbow silicon-wafer sheen, gold circuit traces etched across the plates, a clear quartz visor, a back unit of fanned solar-panel wings, pale cyan data-light lines; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a palm-sized raw quartz crystal whose one end is cut and polished into a gleaming silicon chip"
+  },
+  "look": {
+   "face": {
+    "face_shape": "oval",
+    "eyes": "almond_wide",
+    "brows": "straight_thick",
+    "nose": "straight_narrow",
+    "lips": "thin_long",
+    "eye_color": "steel_blue",
+    "age": "late_20s",
+    "impression": "stoic",
+    "skin_tone": "golden_tan",
+    "eye_size": "medium",
+    "eye_tilt": "level",
+    "mark": "bare",
+    "expr": "focused"
+   },
+   "silhouette": {
+    "body": "curvy_athletic",
+    "hair": "low_ponytail",
+    "hair_color": "wafer_iridescent"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "oval",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "half_up",
+      "bangs": "parted"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "square_soft",
+      "eyes": "deep_set"
+     },
+     "silhouette": {
+      "hair": "low_ponytail",
+      "bangs": "curtain"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "diamond",
+      "eyes": "narrow_upturned"
+     },
+     "silhouette": {
+      "hair": "asymmetric_bob",
+      "bangs": "side_swept"
+     }
+    }
+   },
+   "why": "웨이퍼의 무지갯빛 청회색이 머리, 강철빛 눈. 참을성 있는 땅 → 탄탄하고 굴곡진 몸, 무표정한 인상 · 맨얼굴"
+  }
+ },
+ {
+  "key": "s",
+  "persona": "화산과 지옥불의 나라. 분화구에 노란 결정으로 피어나고, 밤이면 푸른 불꽃으로 탄다. 화약의 한 몫, 고무를 질기게 하는 원소 — 냄새부터 위험하다.",
+  "traits": {
+   "ko": [
+    "분화구의 레몬빛 노란 결정",
+    "밤에 푸르게 타는 불꽃 · 매캐한 노란 연기",
+    "유황과 지옥불의 전설 · 화약의 한 몫",
+    "검은 현무암 · 고무를 질기게"
+   ],
+   "en": "sulfur: bright lemon-yellow crystals blooming at volcanic vents, burning at night with an eerie electric-blue flame, choking yellow fumes, brimstone-and-hellfire legend, one third of black gunpowder, the toughness of vulcanized black rubber, black basalt underfoot"
+  },
+  "palette": {
+   "en": "sulfur yellow, eerie blue flame, volcanic basalt black, ember red"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "화산 왕국 — 유황 껍질의 분화구 호수, 밤 비탈의 푸른 불, 현무암 궁전",
+    "en": "a volcano kingdom: a turquoise crater lake crusted with yellow sulfur, rivers of eerie blue flame running down the slopes at night, a basalt-columned palace carved into the caldera wall",
+    "scenes": [
+     {
+      "key": "crater",
+      "ko": "분화구 호수",
+      "en": "by a turquoise crater lake crusted with yellow sulfur"
+     },
+     {
+      "key": "bluefire",
+      "ko": "푸른 불의 비탈",
+      "en": "on a night slope where blue flames run like rivers"
+     },
+     {
+      "key": "basalt",
+      "ko": "현무암 궁전",
+      "en": "in a hall of black basalt columns inside the caldera"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1850 유황 광산과 화약 공장 — 노란 광석 가마, 놋쇠 띠 화약통, 고무 가황 공장",
+    "en": "around 1850, a sulfur mine and a gunpowder mill: heaps of yellow ore burning in kilns, brass-bound powder kegs in a magazine, a vulcanizing works for rubber with steaming presses",
+    "scenes": [
+     {
+      "key": "kilns",
+      "ko": "광석 가마",
+      "en": "beside heaps of yellow ore smouldering in kilns"
+     },
+     {
+      "key": "powder",
+      "ko": "화약 창고",
+      "en": "in a gunpowder magazine of brass-bound kegs"
+     },
+     {
+      "key": "rubber",
+      "ko": "가황 공장",
+      "en": "in a vulcanizing works of steaming rubber presses"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 이오 식민지 — 목성의 화산 위성, 유황 분출 기둥, 하늘을 채운 목성",
+    "en": "year 2200, a colony on Io, Jupiter's volcanic moon: sulfur plumes erupting hundreds of kilometres high, a yellow-orange cratered plain, Jupiter filling the sky",
+    "scenes": [
+     {
+      "key": "plume",
+      "ko": "유황 분출 기둥",
+      "en": "before a towering sulfur plume on Io"
+     },
+     {
+      "key": "plain",
+      "ko": "노란 평원",
+      "en": "on a yellow-orange cratered plain under Jupiter"
+     },
+     {
+      "key": "vent",
+      "ko": "분출구 기지",
+      "en": "at a colony outpost built over a volcanic vent"
+     }
+    ],
+    "design": "volcanic black basalt armor with bright sulfur-yellow crystal growths at the joints, eerie blue-flame vents at shoulders and heels, ember-red underglow along the seams, a back unit shaped like a smoking volcanic vent; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a lump of bright yellow sulfur crystal burning with a small blue flame"
+  },
+  "look": {
+   "face": {
+    "face_shape": "long",
+    "eyes": "narrow_upturned",
+    "brows": "angled_sharp",
+    "nose": "aquiline",
+    "lips": "full_wide",
+    "eye_color": "blue_flame",
+    "age": "late_20s",
+    "impression": "glamorous",
+    "skin_tone": "deep_brown",
+    "eye_size": "medium",
+    "eye_tilt": "up",
+    "mark": "smoky",
+    "expr": "provocative"
+   },
+   "silhouette": {
+    "body": "voluptuous",
+    "hair": "long_curly",
+    "hair_color": "basalt_sulfur"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "long",
+      "eyes": "narrow_upturned"
+     },
+     "silhouette": {
+      "hair": "long_curly",
+      "bangs": "none"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "heart",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "side_braid",
+      "bangs": "one_eye"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "diamond",
+      "eyes": "deep_set"
+     },
+     "silhouette": {
+      "hair": "undercut_sweep",
+      "bangs": "choppy"
+     }
+    }
+   },
+   "why": "현무암 검정에 유황 노랑 끝이 머리, 푸른 불꽃 눈. 지옥불의 유혹 → 풍만한 몸, 매혹적인 인상 · 스모키 화장. 나트륨의 레몬빛 머리와 겹치지 않게 노랑은 끝에만"
+  }
+ },
+ {
+  "key": "cl",
+  "persona": "독과 깨끗함의 나라. 구름이면 맹독의 연둣빛 안개, 한 방울이면 물을 지키는 소독약. 바다 소금의 다른 반쪽 — 표백한 흰빛처럼 차갑고 단정하다.",
+  "traits": {
+   "ko": [
+    "연둣빛 노란 기체 — 구름이면 독, 한 방울이면 깨끗함",
+    "수영장의 맑음 · 표백한 흰 천 · 코를 찌르는 깨끗한 냄새",
+    "바다 소금의 다른 반쪽",
+    "소독 · 표백 · 정화"
+   ],
+   "en": "chlorine: a pale yellow-green gas that is poison in a cloud and cleanliness in a drop — the clarity of a swimming pool, bleached white linen snapping in the wind, the sharp clean smell; the other half of sea salt; it disinfects, bleaches and purifies"
+  },
+  "palette": {
+   "en": "chlorine yellow-green, bleach white, pool aqua, hazard black"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "정화의 나라 — 밝은 바닷가 흰 목욕 신전, 바람에 마르는 표백 천의 줄, 성벽 너머 금지된 연둣빛 안개 늪",
+    "en": "a kingdom of cleansing: white salt-stone bathhouse temples by a bright sea, rows of bleached linen drying in the wind on the cliffs, and beyond the walls a forbidden marsh of pale yellow-green mist",
+    "scenes": [
+     {
+      "key": "bath",
+      "ko": "흰 목욕 신전",
+      "en": "in a white salt-stone bathhouse temple by the sea"
+     },
+     {
+      "key": "linen",
+      "ko": "표백 천의 언덕",
+      "en": "on a cliff where rows of bleached linen dry in the wind"
+     },
+     {
+      "key": "mist",
+      "ko": "금지된 안개 늪",
+      "en": "at the wall's edge above a marsh of yellow-green mist"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1900 처음 염소로 소독한 상수도와 빅토리아 공중목욕탕 — 타일 수영장, 놋쇠 관 · 계기, 연둣빛 기체 유리병",
+    "en": "around 1900, the first chlorinated city waterworks beside a Victorian public bath: tiled swimming pools under iron roofs, brass pipes and pressure gauges, glass carboys of yellow-green gas",
+    "scenes": [
+     {
+      "key": "waterworks",
+      "ko": "상수도 소독실",
+      "en": "in a waterworks dosing room of brass pipes and gauges"
+     },
+     {
+      "key": "baths",
+      "ko": "타일 공중목욕탕",
+      "en": "beside a tiled Victorian swimming bath under an iron roof"
+     },
+     {
+      "key": "bleach",
+      "ko": "표백 공장",
+      "en": "in a bleachworks of steaming vats and white sheets"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 바다 정수 거대 구조물 — 티 없이 소독된 흰 도시, 위험 줄무늬, 연둣빛 기체 탱크",
+    "en": "year 2200, an ocean purification megastructure: a spotless sanitized white city on stilts over the sea, hazard-striped decks, banks of translucent yellow-green gas tanks",
+    "scenes": [
+     {
+      "key": "deck",
+      "ko": "정수 갑판",
+      "en": "on a hazard-striped purification deck over the sea"
+     },
+     {
+      "key": "tanks",
+      "ko": "기체 탱크 숲",
+      "en": "among banks of glowing yellow-green gas tanks"
+     },
+     {
+      "key": "pool",
+      "ko": "정화된 수조",
+      "en": "beside an impossibly clear purified water basin"
+     }
+    ],
+    "design": "bleach-white armor with translucent yellow-green gas chambers set into the plates, hazard-black stripe trim, a filter-mask visor that leaves her face visible, pool-aqua glow lines; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a small sealed glass ampoule of swirling yellow-green gas"
+  },
+  "look": {
+   "face": {
+    "face_shape": "oval",
+    "eyes": "monolid_long",
+    "brows": "arched_thin",
+    "nose": "straight_narrow",
+    "lips": "thin_long",
+    "eye_color": "chartreuse",
+    "age": "mid_20s",
+    "impression": "androgynous",
+    "skin_tone": "porcelain",
+    "eye_size": "small",
+    "eye_tilt": "level",
+    "mark": "dark_lip",
+    "expr": "serious"
+   },
+   "silhouette": {
+    "body": "slender",
+    "hair": "hime_cut",
+    "hair_color": "chlorine_green"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "oval",
+      "eyes": "monolid_long"
+     },
+     "silhouette": {
+      "hair": "hime_cut",
+      "bangs": "straight"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "long",
+      "eyes": "deep_set"
+     },
+     "silhouette": {
+      "hair": "slicked_back",
+      "bangs": "none"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "square_soft",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "short_crop",
+      "bangs": "parted"
+     }
+    }
+   },
+   "why": "연둣빛 기체가 머리 · 눈. 차갑고 단정한 소독 → 가는 몸, 중성적인 인상 · 짙은 입술. 표백한 흰빛의 도자기 피부"
+  }
+ },
+ {
+  "key": "ca",
+  "persona": "뼈와 진주와 대리석의 나라. 살아 있는 것이 몸을 세울 때 쓰는 원소 — 뼈와 이, 조개와 진주, 그리고 그들이 쌓여 생긴 석회암 절벽과 흰 대리석 조각상. 천천히, 단단하게.",
+  "traits": {
+   "ko": [
+    "살아 있는 것이 몸을 세우는 원소 — 뼈 · 이 · 조개",
+    "진주의 무지갯빛 · 흰 대리석 조각상",
+    "석회암 절벽 · 만 년 동안 자라는 종유석",
+    "희고 단단하고 참을성 있게"
+   ],
+   "en": "calcium: the element living things build their bodies with — bone and teeth, seashells and pearls with a pink-and-silver nacre sheen; limestone cliffs laid down by countless shells, white marble statues, chalk, stalactites dripping for ten thousand years; pale, strong and patient"
+  },
+  "palette": {
+   "en": "pearl white, bone ivory, marble grey veining, coral pink, limestone cream"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "흰 석회암 절벽과 산호초의 바다 왕국 — 조각상의 대리석 신전, 진주 캐는 석호, 종유석 동굴 성당",
+    "en": "a sea kingdom of white limestone cliffs and coral reefs: a marble temple of statues above the waves, a pearl divers' lagoon, a cathedral cave of stalactites and still pools",
+    "scenes": [
+     {
+      "key": "temple",
+      "ko": "대리석 신전",
+      "en": "in a marble temple of statues above the sea"
+     },
+     {
+      "key": "lagoon",
+      "ko": "진주 석호",
+      "en": "at a pearl divers' lagoon of clear turquoise water"
+     },
+     {
+      "key": "cave",
+      "ko": "종유석 성당",
+      "en": "in a cathedral cave of stalactites and still pools"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1870 대리석 채석장과 조각가의 작업실 — 흰 대리석 덩어리, 석고 틀, 유리 지붕 아래 고래 뼈대가 걸린 자연사 박물관",
+    "en": "around 1870, a white-marble quarry and a sculptor's atelier beside a Victorian natural-history museum: marble blocks and plaster casts, a whale skeleton hung under a glass roof, cabinets of shells and coral",
+    "scenes": [
+     {
+      "key": "quarry",
+      "ko": "대리석 채석장",
+      "en": "in a terraced white-marble quarry"
+     },
+     {
+      "key": "atelier",
+      "ko": "조각가 작업실",
+      "en": "in a sculptor's atelier of marble blocks and plaster casts"
+     },
+     {
+      "key": "museum",
+      "ko": "고래 뼈대 홀",
+      "en": "under a whale skeleton in a glass-roofed museum hall"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 생체 칼슘으로 자란 산호초 아콜로지 — 뼈처럼 흰 유기 구조물, 진주빛 돔",
+    "en": "year 2200, a reef arcology grown from bio-engineered calcium: bone-white organic towers like coral and vertebrae, pearl-sheened domes, a turquoise sea around it",
+    "scenes": [
+     {
+      "key": "reef",
+      "ko": "산호 탑",
+      "en": "among bone-white coral-grown towers"
+     },
+     {
+      "key": "dome",
+      "ko": "진주빛 돔",
+      "en": "under a pearl-sheened dome"
+     },
+     {
+      "key": "spine",
+      "ko": "척추 회랑",
+      "en": "in a corridor ribbed like a spine"
+     }
+    ],
+    "design": "bone-ivory armor grown like coral and shell — ribbed seashell pauldrons, nacre-pearl panels with a pink-and-silver sheen, marble-grey veining across the plates, a spine-like segmented back unit; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a single large lustrous pearl resting in an open shell"
+  },
+  "look": {
+   "face": {
+    "face_shape": "oval",
+    "eyes": "almond_wide",
+    "brows": "soft_round",
+    "nose": "straight_narrow",
+    "lips": "heart_full",
+    "eye_color": "coral",
+    "age": "early_30s",
+    "impression": "mature",
+    "skin_tone": "warm_beige",
+    "eye_size": "medium",
+    "eye_tilt": "down",
+    "mark": "mole_lip",
+    "expr": "gentle"
+   },
+   "silhouette": {
+    "body": "tall_statuesque",
+    "hair": "updo_bun",
+    "hair_color": "pearl_white"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "oval",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "updo_bun",
+      "bangs": "side_swept"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "long",
+      "eyes": "droopy_soft"
+     },
+     "silhouette": {
+      "hair": "flipped_shoulder",
+      "bangs": "curtain"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "heart",
+      "eyes": "deep_set"
+     },
+     "silhouette": {
+      "hair": "braids",
+      "bangs": "parted"
+     }
+    }
+   },
+   "why": "진주빛 흰 머리, 산호빛 눈. 조각상 → 늘씬하고 조각 같은 몸, 성숙한 인상 · 입가 점"
+  }
+ },
+ {
+  "key": "cu",
+  "persona": "사람이 처음 녹인 금속의 나라. 청동기를 열었고, 지금은 모든 전선 속을 흐르며 세상을 잇는다. 비를 맞으면 청록 녹청을 입는 따뜻하고 부지런한 붉은 금속.",
+  "traits": {
+   "ko": [
+    "사람이 처음 녹인 금속 — 청동기의 칼과 종",
+    "전선 — 세상을 잇는 붉은 금속",
+    "비에 젖은 동상의 청록 녹청",
+    "따뜻하고 잘 통하는"
+   ],
+   "en": "copper: warm rose-red metal, the first metal humans ever smelted — bronze-age blades, shields and temple bells; it carries electricity through every wire in the world; left in the rain it ages to blue-green verdigris like an old statue; warm, conductive and hard-working"
+  },
+  "palette": {
+   "en": "polished copper red, verdigris teal, bronze brown, electric spark blue"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "청동기의 섬 왕국 — 구리 광산과 제련로, 청동 종과 방패, 녹청으로 푸르게 변한 신전 돔",
+    "en": "a bronze-age island kingdom: copper mines and smelting furnaces, bronze bells and shields cast in clay moulds, a temple dome weathered blue-green with verdigris",
+    "scenes": [
+     {
+      "key": "smelter",
+      "ko": "제련 마당",
+      "en": "in a smelting yard of clay furnaces and glowing copper"
+     },
+     {
+      "key": "bells",
+      "ko": "청동 종루",
+      "en": "in a bell tower of great bronze bells"
+     },
+     {
+      "key": "dome",
+      "ko": "녹청 돔 신전",
+      "en": "under a temple dome weathered blue-green"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1885 전기의 구리 시대 — 전선이 웅웅대는 전신국, 거대한 구리선 타래, 거대 동상의 구리 껍질을 두드리는 작업장",
+    "en": "around 1885, the copper age of electricity: a telegraph office humming with wires, giant spools of copper cable, a workshop hammering the copper skin of a colossal statue over wooden forms",
+    "scenes": [
+     {
+      "key": "telegraph",
+      "ko": "전신국",
+      "en": "in a telegraph office humming with wires"
+     },
+     {
+      "key": "spools",
+      "ko": "구리선 공장",
+      "en": "among giant spools of copper cable"
+     },
+     {
+      "key": "statue",
+      "ko": "동상 작업장",
+      "en": "in a workshop hammering a colossal statue's copper skin"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 행성 전력망 도시 — 초전도 코일 탑, 하늘을 가로지르는 구리빛 송전선, 푸른 방전",
+    "en": "year 2200, a planet-wide power-grid city: superconducting coil towers, copper-gold transmission lines strung across the sky, blue arcs of electricity leaping between spires",
+    "scenes": [
+     {
+      "key": "coils",
+      "ko": "코일 탑",
+      "en": "among towering superconducting coils"
+     },
+     {
+      "key": "lines",
+      "ko": "송전선 하늘",
+      "en": "under copper transmission lines strung across the sky"
+     },
+     {
+      "key": "arc",
+      "ko": "방전 첨탑",
+      "en": "between spires as blue arcs leap across"
+     }
+    ],
+    "design": "polished copper-red armor wound with coil patterns like electromagnet windings, verdigris-teal panels at the edges, electric-blue spark lines arcing between pauldron coils, a back unit of two Tesla-coil spires; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a coil of copper wire with a tiny blue spark jumping across its ends"
+  },
+  "look": {
+   "face": {
+    "face_shape": "square_soft",
+    "eyes": "almond_wide",
+    "brows": "straight_thick",
+    "nose": "upturned",
+    "lips": "wide_smile",
+    "eye_color": "teal",
+    "age": "mid_20s",
+    "impression": "boyish",
+    "skin_tone": "olive",
+    "eye_size": "medium",
+    "eye_tilt": "up",
+    "mark": "freckles",
+    "expr": "playful"
+   },
+   "silhouette": {
+    "body": "curvy",
+    "hair": "wolf_cut",
+    "hair_color": "copper"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "square_soft",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "braids",
+      "bangs": "choppy"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "heart",
+      "eyes": "droopy_soft"
+     },
+     "silhouette": {
+      "hair": "wolf_cut",
+      "bangs": "side_swept"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "long",
+      "eyes": "narrow_upturned"
+     },
+     "silhouette": {
+      "hair": "short_crop",
+      "bangs": "parted"
+     }
+    }
+   },
+   "why": "윤낸 구리 머리, 녹청빛 눈. 부지런한 장인 → 굴곡진 몸, 장난기 있는 인상 · 주근깨"
+  }
+ },
+ {
+  "key": "ag",
+  "persona": "달의 금속의 나라. 어떤 금속보다 밝게 비추는 거울, 은화와 은식기, 괴물을 쫓는 은 탄환, 처음 사진을 맺은 은. 황이 닿는 자리마다 검게 변색한다 — 차갑고 순수하다.",
+  "traits": {
+   "ko": [
+    "달의 금속 — 가장 밝은 거울빛",
+    "은화 · 은식기 · 괴물을 쫓는 은 탄환",
+    "처음 사진을 맺은 은판",
+    "황에 닿으면 검게 변색 — 차갑고 순수"
+   ],
+   "en": "silver: the moon's metal — the brightest mirror shine of any metal, coins and cutlery, silver bullets against monsters in legend, the silvered plates that held the first photographs; it tarnishes black wherever sulfur touches it; cold, pure and reflective"
+  },
+  "palette": {
+   "en": "moonlit silver, mirror white, tarnish black, cold blue moonlight"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "달빛 왕국 — 거울처럼 고요한 은빛 호수, 달의 여신의 은광, 거울의 전당",
+    "en": "a moonlit kingdom: a lake so still it is a silver mirror, the moon goddess's silver mine glittering in the cliffs, a hall of mirrors where moonlight is multiplied endlessly",
+    "scenes": [
+     {
+      "key": "lake",
+      "ko": "거울 호수",
+      "en": "on the shore of a mirror-still silver lake at night"
+     },
+     {
+      "key": "mine",
+      "ko": "달의 은광",
+      "en": "in a silver mine glittering under moonlight"
+     },
+     {
+      "key": "mirrors",
+      "ko": "거울의 전당",
+      "en": "in a hall of mirrors multiplying the moonlight"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1840 은판 사진관과 은세공 가게 — 유리 지붕 촬영실, 은을 입힌 동판, 반짝이는 은 찻그릇",
+    "en": "around 1840, a daguerreotype photographer's glass-roofed studio: silver-plated copper plates, posing chairs and brass head-clamps, fuming boxes; next door a silversmith's shop of gleaming tea services",
+    "scenes": [
+     {
+      "key": "studio",
+      "ko": "은판 사진관",
+      "en": "in a glass-roofed daguerreotype studio"
+     },
+     {
+      "key": "plates",
+      "ko": "은판 작업대",
+      "en": "at a bench of silvered plates and brass cameras"
+     },
+     {
+      "key": "smith",
+      "ko": "은세공 가게",
+      "en": "in a silversmith's shop of gleaming tea services"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 우주 거울 관측소 — 접히는 거울 꽃잎의 망원경 도시, 차가운 달빛",
+    "en": "year 2200, a space mirror observatory: a city of folding mirror petals unfurled like a giant telescope, cold blue moonlight, the stars doubled in every surface",
+    "scenes": [
+     {
+      "key": "petals",
+      "ko": "거울 꽃잎",
+      "en": "among unfurling mirror petals of a space telescope"
+     },
+     {
+      "key": "deck",
+      "ko": "관측 갑판",
+      "en": "on an observation deck reflecting the stars"
+     },
+     {
+      "key": "moon",
+      "ko": "달 궤도",
+      "en": "in orbit with the moon hanging close"
+     }
+    ],
+    "design": "mirror-polished silver armor that reflects the scene around her, cold blue moonlight glow lines, patches of black tarnish etched like filigree at the edges, a back unit of folding mirror petals like a space telescope; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a small round silver hand mirror catching moonlight"
+  },
+  "look": {
+   "face": {
+    "face_shape": "oval",
+    "eyes": "narrow_upturned",
+    "brows": "arched_thin",
+    "nose": "aquiline",
+    "lips": "small_bow",
+    "eye_color": "ice_blue",
+    "age": "late_20s",
+    "impression": "cool",
+    "skin_tone": "fair",
+    "eye_size": "medium",
+    "eye_tilt": "up",
+    "mark": "winged_liner",
+    "expr": "half_smile"
+   },
+   "silhouette": {
+    "body": "hourglass",
+    "hair": "long_straight",
+    "hair_color": "moon_silver"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "oval",
+      "eyes": "narrow_upturned"
+     },
+     "silhouette": {
+      "hair": "long_straight",
+      "bangs": "one_eye"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "heart",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "voluminous",
+      "bangs": "parted"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "long",
+      "eyes": "monolid_long"
+     },
+     "silhouette": {
+      "hair": "bob",
+      "bangs": "straight"
+     }
+    }
+   },
+   "why": "거울빛 은 머리, 얼음빛 눈. 달의 차가움 → 모래시계 몸, 차가운 인상 · 날 선 아이라인. 수소의 은백 머리와 겹치지 않게 액체 거울빛"
+  }
+ },
+ {
+  "key": "u",
+  "persona": "가장 무거운 자연 원소의 나라. 별이 죽을 때 태어나 지구 깊숙이 숨어 있던 힘. 우라늄 유리의 으스스한 초록, 원자로의 푸른 빛 — 장엄하지만 가둬야 하는 원소.",
+  "traits": {
+   "ko": [
+    "가장 무거운 자연 원소 — 별의 죽음에서 태어났다",
+    "우라늄 유리의 형광 초록 · 원자로 물속의 푸른 빛",
+    "느린 붕괴 · 경고의 삼엽 문양",
+    "장엄하지만 가둬야 하는 힘"
+   ],
+   "en": "uranium: the heaviest natural element, forged in dying stars and hidden deep in the earth; dense and slowly decaying; uranium glass glowing eerie green, the blue Cherenkov glow of a reactor pool, yellowcake powder, the black-and-yellow trefoil of warning; immense power that must be contained"
+  },
+  "palette": {
+   "en": "uranium-glass green glow, Cherenkov blue, yellowcake yellow, lead grey, hazard black"
+  },
+  "worlds": {
+   "fantasy": {
+    "ko": "산 밑 깊은 곳의 묻힌 왕국 — 초록으로 빛나는 수정 광맥 동굴, 납 문 뒤에 잠든 별의 힘, 경고의 고대 룬",
+    "en": "a buried kingdom deep under the mountains: caverns lit by veins of glowing green crystal, a sealed vault where a star-forged power sleeps behind great lead doors, ancient warning runes carved around it",
+    "scenes": [
+     {
+      "key": "veins",
+      "ko": "초록 광맥 동굴",
+      "en": "in a cavern lit by glowing green crystal veins"
+     },
+     {
+      "key": "vault",
+      "ko": "봉인된 납 문",
+      "en": "before great lead doors of a sealed vault"
+     },
+     {
+      "key": "runes",
+      "ko": "경고의 룬 회랑",
+      "en": "in a corridor carved with ancient warning runes"
+     }
+    ]
+   },
+   "steampunk": {
+    "ko": "1898 방사능을 찾아낸 오두막 실험실 — 초록으로 빛나는 우라늄 유리 그릇, 흐려진 사진 건판, 역청 광석 자루",
+    "en": "around 1898, a chemist's shed laboratory where radioactivity was discovered: uranium-glass vessels glowing green, fogged photographic plates, a brass electrometer, sacks of black pitchblende ore",
+    "scenes": [
+     {
+      "key": "shed",
+      "ko": "오두막 실험실",
+      "en": "in a cluttered shed laboratory of glowing glassware"
+     },
+     {
+      "key": "plates",
+      "ko": "흐려진 건판",
+      "en": "at a bench of fogged photographic plates and an electrometer"
+     },
+     {
+      "key": "ore",
+      "ko": "역청 광석 창고",
+      "en": "among sacks of black pitchblende ore"
+     }
+    ]
+   },
+   "mecha": {
+    "ko": "2200 원자로 요새 — 체렌코프 빛이 도는 냉각 수조, 격납 고리, 경고 삼엽 문양",
+    "en": "year 2200, a reactor fortress: a deep cooling pool glowing Cherenkov blue, massive containment rings, hazard trefoils on lead-grey bulkheads",
+    "scenes": [
+     {
+      "key": "pool",
+      "ko": "냉각 수조",
+      "en": "above a deep cooling pool glowing Cherenkov blue"
+     },
+     {
+      "key": "rings",
+      "ko": "격납 고리",
+      "en": "inside massive containment rings"
+     },
+     {
+      "key": "bulkhead",
+      "ko": "납 격벽",
+      "en": "by lead-grey bulkheads marked with warning trefoils"
+     }
+    ],
+    "design": "lead-grey heavy armor with glowing uranium-glass green core panels, a ring of Cherenkov-blue light circling her waist like a containment field, yellow-and-black hazard trim, a back reactor unit with cooling fins; dense, armored, contained power; the plates must read as solid armor, not a gown"
+   }
+  },
+  "families": [],
+  "hold": {
+   "en": "a small sealed lead-glass capsule with a softly glowing green core"
+  },
+  "look": {
+   "face": {
+    "face_shape": "long",
+    "eyes": "deep_set",
+    "brows": "low_heavy",
+    "nose": "broad_soft",
+    "lips": "full_wide",
+    "eye_color": "cherenkov_blue",
+    "age": "early_30s",
+    "impression": "sharp",
+    "skin_tone": "bronze",
+    "eye_size": "small",
+    "eye_tilt": "up",
+    "mark": "mole_eye",
+    "expr": "cold_smile"
+   },
+   "silhouette": {
+    "body": "athletic",
+    "hair": "shag_layers",
+    "hair_color": "uranium_green"
+   },
+   "worlds": {
+    "fantasy": {
+     "face": {
+      "face_shape": "long",
+      "eyes": "deep_set"
+     },
+     "silhouette": {
+      "hair": "shag_layers",
+      "bangs": "choppy"
+     }
+    },
+    "steampunk": {
+     "face": {
+      "face_shape": "square_soft",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "ponytail",
+      "bangs": "side_swept"
+     }
+    },
+    "mecha": {
+     "face": {
+      "face_shape": "diamond",
+      "eyes": "almond_wide"
+     },
+     "silhouette": {
+      "hair": "short_crop",
+      "bangs": "none"
+     }
+    }
+   },
+   "why": "우라늄 유리 초록 머리, 체렌코프 푸른 눈. 가둬 둔 힘 → 탄탄한 몸, 날카로운 인상 · 차가운 미소"
+  }
+ }
+]

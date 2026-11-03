@@ -19,9 +19,27 @@ const EXTRA = {
     brass_gold: 'polished brass-gold hair', pole_tipped: 'silver-grey hair dipped red on one side and blue on the other', deep_blood: 'deep translucent blood-red hair',
     glass_clear: 'clear glass-blue hair with bright highlights', stone_grey: 'mossy stone-grey hair', rain_grey: 'rain-grey hair with a wet sheen', pastel_sky: 'pale pastel sky-blue hair',
     ice_white: 'frost-white hair with pale blue tips', white_gold: 'white-gold hair that glows at the edges', plasma_blue: 'white-blue plasma-bright hair', copper: 'polished copper hair',
-    prism_white: 'diamond-white hair with prism-rainbow glints', cedar: 'cedar-brown hair', terracotta: 'glazed terracotta-brown hair', bright_gold: 'bright cast-gold hair'
+    prism_white: 'diamond-white hair with prism-rainbow glints', cedar: 'cedar-brown hair', terracotta: 'glazed terracotta-brown hair', bright_gold: 'bright cast-gold hair',
+    /* 근본 여덟의 팔레트(2026-11-03) */
+    helium_peach: 'pale peach-pink hair glowing softly like a gas-discharge tube', wafer_iridescent: 'blue-grey hair with a rainbow silicon-wafer sheen',
+    basalt_sulfur: 'volcanic basalt-black hair tipped with crystalline sulfur-yellow', chlorine_green: 'pale yellow-green hair with a misty translucency',
+    pearl_white: 'lustrous pearl-white hair with a pink-and-silver nacre sheen', moon_silver: 'liquid mirror-silver hair reflecting cold blue moonlight',
+    uranium_green: 'hair glowing the eerie green of uranium glass'
   },
-  eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes' },
+  eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes',
+    /* 2026-11-03 근본 여덟(헬륨 · 규소 · 황 · 염소 · 칼슘 · 구리 · 은 · 우라늄)과 앞으로 — 사용자 「머리 스타일이나 눈색이 부족하면 더 추가해도 괜찮아」 */
+    hazel: 'warm hazel eyes', storm_grey: 'storm-grey eyes', silver_grey: 'pale silver-grey eyes', honey: 'honey-gold eyes', rose: 'dusty rose-pink eyes',
+    lilac: 'soft lilac eyes', mint: 'pale mint-green eyes', chartreuse: 'yellow-green chartreuse eyes', blue_flame: 'eerie blue-flame eyes',
+    cherenkov_blue: 'luminous Cherenkov-blue eyes', peach: 'pale peach-pink eyes' },
+  /* 머리 윤곽 — game 어휘 열은 열다섯 나라 · 세 세계에 모자라 돌려쓰게 된다(2026-11-03 사용자 「머리스타일은 지금 수가 제한적이라 계속 돌려쓰는 추세」).
+     위로 올려 묶는 것은 updo_bun 하나뿐 — 스팀펑크 올림머리 금지(element-design.py)가 그대로 듣게 새 것은 다 내리거나 반만 묶는다 */
+  hair: {
+    pixie_cut: 'a short tousled pixie cut', wolf_cut: 'a shaggy layered wolf cut', hime_cut: 'long straight hair with blunt cheek-length sidelocks',
+    long_curly: 'long spiral curls', half_up: 'long hair worn half-up, half-down', side_braid: 'a single thick braid over one shoulder',
+    finger_waves: 'glossy chin-length finger waves', asymmetric_bob: 'an asymmetric bob, longer on one side', undercut_sweep: 'long hair swept to one side over a shaved undercut',
+    slicked_back: 'sleek slicked-back hair', mermaid_waves: 'very long loose mermaid waves to the waist', flipped_shoulder: 'shoulder-length hair with outward-flipped ends',
+    low_ponytail: 'a long low ponytail at the nape', shag_layers: 'a layered shag with face-framing pieces'
+  },
   /* 글래머러스한 체형 — SILHOUETTE 줄이 뒤에 「 build」 를 붙이니 그 꼴로 읽히게(사용자 2026-11-01 「hourglass, voluptuous 등 글래머러스한 몸매가 더 많았으면」) — game 어휘의 일곱(아담·슬렌더·마른 장신·애슬레틱·글래머·장신·건장)에 더한다 */
   body: {
     hourglass: 'hourglass-figured — full bust and hips, distinctly narrow-waisted',
