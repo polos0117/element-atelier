@@ -19,7 +19,7 @@ for (const key of cards) {
   if (c.tier !== 'citizen') assert(same(ws, worlds), key + ' 근본·가문주는 세 세계 다');
   for (const w of ws) {
     const t = P.build(D, S, key, w, {});
-    assert(t.length > 900 && t.length < 5000, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30) · 얼굴 설계 · 기본 표정(2026-11-01) · 화풍 v3 문장 · FACE 끝 한 마디(2026-11-02)
+    assert(t.length > 900 && t.length < 5100, key + ' ' + w + ' 길이 ' + t.length);   // 외형 줄(나이·실루엣·얼굴·노출)이 더해져 길어졌다(2026-10-30) · 얼굴 설계 · 기본 표정(2026-11-01) · 화풍 v3 문장 · FACE 끝 한 마디(2026-11-02)
     assert(t.startsWith('CONCEPT: '), key + ' ' + w + ' CONCEPT 첫 줄');
     assert(t.includes("except her element's own chemical symbol (" + c.element.symbol + ') and atomic number (' + c.element.number + ')') && !t.includes('no text, no lettering, no numbers'), key + ' ' + w + ' 기호 · 원자 번호만 허용(2026-10-31)');
     for (const line of ['ELEMENT TRAITS of ', 'AGE: ', 'SILHOUETTE: ', 'FACE — she must read as her own person', 'WORLD — ', 'STYLE: ', 'EXPOSURE (bold)', 'OUTPUT: ', 'BODY: ', 'ONE FIGURE ONLY', 'ANATOMY: ']) assert(t.includes(line), key + ' ' + w + ' 에 ' + line + ' 가 없다');

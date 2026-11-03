@@ -5412,6 +5412,17 @@
         "steampunk",
         "mecha"
        ],
+       "notes": {
+        "fantasy": {
+         "en": "her headpiece is a sharpened-pencil-tip crown — a cedar-wood cone with a dark graphite point — and bands of cedar-grain wood run through her layered graphite gown"
+        },
+        "steampunk": {
+         "en": "a small hat shaped like a sharpened pencil tip — a cedar-wood cone with a graphite point and a brass ferrule band — and cedar-grain panels on her coat"
+        },
+        "mecha": {
+         "en": "her back unit carries two large sharpened-pencil-tip fins (a cedar-coloured cone with a graphite point), a pencil-tip crest rises from her headband, and cedar-wood-tone armor panels edge her plates"
+        }
+       },
        "look": {
         "face": {
          "brows": "soft_round",
