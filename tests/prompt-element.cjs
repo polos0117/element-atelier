@@ -211,8 +211,10 @@ const checkCasual = (key, sc, txt, label, world) => {
   assert(txt.includes('CHARACTER: the same woman as the attached image — ') && txt.includes('Keep her face, eye and hair colors'), label + ' 첨부의 그 여자');
   assert(txt.includes('WARDROBE: change her clothes completely. From the attached image take only her face, hair and body') && txt.includes('ANGLE: the attached image fixes who she is'), label + ' 옷·각도 줄이 첨부를 말한다');
   assert(!/natural human's/.test(txt), label + ' 피부·머리·눈은 첨부 그대로');
-  assert(txt.includes('STYLE: ' + cur.casual) && !txt.includes('STYLE: ' + cur.text), label + ' 화풍은 판의 casual 문장');
-  assert(txt.includes(CL.age) && !txt.includes('soft full cheeks') && !txt.includes('soft smile'), label + ' 나이 줄은 첨부 그림의 얼굴 그대로(2026-11-01)');
+  /* 일상컷 얼굴 · 화풍은 첨부 그림에 맡긴다(2026-11-03) — 판의 casual 문장 · 나이 줄 대신 「첨부 그림 그대로」 · FACE 줄, 표정은 얼굴 안에서만 */
+  assert(txt.includes("STYLE: keep the attached image's rendering exactly") && !txt.includes(cur.casual) && !txt.includes('STYLE: ' + cur.text), label + ' 화풍은 첨부 그림 그대로');
+  assert(txt.includes('FACE: exactly the face of the attached image') && !txt.includes(CL.age) && !txt.includes('soft full cheeks') && !txt.includes('soft smile'), label + ' 얼굴은 첨부 그림 그대로');
+  assert(!/EXPRESSION: /.test(txt) || /EXPRESSION: [^\n]*Show it mildly, only with her brows, eyelids and mouth corners/.test(txt), label + ' 표정은 얼굴 안에서만');
   assert(txt.includes('FRAME: a vertical 2:3 (1024×1536) image.'), label + ' FRAME 2:3');
   assert(/overall_intensity: strong — /.test(txt) && /skin_exposure: bold — /.test(txt), label + ' 고정값 두 축');
   /* 그 원소의 기호 · 원자 번호만 읽혀도 된다(사용자 2026-10-31) — ONE MAIN FIGURE 줄이 그 둘을 채워 싣는다 */

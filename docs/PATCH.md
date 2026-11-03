@@ -8,6 +8,11 @@
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+
+## 2026-11-03 · claude · 일상컷 얼굴 · 화풍은 첨부 그림에 맡긴다
+- lib/prompt-element.js — 일상컷 지시문 끝에서 refLock: 화풍 문장 → 「STYLE: keep the attached image's rendering exactly …」, 나이 줄 → 「FACE: exactly the face of the attached image …」(없으면 CHARACTER 밑에), 표정 줄 끝에 「눈썹 · 눈꺼풀 · 입꼬리로만」, FINAL CHECK 줄 뺌. 사용자 「일상컷 저거 너무 이상해」 → 「이제 좀 낫네」 → 「응 다 적용해줘」 — 화풍 · 얼굴 문장을 새로 주면 GPT 세션이 첨부 그림의 얼굴을 다시 그렸다(헬륨 메카 일상)
+- tests — 일상컷 화풍 · 얼굴 · 표정 줄 검사로 바꾸고 일상컷 낱말 상한을 올렸다
+- IMAGE_RULES.md — 일상컷 규칙 한 줄
 ## 2026-11-03 · gpt · 헬륨 세계·일상 18장 화풍 v4d 교체
 - 그림 저장소 img/he_* · records/he/ — 기존 외형·장면·일상 계획을 유지하고 생성기 현재 화풍 v4d로 세계 3장·일상 15장을 교체했다. 일상은 새 세계 그림을 첨부했고, 프롬프트·1024×1536·원본/참고 그림 해시를 대조했다.
 - 그림 저장소 records/replacement.json — 이전 WebP·PNG 해시와 새 해시·교체 사유를 보존했다. 의상·크롭·손 좌우·피부 광택 등의 9건은 passed:false로 기록하고 GPT 검수 규칙에 따라 올렸다. 기존 파일·이력을 삭제하지 않았고 썸네일은 변경 원본 --redo 워크플로로 갱신한다.
