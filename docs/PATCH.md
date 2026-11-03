@@ -7,6 +7,11 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+
+## 2026-11-03 · claude · 원소 화풍 v4d — 반실사 · 3D 쪽으로 넘친 v3 를 되돌림
+- data/style.json — game_keyart current v3 → v4d. 선은 아주 가늘게 눈 · 눈썹 · 입술에만, 형태는 칠, 무광 손칠 피부(에어브러시 · 3D 렌더 아님), 색 대비, 배경은 윤곽선 없는 붓칠, 평면 2D · 반실사 아님. v3 얼굴 고침은 남기고 「realistically proportioned eyes」 · 「glossy nude lips」 를 바꿔 적는다. 시험 판 v4 · v4c 는 기록으로. 사용자 「지금은 3d 쪽 실사로 많이 치우친 것 같아. 헬륨이 그 예」 → GPT 세션 · API 시험(헬륨 판타지) → 「v4c도 기존보단 선이 좀 굵어」 → v4d 「응 올려줘」
+- tests/prompt-element.cjs — v3 검사는 v3 로 돌린 판에서, v4d 기본 판 · 헬륨 얼굴 낱말 · v3 얼굴 고침 유지
+- IMAGE_RULES.md · AGENTS.md · docs/IMAGE_AUTOMATION.md — v4d 와 시험, 검수에 「반실사 · 에어브러시로 넘치지 않았나」
 ## 2026-11-03 · gpt · 헬륨 세계 그림과 일상컷 등록
 - data/img.json — 등록 도구로 헬륨 근본 세계 그림 3장과 일상컷 15장을 추가했다. 다른 카드의 등록은 보존했다.
 - 그림 저장소 records/he/ — 생성기 v3 프롬프트, 세계별 일상 계획, 원본 해시와 AI 검수 기록을 함께 남겼다. 계획과 다른 크롭·의상·손 좌우 등의 11건은 passed:false로 기록하고 GPT 작업 규칙에 따라 올렸다.

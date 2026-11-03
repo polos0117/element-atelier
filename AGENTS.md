@@ -12,7 +12,7 @@
 | `data/element-design.json` | 설계표. 나라(원소) › 가문(물질) › 주민(물건) |
 | `IMAGE_RULES.md` | 그림 만들기·파일 이름·기록·올리기 — 그림 작업 전에 |
 | `docs/IMAGE_AUTOMATION.md` | GPT 세션(사람이 안 지켜보는) 이미지 작업 — 잠금(`tools/image-claim.cjs`) · 일상컷 계획기(`tools/casual-plan.cjs`, 세계마다 다섯 장) · 지시문 묶음(`tools/prompt-pack.cjs`) · 검수 · 묻지 않고 올리기 |
-| `data/style.json` | 화풍 판 — 세계 그림은 `text`, 일상컷은 `casual`, 판의 `face` 는 지시문으로 옮길 때 바꿔 적는 얼굴 낱말(v3 — 2026-11-02, 평면 2D 로 나오던 귀여운 얼굴 낱말) |
+| `data/style.json` | 화풍 판 — 세계 그림은 `text`, 일상컷은 `casual`, 판의 `face` 는 지시문으로 옮길 때 바꿔 적는 얼굴 낱말(v3 — 2026-11-02, 평면 2D 로 나오던 귀여운 얼굴 낱말 · v4d — 2026-11-03, 실사 쪽 낱말). 지금 판은 v4d |
 | `docs/PORT_NOTES.md` | 어디서 무엇을 가져왔고, 무엇을 아직 안 가져왔나 |
 | `docs/PATCH.md` | 무엇을 고쳤나 — 고친 쪽이 직접 적는다 (아래 규칙 6) |
 

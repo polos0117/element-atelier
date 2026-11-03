@@ -24,7 +24,7 @@
   },
   "game_keyart": {
    "name": "게임 키아트 2.5D",
-   "current": "v3",
+   "current": "v4d",
    "versions": [
     {
      "v": "v1",
@@ -78,6 +78,86 @@
       "surprised": "brows lifted, eyes a little wider, lips just parted in surprise"
      },
      "face_tail": "semi-realistic game-illustration facial proportions, not a chibi or moe anime face"
+    },
+    {
+     "v": "v4",
+     "adopted": "2026-11-03",
+     "by": "시험 — 사용자 「지금은 3d 쪽 실사로 많이 치우친 것 같아. 헬륨이 그 예」 → v2 문장 + v3 얼굴 고침만 — 채택 안 함(시험 판)",
+     "text": "Polished 2.5D game key art with clean linework, anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face, layered cel-to-soft shading and crisp costume and prop detail. Use a vivid, readable silhouette and campaign-quality lighting.",
+     "casual": "Polished 2.5D game key art with clean linework, anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face, layered cel-to-soft shading and crisp fabric and accessory detail. Use a vivid, readable silhouette and natural lighting.",
+     "check": "2.5D game key art rendering with clean linework; the element's traits carried by costume, ornament and scene — no readable text, one figure.",
+     "face": {
+      "impression.cute": "a warm, bright-eyed sweetness",
+      "eye_size.large": "large expressive eyes kept in natural proportion, not oversized anime eyes",
+      "eyes.round_large": "round eyes",
+      "nose.small_button": "a small button nose shaped by soft shading",
+      "nose.upturned": "a small upturned nose shaped by soft shading",
+      "mark.blush": "a faint rosy flush on the cheeks",
+      "eye_size.medium": "moderately sized eyes",
+      "mark.gloss": "softly tinted lips"
+     },
+     "why": [
+      "v3 의 「painterly semi-realistic · volumetric light · 3D shading · not flat 2D」 가 반실사 · 3D 렌더 쪽으로 넘쳤다 — 헬륨(GPT 세션) 세 세계 얼굴이 윤곽선 없이 에어브러시처럼 매끈, 연필(API) · 다이아 드릴(GPT 세션)도 v2 의 금 · 고목보다 실사 쪽(2026-11-03)",
+      "2D 로 넘어간 까닭은 v3 기록대로 얼굴 설계의 어리고 귀여운 낱말이었다 — 그 고침(face 바꿔 적기 · expr · face_tail)만 남기고 화풍 문장은 v2 로",
+      "face_tail 의 「semi-realistic」 도 뺐다(같은 쪽으로 민다) — 「adult game-illustration facial proportions」",
+      "시험 — 얼굴 낱말 「realistically proportioned eyes」 · 「glossy nude lips」 가 실사 쪽으로 당기는지(헬륨 v4 API 가 v3 와 거의 같았다)"
+     ],
+     "expr": {
+      "surprised": "brows lifted, eyes a little wider, lips just parted in surprise"
+     },
+     "face_tail": "adult game-illustration facial proportions, not a chibi or moe anime face"
+    },
+    {
+     "v": "v4c",
+     "adopted": "2026-11-03",
+     "by": "시험 — GPT 세션에서 v3 는 에어브러시 반실사, v2 계열은 평면 2D 로 갈 수 있어 가운데를 글로 잡는다 — 채택 안 함(시험 판)",
+     "text": "Polished 2.5D anime game key art: fine clean linework on the eyes, brows, lips and face outline, with painted cel-to-soft shading that keeps clear shadow shapes on the face, hair and costume. Matte hand-painted skin, not airbrushed, not a glossy 3D render, no soft-focus glow on the face. Anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face. Crisp costume and prop detail with strong colour contrast, a vivid, readable silhouette and campaign-quality lighting. Not flat 2D cel anime, not semi-realistic.",
+     "casual": "Polished 2.5D anime game key art: fine clean linework on the eyes, brows, lips and face outline, with painted cel-to-soft shading that keeps clear shadow shapes on the face, hair and costume. Matte hand-painted skin, not airbrushed, not a glossy 3D render, no soft-focus glow on the face. Anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face. Crisp fabric and accessory detail with strong colour contrast, a vivid, readable silhouette and natural lighting. Not flat 2D cel anime, not semi-realistic.",
+     "check": "2.5D game key art rendering with clean linework; the element's traits carried by costume, ornament and scene — no readable text, one figure.",
+     "face": {
+      "impression.cute": "a warm, bright-eyed sweetness",
+      "eye_size.large": "large expressive eyes kept in natural proportion, not oversized anime eyes",
+      "eyes.round_large": "round eyes",
+      "nose.small_button": "a small button nose shaped by soft shading",
+      "nose.upturned": "a small upturned nose shaped by soft shading",
+      "mark.blush": "a faint rosy flush on the cheeks",
+      "eye_size.medium": "moderately sized eyes",
+      "mark.gloss": "softly tinted lips"
+     },
+     "why": [
+      "GPT 세션은 같은 글을 API 와 다르게 그린다 — v3 는 에어브러시 반실사(헬륨), 「clean linework」 계열은 평면 셀 2D(포켓몬 glossy_promo). 그래서 양쪽을 다 막는 말: 얼굴 선은 가늘게 남기고, 칠은 그림자 모양이 보이는 셀-소프트, 피부는 무광 손칠 · 에어브러시 · 3D 렌더 · 얼굴 빛 번짐 아님, 색 대비"
+     ],
+     "expr": {
+      "surprised": "brows lifted, eyes a little wider, lips just parted in surprise"
+     },
+     "face_tail": "adult game-illustration facial proportions, not a chibi or moe anime face"
+    },
+    {
+     "v": "v4d",
+     "adopted": "2026-11-03",
+     "by": "사용자 채택 — 헬륨 판타지를 GPT 세션에서 v3 · v4 · v4c · v4d 로, API 에서 v3 · v4 · v4d 로 그려 금 · 고목(v2, 11-02)과 나란히 보고 「응 올려줘」",
+     "text": "Polished 2.5D anime game key art: very fine, thin linework used only as light accents on the eyes, brows and lips, with the face, body and costume shaped mainly by painted cel-to-soft shading with clear shadow shapes. Matte hand-painted skin, not airbrushed, not a glossy 3D render, no soft-focus glow on the face. Anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face. Crisp costume and prop detail with strong colour contrast; the background is painted in soft, detailed brushwork without outlines. A vivid, readable silhouette and campaign-quality lighting. Not flat 2D cel anime, not semi-realistic.",
+     "casual": "Polished 2.5D anime game key art: very fine, thin linework used only as light accents on the eyes, brows and lips, with the face, body and clothing shaped mainly by painted cel-to-soft shading with clear shadow shapes. Matte hand-painted skin, not airbrushed, not a glossy 3D render, no soft-focus glow on the face. Anime facial design that keeps each character's own facial structure, eye proportions and skin tone instead of one house face. Crisp fabric and accessory detail with strong colour contrast; the background is painted in soft, detailed brushwork without outlines. A vivid, readable silhouette and natural lighting. Not flat 2D cel anime, not semi-realistic.",
+     "check": "2.5D game key art rendering with clean linework; the element's traits carried by costume, ornament and scene — no readable text, one figure.",
+     "face": {
+      "impression.cute": "a warm, bright-eyed sweetness",
+      "eye_size.large": "large expressive eyes kept in natural proportion, not oversized anime eyes",
+      "eyes.round_large": "round eyes",
+      "nose.small_button": "a small button nose shaped by soft shading",
+      "nose.upturned": "a small upturned nose shaped by soft shading",
+      "mark.blush": "a faint rosy flush on the cheeks",
+      "eye_size.medium": "moderately sized eyes",
+      "mark.gloss": "softly tinted lips"
+     },
+     "why": [
+      "GPT 세션은 같은 글을 API 와 다르게 그린다 — v3 는 에어브러시 반실사(헬륨), 「clean linework」 계열은 평면 셀 2D(포켓몬 glossy_promo). 그래서 양쪽을 다 막는 말: 얼굴 선은 가늘게 남기고, 칠은 그림자 모양이 보이는 셀-소프트, 피부는 무광 손칠 · 에어브러시 · 3D 렌더 · 얼굴 빛 번짐 아님, 색 대비",
+      "v4c(GPT 세션)는 얼굴 · 의상 · 배경 선이 기존보다 굵었다(사용자) — 선은 「아주 가는 · 눈 · 눈썹 · 입술에만 가볍게」, 형태는 칠로, 배경은 「윤곽선 없는 부드러운 붓칠」",
+      "GPT 세션 · API 둘 다 기존(v2) 쪽 — 세션은 대비가 진하고 API 는 연했다. v4 · v4c 는 시험 판(GPT 세션 시험 그림만, 등록 그림 없음)"
+     ],
+     "expr": {
+      "surprised": "brows lifted, eyes a little wider, lips just parted in surprise"
+     },
+     "face_tail": "adult game-illustration facial proportions, not a chibi or moe anime face"
     }
    ]
   },

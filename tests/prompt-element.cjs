@@ -155,22 +155,30 @@ assert.notEqual(P.build(D, S, 'h-water', 'fantasy', {}), P.build(D, S, 'o-water'
 /* 없는 열쇠·없는 세계 */
 assert.equal(P.card(D, 'xx'), null); assert.equal(P.card(D, 'fe-nope'), null); assert.equal(P.card(D, 'fe-steel-sword-x'), null);
 assert.equal(P.build(D, S, 'fe', 'modern', {}), '');
-/* 화풍 v3(2026-11-02 「원소 공방 화풍이 2d 식으로 나오는 경우가」) — 문장이 바뀌고, 귀여운 얼굴 낱말은 v3 에서만 바꿔 적는다. v2 로 돌리면 옛 지시문 그대로 */
+/* 화풍 v3(2026-11-02 「원소 공방 화풍이 2d 식으로 나오는 경우가」) — 문장이 바뀌고, 귀여운 얼굴 낱말은 v3 에서만 바꿔 적는다. v2 로 돌리면 옛 지시문 그대로.
+   v4d(2026-11-03 「지금은 3d 쪽 실사로 많이 치우친 것 같아」) — 기본 판. 선은 아주 가늘게 눈 · 눈썹 · 입술에만, 형태는 칠, 에어브러시 · 3D 렌더 · 반실사 아님. v3 얼굴 고침은 남기고 실사 쪽 낱말 둘을 바꾼다 */
 {
-  const GK = S.styles.game_keyart, v3 = GK.versions.find(v => v.v === 'v3'), v2 = GK.versions.find(v => v.v === 'v2');
-  assert.equal(GK.current, 'v3'); assert(v3.text.includes('Not flat cel-shaded 2D anime') && !v3.text.includes('clean linework') && !v3.text.includes('cel-to-soft'), 'v3 문장');
-  const t3 = P.build(D, S, 'o-blood-cell', 'mecha', { style: 'game_keyart' }), f3 = t3.split('\n').find(l => l.startsWith('FACE'));
+  const GK = S.styles.game_keyart, ver = k => GK.versions.find(v => v.v === k), v3 = ver('v3'), v2 = ver('v2'), v4d = ver('v4d');
+  const at = k => { const X = JSON.parse(JSON.stringify(S)); X.styles.game_keyart.current = k; return X; }, S3 = at('v3'), S2 = at('v2');
+  assert(v3.text.includes('Not flat cel-shaded 2D anime') && !v3.text.includes('clean linework') && !v3.text.includes('cel-to-soft'), 'v3 문장');
+  const t3 = P.build(D, S3, 'o-blood-cell', 'mecha', { style: 'game_keyart' }), f3 = t3.split('\n').find(l => l.startsWith('FACE'));
   assert(t3.includes('STYLE: ' + v3.text) && f3.includes(v3.face['impression.cute']) && f3.includes(v3.face['eye_size.large']) && f3.includes(v3.face['nose.small_button']) && f3.includes(v3.face['mark.blush']), '적혈구 v3 얼굴 낱말 ' + f3);
   assert(!f3.includes('a cute, bright-eyed sweetness') && !f3.includes('rosy flushed cheeks'), '옛 낱말은 빠진다');
-  const S2 = JSON.parse(JSON.stringify(S)); S2.styles.game_keyart.current = 'v2';
   const t2 = P.build(D, S2, 'o-blood-cell', 'mecha', { style: 'game_keyart' });
   assert(t2.includes('STYLE: ' + v2.text) && t2.includes('a cute, bright-eyed sweetness') && t2.includes('small button nose') && t2.includes('rosy flushed cheeks'), 'v2 는 옛 지시문 그대로');
   /* v3b — 놀람을 낮추고 FACE 끝에 한 마디(같은 날 「2번은 넣어주고」) */
-  const m3 = P.build(D, S, 'o-fire-match', 'mecha', { style: 'game_keyart' });
+  const m3 = P.build(D, S3, 'o-fire-match', 'mecha', { style: 'game_keyart' });
   assert(m3.includes(v3.expr.surprised) && !m3.includes('mouth open in a small round shape') && m3.split('\n').find(l => l.startsWith('FACE')).includes(v3.face_tail), '성냥 v3 놀람 · FACE 끝');
   assert(P.build(D, S2, 'o-fire-match', 'mecha', { style: 'game_keyart' }).includes('mouth open in a small round shape'), 'v2 놀람은 그대로');
-  const c3 = P.build(D, S, 'na', 'fantasy', { style: 'game_keyart' });
+  const c3 = P.build(D, S3, 'na', 'fantasy', { style: 'game_keyart' });
   assert(c3.includes(v3.face['eyes.round_large']) && !c3.includes('large round eyes'), '나트륨 둥근 큰 눈');
+  /* v4d — 기본 판 */
+  assert.equal(GK.current, 'v4d');
+  assert(v4d.text.includes('very fine, thin linework') && v4d.text.includes('not airbrushed') && v4d.text.includes('without outlines') && v4d.text.includes('not semi-realistic') && !v4d.text.includes('volumetric'), 'v4d 문장');
+  const h = P.build(D, S, 'he', 'fantasy', { style: 'game_keyart' }), fh = h.split('\n').find(l => l.startsWith('FACE'));
+  assert(h.includes('STYLE: ' + v4d.text) && !h.includes('realistically proportioned') && !h.includes('glossy nude lips') && fh.includes(v4d.face_tail) && !v4d.face_tail.includes('semi-realistic'), '헬륨 v4d ' + fh);
+  const m4 = P.build(D, S, 'o-fire-match', 'mecha', { style: 'game_keyart' }), b4 = P.build(D, S, 'o-blood-cell', 'mecha', { style: 'game_keyart' });
+  assert(m4.includes(v4d.expr.surprised) && b4.includes(v4d.face['impression.cute']) && !b4.includes('rosy flushed cheeks'), 'v3 얼굴 고침은 v4d 에도');
 }
 console.log('PASS 지시문: 카드 ' + cards.length + ' · 지시문 ' + n + ' · 근본 ' + byTier.root + ' 가문주 ' + byTier.lord + ' 주민 ' + byTier.citizen + ' · 뼈대 줄 · 외형(나이·실루엣·얼굴·노출 — 설계표 look, 직접 고른 것이 이김, IDENTITY) · 장면·시간대·자세·표정 · 입는 물건 · 메카 설계 · 덧붙임 · 기록 · 파일 이름');
 
