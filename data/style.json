@@ -24,7 +24,7 @@
   },
   "game_keyart": {
    "name": "게임 키아트 2.5D",
-   "current": "v4d",
+   "current": "v2",
    "versions": [
     {
      "v": "v1",
@@ -50,7 +50,8 @@
      "check": "2.5D game key art rendering with clean linework; the element's traits carried by costume, ornament and scene — no readable text, one figure.",
      "why": [
       "v1 의 「controlled anime facial design」 이 모델의 기본 미형 얼굴로 끌어당겼다 — 판타지 열여섯 장이 큰 눈 · 갸름한 턱 · 흰 피부로 같았다(2026-11-01). 나머지 낱말은 v1 그대로"
-     ]
+     ],
+     "readopted": "2026-11-04 — 사용자 「v2 로 바꿔줘」. v3 · v4d 는 GPT 세션에서도 API 에서도 v2(11-02 금 · 고목 · 헬륨 API v2)만큼 맞지 않았다 — 「v2 를 계속 기준으로 잡았어야되네」(11-03). v3 · v4 · v4c · v4d 는 기록으로 남긴다"
     },
     {
      "v": "v3",

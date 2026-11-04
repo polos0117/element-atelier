@@ -63,7 +63,8 @@ game-atelier 의 `IMAGE_RULES.md` 에서 왔다. 등록은 올리면 자동이�
   일상컷은 세계 그림을 따르므로 2D 로 나온 세계 그림의 카드는 세계 그림부터 다시 그려야 일상컷도 바뀐다.
   v3 로 뽑으면 모델이 예전에 즉흥으로 얹던 물건 장식(연필촉 머리장식 같은 것)이 빠질 수 있다 — 어디에 무엇을 둘지는 카드 설계의 주민 `notes` 에 적는다(연필 세 세계, 2026-11-02). 화풍 문장의 두루뭉술한 「대표 모양을 굵게」 는 효과가 없었다.
   같은 판에 더한 것(v3b — 사용자 「2번은 넣어주고」): 놀람 표정은 「동그랗게 벌린 입 · 흰자 보이는 큰 눈」 대신 「입술만 살짝 벌림」(판의 `expr` — 세계 그림 · 일상컷 둘 다), 설계 얼굴의 FACE 줄 끝에 「치비 · 모에 애니 얼굴 아님」(`face_tail`).
-- 화풍 `game_keyart` **v4d**(2026-11-03, 지금 판 — 사용자 「지금은 3d 쪽 실사로 많이 치우친 것 같아. 헬륨이 그 예」). v3 의 「painterly semi-realistic · volumetric light · 3D shading」 이 반실사 · 에어브러시 · 3D 렌더 쪽으로 넘쳤다(헬륨 · 다이아 드릴 · 연필).
+- 화풍 `game_keyart` **v2 로 되돌림**(2026-11-04, 지금 판 — 사용자 「v2 로 바꿔줘」). v3 · v4d 는 GPT 세션에서도 API 에서도 v2(11-02 금 · 고목, 11-03 헬륨 · 다이아 드릴 API v2)만큼 맞지 않았다(11-03 「v2 를 계속 기준으로 잡았어야되네」). 지시문은 v2 의 `text` · `casual` 그대로이고, v3 · v4d 의 얼굴 낱말 고침(`face` · `expr` · `face_tail`)도 v2 에는 싣지 않는다. v3 · v4 · v4c · v4d 는 그 판으로 그린 그림의 기록으로 남는다.
+- 화풍 `game_keyart` **v4d**(2026-11-03, 기록 판 — 사용자 「지금은 3d 쪽 실사로 많이 치우친 것 같아. 헬륨이 그 예」). v3 의 「painterly semi-realistic · volumetric light · 3D shading」 이 반실사 · 에어브러시 · 3D 렌더 쪽으로 넘쳤다(헬륨 · 다이아 드릴 · 연필).
   v4d 는 선을 「아주 가늘게 — 눈 · 눈썹 · 입술에만 가볍게」, 얼굴 · 몸 · 의상 형태는 그림자 모양이 보이는 셀-소프트 칠, 피부는 무광 손칠(에어브러시 · 광택 3D 렌더 · 얼굴 빛 번짐 아님), 의상 색 대비, 배경은 윤곽선 없는 붓칠, 「평면 2D 셀 애니 · 반실사 아님」.
   v3 얼굴 고침(`face` · `expr`)은 그대로, 실사 쪽 낱말 둘을 더 바꿔 적는다(「realistically proportioned eyes」 → 「moderately sized eyes」, 「glossy nude lips」 → 「softly tinted lips」), `face_tail` 은 「adult game-illustration facial proportions …」(「semi-realistic」 뺌).
   시험(헬륨 판타지): GPT 세션 v3 · v4(v2 문장) · v4c(선 굵음 — 사용자 「v4c도 기존보단 선이 좀 굵어. 배경도 그렇고」) · v4d, API v3 · v4 · v4d. v4d 가 세션 · API 둘 다 금 · 고목(v2, 11-02) 쪽 — 세션은 대비가 진하고 API 는 연하다. v4 · v4c 는 시험 판(등록 그림 없음).

@@ -9,6 +9,11 @@
 
 
 
+## 2026-11-04 · claude · 원소 화풍 기본을 v2 로 되돌림
+- data/style.json — game_keyart current v4d → v2, v2 에 `readopted`(까닭). 사용자 「v2 로 바꿔줘」 — v3 · v4d 는 GPT 세션 · API 어디서도 v2(11-02 금 · 고목, 11-03 헬륨 · 다이아 드릴 API v2)만큼 맞지 않았다. v3 · v4 · v4c · v4d 는 지우지 않고 기록 판으로
+- tests/prompt-element.cjs — 기본 판 v2 검사(헬륨 기본 지시문이 v2 문장), v4d 검사는 v4d 로 돌린 판에서
+- IMAGE_RULES.md · AGENTS.md — 지금 판 v2, v4d 는 기록 판
+
 ## 2026-11-03 · claude · 일상컷 얼굴 · 화풍은 첨부 그림에 맡긴다
 - lib/prompt-element.js — 일상컷 지시문 끝에서 refLock: 화풍 문장 → 「STYLE: keep the attached image's rendering exactly …」, 나이 줄 → 「FACE: exactly the face of the attached image …」(없으면 CHARACTER 밑에), 표정 줄 끝에 「눈썹 · 눈꺼풀 · 입꼬리로만」, FINAL CHECK 줄 뺌. 사용자 「일상컷 저거 너무 이상해」 → 「이제 좀 낫네」 → 「응 다 적용해줘」 — 화풍 · 얼굴 문장을 새로 주면 GPT 세션이 첨부 그림의 얼굴을 다시 그렸다(헬륨 메카 일상)
 - tests — 일상컷 화풍 · 얼굴 · 표정 줄 검사로 바꾸고 일상컷 낱말 상한을 올렸다
