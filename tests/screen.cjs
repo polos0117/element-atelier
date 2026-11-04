@@ -19,6 +19,7 @@ const S = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style.json'), 'utf8')
 const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'));
 /* 구조판(2026-11-04 기본 화풍 semireal) — 칸 하나의 [ ] 안 글. 생성기는 기본 화풍으로 짓는다 */
 const SV = S.styles[S.default].versions.find(v => v.v === S.styles[S.default].current);
+const SK = (() => { const c = { window: {} }; require('node:vm').createContext(c); require('node:vm').runInContext(fs.readFileSync(path.join(ROOT, 'lib/prompt-spec.js'), 'utf8'), c); return c.window.AtelierSpec.STRUCT.ko; })();   /* 한글 낱말 표 */
 const fieldOf = (txt, name) => { const m = String(txt).match(new RegExp('^' + name.replace(/[/·]/g, '.') + ': \\[(.*)\\]$', 'm')); return m ? m[1] : ''; };
 
 (async () => {
@@ -244,7 +245,7 @@ const fieldOf = (txt, name) => { const m = String(txt).match(new RegExp('^' + na
     let t0 = await promptOf(p);
     assert(t0.startsWith(SV.rules + '\n\n' + SV.section1) && fieldOf(t0, '캐릭터/콘셉트').startsWith('철 나라 강철 가문의 주민') && fieldOf(t0, '배경').includes('장면 메모: a windy ridge'), '세계 지시문(구조판) ' + t0.slice(0, 80));
     assert(fieldOf(t0, '철학').includes('노출: the costume in 상의 opens at the collarbone') && fieldOf(t0, '얼굴형').startsWith('설계 지정 없음') && fieldOf(t0, '헤어스타일') && !t0.includes('tempered-blue') && fieldOf(t0, '머리색').includes('hair color: silver'), '설계 칸·외형 칸이 지시문에 ' + fieldOf(t0, '머리색'));
-    assert(fieldOf(t0, '배경').includes('이번 장소: ') && fieldOf(t0, '배경').includes('the orbital foundry floor') && fieldOf(t0, '광원').startsWith('밤 — night') && fieldOf(t0, '액션').includes('Mid-stride toward the camera') && fieldOf(t0, '표정').startsWith('level brow'), '장면·시간대·자세·표정이 칸에');
+    assert(fieldOf(t0, '배경').includes('이번 장소: ') && fieldOf(t0, '배경').includes('the orbital foundry floor') && fieldOf(t0, '광원') === SK.time.night && fieldOf(t0, '액션') === SK.pose.stride && [SK.expr.serious, SK.expr.confident].includes(fieldOf(t0, '표정')), '장면·시간대·자세·표정이 칸에 ' + ['광원', '액션', '표정'].map(k => fieldOf(t0, k)).join(' | '));
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f.webp'), '파일 이름');
     await p.click('[data-open="world"]'); await p.click('[data-pick="fantasy"]');
     assert.equal(await openOf(p), 'scene', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
@@ -293,7 +294,7 @@ const fieldOf = (txt, name) => { const m = String(txt).match(new RegExp('^' + na
     await toDone(p); assert.equal(await openOf(p), 'done');
     const t1 = await promptOf(p);
     assert(fieldOf(t1, '액션') && fieldOf(t1, '구도').includes('1024') && /overall_intensity: strong/.test(fieldOf(t1, '덧붙임')) && t1.startsWith(SV.rules + '\n\n일상컷 규칙: ') && fieldOf(t1, '캐릭터/콘셉트').startsWith('첨부한 메카 세계 그림의 그 여성'), '일상컷 지시문(구조판) ' + t1.slice(0, 120));
-    assert(fieldOf(t1, '광원').includes('night under neon') && fieldOf(t1, '헤어스타일').includes('her hair tied up'), '시간대·머리가 일상컷 칸에');
+    assert(fieldOf(t1, '광원').includes(SK.ctime.neon) && fieldOf(t1, '헤어스타일').includes(SK.chair.tied), '시간대·머리가 일상컷 칸에(한글)');
     assert.match(await p.locator('.hchip[data-open="time"]').textContent(), /네온 밤/, '시간대 칩'); assert.match(await p.locator('.hchip[data-open="hair"]').textContent(), /묶음/, '머리 칩');
     /* 손에 드는 그 원소의 물건 — 오른손을 「소품 동작」 으로 하면 소품 동작 칸에 「그 물건을 든다」 가 보인다(검의 주민은 검) */
     await p.click('[data-open="right"]'); await p.click('#panel .opt[data-pick="prop"]'); assert.equal(await openOf(p), 'left', '오른손 다음 왼손');

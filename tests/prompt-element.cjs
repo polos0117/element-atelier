@@ -360,7 +360,8 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
     for (const s of ['2', '3', '4']) for (const [k, v] of Object.entries(own[s] || {})) assert.equal(fieldOf(t, k), v, lab + ' 손글 칸 ' + k);
     if (!Object.keys(own).length) {
       const dz = P.lookOf(c, w);
-      assert(fieldOf(t, '얼굴형') === T.VOCAB_EN.face_shape[dz.face.face_shape] && fieldOf(t, '헤어스타일').startsWith(T.VOCAB_EN.hair[dz.silhouette.hair]) && fieldOf(t, '머리색') === T.VOCAB_EN.hair_color[dz.silhouette.hair_color], lab + ' 설계 외형');
+      assert(fieldOf(t, '얼굴형') === ST.ko.face_shape[dz.face.face_shape] && fieldOf(t, '헤어스타일').startsWith(ST.ko.hair[dz.silhouette.hair]) && fieldOf(t, '머리색') === ST.ko.hair_color[dz.silhouette.hair_color] && fieldOf(t, '눈색') === ST.ko.eye_color[dz.face.eye_color], lab + ' 설계 외형(한글)');
+      assert(!/[A-Za-z]/.test(['성별·나이대', '얼굴형', '눈 형태', '눈색', '코', '입술', '피부색', '머리색', '헤어스타일', '전체 골격·비례'].map(k => fieldOf(t, k)).join(' ').replace(/\([^)]*\)/g, '')), lab + ' 2절은 한글(괄호 밖)');
       if (ST.body[dz.silhouette.body]) assert(fieldOf(t, '전체 실루엣') === ST.body[dz.silhouette.body][7] && fieldOf(t, '전체 골격·비례').startsWith(ST.body[dz.silhouette.body][0]), lab + ' 체형 여덟 칸');
       assert(fieldOf(t, '장비·소품').startsWith('없음'), lab + ' 세계 그림은 손에 든 것이 없다');
       if (w === 'mecha') assert(fieldOf(t, '상의').includes(String((c.family && c.family.worlds && c.family.worlds.mecha && c.family.worlds.mecha.design) || c.nation.worlds.mecha.design).replace(/\.$/, '').slice(0, 40)), lab + ' 메카 설계');
@@ -379,7 +380,7 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
     shot: { pose: 'stride', time: 'night', scene: sc0.key, expr: 'confident' }, notes: { scene: 'a windy ridge', outfit: 'red sash', custom: 'low angle' } });
   assert.equal(fieldOf(ch, '머리색'), 'hair color: jet black hair', '고른 머리색이 손글 칸을 이긴다');
   assert(fieldOf(ch, '눈 형태').startsWith('eye size: large') && fieldOf(ch, '눈 형태').includes(D.nations.find(n => n.key === 'si').struct.fantasy['2']['눈 형태']), '더하는 외형은 앞에 붙는다');
-  assert(fieldOf(ch, '액션').includes('Mid-stride') && fieldOf(ch, '손동작') === ST.fixed.handsPose && fieldOf(ch, '광원').startsWith('밤 — night') && fieldOf(ch, '표정').startsWith('level brow'), '자세 · 시간대 · 표정');
+  assert(fieldOf(ch, '액션') === ST.ko.pose.stride && fieldOf(ch, '손동작') === ST.fixed.handsPose && fieldOf(ch, '광원') === ST.ko.time.night && fieldOf(ch, '표정') === ST.ko.expr.confident, '자세 · 시간대 · 표정(한글)');
   assert(fieldOf(ch, '배경').includes('이번 장소: ' + sc0.ko) && fieldOf(ch, '배경').includes('장면 메모: a windy ridge') && fieldOf(ch, '부가 요소').startsWith('red sash') && fieldOf(ch, '덧붙임') === 'low angle', '장소 · 덧붙임');
   assert(fieldOf(ch, '철학').includes('노출(고른 것): ' + T.EXPOSURE.low.replace(/^EXPOSURE \(low\): /, '').replace('the costume WORLD describes', 'the costume in 상의')), '기본이 아닌 노출은 손글 철학 뒤에');
   /* 기록 · 파일 이름은 기본 화풍 열쇠 */
@@ -401,6 +402,15 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
   assert.equal(fieldOf(hf, '얼굴 크기'), D.nations.find(n => n.key === 'he').struct.fantasy.c2['얼굴 크기'], '헬륨 판타지 일상컷 — 얼굴 길이 줄(c2)');
   assert.equal(fieldOf(P.buildCasual(D, SN, 'he', { ...base(eras[0]), ...full }, { ...optsN('he'), world: 'mecha' }), '얼굴 크기'), ST.casual.same, 'c2 는 그 세계만');
   const hh = P.buildCasual(D, SN, 'fe', { ...base(eras[0]), ...full, hair: 'tied' }, optsN('fe'));
-  assert(fieldOf(hh, '헤어스타일').includes('her hair tied up'), '머리를 바꾸는 장면이면 그 줄');
+  assert(fieldOf(hh, '헤어스타일').includes(ST.ko.chair.tied), '머리를 바꾸는 장면이면 그 줄(한글)');
+  /* 한글 낱말 표 — 외형 · 얼굴 설계 · 표정 · 자세 · 시간대 열쇠가 다 있고, 괄호 밖은 한글 */
+  const need = { face_shape: T.VOCAB_EN.face_shape, eyes: T.VOCAB_EN.eyes, brows: T.VOCAB_EN.brows, nose: T.VOCAB_EN.nose, lips: T.VOCAB_EN.lips, eye_color: T.VOCAB_EN.eye_color, hair_color: T.VOCAB_EN.hair_color, hair: T.VOCAB_EN.hair,
+    bangs: T.FACE_DESIGN.bangs, impression: T.FACE_DESIGN.impression, skin_tone: T.FACE_DESIGN.skin_tone, eye_size: T.FACE_DESIGN.eye_size, eye_tilt: T.FACE_DESIGN.eye_tilt, mark: T.FACE_DESIGN.mark, age: T.FACE_DESIGN.age,
+    expr: T.EXPRESSION_DETAIL, pose: Object.fromEntries(T.WORLD_POSES.map(x => [x.key, 1])), time: Object.fromEntries(T.WORLD_TIMES.map(x => [x.key, 1])),
+    ctime: Object.fromEntries(T.CASUAL.times.map(x => [x.key, 1])), chair: Object.fromEntries(T.CASUAL.hairs.map(x => [x.key, 1])) };
+  for (const [axis, keys] of Object.entries(need)) {
+    assert(same(Object.keys(ST.ko[axis] || {}).sort(), Object.keys(keys).sort()), '한글 표 ' + axis + ' 열쇠');
+    for (const [k, v] of Object.entries(ST.ko[axis])) assert(/[가-힣]/.test(v) && !/[A-Za-z]/.test(v.replace(/\([^)]*\)/g, '')), '한글 표 ' + axis + '.' + k + ' — 괄호 밖은 한글');
+  }
   console.log('PASS 구조판: 세계 그림 ' + ns + ' · 일상컷 ' + nc2 + ' · 칸 차례 · 손글 칸 · 설계 외형 · 체형 여덟 칸 · 받침 · 고른 것이 이김 · 노출 · 기록 · 일상컷 c2 · 머리 · 검사기 칸 이름');
 }
