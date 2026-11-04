@@ -48,7 +48,7 @@ node tools/image-claim.cjs claim <카드> --execution $ATELIER_EXECUTION_ID
 - 잠금은 그림 저장소 `records/automation/claims/<카드>.json` 하나다. `claim` 은 그 파일만 커밋해 일반 push 한다 —
   다른 세션이 먼저 밀었으면 거절되고 도구가 제 커밋을 되돌린다. 그때는 pull 하고 `status` 부터 다시.
 - 잡힌 카드(`working` · `blocked`)는 시간이 지나도 가져가지 않는다. `blocked` 는 사용자가 정한 뒤 `release` 로만 푼다.
-- 한 카드의 빈 자리 = 사는 세계마다 세계 그림 · **일상컷 다섯 장**(기본 화풍 `game_keyart`, `data/img.json`). 다섯보다 적은 옛 카드(철나라 · 수소나라 두 장, 오가네손 세 장)는 모자란 만큼만 더 그린다.
+- 한 카드의 빈 자리 = 사는 세계마다 세계 그림 · **일상컷 다섯 장**(기본 화풍 `semireal` — 2026-11-04 부터 처음부터, `data/img.json`). 다섯보다 적은 옛 카드(철나라 · 수소나라 두 장, 오가네손 세 장)는 모자란 만큼만 더 그린다.
   번호는 **세계마다 따로** 비어 있는 가장 작은 것부터 — 이름에 세계가 있어 세계끼리 번호가 겹쳐도 된다(`claim` 이 적어 준 `missing` 그대로).
 
 ## 3. 계획과 지시문 묶음

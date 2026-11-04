@@ -1,8 +1,29 @@
 {
  "version": 1,
- "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
- "default": "game_keyart",
+ "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 semireal(2026-11-04 — 반실사 구조 지시문. 공통 적용 규칙 · 1절 작화 고정은 판의 rules · section1, 일상컷은 casual_rule 을 더 싣고, 2~4절은 카드마다 칸을 채운다. 생성기는 아직 옛 영어 틀에 text 한 줄만 싣는다). 그 전 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
+ "default": "semireal",
  "styles": {
+  "semireal": {
+   "name": "반실사 구조 지시문",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "adopted": "2026-11-04",
+     "by": "사용자 채택 — 헬륨 · 규소 세 세계와 헬륨 카페 일상컷을 이 틀(공통 적용 규칙 + 1절 작화 고정 + 2~4절 칸 채우기, 1절 그림 용어 영어 병기)로 GPT 세션에서 뽑아 보고 「이런구조로 가자」 · 「이걸 기본화풍으로 처음부터 만들거야」",
+     "format": "structured",
+     "rules": "공통 적용 규칙:\n\n각 항목은 자신이 담당하는 요소에만 적용한다. 작화 방식은 1번, 캐릭터의 신체적 특징은 2번, 의상과 장비는 3번, 동작과 화면 연출은 4번을 따른다.\n\n특정 항목을 수정할 때 별도로 지정하지 않은 나머지 항목은 유지한다. 체형의 볼륨이나 굴곡 변경을 얼굴의 성숙도·표정·포즈·카메라·그림체 변화로 확대 해석하지 않는다. 의상은 지정된 디자인과 노출 범위를 유지하면서 변경된 신체 치수에 맞게 착용 형태만 조정한다.",
+     "casual_rule": "첨부한 세계 그림이 이 사람과 그림체의 기준이다(reference image = identity and style lock). 얼굴·눈·머리·피부·체형과 마감·채도·빛의 질감은 첨부 그림 그대로 두고, 옷·자세·표정·구도·장소만 이 문구대로 바꾼다. 첨부 그림의 옷·장갑·장식·배경·포즈·머리 각도·카메라 높이는 가져오지 않는다. 원소는 작은 장신구나 주변 물건으로만 드러내고, 옷의 색·무늬·재단에는 넣지 않는다.",
+     "section1": "1.작화 스타일 — 공통 고정\n\n작화 장비 비교 계열: 애니메이션식 미형 조형(anime-style idealized features)에 섬세한 반실사 인체 채색(semi-realistic skin rendering)과 정밀한 재질 묘사를 결합한 디지털 일러스트레이션, 고급 3D 캐릭터 렌더를 연상시키는 매끄러운 입체감(high-end 3D character render look), 부드러운 인체 표현과 구조적으로 선명한 사물 표현의 조화, 표면의 고유색(local color)과 재질 차이를 유지하는 정교한 고밀도 마감(high-detail polished finish)\n\n01 POSITIVE - 기술 작화\n\n형태 언어: 애니메이션식 이상화와 설득력 있는 입체 구조의 결합(stylized anime proportions with believable 3D form), 인체의 유기적인 곡면과 의상·소품의 구조를 자연스럽게 연결하는 조형, 캐릭터마다 지정된 얼굴과 신체 비례를 유지하는 반실사 표현(semi-realistic)\n\n얼굴형: 지정된 얼굴 윤곽과 골격을 부드러운 곡면 명암(soft form shading)으로 표현, 이마·볼·턱 사이의 자연스러운 형태 연결, 얼굴의 특징을 유지하면서 골격의 거친 굴곡을 절제한 섬세한 조형\n\n눈 구조: 지정된 눈의 크기와 형태 및 배치를 유지하면서 안구와 눈꺼풀의 입체감을 표현, 섬세한 상안검(upper eyelid)과 속눈썹, 옅은 하안검(lower eyelid)과 부드러운 눈 밑 음영, 얼굴 안에 자연스럽게 자리 잡는 눈 구조\n\n홍채: 지정된 홍채색과 동공 형태를 유지하는 다층 색 표현(layered iris), 상단의 깊은 음영과 하단의 부드러운 반사, 섬세한 내부 색 변화, 장면의 광원을 반영하는 소수의 캐치라이트(catchlights), 촉촉한 각막과 투명한 깊이감\n\n코: 지정된 콧대·코끝·콧방울의 형태를 미세한 명암으로 표현, 강한 외곽선 없이 형성되는 부드러운 입체감(no hard nose outline), 얼굴의 다른 부위와 자연스럽게 연결되는 피부색 변화\n\n입과 표정: 지정된 입술 형태와 두께를 유지하는 섬세한 입체 표현, 부드러운 입술 경계와 작은 표면 반사, 눈꺼풀·눈썹·입꼬리의 미세한 변화로 구현하는 자연스러운 표정(subtle expression)\n\n선화: 독립적인 외곽선보다 색 경계와 명암 및 재질 차이로 형태를 구분(lineless edges, form defined by color and value), 얼굴과 피부에서는 거의 드러나지 않는 윤곽선, 눈·입술 틈·의상 접합부에 집중되는 섬세한 선 표현, 깊이와 재질에 따라 달라지는 경계의 강도(varied edge control)\n\n머리카락: 지정된 헤어스타일의 큰 덩어리와 흐름을 먼저 유지하고 개별 가닥을 선택적으로 묘사(hair rendered in clumps with selective strands), 여러 층으로 겹치는 자연스러운 부피, 얼굴 주변의 섬세한 잔머리(flyaway strands), 광원에 맞춘 가는 반사와 가장자리 빛(rim light), 머리색의 고유색을 유지하는 내부 음영\n\n피부: 지정된 피부색을 바탕으로 한 부드러운 중간톤과 곡면 그라데이션, 부위별로 절제된 혈색, 자연스러운 반투명감(soft subsurface scattering)과 넓고 은은한 확산 하이라이트(broad diffuse highlights), 주변 반사광이 들어와도 피부 고유색이 구분되는 채색\n\n의상 선화/채색: 의상의 실제 구조를 따라 배치되는 경계와 접합부(seams), 소재별로 구분되는 명암과 표면 반응, 금속에는 선택적인 날카로운 반사(specular highlights), 직물에는 조직과 두께를 반영한 부드러운 음영(fabric weave and thickness), 투명 소재에는 투과광과 겹침을 표현, 지정되지 않은 소재나 장비를 임의로 추가하지 않는 묘사\n\n손: 자연스러운 손바닥 구조와 다섯 손가락의 연결(anatomically correct hands, five fingers), 동작에 맞는 관절 방향과 손가락 간격, 부드러운 인체 명암, 장갑을 착용한 경우에도 내부 손 구조가 설득력 있게 이어지는 형태 표현\n\n렌더링/셰이딩: 인체의 연속적인 곡면 그라데이션(smooth gradient shading), 구조물의 선명한 모서리와 접촉 그림자(contact shadows), 재질별로 구분되는 반사 강도와 경계, 눈에 띄는 붓 자국을 절제한 매끄러운 디지털 채색(clean digital painting, no visible brushstrokes), 부드러운 부분과 선명한 부분이 공존하는 입체 표현\n\n광원/색채: 지정된 광원과 팔레트를 따르는 일관된 색온도(consistent color temperature), 표면의 고유색과 조명색의 자연스러운 결합, 피부에서는 완만하고 구조적 접합부에서는 깊어지는 명암, 밝은 면에도 남아 있는 색 정보(no blown-out highlights), 국소적인 반사와 발광의 절제된 표현\n\n디테일/마감: 얼굴과 눈의 섬세한 묘사, 주요 의상과 소품의 정밀한 구조, 초점·거리·재질에 따라 조절되는 묘사 밀도, 가까운 부분의 선명함과 먼 배경의 공기 원근(atmospheric perspective), 화면 전체를 균일하게 흐리거나 반짝이게 만들지 않는 깨끗한 마감\n\n02 NEGATIVE - 굵고 균일한 만화식 외곽선(thick uniform outlines), 납작한 단색 셀 셰이딩(flat cel shading), 거친 수채 번짐(watercolor bleed), 두꺼운 유화 붓 자국(impasto), 종이 질감(paper texture), 지정된 얼굴 비례의 임의 변경, 캐릭터마다 동일하게 반복되는 얼굴(same face), 과도한 화장과 볼 홍조, 고유색이 사라지는 백색 하이라이트, 화면 전체에 덮이는 일괄 색 필터(global color filter), 과도한 블룸(excessive bloom), 모든 재질에 동일한 플라스틱 광택(plastic sheen), 뭉개진 의상 구조, 부정확한 관절, 기형 손(malformed hands), 손가락 누락과 추가(missing or extra fingers), 추가 팔다리(extra limbs), 지정되지 않은 장비와 장식",
+     "sections": [
+      "2.캐릭터 외형 — 캐릭터별 교체",
+      "3. 코디네이션 — 의상별 교체",
+      "4. 장면 — 장면별 교체"
+     ],
+     "text": "Digital illustration that combines anime-style idealized features with delicate semi-realistic skin rendering and precise material detail, a smooth high-end 3D character render look, soft rendering of the body balanced with structurally crisp objects, and a high-detail polished finish that keeps each surface's local color and material distinct."
+    }
+   ]
+  },
   "game_cgi": {
    "name": "게임 시네마틱 CGI",
    "current": "v1",

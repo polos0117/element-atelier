@@ -9,6 +9,13 @@
 
 
 
+## 2026-11-04 · claude · 화풍 열쇠 semireal(반실사 구조 지시문)을 기본으로, 도감에 화풍 고르개
+- data/style.json — 새 화풍 `semireal` v1(`format: structured` — 공통 적용 규칙 `rules` · 일상컷 규칙 `casual_rule` · 1절 작화 고정 `section1`(그림 용어 영어 병기) · 2~4절 머리 `sections`, 생성기용 한 줄 `text`), `default` game_keyart → semireal. 사용자 「이런구조로 가자」 → 「화풍키를 둬서 도감에 화풍선택 셀렉트 박스를 넣자. 기존 원소공방 이미지들은 거기서 셀렉트하면 보이는걸로하고, 이걸 기본화풍으로 처음부터 만들거야」
+- dex.html — 판 맨 앞에 화풍 고르개(기본 화풍 먼저 · 그 나라 장수). 고른 화풍의 세계 그림 · 일상컷만 보이고 다른 화풍으로 메우지 않는다. 「다른 화풍」 접은 줄은 뺐다. 빈 칸 · 크게 보기의 생성기 링크는 기본 화풍일 때만. 주소 `st=` · 이 기기 저장, 즐겨찾기 link 는 그 그림이 든 화풍으로
+- lib/words.js — 화풍 고르개 낱말, 「다른 화풍」 낱말 뺌 · lib/element.css(v8) — 고르개 · 빈 칸
+- tests/screen.cjs — 처음은 기본 화풍 · 고르개 차례 · 화풍마다 그 그림만 · 기본 아닌 화풍의 빈 칸은 생성기로 안 감 · 주소 · 즐겨찾기 link 의 화풍
+- AGENTS.md · IMAGE_RULES.md · docs/IMAGE_AUTOMATION.md — 기본 화풍 semireal, 도감 고르개
+
 ## 2026-11-04 · claude · 원소 화풍 기본을 v2 로 되돌림
 - data/style.json — game_keyart current v4d → v2, v2 에 `readopted`(까닭). 사용자 「v2 로 바꿔줘」 — v3 · v4d 는 GPT 세션 · API 어디서도 v2(11-02 금 · 고목, 11-03 헬륨 · 다이아 드릴 API v2)만큼 맞지 않았다. v3 · v4 · v4c · v4d 는 지우지 않고 기록 판으로
 - tests/prompt-element.cjs — 기본 판 v2 검사(헬륨 기본 지시문이 v2 문장), v4d 검사는 v4d 로 돌린 판에서

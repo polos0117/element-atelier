@@ -113,7 +113,6 @@
 .worlds.casuals {margin-top:8px}
 .alt-row {margin-top:8px}
 .style-note {margin:6px 0 4px;color:var(--muted);font-size:12px}
-.worlds.alt .slot {border-style:dotted}
 
 /* 도감 판(2026-10-31) — 위에 붙는 판 · 카드마다 접기 · 작은 칸 · 크게 보기 넘기기 · 즐겨찾기 */
 .about {margin:10px 0 0;font-size:13px;color:var(--muted)}
@@ -129,6 +128,10 @@
 .seg button {min-height:40px;padding:0 12px;border:0;background:none;color:var(--text);font:600 13px/1 inherit;font-family:inherit;cursor:pointer;white-space:nowrap}
 .seg button+button {border-left:1px solid var(--line)}
 .seg button[aria-pressed="true"] {background:var(--accent);color:var(--on-accent)}
+.style-pick {display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 4px 0 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap}   /* 화풍 고르개(2026-11-04) — 고른 화풍의 그림만 */
+.style-pick select {min-height:38px;max-width:62vw;padding:0 8px;border:0;border-radius:999px;background:none;color:var(--text);font:600 13px/1 inherit;font-family:inherit;cursor:pointer;text-overflow:ellipsis}
+.style-pick select:focus-visible {outline:2px solid var(--accent);outline-offset:1px}
+.slot.empty {cursor:default}
 .dex-toc .fav-count {margin-left:auto;min-height:40px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--text);text-decoration:none;font-size:13px;font-weight:600;white-space:nowrap}
 .toc-jump {display:flex;gap:6px;margin-top:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
 .toc-jump::-webkit-scrollbar {display:none}
@@ -141,7 +144,7 @@
 .card-head .fav-mark {margin-left:auto;color:var(--accent);font-size:12px;font-weight:700}
 .ek-card .obj {margin:-2px 0 8px;color:var(--muted);font-size:12px;line-height:1.5}
 .worlds.main {max-width:560px}
-.worlds.casuals,.worlds.alt {grid-template-columns:repeat(auto-fill,minmax(112px,1fr));margin-top:8px}
+.worlds.casuals {grid-template-columns:repeat(auto-fill,minmax(112px,1fr));margin-top:8px}
 .slot .cap {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .slot.dead {opacity:.45;border-style:dashed;cursor:default;align-self:start}
 .slot.dead .face {aspect-ratio:auto;height:44px}
@@ -152,7 +155,7 @@
 .none-note {margin:0;color:var(--muted);font-size:12px}
 @media (min-width:900px) {.cards .ek-card.tier-citizen {display:grid;grid-template-columns:200px minmax(0,1fr);column-gap:16px;align-items:start} .ek-card.tier-citizen .obj {margin:0}}
 /* 폰 — 위에 붙는 판은 두 줄(보기·세계·즐겨찾기 한 줄을 옆으로 밀고, 바로 가기 한 줄) */
-@media (max-width:700px) {.toc-row {flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:8px;padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000)} .toc-row::-webkit-scrollbar {display:none} .seg,.dex-toc .fav-count {flex:0 0 auto} .dex-toc .fav-count {margin-left:0} .seg button {padding:0 10px}
+@media (max-width:700px) {.toc-row {flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:8px;padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000)} .toc-row::-webkit-scrollbar {display:none} .seg,.style-pick,.dex-toc .fav-count {flex:0 0 auto} .dex-toc .fav-count {margin-left:0} .seg button {padding:0 10px}
   .ek-card {scroll-margin-top:140px}}   
 .lightbox {justify-content:center}
 .lightbox .lb-top {display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;justify-content:center;color:#fff;font-size:13px;max-width:100%}
@@ -166,7 +169,7 @@
 .fav-toast:empty {display:none}
 /* ── 점검(2026-11-02, frontend-design · ui-ux-pro-max) — 손가락 크기 · 나라 카드 전체가 도감 길 ── */
 @media (max-width:700px) {
-  .seg button,.toc-jump .jump,.dex-pick a,.dex-toc .fav-count,.more-row .more {min-height:44px}
+  .seg button,.toc-jump .jump,.dex-pick a,.dex-toc .fav-count,.more-row .more,.style-pick {min-height:44px}
   .toc-jump .jump {min-width:44px}
   .toc-jump {padding-right:28px;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#000 calc(100% - 28px),#0000)}   /* 옆으로 더 있다는 표시 */
 }

@@ -110,23 +110,36 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     assert.equal(await v.page.locator('.nation-card').count(), D.nations.length, '첫 묶음 카드');
     await noOverflow(v.page, vp.width); assert.deepEqual(v.errors, []); checks += 3; await v.ctx.close();
 
-    /* 도감 — 철(2026-10-31 판): 위에 붙는 판(보기·세계·바로 가기·즐겨찾기) · 카드마다 세계 그림만 펴고 일상컷·다른 화풍은 접는다 · 크게 보기 넘기기·하트 */
+    /* 도감 — 철(2026-10-31 판): 위에 붙는 판(보기·세계·화풍·바로 가기·즐겨찾기) · 카드마다 세계 그림만 펴고 일상컷은 접는다 · 크게 보기 넘기기·하트.
+       화풍 고르개(2026-11-04) — 처음은 기본 화풍, 고른 화풍의 그림만(다른 화풍으로 메우지 않는다). 그림 검사는 옛 화풍 game_keyart 를 골라서 */
     v = await open('/dex.html?nation=fe', vp);
     await v.page.waitForSelector('.dex-head');
     const pg = v.page, fe = D.nations.find(n => n.key === 'fe'), fams = fe.families.length, cit = fe.families.reduce((s, f) => s + f.citizens.length, 0);
     const feCards = ['fe', ...fe.families.flatMap(f => ['fe-' + f.key, ...f.citizens.map(c => 'fe-' + f.key + '-' + c.key)])];
-    /* 등록부에서 센다 — 기본 화풍 밖 세계 그림(다른 화풍), 일상컷(세계 몫 + 화풍 몫의 옛 시안) */
-    const bs = k => (IMGJ.img[k] || {}).byStyle || {};
-    const altN = k => Object.entries(bs(k)).filter(([st]) => st !== S.default).reduce((n, [, b]) => n + Object.values(b.byForm || {}).filter(f => f.f).length, 0);
-    const casN = (k, w) => Object.values(bs(k)).reduce((n, b) => n + Object.entries(b.byForm || {}).filter(([wk]) => !w || wk === w).reduce((x, [, f]) => x + (((f.casual || {}).f) || []).length, 0) + (w ? 0 : (((b.casual || {}).f) || []).length), 0);
+    /* 등록부에서 센다 — 한 화풍의 세계 그림, 일상컷(세계 몫 + 화풍 몫의 옛 시안) */
+    const OLD = 'game_keyart', bs = k => (IMGJ.img[k] || {}).byStyle || {};
+    const worldN = st => feCards.reduce((n, k) => n + Object.values((bs(k)[st] || {}).byForm || {}).filter(f => f.f).length, 0);
+    const casN = (k, w) => [bs(k)[OLD]].filter(Boolean).reduce((n, b) => n + Object.entries(b.byForm || {}).filter(([wk]) => !w || wk === w).reduce((x, [, f]) => x + (((f.casual || {}).f) || []).length, 0) + (w ? 0 : (((b.casual || {}).f) || []).length), 0);
     assert.equal(await pg.locator('.worlds.main .slot').count(), 3 + fams * 3 + cit * 3, '세계 그림 칸 — 근본 3 + 가문주 3×' + fams + ' + 주민 3×' + cit);
+    /* 화풍 고르개 — 기본 화풍이 먼저 눌려 있고, 화풍 판의 화풍이 다 있다. 고른 화풍의 그림만 */
+    assert.equal(await pg.locator('#dex-style').inputValue(), S.default, '처음은 기본 화풍');
+    assert.deepEqual(await pg.locator('#dex-style option').evaluateAll(es => es.map(e => e.value)), [S.default, ...Object.keys(S.styles).filter(k => k !== S.default)], '고르개 — 기본 화풍 먼저, 화풍 판 차례');
+    assert.equal(await pg.locator('.worlds.main .slot img').count(), worldN(S.default), '기본 화풍 그림만 ' + worldN(S.default));
+    assert.match(await pg.locator('#dex-style option').first().textContent(), new RegExp(worldN(S.default) + '장'), '고르개에 그 화풍 장수');
+    for (const st of Object.keys(S.styles).filter(k => k !== S.default && k !== OLD && worldN(k))) {
+      await pg.selectOption('#dex-style', st);
+      assert.equal(await pg.locator('.worlds.main .slot img').count(), worldN(st), st + ' 그림만');
+      assert.equal(await pg.locator('.worlds.main a.slot').count(), 0, st + ' — 기본 화풍이 아니면 빈 칸이 생성기로 안 간다');
+      assert.match(pg.url(), new RegExp('st=' + st));
+    }
+    await pg.selectOption('#dex-style', OLD); assert.match(pg.url(), /st=game_keyart/, '고른 화풍이 주소에');
+    assert.equal(await pg.locator('.worlds.main .slot img').count(), worldN(OLD), '옛 화풍을 고르면 옛 그림 ' + worldN(OLD));
     const dead = fe.families.reduce((s, f) => s + f.citizens.reduce((x, c) => x + (3 - c.worlds.length), 0), 0);
     assert.equal(await pg.locator('.slot.dead').count(), dead, '안 사는 세계는 작고 흐린 칸');
     if (dead) assert((await pg.locator('.slot.dead').first().boundingBox()).height < 110, '흐린 칸은 작다');
-    assert.equal(await pg.locator('.worlds.alt, .worlds.casuals').count(), 0, '세계 그림 보기 — 일상컷·다른 화풍은 접혀 있다');
+    assert.equal(await pg.locator('.worlds.alt, .worlds.casuals, [data-more="alt"]').count(), 0, '세계 그림 보기 — 일상컷은 접혀 있고 다른 화풍 줄은 없다');
     assert.equal(await pg.locator('.toc-jump .jump').count(), 1 + fams + cit, '바로 가기 칩 — 근본·가문주·주민');
-    /* 접은 단추 — 근본의 다른 화풍 · 일상컷 */
-    if (altN('fe')) { assert.match(await pg.locator('#c-fe [data-more="alt"]').textContent(), new RegExp(String(altN('fe')))); await pg.click('#c-fe [data-more="alt"]'); assert.equal(await pg.locator('#c-fe .worlds.alt .slot').count(), altN('fe'), '다른 화풍 펼치기'); }
+    /* 접은 단추 — 근본의 일상컷(고른 화풍 것만) */
     await pg.click('#c-fe [data-more="casual"]'); assert.equal(await pg.locator('#c-fe .worlds.casuals .slot').count(), casN('fe'), '일상컷 펼치기');
     const capH = await pg.locator('#c-fe .worlds.casuals .slot .cap').first().evaluate(e => e.getBoundingClientRect().height);
     assert(capH < 40, '일상컷 이름은 한 줄(세로로 쌓이지 않는다 — 여백 포함) ' + capH);
@@ -142,9 +155,10 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     assert.equal(await pg.locator('.worlds.casuals .slot').count(), feCards.reduce((n, k) => n + casN(k, 'mecha'), 0), '메카 일상컷 수');
     assert.deepEqual([...new Set((await pg.locator('.worlds.casuals .slot .cap').allTextContents()).map(t => t.split(' ')[0]))], ['메카'], '메카만');
     assert.match(pg.url(), /view=casual/); assert.match(pg.url(), /w=mecha/);
-    /* 전부 — 다른 화풍 줄도 펼친다 */
+    /* 전부 — 세계 그림 + 일상컷, 다른 화풍 줄은 없다 */
     await pg.click('[data-view="all"]'); await pg.click('[data-wf="all"]');
-    assert.equal(await pg.locator('.worlds.alt').count(), feCards.filter(k => altN(k)).length, '전부 보기 — 다른 화풍 줄');
+    assert.equal(await pg.locator('.worlds.alt').count(), 0, '전부 보기 — 다른 화풍 줄은 없다(고르개로)');
+    assert.equal(await pg.locator('.worlds.casuals .slot').count(), feCards.reduce((n, k) => n + casN(k), 0), '전부 보기 — 고른 화풍 일상컷');
     await pg.click('[data-view="world"]');
     /* 크게 보기 — 넘기기 · 하트(공방 모음 즐겨찾기 a: element) · Esc */
     await pg.click('[data-jump="fe"]'); await pg.waitForTimeout(500);
@@ -156,7 +170,7 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     await pg.keyboard.press('ArrowLeft'); await pg.keyboard.press('ArrowLeft'); assert.equal(await pg.locator('.lightbox .lb-n').textContent(), total.replace(/^1 /, total.split(' / ')[1] + ' '), '← 처음에서 끝으로');
     await pg.click('#dex-fav');
     const favs = await pg.evaluate(() => JSON.parse(localStorage.getItem('atelier_favorites_v1') || '[]'));
-    assert(favs.length === 1 && favs[0].a === 'element' && favs[0].key === 'fe' && /\/dex\.html\?nation=fe&card=fe&pic=/.test(favs[0].link) && /^https:\/\//.test(favs[0].thumb), '하트 — 즐겨찾기 칸 ' + JSON.stringify(favs[0]));
+    assert(favs.length === 1 && favs[0].a === 'element' && favs[0].key === 'fe' && /\/dex\.html\?nation=fe&card=fe&pic=.+&st=game_keyart$/.test(favs[0].link) && /^https:\/\//.test(favs[0].thumb), '하트 — 즐겨찾기 칸 ' + JSON.stringify(favs[0]));
     assert.equal(await pg.locator('#dex-fav').getAttribute('aria-pressed'), 'true');
     assert.match(await pg.locator('#dex-fav-count').textContent(), /즐겨찾기 1/, '즐겨찾기 수');
     assert.equal(await pg.locator('#dex-fav-count').getAttribute('href'), '/favorites.html', '공방 모음 즐겨찾기로');
@@ -170,12 +184,16 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     assert(await pg.locator('.dex-head').count(), '뒤로 가기 — 이전 화면으로 안 넘어간다');
     await pg.click('#c-fe .worlds.casuals .slot >> nth=0'); await pg.waitForSelector('.lightbox'); await pg.click('.lightbox .bar button:last-child'); await pg.waitForTimeout(300);
     assert.equal(await pg.locator('.lightbox').count(), 0, '닫기'); assert.equal(await pg.evaluate(() => !!(history.state && history.state.elementLb)), false, '닫기가 기록 칸을 지웠다');
-    await noOverflow(pg, vp.width); assert.deepEqual(v.errors, []); checks += 25;
+    await noOverflow(pg, vp.width); assert.deepEqual(v.errors, []); checks += 30;
     /* 공방 모음 즐겨찾기의 link 로 다시 오면 그 그림이 열린다 */
     const pic = favs[0].file; await v.ctx.close();
     v = await open(favs[0].link.replace(/^.*dex\.html/, '/dex.html'), vp); await v.page.waitForSelector('.lightbox img');
     assert((await v.page.locator('.lightbox img').getAttribute('src')).endsWith(pic), '즐겨찾기 link 가 그 그림을 연다');
-    assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
+    assert.equal(await v.page.locator('#dex-style').inputValue(), OLD, '즐겨찾기 link — 그 그림의 화풍으로');
+    await v.ctx.close();
+    v = await open('/dex.html?nation=fe&card=fe&pic=' + encodeURIComponent(pic), vp); await v.page.waitForSelector('.lightbox img');
+    assert.equal(await v.page.locator('#dex-style').inputValue(), OLD, '화풍 없는 옛 link 도 그 그림이 든 화풍으로 옮긴다');
+    assert.deepEqual(v.errors, []); checks += 3; await v.ctx.close();
     /* 빈 자리는 생성기로 — 그림이 없는 (카드, 세계) 하나를 등록부에서 찾아(나라 차례대로 — 그림이 차면 자리가 옮겨 간다) 그 나라 도감에서 본다 */
     const holes = D.nations.flatMap(n => [n.key, ...n.families.flatMap(f => [n.key + '-' + f.key, ...f.citizens.map(c => n.key + '-' + f.key + '-' + c.key)])].flatMap(k => {
       const fam = n.families.find(f => k.split('-')[1] === f.key), cit = fam && fam.citizens.find(c => k.split('-')[2] === c.key);
