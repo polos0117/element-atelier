@@ -9,6 +9,14 @@
 
 
 
+## 2026-11-04 · claude · 생성기가 구조판 지시문을 짓는다
+- lib/prompt-element.js — 화풍 판이 `format: structured` 면 `build` · `buildCasual` 이 구조판(공통 적용 규칙 → 일상컷 규칙 → 1절 → 2~4절 칸)을 짓는다. 칸 값은 기본 글 → 카드 손글 칸(설계표 `struct`) → 직접 고른 외형 · 장면 · 덧붙임 차례. 일상컷은 트리 장면 줄을 칸에 나눈다. 사용자 「생성기부터 손봐줘」
+- lib/prompt-spec.js — `STRUCT`: 칸 이름 · 체형 여덟 칸 표(근육 과장 없음) · 세계마다 옷 · 빛 · 효과 기본 글(스팀펑크 광택 · 파스텔 · 승마 바지 없음) · 잇는 말 · 옛 머리말 바꾸기 · 외형 칸 → 2절 칸
+- data/element-design.json — 헬륨 · 규소 `struct`(세 세계 2~4절 — 채팅에서 뽑아 검증한 전체본, 헬륨 스팀펑크는 사용자가 뺀 승마 반바지 없이 · 헬륨 판타지 일상컷 `c2` 얼굴 길이 줄)
+- tools/element-design.py · tests/element-design.py — `struct` 검사(사는 세계 · 절 · 칸 이름 · 빈 글 · 괄호)
+- tests/prompt-element.cjs — 영어 틀 검사는 옛 화풍으로, 구조판 검사(모든 카드 × 세계 · 칸 차례 · 손글 칸 · 설계 외형 · 체형 · 받침 · 고른 것이 이김 · 일상컷 c2 · 검사기 칸 이름) · tests/screen.cjs — 생성기 지시문 검사를 구조판 칸으로
+- data/style.json · AGENTS.md · IMAGE_RULES.md — 생성기가 구조판 전체본을 짓는다
+
 ## 2026-11-04 · claude · 화풍 열쇠 semireal(반실사 구조 지시문)을 기본으로, 도감에 화풍 고르개
 - data/style.json — 새 화풍 `semireal` v1(`format: structured` — 공통 적용 규칙 `rules` · 일상컷 규칙 `casual_rule` · 1절 작화 고정 `section1`(그림 용어 영어 병기) · 2~4절 머리 `sections`, 생성기용 한 줄 `text`), `default` game_keyart → semireal. 사용자 「이런구조로 가자」 → 「화풍키를 둬서 도감에 화풍선택 셀렉트 박스를 넣자. 기존 원소공방 이미지들은 거기서 셀렉트하면 보이는걸로하고, 이걸 기본화풍으로 처음부터 만들거야」
 - dex.html — 판 맨 앞에 화풍 고르개(기본 화풍 먼저 · 그 나라 장수). 고른 화풍의 세계 그림 · 일상컷만 보이고 다른 화풍으로 메우지 않는다. 「다른 화풍」 접은 줄은 뺐다. 빈 칸 · 크게 보기의 생성기 링크는 기본 화풍일 때만. 주소 `st=` · 이 기기 저장, 즐겨찾기 link 는 그 그림이 든 화풍으로

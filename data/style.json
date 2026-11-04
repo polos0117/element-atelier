@@ -1,6 +1,6 @@
 {
  "version": 1,
- "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 semireal(2026-11-04 — 반실사 구조 지시문. 공통 적용 규칙 · 1절 작화 고정은 판의 rules · section1, 일상컷은 casual_rule 을 더 싣고, 2~4절은 카드마다 칸을 채운다. 생성기는 아직 옛 영어 틀에 text 한 줄만 싣는다). 그 전 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
+ "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 semireal(2026-11-04 — 반실사 구조 지시문. 공통 적용 규칙 · 1절 작화 고정은 판의 rules · section1, 일상컷은 casual_rule 을 더 싣고, 2~4절은 카드마다 칸을 채운다. 생성기가 이 틀로 전체본을 짓는다 — lib/prompt-element.js 의 buildStructured · casualStructured, 칸 기본 글은 lib/prompt-spec.js 의 STRUCT, 카드 손글 칸은 설계표 struct. text 는 쓰지 않는다). 그 전 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
  "default": "semireal",
  "styles": {
   "semireal": {

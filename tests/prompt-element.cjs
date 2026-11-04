@@ -4,7 +4,9 @@ const fs = require('node:fs'), vm = require('node:vm'), assert = require('node:a
 const ctx = { window: {} }; vm.createContext(ctx);
 for (const f of ['lib/prompt-spec.js', 'lib/look-spec.js', 'lib/prompt-element.js']) vm.runInContext(fs.readFileSync(f, 'utf8'), ctx);
 const P = ctx.window.AtelierPrompt, T = ctx.window.AtelierSpec;
-const D = JSON.parse(fs.readFileSync('data/element-design.json', 'utf8')), S = JSON.parse(fs.readFileSync('data/style.json', 'utf8'));
+const D = JSON.parse(fs.readFileSync('data/element-design.json', 'utf8')), SN = JSON.parse(fs.readFileSync('data/style.json', 'utf8'));
+/* 영어 틀 검사는 옛 화풍 판으로(2026-11-04 기본이 구조판 semireal 이 됐다) — 구조판 검사는 파일 끝에서 SN 으로 */
+const S = Object.assign({}, SN, { default: 'game_keyart' });
 
 const worlds = D.vocab.worlds, same = (a, b) => JSON.stringify(a) === JSON.stringify(b);   // vm 쪽 배열은 원형이 달라 deepEqual 이 못 견준다
 assert(same(worlds, T.WORLDS.map(w => w.key)), '표의 세계와 설계표의 세계가 같다');
@@ -332,3 +334,73 @@ assert.throws(() => P.buildCasual(D, S, 'fe', { ...base(eras[0]) }, { tree, worl
 /* 표 파일은 함수가 없고, 조립기는 표정 표를 다 가진다 */
 assert(same(Object.keys(T.EXPRESSION_DETAIL).sort(), T.EXPRESSION_OPTIONS.map(o => o[0]).filter(Boolean).sort()), '표정 선택지와 풀이가 같다');
 console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + ' × 시대 ' + eras.length + ' · 참고 그림 = 세계 그림(세 세계·안 사는 세계 거름·나라 안은 그 세계) · 손에 드는 물건 · 시간대·머리 · 랜덤 · 해방 · 돌아보기 · 클로즈업 · 두 손 소품 · 고정값 · 파일 이름 · 기록(world·ref)' + (ownTables ? ' · 원소 표' : ' · (game 표를 빌림)'));
+
+/* ══ 구조판(2026-11-04 — 기본 화풍 semireal) ══ 공통 적용 규칙 → [일상컷 규칙] → 1절 → 2~4절 칸. 칸 값: 기본 → 카드의 손글(struct) → 직접 고른 것 */
+{
+  const SV = P.structVer(SN, SN.default), ST = T.STRUCT;
+  assert(SV && SV.rules.startsWith('공통 적용 규칙:') && SV.section1.startsWith('1.작화 스타일') && SV.casual_rule, '기본 화풍이 구조판');
+  assert.equal(P.structVer(S, 'game_keyart'), null, '옛 화풍은 구조판이 아니다');
+  /* 검사기(tools/element-design.py)의 칸 이름이 표와 같다 */
+  const py = JSON.parse(require('node:child_process').execFileSync('python3', ['-c', 'import importlib,json,sys;sys.path.insert(0,"tools");m=importlib.import_module("element-design");print(json.dumps(m.STRUCT_FIELDS,ensure_ascii=False))']).toString());
+  const noHead = l => l.filter(x => !ST.heading.includes(x));
+  assert(same(py['2'], noHead(ST.s2)) && same(py['3'], ST.s3) && same(py['4'], ST.s4) && same(py.c2, noHead(ST.s2)), '검사기 칸 이름 = 표 STRUCT');
+  const rowsIn = (txt, title, names) => { const part = txt.split(title)[1] || ''; let at = -1; for (const nm of names) { const re = ST.heading.includes(nm) ? '\n' + nm + ':\n' : '\n' + nm + ': ['; const i = part.indexOf(re); if (i <= at) return nm; at = i; } return ''; };
+  const fieldOf = (txt, name) => { const m = txt.match(new RegExp('^' + name.replace(/[/·]/g, '.') + ': \\[(.*)\\]$', 'm')); return m ? m[1] : null; };
+  let ns = 0;
+  for (const key of cards) for (const w of P.worldsOf(D, key)) {
+    const c = P.card(D, key), t = P.build(D, SN, key, w, {}), lab = key + ' ' + w;
+    assert(t.startsWith(SV.rules + '\n\n' + SV.section1 + '\n\n' + SV.sections[0]), lab + ' 머리 — 공통 규칙 · 1절 · 2절');
+    assert(!t.includes('일상컷 규칙:'), lab + ' 세계 그림엔 일상컷 규칙이 없다');
+    for (const [i, names] of [[0, ST.s2], [1, ST.s3], [2, ST.s4]]) assert.equal(rowsIn(t, SV.sections[i], names), '', lab + ' ' + SV.sections[i] + ' 칸 차례');
+    assert(!/: \[\s*\]/.test(t), lab + ' 빈 칸');
+    assert(!/\b(CONCEPT|STYLE|OUTPUT|ONE FIGURE ONLY|ANATOMY|WORLD|SCENE|PROP|CROP|GAZE|COMPOSITION)\b/.test(t.split(SV.sections[0])[1]), lab + ' 옛 영어 머리말이 칸에 남았다');
+    const e = c.element;
+    assert(fieldOf(t, '배경').includes('글자는 "' + e.symbol + '"와 "' + e.number + '" 말고는 쓰지 않는다'), lab + ' 글자 규칙');
+    const own = (((c.citizen || c.family || c.nation).struct || {})[w]) || {};
+    for (const s of ['2', '3', '4']) for (const [k, v] of Object.entries(own[s] || {})) assert.equal(fieldOf(t, k), v, lab + ' 손글 칸 ' + k);
+    if (!Object.keys(own).length) {
+      const dz = P.lookOf(c, w);
+      assert(fieldOf(t, '얼굴형') === T.VOCAB_EN.face_shape[dz.face.face_shape] && fieldOf(t, '헤어스타일').startsWith(T.VOCAB_EN.hair[dz.silhouette.hair]) && fieldOf(t, '머리색') === T.VOCAB_EN.hair_color[dz.silhouette.hair_color], lab + ' 설계 외형');
+      if (ST.body[dz.silhouette.body]) assert(fieldOf(t, '전체 실루엣') === ST.body[dz.silhouette.body][7] && fieldOf(t, '전체 골격·비례').startsWith(ST.body[dz.silhouette.body][0]), lab + ' 체형 여덟 칸');
+      assert(fieldOf(t, '장비·소품').startsWith('없음'), lab + ' 세계 그림은 손에 든 것이 없다');
+      if (w === 'mecha') assert(fieldOf(t, '상의').includes(String((c.family && c.family.worlds && c.family.worlds.mecha && c.family.worlds.mecha.design) || c.nation.worlds.mecha.design).replace(/\.$/, '').slice(0, 40)), lab + ' 메카 설계');
+    }
+    ns++;
+  }
+  /* 체형 표 — 체형 열쇠마다 여덟 칸, 근육 과장 없음 */
+  assert(same(Object.keys(ST.body).sort(), Object.keys(T.VOCAB_EN.body).sort()) && Object.values(ST.body).every(r => r.length === ST.bodyKeys.length), '체형 표가 어휘와 같다');
+  assert(!Object.values(ST.body).flat().some(s => /근육 결|탄탄/.test(s)), '체형 표에 「근육 결 · 탄탄」 이 없다(규소에서 보디빌더로 넘쳤다)');
+  /* 받침 — 원자 번호 뒤 을/를 */
+  assert(fieldOf(P.build(D, SN, 'fe', 'fantasy', {}), '액세서리').includes('"26"을'), '26을'); assert(fieldOf(P.build(D, SN, 'h', 'fantasy', {}), '액세서리').includes('"1"을'), '1을');
+  assert(fieldOf(P.build(D, SN, 'og', 'fantasy', {}), '액세서리').includes('"118"을') && fieldOf(P.build(D, SN, 'au', 'fantasy', {}), '액세서리').includes('"79"를'), '118을 · 79를');
+  /* 손글 칸이 있는 카드(규소)에서도 직접 고른 외형 · 자세 · 시간대 · 장소 · 덧붙임이 이긴다 */
+  const sc0 = P.scenesOf(P.card(D, 'si'), 'fantasy')[0];
+  const ch = P.build(D, SN, 'si', 'fantasy', { look: { params: { 'hair color': '__custom__', 'hair color_custom': 'jet black hair', 'eye size': 'large' }, exposure: 'low' },
+    shot: { pose: 'stride', time: 'night', scene: sc0.key, expr: 'confident' }, notes: { scene: 'a windy ridge', outfit: 'red sash', custom: 'low angle' } });
+  assert.equal(fieldOf(ch, '머리색'), 'hair color: jet black hair', '고른 머리색이 손글 칸을 이긴다');
+  assert(fieldOf(ch, '눈 형태').startsWith('eye size: large') && fieldOf(ch, '눈 형태').includes(D.nations.find(n => n.key === 'si').struct.fantasy['2']['눈 형태']), '더하는 외형은 앞에 붙는다');
+  assert(fieldOf(ch, '액션').includes('Mid-stride') && fieldOf(ch, '손동작') === ST.fixed.handsPose && fieldOf(ch, '광원').startsWith('밤 — night') && fieldOf(ch, '표정').startsWith('level brow'), '자세 · 시간대 · 표정');
+  assert(fieldOf(ch, '배경').includes('이번 장소: ' + sc0.ko) && fieldOf(ch, '배경').includes('장면 메모: a windy ridge') && fieldOf(ch, '부가 요소').startsWith('red sash') && fieldOf(ch, '덧붙임') === 'low angle', '장소 · 덧붙임');
+  assert(fieldOf(ch, '철학').includes('노출(고른 것): ' + T.EXPOSURE.low.replace(/^EXPOSURE \(low\): /, '').replace('the costume WORLD describes', 'the costume in 상의')), '기본이 아닌 노출은 손글 철학 뒤에');
+  /* 기록 · 파일 이름은 기본 화풍 열쇠 */
+  const r2 = P.record(D, SN, 'si', 'mecha', {}); assert.equal(r2.file, 'si_mecha_semireal_f.webp'); assert.equal(r2.prompt, P.build(D, SN, 'si', 'mecha', {}));
+  /* 일상컷 구조판 — 일상컷 규칙이 붙고, 2절은 첨부 그림 그대로(카드의 c2 가 덮어쓴다), 장면 줄이 칸에 나뉜다 */
+  let nc2 = 0; const optsN = key => ({ ...optsFor(key), style: SN.default });
+  for (const key of CARDS.concat(['he', 'si'])) for (const era of eras) {
+    const scene = { ...base(era), ...full }, txt = P.buildCasual(D, SN, key, scene, optsN(key)), lab = 'casual ' + key + ' ' + era;
+    if (!txt) continue;
+    assert(txt.startsWith(SV.rules + '\n\n일상컷 규칙: ' + SV.casual_rule + '\n\n' + SV.section1), lab + ' 머리');
+    for (const [i, names] of [[0, ST.s2], [1, ST.s3], [2, ST.s4]]) assert.equal(rowsIn(txt, SV.sections[i], names), '', lab + ' 칸 차례 ' + i);
+    assert(!/: \[\s*\]/.test(txt) && !/\.\./.test(txt), lab + ' 빈 칸 · 마침표 둘');
+    assert(!/\b(INPUT|CHARACTER|STYLE|OUTPUT|WARDROBE|SCENE|PROP|CROP|GAZE|COMPOSITION|WORLD)\b/.test(txt.split(SV.sections[0])[1]), lab + ' 옛 영어 머리말');
+    assert.equal(fieldOf(txt, '얼굴형'), ST.casual.same, lab + ' 얼굴은 첨부 그림 그대로');
+    assert(fieldOf(txt, '표정').endsWith(ST.casual.exprTail.replace(/^ — /, '')) || fieldOf(txt, '표정').endsWith(ST.casual.exprTail.trim()), lab + ' 표정 꼬리');
+    nc2++;
+  }
+  const hf = P.buildCasual(D, SN, 'he', { ...base(eras[0]), ...full }, { ...optsN('he'), world: 'fantasy' });
+  assert.equal(fieldOf(hf, '얼굴 크기'), D.nations.find(n => n.key === 'he').struct.fantasy.c2['얼굴 크기'], '헬륨 판타지 일상컷 — 얼굴 길이 줄(c2)');
+  assert.equal(fieldOf(P.buildCasual(D, SN, 'he', { ...base(eras[0]), ...full }, { ...optsN('he'), world: 'mecha' }), '얼굴 크기'), ST.casual.same, 'c2 는 그 세계만');
+  const hh = P.buildCasual(D, SN, 'fe', { ...base(eras[0]), ...full, hair: 'tied' }, optsN('fe'));
+  assert(fieldOf(hh, '헤어스타일').includes('her hair tied up'), '머리를 바꾸는 장면이면 그 줄');
+  console.log('PASS 구조판: 세계 그림 ' + ns + ' · 일상컷 ' + nc2 + ' · 칸 차례 · 손글 칸 · 설계 외형 · 체형 여덟 칸 · 받침 · 고른 것이 이김 · 노출 · 기록 · 일상컷 c2 · 머리 · 검사기 칸 이름');
+}

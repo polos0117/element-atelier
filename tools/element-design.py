@@ -15,6 +15,8 @@
   (가문주는 eye_color 도, 주민 눈 색은 가문 핏줄), worlds 에 사는 세계마다 hair·face_shape·eyes(세계끼리 서로 다르게). 팔레트 색이 머리·눈 색이 된다(2026-10-30).
 - 얼굴 설계(2026-11-01, 근본 · 가문주 · 주민 모두): face 에 age·impression·skin_tone·eye_size·eye_tilt·mark·expr, 사는 세계마다 silhouette.bangs. 물려받지 않는다.
 - 성질·세계 문장에 한국어가 섞이지 않는다(en 칸). 시각 언어 한 줄이 비어 있으면 그림이 흔들린다 — en 칸은 40자 이상.
+- 구조판 손글 칸(2026-11-04, 화풍 semireal) — 나라 · 가문 · 주민의 struct.<사는 세계>."2"·"3"·"4"(세계 그림 2~4절) · "c2"(일상컷 2절)에 칸 이름 → 글.
+  칸 이름은 lib/prompt-spec.js 의 STRUCT 와 같다(여기 STRUCT_FIELDS — tests/prompt-element.cjs 가 둘을 견준다). 빈 글 · 모르는 칸 · 모르는 절 · 안 사는 세계는 오류.
 - 가문이 여러 나라에 걸치면(elements 둘 이상) 그 나라들 모두에 같은 열쇠의 가문이 있어야 하는 것은 아니다 — 있으면 도감이 잇는다. 다만 elements 에 적힌 원소는 전부 있어야 한다.
 """
 import re
@@ -27,6 +29,41 @@ import roster  # noqa: E402
 KEY = re.compile(r"^[a-z0-9]+$")
 LOOK = {"face": ("face_shape", "eyes", "brows", "nose", "lips", "eye_color"), "silhouette": ("body", "hair", "hair_color")}
 # 얼굴 설계 칸(2026-11-01 — 얼굴 느낌이 비슷하게 나왔다) — 있으면 본다. 값 대조는 tests/prompt-element.cjs(lib/prompt-spec.js FACE_DESIGN)
+# 구조판 칸 이름 — lib/prompt-spec.js STRUCT 의 s2 · s3 · s4(체형 머리 줄은 값이 없다). 일상컷 2절(c2)은 2절 칸
+STRUCT_FIELDS = {
+    "2": ("캐릭터/콘셉트", "성별·나이대", "얼굴 크기", "얼굴형", "이목구비 배치", "눈 형태", "눈색", "동공", "코", "입술", "피부색", "머리색", "헤어스타일",
+          "전체 골격·비례", "목·어깨", "가슴", "허리", "골반·엉덩이", "허벅지", "팔·종아리", "전체 실루엣"),
+    "3": ("철학", "주요 색상", "주요 소재", "상의", "하의", "신발", "액세서리", "장비·소품", "부가 요소"),
+    "4": ("액션", "손동작", "표정", "시선", "머리카락·의상 움직임", "구도", "카메라", "광원", "장면 팔레트", "배경", "환경 효과"),
+}
+STRUCT_FIELDS["c2"] = STRUCT_FIELDS["2"]
+
+
+def check_struct(where, st, lives, errs):
+    """구조판 손글 칸 — {세계: {절: {칸: 글}}}. 없으면 그만."""
+    if st is None:
+        return
+    if not isinstance(st, dict):
+        errs.append(where + " struct 는 {세계: {절: {칸: 글}}}"); return
+    for w, secs in st.items():
+        if w not in lives:
+            errs.append("%s struct 의 %r 는 사는 세계가 아니다" % (where, w)); continue
+        if not isinstance(secs, dict):
+            errs.append("%s struct.%s 는 {절: {칸: 글}}" % (where, w)); continue
+        for s, rows in secs.items():
+            if s not in STRUCT_FIELDS:
+                errs.append("%s struct.%s 의 %r 는 모르는 절(2 · 3 · 4 · c2)" % (where, w, s)); continue
+            if not isinstance(rows, dict):
+                errs.append("%s struct.%s.%s 는 {칸: 글}" % (where, w, s)); continue
+            for k, v in rows.items():
+                if k not in STRUCT_FIELDS[s]:
+                    errs.append("%s struct.%s.%s 의 %r 는 모르는 칸" % (where, w, s, k))
+                elif not isinstance(v, str) or not v.strip():
+                    errs.append("%s struct.%s.%s.%s 가 비었다" % (where, w, s, k))
+                elif "[" in v or "]" in v:
+                    errs.append("%s struct.%s.%s.%s 에 [ ] 를 넣지 않는다(칸 괄호는 조립부가 친다)" % (where, w, s, k))
+
+
 FACE_DESIGN = {"face": ("age", "impression", "skin_tone", "eye_size", "eye_tilt", "mark", "expr"), "silhouette": ("bangs",)}
 
 
@@ -186,6 +223,7 @@ def check(doc):
                 en(here + " worlds.mecha.design", ws[w].get("design"))
             check_scenes(here + " worlds." + w, ws[w].get("scenes"), True, errs)
         en(here + " hold.en", (n.get("hold") or {}).get("en"), 12)
+        check_struct(here, n.get("struct"), ("fantasy", "steampunk", "mecha"), errs)
         seen_f = set()
         for f in n.get("families") or []:
             fk = f.get("key")
@@ -213,6 +251,7 @@ def check(doc):
                     en(fhere + " worlds." + w, body.get("en"))
                     check_scenes(fhere + " worlds." + w, body.get("scenes"), False, errs)
             en(fhere + " hold.en", (f.get("hold") or {}).get("en"), 12)
+            check_struct(fhere, f.get("struct"), ("fantasy", "steampunk", "mecha"), errs)
             seen_c = set()
             for c in f.get("citizens") or []:
                 ck = c.get("key")
@@ -229,6 +268,7 @@ def check(doc):
                 check_designed(chere, c.get("look"), [w for w in ("fantasy", "steampunk", "mecha") if w in (c.get("worlds") or [])], False, errs)
                 en(chere + " object.en", (c.get("object") or {}).get("en"), 12)
                 cw = c.get("worlds") or []
+                check_struct(chere, c.get("struct"), cw, errs)
                 if not cw:
                     errs.append(chere + " worlds 가 비었다")
                 for w in cw:

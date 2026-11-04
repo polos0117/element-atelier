@@ -17,6 +17,9 @@ const ESM = { 'https://esm.sh/preact@10.24.3': 'preact/dist/preact.mjs', 'https:
 const D = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/element-design.json'), 'utf8'));
 const S = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style.json'), 'utf8'));
 const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'));
+/* 구조판(2026-11-04 기본 화풍 semireal) — 칸 하나의 [ ] 안 글. 생성기는 기본 화풍으로 짓는다 */
+const SV = S.styles[S.default].versions.find(v => v.v === S.styles[S.default].current);
+const fieldOf = (txt, name) => { const m = String(txt).match(new RegExp('^' + name.replace(/[/·]/g, '.') + ': \\[(.*)\\]$', 'm')); return m ? m[1] : ''; };
 
 (async () => {
   await new Promise(r => server.listen(PORT, r));
@@ -239,14 +242,15 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     if (mob) await p.click('#hbar [data-next="notes"]'); else await p.click('[data-next="notes"]');
     assert.equal(await openOf(p), 'done');
     let t0 = await promptOf(p);
-    assert(t0.startsWith('CONCEPT: a citizen of the Iron Nation, of the Steel House.') && t0.includes('MECHA DESIGN:') && t0.includes('SCENE NOTE: a windy ridge'), '세계 지시문');
-    assert(t0.includes('EXPOSURE (moderate)') && !t0.includes('FACE') && t0.includes('SILHOUETTE: ') && !t0.includes('tempered-blue') && t0.includes('hair color: silver'), '설계 줄·외형 칸이 지시문에 ' + t0.slice(0, 150));
-    assert(t0.includes('SETTING (this card): the orbital foundry floor') && t0.includes('TIME & WEATHER: night') && t0.includes('Mid-stride toward the camera') && t0.includes('EXPRESSION: level brow'), '장면·시간대·자세·표정이 지시문에');
+    assert(t0.startsWith(SV.rules + '\n\n' + SV.section1) && fieldOf(t0, '캐릭터/콘셉트').startsWith('철 나라 강철 가문의 주민') && fieldOf(t0, '배경').includes('장면 메모: a windy ridge'), '세계 지시문(구조판) ' + t0.slice(0, 80));
+    assert(fieldOf(t0, '철학').includes('노출: the costume in 상의 opens at the collarbone') && fieldOf(t0, '얼굴형').startsWith('설계 지정 없음') && fieldOf(t0, '헤어스타일') && !t0.includes('tempered-blue') && fieldOf(t0, '머리색').includes('hair color: silver'), '설계 칸·외형 칸이 지시문에 ' + fieldOf(t0, '머리색'));
+    assert(fieldOf(t0, '배경').includes('이번 장소: ') && fieldOf(t0, '배경').includes('the orbital foundry floor') && fieldOf(t0, '광원').startsWith('밤 — night') && fieldOf(t0, '액션').includes('Mid-stride toward the camera') && fieldOf(t0, '표정').startsWith('level brow'), '장면·시간대·자세·표정이 칸에');
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f.webp'), '파일 이름');
     await p.click('[data-open="world"]'); await p.click('[data-pick="fantasy"]');
     assert.equal(await openOf(p), 'scene', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
     await toDone(p); assert.equal(await openOf(p), 'done', '「다 골랐다로」');
-    assert(!(await promptOf(p)).includes('MECHA DESIGN') && (await promptOf(p)).includes('FACE — ') && !(await promptOf(p)).includes('hair color: silver') && !(await promptOf(p)).includes('SETTING (this card)') && (await promptOf(p)).includes('Standing, card-ready pose'), '세계가 바뀌면 외형·장면 칸도 그 세계 것(판타지는 아직 설계표대로)');
+    const tf = await promptOf(p);
+    assert(!fieldOf(tf, '상의').includes('plating') && !fieldOf(tf, '얼굴형').startsWith('설계 지정 없음') && !tf.includes('hair color: silver') && !tf.includes('이번 장소: ') && fieldOf(tf, '액션') === '카메라를 향해 천천히 한 걸음 내딛는 동작', '세계가 바뀌면 외형·장면 칸도 그 세계 것(판타지는 아직 설계표대로)');
     assert.match(p.url(), /card=fe-steel-sword&o=world&world=fantasy/, '주소에 적힌다');
     checks += 20;
 
@@ -284,12 +288,12 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     assert.equal(await p.locator('#panel select[data-axis="skin_exposure"]').inputValue(), 'bold', '기본은 고정값');
     await p.selectOption('#panel select[data-axis="skin_exposure"]', 'moderate');
     assert.match(await p.locator('.hchip[data-open="notes"]').textContent(), /보통/, '덧붙임 칩에 축');
-    assert((await promptOf(p)).includes('skin_exposure: moderate — '), '바꾼 축이 지시문에');
+    assert(fieldOf(await promptOf(p), '철학').includes('skin_exposure: moderate — '), '바꾼 축이 지시문(철학 칸)에');
     await p.selectOption('#panel select[data-axis="skin_exposure"]', 'bold');
     await toDone(p); assert.equal(await openOf(p), 'done');
     const t1 = await promptOf(p);
-    assert(t1.includes('POSTURE') && t1.includes('1024') && /overall_intensity: strong/.test(t1) && t1.startsWith('INPUT: the attached image is the approved character — her Mecha card'), '일상컷 지시문 ' + t1.slice(0, 200));
-    assert(t1.includes('Time of day: night under neon') && t1.includes('Hair: her hair tied up'), '시간대·머리가 일상컷 지시문에');
+    assert(fieldOf(t1, '액션') && fieldOf(t1, '구도').includes('1024') && /overall_intensity: strong/.test(fieldOf(t1, '덧붙임')) && t1.startsWith(SV.rules + '\n\n일상컷 규칙: ') && fieldOf(t1, '캐릭터/콘셉트').startsWith('첨부한 메카 세계 그림의 그 여성'), '일상컷 지시문(구조판) ' + t1.slice(0, 120));
+    assert(fieldOf(t1, '광원').includes('night under neon') && fieldOf(t1, '헤어스타일').includes('her hair tied up'), '시간대·머리가 일상컷 칸에');
     assert.match(await p.locator('.hchip[data-open="time"]').textContent(), /네온 밤/, '시간대 칩'); assert.match(await p.locator('.hchip[data-open="hair"]').textContent(), /묶음/, '머리 칩');
     /* 손에 드는 그 원소의 물건 — 오른손을 「소품 동작」 으로 하면 소품 동작 칸에 「그 물건을 든다」 가 보인다(검의 주민은 검) */
     await p.click('[data-open="right"]'); await p.click('#panel .opt[data-pick="prop"]'); assert.equal(await openOf(p), 'left', '오른손 다음 왼손');
@@ -297,7 +301,7 @@ const IMGJ = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/img.json'), 'utf8'
     if (!(await p.locator('#panel .opt[data-pick^="sig_"]').count()) && mob) { await p.click('#panel [data-gtab=""]'); }
     assert((await p.locator('#panel .opt[data-pick^="sig_"]').count()) >= 1, '그 물건을 드는 동작 선택지(컷에 맞는 꼴 — 얼굴 클로즈업이면 얼굴 옆에)');
     await p.click('#panel .opt[data-pick^="sig_"]'); await toDone(p);
-    assert(/PROP: with her own right hand she holds a forged/.test(await promptOf(p)), '검의 주민이 검을 든다 ' + ((await promptOf(p)).split('PROP: ')[1] || '').slice(0, 80));
+    assert(/^with her own right hand she holds a forged/.test(fieldOf(await promptOf(p), '장비·소품')), '검의 주민이 검을 든다 ' + fieldOf(await promptOf(p), '장비·소품').slice(0, 80));
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + S.default + '_f_casual1.webp'), '일상컷 파일 이름(세계를 탄다)');
     const refT = await p.locator(mob ? '.hres .ref' : '#ref .ref').textContent();
     /* 등록돼 있으면 작은 그림, 없으면 「아직 없다」 — 등록부를 보고 판정한다(그림이 차면 바뀐다) */

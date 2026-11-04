@@ -28,6 +28,12 @@ def fe(d):
 
 
 cases = {
+    "struct 모르는 칸": lambda d: fe(d).__setitem__("struct", {"fantasy": {"2": {"얼굴": "oval"}}}),
+    "struct 모르는 절": lambda d: fe(d).__setitem__("struct", {"fantasy": {"5": {"액션": "서 있음"}}}),
+    "struct 빈 글": lambda d: fe(d).__setitem__("struct", {"mecha": {"4": {"액션": " "}}}),
+    "struct 괄호": lambda d: fe(d).__setitem__("struct", {"mecha": {"3": {"상의": "[갑옷]"}}}),
+    "struct 모르는 세계": lambda d: fe(d).__setitem__("struct", {"modern": {"2": {"얼굴형": "oval face"}}}),
+    "주민 struct 안 사는 세계": lambda d: fe(d)["families"][0]["citizens"][0].__setitem__("struct", {w: {"4": {"액션": "서 있음"}} for w in ("fantasy", "steampunk", "mecha") if w not in fe(d)["families"][0]["citizens"][0]["worlds"]} or {"modern": {}}),
     "세계 셋이 아님": lambda d: d["vocab"].__setitem__("worlds", ["fantasy", "steampunk", "modern", "mecha"]),
     "원소 118 아님": lambda d: d["elements"].pop(),
     "모르는 나라": lambda d: d["nations"].append({"key": "xx"}),
