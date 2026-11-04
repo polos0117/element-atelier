@@ -372,8 +372,9 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
   assert(same(Object.keys(ST.body).sort(), Object.keys(T.VOCAB_EN.body).sort()) && Object.values(ST.body).every(r => r.length === ST.bodyKeys.length), '체형 표가 어휘와 같다');
   assert(!Object.values(ST.body).flat().some(s => /근육 결|탄탄/.test(s)), '체형 표에 「근육 결 · 탄탄」 이 없다(규소에서 보디빌더로 넘쳤다)');
   /* 받침 — 원자 번호 뒤 을/를 */
-  assert(fieldOf(P.build(D, SN, 'fe', 'fantasy', {}), '액세서리').includes('"26"을'), '26을'); assert(fieldOf(P.build(D, SN, 'h', 'fantasy', {}), '액세서리').includes('"1"을'), '1을');
-  assert(fieldOf(P.build(D, SN, 'og', 'fantasy', {}), '액세서리').includes('"118"을') && fieldOf(P.build(D, SN, 'au', 'fantasy', {}), '액세서리').includes('"79"를'), '118을 · 79를');
+  /* 손글 칸이 없는 카드(그 나라 첫 가문주)의 기본 액세서리 글 — 근본은 손글 칸이 쥔다(2026-11-04) */
+  const lordOf = nk => { const n = D.nations.find(x => x.key === nk); return n.families && n.families.length ? nk + '-' + n.families[0].key : null; };
+  for (const [nk, num, p] of [['fe', 26, '을'], ['h', 1, '을'], ['au', 79, '를'], ['cu', 29, '를'], ['c', 6, '을']]) { const k = lordOf(nk); if (k) assert(fieldOf(P.build(D, SN, k, 'fantasy', {}), '액세서리').includes('"' + num + '"' + p), k + ' ' + num + p); }
   /* 손글 칸이 있는 카드(규소)에서도 직접 고른 외형 · 자세 · 시간대 · 장소 · 덧붙임이 이긴다 */
   const sc0 = P.scenesOf(P.card(D, 'si'), 'fantasy')[0];
   const ch = P.build(D, SN, 'si', 'fantasy', { look: { params: { 'hair color': '__custom__', 'hair color_custom': 'jet black hair', 'eye size': 'large' }, exposure: 'low' },
