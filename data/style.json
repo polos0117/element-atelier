@@ -1,8 +1,29 @@
 {
  "version": 1,
- "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 semireal(2026-11-04 — 반실사 구조 지시문. 공통 적용 규칙 · 1절 작화 고정은 판의 rules · section1, 일상컷은 casual_rule 을 더 싣고, 2~4절은 카드마다 칸을 채운다. 생성기가 이 틀로 전체본을 짓는다 — lib/prompt-element.js 의 buildStructured · casualStructured, 칸 기본 글은 lib/prompt-spec.js 의 STRUCT, 카드 손글 칸은 설계표 struct. text 는 쓰지 않는다). 그 전 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
- "default": "semireal",
+ "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 mmorpg2d(2026-11-06 — 2D 한국 MMORPG 구조 지시문. semireal 과 같은 구조판이고 1절 작화 고정만 다르다. 사용자 「원소공방도 이그림체로 하자」). 그 전 기본은 semireal(2026-11-04 — 반실사 구조 지시문. 공통 적용 규칙 · 1절 작화 고정은 판의 rules · section1, 일상컷은 casual_rule 을 더 싣고, 2~4절은 카드마다 칸을 채운다. 생성기가 이 틀로 전체본을 짓는다 — lib/prompt-element.js 의 buildStructured · casualStructured, 칸 기본 글은 lib/prompt-spec.js 의 STRUCT, 카드 손글 칸은 설계표 struct. text 는 쓰지 않는다). 그 전 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
+ "default": "mmorpg2d",
  "styles": {
+  "mmorpg2d": {
+   "name": "2D MMORPG 구조 지시문",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "adopted": "2026-11-06",
+     "by": "사용자 채택 — 포켓몬 공방 새 컨셉(프리미엄 2D 한국 MMORPG 공식 캐릭터 일러스트 — 피카츄 · 갸라도스 · 팬텀 · 잠만보 메카 장갑과 일상컷)을 보고 「원소공방도 이그림체로 하자」. 구조판 틀(공통 적용 규칙 · 2~4절 칸 · 카드 손글 칸)은 semireal 그대로, 1절 작화 고정만 이 그림체로",
+     "format": "structured",
+     "rules": "공통 적용 규칙:\n\n각 항목은 자신이 담당하는 요소에만 적용한다. 작화 방식은 1번, 캐릭터의 신체적 특징은 2번, 의상과 장비는 3번, 동작과 화면 연출은 4번을 따른다.\n\n특정 항목을 수정할 때 별도로 지정하지 않은 나머지 항목은 유지한다. 체형의 볼륨이나 굴곡 변경을 얼굴의 성숙도·표정·포즈·카메라·그림체 변화로 확대 해석하지 않는다. 의상은 지정된 디자인과 노출 범위를 유지하면서 변경된 신체 치수에 맞게 착용 형태만 조정한다.",
+     "casual_rule": "첨부한 세계 그림이 이 사람과 그림체의 기준이다(reference image = identity and style lock). 얼굴·눈·머리·피부·체형과 마감·채도·빛의 질감은 첨부 그림 그대로 두고, 옷·자세·표정·구도·장소만 이 문구대로 바꾼다. 첨부 그림의 옷·장갑·장식·배경·포즈·머리 각도·카메라 높이는 가져오지 않는다. 원소는 작은 장신구나 주변 물건으로만 드러내고, 옷의 색·무늬·재단에는 넣지 않는다.",
+     "section1": "1.작화 스타일 — 공통 고정\n\n작화 장비 비교 계열: 한국 MMORPG 공식 캐릭터 일러스트(premium 2D Korean MMORPG official character illustration) — 분명히 손으로 그린 2D 캐릭터 그림(clearly hand-drawn 2D character art)에 섬세한 색 선화(delicate refined coloured linework)와 여러 겹으로 칠한 명암(layered painted shading)을 더한 디지털 일러스트레이션, 화려한 한국 판타지 게임 의상 일러스트의 깔끔하고 정밀한 마감(elaborate Korean fantasy game costume illustration with clean detailed rendering)\n\n01 POSITIVE - 기술 작화\n\n형태 언어: 공들여 설계한 형태(carefully designed shapes), 성인 애니메이션식 미형(elegant adult anime facial design)과 균형 잡힌 자연스러운 성인 비례, 캐릭터마다 지정된 얼굴과 신체 비례를 유지, 얼굴과 몸이 분명히 2D 그림으로 읽히는 표현(face and body visibly illustrated in 2D)\n\n얼굴형: 지정된 얼굴 윤곽과 골격을 가는 색 선과 부드럽게 칠한 명암으로 표현, 이마·볼·턱이 매끄럽게 이어지는 형태, 골격의 거친 굴곡을 덜어 낸 섬세한 조형\n\n눈 구조: 표정이 살아 있는 정밀한 눈(expressive finely detailed eyes), 또렷한 윗눈꺼풀 선과 속눈썹, 옅은 아랫눈꺼풀, 지정된 눈의 크기·형태·배치를 유지\n\n홍채: 지정된 홍채색과 동공 형태를 유지하는 여러 층의 색(layered iris), 위쪽의 깊은 음영과 아래쪽의 밝은 반사, 장면 광원을 비추는 몇 개의 캐치라이트(catchlights)\n\n코: 지정된 콧대·코끝 형태를 짧은 선과 옅은 그림자로 표현(minimal nose, no heavy modelling), 얼굴의 다른 부위와 이어지는 피부색 변화\n\n입과 표정: 지정된 입술 형태와 두께를 가는 색 선과 작은 반사로 표현, 눈꺼풀·눈썹·입꼬리의 변화로 짓는 자연스러운 표정(subtle expression)\n\n선화: 검은 선이 아니라 그 부위의 색을 띤 가늘고 섬세한 선(coloured linework, not black outlines), 바깥 윤곽과 의상 접합부는 조금 더 또렷하게, 깊이와 재질에 따라 달라지는 선의 강약(varied line weight)\n\n머리카락: 지정된 헤어스타일의 큰 덩어리와 흐름을 선과 칠로 나누고 가닥을 골라 묘사(hair drawn in clumps with selective strands), 칠한 하이라이트 띠와 가장자리 빛(rim light), 머리색의 고유색을 지키는 내부 음영\n\n피부: 지정된 피부색 위에 몇 단의 부드러운 칠 명암(soft painted shading in a few tones), 은은한 혈색, 매끈하되 플라스틱 광택 없는 피부, 모공·피부 결 묘사 없음(no pores, no skin texture)\n\n의상 선화/채색: 정교하지만 한눈에 읽히는 의상 구조(intricate yet readable costume design), 접합부(seams)와 장식을 따라 그린 선, 금속에는 칠한 날카로운 반사(painted specular highlights), 직물에는 주름 선과 겹친 명암, 투명 소재에는 겹침과 투과광, 지정되지 않은 소재나 장비를 임의로 추가하지 않는 묘사\n\n손: 자연스러운 손바닥 구조와 다섯 손가락의 연결(anatomically correct hands, five fingers), 동작에 맞는 관절 방향과 손가락 간격, 장갑을 낀 경우에도 설득력 있게 이어지는 손 형태\n\n렌더링/셰이딩: 셀 명암에서 부드러운 칠로 이어지는 여러 겹의 명암(layered cel-to-soft painted shading), 분명한 그림자 모양(clear shadow shapes), 구조물의 선명한 모서리와 접촉 그림자(contact shadows), 붓 자국 대신 깔끔한 디지털 채색(clean digital painting)\n\n광원/색채: 풍부하고 빛나는 색(rich luminous colours), 밝고 맑은 빛(bright clear lighting), 지정된 광원과 팔레트를 따르는 일관된 색온도, 밝은 면에도 남아 있는 색 정보(no blown-out highlights)\n\n디테일/마감: 얼굴·눈·주요 의상의 정밀한 묘사, 배경은 외곽선 없이 부드럽고 자세하게 칠한 붓질(painted background without outlines), 먼 배경의 공기 원근(atmospheric perspective), 공식 캐릭터 키아트 수준의 마감(polished character key art)\n\n02 NEGATIVE - 3D 렌더(3D render), 실사·사진 같은 표현(photorealistic), 반실사 피부 결과 모공(semi-realistic skin texture, pores), 선 없이 덩어리로만 빚은 반실사(lineless semi-real rendering), 굵고 균일한 검은 외곽선(thick uniform black outlines), 납작한 한 단 셀 셰이딩(flat single-tone cel shading), 거친 수채 번짐(watercolor bleed), 두꺼운 유화 붓 자국(impasto), 종이 질감(paper texture), 지정된 얼굴 비례의 임의 변경, 캐릭터마다 반복되는 같은 얼굴(same face), 과도한 화장과 볼 홍조, 과도한 블룸(excessive bloom), 모든 재질에 같은 플라스틱 광택(plastic sheen), 뭉개진 의상 구조, 부정확한 관절, 기형 손(malformed hands), 손가락 누락과 추가(missing or extra fingers), 추가 팔다리(extra limbs), 지정되지 않은 장비와 장식",
+     "sections": [
+      "2.캐릭터 외형 — 캐릭터별 교체",
+      "3. 코디네이션 — 의상별 교체",
+      "4. 장면 — 장면별 교체"
+     ],
+     "text": "A premium 2D Korean MMORPG official character illustration: clearly hand-drawn 2D character art with delicate refined coloured linework, elegant adult anime facial design, expressive finely detailed eyes, carefully designed shapes, rich luminous colours and layered painted shading; elaborate Korean fantasy game costume illustration with clean detailed rendering. The face and body stay visibly illustrated in 2D — no 3D render, no photorealistic appearance."
+    }
+   ]
+  },
   "semireal": {
    "name": "반실사 구조 지시문",
    "current": "v1",

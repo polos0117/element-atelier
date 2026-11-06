@@ -385,13 +385,16 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
   assert(fieldOf(ch, '배경').includes('이번 장소: ' + sc0.ko) && fieldOf(ch, '배경').includes('장면 메모: a windy ridge') && fieldOf(ch, '부가 요소').startsWith('red sash') && fieldOf(ch, '덧붙임') === 'low angle', '장소 · 덧붙임');
   assert(fieldOf(ch, '철학').includes('노출(고른 것): ' + T.EXPOSURE.low.replace(/^EXPOSURE \(low\): /, '').replace('the costume WORLD describes', 'the costume in 상의')), '기본이 아닌 노출은 손글 철학 뒤에');
   /* 기록 · 파일 이름은 기본 화풍 열쇠 */
-  const r2 = P.record(D, SN, 'si', 'mecha', {}); assert.equal(r2.file, 'si_mecha_semireal_f.webp'); assert.equal(r2.prompt, P.build(D, SN, 'si', 'mecha', {}));
+  const r2 = P.record(D, SN, 'si', 'mecha', {}); assert.equal(r2.file, 'si_mecha_' + SN.default + '_f.webp'); assert.equal(r2.prompt, P.build(D, SN, 'si', 'mecha', {}));
   /* 일상컷 구조판 — 일상컷 규칙이 붙고, 2절은 첨부 그림 그대로(카드의 c2 가 덮어쓴다), 장면 줄이 칸에 나뉜다 */
   let nc2 = 0; const optsN = key => ({ ...optsFor(key), style: SN.default });
   for (const key of CARDS.concat(['he', 'si'])) for (const era of eras) {
     const scene = { ...base(era), ...full }, txt = P.buildCasual(D, SN, key, scene, optsN(key)), lab = 'casual ' + key + ' ' + era;
     if (!txt) continue;
-    assert(txt.startsWith(SV.rules + '\n\n일상컷 규칙: ' + SV.casual_rule + '\n\n' + SV.section1), lab + ' 머리');
+    /* 일상컷만 — 일상컷 규칙 끝에 얼굴 고정 문장, 1절 NEGATIVE 줄 끝에 금지 낱말(2026-11-06) */
+    const negLine = SV.section1.split('\n').filter(l => l.startsWith('02 NEGATIVE - ')).pop();
+    assert(negLine && txt.startsWith(SV.rules + '\n\n일상컷 규칙: ' + SV.casual_rule + ' ' + ST.casual.faceLock + '\n\n' + SV.section1.replace(negLine, negLine + ', ' + ST.casual.negative)), lab + ' 머리 · 얼굴 고정');
+    assert(!P.build(D, SN, key === 'he' || key === 'si' ? key : 'he', 'fantasy', {}).includes(ST.casual.negative), lab + ' 세계 그림엔 안 싣는다');
     for (const [i, names] of [[0, ST.s2], [1, ST.s3], [2, ST.s4]]) assert.equal(rowsIn(txt, SV.sections[i], names), '', lab + ' 칸 차례 ' + i);
     assert(!/: \[\s*\]/.test(txt) && !/\.\./.test(txt), lab + ' 빈 칸 · 마침표 둘');
     assert(!/\b(INPUT|CHARACTER|STYLE|OUTPUT|WARDROBE|SCENE|PROP|CROP|GAZE|COMPOSITION|WORLD)\b/.test(txt.split(SV.sections[0])[1]), lab + ' 옛 영어 머리말');
