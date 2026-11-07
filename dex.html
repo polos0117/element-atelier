@@ -15,10 +15,10 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=3"></script>
-<script src="lib/words.js?v=11"></script>
+<script src="lib/words.js?v=12"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/prompt-spec.js?v=4"></script>
-<script src="lib/prompt-element.js?v=7"></script>
+<script src="lib/prompt-element.js?v=14"></script>
 <script src="lib/fresh.js?v=1"></script>
 <!-- 즐겨찾기 — lib/favorites.js(공방들과 공방 모음이 글자 하나 다르지 않게 나눠 쓴다. 원소는 a: element) -->
 <script src="lib/favorites.js?v=1"></script>
@@ -31,7 +31,7 @@
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
 import {useState,useEffect,useRef} from 'https://esm.sh/preact@10.24.3/hooks';
-import {WorkspaceHeader} from './lib/workspace-ui.js?v=3';
+import {WorkspaceHeader} from './lib/workspace-ui.js?v=4';
 /* 도감 판(2026-10-31, 사용자 「도감 보기가 좀 불편해」) — 한 나라가 3만 픽셀이 넘어 주민 하나 찾기가 어려웠다.
    · 위에 붙는 판: 보기(세계 그림 · 일상컷 · 전부) · 세계(모두 · 판타지 · 스팀펑크 · 메카) · 바로 가기(근본 · 가문 · 주민 칩) · 즐겨찾기 수
    · 카드마다 세계 그림 셋만 펴고, 일상컷은 접은 단추로. 안 사는 세계는 작고 흐린 칸

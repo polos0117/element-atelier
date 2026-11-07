@@ -9,6 +9,13 @@
 
 
 
+## 2026-11-07 · claude · 삼국지 공방 화풍 일곱 · 생성기 화풍 고르개 · 화풍 비교 탭
+- 사용자 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」.
+- data/style.json — 영어 틀 kr_mmorpg · glossy_kr_game(삼국지 글 그대로), kv 판 kv_kmmo_lock · kv_kmmo_23d · kv_jp_mobile · kv_jp_paint · kv_anime_gloss(머리말 · STYLE · 장르 이름 · 끝 줄, GENRE LOCK 은 판타지 · 스팀펑크 · 메카로, 일본 판 끝 줄의 「글자 없음」 은 원소 기호 · 번호를 허락하게). 기본 화풍은 그대로 mmorpg2d.
+- lib/prompt-element.js — build 의 영어 틀을 worldLines(칸 붙은 줄)로 떼고 build 는 그대로 이음(옛 판 1425 지시문 글자 하나 안 바뀜 확인), buildKv 가 그 줄을 CHARACTER · COSTUME AND EQUIPMENT — 장르 · POSE AND SETTING 으로 묶는다. 일상컷은 판의 casualSkin(23d · lock · 애니 광택)을 싣는다.
+- 생성기 — 화풍 고르개(맨 위 기본, 주소 ?style=, 기기에 stylePick). 화풍 탭 — styles.html · data/style-compare.json(빈 묶음 — 아직 그림 없음) · tools/style-compare.py(next · put · sync · check, 세계 fantasy · steampunk · mecha), 항해 PAGES 에 styles. IMAGE_RULES 끝 절.
+- 검사 — prompt-element.cjs(옮긴 화풍 1200 + 영어 틀), screen.cjs(화풍 탭 · 생성기 고르개), tests/style-compare.py. 판 번호 words v12 · workspace-ui v4 · prompt-element v14 · studio v3.
+
 ## 2026-11-06 · claude · 세계 그림 카메라 기본 — 수평 3/4
 - lib/prompt-spec.js — 구조판 4절 카메라 기본 글: 낮은 시점(low angle) → 얼굴 높이 수평(eye-level) · 턱 수평 · 얼굴에 올려다보는 원근 없음 · 완만한 3/4. 올려다본 기본 그림을 일상컷이 붙이면 하관이 길고 턱이 무겁게 따라갔고, 정면 기본 그림은 일상컷 고개 각도를 굳혔다(포켓몬 갸라도스 시험 — 옛 · 수평 정면 · 수평 3/4 비교). 사용자 「수평 정면 3/4 구도를 기본으로 하자」
 - data/element-design.json — 헬륨 · 규소 세 세계 손글 칸 「카메라」 도 같은 글로

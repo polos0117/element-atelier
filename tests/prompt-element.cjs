@@ -418,3 +418,22 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
   }
   console.log('PASS 구조판: 세계 그림 ' + ns + ' · 일상컷 ' + nc2 + ' · 칸 차례 · 손글 칸 · 설계 외형 · 체형 여덟 칸 · 받침 · 고른 것이 이김 · 노출 · 기록 · 일상컷 c2 · 머리 · 검사기 칸 이름');
 }
+
+/* 삼국지 공방에서 옮긴 화풍(2026-11-07 「원소공방에도 … 화풍들추가」) — kv 판은 머리말 · STYLE · CHARACTER · COSTUME — 장르 · POSE AND SETTING(+ 끝 줄),
+   영어 틀 판(kr_mmorpg · glossy_kr_game)은 STYLE 줄만 다르다. 모든 카드 × 사는 세계, 빈 칸 · 삼국지 말 없음 */
+{
+  const KV = ['kv_kmmo_lock', 'kv_kmmo_23d', 'kv_jp_mobile', 'kv_jp_paint', 'kv_anime_gloss'], TXT = ['kr_mmorpg', 'glossy_kr_game'];
+  let nk = 0;
+  for (const st of KV.concat(TXT)) assert(SN.styles[st], '옮긴 화풍 ' + st);
+  for (const key of P.cards(D)) for (const w of P.worldsOf(D, key)) {
+    for (const st of KV) {
+      const v = SN.styles[st].versions.find(x => x.v === SN.styles[st].current), p = P.build(D, SN, key, w, { style: st });
+      assert(p.includes(v.section1) && p.includes('\nCHARACTER:\n') && p.includes('COSTUME AND EQUIPMENT — ' + v.genre[w] + ':') && p.includes('\nPOSE AND SETTING:\n'), key + ' ' + w + ' ' + st + ' 칸');
+      assert(!/\{\w+\}|undefined|Three Kingdoms|wuxia/i.test(p), key + ' ' + w + ' ' + st + ' 빈 칸 · 삼국지 말');
+      assert(p.includes(P.build(D, SN, key, w, { style: 'game_keyart' }).split('\n').find(l => l.startsWith('CONCEPT:'))), key + ' ' + w + ' ' + st + ' 설계표 CONCEPT 그대로');
+      nk++;
+    }
+    for (const st of TXT) { const p = P.build(D, SN, key, w, { style: st }); assert(p.includes('STYLE: ' + SN.styles[st].versions[0].text), key + ' ' + st); }
+  }
+  console.log('PASS 옮긴 화풍: kv ' + nk + '장 · 영어 틀 ' + TXT.length + '판');
+}

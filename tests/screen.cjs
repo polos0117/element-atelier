@@ -212,6 +212,21 @@ const fieldOf = (txt, name) => { const m = String(txt).match(new RegExp('^' + na
     assert.equal(await v.page.locator('.row-head .shared a[href="dex.html?nation=o"]').count(), 1, '물 가문은 산소나라와 나눈다');
     assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
 
+    /* 화풍 비교 탭(2026-11-07 — 삼국지 공방과 같이) — 항해에 화풍, 묶음이 없으면 빈 안내, 있으면 화풍마다 칸 */
+    { const SC = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style-compare.json'), 'utf8')), sv = await open('/styles.html', vp);
+      await sv.page.waitForSelector('.sc-lede');
+      assert.equal(await sv.page.locator('.workspace-nav a[aria-current="page"]').getAttribute('href'), 'styles.html', '화풍 탭');
+      if (!SC.rounds.length) assert.equal(await sv.page.locator('.sc-cell').count(), 0, '묶음 없음 — 빈 안내');
+      else { await sv.page.waitForSelector('.sc-cell'); const R0 = SC.rounds.slice().sort((a, b) => a.key < b.key ? 1 : -1)[0]; assert.equal(await sv.page.locator('.sc-style').count(), R0.styles.length, '화풍마다 한 칸'); }
+      await noOverflow(sv.page, vp.width + ' 화풍 비교'); assert.deepEqual(sv.errors, [], '화풍 비교 콘솔'); checks += 4; await sv.ctx.close(); }
+    /* 생성기 화풍 고르개 — 맨 위 기본(''), 고르면 지시문 · 파일 이름이 그 화풍 */
+    { const gv = await open('/prompt.html?card=fe&o=world&world=fantasy', vp), gp = gv.page; await gp.waitForSelector('.hchip');
+      const ov = await gp.$$eval('#st-style option', os => os.map(o => o.value));
+      assert.equal(ov[0], '', '화풍 맨 위는 기본'); assert(ov.includes('kv_jp_paint') && ov.includes('kv_kmmo_23d') && !ov.includes(S.default), '화풍 목록');
+      const d0 = await promptOf(gp);
+      await gp.selectOption('#st-style', 'kv_jp_paint'); assert.match(await promptOf(gp), /^Use case: stylized-concept\./, '고른 화풍 지시문');
+      await gp.selectOption('#st-style', ''); assert.equal(await promptOf(gp), d0, '기본으로 돌아옴');
+      assert.deepEqual(gv.errors, [], '생성기 화풍 콘솔'); checks += 5; await gv.ctx.close(); }
     /* 생성기 — 세계 그림: 주소대로 카드·세계 → 덧붙임 → 다 골랐다 */
     v = await open('/prompt.html?card=fe-steel-sword&o=world&world=mecha', vp);
     const p = v.page; await p.waitForSelector('.hchip');

@@ -13,6 +13,7 @@
 | `IMAGE_RULES.md` | 그림 만들기·파일 이름·기록·올리기 — 그림 작업 전에 |
 | `docs/IMAGE_AUTOMATION.md` | GPT 세션(사람이 안 지켜보는) 이미지 작업 — 잠금(`tools/image-claim.cjs`) · 일상컷 계획기(`tools/casual-plan.cjs`, 세계마다 다섯 장) · 지시문 묶음(`tools/prompt-pack.cjs`) · 검수 · 묻지 않고 올리기 |
 | `data/style.json` | 화풍 판 — 세계 그림은 `text`, 일상컷은 `casual`, 판의 `face` 는 지시문으로 옮길 때 바꿔 적는 얼굴 낱말(v3 — 2026-11-02, 평면 2D 로 나오던 귀여운 얼굴 낱말 · v4d — 2026-11-03, 실사 쪽 낱말). `game_keyart` 의 지금 판은 v2(2026-11-04 되돌림 — v3 · v4d 는 기록 판). **기본 화풍은 `mmorpg2d`(2D 한국 MMORPG 구조 지시문, 2026-11-06 — 사용자 「원소공방도 이그림체로 하자」 — `semireal` 과 같은 구조판에 1절 작화 고정만 다르다. 그 전 기본은 `semireal`, 반실사 구조 지시문, 2026-11-04 — 사용자 「이걸 기본화풍으로 처음부터 만들거야」)**: 판에 공통 적용 규칙(`rules`) · 일상컷 규칙(`casual_rule`) · 1절 작화 고정(`section1`, 그림 용어 영어 병기)을 두고 2~4절(캐릭터 외형 · 코디네이션 · 장면)은 카드마다 칸을 채운다. 생성기가 이 틀로 전체본을 짓는다(2026-11-04 — 사용자 「생성기부터 손봐줘」, 아래 1-3) |
+| 삼국지에서 옮긴 화풍 | `data/style.json` 일곱(2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가」) — 영어 틀 `kr_mmorpg` · `glossy_kr_game`(글 그대로), kv 판 `kv_kmmo_lock` · `kv_kmmo_23d` · `kv_jp_mobile` · `kv_jp_paint` · `kv_anime_gloss`(`lib/prompt-element.js` buildKv — 머리말 · STYLE · 장르 이름 · 끝 줄만 판이, CHARACTER · COSTUME · POSE AND SETTING 칸은 영어 틀과 같은 줄(worldLines)을 칸으로 묶음). 기본 화풍은 그대로. 생성기 위 화풍 고르개(주소 `?style=`, 기기에 기억) |
 | `docs/PORT_NOTES.md` | 어디서 무엇을 가져왔고, 무엇을 아직 안 가져왔나 |
 | `docs/PATCH.md` | 무엇을 고쳤나 — 고친 쪽이 직접 적는다 (아래 규칙 6) |
 
@@ -24,6 +25,7 @@
 | 전시관 | `gallery.html` · `lib/gallery.css` | 감상용(2026-11-02 「감상용 디지털 아카이브 — 레이어 줌인 · 원형」). 그려진 카드만 건다 — 섬(나라들) → 나라(원소마다 생성한 궤도 그림 — 그림 저장소 `backgrounds/orbits/orbit-<나라>.webp`, 큰 고리 반지름은 기록 `ring` · `gallery.html` 의 `RING` — 위에 가문 이름표만, 누르면 큰 그림 미리 보기 → 「크게 보기」(한 장) · 「주민 보기」(가문)) → 가문(가문주 크게 · 주민은 장식 틀 액자) → 한 장(화면 가득 · ← → 세계 · Esc). 세계(판타지 · 스팀펑크 · 메카)는 위 막대에 늘 있고 바꾸면 같은 카드가 그 세계 그림으로(새 그림이 스르르 — 뷰 전환은 폰에서 터치를 3초 넘게 붙잡아 뺐다). 그 세계 그림이 없으면 다른 세계 것을 「…의 그림」 표시로. 사실 칸은 elements 의 것만. 주소 `?n=&f=&c=&w=&v=1`, 층마다 뒤로 가기. 도감은 그림을 채우는 작업 화면으로 그대로 |
 | 주기율표 | `hall.html` · `lib/element.css` | 주기율표 118칸(설계된 나라만 색·누르면 도감) · 첫 묶음 나라 카드(인격·가문·주민·그림 수) · 패치 기록 · 공간 |
 | 도감 | `dex.html` · `lib/img.js` · `lib/element.css` | 나라 하나 — 화풍 고르개(고른 화풍의 그림만, 처음은 기본 화풍) · 사실 칸·인격·성질 · 근본 세 세계 · 가문마다 가문주 세 세계 + 주민들(사는 세계만) · 같은 물질 다른 나라 잇기 · 크게 보기 · 빈 자리를 누르면 그 카드의 생성기. 등록부 `data/img.json` 에 적힌 것만 |
+| 화풍 비교 | `styles.html` · `data/style-compare.json` · `tools/style-compare.py` | 머리 항해의 「화풍」 탭(2026-11-07 — 삼국지 공방과 같이). 묶음(rounds)마다 같은 카드를 화풍별 세계 그림 셋 + 일상컷(근접 · 원거리)으로, 보기 화풍별 · 세계별 · 크게 보기. 그림은 그림 저장소 `style-test/compare/<묶음 열쇠>/`(등록 그림 아님). **묶음은 더하기만** — 열쇠는 날짜, 같은 날 또 올리면 날짜-2 …, 세션마다 세계 하나씩 같은 열쇠로 `put` 하면 합쳐진다(IMAGE_RULES 화풍 비교 절) |
 | 프롬프트 | `prompt.html` · `lib/studio.js` · `lib/studio.css`(판) · `lib/prompt-spec.js`(표) · `lib/prompt-element.js`(조립) · `lib/casual-tree.js` · `lib/casual-tree-v2.js` · `data/casual-tree.json` · `data/casual-tree-v2.json`(일상컷 트리) | 생성기 — 공방 모음 통합 생성기 꼴(한 단계씩, 칩·판·폰 아래 막대·시트). 나라 › 카드(근본·가문주·주민) › 갈래(세계 그림 · 일상컷) › 단계 → 지시문·올릴 파일 이름·기록 JSON. 세계 그림은 세계 → 덧붙임. 일상컷은 트리 버전2 — 시대 → 장소 → 계절·날씨 → 의상 → 옷 → 자세 추천 → 몸 자세 → 받침 → 프레이밍 → 몸·머리 방향 → 카메라 → 오른손·왼손 → 소품 동작 → 다리 → 시선 → 표정 → 덧붙임. 해방(트리 밖 + 까닭)·랜덤·여기부터 다시·처음부터. 고른 것은 이 브라우저에(`element_studio_v1`), 주소 `?card=&o=&world=` |
 
 머리·항해·⚙ 설정은 `lib/workspace-ui.js`, 공간(테마)은 `lib/workspace-theme.js`·`lib/workspace.css`·`lib/room.css` — 공간 다섯(실험실·천문대·연금술 공방·광산·제어실)은 색과 배경 그림(그림 저장소 `backgrounds/room-<공간>.webp`, 기록 `records/backgrounds/`)을 원소에 맞게 새로 짰다(2026-10-30).
@@ -106,6 +108,7 @@
 python3 tools/element-design.py check   # 설계표 — 빈칸·열쇠 꼴·세계 셋·가문의 원소·겹치는 가문·사실 칸 118
 python3 tests/element-design.py         # 검사기가 규칙마다 거는지
 node tests/prompt-element.cjs           # 지시문 — 모든 카드 × 사는 세계, 뼈대 줄, 입는 물건, 메카 설계, 덧붙임, 기록, 파일 이름 · 일상컷 버전2 줄
+python3 tests/style-compare.py           # 화풍 비교 묶음 — 열쇠 꼴 · 겹침 · 목록의 화풍 · 그림 저장소 파일
 python3 tools/casual-tree.py check      # 일상컷 트리 표(버전1 몫 — 시대·장소·의상) · audit — 하는 일 문장의 고정물이 장소에 없는 쌍
 python3 tools/casual-tree-v2.py check   # 일상컷 트리 버전2 표 — 없는 열쇠·두 손 칸·보이는 손 자리·다리 칸·다 되는 장소 없는 자세 추천
 python3 tests/casual-tree-v2.py · node tests/casual-tree-v2.cjs   # 검사기·거르기 모듈이 규칙마다 거는지

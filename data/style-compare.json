@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "note": "화풍 비교(styles.html) — 묶음(rounds)마다 같은 카드를 화풍별 세계 그림 셋(판타지 · 스팀펑크 · 메카) + 그 그림을 붙인 일상컷(근접 · 원거리)으로. 그림은 그림 저장소 element-atelier-img style-test/compare/<묶음 열쇠>/<화풍>_<세계>_<world|casual|far>.webp (+ thumb/), 예전 줄은 등록된 그림(img/). 묶음 열쇠는 날짜, 같은 날 또 올리면 날짜-2 · 날짜-3 … — 덮어쓰지 않고 더한다(tools/style-compare.py next · put · sync · check, IMAGE_RULES 화풍 비교 절). 2026-11-07 사용자 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」",
+ "base": "https://polos0117.github.io/element-atelier-img/style-test/compare/",
+ "oldBase": "https://polos0117.github.io/element-atelier-img/img/",
+ "worlds": [
+  "fantasy",
+  "steampunk",
+  "mecha"
+ ],
+ "rounds": []
+}

@@ -147,3 +147,18 @@ game·pkm 이 쓰는 일상컷 트리 버전2(`lib/casual-tree-v2.js`, 설계는
 - 나라마다 끝나면 그림·기록을 그림 저장소에 일반 push 한다.
 - 다시 이을 때는 도감의 진행(`n/m장`)과 `data/img.json` 을 보고 빈 자리부터. 도감의 빈 자리를 누르면 그 카드의 생성기가 열린다.
 - `node tools/image-claim.cjs next` 가 차례대로 첫 빈 카드와 빈 자리(사는 세계마다 세계 그림 + 일상컷 다섯 장)를 알려 준다. GPT 세션은 그 카드를 `claim` 한 뒤 그린다(`docs/IMAGE_AUTOMATION.md` 2절) — 사람이 지켜보는 세션도 잠긴 카드는 건드리지 않는다.
+
+## 화풍 비교 탭에 올리기 (등록 아님)
+
+화풍 비교 그림은 도감 그림이 아니다 — `img/` · `data/img.json` 에 넣지 않고, 화풍 탭(`styles.html`)의 묶음으로만 올린다(2026-11-07, 삼국지 공방과 같은 도구).
+
+- 묶음 열쇠는 하나를 먼저 정해 세션 모두에게 같이 준다(`python3 tools/style-compare.py next` — 날짜, 같은 날 또 있으면 날짜-2 · 날짜-3). 세션이 세계 하나씩(판타지 · 스팀펑크 · 메카) 나눠 그려도 **같은 열쇠**로 올리면 한 묶음에 합쳐진다. 한 묶음은 카드 하나.
+- 세션마다 제 몫만(화풍마다 한 번, 그림은 있는 것만):
+  ```
+  python3 tools/style-compare.py put <열쇠> --card <카드 열쇠> --style <화풍 열쇠> --world <fantasy|steampunk|mecha> \
+      --world-img <세계 그림> --casual-img <근접 일상컷> --far-img <원거리 일상컷> \
+      [--casual-note "<근접 장면 한 줄>"] [--far-note "<원거리 장면 한 줄>"] [--note "<화풍 한 줄 소감>"]
+  ```
+  webp + thumb 를 그림 저장소 `style-test/compare/<열쇠>/` 에 넣고 `data/style-compare.json` 의 묶음을 맞춘다. 이미 있는 파일은 덮어쓰지 않는다(일부러 바꿀 때만 `--replace`).
+- 올리기: 그림 저장소(`element-atelier-img`) 먼저 커밋 · `git pull --rebase` · 푸시, 그다음 코드 저장소. 목록 파일이 부딪치면 `git checkout --theirs data/style-compare.json && python3 tools/style-compare.py sync <열쇠>` 뒤 `git add` · `git rebase --continue`.
+- 아직 안 올린 세계 · 갈래는 화면에 「그림 없음」 칸. `python3 tools/style-compare.py check` 가 겹침 · 빠진 목록을 본다.

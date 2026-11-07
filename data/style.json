@@ -220,6 +220,149 @@
      ]
     }
    ]
+  },
+  "kr_mmorpg": {
+   "name": "한국 MMORPG 프로모",
+   "current": "v4",
+   "versions": [
+    {
+     "v": "v4",
+     "text": "Premium Korean MMORPG promotional character render — an in-engine 3D character model with hand-painted textures, not flat cel shading and not a 2D anime illustration: semi-realistic volumetric forms, porcelain skin with a soft subsurface glow and glossy specular highlights, a small refined face with delicate realistic-anime features, long legs and a narrow waist on a full, curvaceous figure in the body type SILHOUETTE names — soft, rounded volume at the bust, and hips and thighs kept in realistic human proportion: long, shapely legs, never oversized thighs, exaggerated hips or a bottom-heavy figure; never thin, flat or boyishly straight. Polished metal, silk and gems catch sharp highlights. Extremely intricate ornamented costume — filigree metalwork, jewel inlays, layered translucent fabrics and fine embroidery. Character-select-screen lighting: strong rim light, soft key light on the face, drifting light particles, atmospheric depth with a softly blurred background. Luxurious, high-detail finish.",
+     "casual": "Premium Korean MMORPG promotional character render: a semi-realistic, painterly 3D finish with porcelain skin and a soft subsurface glow, a small refined face with delicate realistic-anime features, long legs and a narrow waist on a full, curvaceous figure with soft volume at the bust, and hips and thighs in realistic human proportion — long, shapely legs, never oversized thighs or exaggerated hips. Glossy specular highlights on skin, fabric and jewellery. Refined fabric and accessory rendering with fine jewellery detail. Ethereal rim lighting, drifting light particles and atmospheric depth with a softly blurred background. Luxurious, high-detail, character-select-screen quality.",
+     "check": "semi-realistic Korean MMORPG promo render — porcelain skin, intricate filigree costume, rim light and particles; one figure, no readable text but a single banner character.",
+     "adopted": "2026-11-07",
+     "by": "claude",
+     "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 영어 틀 화풍 — 삼국지의 v4 글 그대로(text · casual)."
+    }
+   ]
+  },
+  "glossy_kr_game": {
+   "name": "한국형 글로시 게임 일러스트",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "text": "Glossy Korean mobile-game character art with an elegant anime face, smooth dimensional shading, luminous color accents and refined costume and accessory rendering. Keep highlights selective and the figure sharply readable.",
+     "casual": "Glossy Korean mobile-game character art with an elegant anime face, smooth dimensional shading, luminous color accents and refined fabric and accessory rendering. Keep highlights selective and the figure sharply readable.",
+     "check": "glossy Korean mobile-game rendering with selective highlights; the general's legend carried by costume, signature item and scene — one figure, no readable text but a single banner character.",
+     "adopted": "2026-11-07",
+     "by": "claude",
+     "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 영어 틀 화풍 — 삼국지의 v1 글 그대로(text · casual)."
+    }
+   ]
+  },
+  "kv_kmmo_lock": {
+   "name": "한국 MMORPG 기준 판",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "format": "kv",
+     "adopted": "2026-11-07",
+     "by": "claude",
+     "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 삼국지 kv_kmmo_lock v5 의 머리말 · STYLE(작화) · 끝 줄을 원소 꼴로 — 인물 · 옷 · 세계 · 장면 · 노출은 원소 설계표에서(영어 틀과 같은 줄을 칸으로 묶음).",
+     "head": "Create ONE finished illustration of {name_en} — a character of the {nation_en} Nation, an element personified — as a beautiful adult woman. A single vertical 2:3 full-body character illustration, head to boots fully visible.",
+     "section1": "1. RENDERING STYLE — PREMIUM KOREAN MMORPG ILLUSTRATION (FIXED ACROSS ALL GENRES)\nPremium Korean MMORPG official character illustration with an elegant idealised semi-realistic face, exceptionally refined dimensional modelling and precise material rendering. A polished 2.5D painted game illustration with convincingly three-dimensional forms and delicately finished surfaces. Use rich, clear local colours, deep luminous midtones and selective highlights. Hair has weight, sculpted flowing masses and individual fine wisps. Polished metal has sharp selective reflections; silk has soft directional lustre; leather has quieter broad reflections. The materials must look distinctly different. No visible contour outlines, no flat cel shading, no photographic skin texture, no plastic doll finish, no exaggerated eyeliner, no oily skin or overall glossy sheen. Maintain excellent facial clarity and colour richness without a washed-out veil, muddy shadows, excessive bloom or an overall blue colour cast.\nFACIAL DESIGN LOCK: model the eyelids, eyeballs, nose bridge and nose tip, lips, cheeks and jaw with continuous nuanced shading. The face remains soft and beautiful, with clean matte-satin skin and subtle natural highlights. Preserve the specified face shape, eye shape, skin colour and adult maturity.\nGENRE LOCK: fantasy, steampunk and mecha change only the design of the costume, equipment and setting. The face, skin, hair rendering, eye size, lighting on the face and painting finish stay exactly the same in every genre.",
+     "genre": {
+      "fantasy": "FANTASY",
+      "steampunk": "STEAMPUNK",
+      "mecha": "MECHA"
+     },
+     "text": "Premium Korean MMORPG official character illustration with an elegant idealised semi-realistic face, exceptionally refined dimensional modelling and precise material rendering. A polished 2.5D painted game illustration with convincingly three-dimensional forms and delicately finished surfaces. Use rich, clear local colours, deep luminous midtones and selective highlights. Hair has weight, sculpted flowing masses and individual fine wisps. Polished metal has sharp selective reflections; silk has soft directional lustre; leather has quieter broad reflections. The materials must look distinctly different. No visible contour outlines, no flat cel shading, no photographic skin texture, no plastic doll finish, no exaggerated eyeliner, no oily skin or overall glossy sheen. Maintain excellent facial clarity and colour richness without a washed-out veil, muddy shadows, excessive bloom or an overall blue colour cast. FACIAL DESIGN LOCK: model the eyelids, eyeballs, nose bridge and nose tip, lips, cheeks and jaw with continuous nuanced shading. The face remains soft and beautiful, with clean matte-satin skin and subtle natural highlights. Preserve the specified face shape, eye shape, skin colour and adult maturity.",
+     "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
+    }
+   ]
+  },
+  "kv_kmmo_23d": {
+   "name": "한국 MMORPG 2.3D",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "format": "kv",
+     "adopted": "2026-11-07",
+     "by": "claude",
+     "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 삼국지 kv_kmmo_23d v1 의 머리말 · STYLE(작화) · 끝 줄을 원소 꼴로 — 인물 · 옷 · 세계 · 장면 · 노출은 원소 설계표에서(영어 틀과 같은 줄을 칸으로 묶음).",
+     "head": "Create ONE finished illustration of {name_en} — a character of the {nation_en} Nation, an element personified — as a beautiful adult woman. A single vertical 2:3 full-body character illustration, head to boots fully visible.",
+     "section1": "STYLE:\nPremium Korean MMORPG official character illustration, approximately 2.3D in appearance. An elegant illustrated face with softly dimensional modelling, refined painted shading, rich colours and precise material rendering. Keep the face recognisably illustrated, with smooth skin and carefully controlled highlights. Detailed metal, embroidered fabric and flowing hair, all rendered consistently in the same polished game illustration style.\nGENRE LOCK: fantasy, steampunk and mecha change only the costume, equipment and setting; the face, skin, hair rendering and this illustration style stay exactly the same in every genre.",
+     "genre": {
+      "fantasy": "FANTASY",
+      "steampunk": "STEAMPUNK",
+      "mecha": "MECHA"
+     },
+     "text": "Premium Korean MMORPG official character illustration, approximately 2.3D in appearance. An elegant illustrated face with softly dimensional modelling, refined painted shading, rich colours and precise material rendering. Keep the face recognisably illustrated, with smooth skin and carefully controlled highlights. Detailed metal, embroidered fabric and flowing hair, all rendered consistently in the same polished game illustration style.",
+     "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
+    }
+   ]
+  },
+  "kv_jp_mobile": {
+   "name": "일본 모바일게임 리얼 CG",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "format": "kv",
+     "adopted": "2026-11-07",
+     "by": "claude",
+     "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 삼국지 kv_jp_mobile v1 의 머리말 · STYLE(작화) · 끝 줄을 원소 꼴로 — 인물 · 옷 · 세계 · 장면 · 노출은 원소 설계표에서(영어 틀과 같은 줄을 칸으로 묶음).",
+     "head": "Use case: stylized-concept. Create ONE finished illustration of {name_en} — a character of the {nation_en} Nation, an element personified — as a beautiful adult human woman, in a high-quality Japanese realistic mobile-game character art style. Brand-new image from text only.",
+     "section1": "STYLE: Premium Japanese fantasy mobile-game promotional key visual with refined realistic CG-like dimensional modelling and polished painterly finishing. An elegant idealised East Asian adult face with natural-size expressive eyes, a softly sculpted nose, naturally shaped lips, a compact oval face and softly defined jaw. Convincing facial depth, beautifully controlled skin shading, subtle matte-satin skin, realistic hair volume and precisely differentiated metal, silk and leather. Rich clear colours, crisp focal detail and cinematic lighting. Avoid flat anime cel shading, oversized anime eyes, a plastic doll face, exaggerated makeup and photographic live-action appearance.",
+     "genre": {
+      "fantasy": "FANTASY",
+      "steampunk": "STEAMPUNK",
+      "mecha": "MECHA"
+     },
+     "text": "Premium Japanese fantasy mobile-game promotional key visual with refined realistic CG-like dimensional modelling and polished painterly finishing. An elegant idealised East Asian adult face with natural-size expressive eyes, a softly sculpted nose, naturally shaped lips, a compact oval face and softly defined jaw. Convincing facial depth, beautifully controlled skin shading, subtle matte-satin skin, realistic hair volume and precisely differentiated metal, silk and leather. Rich clear colours, crisp focal detail and cinematic lighting. Avoid flat anime cel shading, oversized anime eyes, a plastic doll face, exaggerated makeup and photographic live-action appearance.",
+     "tail": "FINISH: convincing armour construction and weight with sharp selective metallic reflections, soft silk lustre and restrained leather details. Cool daylight and restrained warm reflected light reveal her face and the costume clearly.\n\nANATOMY: Exactly one head, two arms, two natural human hands, five fingers on each hand, two legs. Both hands visible and correctly connected. No extra or missing limbs. No other characters. No logos, borders, interface or watermark; no writing except the chemical symbol and atomic number the rules above allow.",
+     "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
+    }
+   ]
+  },
+  "kv_jp_paint": {
+   "name": "일본 유화풍 게임 일러스트",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "format": "kv",
+     "adopted": "2026-11-07",
+     "by": "claude",
+     "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 삼국지 kv_jp_paint v1 의 머리말 · STYLE(작화) · 끝 줄을 원소 꼴로 — 인물 · 옷 · 세계 · 장면 · 노출은 원소 설계표에서(영어 틀과 같은 줄을 칸으로 묶음).",
+     "head": "Use case: stylized-concept. Create ONE finished illustration of {name_en} — a character of the {nation_en} Nation, an element personified — as a beautiful adult human woman. Brand-new image from text only.",
+     "section1": "STYLE: High-quality Japanese painterly fantasy game character illustration, an exquisite finished promotional key visual. Refined Japanese illustrated character design with richly layered painterly colour, subtle visible brushwork, beautifully modelled light and shadow, delicate edge control and crisp focal details. An elegant adult face with expressive almond-shaped eyes, a compact oval face, softly defined jaw, delicately sculpted nose and natural lips. Luminous, rich colours and cinematic depth; finely painted skin and hair, convincing metal and fabric. Keep the entire image coherent as a polished painting. No flat cel shading, photographic appearance or plastic 3D-render finish.",
+     "genre": {
+      "fantasy": "FANTASY",
+      "steampunk": "STEAMPUNK",
+      "mecha": "MECHA"
+     },
+     "text": "High-quality Japanese painterly fantasy game character illustration, an exquisite finished promotional key visual. Refined Japanese illustrated character design with richly layered painterly colour, subtle visible brushwork, beautifully modelled light and shadow, delicate edge control and crisp focal details. An elegant adult face with expressive almond-shaped eyes, a compact oval face, softly defined jaw, delicately sculpted nose and natural lips. Luminous, rich colours and cinematic depth; finely painted skin and hair, convincing metal and fabric. Keep the entire image coherent as a polished painting. No flat cel shading, photographic appearance or plastic 3D-render finish.",
+     "tail": "FINISH: the armour has beautifully painted metallic reflections, while the silk has a softer lustre. Clear directional light brings out the face, the costume and hair, with restrained atmospheric glow; the setting is softly painted and gives atmospheric depth without competing with her face and silhouette.\n\nANATOMY AND FINISH: One head, exactly two arms and two legs. Both natural human hands visible, five fingers on each hand, anatomically correct grip and clear wrists. No extra limbs, missing hands or cropped weapon. No other characters, logos, watermark, border or UI; no text except the chemical symbol and atomic number the rules above allow.",
+     "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
+    }
+   ]
+  },
+  "kv_anime_gloss": {
+   "name": "애니 광택(포켓몬 공방)",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "format": "kv",
+     "adopted": "2026-11-07",
+     "by": "claude",
+     "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 삼국지 kv_anime_gloss v1 의 머리말 · STYLE(작화) · 끝 줄을 원소 꼴로 — 인물 · 옷 · 세계 · 장면 · 노출은 원소 설계표에서(영어 틀과 같은 줄을 칸으로 묶음).",
+     "head": "Use case: stylized-concept. Create ONE finished illustration of {name_en} — a character of the {nation_en} Nation, an element personified — as a beautiful adult human woman, in a polished glossy 2D anime gacha character illustration style. Brand-new image from text only.",
+     "section1": "STYLE: Polished Japanese-anime gacha character illustration in clean 2D: crisp thin dark linework, large finely detailed glossy eyes with layered highlights and a soft blush, very fine detailed hair rendered as many thin strands with sparkling highlights along every lock, soft airy cel-to-gradient shading with a natural sunlit sheen — soft, broad highlights from real outdoor daylight on her skin, gloves, stockings and armor, never wet, oily or plastic-looking, and a bright high-key look where the highlights glow toward white while the darkest accents stay deep and clean. A low-saturation pastel palette dominated by white, silver and soft light tones, with one deep accent colour; gentle bloom and small sparkle particles in the air. Keep the face and body visibly illustrated in 2D; no 3D render or photorealistic appearance.",
+     "genre": {
+      "fantasy": "FANTASY",
+      "steampunk": "STEAMPUNK",
+      "mecha": "MECHA"
+     },
+     "text": "Polished Japanese-anime gacha character illustration in clean 2D: crisp thin dark linework, large finely detailed glossy eyes with layered highlights and a soft blush, very fine detailed hair rendered as many thin strands with sparkling highlights along every lock, soft airy cel-to-gradient shading with a natural sunlit sheen — soft, broad highlights from real outdoor daylight on her skin, gloves, stockings and armor, never wet, oily or plastic-looking, and a bright high-key look where the highlights glow toward white while the darkest accents stay deep and clean. A low-saturation pastel palette dominated by white, silver and soft light tones, with one deep accent colour; gentle bloom and small sparkle particles in the air. Keep the face and body visibly illustrated in 2D; no 3D render or photorealistic appearance.",
+     "tail": "FINISH: her colours rendered within a low-saturation white-and-silver pastel palette, the deepest of them as the single deep accent colour; armour, cloth and leather carry a soft, broad natural sunlit sheen, never wet, oily or plastic-looking. Bright high-key daylight with soft bloom and small sparkles; glossy 2D anime gacha character illustration.\n\nANATOMY AND FINISH: One head, exactly two arms and two legs. Both natural human hands visible, five fingers on each hand, anatomically correct grip and clear wrists. No extra limbs, missing hands or cropped weapon. No other characters, logos, watermark, border or UI; no text except the chemical symbol and atomic number the rules above allow.",
+     "casualSkin": "SKIN: softly luminous skin on every bare area with a gentle satin sheen — subtle highlights on the cheekbones, nose bridge, lips, collarbones and shoulders, modelled by gentle tonal shading; fresh and natural, never oily, sweaty or wet-looking, and never a plastic, airbrushed doll finish."
+    }
+   ]
   }
  }
 }

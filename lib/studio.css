@@ -126,3 +126,9 @@
 .axis .dz {font-style:normal;padding:1px 6px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-size:11px;white-space:nowrap}
 .hchips .hchip {min-height:44px}
 @media (max-width:768px) {.hpath .hcrumb {min-height:44px} .opts .opt {min-height:48px}}   /* 손가락 크기 44px 이상(2026-11-02 점검) */
+
+/* 화풍 고르개(2026-11-07 — 삼국지 공방과 같이) — 안 고르면 기본 화풍 */
+.style-pick {display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 10px;font-size:13px}
+.style-pick[hidden] {display:none}
+.style-pick label {color:var(--muted)}
+.style-pick select {min-height:36px;max-width:100%;font:inherit;padding:4px 8px}

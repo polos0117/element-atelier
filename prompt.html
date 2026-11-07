@@ -15,17 +15,17 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=3"></script>
-<script src="lib/words.js?v=11"></script>
+<script src="lib/words.js?v=12"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/prompt-spec.js?v=10"></script>
 <script src="lib/look-spec.js?v=3"></script>
 <script src="lib/casual-tree.js?v=1"></script>
 <script src="lib/casual-tree-v2.js?v=3"></script>
-<script src="lib/prompt-element.js?v=13"></script>
+<script src="lib/prompt-element.js?v=14"></script>
 <script src="lib/fresh.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=2">
 <link rel="stylesheet" href="lib/element.css?v=8">
-<link rel="stylesheet" href="lib/studio.css?v=2">
+<link rel="stylesheet" href="lib/studio.css?v=3">
 <link rel="stylesheet" href="lib/material.css?v=5">
 </head>
 <body class="prompt-page lab-page">
@@ -34,6 +34,7 @@
   <p class="lede" id="lede"></p>
   <button type="button" id="help" aria-label="?">?</button>
   <p id="status" role="status"></p>
+  <div class="style-pick" id="style-pick" hidden><label for="st-style" id="st-style-label"></label><select id="st-style"></select></div>
   <nav class="hchips" id="chips"></nav>
   <section class="panel" id="panel" aria-live="polite"></section>
   <section class="result" id="out" hidden>
@@ -52,7 +53,7 @@
 <div class="hsheet" id="hsheet" hidden></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
-import {WorkspaceHeader} from './lib/workspace-ui.js?v=3';
+import {WorkspaceHeader} from './lib/workspace-ui.js?v=4';
 render(h(WorkspaceHeader,{page:'prompt'}),document.getElementById('app'));
 window.AtelierFresh.watch();
 </script>
@@ -61,6 +62,7 @@ window.AtelierFresh.watch();
 (function () {
   var W = window.W;
   document.getElementById('lede').textContent = W('studio.lede');
+  document.getElementById('st-style-label').textContent = W('studio.style');
   document.getElementById('help').removeAttribute('aria-label'); document.getElementById('help').textContent = '? ' + W('studio.help');
   document.getElementById('chips').setAttribute('aria-label', W('studio.chips'));
   document.getElementById('hbar').setAttribute('aria-label', W('studio.bar'));
@@ -71,6 +73,6 @@ window.AtelierFresh.watch();
   document.getElementById('record').textContent = W('studio.record');
 })();
 </script>
-<script src="lib/studio.js?v=2"></script>
+<script src="lib/studio.js?v=3"></script>
 </body>
 </html>
