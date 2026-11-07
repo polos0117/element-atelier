@@ -7748,7 +7748,7 @@
      "eyes": "monolid_long",
      "brows": "arched_thin",
      "nose": "straight_narrow",
-     "lips": "thin_long",
+     "lips": "small_bow",
      "eye_color": "violet",
      "age": "early_20s",
      "impression": "melancholic",
@@ -7756,18 +7756,18 @@
      "eye_size": "medium",
      "eye_tilt": "down",
      "mark": "mole_eye",
-     "expr": "wistful"
+     "expr": "nostalgic"
     },
     "silhouette": {
      "body": "lanky",
      "hair": "long_straight",
      "hair_color": "violet_white"
     },
-    "why": "팔레트의 pale violet-white decay glow 가 머리(끝이 빛으로 흩어진다)·눈. 비활성 귀족·찰나의 존재 → 길고 가는 몸, 긴 생머리 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통 · 얼굴 — 스물 남짓 · 쓸쓸 · 창백한 피부 · 눈밑 점 · 표정 wistful(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」)",
+    "why": "팔레트의 pale violet-white decay glow 가 머리(끝이 빛으로 흩어진다)·눈. 비활성 귀족·찰나의 존재 → 길고 가는 몸, 긴 생머리 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통 · 얼굴 — 스물 남짓 · 쓸쓸 · 창백한 피부 · 눈밑 점 · 표정 wistful(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」) · 2026-11-07 사용자 「원래도 설계가 긴 얼굴에 위를 쳐다보는 구도라 일상컷에 옮길때 더 길어진거 같아」 — 판타지 얼굴형 long → oval, 입술 thin_long → small_bow(원소 어휘엔 soft_medium 이 없다), 표정 wistful(살짝 위를 보는 시선) → nostalgic(카메라 너머 아련한 시선). 쓸쓸함은 인상 · 눈매(monolid_long · 처진 눈꼬리)로",
     "worlds": {
      "fantasy": {
       "face": {
-       "face_shape": "long",
+       "face_shape": "oval",
        "eyes": "monolid_long"
       },
       "silhouette": {
