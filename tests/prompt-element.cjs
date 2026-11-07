@@ -236,7 +236,7 @@ const checkCasual = (key, sc, txt, label, world) => {
   assert(!/[가-힣]/.test(txt.replace(/\([^)]*\)/g, '')), label + ' 한국어(괄호 밖)');
   const noStyle = txt.split('\n\n').filter(l => !l.startsWith('STYLE: ')).join('\n\n');
   if (ownTables || !sc.random) assert(!GAME_WORDS.test(noStyle), label + ' 게임 말 — ' + (noStyle.match(GAME_WORDS) || [])[0]);
-  assert(words(txt) <= 1200, label + ' 길이 ' + words(txt) + ' 낱말');
+  assert(words(txt) <= 1250, label + ' 길이 ' + words(txt) + ' 낱말');   /* 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) */
   const close = T.CLOSE_FRAMES.includes(sc.frame);
   assert.equal(txt.includes('CROP: '), close, label + ' 가까운 컷만 CROP');
   assert.equal(txt.includes(CL.anatomyClose), close, label + ' 가까운 컷 몸 줄');
@@ -257,6 +257,12 @@ for (const key of CARDS) for (const era of eras) {
   eraLines[era] = eraLine; nc++;
 }
 assert.equal(new Set(Object.values(eraLines)).size, eras.length, '시대마다 시대 줄이 다르다');
+/* 일상컷 얼굴 길이(2026-11-07 「원소공방에는 일상컷 근거리때 얼굴길이 줄이는게 없나?」 → 「응 적용해줘」) — 영어 틀 · kv 판 일상컷은 FACE 줄에 짧은 중안부 · 하관 길이 두 문장(삼국지와 같이), 구조판은 faceLock 이 따로 */
+for (const st of Object.keys(SN.styles)) {
+  const txt = P.buildCasual(D, SN, 'og', { ...base('now'), ...full, frame: 'face_close' }, { ...optsFor('og'), style: st });
+  assert(/jaw length and face length-to-width ratio/.test(txt), st + ' 일상컷 하관 길이 문장');
+  if (!P.structVer(SN, st)) assert(/the same short midface \(eyes to mouth\)/.test(txt), st + ' 일상컷 짧은 중안부 문장');
+}
 if (ownTables) {
   const fe = era => P.buildCasual(D, S, 'fe', { ...base(era), ...full }, opts);
   assert(fe('now').includes('ERA: the present-day real world'), '지금 현실');
