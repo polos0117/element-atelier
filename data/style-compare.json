@@ -8,5 +8,86 @@
   "steampunk",
   "mecha"
  ],
- "rounds": []
+ "rounds": [
+  {
+   "key": "2026-11-07",
+   "date": "2026-11-07",
+   "card": "h",
+   "model": "gpt-image-2.6",
+   "title": "수소 — 기본 2D MMORPG + 삼국지에서 옮긴 화풍 일곱",
+   "kinds": [
+    "world",
+    "casual",
+    "far"
+   ],
+   "casual": {
+    "fantasy": "천문대 · 트렌치코트 · 손 흔들기(가슴 위)",
+    "steampunk": "밤 천문대 · 핼러윈 마녀 · 브이(클로즈업)",
+    "mecha": "나라의 여관 · 니트 원피스 · 손 흔들기(가슴 위)"
+   },
+   "far": {
+    "fantasy": "나라의 여관 · 새틴 라운지 세트 · 옆모습으로 다리 꼬고 앉기(전신)",
+    "steampunk": "유리·도자기 공방 · 스케이터 · 벽에 기대 한 발 올리기(전신)",
+    "mecha": "밤 천문대 · 화보 쿠튀르 · 옆모습으로 앉아 소품 쓰기(전신)"
+   },
+   "styles": [
+    {
+     "key": "mmorpg2d",
+     "name": "2D MMORPG 구조 지시문",
+     "default": true,
+     "note": "원소 기본 화풍(2D MMORPG 구조판). 맑은 하늘빛 파스텔에 선이 또렷한 2D.",
+     "old": null
+    },
+    {
+     "key": "kr_mmorpg",
+     "name": "한국 MMORPG 프로모",
+     "default": false,
+     "note": "한국 MMORPG 프로모 렌더(영어 틀) — 입체적이고 광택이 강하다.",
+     "old": null
+    },
+    {
+     "key": "glossy_kr_game",
+     "name": "한국형 글로시 게임 일러스트",
+     "default": false,
+     "note": "한국형 글로시(영어 틀) — 강한 광택 · 림라이트.",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_lock",
+     "name": "한국 MMORPG 기준 판",
+     "default": false,
+     "note": "삼국지 기준 판 — 반실사 얼굴 잠금, 재질 구분.",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_23d",
+     "name": "한국 MMORPG 2.3D",
+     "default": false,
+     "note": "삼국지 기본 2.3D — 일러스트 얼굴에 장식이 촘촘하다.",
+     "old": null
+    },
+    {
+     "key": "kv_jp_mobile",
+     "name": "일본 모바일게임 리얼 CG",
+     "default": false,
+     "note": "일본 리얼 CG — 성숙한 얼굴, 시원한 낮빛.",
+     "old": null
+    },
+    {
+     "key": "kv_jp_paint",
+     "name": "일본 유화풍 게임 일러스트",
+     "default": false,
+     "note": "일본 유화풍 — 붓 터치가 보이는 채색.",
+     "old": null
+    },
+    {
+     "key": "kv_anime_gloss",
+     "name": "애니 광택(포켓몬 공방)",
+     "default": false,
+     "note": "포켓몬 공방 애니 광택 — 흰 · 은 파스텔, 하이키, 반짝이. 판타지 원거리는 필터로 노출을 낮춰 뽑았다.",
+     "old": null
+    }
+   ]
+  }
+ ]
 }
