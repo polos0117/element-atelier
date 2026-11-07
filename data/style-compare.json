@@ -88,6 +88,86 @@
      "old": null
     }
    ]
+  },
+  {
+   "key": "2026-11-07-2",
+   "date": "2026-11-07",
+   "card": "og",
+   "model": "gpt-image-2.6",
+   "title": "오가네손 — 수소와 같은 화풍 여덟, 일상컷 장면은 다르게",
+   "kinds": [
+    "world",
+    "casual",
+    "far"
+   ],
+   "casual": {
+    "fantasy": "시골 역 · 유카타 · 소품을 얼굴 가까이(클로즈업)",
+    "steampunk": "나라의 들판 · 모션 캡처 수트 · 얼굴 가까이 소품(가슴 위)",
+    "mecha": "런웨이 · 달의 무녀 · 쉿(클로즈업)"
+   },
+   "far": {
+    "fantasy": "나라의 시장 · 크롭 후디 + 쇼츠 · 걸터앉아 두 손 짚기",
+    "steampunk": "광산 갱도 · 청바지 + 티셔츠 · 바닥에 앉아 먼 곳 보기(전경)",
+    "mecha": "패션쇼장 · 셔츠 원피스 · 서서 소품 쓰기(전경)"
+   },
+   "styles": [
+    {
+     "key": "mmorpg2d",
+     "name": "2D MMORPG 구조 지시문",
+     "default": true,
+     "note": "원소 기본 화풍(2D MMORPG 구조판). 맑은 하늘빛 파스텔에 선이 또렷한 2D.",
+     "old": null
+    },
+    {
+     "key": "kr_mmorpg",
+     "name": "한국 MMORPG 프로모",
+     "default": false,
+     "note": "한국 MMORPG 프로모 렌더(영어 틀) — 입체적이고 광택이 강하다.",
+     "old": null
+    },
+    {
+     "key": "glossy_kr_game",
+     "name": "한국형 글로시 게임 일러스트",
+     "default": false,
+     "note": "한국형 글로시(영어 틀) — 강한 광택 · 림라이트.",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_lock",
+     "name": "한국 MMORPG 기준 판",
+     "default": false,
+     "note": "삼국지 기준 판 — 반실사 얼굴 잠금, 재질 구분.",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_23d",
+     "name": "한국 MMORPG 2.3D",
+     "default": false,
+     "note": "삼국지 기본 2.3D — 일러스트 얼굴에 장식이 촘촘하다.",
+     "old": null
+    },
+    {
+     "key": "kv_jp_mobile",
+     "name": "일본 모바일게임 리얼 CG",
+     "default": false,
+     "note": "일본 리얼 CG — 성숙한 얼굴, 시원한 낮빛.",
+     "old": null
+    },
+    {
+     "key": "kv_jp_paint",
+     "name": "일본 유화풍 게임 일러스트",
+     "default": false,
+     "note": "일본 유화풍 — 붓 터치가 보이는 채색.",
+     "old": null
+    },
+    {
+     "key": "kv_anime_gloss",
+     "name": "애니 광택(포켓몬 공방)",
+     "default": false,
+     "note": "포켓몬 공방 애니 광택 — 흰 · 은 파스텔, 하이키, 반짝이.",
+     "old": null
+    }
+   ]
   }
  ]
 }
