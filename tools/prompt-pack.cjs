@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* 지시문 묶음 — 브라우저 없이 생성기와 같은 지시문·기록을 파일로(2026-10-31, game-atelier 의 tools/prompt-pack.cjs 를 원소 꼴로 — 그쪽은 pkm 에서).
    GPT 세션은 브라우저를 못 띄운다 — 생성기 화면(lib/studio.js)이 부르는 조립부(lib/prompt-element.js 의 build · buildCasual)를
-   같은 값으로 불러, 한 카드의 자리(사는 세계마다 세계 그림 한 장 + 일상컷 다섯 장 — IMAGE_RULES 2절)의 지시문과 기록을 쓴다.
+   같은 값으로 불러, 한 카드의 자리(사는 세계마다 세계 그림 한 장 + 일상컷 여섯 장 — IMAGE_RULES 2절)의 지시문과 기록을 쓴다.
    기록(<자리>-ui.json)은 생성기 「기록 내보내기」 와 같은 꼴에 생성기 저장값(storage)을 더한 것 — 그 storage 를 생성기에 넣으면 같은 지시문이 나온다(tests/prompt-pack-screen.cjs).
 
    node tools/prompt-pack.cjs init <카드> --dir <작업 폴더> [--plan <세계 하나의 plan.json> …]
@@ -14,7 +14,8 @@
    자리 — <세계>(세계 그림 — 첨부 없이 한 장씩) · <세계>-casualN(일상컷 — 그 세계 그림 첨부). 화풍은 늘 기본(data/style.json default). 고칠 수 있는 칸:
      worlds.<세계>   notes(scene · outfit · custom — 직접 입력, why) · look(params · faceDesignOn · silhouetteOn · exposure — 표에 없는 외형은 직접 입력이라 why) ·
                      shot(scene — 설계표 장면 변주 열쇠 · time · pose · expr — 표의 값)
-     casual.<자리>   scene · outfit · custom(직접 입력 — why) · exposure(moderate · low — 그 컷만 피부 노출 축을 낮춘다, why 필요) · 나머지는 계획 그대로
+     casual.<자리>   scene · outfit · custom(직접 입력 — why) · exposure(moderate · low — 그 컷만 피부 노출 축을 낮춘다, why 필요) · color(옷 색 갈래 — 비우면 계획) · denier(d40 · d60 · d80 · none) ·
+                     situ(none — 상황 노출 컷이 노출을 낮춰도 막혔을 때만 상황을 뺀다, why 필요) · 나머지는 계획 그대로
      세계 그림의 노출은 worlds.<세계>.look.exposure. 낮추는 것은 필터 거절 뒤 노출 낮추기(사용자 2026-11-01 「필터 문제로 막히면 재시도 후, 노출 수위를 낮춰가며 재시도로」 — IMAGE_RULES 1절) 에만 */
 'use strict';
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), crypto = require('node:crypto');
@@ -57,7 +58,7 @@ function initSettings(card, planPaths) {
     _: 'tools/prompt-pack.cjs 의 설정 — 고칠 수 있는 칸만 있다. 직접 입력(글 칸 · 표에 없는 외형)엔 why 에 까닭을 적는다. 고친 뒤 build',
     card: card.key, style: STYLE, plans: plans.map(p => p.path),
     worlds: Object.fromEntries(card.worlds.map(w => [w, { notes: {}, look: { params: {}, faceDesignOn: true, silhouetteOn: true, exposure: T.EXPOSURE_DEFAULT }, shot: {}, why: '' }])),
-    casual: Object.fromEntries(slots(card, plans).filter(s => s.kind === 'casual').map(s => [s.slot, { scene: '', outfit: '', custom: '', why: '' }]))
+    casual: Object.fromEntries(slots(card, plans).filter(s => s.kind === 'casual').map(s => [s.slot, { scene: '', outfit: '', custom: '', color: '', denier: '', situ: '', why: '' }]))
   };
 }
 
@@ -95,7 +96,10 @@ function validate(set, card, plans) {
   for (const s of cs) {
     const x = (set.casual || {})[s];
     if (!x) { errs.push('casual.' + s + ' 가 없다'); continue; }
-    unknown(x, [...TEXT, 'exposure', 'why'], 'casual.' + s);
+    unknown(x, [...TEXT, 'exposure', 'color', 'denier', 'situ', 'why'], 'casual.' + s);
+    if (x.color != null && x.color !== '' && !(T.CASUAL.colors || []).some(g => g.key === x.color)) errs.push('casual.' + s + '.color 는 ' + T.CASUAL.colors.map(g => g.key).join(' · ') + ' 중 하나(비우면 계획기가 고른 갈래)');
+    if (x.denier != null && x.denier !== '' && x.denier !== 'none' && !(T.CASUAL.deniers || []).some(g => g.key === x.denier)) errs.push('casual.' + s + '.denier 는 ' + T.CASUAL.deniers.map(g => g.key).join(' · ') + ' · none 중 하나');
+    if (x.situ != null && x.situ !== '') { if (x.situ !== 'none') errs.push('casual.' + s + '.situ 는 none(빼기)만 — 상황은 계획기가 정한다'); else if (!(x.why || '').trim()) errs.push('casual.' + s + '.situ 를 뺐는데 why(막힌 까닭)가 비었다'); }
     if (x.exposure != null && x.exposure !== '') { if (!['moderate', 'low'].includes(x.exposure)) errs.push('casual.' + s + '.exposure 는 moderate · low(낮추기만)'); else if (!(x.why || '').trim()) errs.push('casual.' + s + '.exposure 를 낮췄는데 why(막힌 까닭)가 비었다'); }
     if (TEXT.some(k => (x[k] || '').trim()) && !(x.why || '').trim()) errs.push('casual.' + s + ' 에 직접 입력이 있는데 why 가 비었다');
   }
@@ -127,6 +131,9 @@ function recordOf(card, set, s) {
   const scene = { ...cut, axes: { ...FIXED, ...(cut.axes || {}) }, aspect: '2:3', unlocked: cut.unlocked || [] };
   for (const k of TEXT) if ((x[k] || '').trim()) scene[k] = x[k]; else delete scene[k];
   if (x.exposure) scene.axes.skin_exposure = x.exposure;
+  if (x.color) scene.color = x.color;   /* 옷 색 · 데니어 · 상황(2026-11-09 삼국지에서) */
+  if (x.denier === 'none') delete scene.denier; else if (x.denier) scene.denier = x.denier;
+  if (x.situ === 'none') delete scene.situ;
   return { ...P.casualRecord(D, S, card.key, scene, { world: s.world, style: STYLE, tree, tree2 }, n), record: PLAN.recordRel(card.key, s.world, n), storage: storageOf(card, s, x, scene) };
 }
 

@@ -70,7 +70,7 @@ assert.equal(CT.year(tree, null), null); assert.equal(CT.year(tree, { key: 'fe',
 assert(!tree.places.some(p => 'since' in p), 'since 를 가진 장소가 없다');
 assert.deepEqual(CT.places(tree, 'release', { facts: { year: 1990 } }), [], '없는 시대엔 장소가 없다(걸리지 않는다)');
 assert(CT.places(tree, 'site', null).some(p => p.key === 'site_lab') && !CT.places(tree, 'site', null).some(p => p.key === 'home_living'), '현장 시대엔 현장만');
-assert(CT.places(tree, 'nation', null).every(p => p.group === 'nation') && CT.places(tree, 'nation', null).length === 7, '나라 안 시대엔 나라 안 일곱 곳');
+assert(CT.places(tree, 'nation', null).every(p => p.group === 'nation') && CT.places(tree, 'nation', null).length === 16, '나라 안 시대엔 나라 안 열여섯 곳(2026-11-09 삼국지에서 아홉)');
 assert(CT.places(tree, 'now', null).some(p => p.key === 'site_lab') && !CT.places(tree, 'now', null).some(p => p.key === 'nation_room'), '현장은 지금 현실에도, 나라 안은 나라 안에만');
 /* 필수 갈래의 「그 세계 안」 규칙은 required.world(모듈 worldRule — game 의 in_game 자리) */
 assert.equal(CT.worldRule(tree).era, 'nation');

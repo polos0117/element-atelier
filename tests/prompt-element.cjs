@@ -6,7 +6,9 @@ for (const f of ['lib/prompt-spec.js', 'lib/look-spec.js', 'lib/prompt-element.j
 const P = ctx.window.AtelierPrompt, T = ctx.window.AtelierSpec;
 const D = JSON.parse(fs.readFileSync('data/element-design.json', 'utf8')), SN = JSON.parse(fs.readFileSync('data/style.json', 'utf8'));
 /* 영어 틀 검사는 옛 화풍 판으로(2026-11-04 기본이 구조판 semireal 이 됐다) — 구조판 검사는 파일 끝에서 SN 으로 */
-const S = Object.assign({}, SN, { default: 'game_keyart' });
+/* 옛 꼴(긴 줄 지시문) 검사 — 짧은 판(2026-11-09)은 끈 사본으로. 짧은 판은 파일 끝에서 따로 본다 */
+const LONG = (() => { const x = JSON.parse(JSON.stringify(SN)); x.worldShort = false; for (const st of Object.values(x.styles)) for (const v of st.versions) { v.casualShort = false; v.worldShort = false; } return x; })();
+const S = Object.assign({}, LONG, { default: 'game_keyart' });
 
 const worlds = D.vocab.worlds, same = (a, b) => JSON.stringify(a) === JSON.stringify(b);   // vm 쪽 배열은 원형이 달라 deepEqual 이 못 견준다
 assert(same(worlds, T.WORLDS.map(w => w.key)), '표의 세계와 설계표의 세계가 같다');
@@ -258,10 +260,10 @@ for (const key of CARDS) for (const era of eras) {
 }
 assert.equal(new Set(Object.values(eraLines)).size, eras.length, '시대마다 시대 줄이 다르다');
 /* 일상컷 얼굴 길이(2026-11-07 「원소공방에는 일상컷 근거리때 얼굴길이 줄이는게 없나?」 → 「응 적용해줘」) — 영어 틀 · kv 판 일상컷은 FACE 줄에 짧은 중안부 · 하관 길이 두 문장(삼국지와 같이), 구조판은 faceLock 이 따로 */
-for (const st of Object.keys(SN.styles)) {
-  const txt = P.buildCasual(D, SN, 'og', { ...base('now'), ...full, frame: 'face_close' }, { ...optsFor('og'), style: st });
+for (const st of Object.keys(LONG.styles)) {
+  const txt = P.buildCasual(D, LONG, 'og', { ...base('now'), ...full, frame: 'face_close' }, { ...optsFor('og'), style: st });
   assert(/jaw length and face length-to-width ratio/.test(txt), st + ' 일상컷 하관 길이 문장');
-  if (!P.structVer(SN, st)) assert(/the same short midface \(eyes to mouth\)/.test(txt), st + ' 일상컷 짧은 중안부 문장');
+  if (!P.structVer(LONG, st)) assert(/the same short midface \(eyes to mouth\)/.test(txt), st + ' 일상컷 짧은 중안부 문장');
 }
 if (ownTables) {
   const fe = era => P.buildCasual(D, S, 'fe', { ...base(era), ...full }, opts);
@@ -341,9 +343,10 @@ assert.throws(() => P.buildCasual(D, S, 'fe', { ...base(eras[0]) }, { tree, worl
 assert(same(Object.keys(T.EXPRESSION_DETAIL).sort(), T.EXPRESSION_OPTIONS.map(o => o[0]).filter(Boolean).sort()), '표정 선택지와 풀이가 같다');
 console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + ' × 시대 ' + eras.length + ' · 참고 그림 = 세계 그림(세 세계·안 사는 세계 거름·나라 안은 그 세계) · 손에 드는 물건 · 시간대·머리 · 랜덤 · 해방 · 돌아보기 · 클로즈업 · 두 손 소품 · 고정값 · 파일 이름 · 기록(world·ref)' + (ownTables ? ' · 원소 표' : ' · (game 표를 빌림)'));
 
+const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검사 — 기본이 짧은 판 mmorpg_cg(2026-11-09)가 돼서 구조판 열쇠를 바로 준다 */
 /* ══ 구조판(2026-11-04 — 기본 화풍 semireal) ══ 공통 적용 규칙 → [일상컷 규칙] → 1절 → 2~4절 칸. 칸 값: 기본 → 카드의 손글(struct) → 직접 고른 것 */
 {
-  const SV = P.structVer(SN, SN.default), ST = T.STRUCT;
+  const SV = P.structVer(SNS, SNS.default), ST = T.STRUCT;
   assert(SV && SV.rules.startsWith('공통 적용 규칙:') && SV.section1.startsWith('1.작화 스타일') && SV.casual_rule, '기본 화풍이 구조판');
   assert.equal(P.structVer(S, 'game_keyart'), null, '옛 화풍은 구조판이 아니다');
   /* 검사기(tools/element-design.py)의 칸 이름이 표와 같다 */
@@ -354,7 +357,7 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
   const fieldOf = (txt, name) => { const m = txt.match(new RegExp('^' + name.replace(/[/·]/g, '.') + ': \\[(.*)\\]$', 'm')); return m ? m[1] : null; };
   let ns = 0;
   for (const key of cards) for (const w of P.worldsOf(D, key)) {
-    const c = P.card(D, key), t = P.build(D, SN, key, w, {}), lab = key + ' ' + w;
+    const c = P.card(D, key), t = P.build(D, SNS, key, w, {}), lab = key + ' ' + w;
     assert(t.startsWith(SV.rules + '\n\n' + SV.section1 + '\n\n' + SV.sections[0]), lab + ' 머리 — 공통 규칙 · 1절 · 2절');
     assert(!t.includes('일상컷 규칙:'), lab + ' 세계 그림엔 일상컷 규칙이 없다');
     for (const [i, names] of [[0, ST.s2], [1, ST.s3], [2, ST.s4]]) assert.equal(rowsIn(t, SV.sections[i], names), '', lab + ' ' + SV.sections[i] + ' 칸 차례');
@@ -380,10 +383,10 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
   /* 받침 — 원자 번호 뒤 을/를 */
   /* 손글 칸이 없는 카드(그 나라 첫 가문주)의 기본 액세서리 글 — 근본은 손글 칸이 쥔다(2026-11-04) */
   const lordOf = nk => { const n = D.nations.find(x => x.key === nk); return n.families && n.families.length ? nk + '-' + n.families[0].key : null; };
-  for (const [nk, num, p] of [['fe', 26, '을'], ['h', 1, '을'], ['au', 79, '를'], ['cu', 29, '를'], ['c', 6, '을']]) { const k = lordOf(nk); if (k) assert(fieldOf(P.build(D, SN, k, 'fantasy', {}), '액세서리').includes('"' + num + '"' + p), k + ' ' + num + p); }
+  for (const [nk, num, p] of [['fe', 26, '을'], ['h', 1, '을'], ['au', 79, '를'], ['cu', 29, '를'], ['c', 6, '을']]) { const k = lordOf(nk); if (k) assert(fieldOf(P.build(D, SNS, k, 'fantasy', {}), '액세서리').includes('"' + num + '"' + p), k + ' ' + num + p); }
   /* 손글 칸이 있는 카드(규소)에서도 직접 고른 외형 · 자세 · 시간대 · 장소 · 덧붙임이 이긴다 */
   const sc0 = P.scenesOf(P.card(D, 'si'), 'fantasy')[0];
-  const ch = P.build(D, SN, 'si', 'fantasy', { look: { params: { 'hair color': '__custom__', 'hair color_custom': 'jet black hair', 'eye size': 'large' }, exposure: 'low' },
+  const ch = P.build(D, SNS, 'si', 'fantasy', { look: { params: { 'hair color': '__custom__', 'hair color_custom': 'jet black hair', 'eye size': 'large' }, exposure: 'low' },
     shot: { pose: 'stride', time: 'night', scene: sc0.key, expr: 'confident' }, notes: { scene: 'a windy ridge', outfit: 'red sash', custom: 'low angle' } });
   assert.equal(fieldOf(ch, '머리색'), 'hair color: jet black hair', '고른 머리색이 손글 칸을 이긴다');
   assert(fieldOf(ch, '눈 형태').startsWith('eye size: large') && fieldOf(ch, '눈 형태').includes(D.nations.find(n => n.key === 'si').struct.fantasy['2']['눈 형태']), '더하는 외형은 앞에 붙는다');
@@ -391,16 +394,16 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
   assert(fieldOf(ch, '배경').includes('이번 장소: ' + sc0.ko) && fieldOf(ch, '배경').includes('장면 메모: a windy ridge') && fieldOf(ch, '부가 요소').startsWith('red sash') && fieldOf(ch, '덧붙임') === 'low angle', '장소 · 덧붙임');
   assert(fieldOf(ch, '철학').includes('노출(고른 것): ' + T.EXPOSURE.low.replace(/^EXPOSURE \(low\): /, '').replace('the costume WORLD describes', 'the costume in 상의')), '기본이 아닌 노출은 손글 철학 뒤에');
   /* 기록 · 파일 이름은 기본 화풍 열쇠 */
-  const r2 = P.record(D, SN, 'si', 'mecha', {}); assert.equal(r2.file, 'si_mecha_' + SN.default + '_f.webp'); assert.equal(r2.prompt, P.build(D, SN, 'si', 'mecha', {}));
+  const r2 = P.record(D, SNS, 'si', 'mecha', {}); assert.equal(r2.file, 'si_mecha_' + SNS.default + '_f.webp'); assert.equal(r2.prompt, P.build(D, SNS, 'si', 'mecha', {}));
   /* 일상컷 구조판 — 일상컷 규칙이 붙고, 2절은 첨부 그림 그대로(카드의 c2 가 덮어쓴다), 장면 줄이 칸에 나뉜다 */
-  let nc2 = 0; const optsN = key => ({ ...optsFor(key), style: SN.default });
+  let nc2 = 0; const optsN = key => ({ ...optsFor(key), style: SNS.default });
   for (const key of CARDS.concat(['he', 'si'])) for (const era of eras) {
-    const scene = { ...base(era), ...full }, txt = P.buildCasual(D, SN, key, scene, optsN(key)), lab = 'casual ' + key + ' ' + era;
+    const scene = { ...base(era), ...full }, txt = P.buildCasual(D, SNS, key, scene, optsN(key)), lab = 'casual ' + key + ' ' + era;
     if (!txt) continue;
     /* 일상컷만 — 일상컷 규칙 끝에 얼굴 고정 문장, 1절 NEGATIVE 줄 끝에 금지 낱말(2026-11-06) */
     const negLine = SV.section1.split('\n').filter(l => l.startsWith('02 NEGATIVE - ')).pop();
     assert(negLine && txt.startsWith(SV.rules + '\n\n일상컷 규칙: ' + SV.casual_rule + ' ' + ST.casual.faceLock + '\n\n' + SV.section1.replace(negLine, negLine + ', ' + ST.casual.negative)), lab + ' 머리 · 얼굴 고정');
-    assert(!P.build(D, SN, key === 'he' || key === 'si' ? key : 'he', 'fantasy', {}).includes(ST.casual.negative), lab + ' 세계 그림엔 안 싣는다');
+    assert(!P.build(D, SNS, key === 'he' || key === 'si' ? key : 'he', 'fantasy', {}).includes(ST.casual.negative), lab + ' 세계 그림엔 안 싣는다');
     for (const [i, names] of [[0, ST.s2], [1, ST.s3], [2, ST.s4]]) assert.equal(rowsIn(txt, SV.sections[i], names), '', lab + ' 칸 차례 ' + i);
     assert(!/: \[\s*\]/.test(txt) && !/\.\./.test(txt), lab + ' 빈 칸 · 마침표 둘');
     assert(!/\b(INPUT|CHARACTER|STYLE|OUTPUT|WARDROBE|SCENE|PROP|CROP|GAZE|COMPOSITION|WORLD)\b/.test(txt.split(SV.sections[0])[1]), lab + ' 옛 영어 머리말');
@@ -408,10 +411,10 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
     assert(fieldOf(txt, '표정').endsWith(ST.casual.exprTail.replace(/^ — /, '')) || fieldOf(txt, '표정').endsWith(ST.casual.exprTail.trim()), lab + ' 표정 꼬리');
     nc2++;
   }
-  const hf = P.buildCasual(D, SN, 'he', { ...base(eras[0]), ...full }, { ...optsN('he'), world: 'fantasy' });
+  const hf = P.buildCasual(D, SNS, 'he', { ...base(eras[0]), ...full }, { ...optsN('he'), world: 'fantasy' });
   assert.equal(fieldOf(hf, '얼굴 크기'), D.nations.find(n => n.key === 'he').struct.fantasy.c2['얼굴 크기'], '헬륨 판타지 일상컷 — 얼굴 길이 줄(c2)');
-  assert.equal(fieldOf(P.buildCasual(D, SN, 'he', { ...base(eras[0]), ...full }, { ...optsN('he'), world: 'mecha' }), '얼굴 크기'), ST.casual.same, 'c2 는 그 세계만');
-  const hh = P.buildCasual(D, SN, 'fe', { ...base(eras[0]), ...full, hair: 'tied' }, optsN('fe'));
+  assert.equal(fieldOf(P.buildCasual(D, SNS, 'he', { ...base(eras[0]), ...full }, { ...optsN('he'), world: 'mecha' }), '얼굴 크기'), ST.casual.same, 'c2 는 그 세계만');
+  const hh = P.buildCasual(D, SNS, 'fe', { ...base(eras[0]), ...full, hair: 'tied' }, optsN('fe'));
   assert(fieldOf(hh, '헤어스타일').includes(ST.ko.chair.tied), '머리를 바꾸는 장면이면 그 줄(한글)');
   /* 한글 낱말 표 — 외형 · 얼굴 설계 · 표정 · 자세 · 시간대 열쇠가 다 있고, 괄호 밖은 한글 */
   const need = { face_shape: T.VOCAB_EN.face_shape, eyes: T.VOCAB_EN.eyes, brows: T.VOCAB_EN.brows, nose: T.VOCAB_EN.nose, lips: T.VOCAB_EN.lips, eye_color: T.VOCAB_EN.eye_color, hair_color: T.VOCAB_EN.hair_color, hair: T.VOCAB_EN.hair,
@@ -430,16 +433,30 @@ console.log('PASS 일상컷: 지시문 ' + nc + ' · 카드 ' + CARDS.length + '
 {
   const KV = ['kv_kmmo_lock', 'kv_kmmo_23d', 'kv_jp_mobile', 'kv_jp_paint', 'kv_anime_gloss'], TXT = ['kr_mmorpg', 'glossy_kr_game'];
   let nk = 0;
-  for (const st of KV.concat(TXT)) assert(SN.styles[st], '옮긴 화풍 ' + st);
+  for (const st of KV.concat(TXT)) assert(LONG.styles[st], '옮긴 화풍 ' + st);
   for (const key of P.cards(D)) for (const w of P.worldsOf(D, key)) {
     for (const st of KV) {
-      const v = SN.styles[st].versions.find(x => x.v === SN.styles[st].current), p = P.build(D, SN, key, w, { style: st });
+      const v = LONG.styles[st].versions.find(x => x.v === LONG.styles[st].current), p = P.build(D, LONG, key, w, { style: st });
       assert(p.includes(v.section1) && p.includes('\nCHARACTER:\n') && p.includes('COSTUME AND EQUIPMENT — ' + v.genre[w] + ':') && p.includes('\nPOSE AND SETTING:\n'), key + ' ' + w + ' ' + st + ' 칸');
       assert(!/\{\w+\}|undefined|Three Kingdoms|wuxia/i.test(p), key + ' ' + w + ' ' + st + ' 빈 칸 · 삼국지 말');
-      assert(p.includes(P.build(D, SN, key, w, { style: 'game_keyart' }).split('\n').find(l => l.startsWith('CONCEPT:'))), key + ' ' + w + ' ' + st + ' 설계표 CONCEPT 그대로');
+      assert(p.includes(P.build(D, LONG, key, w, { style: 'game_keyart' }).split('\n').find(l => l.startsWith('CONCEPT:'))), key + ' ' + w + ' ' + st + ' 설계표 CONCEPT 그대로');
       nk++;
     }
-    for (const st of TXT) { const p = P.build(D, SN, key, w, { style: st }); assert(p.includes('STYLE: ' + SN.styles[st].versions[0].text), key + ' ' + st); }
+    for (const st of TXT) { const p = P.build(D, LONG, key, w, { style: st }); assert(p.includes('STYLE: ' + LONG.styles[st].versions[0].text), key + ' ' + st); }
   }
-  console.log('PASS 옮긴 화풍: kv ' + nk + '장 · 영어 틀 ' + TXT.length + '판');
+  /* ══ 짧은 판(2026-11-09 삼국지 공방에서 — 사용자 「element 쪽도 생성기 구조 sam 쪽에 맞추자. 간결버전에 일상컷도 간결」) ══
+   기본 mmorpg_cg · worldShort — 세계 그림은 머리말(1024×1536 · CONCEPT) · 화풍 단락 · 얼굴 · 얼굴 비율 · 원소 · 세계와 차림 · 노출 · 구도 · 빛 · 끝 줄, 400~800낱말. 구조판은 그대로 */
+{
+  assert.equal(SN.default, 'mmorpg_cg'); assert(P.worldShortOn(SN, SN.default) && P.casualShortOn(SN, SN.default) && !P.worldShortOn(SN, 'mmorpg2d'), '짧은 판 켜짐 · 구조판은 끔');
+  let nw = 0;
+  for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
+    const t = P.build(D, SN, key, w, {}), wc = t.split(/\s+/).length;
+    assert(t.startsWith('A full-body vertical 2:3 (1024×1536) character card image of an adult woman — ') && t.includes('\n\nStyle: ' + P.shortStyle(SN, SN.default)) && t.includes(T.WORLD_SHORT.face) && t.includes(T.WORLD_SHORT.composition) && /\n\nHer element: /.test(t) && /\n\nWorld and costume: /.test(t), key + ' ' + w + ' 짧은 세계 그림');
+    assert(!/^(?:CONCEPT|FACE —|WORLD —|OUTPUT|ANATOMY|BODY):/m.test(t) && !/\.\./.test(t), key + ' ' + w + ' 긴 꼴 머리말 없음');
+    assert(wc > 350 && wc < 850, key + ' ' + w + ' 낱말 ' + wc);
+    nw++;
+  }
+  console.log('PASS 짧은 세계 그림: ' + nw + '장');
+}
+console.log('PASS 옮긴 화풍: kv ' + nk + '장 · 영어 틀 ' + TXT.length + '판');
 }

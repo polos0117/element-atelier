@@ -27,8 +27,8 @@ const server = http.createServer((q, s) => {
       fs.mkdirSync(dir);
       for (const w of card.worlds) {
         card.world = w;
-        const res = C.plan(card, [1, 2, 3, 4, 5], [], { seed: 21 }), f = path.join(dir, 'plan-' + w + '.json');
-        fs.writeFileSync(f, JSON.stringify({ card: key, world: w, seed: 21, tree: 2, style: C.STYLE, required: res.required, slots: [1, 2, 3, 4, 5], cuts: res.cuts }));
+        const res = C.plan(card, [1, 2, 3, 4, 5, 6], [], { seed: 21 }), f = path.join(dir, 'plan-' + w + '.json');
+        fs.writeFileSync(f, JSON.stringify({ card: key, world: w, seed: 21, tree: 2, style: C.STYLE, required: res.required, slots: [1, 2, 3, 4, 5, 6], cuts: res.cuts }));
         plans.push(f);
       }
       const set = K.initSettings(card, plans);
@@ -37,11 +37,11 @@ const server = http.createServer((q, s) => {
       const log = console.log; console.log = () => {};
       try { assert.equal(K.build(dir), 0, key + ' build'); } finally { console.log = log; }
       const list = K.slots(card, plans.map(f => JSON.parse(fs.readFileSync(f, 'utf8'))));
-      assert.equal(list.length, card.worlds.length * 6, '세계마다 세계 그림 + 일상 다섯');
+      assert.equal(list.length, card.worlds.length * 7, '세계마다 세계 그림 + 일상 여섯(2026-11-09)');
       for (const s of list) {
         const rec = JSON.parse(fs.readFileSync(path.join(dir, s.slot + '-ui.json'), 'utf8'));
         assert.equal(fs.readFileSync(path.join(dir, s.slot + '-prompt.txt'), 'utf8'), rec.prompt);
-        if (edit && s.slot === Object.keys(JSON.parse(fs.readFileSync(path.join(dir, 'settings.json'), 'utf8')).casual)[2]) assert(/skin_exposure: low/.test(rec.prompt), '일상 노출 낮추기가 지시문에');
+        if (edit && s.slot === Object.keys(JSON.parse(fs.readFileSync(path.join(dir, 'settings.json'), 'utf8')).casual)[2]) assert(/skin_exposure: low|, mostly covered, /.test(rec.prompt), '일상 노출 낮추기가 지시문에(짧은 판은 Outfit 줄의 「mostly covered」)');
         const ctx = await br.newContext({ viewport: { width: 1280, height: 900 } });
         await ctx.addInitScript(v => { if (!sessionStorage.getItem('__seeded')) { localStorage.setItem('element_studio_v1', v); sessionStorage.setItem('__seeded', '1'); } }, JSON.stringify(rec.storage));
         await ctx.route(/^https?:\/\/(?!127\.0\.0\.1)/, r => r.abort());

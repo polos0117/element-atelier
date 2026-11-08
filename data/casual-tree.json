@@ -20,7 +20,10 @@
     "bridal",
     "retro",
     "costume",
-    "halloween"
+    "halloween",
+    "dongtan",
+    "adventure",
+    "drape"
    ]
   },
   {
@@ -38,7 +41,8 @@
     "evening",
     "traditional",
     "subculture",
-    "costume"
+    "costume",
+    "dongtan"
    ]
   },
   {
@@ -52,7 +56,9 @@
     "swimwear",
     "bath",
     "evening",
-    "active"
+    "active",
+    "dongtan",
+    "adventure"
    ]
   },
   {
@@ -71,7 +77,9 @@
     "traditional",
     "subculture",
     "roleplay",
-    "halloween"
+    "halloween",
+    "adventure",
+    "drape"
    ]
   }
  ],
@@ -142,7 +150,8 @@
     "homewear",
     "lingerie",
     "everyday",
-    "evening"
+    "evening",
+    "dongtan"
    ]
   },
   {
@@ -169,7 +178,8 @@
    ],
    "outfits": [
     "homewear",
-    "everyday"
+    "everyday",
+    "dongtan"
    ]
   },
   {
@@ -185,7 +195,8 @@
     "lingerie",
     "everyday",
     "active",
-    "halloween"
+    "halloween",
+    "dongtan"
    ]
   },
   {
@@ -199,7 +210,8 @@
    "outfits": [
     "homewear",
     "everyday",
-    "evening"
+    "evening",
+    "dongtan"
    ]
   },
   {
@@ -213,7 +225,8 @@
    "outfits": [
     "everyday",
     "homewear",
-    "evening"
+    "evening",
+    "dongtan"
    ]
   },
   {
@@ -228,7 +241,8 @@
     "everyday",
     "subculture",
     "traditional",
-    "retro"
+    "retro",
+    "dongtan"
    ]
   },
   {
@@ -243,7 +257,8 @@
     "everyday",
     "subculture",
     "traditional",
-    "retro"
+    "retro",
+    "dongtan"
    ]
   },
   {
@@ -258,7 +273,38 @@
     "everyday",
     "subculture",
     "traditional",
-    "retro"
+    "retro",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "street_office",
+   "group": "street",
+   "ko": "저녁 사무실",
+   "en": "a modern glass-walled office at dusk — a desk with a monitor, a swivel chair and city lights beyond the window",
+   "eras": [
+    "now"
+   ],
+   "outfits": [
+    "roleplay",
+    "everyday",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "street_diner",
+   "group": "street",
+   "ko": "레트로 다이너",
+   "en": "a retro American diner — a chrome counter, vinyl booths, a jukebox and neon signs in the window",
+   "eras": [
+    "now"
+   ],
+   "outfits": [
+    "roleplay",
+    "retro",
+    "everyday",
+    "dongtan",
+    "adventure"
    ]
   },
   {
@@ -273,7 +319,8 @@
     "everyday",
     "subculture",
     "traditional",
-    "retro"
+    "retro",
+    "dongtan"
    ]
   },
   {
@@ -287,7 +334,23 @@
    "outfits": [
     "everyday",
     "subculture",
-    "traditional"
+    "traditional",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "travel_airport",
+   "group": "travel",
+   "ko": "공항 라운지",
+   "en": "an airport lounge — tall windows onto the runway, sleek seats, a long bench and a departures board",
+   "eras": [
+    "now"
+   ],
+   "outfits": [
+    "roleplay",
+    "everyday",
+    "dongtan",
+    "adventure"
    ]
   },
   {
@@ -301,7 +364,8 @@
    "outfits": [
     "everyday",
     "homewear",
-    "subculture"
+    "subculture",
+    "dongtan"
    ]
   },
   {
@@ -315,7 +379,8 @@
    "outfits": [
     "everyday",
     "subculture",
-    "homewear"
+    "homewear",
+    "dongtan"
    ]
   },
   {
@@ -330,7 +395,8 @@
     "everyday",
     "subculture",
     "traditional",
-    "active"
+    "active",
+    "dongtan"
    ]
   },
   {
@@ -494,7 +560,8 @@
    ],
    "outfits": [
     "everyday",
-    "homewear"
+    "homewear",
+    "dongtan"
    ]
   },
   {
@@ -507,7 +574,8 @@
    ],
    "outfits": [
     "everyday",
-    "subculture"
+    "subculture",
+    "dongtan"
    ]
   },
   {
@@ -537,7 +605,8 @@
     "active",
     "everyday",
     "retro",
-    "bridal"
+    "bridal",
+    "dongtan"
    ]
   },
   {
@@ -551,7 +620,8 @@
    "outfits": [
     "swimwear",
     "active",
-    "everyday"
+    "everyday",
+    "dongtan"
    ]
   },
   {
@@ -564,7 +634,9 @@
    ],
    "outfits": [
     "swimwear",
-    "everyday"
+    "everyday",
+    "dongtan",
+    "drape"
    ]
   },
   {
@@ -578,7 +650,8 @@
    "outfits": [
     "swimwear",
     "everyday",
-    "evening"
+    "evening",
+    "dongtan"
    ]
   },
   {
@@ -603,7 +676,8 @@
    ],
    "outfits": [
     "swimwear",
-    "evening"
+    "evening",
+    "drape"
    ]
   },
   {
@@ -694,7 +768,8 @@
    "outfits": [
     "everyday",
     "traditional",
-    "bath"
+    "bath",
+    "dongtan"
    ]
   },
   {
@@ -785,7 +860,8 @@
     "subculture",
     "everyday",
     "retro",
-    "halloween"
+    "halloween",
+    "dongtan"
    ]
   },
   {
@@ -802,7 +878,8 @@
     "everyday",
     "retro",
     "costume",
-    "halloween"
+    "halloween",
+    "dongtan"
    ]
   },
   {
@@ -817,7 +894,8 @@
     "evening",
     "subculture",
     "everyday",
-    "retro"
+    "retro",
+    "dongtan"
    ]
   },
   {
@@ -845,7 +923,8 @@
     "evening",
     "subculture",
     "everyday",
-    "retro"
+    "retro",
+    "dongtan"
    ]
   },
   {
@@ -861,7 +940,8 @@
     "subculture",
     "everyday",
     "retro",
-    "halloween"
+    "halloween",
+    "dongtan"
    ]
   },
   {
@@ -891,7 +971,8 @@
     "roleplay",
     "retro",
     "subculture",
-    "halloween"
+    "halloween",
+    "dongtan"
    ]
   },
   {
@@ -904,7 +985,8 @@
    ],
    "outfits": [
     "everyday",
-    "traditional"
+    "traditional",
+    "dongtan"
    ]
   },
   {
@@ -991,7 +1073,8 @@
     "traditional",
     "homewear",
     "retro",
-    "everyday"
+    "everyday",
+    "dongtan"
    ]
   },
   {
@@ -1032,7 +1115,8 @@
    ],
    "outfits": [
     "evening",
-    "traditional"
+    "traditional",
+    "drape"
    ]
   },
   {
@@ -1058,7 +1142,9 @@
    "outfits": [
     "everyday",
     "active",
-    "traditional"
+    "traditional",
+    "dongtan",
+    "adventure"
    ]
   },
   {
@@ -1072,7 +1158,8 @@
    "outfits": [
     "everyday",
     "active",
-    "traditional"
+    "traditional",
+    "dongtan"
    ]
   },
   {
@@ -1086,7 +1173,8 @@
    "outfits": [
     "everyday",
     "active",
-    "traditional"
+    "traditional",
+    "dongtan"
    ]
   },
   {
@@ -1099,6 +1187,23 @@
    ],
    "outfits": [
     "everyday",
+    "active",
+    "dongtan",
+    "adventure"
+   ]
+  },
+  {
+   "key": "travel_ranch",
+   "group": "travel",
+   "ko": "목장",
+   "en": "a sunny ranch — a weathered wooden fence, hay bales and horses grazing in the distance",
+   "eras": [
+    "now"
+   ],
+   "outfits": [
+    "adventure",
+    "everyday",
+    "dongtan",
     "active"
    ]
   },
@@ -1113,7 +1218,8 @@
    "outfits": [
     "everyday",
     "active",
-    "swimwear"
+    "swimwear",
+    "dongtan"
    ]
   },
   {
@@ -1127,7 +1233,9 @@
    "outfits": [
     "everyday",
     "active",
-    "traditional"
+    "traditional",
+    "dongtan",
+    "adventure"
    ]
   },
   {
@@ -1141,7 +1249,8 @@
    "outfits": [
     "everyday",
     "homewear",
-    "traditional"
+    "traditional",
+    "dongtan"
    ]
   },
   {
@@ -1154,7 +1263,8 @@
    ],
    "outfits": [
     "everyday",
-    "traditional"
+    "traditional",
+    "dongtan"
    ]
   },
   {
@@ -1167,7 +1277,9 @@
    ],
    "outfits": [
     "everyday",
-    "traditional"
+    "traditional",
+    "dongtan",
+    "adventure"
    ]
   },
   {
@@ -1182,7 +1294,8 @@
     "everyday",
     "swimwear",
     "active",
-    "bridal"
+    "bridal",
+    "dongtan"
    ]
   },
   {
@@ -1196,7 +1309,37 @@
    "outfits": [
     "homewear",
     "lingerie",
-    "everyday"
+    "everyday",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "nation_kitchen",
+   "group": "nation",
+   "ko": "나라의 부엌",
+   "en": "a kitchen or galley in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "homewear",
+    "everyday",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "nation_study",
+   "group": "nation",
+   "ko": "나라의 서재",
+   "en": "a study or library in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "everyday",
+    "dongtan",
+    "homewear",
+    "evening"
    ]
   },
   {
@@ -1209,7 +1352,8 @@
    ],
    "outfits": [
     "everyday",
-    "evening"
+    "evening",
+    "dongtan"
    ]
   },
   {
@@ -1222,6 +1366,66 @@
    ],
    "outfits": [
     "everyday",
+    "homewear",
+    "active",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "nation_training",
+   "group": "nation",
+   "ko": "나라의 연무장",
+   "en": "a training yard or simulator room in her element's kingdom, with a bench along the wall",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "active",
+    "everyday",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "nation_camp",
+   "group": "nation",
+   "ko": "나라의 군영",
+   "en": "a military camp tent or ready room in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "everyday",
+    "dongtan",
+    "active",
+    "homewear"
+   ]
+  },
+  {
+   "key": "nation_garden",
+   "group": "nation",
+   "ko": "나라의 정원 · 연못",
+   "en": "a garden with a pond in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "everyday",
+    "dongtan",
+    "homewear",
+    "active"
+   ]
+  },
+  {
+   "key": "nation_forest",
+   "group": "nation",
+   "ko": "나라의 숲 오솔길",
+   "en": "a forest path in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "everyday",
+    "dongtan",
     "homewear",
     "active"
    ]
@@ -1237,7 +1441,54 @@
    "outfits": [
     "everyday",
     "active",
+    "evening",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "nation_temple",
+   "group": "nation",
+   "ko": "나라의 사당 · 신전",
+   "en": "a temple or shrine in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "everyday",
+    "dongtan",
+    "homewear",
     "evening"
+   ]
+  },
+  {
+   "key": "nation_bridge",
+   "group": "nation",
+   "ko": "나라의 다리",
+   "en": "a bridge in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "homewear",
+    "swimwear",
+    "everyday",
+    "dongtan"
+   ]
+  },
+  {
+   "key": "nation_harbor",
+   "group": "nation",
+   "ko": "나라의 나루 · 항구",
+   "en": "a harbour or ferry landing in her element's kingdom",
+   "eras": [
+    "nation"
+   ],
+   "outfits": [
+    "everyday",
+    "dongtan",
+    "active",
+    "evening",
+    "swimwear"
    ]
   },
   {
@@ -1264,7 +1515,8 @@
    "outfits": [
     "homewear",
     "swimwear",
-    "everyday"
+    "everyday",
+    "dongtan"
    ]
   },
   {
@@ -1278,7 +1530,8 @@
    "outfits": [
     "everyday",
     "evening",
-    "homewear"
+    "homewear",
+    "dongtan"
    ]
   },
   {
@@ -1295,7 +1548,9 @@
     "lingerie",
     "swimwear",
     "evening",
-    "halloween"
+    "halloween",
+    "drape",
+    "adventure"
    ]
   },
   {
@@ -1309,7 +1564,8 @@
    "outfits": [
     "editorial",
     "evening",
-    "bridal"
+    "bridal",
+    "drape"
    ]
   },
   {
@@ -1317,6 +1573,21 @@
    "group": "fx",
    "ko": "가면무도회장",
    "en": "a chandelier ballroom at a masquerade",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "costume",
+    "evening",
+    "retro",
+    "halloween"
+   ]
+  },
+  {
+   "key": "fx_mirror",
+   "group": "fx",
+   "ko": "거울 미궁",
+   "en": "a mirrored labyrinth of endless reflections and soft coloured light",
    "eras": [
     "fantasy"
    ],
@@ -1357,10 +1628,109 @@
    ]
   },
   {
+   "key": "fx_oasis",
+   "group": "fx",
+   "ko": "사막 오아시스",
+   "en": "a desert oasis at golden hour — date palms, a still turquoise pool and silk tents on the dunes",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "adventure",
+    "drape",
+    "costume"
+   ]
+  },
+  {
+   "key": "fx_marble_temple",
+   "group": "fx",
+   "ko": "대리석 신전",
+   "en": "a sunlit white marble temple — tall fluted columns and a terrace above a deep blue sea",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "drape",
+    "costume",
+    "bridal"
+   ]
+  },
+  {
+   "key": "fx_jungle_ruins",
+   "group": "fx",
+   "ko": "정글 유적",
+   "en": "overgrown jungle temple ruins — mossy stone steps, hanging vines and shafts of light through the canopy",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "adventure",
+    "drape",
+    "costume"
+   ]
+  },
+  {
+   "key": "fx_skygarden",
+   "group": "fx",
+   "ko": "공중 정원",
+   "en": "a floating sky garden of hanging vines and flowering terraces above the clouds",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "costume",
+    "bridal",
+    "traditional",
+    "halloween",
+    "drape"
+   ]
+  },
+  {
+   "key": "fx_lanternriver",
+   "group": "fx",
+   "ko": "등불을 띄운 강",
+   "en": "a night river covered with floating paper lanterns, stone steps leading down to the water",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "costume",
+    "bridal",
+    "traditional",
+    "halloween"
+   ]
+  },
+  {
    "key": "fx_spa",
    "group": "fx",
    "ko": "미래풍 스파",
    "en": "a futuristic spa of white curves and soft light",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "bath",
+    "swimwear"
+   ]
+  },
+  {
+   "key": "fx_marble_bath",
+   "group": "fx",
+   "ko": "대리석 목욕궁",
+   "en": "a Roman marble bath hall — columns, mosaic floors and a wide steaming pool lit from high windows",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "drape",
+    "swimwear"
+   ]
+  },
+  {
+   "key": "fx_moonpond",
+   "group": "fx",
+   "ko": "달빛 연못",
+   "en": "a moonlit lotus pond with stepping stones and glowing fireflies",
    "eras": [
     "fantasy"
    ],
@@ -1385,6 +1755,22 @@
    ]
   },
   {
+   "key": "fx_cloudpavilion",
+   "group": "fx",
+   "ko": "구름 위 정자",
+   "en": "an open pavilion floating above a sea of clouds at sunrise",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "costume",
+    "editorial",
+    "evening",
+    "halloween",
+    "drape"
+   ]
+  },
+  {
    "key": "fx_circus",
    "group": "fx",
    "ko": "서커스 천막",
@@ -1403,6 +1789,68 @@
    "group": "fx",
    "ko": "성 계단",
    "en": "the grand staircase of an old castle",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "costume",
+    "evening",
+    "bridal",
+    "retro",
+    "halloween"
+   ]
+  },
+  {
+   "key": "fx_pirate_ship",
+   "group": "fx",
+   "ko": "해적선 갑판",
+   "en": "the deck of a tall wooden sailing ship at sea — rigging, a ship's wheel, coiled ropes, wooden stairs up to the quarterdeck and billowing sails",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "adventure",
+    "costume",
+    "halloween"
+   ]
+  },
+  {
+   "key": "fx_underwater",
+   "group": "fx",
+   "ko": "수중 궁전",
+   "en": "an underwater palace hall behind great glass arches, a sweeping coral-stone staircase, rippling blue light and drifting bubbles outside",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "costume",
+    "evening",
+    "bridal",
+    "retro",
+    "halloween"
+   ]
+  },
+  {
+   "key": "fx_library",
+   "group": "fx",
+   "ko": "거대한 서고",
+   "en": "a vast fantasy library of towering shelves, spiral stairs and floating candles",
+   "eras": [
+    "fantasy"
+   ],
+   "outfits": [
+    "costume",
+    "evening",
+    "bridal",
+    "retro",
+    "halloween"
+   ]
+  },
+  {
+   "key": "fx_ice",
+   "group": "fx",
+   "ko": "얼음 궁전",
+   "en": "an ice palace hall of carved crystal pillars, frosted light and a grand frozen staircase",
    "eras": [
     "fantasy"
    ],
@@ -1440,7 +1888,8 @@
    "outfits": [
     "everyday",
     "homewear",
-    "subculture"
+    "subculture",
+    "dongtan"
    ]
   },
   {
@@ -1454,7 +1903,8 @@
    "outfits": [
     "everyday",
     "subculture",
-    "retro"
+    "retro",
+    "dongtan"
    ]
   },
   {
@@ -1468,7 +1918,8 @@
    "outfits": [
     "subculture",
     "everyday",
-    "retro"
+    "retro",
+    "dongtan"
    ]
   },
   {
@@ -1481,7 +1932,8 @@
    ],
    "outfits": [
     "everyday",
-    "traditional"
+    "traditional",
+    "dongtan"
    ]
   },
   {
@@ -1494,7 +1946,8 @@
    ],
    "outfits": [
     "evening",
-    "everyday"
+    "everyday",
+    "dongtan"
    ]
   },
   {
@@ -1942,7 +2395,23 @@
     "night_livehouse",
     "!travel_dunes",
     "@site",
-    "!site_saltpan"
+    "!site_saltpan",
+    "fx_ice",
+    "fx_lanternriver",
+    "fx_library",
+    "fx_skygarden",
+    "fx_underwater",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis",
+    "fx_pirate_ship",
+    "nation_forest",
+    "nation_garden",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple",
+    "nation_camp",
+    "nation_training"
    ],
    "en": "resting on a seat for a moment, catching her breath",
    "seat": [
@@ -1971,7 +2440,11 @@
     "water_yacht",
     "water_infinity",
     "fx_retro_home",
-    "site_observatory"
+    "site_observatory",
+    "fx_cloudpavilion",
+    "nation_bridge",
+    "nation_study",
+    "nation_kitchen"
    ],
    "en": "looking out at the view, one hand resting on the nearest ledge"
   },
@@ -2000,7 +2473,24 @@
     "site_refinery",
     "site_mine",
     "site_hydrogen",
-    "site_observatory"
+    "site_observatory",
+    "fx_ice",
+    "fx_lanternriver",
+    "fx_library",
+    "fx_mirror",
+    "fx_skygarden",
+    "fx_underwater",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis",
+    "fx_pirate_ship",
+    "nation_forest",
+    "nation_garden",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple",
+    "nation_camp",
+    "nation_training"
    ],
    "en": "strolling through the place at an easy pace",
    "hands": "free"
@@ -2021,7 +2511,19 @@
     "fx_forest",
     "nation_field",
     "site_saltpan",
-    "site_observatory"
+    "site_observatory",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis",
+    "nation_forest",
+    "nation_garden",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple",
+    "nation_camp",
+    "nation_training"
    ],
    "en": "taking a photo of the scenery with a small camera"
   },
@@ -2049,7 +2551,9 @@
     "home_bedroom",
     "spa_lounge",
     "nation_room",
-    "spa_jjimjil"
+    "spa_jjimjil",
+    "nation_study",
+    "nation_kitchen"
    ],
    "en": "drying her damp hair with a towel"
   },
@@ -2062,7 +2566,8 @@
     "home_bedroom",
     "night_powder",
     "nation_room",
-    "spa_lounge"
+    "spa_lounge",
+    "nation_camp"
    ],
    "en": "tying her hair up in front of a mirror"
   },
@@ -2089,7 +2594,9 @@
     "home_kitchen",
     "travel_camp",
     "nation_inn",
-    "fx_retro_home"
+    "fx_retro_home",
+    "travel_ranch",
+    "nation_kitchen"
    ],
    "en": "cooking, chopping and stirring"
   },
@@ -2098,7 +2605,8 @@
    "ko": "늦은 밤 간식",
    "family": "stand",
    "places": [
-    "home_kitchen"
+    "home_kitchen",
+    "nation_kitchen"
    ],
    "en": "making a late-night snack, lit by the open refrigerator",
    "outfits": [
@@ -2143,7 +2651,13 @@
     "street_park",
     "travel_lodge",
     "nation_room",
-    "travel_rural_station"
+    "travel_rural_station",
+    "street_diner",
+    "street_office",
+    "nation_study",
+    "nation_temple",
+    "nation_camp",
+    "nation_kitchen"
    ],
    "en": "reading an unlettered book, one page about to turn"
   },
@@ -2178,7 +2692,8 @@
     "home_entry",
     "sports_gym",
     "sports_rink",
-    "sports_wall"
+    "sports_wall",
+    "nation_training"
    ],
    "en": "sitting on a bench to tie her shoes",
    "seat": [
@@ -2252,7 +2767,9 @@
     "street_shop",
     "street_market",
     "nation_market",
-    "stage_festival"
+    "stage_festival",
+    "nation_study",
+    "nation_temple"
    ],
    "en": "browsing a shelf and pulling one item out for a closer look"
   },
@@ -2261,7 +2778,8 @@
    "ko": "커피 받아 들기",
    "family": "stand",
    "places": [
-    "street_cafe"
+    "street_cafe",
+    "street_diner"
    ],
    "en": "picking up a takeout cup at the counter and fixing the lid"
   },
@@ -2271,7 +2789,8 @@
    "family": "sit",
    "places": [
     "street_station",
-    "travel_rural_station"
+    "travel_rural_station",
+    "travel_airport"
    ],
    "en": "waiting on a bench for the train, bag beside her",
    "seat": [
@@ -2284,7 +2803,8 @@
    "ko": "손잡이 잡고 서 있기",
    "family": "stand",
    "places": [
-    "street_station"
+    "street_station",
+    "travel_airport"
    ],
    "en": "standing in a train carriage holding a strap"
   },
@@ -2297,7 +2817,10 @@
     "street_park",
     "travel_trail",
     "nation_square",
-    "street_market"
+    "street_market",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple"
    ],
    "en": "walking slowly in the rain under an umbrella"
   },
@@ -2309,7 +2832,10 @@
     "street_alley",
     "nation_square",
     "nation_market",
-    "travel_rural_station"
+    "travel_rural_station",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple"
    ],
    "en": "sheltering from a sudden warm rain under an eave, wringing water from her hair"
   },
@@ -2334,7 +2860,9 @@
     "street_rooftop",
     "nation_roof",
     "fx_observatory",
-    "site_observatory"
+    "site_observatory",
+    "fx_cloudpavilion",
+    "nation_bridge"
    ],
    "en": "adjusting a small telescope to look at the stars"
   },
@@ -2349,7 +2877,11 @@
     "travel_lake",
     "studio_art",
     "travel_coast",
-    "site_observatory"
+    "site_observatory",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_study",
+    "nation_temple"
    ],
    "en": "sketching the scenery in a small notebook"
   },
@@ -2361,7 +2893,11 @@
     "street_park",
     "nation_field",
     "travel_lake",
-    "street_rooftop"
+    "street_rooftop",
+    "nation_forest",
+    "nation_garden",
+    "nation_camp",
+    "nation_training"
    ],
    "en": "having a small picnic on a blanket with fruit and a basket",
    "seat": [
@@ -2452,7 +2988,8 @@
     "water_yacht",
     "water_beach",
     "water_infinity",
-    "nation_roof"
+    "nation_roof",
+    "nation_bridge"
    ],
    "en": "lying back on a sunbed with a cold drink beside her",
    "hands": "free"
@@ -2579,7 +3116,9 @@
     "spa_onsen",
     "spa_cedar",
     "nation_bath",
-    "fx_spa"
+    "fx_spa",
+    "fx_moonpond",
+    "fx_marble_bath"
    ],
    "en": "soaking in the warm water, arms resting on the rim, steam rising",
    "seat": [],
@@ -2629,7 +3168,11 @@
     "spa_hammam",
     "spa_footbath",
     "fx_retro_home",
-    "street_cafe"
+    "street_cafe",
+    "fx_moonpond",
+    "fx_marble_bath",
+    "street_diner",
+    "street_office"
    ],
    "en": "pouring herbal tea, relaxed and unhurried",
    "seat": [
@@ -2672,7 +3215,9 @@
     "spa_lounge",
     "home_bath",
     "fx_spa",
-    "spa_hammam"
+    "spa_hammam",
+    "fx_moonpond",
+    "fx_marble_bath"
    ],
    "en": "resting with a clay mask on her face",
    "hands": "free",
@@ -2701,7 +3246,8 @@
    "ko": "샌드백 연습",
    "family": "move",
    "places": [
-    "sports_gym"
+    "sports_gym",
+    "nation_training"
    ],
    "en": "practising guard and footwork beside a heavy bag",
    "outfits": [
@@ -2843,7 +3389,8 @@
     "nation_inn",
     "water_pool",
     "water_resort",
-    "street_cafe"
+    "street_cafe",
+    "street_diner"
    ],
    "en": "perched at the counter lifting a coloured drink",
    "seat": [
@@ -2859,7 +3406,8 @@
     "night_rooftop",
     "stage_festival",
     "fx_ballroom",
-    "stage_wedding"
+    "stage_wedding",
+    "fx_mirror"
    ],
    "en": "dancing to the beat, one hand raised"
   },
@@ -2919,7 +3467,11 @@
     "night_bar",
     "night_karaoke",
     "fx_castle",
-    "nation_inn"
+    "nation_inn",
+    "fx_ice",
+    "fx_library",
+    "fx_underwater",
+    "fx_pirate_ship"
    ],
    "en": "raising a glass in a toast"
   },
@@ -2939,7 +3491,12 @@
    "family": "walk",
    "places": [
     "stage_festival",
-    "fx_forest"
+    "fx_forest",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis"
    ],
    "en": "walking under strings of paper lanterns with a small snack"
   },
@@ -3028,7 +3585,12 @@
    "places": [
     "stage_wedding",
     "fx_forest",
-    "fx_chapel"
+    "fx_chapel",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis"
    ],
    "en": "holding a bouquet, waiting for her cue",
    "outfits": [
@@ -3080,7 +3642,11 @@
    "places": [
     "evening_opera",
     "stage_redcarpet",
-    "fx_castle"
+    "fx_castle",
+    "fx_ice",
+    "fx_library",
+    "fx_underwater",
+    "fx_pirate_ship"
    ],
    "en": "climbing a grand staircase, lifting her hem"
   },
@@ -3136,7 +3702,11 @@
     "fx_castle",
     "night_taxi",
     "stage_wedding",
-    "evening_hotel"
+    "evening_hotel",
+    "fx_ice",
+    "fx_library",
+    "fx_underwater",
+    "fx_pirate_ship"
    ],
    "en": "sitting down after the night out, heels in one hand"
   },
@@ -3149,7 +3719,13 @@
     "travel_dunes",
     "nation_square",
     "street_station",
-    "travel_lookout"
+    "travel_lookout",
+    "fx_oasis",
+    "travel_airport",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple",
+    "nation_camp"
    ],
    "en": "comparing a folded map with the way ahead"
   },
@@ -3158,7 +3734,8 @@
    "ko": "캠프 정리",
    "family": "low",
    "places": [
-    "travel_camp"
+    "travel_camp",
+    "travel_ranch"
    ],
    "en": "kneeling to fold a camping blanket beside the tent"
   },
@@ -3223,7 +3800,8 @@
    "places": [
     "travel_lodge",
     "nation_inn",
-    "nation_room"
+    "nation_room",
+    "nation_camp"
    ],
    "en": "sitting by the fire with a warm cup in both hands"
   },
@@ -3234,7 +3812,10 @@
    "places": [
     "nation_square",
     "travel_rural_station",
-    "travel_ferry"
+    "travel_ferry",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple"
    ],
    "en": "looking back once before leaving, bag on her shoulder",
    "hands": "free"
@@ -3271,7 +3852,8 @@
    "ko": "지붕 위 일광욕",
    "family": "lie",
    "places": [
-    "nation_roof"
+    "nation_roof",
+    "nation_bridge"
    ],
    "en": "lying back in the sun with her eyes half closed",
    "hands": "free",
@@ -3292,7 +3874,11 @@
    "family": "lie",
    "places": [
     "nation_field",
-    "home_balcony"
+    "home_balcony",
+    "nation_forest",
+    "nation_garden",
+    "nation_camp",
+    "nation_training"
    ],
    "en": "swinging lazily in a hammock, one leg dangling over the side",
    "hands": "free"
@@ -3302,7 +3888,10 @@
    "ko": "명소 계단에서 쉬기",
    "family": "sit",
    "places": [
-    "nation_square"
+    "nation_square",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple"
    ],
    "en": "sitting on the steps of the place's landmark, shoes off beside her",
    "seat": [
@@ -3338,7 +3927,8 @@
    "ko": "가면 들고 돌기",
    "family": "move",
    "places": [
-    "fx_ballroom"
+    "fx_ballroom",
+    "fx_mirror"
    ],
    "en": "turning a slow waltz step with a mask raised on a stick"
   },
@@ -3348,7 +3938,12 @@
    "family": "stand",
    "places": [
     "fx_forest",
-    "fx_chapel"
+    "fx_chapel",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis"
    ],
    "en": "raising a lantern to light the way"
   },
@@ -3358,7 +3953,8 @@
    "family": "stand",
    "places": [
     "fx_observatory",
-    "site_observatory"
+    "site_observatory",
+    "fx_cloudpavilion"
    ],
    "en": "looking through a great brass telescope"
   },
@@ -3386,7 +3982,11 @@
    "ko": "계단 내려오기",
    "family": "walk",
    "places": [
-    "fx_castle"
+    "fx_castle",
+    "fx_ice",
+    "fx_library",
+    "fx_underwater",
+    "fx_pirate_ship"
    ],
    "en": "descending the stairs with her train trailing behind"
   },
@@ -3426,7 +4026,8 @@
    "family": "stand",
    "places": [
     "home_kitchen",
-    "street_shop"
+    "street_shop",
+    "nation_kitchen"
    ],
    "en": "reaching up for a box on a high shelf"
   },
@@ -3457,7 +4058,9 @@
     "home_living",
     "home_bedroom",
     "street_cafe",
-    "travel_lodge"
+    "travel_lodge",
+    "street_diner",
+    "street_office"
    ],
    "en": "watching rain run down the window from an armchair, mug in hand",
    "seat": [
@@ -3471,7 +4074,8 @@
    "places": [
     "home_entry",
     "street_station",
-    "evening_opera"
+    "evening_opera",
+    "travel_airport"
    ],
    "en": "pausing on a stair landing, one hand on the railing"
   },
@@ -3482,7 +4086,10 @@
    "places": [
     "nation_square",
     "travel_rural_station",
-    "travel_lookout"
+    "travel_lookout",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple"
    ],
    "en": "arriving at first light with a coffee cup, the place slowly lighting up behind her"
   },
@@ -3494,7 +4101,15 @@
     "nation_square",
     "street_alley",
     "travel_trail",
-    "fx_forest"
+    "fx_forest",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple"
    ],
    "en": "walking at night with a small lantern, the path glowing softly around her"
   },
@@ -3529,7 +4144,12 @@
    "places": [
     "stage_festival",
     "street_park",
-    "fx_forest"
+    "fx_forest",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis"
    ],
    "en": "weaving a crown of fresh flowers"
   },
@@ -3540,7 +4160,9 @@
    "places": [
     "home_living",
     "studio_art",
-    "street_cafe"
+    "street_cafe",
+    "street_diner",
+    "street_office"
    ],
    "en": "threading beads into a small charm with tidy craft tools",
    "seat": [
@@ -3566,7 +4188,9 @@
    "family": "sit",
    "places": [
     "street_cafe",
-    "home_living"
+    "home_living",
+    "street_diner",
+    "street_office"
    ],
    "en": "sorting printed photographs beside a camera and a scrapbook",
    "seat": [
@@ -3582,7 +4206,9 @@
     "home_living",
     "street_cafe",
     "travel_lodge",
-    "nation_inn"
+    "nation_inn",
+    "street_diner",
+    "street_office"
    ],
    "en": "moving a piece across a wooden board game, weighing her next move",
    "seat": [
@@ -3607,7 +4233,9 @@
    "family": "sit",
    "places": [
     "home_living",
-    "street_cafe"
+    "street_cafe",
+    "street_diner",
+    "street_office"
    ],
    "en": "folding a small paper crane, finished figures lined up beside her",
    "seat": [
@@ -3623,7 +4251,9 @@
     "home_living",
     "home_bedroom",
     "travel_lodge",
-    "nation_room"
+    "nation_room",
+    "nation_study",
+    "nation_kitchen"
    ],
    "en": "knitting a soft scarf, a ball of yarn in a basket at her side",
    "seat": [
@@ -3653,7 +4283,8 @@
    "ko": "펜싱 자세",
    "family": "move",
    "places": [
-    "sports_gym"
+    "sports_gym",
+    "nation_training"
    ],
    "en": "stepping into an en garde stance, the mask tucked under one arm",
    "outfits": [
@@ -3734,7 +4365,10 @@
     "street_alley",
     "street_cafe",
     "street_park",
-    "travel_dunes"
+    "travel_dunes",
+    "fx_oasis",
+    "street_diner",
+    "street_office"
    ],
    "en": "leaning against a parked classic car or motorcycle",
    "hands": "free"
@@ -3788,7 +4422,12 @@
    "family": "walk",
    "places": [
     "stage_wedding",
-    "fx_forest"
+    "fx_forest",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis"
    ],
    "en": "walking down an aisle under a flower arch, the train trailing"
   },
@@ -4117,6 +4756,22 @@
      "key": "turtleneck_quilted_vest",
      "ko": "터틀넥 + 퀼팅 조끼 + 바지",
      "en": "a fine knit turtleneck under a quilted vest with straight trousers"
+    },
+    {
+     "key": "knit_dress_longboots",
+     "ko": "니트 원피스 + 롱부츠",
+     "en": "a fitted knit dress with knee-high suede boots",
+     "low": true
+    },
+    {
+     "key": "fur_coat_mini",
+     "ko": "퍼 코트 + 미니 원피스",
+     "en": "a short faux-fur coat open over a fitted mini dress"
+    },
+    {
+     "key": "sheer_blouse_skirt",
+     "ko": "시스루 블라우스 + 하이웨이스트 스커트",
+     "en": "a sheer chiffon blouse over a lace camisole, tucked into a high-waisted skirt"
     }
    ],
    "en": "everyday clothes that suit the place and activity"
@@ -4374,6 +5029,16 @@
      "ko": "앞 끈 코르셋",
      "en": "a front-lacing corset over matching high-waisted bottoms",
      "low": true
+    },
+    {
+     "key": "negligee_silk",
+     "ko": "네글리제",
+     "en": "a long silk negligee with a lace bodice, thin straps and a side slit"
+    },
+    {
+     "key": "silk_pajama",
+     "ko": "실크 파자마 세트",
+     "en": "a silk pajama set — a short satin camisole with lace trim and matching tap shorts, the long-sleeved pajama shirt worn open over it"
     }
    ],
    "en": "tasteful lingerie-inspired fashion, fully opaque and securely fitted, with full intimate coverage"
@@ -4662,6 +5327,23 @@
      "key": "ski_set",
      "ko": "스키 재킷 + 스키 팬츠",
      "en": "a fitted ski jacket and padded ski pants"
+    },
+    {
+     "key": "golf_wear",
+     "ko": "골프웨어 — 폴로 + 플리츠 미니스커트",
+     "en": "a fitted golf polo with a pleated mini skirt and a visor",
+     "low": true
+    },
+    {
+     "key": "ski_suit",
+     "ko": "스키웨어 — 몸에 붙는 스키 수트",
+     "en": "a sleek fitted one-piece ski suit with goggles pushed up on her head"
+    },
+    {
+     "key": "ballet_practice",
+     "ko": "발레 연습복 — 레오타드 + 랩스커트",
+     "en": "a ballet leotard with a short wrap skirt, tights and leg warmers",
+     "low": true
     }
    ],
    "en": "activewear made for the activity"
@@ -4881,6 +5563,22 @@
      "key": "caftan_evening",
      "ko": "모로코 카프탄",
      "en": "a Moroccan evening caftan — a long embroidered robe with a decorated belt"
+    },
+    {
+     "key": "xinzhongshi_crop_mamian",
+     "ko": "신중식 — 한푸 깃 크롭 상의 + 슬릿 마면치마",
+     "en": "a new-Chinese-style street outfit: a cropped top with a crossed hanfu collar and a pleated horse-face skirt with a high slit"
+    },
+    {
+     "key": "xinzhongshi_knot_dress",
+     "ko": "신중식 — 매듭단추 바디 원피스",
+     "en": "a fitted modern dress with frog-knot buttons and a mandarin collar in hanfu-inspired silk"
+    },
+    {
+     "key": "xinzhongshi_jacket_mini",
+     "ko": "신중식 — 자수 한푸 재킷 + 미니스커트",
+     "en": "a short embroidered hanfu-style jacket with wide sleeves over a camisole and a mini skirt",
+     "low": true
     }
    ],
    "en": "a traditional dress that suits her, worn naturally"
@@ -5039,6 +5737,46 @@
      "key": "mechanic_jumpsuit",
      "ko": "정비용 점프수트",
      "en": "a fitted mechanic's work jumpsuit with rolled sleeves and no real logos"
+    },
+    {
+     "key": "race_model",
+     "ko": "서킷 레이싱 모델",
+     "en": "a modern circuit race-queen outfit — a glossy fitted crop top and hot pants in team colours with a sponsor-free racing jacket over one shoulder, knee-high boots and a team umbrella"
+    },
+    {
+     "key": "expo_model",
+     "ko": "박람회 · 게임쇼 모델",
+     "en": "a game-show booth model outfit — a sleek bodycon mini dress with glowing trim and a fitted cropped jacket, thigh-high boots"
+    },
+    {
+     "key": "idol_stage",
+     "ko": "K-팝 아이돌 무대 의상",
+     "en": "a K-pop idol stage outfit — a sparkling cropped corset top, high-waisted hot pants with a sheer side panel and glossy knee-high boots"
+    },
+    {
+     "key": "dance_crew",
+     "ko": "댄스 크루 무대",
+     "en": "a dance-crew stage outfit — a cropped tank top, a cargo mini skirt with chains and fingerless gloves"
+    },
+    {
+     "key": "cabaret_dancer",
+     "ko": "카바레 댄서",
+     "en": "a cabaret dancer costume — a fitted sequined bodysuit with a sheer flowing overskirt open at the front and long satin gloves"
+    },
+    {
+     "key": "bartender",
+     "ko": "바텐더",
+     "en": "a bartender costume — a fitted satin waistcoat over a shirt with rolled sleeves and the top buttons open, a bow tie and a high-waisted pencil mini skirt"
+    },
+    {
+     "key": "diner_waitress",
+     "ko": "다이너 웨이트리스",
+     "en": "a retro diner waitress costume — a fitted short-sleeved dress with a short flared skirt, a frilled half apron and a little paper cap"
+    },
+    {
+     "key": "office_look",
+     "ko": "오피스룩",
+     "en": "an office-look costume — a fitted silk blouse with the top buttons open, a high-waisted tight pencil skirt with a back slit, sheer tights and heels"
     }
    ],
    "en": "a playful adult event costume inspired by an occupation or role — clearly a costume, not a real uniform, no real insignia"
@@ -5614,6 +6352,160 @@
     }
    ],
    "en": "a period look from a past decade"
+  },
+  {
+   "key": "dongtan",
+   "ko": "동탄룩",
+   "en": "a body-hugging, curve-tracing going-out outfit in the Korean 'Dongtan look' style",
+   "items": [
+    {
+     "key": "dongtan_knit_mini",
+     "ko": "몸에 붙는 니트 미니 원피스",
+     "en": "a body-hugging ribbed knit mini dress that traces every curve of bust, waist and hips, with high heels",
+     "low": true
+    },
+    {
+     "key": "dongtan_crop_skirt",
+     "ko": "크롭 니트 + 타이트 미니스커트",
+     "en": "a tight cropped knit top baring the waist and a snug bodycon mini skirt, with high heels",
+     "low": true
+    },
+    {
+     "key": "dongtan_offshoulder",
+     "ko": "오프숄더 바디콘 원피스",
+     "en": "a fitted off-shoulder bodycon dress hugging the bust, waist and hips, ending above the knee"
+    },
+    {
+     "key": "dongtan_turtleneck_pencil",
+     "ko": "터틀넥 + 슬릿 펜슬 스커트",
+     "en": "a thin fitted turtleneck knit tucked into a tight high-waisted pencil skirt with a side slit, and heels",
+     "low": true
+    },
+    {
+     "key": "dongtan_tube_leggings",
+     "ko": "튜브탑 + 하이웨이스트 레깅스",
+     "en": "a tight tube top under an open cropped cardigan with glossy high-waisted leggings that outline the hips and legs"
+    },
+    {
+     "key": "club_mesh",
+     "ko": "클럽 — 시스루 메시 탑 + 레더 미니",
+     "en": "a club outfit — a sheer mesh long-sleeve top over a bandeau and a glossy leather mini skirt, strappy heels"
+    },
+    {
+     "key": "club_metallic",
+     "ko": "클럽 — 메탈릭 슬립 미니",
+     "en": "a club outfit — a liquid-metallic cowl-neck slip mini dress with thin straps and strappy heels"
+    },
+    {
+     "key": "club_cutout",
+     "ko": "클럽 — 컷아웃 바디콘",
+     "en": "a club outfit — a body-hugging bodycon dress with geometric cut-outs at the waist and a low back"
+    },
+    {
+     "key": "festival_chain",
+     "ko": "페스티벌 — 바디체인 + 크롭 + 데님 숏츠",
+     "en": "a music-festival outfit — a crochet crop top with a delicate body chain, frayed denim micro shorts and ankle boots"
+    }
+   ]
+  },
+  {
+   "key": "adventure",
+   "ko": "모험가",
+   "en": "an adventurer's outfit — a rugged ranch, explorer or pirate look, practical pieces worn short and fitted",
+   "items": [
+    {
+     "key": "cowgirl",
+     "ko": "카우걸",
+     "en": "a cowgirl look — a cropped plaid shirt knotted under the bust, frayed denim shorts, a leather belt with a big buckle, cowboy boots and a cowboy hat"
+    },
+    {
+     "key": "ranch_vest",
+     "ko": "프린지 조끼",
+     "en": "a ranch look — a fringed suede vest over a cropped tank top, low-rise flared jeans and ankle boots"
+    },
+    {
+     "key": "pirate_corset",
+     "ko": "해적 코르셋",
+     "en": "a pirate look — a loose shirt open at the neck under a laced leather corset, a long sash at the hip, short breeches and tall cuffed boots"
+    },
+    {
+     "key": "pirate_captain",
+     "ko": "해적 선장",
+     "en": "a pirate-captain look — a long brocade coat worn open over a cropped bustier top, a wide buckled belt, hot pants and thigh-high boots"
+    },
+    {
+     "key": "jungle_explorer",
+     "ko": "정글 탐험가",
+     "en": "a jungle-explorer look — a khaki shirt knotted under the bust with rolled sleeves, cargo shorts, a canvas utility belt and lace-up boots"
+    },
+    {
+     "key": "desert_nomad",
+     "ko": "사막 탐험가",
+     "en": "a desert-explorer look — a light linen scarf loose over the shoulders, a cropped linen top, low-slung loose linen trousers and leather sandals"
+    },
+    {
+     "key": "treasure_hunter",
+     "ko": "보물 사냥꾼",
+     "en": "a treasure-hunter look — a fitted tank top, a leather strap harness with small pouches, slim cargo pants and fingerless gloves"
+    },
+    {
+     "key": "safari_dress",
+     "ko": "사파리 원피스",
+     "en": "a safari look — a belted khaki shirt dress with a short hem, a wide-brim hat and tall lace-up boots"
+    },
+    {
+     "key": "aviatrix",
+     "ko": "비행사",
+     "en": "a vintage aviatrix look — a cropped leather flight jacket over a fitted top, high-waisted jodhpurs, goggles pushed up on her head and tall boots"
+    }
+   ]
+  },
+  {
+   "key": "drape",
+   "ko": "신화 드레이프",
+   "en": "a goddess-like draped look inspired by myth — flowing fabric wrapped, knotted and pinned on the body",
+   "items": [
+    {
+     "key": "greek_chiton",
+     "ko": "그리스 키톤",
+     "en": "a Greek chiton — a long draped dress pinned at both shoulders with gold brooches, a high side slit, a gold cord crossed under the bust and gold arm cuffs"
+    },
+    {
+     "key": "one_shoulder_goddess",
+     "ko": "한쪽 어깨 여신",
+     "en": "a one-shoulder goddess gown of flowing chiffon gathered at one shoulder with a gold brooch, the other shoulder and arm bare, a thigh-high slit"
+    },
+    {
+     "key": "peplos_mini",
+     "ko": "짧은 페플로스",
+     "en": "a short draped peplos mini dress belted with a fine gold chain, laurel-leaf hair pins and laced gladiator sandals"
+    },
+    {
+     "key": "arabian_nights",
+     "ko": "아라비안 나이트",
+     "en": "an Arabian-nights look — a jewelled cropped top, a sheer veil scarf over the shoulders, low-slung flowing chiffon trousers and gold coin anklets"
+    },
+    {
+     "key": "roman_stola",
+     "ko": "로마 스톨라",
+     "en": "a Roman-style draped stola in a jewel tone, wrapped low across the back and pinned at one shoulder, with a gold collar necklace"
+    },
+    {
+     "key": "egyptian_linen",
+     "ko": "이집트 리넨",
+     "en": "an Egyptian-inspired look — a sheer pleated linen sheath over an opaque inner slip dress, a broad jewelled collar and gold arm bands"
+    },
+    {
+     "key": "sea_nymph",
+     "ko": "바다 님프",
+     "en": "a sea-nymph drape — iridescent chiffon wrapped around the body and knotted at the hip, with shell and pearl jewellery"
+    },
+    {
+     "key": "toga_mini",
+     "ko": "토가 미니",
+     "en": "a modern toga mini dress — one-shoulder draped jersey in a short wrap, a gold cuff on the upper arm and strappy sandals"
+    }
+   ]
   }
  ],
  "required": {
@@ -5628,7 +6520,15 @@
     "nation_room",
     "nation_bath",
     "nation_roof",
-    "nation_inn"
+    "nation_inn",
+    "nation_study",
+    "nation_kitchen",
+    "nation_camp",
+    "nation_garden",
+    "nation_bridge",
+    "nation_temple",
+    "nation_forest",
+    "nation_harbor"
    ],
    "outfits": [
     "homewear",

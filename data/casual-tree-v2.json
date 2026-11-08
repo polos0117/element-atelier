@@ -1810,6 +1810,149 @@
    "table",
    "wall",
    "rail_waist"
+  ],
+  "fx_cloudpavilion": [
+   "rail_waist",
+   "chair",
+   "wall"
+  ],
+  "fx_ice": [
+   "edge",
+   "rail_waist",
+   "wall"
+  ],
+  "fx_lanternriver": [
+   "floor",
+   "lie",
+   "edge",
+   "wall"
+  ],
+  "fx_library": [
+   "edge",
+   "rail_waist",
+   "wall"
+  ],
+  "fx_mirror": [
+   "chair",
+   "wall",
+   "rail_waist"
+  ],
+  "fx_moonpond": [
+   "water",
+   "lie",
+   "edge"
+  ],
+  "fx_skygarden": [
+   "floor",
+   "lie",
+   "edge",
+   "wall"
+  ],
+  "fx_underwater": [
+   "edge",
+   "rail_waist",
+   "wall"
+  ],
+  "fx_jungle_ruins": [
+   "floor",
+   "lie",
+   "edge",
+   "wall"
+  ],
+  "fx_marble_bath": [
+   "water",
+   "lie",
+   "edge"
+  ],
+  "fx_marble_temple": [
+   "floor",
+   "lie",
+   "edge",
+   "wall"
+  ],
+  "fx_oasis": [
+   "floor",
+   "lie"
+  ],
+  "fx_pirate_ship": [
+   "edge",
+   "rail_waist",
+   "wall"
+  ],
+  "street_diner": [
+   "chair",
+   "table",
+   "rail_waist",
+   "wall"
+  ],
+  "street_office": [
+   "chair",
+   "table",
+   "rail_waist",
+   "wall"
+  ],
+  "travel_airport": [
+   "wall",
+   "chair",
+   "rail_waist"
+  ],
+  "travel_ranch": [
+   "chair",
+   "floor",
+   "lie"
+  ],
+  "nation_forest": [
+   "floor",
+   "lie",
+   "edge",
+   "wall"
+  ],
+  "nation_garden": [
+   "floor",
+   "lie",
+   "edge",
+   "wall"
+  ],
+  "nation_harbor": [
+   "wall",
+   "edge",
+   "floor"
+  ],
+  "nation_bridge": [
+   "edge",
+   "lie",
+   "floor",
+   "rail_waist"
+  ],
+  "nation_study": [
+   "chair",
+   "table",
+   "wall",
+   "floor"
+  ],
+  "nation_temple": [
+   "chair",
+   "table",
+   "wall",
+   "floor"
+  ],
+  "nation_camp": [
+   "chair",
+   "table",
+   "wall",
+   "floor"
+  ],
+  "nation_kitchen": [
+   "rail_waist",
+   "chair",
+   "wall",
+   "table",
+   "worktable"
+  ],
+  "nation_training": [
+   "wall",
+   "floor",
+   "edge"
   ]
  },
  "props": [
@@ -1834,7 +1977,9 @@
     "library_reading",
     "site_control",
     "site_observatory",
-    "site_mint"
+    "site_mint",
+    "nation_study",
+    "nation_kitchen"
    ]
   },
   {
@@ -1850,7 +1995,8 @@
     "water_infinity",
     "stage_redcarpet",
     "stage_wedding",
-    "fx_ballroom"
+    "fx_ballroom",
+    "fx_mirror"
    ]
   },
   {
@@ -1891,7 +2037,13 @@
     "library_reading",
     "train_sleeper",
     "greenhouse",
-    "site_observatory"
+    "site_observatory",
+    "fx_cloudpavilion",
+    "street_diner",
+    "street_office",
+    "travel_ranch",
+    "nation_study",
+    "nation_kitchen"
    ]
   },
   {
@@ -1909,7 +2061,14 @@
     "lodge_terrace",
     "greenhouse",
     "site_observatory",
-    "site_saltpan"
+    "site_saltpan",
+    "nation_forest",
+    "nation_garden",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple",
+    "nation_camp",
+    "nation_training"
    ]
   },
   {
@@ -1925,7 +2084,11 @@
     "travel_coast",
     "home_entry",
     "nation_square",
-    "nation_market"
+    "nation_market",
+    "travel_airport",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple"
    ]
   },
   {
@@ -1937,7 +2100,11 @@
     "water_yacht",
     "travel_lake",
     "travel_coast",
-    "nation_field"
+    "nation_field",
+    "nation_forest",
+    "nation_garden",
+    "nation_camp",
+    "nation_training"
    ]
   },
   {
@@ -1981,7 +2148,8 @@
     "evening_opera",
     "evening_gala",
     "spa_onsen",
-    "nation_inn"
+    "nation_inn",
+    "fx_mirror"
    ]
   },
   {
@@ -2005,7 +2173,8 @@
     "travel_camp",
     "street_park",
     "street_rooftop",
-    "home_living"
+    "home_living",
+    "travel_ranch"
    ]
   },
   {
@@ -2019,7 +2188,8 @@
     "travel_lookout",
     "water_yacht",
     "nation_roof",
-    "site_observatory"
+    "site_observatory",
+    "fx_cloudpavilion"
    ]
   },
   {
@@ -2033,7 +2203,12 @@
     "street_market",
     "fx_forest",
     "greenhouse",
-    "backstage_dressing"
+    "backstage_dressing",
+    "fx_lanternriver",
+    "fx_skygarden",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis"
    ]
   },
   {
@@ -2069,7 +2244,17 @@
     "travel_camp",
     "fx_forest",
     "fx_castle",
-    "site_mine"
+    "site_mine",
+    "fx_ice",
+    "fx_lanternriver",
+    "fx_library",
+    "fx_skygarden",
+    "fx_underwater",
+    "fx_jungle_ruins",
+    "fx_marble_temple",
+    "fx_oasis",
+    "fx_pirate_ship",
+    "travel_ranch"
    ]
   },
   {
@@ -2082,7 +2267,13 @@
     "travel_lookout",
     "street_cafe",
     "nation_field",
-    "site_observatory"
+    "site_observatory",
+    "street_diner",
+    "street_office",
+    "nation_forest",
+    "nation_garden",
+    "nation_camp",
+    "nation_training"
    ]
   },
   {
@@ -2133,7 +2324,8 @@
    "places": [
     "fx_ballroom",
     "stage_convention",
-    "evening_opera"
+    "evening_opera",
+    "fx_mirror"
    ]
   },
   {
@@ -2148,7 +2340,9 @@
     "train_sleeper",
     "evening_hotel",
     "nation_inn",
-    "library_reading"
+    "library_reading",
+    "street_diner",
+    "street_office"
    ]
   },
   {
@@ -2162,7 +2356,9 @@
     "home_living",
     "@studio",
     "tailor_room",
-    "@site"
+    "@site",
+    "street_diner",
+    "street_office"
    ]
   },
   {
@@ -2221,7 +2417,9 @@
     "@spa",
     "evening_hotel",
     "nation_room",
-    "train_sleeper"
+    "train_sleeper",
+    "nation_study",
+    "nation_kitchen"
    ]
   },
   {
@@ -2259,7 +2457,14 @@
     "travel_trail",
     "travel_lookout",
     "nation_field",
-    "nation_square"
+    "nation_square",
+    "nation_forest",
+    "nation_garden",
+    "nation_harbor",
+    "nation_bridge",
+    "nation_temple",
+    "nation_camp",
+    "nation_training"
    ]
   },
   {
@@ -4570,7 +4775,12 @@
    "editorial": [],
    "bridal": [],
    "retro": [],
-   "halloween": []
+   "halloween": [],
+   "dongtan": [],
+   "adventure": [
+    "pocket"
+   ],
+   "drape": []
   },
   "add": {
    "overalls": [
@@ -4806,7 +5016,8 @@
     "site_mine",
     "site_control",
     "site_mint",
-    "site_observatory"
+    "site_observatory",
+    "travel_airport"
    ],
    "ko": "물과 먼 실내·추운 곳에 수영복·목욕 차림"
   },
@@ -4854,7 +5065,8 @@
     "@sports",
     "street_station",
     "street_grocery",
-    "@site"
+    "@site",
+    "travel_airport"
    ],
    "ko": "란제리풍으로 운동·생활 공간·현장"
   },
@@ -4891,6 +5103,33 @@
     "@water"
    ],
    "ko": "할로윈으로 목욕·운동·물가"
+  },
+  {
+   "outfits": [
+    "drape"
+   ],
+   "places": [
+    "@sports",
+    "street_office",
+    "travel_airport",
+    "street_diner",
+    "street_station",
+    "street_grocery"
+   ],
+   "ko": "신화 드레이프로 운동 · 사무실 · 공항 · 생활 공간"
+  },
+  {
+   "outfits": [
+    "adventure"
+   ],
+   "places": [
+    "@spa",
+    "evening_opera",
+    "evening_gala",
+    "stage_wedding",
+    "stage_redcarpet"
+   ],
+   "ko": "모험가 차림으로 목욕 · 격식 자리"
   }
  ],
  "presets": [

@@ -112,7 +112,7 @@ python3 tests/style-compare.py           # 화풍 비교 묶음 — 열쇠 꼴 �
 python3 tools/casual-tree.py check      # 일상컷 트리 표(버전1 몫 — 시대·장소·의상) · audit — 하는 일 문장의 고정물이 장소에 없는 쌍
 python3 tools/casual-tree-v2.py check   # 일상컷 트리 버전2 표 — 없는 열쇠·두 손 칸·보이는 손 자리·다리 칸·다 되는 장소 없는 자세 추천
 python3 tests/casual-tree-v2.py · node tests/casual-tree-v2.cjs   # 검사기·거르기 모듈이 규칙마다 거는지
-node tests/casual-plan.cjs              # 일상컷 묶음 계획기 — 카드 × 사는 세계 × 씨앗이 다섯 장 · 묶음 규칙 · 네 시대 · 기록 꼴, 있는 컷 위에 모자란 만큼
+node tests/casual-plan.cjs              # 일상컷 묶음 계획기 — 카드 × 사는 세계 × 씨앗이 여섯 장(2026-11-09) · 정해 둔 세 갈래 · 옷 색 · 데니어 · 상황 · 짧은 일상컷 · 묶음 규칙 · 네 시대 · 기록 꼴, 있는 컷 위에 모자란 만큼
 node tests/image-claim.cjs              # 이미지 작업 잠금 — bare 저장소로 잡기 · 겹침 · 몫 없음(원소) · push 경합 되돌림
 node tests/words.cjs                    # 낱말 표
 node tests/patch.cjs                    # 패치 기록 모양

@@ -9,6 +9,14 @@
 
 
 
+## 2026-11-09 · claude · 생성기 구조를 삼국지 공방에 맞춤 — 짧은 판 · 기본 MMORPG CG · 일상컷 여섯 장 · 갈래
+- 사용자 「element 쪽도 생성기 구조 sam 쪽에 맞추자. 간결버전에 일상컷도 간결, 갈래추가」 — 삼국지 공방(2026-11-08 ~ 09)의 짧은 지시문 · 계획기 · 갈래를 원소 꼴로
+- lib/prompt-element.js — buildWorldShort(줄 꼴 긴 지시문에서 CONCEPT · AGE · FACE · SILHOUETTE · ELEMENT/HOUSE TRAITS · WORLD · EXPOSURE · EXPRESSION 을 뽑아 머리말 1024×1536 · 화풍 단락 · 얼굴 비율 · 구도 · 빛 · 끝 줄로) · buildCasualShort(카드 층마다 who · 1024×1536 · 짧은 중안부 · 화풍 단락 · 계획 칸 · 머리 장식 두고 오기 · 원소 · 빛) · worldShortOn · casualShortOn · shortStyle · colorFixed · denierFits · situsFor, Outfit 줄 끝에 옷 색 · 데니어 · 상황
+- lib/prompt-spec.js — WORLD_SHORT(얼굴 비율 줄 포함) · CASUAL colors · deniers · situations · short, 눈꼬리 up 「slightly lifted」. data/style.json — mmorpg_cg(삼국지에서) 기본 · worldShort. 구조판 mmorpg2d · semireal 은 옛 꼴 그대로
+- tools/casual-plan.cjs — 삼국지 계획기를 원소 꼴로(여섯 장 · 필수 셋 노출 · 나라 안 · 상황 노출 · 시대 몫 · 옷 색 · 데니어 · 목욕 덜 · 세계끼리 같은 옷 금지 · 안 쓴 값 무게 12 · --world all · --fresh). tools/prompt-pack.cjs casual color · denier · situ, tools/image-claim.cjs CASUAL_N 6
+- data/casual-tree.json · casual-tree-v2.json — 계열 동탄룩 · 모험가 · 신화 드레이프, 옷 열아홉, 장소 스물여섯(나라 안 아홉 포함 — 나라 안 갈래 장소 열둘), 받침 · 소품 자리는 닮은 장소에서. lib/studio.js · lib/words.js 생성기 「옷 색」 · 「데니어」 · 「상황」 단계
+- 검사 casual-plan(새로) · prompt-element(옛 꼴은 짧은 판 끈 사본, 짧은 세계 그림 검사 더함) · screen(구조판 걷기는 mmorpg2d 를 골라서, 새 단계) · prompt-pack-screen(여섯 장) · casual-tree. 문서 IMAGE_RULES · IMAGE_AUTOMATION · AGENTS. ?v= words 13 · prompt-spec 11 · prompt-element 16 · studio 4
+
 ## 2026-11-07 · claude · 오가네손 얼굴 — 덜 길게 · 위를 보지 않게
 - 사용자 「원래도 설계가 긴 얼굴에 위를 쳐다보는 구도라 일상컷에 옮길때 더 길어진거 같아」 — data/element-design.json og look: 판타지 얼굴형 long → oval, 입술 thin_long → small_bow(원소 어휘엔 soft_medium 이 없다), 기본 표정 wistful(살짝 위나 옆을 보는 시선) → nostalgic(카메라 너머 아련한 시선). 쓸쓸함은 인상 melancholic · 홑꺼풀 긴 눈 · 처진 눈꼬리로 남긴다.
 - 시험(판타지 기본 화풍 세계 그림 둘 + 같은 장면 근접 일상컷 — 일상컷 표정도 nostalgic): 얼굴이 덜 길고 고개가 수평. 이미 그린 그림 · 비교 묶음은 그대로.
