@@ -9,6 +9,10 @@
 
 
 
+## 2026-11-09 · claude · 기본 화풍 일본 유화 애니 · 원소 기호와 번호는 장면 속 글자로만
+- 사용자 「원소쪽 기본화풍 일본 유화 애니로 해주고」 — data/style.json default mmorpg_cg → jp_paint_anime(검사 tests/prompt-element.cjs · IMAGE_RULES 함께).
+- 같은 말 「그 화풍 비교에 보니까 원소숫자랑 기호가 배경에 녹아드는게 아니라, 카드의 번호마냥 떠 있는데 이거 수정 좀 해줘」 — 오가네손 · 철 세계 그림 모서리에 주기율표 칸처럼 떴다. lib/prompt-spec.js 세계 그림 끝 줄(WORLD_SHORT.end) · GPT 설계 끝 줄 · 인물 한 명 줄(RULES · CASUAL figure) · 구조판 글자 줄에 「장면 속 글자로만 — 옷 · 깃발 · 간판 · 기계에 새기거나 빛나게, 떠 있는 라벨 · 모서리 배지 · 주기율표 칸 · 자막 · 덧씌움 아님」. prompt-spec ?v=18.
+
 ## 2026-11-09 · claude · 되돌림 — GPT 설계 주문 머리색 고정(원소는 자유)
 - 사용자 「우선은 삼국지만, 원소는 자유롭게 놔둬줘」 · 「원소는 revert」 — 바로 앞 「GPT 설계 주문 — 머리색은 우리 설계값」(9d491bd)을 git revert 로 되돌렸다: WORLD_FREE.free 에 머리색 다시 자유, hair 줄 없음, second 는 「다른 얼굴 · 머리색 · 헤어스타일」, 검사 · 문서 원래대로. ?v= 는 앞으로만 — prompt-spec 17 · prompt-element 22. 삼국지는 고정 그대로.
 

@@ -447,7 +447,7 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
   /* ══ 짧은 판(2026-11-09 삼국지 공방에서 — 사용자 「element 쪽도 생성기 구조 sam 쪽에 맞추자. 간결버전에 일상컷도 간결」) ══
    기본 mmorpg_cg · worldShort — 세계 그림은 머리말(1024×1536 · CONCEPT) · 화풍 단락 · 얼굴 · 얼굴 비율 · 원소 · 세계와 차림 · 노출 · 구도 · 빛 · 끝 줄, 400~800낱말. 구조판은 그대로 */
 {
-  assert.equal(SN.default, 'mmorpg_cg'); assert(P.worldShortOn(SN, SN.default) && P.casualShortOn(SN, SN.default) && !P.worldShortOn(SN, 'mmorpg2d'), '짧은 판 켜짐 · 구조판은 끔');
+  assert.equal(SN.default, 'jp_paint_anime'); assert(P.worldShortOn(SN, SN.default) && P.casualShortOn(SN, SN.default) && !P.worldShortOn(SN, 'mmorpg2d'), '짧은 판 켜짐 · 구조판은 끔');
   let nw = 0;
   for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
     const t = P.build(D, SN, key, w, {}), wc = t.split(/\s+/).length;
