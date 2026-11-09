@@ -494,7 +494,7 @@
   },
   "bright_2d_oil": {
    "name": "밝은 2D 유화",
-   "current": "v2",
+   "current": "v3",
    "versions": [
     {
      "v": "v1",
@@ -523,6 +523,18 @@
      ],
      "text": "Bright 2D Korean fantasy game illustration with a light 2.5D touch, finished like a luminous oil painting. Fine, soft coloured linework only around the eyes, face and key contours; forms built with gentle painted volume rather than 3D-render shading. Bright, airy high-key natural light with soft, subtle shadows; clear, luminous skin and fresh, vivid midtones that never wash out. Delicate visible oil brushwork and layered glazes of colour in the hair, fabric and background, with soft edges and crisp detail only on the face and focal ornaments. An elegant anime-influenced face with natural proportions — not a 3D render, not semi-realistic, not flat cel shading.",
      "why": "v1(짧은 판 화풍 단락 하나)은 작게 보면 하이키 유화와 비슷했고 mmorpg2d 의 또렷한 2D 까지 못 갔다 — mmorpg2d v1 구조판(공통 규칙 · 1절 작화 고정 · 2~4절 칸 · 일상 규칙) 그대로에 1절만 바꿨다: 계열(밝은 2D + 살짝 2.5D, 유화 마감) · 선화(눈 · 얼굴 · 큰 윤곽에 옅은 색선, 안쪽은 칠 경계) · 피부(옅은 유화 글레이즈, 맑게 빛남) · 셰이딩(붓으로 칠한 입체, 유화 붓결 · 겹친 색층, 「붓 자국 대신 깔끔한 디지털 채색」 뺌) · 광원(밝은 하이키 자연광 · 씻기지 않는 중간색) · 마감(얼굴 · 중심 장식만 또렷, 유화 붓칠 배경) · 금지에 반실사 얼굴 · 글로시 3D 광택. 두꺼운 임파스토 금지는 그대로"
+    },
+    {
+     "v": "v3",
+     "adopted": "2026-11-09",
+     "by": "claude — 사용자 2026-11-09 「그러면 구조판 말고 아까 말한 화풍단락만 수정해서는?」 → 「응 진행해줘」",
+     "why": "v1(짧은 판)의 「light 2.5D touch」 · 「finished like a luminous oil painting」 이 그림 전체를 하이키 유화 렌더 쪽으로 끌었다 — 둘을 빼고 mmorpg2d 의 2D 를 붙잡던 말(clearly hand-drawn 2D character art · elegant adult anime facial design · clear shadow shapes · visibly illustrated in 2D)을 앞에, 유화 붓결 · 색층은 머리 · 옷 · 배경에만. 빛 줄은 v1 그대로. v2(구조판)는 기록 판",
+     "text": "A premium bright 2D Korean fantasy game illustration: clearly hand-drawn 2D character art with fine, soft coloured linework, elegant adult anime facial design and expressive, finely detailed eyes; layered soft painted shading with clear shadow shapes, never 3D-render shading. Bright, airy high-key natural light with soft, subtle shadows; clear, luminous skin and fresh, vivid midtones that never wash out. Delicate visible oil brushwork and layered glazes of colour in the hair, fabric and background, with crisp detail only on the face and focal ornaments. The face and body stay visibly illustrated in 2D — no 3D render, no semi-realistic face, no glossy plastic sheen, no flat single-tone cel shading.",
+     "casual": "A premium bright 2D Korean fantasy game illustration: clearly hand-drawn 2D character art with fine, soft coloured linework, elegant adult anime facial design and expressive, finely detailed eyes; layered soft painted shading with clear shadow shapes, never 3D-render shading. Bright, airy high-key natural light with soft, subtle shadows; clear, luminous skin and fresh, vivid midtones that never wash out. Delicate visible oil brushwork and layered glazes of colour in the hair, fabric and background, with crisp detail only on the face and focal ornaments. The face and body stay visibly illustrated in 2D — no 3D render, no semi-realistic face, no glossy plastic sheen, no flat single-tone cel shading.",
+     "casualShort": true,
+     "worldLight": "Light: bright, airy natural light with soft, subtle shadows — clear, luminous skin and fresh, vivid midtones that never wash out.",
+     "casualLight": "Light: the place's own bright, airy natural light with soft, subtle shadows — clear, luminous skin and fresh, vivid midtones that never wash out, as in the attached image.",
+     "check": "bright 2D-to-light-2.5D Korean fantasy game illustration with luminous oil-paint texture — soft coloured linework, airy natural light, clear skin, visible brushwork; not a 3D render or semi-realistic; one figure."
     }
    ]
   }
