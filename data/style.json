@@ -494,7 +494,7 @@
   },
   "bright_2d_oil": {
    "name": "밝은 2D 유화",
-   "current": "v1",
+   "current": "v2",
    "versions": [
     {
      "v": "v1",
@@ -507,6 +507,22 @@
      "worldLight": "Light: bright, airy natural light with soft, subtle shadows — clear, luminous skin and fresh, vivid midtones that never wash out.",
      "casualLight": "Light: the place's own bright, airy natural light with soft, subtle shadows — clear, luminous skin and fresh, vivid midtones that never wash out, as in the attached image.",
      "check": "bright 2D-to-light-2.5D Korean fantasy game illustration with luminous oil-paint texture — soft coloured linework, airy natural light, clear skin, visible brushwork; not a 3D render or semi-realistic; one figure."
+    },
+    {
+     "v": "v2",
+     "adopted": "2026-11-09",
+     "by": "claude — 사용자 2026-11-09 「구조판으로 만들어서 다시 해줘」",
+     "format": "structured",
+     "rules": "공통 적용 규칙:\n\n각 항목은 자신이 담당하는 요소에만 적용한다. 작화 방식은 1번, 캐릭터의 신체적 특징은 2번, 의상과 장비는 3번, 동작과 화면 연출은 4번을 따른다.\n\n특정 항목을 수정할 때 별도로 지정하지 않은 나머지 항목은 유지한다. 체형의 볼륨이나 굴곡 변경을 얼굴의 성숙도·표정·포즈·카메라·그림체 변화로 확대 해석하지 않는다. 의상은 지정된 디자인과 노출 범위를 유지하면서 변경된 신체 치수에 맞게 착용 형태만 조정한다.",
+     "casual_rule": "첨부한 세계 그림이 이 사람과 그림체의 기준이다(reference image = identity and style lock). 얼굴·눈·머리·피부·체형과 마감·채도·빛의 질감은 첨부 그림 그대로 두고, 옷·자세·표정·구도·장소만 이 문구대로 바꾼다. 첨부 그림의 옷·장갑·장식·배경·포즈·머리 각도·카메라 높이는 가져오지 않는다. 원소는 작은 장신구나 주변 물건으로만 드러내고, 옷의 색·무늬·재단에는 넣지 않는다.",
+     "section1": "1.작화 스타일 — 공통 고정\n\n작화 장비 비교 계열: 밝은 2D 한국 판타지 게임 일러스트에 살짝 2.5D, 빛나는 유화로 마감(bright 2D Korean fantasy game illustration with a light 2.5D touch, finished like a luminous oil painting) — 분명히 손으로 그린 2D 캐릭터 그림(clearly hand-drawn 2D character art)에 가늘고 옅은 색 선화(fine, soft coloured linework)와 붓으로 칠한 부드러운 입체(gentle painted volume), 섬세한 유화 붓결과 겹친 색층(delicate visible oil brushwork and layered glazes of colour)\n\n01 POSITIVE - 기술 작화\n\n형태 언어: 공들여 설계한 형태(carefully designed shapes), 성인 애니메이션식 미형(elegant adult anime facial design)과 균형 잡힌 자연스러운 성인 비례, 캐릭터마다 지정된 얼굴과 신체 비례를 유지, 얼굴과 몸이 분명히 2D 그림으로 읽히는 표현(face and body visibly illustrated in 2D)\n\n얼굴형: 지정된 얼굴 윤곽과 골격을 가는 색 선과 부드럽게 칠한 명암으로 표현, 이마·볼·턱이 매끄럽게 이어지는 형태, 골격의 거친 굴곡을 덜어 낸 섬세한 조형\n\n눈 구조: 표정이 살아 있는 정밀한 눈(expressive finely detailed eyes), 또렷한 윗눈꺼풀 선과 속눈썹, 옅은 아랫눈꺼풀, 지정된 눈의 크기·형태·배치를 유지\n\n홍채: 지정된 홍채색과 동공 형태를 유지하는 여러 층의 색(layered iris), 위쪽의 깊은 음영과 아래쪽의 밝은 반사, 장면 광원을 비추는 몇 개의 캐치라이트(catchlights)\n\n코: 지정된 콧대·코끝 형태를 짧은 선과 옅은 그림자로 표현(minimal nose, no heavy modelling), 얼굴의 다른 부위와 이어지는 피부색 변화\n\n입과 표정: 지정된 입술 형태와 두께를 가는 색 선과 작은 반사로 표현, 눈꺼풀·눈썹·입꼬리의 변화로 짓는 자연스러운 표정(subtle expression)\n\n선화: 검은 선이 아니라 그 부위의 색을 띤 가늘고 옅은 선(fine, soft coloured linework, not black outlines) — 눈·얼굴·큰 윤곽에 주로 쓰고, 머리·옷·배경 안쪽은 선 대신 칠의 경계로 나눈다(soft painted edges), 깊이와 재질에 따라 달라지는 선의 강약(varied line weight)\n\n머리카락: 지정된 헤어스타일의 큰 덩어리와 흐름을 선과 칠로 나누고 가닥을 골라 묘사(hair drawn in clumps with selective strands), 칠한 하이라이트 띠와 가장자리 빛(rim light), 머리색의 고유색을 지키는 내부 음영\n\n피부: 지정된 피부색 위에 옅은 유화 글레이즈로 겹친 부드러운 칠 명암(soft painted shading in thin luminous glazes), 밝고 맑게 빛나는 피부(clear, luminous skin), 은은한 혈색, 플라스틱 광택 없음, 모공·피부 결 묘사 없음(no pores, no skin texture)\n\n의상 선화/채색: 정교하지만 한눈에 읽히는 의상 구조(intricate yet readable costume design), 접합부(seams)와 장식을 따라 그린 선, 금속에는 칠한 날카로운 반사(painted specular highlights), 직물에는 주름 선과 겹친 명암, 투명 소재에는 겹침과 투과광, 지정되지 않은 소재나 장비를 임의로 추가하지 않는 묘사\n\n손: 자연스러운 손바닥 구조와 다섯 손가락의 연결(anatomically correct hands, five fingers), 동작에 맞는 관절 방향과 손가락 간격, 장갑을 낀 경우에도 설득력 있게 이어지는 손 형태\n\n렌더링/셰이딩: 부드러운 칠로 이어지는 여러 겹의 명암(layered soft painted shading), 3D 렌더 음영이 아니라 붓으로 칠한 부드러운 입체(gentle painted volume rather than 3D-render shading), 머리·옷·배경에 보이는 섬세한 유화 붓결과 겹친 색층(delicate visible oil brushwork and layered glazes of colour), 은은한 그림자(soft, subtle shadows)와 접촉 그림자(contact shadows)\n\n광원/색채: 밝고 가벼운 하이키 자연광(bright, airy high-key natural light)과 은은한 그림자, 씻기지 않는 선명하고 풍성한 중간색(fresh, vivid, full-bodied midtones that never wash out), 지정된 광원과 팔레트를 따르는 일관된 색온도, 밝은 면에도 남아 있는 색 정보(no blown-out highlights)\n\n디테일/마감: 얼굴·눈·중심 장식만 또렷하게, 그 밖은 부드러운 경계(soft edges with crisp detail only on the face and focal ornaments), 배경은 외곽선 없는 유화 붓칠(oil-painted background without outlines), 먼 배경의 공기 원근(atmospheric perspective), 빛나는 유화 마감의 공식 키아트(polished key art finished like a luminous oil painting)\n\n02 NEGATIVE - 3D 렌더(3D render), 실사·사진 같은 표현(photorealistic), 반실사 얼굴과 피부 결 · 모공(semi-realistic face, skin texture, pores), 선 없이 덩어리로만 빚은 반실사(lineless semi-real rendering), 굵고 균일한 검은 외곽선(thick uniform black outlines), 납작한 한 단 셀 셰이딩(flat single-tone cel shading), 거친 수채 번짐(watercolor bleed), 두꺼운 유화 붓 자국(impasto), 종이 질감(paper texture), 지정된 얼굴 비례의 임의 변경, 캐릭터마다 반복되는 같은 얼굴(same face), 과도한 화장과 볼 홍조, 과도한 블룸(excessive bloom), 모든 재질에 같은 플라스틱 광택(plastic sheen), 글로시 3D 광택 렌더(glossy 3D render finish), 뭉개진 의상 구조, 부정확한 관절, 기형 손(malformed hands), 손가락 누락과 추가(missing or extra fingers), 추가 팔다리(extra limbs), 지정되지 않은 장비와 장식",
+     "sections": [
+      "2.캐릭터 외형 — 캐릭터별 교체",
+      "3. 코디네이션 — 의상별 교체",
+      "4. 장면 — 장면별 교체"
+     ],
+     "text": "Bright 2D Korean fantasy game illustration with a light 2.5D touch, finished like a luminous oil painting. Fine, soft coloured linework only around the eyes, face and key contours; forms built with gentle painted volume rather than 3D-render shading. Bright, airy high-key natural light with soft, subtle shadows; clear, luminous skin and fresh, vivid midtones that never wash out. Delicate visible oil brushwork and layered glazes of colour in the hair, fabric and background, with soft edges and crisp detail only on the face and focal ornaments. An elegant anime-influenced face with natural proportions — not a 3D render, not semi-realistic, not flat cel shading.",
+     "why": "v1(짧은 판 화풍 단락 하나)은 작게 보면 하이키 유화와 비슷했고 mmorpg2d 의 또렷한 2D 까지 못 갔다 — mmorpg2d v1 구조판(공통 규칙 · 1절 작화 고정 · 2~4절 칸 · 일상 규칙) 그대로에 1절만 바꿨다: 계열(밝은 2D + 살짝 2.5D, 유화 마감) · 선화(눈 · 얼굴 · 큰 윤곽에 옅은 색선, 안쪽은 칠 경계) · 피부(옅은 유화 글레이즈, 맑게 빛남) · 셰이딩(붓으로 칠한 입체, 유화 붓결 · 겹친 색층, 「붓 자국 대신 깔끔한 디지털 채색」 뺌) · 광원(밝은 하이키 자연광 · 씻기지 않는 중간색) · 마감(얼굴 · 중심 장식만 또렷, 유화 붓칠 배경) · 금지에 반실사 얼굴 · 글로시 3D 광택. 두꺼운 임파스토 금지는 그대로"
     }
    ]
   }
