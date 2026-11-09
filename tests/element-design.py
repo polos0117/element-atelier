@@ -62,3 +62,9 @@ _, w = ed.check(d)
 assert any("가문 water" in x for x in w), "겹치는 가문 경고가 없다"
 
 print("PASS 설계표 검사기: 진짜 표 통과 · 망가뜨린 %d가지 다 걸림 · 겹치는 가문 경고" % len(cases))
+
+# 세계 그림 실루엣(2026-11-09 「원소 특징에 맞게 분배」) — 근본 · 가문주 · 세계마다 표의 갈래가 있고, 모든 갈래가 어느 원소 성격 묶음에 들어 있다
+import subprocess
+_r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'tools', 'sil-spread.py'), '--check'], capture_output=True, text=True)
+assert _r.returncode == 0 and '실루엣 통과' in _r.stdout, _r.stdout + _r.stderr
+print('PASS 실루엣 분배: ' + _r.stdout.strip().splitlines()[-1])

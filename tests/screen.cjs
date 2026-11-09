@@ -239,7 +239,9 @@ const fieldOf = (txt, name) => { const m = String(txt).match(new RegExp('^' + na
     await p.click('#panel .opt[data-pick="foundry"]'); assert.equal(await openOf(p), 'pose', '장면 다음 자세');
     assert.match(await p.locator('.hchip[data-open="scene"]').textContent(), /궤도 주조소 · 밤/, '장면 칩');
     await p.selectOption('#panel select[data-shot="expr"]', 'confident');
-    await p.click('#panel .opt[data-pick="stride"]'); assert.equal(await openOf(p), 'design', '자세 다음 설계 줄');
+    await p.click('#panel .opt[data-pick="stride"]'); assert.equal(await openOf(p), 'sil', '자세 다음 실루엣(2026-11-09)');
+    assert.match(await p.locator('#panel .opt[data-pick=""]').textContent(), /카드 설계값/, '실루엣 첫 선택지는 카드 설계값');
+    await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'design', '실루엣 다음 설계 줄');
     assert.equal(await p.locator('.hchip[data-open="world"]').count(), 1, '세계 칩');
     /* 설계 줄 — 실루엣·얼굴 싣기 체크(설계표 look 값 목록), 노출. 얼굴을 끄면 FACE 줄이 빠진다 */
     assert.equal(await p.locator('#panel [data-lookcheck]').count(), 2, '실루엣·얼굴 싣기');

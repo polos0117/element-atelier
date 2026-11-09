@@ -127,7 +127,7 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
   assert(t1.includes('AGE: a woman in her thirties'), '나이');
   assert(t1.includes('IDENTITY (chosen details override the automatic look)\nhair color: silver') && t1.includes('eye shape: sharp — ') && t1.includes('body type: wiry and tall') && t1.includes('body scope: ') && !t1.includes('zzz') && !t1.includes('apparent age:'), 'IDENTITY 목록 ' + t1.split('IDENTITY')[1]);
   const t2 = P.build(D, S, 'fe-rust', 'mecha', { look: { faceDesignOn: false, silhouetteOn: false, exposure: '' } });
-  assert(!t2.includes('SILHOUETTE: ') && !t2.includes('FACE') && !t2.includes('EXPOSURE') && !t2.includes('EXPRESSION: ') && t2.includes('AGE: in her twenties'), '끄면 빠진다(얼굴 설계 · 기본 표정도), 노출 비우면 안 싣는다');
+  assert(!/^SILHOUETTE: /m.test(t2) && !t2.includes('FACE') && !t2.includes('EXPOSURE') && !t2.includes('EXPRESSION: ') && t2.includes('AGE: in her twenties'), '끄면 빠진다(얼굴 설계 · 기본 표정도), 노출 비우면 안 싣는다');
   assert(P.build(D, S, 'fe', 'mecha', { look: { exposure: 'low' } }).includes('EXPOSURE (low): a mostly covered version of the costume WORLD describes'), '노출 적게');
   assert(P.build(D, S, 'fe', 'mecha', { look: { exposure: 'nope' } }).includes('EXPOSURE (bold)'), '모르는 노출은 기본');
   const nl = P.normLook({ params: { 'hair color': 'silver', bogus: 'x', 'hair color_custom': '' }, exposure: 'moderate', faceDesignOn: false });
@@ -145,8 +145,8 @@ assert(byTier.root >= 5 && byTier.lord >= 8 && byTier.citizen >= 20, JSON.string
   const t3 = P.build(D, S, 'fe', 'fantasy', { shot });
   assert(t3.includes('SETTING (this card): ' + sc.en + '.') && t3.includes(T.WORLD_TIMES.find(r => r.key === 'night').en) && t3.includes(T.WORLD_POSES.find(r => r.key === 'stride').en) && !t3.includes(T.POSE_DEFAULT) && t3.includes('EXPRESSION: ' + T.EXPRESSION_DETAIL.confident + '.'), '장면·시간대·자세·표정 줄 ' + t3.slice(-900));
   const order3 = ['WORLD — ', 'SETTING (this card)', 'TIME & WEATHER: ', 'STYLE: ', 'OUTPUT: ', 'EXPRESSION: ', 'BODY: '].map(x => t3.indexOf(x)); assert(same(order3, order3.slice().sort((a, b) => a - b)), '줄 차례 ' + order3);
-  assert(same(P.normShot(D, 'fe', 'mecha', shot), { scene: '', time: 'night', pose: 'stride', expr: 'confident' }), '다른 세계의 장면 열쇠는 비운다');
-  assert(same(P.normShot(D, 'fe', 'fantasy', { scene: 'nope', time: 'x', pose: 'y', expr: 'z' }), { scene: '', time: '', pose: '', expr: '' }), '모르는 열쇠는 비운다');
+  assert(same(P.normShot(D, 'fe', 'mecha', shot), { scene: '', time: 'night', pose: 'stride', expr: 'confident', frame: '' }), '다른 세계의 장면 열쇠는 비운다');
+  assert(same(P.normShot(D, 'fe', 'fantasy', { scene: 'nope', time: 'x', pose: 'y', expr: 'z', frame: 'nope' }), { scene: '', time: '', pose: '', expr: '', frame: '' }), '모르는 열쇠는 비운다');
   assert.equal(P.record(D, S, 'fe', 'fantasy', { shot }).shot.scene, sc.key, '기록에 shot');
 }
 /* 덧붙임이 실린다 · 기록 꼴 */
@@ -457,6 +457,22 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
     nw++;
   }
   console.log('PASS 짧은 세계 그림: ' + nw + '장');
+}
+/* 실루엣(2026-11-09 「삼국지처럼 세계컷 의상도 다양화 시켜서, 원소 특징에 맞게 분배」) — 근본 · 가문주는 세계마다 설계값(sil), 주민은 없음. 고르면 그 값, free 면 없음 */
+{
+  let ns = 0;
+  for (const key of P.cards(D)) for (const w of P.worldsOf(D, key)) {
+    const c = P.card(D, key), t = P.build(D, LONG, key, w, { style: 'kr_mmorpg' }), mf = P.silOf(c, w, {});
+    if (c.tier === 'citizen') { assert(!mf && !/(?:OUTFIT|MECHA) SILHOUETTE: /.test(t), key + ' 주민은 설계 실루엣 없음'); continue; }
+    assert(mf && t.includes(T.SILHOUETTE_HEAD[w] + mf.en), key + ' ' + w + ' 실루엣 줄');
+    const sh = P.build(D, SN, key, w, {}); assert(sh.includes('\n\nOutfit silhouette: ' + mf.en), key + ' ' + w + ' 짧은 판 실루엣');
+    ns++;
+  }
+  const alt = T.SILHOUETTES.steampunk.find(x => x.key === 'aeronaut');
+  assert(P.build(D, LONG, 'fe', 'steampunk', { style: 'kr_mmorpg', shot: { frame: 'aeronaut' } }).includes(alt.en), '고른 실루엣');
+  assert(!/OUTFIT SILHOUETTE: /.test(P.build(D, LONG, 'fe', 'steampunk', { style: 'kr_mmorpg', shot: { frame: 'free' } })), 'free 면 없음');
+  assert(P.build(D, LONG, 'fe-steel-sword', 'fantasy', { style: 'kr_mmorpg', shot: { frame: 'winged' } }).includes(T.SILHOUETTES.fantasy.find(x => x.key === 'winged').en), '주민도 고르면 쓴다');
+  console.log('PASS 실루엣: 근본 · 가문주 ' + ns + '장');
 }
 console.log('PASS 옮긴 화풍: kv ' + nk + '장 · 영어 틀 ' + TXT.length + '판');
 }

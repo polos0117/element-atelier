@@ -1869,6 +1869,11 @@
      },
      "hold": {
       "en": "a polished steel rivet with a tempered-blue sheen"
+     },
+     "sil": {
+      "fantasy": "paladin_cape",
+      "steampunk": "mech_gauntlet",
+      "mecha": "full_armor"
      }
     },
     {
@@ -2119,6 +2124,11 @@
      },
      "hold": {
       "en": "a flake of rust-orange iron on a leather cord"
+     },
+     "sil": {
+      "fantasy": "wild_warrior",
+      "steampunk": "stoker",
+      "mecha": "frame_exposed"
      }
     },
     {
@@ -2309,6 +2319,11 @@
      },
      "hold": {
       "en": "a small horseshoe magnet with red and blue tips"
+     },
+     "sil": {
+      "fantasy": "noble_coat",
+      "steampunk": "top_hat_coat",
+      "mecha": "sub_arms"
      }
     },
     {
@@ -2436,6 +2451,11 @@
      },
      "hold": {
       "en": "a small vial of dark red liquid"
+     },
+     "sil": {
+      "fantasy": "priestess",
+      "steampunk": "naval_officer",
+      "mecha": "tail_unit"
      }
     }
    ],
@@ -2564,6 +2584,11 @@
       "환경 효과": "공중에 떠 있는 작은 쇳물 방울과 금빛 불티, 자기 레일을 따라 반짝이는 쇳가루, 인물과 주황 빛이 비치는 반질한 은색 금속 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "dragon_scale",
+    "steampunk": "ironclad",
+    "mecha": "knight_plate"
    }
   },
   {
@@ -2948,6 +2973,11 @@
      },
      "hold": {
       "en": "a clear glass of water catching the light"
+     },
+     "sil": {
+      "fantasy": "noble_coat",
+      "steampunk": "aeronaut",
+      "mecha": "segmented_parts"
      }
     },
     {
@@ -3127,6 +3157,11 @@
      },
      "hold": {
       "en": "a small cream balloon on a string"
+     },
+     "sil": {
+      "fantasy": "elven_leaf",
+      "steampunk": "crinoline_cage",
+      "mecha": "halo_crown"
      }
     },
     {
@@ -3300,6 +3335,11 @@
      },
      "hold": {
       "en": "a frost-white fuel canister the size of a thermos"
+     },
+     "sil": {
+      "fantasy": "dark_spiked",
+      "steampunk": "alchemist_coat",
+      "mecha": "power_limbs"
      }
     },
     {
@@ -3468,6 +3508,11 @@
      },
      "hold": {
       "en": "a small glass sphere of fusion-white light"
+     },
+     "sil": {
+      "fantasy": "winged",
+      "steampunk": "ballroom_gown",
+      "mecha": "wing_binder"
      }
     },
     {
@@ -3648,6 +3693,11 @@
      },
      "hold": {
       "en": "a small glass gas burner with a clean blue flame"
+     },
+     "sil": {
+      "fantasy": "battle_mage",
+      "steampunk": "boiler_engineer",
+      "mecha": "big_backpack"
      }
     }
    ],
@@ -3776,6 +3826,11 @@
       "환경 효과": "탱크에서 바닥을 따라 흐르는 하얀 냉기, 공중에 떠다니는 작은 서리 빛 입자, 인물과 토카막 빛이 비치는 반질한 백색 금속 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "mage_robe",
+    "steampunk": "botanist",
+    "mecha": "float_units"
    }
   },
   {
@@ -4165,6 +4220,11 @@
      },
      "hold": {
       "en": "a blue glass bottle of sea water"
+     },
+     "sil": {
+      "fantasy": "noble_coat",
+      "steampunk": "botanist",
+      "mecha": "skirt_plate"
      }
     },
     {
@@ -4334,6 +4394,11 @@
      },
      "hold": {
       "en": "a small brass oxygen mask with a clear tube"
+     },
+     "sil": {
+      "fantasy": "mage_robe",
+      "steampunk": "aeronaut",
+      "mecha": "wing_binder"
      }
     },
     {
@@ -4567,6 +4632,11 @@
      },
      "hold": {
       "en": "a lump of red ochre and a small rusted iron ring"
+     },
+     "sil": {
+      "fantasy": "dark_spiked",
+      "steampunk": "clockwork_harness",
+      "mecha": "big_backpack"
      }
     },
     {
@@ -4752,6 +4822,11 @@
      },
      "hold": {
       "en": "a glass vial of bright red blood on a silver chain"
+     },
+     "sil": {
+      "fantasy": "ranger",
+      "steampunk": "explorer",
+      "mecha": "slim_suit"
      }
     },
     {
@@ -4990,6 +5065,11 @@
      },
      "hold": {
       "en": "a small hand bellows puffing a flame bright"
+     },
+     "sil": {
+      "fantasy": "wild_warrior",
+      "steampunk": "boiler_engineer",
+      "mecha": "heavy_assault"
      }
     },
     {
@@ -5187,6 +5267,11 @@
      },
      "hold": {
       "en": "a fresh green leafy sprig beaded with dew"
+     },
+     "sil": {
+      "fantasy": "priestess",
+      "steampunk": "naval_officer",
+      "mecha": "tail_unit"
      }
     }
    ],
@@ -5315,6 +5400,11 @@
       "환경 효과": "공중에 떠오르는 작은 기포 같은 빛 입자, 산소 탑에서 피어오르는 하얀 수증기, 인물과 청록 빛이 비치는 반질한 투명 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "elven_leaf",
+    "steampunk": "crinoline_cage",
+    "mecha": "hover_rings"
    }
   },
   {
@@ -5586,6 +5676,11 @@
      },
      "hold": {
       "en": "a cut diamond held up to the light"
+     },
+     "sil": {
+      "fantasy": "winged",
+      "steampunk": "ballroom_gown",
+      "mecha": "long_coat_plate"
      }
     },
     {
@@ -5734,6 +5829,11 @@
      },
      "hold": {
       "en": "a graphite pencil and a sketch scrap"
+     },
+     "sil": {
+      "fantasy": "full_plate",
+      "steampunk": "mech_gauntlet",
+      "mecha": "frame_exposed"
      }
     },
     {
@@ -5983,6 +6083,11 @@
      },
      "hold": {
       "en": "a lump of glowing charcoal held in iron tongs"
+     },
+     "sil": {
+      "fantasy": "gown_armor",
+      "steampunk": "officer_greatcoat",
+      "mecha": "skirt_plate"
      }
     },
     {
@@ -6163,6 +6268,11 @@
      },
      "hold": {
       "en": "a burning ember cupped in a small iron brazier"
+     },
+     "sil": {
+      "fantasy": "battle_mage",
+      "steampunk": "aeronaut",
+      "mecha": "light_agile"
      }
     },
     {
@@ -6343,6 +6453,11 @@
      },
      "hold": {
       "en": "a small glass flask of crude oil with a rainbow sheen"
+     },
+     "sil": {
+      "fantasy": "ranger",
+      "steampunk": "stoker",
+      "mecha": "segmented_parts"
      }
     },
     {
@@ -6524,6 +6639,11 @@
      },
      "hold": {
       "en": "a block of planed oak showing its growth rings"
+     },
+     "sil": {
+      "fantasy": "priestess",
+      "steampunk": "explorer",
+      "mecha": "slim_suit"
      }
     }
    ],
@@ -6652,6 +6772,11 @@
       "환경 효과": "공중에 떠다니는 작은 육각형 빛 입자, 투명 다리 바닥에 비친 무지갯빛 분광 띠, 다리 유리에 비치는 인물"
      }
     }
+   },
+   "sil": {
+    "fantasy": "dragon_scale",
+    "steampunk": "ironclad",
+    "mecha": "power_limbs"
    }
   },
   {
@@ -6924,6 +7049,11 @@
      },
      "hold": {
       "en": "a small wooden salt box with a white crust"
+     },
+     "sil": {
+      "fantasy": "priestess",
+      "steampunk": "explorer",
+      "mecha": "hover_rings"
      }
     }
    ],
@@ -7052,6 +7182,11 @@
       "환경 효과": "분출구 주변에 튀는 작은 노란 불꽃 입자, 공중에 반짝이며 떠다니는 정육면체 소금 결정 조각, 거울 같은 소금 바닥에 비치는 인물과 결정 탑"
      }
     }
+   },
+   "sil": {
+    "fantasy": "ranger",
+    "steampunk": "boiler_engineer",
+    "mecha": "heavy_assault"
    }
   },
   {
@@ -7328,6 +7463,11 @@
      },
      "hold": {
       "en": "a stack of gold coins"
+     },
+     "sil": {
+      "fantasy": "crown_regalia",
+      "steampunk": "officer_greatcoat",
+      "mecha": "skirt_plate"
      }
     },
     {
@@ -7530,6 +7670,11 @@
      },
      "hold": {
       "en": "a gold ring set with a ruby"
+     },
+     "sil": {
+      "fantasy": "gown_armor",
+      "steampunk": "ballroom_gown",
+      "mecha": "long_coat_plate"
      }
     }
    ],
@@ -7658,6 +7803,11 @@
       "환경 효과": "따뜻한 빛줄기 속에 떠다니는 작은 금빛 입자, 금 회로선 위를 흐르는 작은 호박빛 점, 인물과 금빛이 비치는 반질한 짙은 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "winged",
+    "steampunk": "top_hat_coat",
+    "mecha": "halo_crown"
    }
   },
   {
@@ -7867,6 +8017,11 @@
       "환경 효과": "공중에 천천히 떠다니는 작은 연보랏빛 흰 빛 알갱이, 탑 표면의 맑은 결정 반사, 인물과 연보랏빛이 비치는 거울 같은 검은 결정 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "gown_armor",
+    "steampunk": "officer_greatcoat",
+    "mecha": "wing_binder"
    }
   },
   {
@@ -8161,6 +8316,11 @@
       "환경 효과": "탱크 표면의 성에, 바닥을 따라 흐르는 옅은 냉기, 인물과 분홍 광원이 비치는 반질한 백색 금속 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "elven_leaf",
+    "steampunk": "crinoline_cage",
+    "mecha": "halo_crown"
    }
   },
   {
@@ -8451,6 +8611,11 @@
       "환경 효과": "햇빛 속에 떠다니는 가는 붉은 모래 먼지, 작은 데이터 빛 입자, 인물과 유리 벽이 비치는 반질한 유리 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "full_plate",
+    "steampunk": "top_hat_coat",
+    "mecha": "segmented_parts"
    }
   },
   {
@@ -8660,6 +8825,11 @@
       "환경 효과": "분출 기둥에서 흩날리는 노란 유황 가루, 떠다니는 작은 푸른 불티, 인물과 목성 빛이 비치는 반질한 검은 현무암 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "dark_spiked",
+    "steampunk": "clockwork_harness",
+    "mecha": "light_agile"
    }
   },
   {
@@ -8869,6 +9039,11 @@
       "환경 효과": "갑판 위로 옅게 흐르는 연둣빛 기체 안개 한 줄기, 공기 중 작은 물방울 빛 입자, 인물과 하늘이 비치는 젖어 반질한 흰 갑판"
      }
     }
+   },
+   "sil": {
+    "fantasy": "mage_robe",
+    "steampunk": "clockwork_harness",
+    "mecha": "big_backpack"
    }
   },
   {
@@ -9078,6 +9253,11 @@
       "환경 효과": "돔 안에 떠다니는 작은 진주빛 빛 입자, 돔 유리에 어리는 분홍·은빛 진주층 광택, 인물과 흰 탑이 비치는 반질한 흰 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "battle_mage",
+    "steampunk": "alchemist_coat",
+    "mecha": "knight_plate"
    }
   },
   {
@@ -9287,6 +9467,11 @@
       "환경 효과": "공기 중에 튀는 작은 푸른 불꽃 입자, 방전 둘레의 옅은 빛 번짐, 인물과 푸른 빛이 비치는 반질한 구리 갑판"
      }
     }
+   },
+   "sil": {
+    "fantasy": "full_plate",
+    "steampunk": "alchemist_coat",
+    "mecha": "cape_plates"
    }
   },
   {
@@ -9496,6 +9681,11 @@
       "환경 효과": "돔 안에 떠다니는 작은 은빛 빛 입자, 거울 표면에서 튀는 가는 빛 반짝임, 인물과 별빛이 비치는 반질한 거울 같은 백색 바닥"
      }
     }
+   },
+   "sil": {
+    "fantasy": "crown_regalia",
+    "steampunk": "botanist",
+    "mecha": "cape_plates"
    }
   },
   {
@@ -9705,6 +9895,11 @@
       "환경 효과": "수조 위에 떠다니는 작은 푸른 빛 입자, 갑판과 격벽에 일렁이는 푸른 물결 빛무늬(caustics), 인물과 푸른 빛이 비치는 반질한 투명 갑판"
      }
     }
+   },
+   "sil": {
+    "fantasy": "wild_warrior",
+    "steampunk": "stoker",
+    "mecha": "sub_arms"
    }
   }
  ]

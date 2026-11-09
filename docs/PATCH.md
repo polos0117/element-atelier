@@ -9,6 +9,12 @@
 
 
 
+## 2026-11-09 · claude · 세계 그림 실루엣 갈래 — 원소 성격대로 근본 · 가문주에 분배
+- 사용자 「삼국지처럼 세계컷 의상도 다양화 시켜서, 원소 특징에 맞게 분배 시켜줘」 — lib/prompt-spec.js SILHOUETTES(판타지 열넷 · 메카 열여덟 — 삼국지 공방과 같다, 스팀펑크 열넷 새로) · SILHOUETTE_HEAD
+- tools/sil-spread.py(새로) — 카드마다 원소 성격 태그(무거운 금속 · 귀한 것 · 가벼운 기체 · 반응하는 불 · 생명 · 독 · 기술 · 바다), 태그마다 세계별 갈래 묶음, 덜 쓴 갈래부터 · 한 나라 안 겹치지 않게. data/element-design.json 근본 열다섯 · 가문주 스물넷 × 세계 셋 = 117칸 sil.<세계>. 주민은 물건이 옷을 정해 없음
+- lib/prompt-element.js silOf · normShot frame, 세계 글 뒤 OUTFIT / MECHA SILHOUETTE 줄(짧은 판 Outfit silhouette, kv 판 COSTUME, 구조판 상의 칸 앞). lib/studio.js · lib/words.js 생성기 「실루엣」 단계. tools/prompt-pack.cjs shot.frame
+- 검사 prompt-element(실루엣 117 · 고른 값 · free · 주민) · element-design(sil-spread --check) · screen(자세 다음 실루엣). 문서 IMAGE_RULES. ?v= words 14 · prompt-spec 12 · prompt-element 17 · studio 5
+
 ## 2026-11-09 · claude · 생성기 구조를 삼국지 공방에 맞춤 — 짧은 판 · 기본 MMORPG CG · 일상컷 여섯 장 · 갈래
 - 사용자 「element 쪽도 생성기 구조 sam 쪽에 맞추자. 간결버전에 일상컷도 간결, 갈래추가」 — 삼국지 공방(2026-11-08 ~ 09)의 짧은 지시문 · 계획기 · 갈래를 원소 꼴로
 - lib/prompt-element.js — buildWorldShort(줄 꼴 긴 지시문에서 CONCEPT · AGE · FACE · SILHOUETTE · ELEMENT/HOUSE TRAITS · WORLD · EXPOSURE · EXPRESSION 을 뽑아 머리말 1024×1536 · 화풍 단락 · 얼굴 비율 · 구도 · 빛 · 끝 줄로) · buildCasualShort(카드 층마다 who · 1024×1536 · 짧은 중안부 · 화풍 단락 · 계획 칸 · 머리 장식 두고 오기 · 원소 · 빛) · worldShortOn · casualShortOn · shortStyle · colorFixed · denierFits · situsFor, Outfit 줄 끝에 옷 색 · 데니어 · 상황
