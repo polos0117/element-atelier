@@ -25,6 +25,8 @@ for (const key of pickKeys) {
     assert.equal(si.length, 1, key + ' ' + w + ' 상황 노출 한 장');
     assert(!C.requiredType(si[0]) && si[0].frame !== 'face_close' && P.situFits(si[0].situ, C.outfitEn(si[0])), key + ' ' + w + ' 상황 컷');
     situSeen.add(si[0].situ); res.cuts.forEach(c => famSeen.add(c.ofam));
+    { const fr = res.cuts.filter(c => c.ofree); assert.equal(fr.length, 1, key + ' ' + w + ' 옷 자유 한 장(2026-11-09)');
+      assert(!C.requiredType(fr[0]) && !fr[0].situ && fr[0].frame !== 'face_close' && !fr[0].color && !fr[0].denier, key + ' ' + w + ' 옷 자유 컷'); }
     assert.equal(new Set(res.cuts.map(c => c.era)).size, 4, key + ' ' + w + ' 네 시대 다');
     { const cs = res.cuts.map(c => c.color).filter(Boolean); assert.equal(new Set(cs).size, cs.length, key + ' ' + w + ' 옷 색 갈래가 겹치지 않는다'); }
     dn.fit += res.cuts.filter(c => P.denierFits(C.outfitEn(c))).length; dn.set += res.cuts.filter(c => c.denier).length;
@@ -36,6 +38,7 @@ for (const key of pickKeys) {
       assert(rec.prompt.length > 500 && rec.treeV === 2 && rec.world === w);
       if (SHORT) assert(rec.prompt.includes(TS.CASUAL.short.face) && rec.prompt.includes('1024×1536') && /\n\nStyle: /.test(rec.prompt) && rec.prompt.includes(TS.CASUAL.short.headwear) && !/^(?:WARDROBE|ANGLE|OUTPUT|AGE|ANATOMY):/m.test(rec.prompt), '짧은 일상컷');
       const ol = (rec.prompt.match(/^Outfit: .*$/m) || [''])[0], CL = TS.CASUAL.colors.find(x => x.key === c.color);
+      if (c.ofree) { assert(ol.startsWith(TS.OUTFIT_FREE), key + ' 옷 자유 줄'); continue; }
       if (P.colorFixed(C.outfitEn(c))) assert(!c.color, key + ' 색이 박힌 옷엔 색 없음'); else assert(CL && ol.includes(CL.en), key + ' 옷 색 줄');
       if (c.denier) assert(ol.includes(TS.CASUAL.deniers.find(x => x.key === c.denier).top + '-denier yarn'), key + ' 데니어 줄'); else assert(!/-denier yarn/.test(ol));
       if (c.situ) assert(ol.includes('; right now — ' + TS.CASUAL.situations.find(x => x.key === c.situ).en), key + ' 상황 줄'); else assert(!/; right now — /.test(ol));

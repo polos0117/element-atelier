@@ -9,6 +9,11 @@
 
 
 
+## 2026-11-09 · claude · 세계 그림 네 장(우리 설계 둘 · 임의 설계 둘) · 일상컷 옷 자유 컷 한 장
+- 사용자 「element, pkm 쪽도 넣어주고」 · 「gpt나 너한테 맡긴다면 지금 우리쪽 갈래나 의상 등 없는거 위주로 … 최대한 없는걸로」 — 삼국지 공방과 같이
+- lib/prompt-spec.js WORLD_FREE(누구 · 원소 성질은 영감으로만 · 세계 · 화풍 · 1024×1536 · 노출 · 얼굴 비율 · 구도 · 기호와 번호만 정하고 나머지는 맡은 쪽이, 그 세계 실루엣 목록에 없는 꼴 먼저) · OUTFIT_FREE(옷 계열 목록에 없는 꼴 먼저). lib/prompt-element.js buildWorldFree, 장면 칸 ofree
+- tools/prompt-pack.cjs 세계 자리마다 <세계>-free.txt · INDEX 「네 장 뽑고 멈춘다」. tools/casual-plan.cjs freeOutfit(여섯 장 중 한 장). 문서 IMAGE_RULES · IMAGE_AUTOMATION 0-1. 검사 casual-plan · prompt-element. ?v= prompt-spec 13 · prompt-element 18
+
 ## 2026-11-09 · claude · 세계 그림 실루엣 갈래 — 원소 성격대로 근본 · 가문주에 분배
 - 사용자 「삼국지처럼 세계컷 의상도 다양화 시켜서, 원소 특징에 맞게 분배 시켜줘」 — lib/prompt-spec.js SILHOUETTES(판타지 열넷 · 메카 열여덟 — 삼국지 공방과 같다, 스팀펑크 열넷 새로) · SILHOUETTE_HEAD
 - tools/sil-spread.py(새로) — 카드마다 원소 성격 태그(무거운 금속 · 귀한 것 · 가벼운 기체 · 반응하는 불 · 생명 · 독 · 기술 · 바다), 태그마다 세계별 갈래 묶음, 덜 쓴 갈래부터 · 한 나라 안 겹치지 않게. data/element-design.json 근본 열다섯 · 가문주 스물넷 × 세계 셋 = 117칸 sil.<세계>. 주민은 물건이 옷을 정해 없음

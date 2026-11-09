@@ -474,5 +474,14 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
   assert(P.build(D, LONG, 'fe-steel-sword', 'fantasy', { style: 'kr_mmorpg', shot: { frame: 'winged' } }).includes(T.SILHOUETTES.fantasy.find(x => x.key === 'winged').en), '주민도 고르면 쓴다');
   console.log('PASS 실루엣: 근본 · 가문주 ' + ns + '장');
 }
+/* 임의 설계 주문(2026-11-09 — 세계 그림 네 장 중 둘) — 정해 둔 것만, 설계표 얼굴 · 실루엣은 없다, 우리 실루엣 목록을 싣는다 */
+{
+  for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
+    const t = P.buildWorldFree(D, SN, key, w, { style: SN.default }), our = P.build(D, SN, key, w, {}), her = (our.match(/^Her: (.*)$/m) || [])[1] || '';
+    assert(t.startsWith('Design brief') && t.includes('1024×1536') && t.includes(T.WORLD_FREE.free) && t.includes('New designs first:') && t.includes(T.SILHOUETTES[w][0].key.replace(/_/g, ' ')) && t.includes('Exposure (fixed): bold'), key + ' ' + w + ' 설계 주문');
+    assert(her && !t.includes(her.slice(0, 40)) && !/Outfit silhouette:/.test(t), key + ' ' + w + ' 설계표 얼굴 · 실루엣 없음');
+  }
+  console.log('PASS 임의 설계 주문');
+}
 console.log('PASS 옮긴 화풍: kv ' + nk + '장 · 영어 틀 ' + TXT.length + '판');
 }
