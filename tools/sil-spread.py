@@ -5,8 +5,8 @@
   python3 tools/sil-spread.py           비어 있는 카드 · 세계만 채운다(이미 적힌 값은 건드리지 않는다)
   python3 tools/sil-spread.py --check   모든 근본 · 가문주 · 세계에 표에 있는 실루엣이 있는지, 갈래마다 몇 장인지만 본다(안 쓴다)
 
-나누는 법 — 카드마다 원소 성격 태그(TAGS — 손으로 정했다: 무거운 금속 · 귀한 것 · 가벼운 기체 · 반응하는 불 · 생명 · 독 · 기술 · 바다)가 있고,
-태그마다 세계별로 어울리는 갈래 묶음(POOLS)이 있다. 카드의 태그 묶음을 합친 후보 안에서 지금까지 가장 적게 쓰인 갈래를 고른다
+나누는 법 — 카드마다 원소 성격 태그(lib/prompt-spec.js SIL_TAGS — 손으로 정했다: 무거운 금속 · 귀한 것 · 가벼운 기체 · 반응하는 불 · 생명 · 독 · 기술 · 바다)가 있고,
+태그마다 세계별로 어울리는 갈래 묶음(SIL_POOLS)이 있다. 카드의 태그 묶음을 합친 후보 안에서 지금까지 가장 적게 쓰인 갈래를 고른다
 (그 나라 근본 · 가문주끼리 같은 갈래는 되도록 피하고, 같으면 열쇠 해시). 카드 순서도 해시라 다시 돌려도 같은 결과.
 주민은 고르지 않는다 — 주민의 옷은 그 물건이 정한다(COSTUME citizen 줄). 실루엣 열쇠는 lib/prompt-spec.js 의 *_SILHOUETTES 에서 읽는다.
 """
@@ -17,43 +17,17 @@ DESIGN = os.path.join(ROOT, 'data', 'element-design.json')
 SPEC = os.path.join(ROOT, 'lib', 'prompt-spec.js')
 WORLDS = {'fantasy': 'FANTASY_SILHOUETTES', 'steampunk': 'STEAMPUNK_SILHOUETTES', 'mecha': 'MECHA_SILHOUETTES'}
 
-POOLS = {
-    'heavy': {'fantasy': ['full_plate', 'dragon_scale', 'paladin_cape', 'dark_spiked', 'gown_armor'],
-              'steampunk': ['ironclad', 'boiler_engineer', 'officer_greatcoat', 'mech_gauntlet'],
-              'mecha': ['heavy_assault', 'full_armor', 'power_limbs', 'knight_plate', 'skirt_plate']},
-    'regal': {'fantasy': ['crown_regalia', 'gown_armor', 'priestess', 'winged', 'noble_coat'],
-              'steampunk': ['ballroom_gown', 'top_hat_coat', 'officer_greatcoat', 'crinoline_cage'],
-              'mecha': ['halo_crown', 'cape_plates', 'wing_binder', 'long_coat_plate', 'skirt_plate']},
-    'airy': {'fantasy': ['mage_robe', 'elven_leaf', 'winged', 'priestess'],
-             'steampunk': ['aeronaut', 'crinoline_cage', 'ballroom_gown', 'botanist'],
-             'mecha': ['float_units', 'hover_rings', 'wing_binder', 'slim_suit', 'halo_crown']},
-    'reactive': {'fantasy': ['battle_mage', 'wild_warrior', 'ranger', 'dark_spiked'],
-                 'steampunk': ['stoker', 'alchemist_coat', 'boiler_engineer', 'aeronaut'],
-                 'mecha': ['light_agile', 'heavy_assault', 'tail_unit', 'big_backpack', 'power_limbs']},
-    'life': {'fantasy': ['elven_leaf', 'ranger', 'priestess', 'wild_warrior'],
-             'steampunk': ['botanist', 'explorer', 'naval_officer'],
-             'mecha': ['slim_suit', 'tail_unit', 'segmented_parts', 'hover_rings']},
-    'toxic': {'fantasy': ['dark_spiked', 'battle_mage', 'wild_warrior', 'mage_robe'],
-              'steampunk': ['alchemist_coat', 'stoker', 'clockwork_harness'],
-              'mecha': ['frame_exposed', 'sub_arms', 'segmented_parts', 'big_backpack']},
-    'tech': {'fantasy': ['noble_coat', 'battle_mage', 'mage_robe', 'full_plate'],
-             'steampunk': ['clockwork_harness', 'top_hat_coat', 'mech_gauntlet', 'alchemist_coat'],
-             'mecha': ['frame_exposed', 'big_backpack', 'sub_arms', 'segmented_parts', 'float_units']},
-    'sea': {'fantasy': ['priestess', 'ranger', 'noble_coat'],
-            'steampunk': ['naval_officer', 'explorer', 'aeronaut'],
-            'mecha': ['hover_rings', 'skirt_plate', 'slim_suit']},
-}
-# 카드 → 원소 성격 태그(근본은 나라 열쇠, 가문주는 나라-가문). 없는 카드는 검사에서 걸린다
-TAGS = {
-    'fe': ['heavy'], 'h': ['airy'], 'o': ['airy', 'life'], 'c': ['tech', 'heavy'], 'na': ['reactive', 'sea'], 'au': ['regal'],
-    'og': ['toxic', 'regal'], 'he': ['airy'], 'si': ['tech'], 's': ['toxic', 'reactive'], 'cl': ['toxic', 'sea'], 'ca': ['heavy', 'tech'],
-    'cu': ['tech', 'regal'], 'ag': ['regal', 'airy'], 'u': ['toxic', 'heavy'],
-    'fe-steel': ['heavy'], 'fe-rust': ['toxic'], 'fe-magnet': ['tech'], 'fe-blood': ['life'],
-    'h-water': ['sea', 'life'], 'h-balloon': ['airy'], 'h-fuel': ['reactive'], 'h-star': ['regal', 'airy'], 'h-oil': ['reactive', 'toxic'],
-    'o-water': ['life', 'sea'], 'o-breath': ['airy'], 'o-rust': ['toxic'], 'o-blood': ['life'], 'o-fire': ['reactive'], 'o-wood': ['life'],
-    'c-diamond': ['regal'], 'c-graphite': ['tech'], 'c-steel': ['heavy'], 'c-fire': ['reactive'], 'c-oil': ['reactive', 'toxic'], 'c-wood': ['life'],
-    'na-salt': ['sea'], 'au-coin': ['regal', 'tech'], 'au-jewel': ['regal'],
-}
+# 태그 묶음(POOLS)과 카드 → 태그(TAGS)는 lib/prompt-spec.js 의 SIL_POOLS · SIL_TAGS 한 곳에서 읽는다(GPT 임의 설계 주문의 의상 목록도 같은 묶음, 2026-11-09). 없는 카드는 검사에서 걸린다
+
+
+def spec_obj(name):
+    src = open(SPEC, encoding='utf-8').read()
+    m = re.search(r'var ' + name + r' = (\{.*?\n  \});', src, re.S)
+    body = re.sub(r'/\*.*?\*/', '', m.group(1), flags=re.S).replace("'", '"')
+    return json.loads(re.sub(r'(?<!")\b([a-z_]+):', r'"\1":', body))
+
+
+POOLS, TAGS = spec_obj('SIL_POOLS'), spec_obj('SIL_TAGS')
 
 
 def spec_keys():

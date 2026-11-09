@@ -9,6 +9,11 @@
 
 
 
+## 2026-11-09 · claude · GPT 설계 주문 — 의상은 원소 성격 묶음 안에서 · 메카는 몸 전체 장갑판
+- 사용자 「응 원소쪽도 둘 다 넣어줘」(삼국지와 같이) — GPT 임의 설계 주문의 의상 목록을 그 세계 실루엣 전부에서 그 카드의 원소 성격 태그 묶음으로 좁혔다. 예: 철(무거운 금속) 판타지 5개 · 금(귀한 것) 메카 5개 · 철-강철 가문주 스팀펑크 4개. 주민은 그대로 물건이 의상을 정한다.
+- 메카 세계 주문에 WORLD_FREE.mecha 줄(몸 전체가 두께 있는 단단한 장갑판, 천 드레스 · 긴 치마 금지, 망토 · 치마 · 날개도 장갑판)을 넣었다.
+- 태그(SIL_TAGS)와 묶음(SIL_POOLS)은 lib/prompt-spec.js 한 곳으로 옮겼다 — tools/sil-spread.py 도 여기서 읽는다(옮기기 전과 값이 같은지 대조, 배분은 그대로). lib/prompt-element.js silPool · buildWorldFree. 검사 prompt-element. 문서 IMAGE_AUTOMATION. ?v= prompt-spec 15 · prompt-element 20.
+
 ## 2026-11-09 · claude · 임의 설계 주문 — 의상은 우리 실루엣에서 + 원소에서 딴 아이디어 하나 · 일상 옷 자유는 목록 밖으로
 - 사용자 「세계컷 의상과 무기는 우리가 만든 의상들 안에서 선택하게 하자 … 그 외의 얼굴이나 헤어색, 스타일은 자유롭게」 · 「본인만의 생각을 담으면」 → 「응 좋은 아이디어야」 · 「일상컷도 우리쪽 의상자료를 참고하라고해서 여기 없는걸 선택하라고 하자」 — 삼국지 공방과 같이
 - lib/prompt-spec.js WORLD_FREE — free(얼굴 · 머리 · 자세 · 장면만) · costume(그 세계 실루엣에서 하나 + 원소에서 딴 아이디어를 의상 구조에) · citizenCostume(주민은 그 물건이 이끈다 + 아이디어) · palette(원소 · 가문 색) · second, avoid 는 뺐다. OUTFIT_FREE 는 outfit-catalog.md 밖으로. lib/prompt-element.js buildWorldFree

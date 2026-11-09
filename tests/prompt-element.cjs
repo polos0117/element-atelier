@@ -474,11 +474,11 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
   assert(P.build(D, LONG, 'fe-steel-sword', 'fantasy', { style: 'kr_mmorpg', shot: { frame: 'winged' } }).includes(T.SILHOUETTES.fantasy.find(x => x.key === 'winged').en), '주민도 고르면 쓴다');
   console.log('PASS 실루엣: 근본 · 가문주 ' + ns + '장');
 }
-/* 임의 설계 주문(2026-11-09 — 세계 그림 네 장 중 둘) — 정해 둔 것만, 설계표 얼굴 · 실루엣은 없다, 우리 실루엣 목록을 싣는다 */
+/* 임의 설계 주문(2026-11-09 — 세계 그림 네 장 중 둘) — 정해 둔 것만, 설계표 얼굴 · 실루엣은 없다, 우리 실루엣 목록 가운데 그 카드 원소 성격 묶음만 싣는다 · 메카는 장갑판 줄 */
 {
   for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
     const t = P.buildWorldFree(D, SN, key, w, { style: SN.default }), our = P.build(D, SN, key, w, {}), her = (our.match(/^Her: (.*)$/m) || [])[1] || '';
-    assert(t.startsWith('Design brief') && t.includes('1024×1536') && t.includes(T.WORLD_FREE.free) && t.includes(T.WORLD_FREE.second) && (P.card(D, key).tier === 'citizen' ? t.includes(T.WORLD_FREE.citizenCostume) : t.includes(T.SILHOUETTES[w][0].en.split(' — ')[0])) && /\n\nCostume colours \(ours\): /.test(t) && t.includes('Exposure (fixed): bold'), key + ' ' + w + ' 설계 주문');
+    assert(t.startsWith('Design brief') && t.includes('1024×1536') && t.includes(T.WORLD_FREE.free) && t.includes(T.WORLD_FREE.second) && (P.card(D, key).tier === 'citizen' ? t.includes(T.WORLD_FREE.citizenCostume) : (P.silPool(P.card(D, key), w).length < T.SILHOUETTES[w].length && T.SILHOUETTES[w].every(x => t.includes(x.en.split(' — ')[0].replace(/\.$/, '')) === P.silPool(P.card(D, key), w).includes(x)))) && (w === 'mecha') === t.includes(T.WORLD_FREE.mecha) && /\n\nCostume colours \(ours\): /.test(t) && t.includes('Exposure (fixed): bold'), key + ' ' + w + ' 설계 주문');
     assert(her && !t.includes(her.slice(0, 40)) && !/Outfit silhouette:/.test(t), key + ' ' + w + ' 설계표 얼굴 · 실루엣 없음');
   }
   console.log('PASS 임의 설계 주문');
