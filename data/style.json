@@ -491,6 +491,24 @@
      "worldLight": "Light: a strong soft rim light tracing her hair, shoulders and armour, glossy highlights on metal, skin and jewellery, drifting light particles and a luxurious promotional glow."
     }
    ]
+  },
+  "bright_2d_oil": {
+   "name": "밝은 2D 유화",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "adopted": "2026-11-09",
+     "by": "claude — 사용자 2026-11-09 「원소공방 분위기에는 글로시 반실사는 아닌거 같고. 약간 2d에서 2d 초반느낌에 밝으면서도 유화 질감이 더해지면 괜찮지 않을까」 → 「응 진행해줘」",
+     "why": "원소 공방만의 화풍 — 2D 에 살짝 2.5D(3D 렌더 음영 아님, 붓으로 칠한 부드러운 입체), 눈 · 얼굴 · 큰 윤곽에만 옅은 색선, 밝고 가벼운 자연광 · 옅은 그림자 · 맑은 피부 · 씻기지 않는 중간색, 머리 · 옷 · 배경에 유화 붓결과 겹친 색층(얼굴 · 중심 장식만 또렷), 애니 영향의 우아한 얼굴(반실사 · 평면 셀 아님). mmorpg2d(예전 원소 기본)의 맑은 2D 에 유화 v2 의 빛 · 붓결",
+     "text": "Bright 2D Korean fantasy game illustration with a light 2.5D touch, finished like a luminous oil painting. Fine, soft coloured linework only around the eyes, face and key contours; forms built with gentle painted volume rather than 3D-render shading. Bright, airy high-key natural light with soft, subtle shadows; clear, luminous skin and fresh, vivid midtones that never wash out. Delicate visible oil brushwork and layered glazes of colour in the hair, fabric and background, with soft edges and crisp detail only on the face and focal ornaments. An elegant anime-influenced face with natural proportions — not a 3D render, not semi-realistic, not flat cel shading.",
+     "casual": "Bright 2D Korean fantasy game illustration with a light 2.5D touch, finished like a luminous oil painting. Fine, soft coloured linework only around the eyes, face and key contours; forms built with gentle painted volume rather than 3D-render shading. Bright, airy high-key natural light with soft, subtle shadows; clear, luminous skin and fresh, vivid midtones that never wash out. Delicate visible oil brushwork and layered glazes of colour in the hair, fabric and background, with soft edges and crisp detail only on the face and focal ornaments. An elegant anime-influenced face with natural proportions — not a 3D render, not semi-realistic, not flat cel shading.",
+     "casualShort": true,
+     "worldLight": "Light: bright, airy natural light with soft, subtle shadows — clear, luminous skin and fresh, vivid midtones that never wash out.",
+     "casualLight": "Light: the place's own bright, airy natural light with soft, subtle shadows — clear, luminous skin and fresh, vivid midtones that never wash out, as in the attached image.",
+     "check": "bright 2D-to-light-2.5D Korean fantasy game illustration with luminous oil-paint texture — soft coloured linework, airy natural light, clear skin, visible brushwork; not a 3D render or semi-realistic; one figure."
+    }
+   ]
   }
  },
  "worldShort": true
