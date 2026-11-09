@@ -9,6 +9,12 @@
 
 
 
+## 2026-11-10 · claude · 철 · 우라늄 — 얼굴은 부드럽게, 힘은 체형으로
+- 사용자 「철 같은건 얼굴에서 임펙트를 주기보다는 글래머러스한 체형이나 의상 등으로 효과를 주자. 너무 각지고 모나게 나와서 이쁘지가 않네. 다른 비슷한 설계 있어? 근본원소중에?」 → 「철은 근육형, 우라늄은 볼륨형」 — data/element-design.json.
+- 철(fe): 첫인상 rugged → glamorous, 눈 deep_set · small → almond_wide · medium, 눈썹 angled_sharp → soft_round, 입술 thin_long → heart_full, 표시 scar → red_lip, 얼굴형 세계 셋 oval · oval · heart, 체형 broad_strong → curvy_athletic. 구릿빛 피부 · 쇳빛 머리 · 불씨 눈 · 땋은 머리 그대로.
+- 우라늄(u): 첫인상 sharp → cool, 눈 deep_set · small → almond_wide · medium, 눈썹 low_heavy → arched_thin, 코 broad_soft → straight_narrow, 얼굴형 세계 셋 oval · heart · oval, 체형 athletic → voluptuous.
+- 강철 가문주(fe-steel) 체형 curvy_athletic → tall_statuesque — 근본과 같아져서(가문주 체형은 근본과 다르게), 사용자 「강철 가문주를 키 큰 늘씬형으로」.
+
 ## 2026-11-10 · claude · GPT 설계 주문 — 머리색은 우리 설계값(다시)
 - 사용자 「원소공방에도 gpt 설계쪽에 머리색은 우리 설계 그대로로 바꾸자」 — 되돌렸던 9667f5b 를 다시 되돌려 9d491bd 를 살렸다: lib/prompt-spec.js WORLD_FREE.hair · free · second, lib/prompt-element.js buildWorldFree 가 설계 silhouette.hair_color 를 Hair colour (fixed — ours) 줄로. 검사 tests/prompt-element.cjs · tools/prompt-pack.cjs · docs/IMAGE_AUTOMATION.md 함께. prompt-spec ?v=19 · prompt-element ?v=23.
 

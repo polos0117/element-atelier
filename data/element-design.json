@@ -1830,7 +1830,7 @@
        "expr": "confident"
       },
       "silhouette": {
-       "body": "curvy_athletic",
+       "body": "tall_statuesque",
        "hair_color": "tempered_steel"
       },
       "worlds": {
@@ -1865,7 +1865,7 @@
         }
        }
       },
-      "why": "brushed steel silver·tempered blue → 머리·눈. 곧고 믿음직 → 운동형, 짧게 친 머리, 곧은 눈썹(2026-10-30 — 첫 뽑기에서 자석 가문과 자매처럼 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값) · 외형 — 벼린 강철 — 곧고 단단한 선, 담금질한 탄력: 다부지면서 굴곡 있는 몸, 곧은 눈썹 · 곧은 콧날 · 얇은 입, 반듯한 머리(근본을 따라가지 않는다, 사용자 2026-11-01) · 얼굴 — 20대 후반 · 차가운 미인 · 창백한 피부 · 날카로운 아이라인 · 표정 confident(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」)"
+      "why": "brushed steel silver·tempered blue → 머리·눈. 곧고 믿음직 → 운동형, 짧게 친 머리, 곧은 눈썹(2026-10-30 — 첫 뽑기에서 자석 가문과 자매처럼 닮아 머리·얼굴을 갈랐다) · 머리·얼굴형·눈은 세계마다(메카는 올린 그림의 값) · 외형 — 벼린 강철 — 곧고 단단한 선, 담금질한 탄력: 다부지면서 굴곡 있는 몸, 곧은 눈썹 · 곧은 콧날 · 얇은 입, 반듯한 머리(근본을 따라가지 않는다, 사용자 2026-11-01) · 얼굴 — 20대 후반 · 차가운 미인 · 창백한 피부 · 날카로운 아이라인 · 표정 confident(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」) · 2026-11-09 철 근본이 근육형이 되어 가문주는 키 큰 늘씬형(tall_statuesque) — 사용자 「강철 가문주를 키 큰 늘씬형으로」"
      },
      "hold": {
       "en": "a polished steel rivet with a tempered-blue sheen"
@@ -2461,31 +2461,31 @@
    ],
    "look": {
     "face": {
-     "face_shape": "square_soft",
-     "eyes": "deep_set",
-     "brows": "angled_sharp",
+     "face_shape": "oval",
+     "eyes": "almond_wide",
+     "brows": "soft_round",
      "nose": "straight_narrow",
-     "lips": "thin_long",
+     "lips": "heart_full",
      "eye_color": "ember",
      "age": "late_20s",
-     "impression": "rugged",
+     "impression": "glamorous",
      "skin_tone": "bronze",
-     "eye_size": "small",
+     "eye_size": "medium",
      "eye_tilt": "level",
-     "mark": "scar",
+     "mark": "red_lip",
      "expr": "determined"
     },
     "silhouette": {
-     "body": "broad_strong",
+     "body": "curvy_athletic",
      "hair": "braids",
      "hair_color": "iron_grey"
     },
-    "why": "팔레트의 iron grey 가 머리, ember red 가 눈. 단단함·무게 → 넓은 어깨, 땋은 머리는 쇠사슬·거더의 선 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통. 메카는 먼저 올린 가문주 메카 그림의 값 그대로 · 얼굴 — 20대 후반 · 거친 · 구릿빛 피부 · 눈썹 흉터 · 표정 determined(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」)",
+    "why": "팔레트의 iron grey 가 머리, ember red 가 눈. 단단함·무게 → 넓은 어깨, 땋은 머리는 쇠사슬·거더의 선 · 세계마다 헤어스타일·얼굴형·눈 모양을 따로(2026-10-30 — 세계마다 다른 사람). 색·체형은 세 세계 공통. 메카는 먼저 올린 가문주 메카 그림의 값 그대로 · 얼굴 — 20대 후반 · 거친 · 구릿빛 피부 · 눈썹 흉터 · 표정 determined(사용자 2026-11-01 「얼굴 느낌이 비슷하게 나온다」) · 2026-11-09 사용자 「철 같은건 얼굴에서 임펙트를 주기보다는 글래머러스한 체형이나 의상 등으로 효과를 주자. 너무 각지고 모나게 나와서 이쁘지가 않네」 → 「철은 근육형」 — 얼굴은 부드럽게(화려한 첫인상 · 아몬드 눈 보통 크기 · 부드러운 눈썹 · 하트 입술 · 진한 입술, 흉터 뺌 · 얼굴형 갸름/하트), 체형은 글래머러스한 근육형(curvy_athletic). 구릿빛 피부 · 쇳빛 머리 · 불씨 눈 · 땋은 머리는 그대로",
     "worlds": {
      "fantasy": {
       "face": {
-       "face_shape": "long",
-       "eyes": "narrow_upturned"
+       "face_shape": "oval",
+       "eyes": "almond_wide"
       },
       "silhouette": {
        "hair": "long_wavy",
@@ -2504,8 +2504,8 @@
      },
      "mecha": {
       "face": {
-       "face_shape": "square_soft",
-       "eyes": "deep_set"
+       "face_shape": "heart",
+       "eyes": "almond_wide"
       },
       "silhouette": {
        "hair": "braids",
@@ -9775,30 +9775,30 @@
    },
    "look": {
     "face": {
-     "face_shape": "long",
-     "eyes": "deep_set",
-     "brows": "low_heavy",
-     "nose": "broad_soft",
+     "face_shape": "oval",
+     "eyes": "almond_wide",
+     "brows": "arched_thin",
+     "nose": "straight_narrow",
      "lips": "full_wide",
      "eye_color": "cherenkov_blue",
      "age": "early_30s",
-     "impression": "sharp",
+     "impression": "cool",
      "skin_tone": "bronze",
-     "eye_size": "small",
+     "eye_size": "medium",
      "eye_tilt": "up",
      "mark": "mole_eye",
      "expr": "cold_smile"
     },
     "silhouette": {
-     "body": "athletic",
+     "body": "voluptuous",
      "hair": "shag_layers",
      "hair_color": "uranium_green"
     },
     "worlds": {
      "fantasy": {
       "face": {
-       "face_shape": "long",
-       "eyes": "deep_set"
+       "face_shape": "oval",
+       "eyes": "almond_wide"
       },
       "silhouette": {
        "hair": "shag_layers",
@@ -9807,7 +9807,7 @@
      },
      "steampunk": {
       "face": {
-       "face_shape": "square_soft",
+       "face_shape": "heart",
        "eyes": "almond_wide"
       },
       "silhouette": {
@@ -9817,7 +9817,7 @@
      },
      "mecha": {
       "face": {
-       "face_shape": "diamond",
+       "face_shape": "oval",
        "eyes": "almond_wide"
       },
       "silhouette": {
@@ -9826,7 +9826,7 @@
       }
      }
     },
-    "why": "우라늄 유리 초록 머리, 체렌코프 푸른 눈. 가둬 둔 힘 → 탄탄한 몸, 날카로운 인상 · 차가운 미소"
+    "why": "우라늄 유리 초록 머리, 체렌코프 푸른 눈. 가둬 둔 힘 → 탄탄한 몸, 날카로운 인상 · 차가운 미소 · 2026-11-09 철과 같은 방향(사용자 「우라늄은 볼륨형」) — 얼굴은 부드럽게(서늘한 첫인상 · 아몬드 눈 보통 크기 · 가는 아치 눈썹 · 곧은 코 · 얼굴형 갸름/하트), 체형은 볼륨형(voluptuous). 초록 머리 · 체렌코프 파랑 눈 · 구릿빛 피부 · 차가운 미소는 그대로"
    },
    "struct": {
     "fantasy": {
