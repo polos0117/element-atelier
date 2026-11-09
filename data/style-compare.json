@@ -174,7 +174,7 @@
    "date": "2026-11-09",
    "card": "h",
    "model": "gpt-image-2.6-sunburst",
-   "title": "수소 — 화풍 열셋, 짧은 판 지시문(2026-11-09 생성기 구조를 삼국지에 맞춘 뒤) · 세계 셋 + 세계마다 일상 근접 · 원거리",
+   "title": "수소 — 화풍 열다섯(프로모 하이키 · 하이키 유화 포함), 짧은 판 지시문 · 세계 셋 + 세계마다 일상 근접 · 원거리",
    "kinds": [
     "world",
     "casual",
@@ -231,6 +231,20 @@
      "name": "한국 MMORPG 프로모",
      "default": false,
      "note": "짧은 판 — 3~7 묶음, 장식 광택이 강하다.",
+     "old": null
+    },
+    {
+     "key": "kr_promo_hikey",
+     "name": "한국 MMORPG 프로모 하이키",
+     "default": false,
+     "note": "삼국지 공방 하이키 v2 를 옮긴 것 — mmorpg_cg 와 거의 같고 빛이 조금 더 밝고 고르다.",
+     "old": null
+    },
+    {
+     "key": "kr_promo_hikey_oil",
+     "name": "한국 MMORPG 프로모 하이키 유화",
+     "default": false,
+     "note": "하이키 + 유화 채색 한 문장 — 수소의 파스텔 하늘빛에선 차이가 작다(배경 붓 결 · 피부 색감이 조금 따뜻).",
      "old": null
     },
     {
