@@ -9,6 +9,10 @@
 
 
 
+## 2026-11-09 · claude · 화풍 — 일본 유화 애니(jp_paint_anime, 원소 공방만)
+- 사용자 「일본 유화풍에 애니메이션은 어떨까?」 → 「응 원소만 진행해줘」 — data/style.json 에 jp_paint_anime: 일본 애니 키비주얼처럼 인물은 애니 얼굴(크고 표정 있는 눈 · 작은 코 · 입) · 가는 색선 · 셀에서 부드러운 칠로 이어지는 명암 · 머리 · 옷에 칠한 하이라이트, 배경은 겹친 색층 · 은은한 붓 터치 · 공기 원근 · 영화 같은 깊이. 금지는 「한 단짜리 납작한 셀 · 사진 · 반실사 얼굴 · 플라스틱 3D」.
+- 화풍 비교 묶음 2026-11-09(수소)에 아홉 장 — 같은 장면, 필터 없음. 이제 열여덟 화풍.
+
 ## 2026-11-09 · claude · 화풍 — 밝은 2D 유화 v3(짧은 판, 2D 쪽 말 앞으로)
 - 사용자 「그러면 구조판 말고 아까 말한 화풍단락만 수정해서는?」 → 「응 진행해줘」 — bright_2d_oil v3: v1 의 「light 2.5D touch」 · 「finished like a luminous oil painting」 을 빼고 mmorpg2d 의 2D 를 붙잡던 말(clearly hand-drawn 2D character art · elegant adult anime facial design · clear shadow shapes · visibly illustrated in 2D)을 앞에, 유화 붓결 · 색층은 머리 · 옷 · 배경에만. 지금 판 v3, v1 · v2(구조판)는 기록 판.
 - 수소 같은 장면 아홉 장(스팀펑크 원거리 필터 한 번, 같은 지시문으로 다시) — 화풍 탭 칸은 사용자가 셋 중 고를 때까지 v2 그림 그대로.

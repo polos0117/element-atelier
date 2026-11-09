@@ -453,6 +453,22 @@
     }
    ]
   },
+  "jp_paint_anime": {
+   "name": "일본 유화 애니",
+   "current": "v1",
+   "versions": [
+    {
+     "v": "v1",
+     "adopted": "2026-11-09",
+     "by": "claude — 사용자 2026-11-09 「일본 유화풍에 애니메이션은 어떨까?」 → 「응 원소만 진행해줘」",
+     "why": "일본 유화풍(kv_jp_paint)의 「평면 셀 금지 · 그림 전체를 완성된 회화로」 가 얼굴을 성숙한 회화 쪽으로 끌었다 — 일본 애니 키비주얼처럼 역할을 나눴다: 인물은 애니 얼굴(크고 표정 있는 눈 · 작은 코 · 입) · 가는 색선 · 셀에서 부드러운 칠로 이어지는 명암, 머리 · 옷엔 칠한 하이라이트, 배경은 겹친 색층 · 은은한 붓 터치 · 공기 원근 · 영화 같은 깊이. 금지는 「한 단짜리 납작한 셀」 로 좁혔다. 밝은 2D 유화(하이키 파스텔 · 전체 붓결)와 달리 진하고 깊은 색, 배경이 유화의 주인공",
+     "text": "A Japanese anime key visual with a painterly finish: an anime-style character with an elegant adult anime face, large expressive eyes, a small nose and mouth, fine coloured linework and soft cel-to-painted shading with painted highlights in the hair and fabric. Behind her, a richly painted background with layered painterly colour, subtle visible brushwork, atmospheric perspective and cinematic depth. Luminous, rich colours; crisp focal details on the face and costume, softer painted edges toward the distance. No flat single-tone cel shading, photographic appearance, semi-realistic face or plastic 3D-render finish.",
+     "casual": "A Japanese anime key visual with a painterly finish: an anime-style character with an elegant adult anime face, large expressive eyes, a small nose and mouth, fine coloured linework and soft cel-to-painted shading with painted highlights in the hair and fabric. Behind her, a richly painted background with layered painterly colour, subtle visible brushwork, atmospheric perspective and cinematic depth. Luminous, rich colours; crisp focal details on the face and costume, softer painted edges toward the distance. No flat single-tone cel shading, photographic appearance, semi-realistic face or plastic 3D-render finish.",
+     "casualShort": true,
+     "check": "Japanese anime key visual with a painterly background — anime face, fine coloured linework, soft cel-to-painted shading, rich painted background with cinematic depth; one figure."
+    }
+   ]
+  },
   "kv_anime_gloss": {
    "name": "애니 광택(포켓몬 공방)",
    "current": "v1",
