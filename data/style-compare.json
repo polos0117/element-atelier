@@ -355,7 +355,7 @@
    "date": "2026-11-09",
    "card": "og",
    "model": "gpt-image-2.6-sunburst",
-   "title": "오가네손 — 일본 유화 애니(세계 셋 + 세계마다 일상 근접 · 원거리)",
+   "title": "오가네손 — 화풍 열여덟(일본 유화 애니 먼저, 나머지 열일곱을 같은 장면으로), 짧은 판 지시문 · 세계 셋 + 세계마다 일상 근접 · 원거리",
    "kinds": [
     "world",
     "casual",
@@ -373,10 +373,129 @@
    },
    "styles": [
     {
+     "key": "mmorpg2d",
+     "name": "2D MMORPG 구조 지시문",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "semireal",
+     "name": "반실사 구조 지시문",
+     "default": false,
+     "note": "구조판 — 판타지 세계 그림이 하얗게 바래 인물이 흐리게 나왔다(다시 뽑을 만하다).",
+     "old": null
+    },
+    {
+     "key": "game_cgi",
+     "name": "게임 시네마틱 CGI",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "game_keyart",
+     "name": "게임 키아트 2.5D",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "cinematic_keyart",
+     "name": "시네마틱 키아트",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kr_mmorpg",
+     "name": "한국 MMORPG 프로모",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kr_promo_hikey",
+     "name": "한국 MMORPG 프로모 하이키",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kr_promo_hikey_oil",
+     "name": "한국 MMORPG 프로모 하이키 유화",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "glossy_kr_game",
+     "name": "한국형 글로시 게임 일러스트",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "glossy_kr_semireal",
+     "name": "한국형 글로시 반실사",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_lock",
+     "name": "한국 MMORPG 기준 판",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_23d",
+     "name": "한국 MMORPG 2.3D",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_jp_mobile",
+     "name": "일본 모바일게임 리얼 CG",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_jp_paint",
+     "name": "일본 유화풍 게임 일러스트",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
      "key": "jp_paint_anime",
      "name": "일본 유화 애니",
      "default": false,
      "note": "오가네손 — 짙은 보라 결정 빛에 애니 얼굴, 배경이 깊고 진하게 칠해진다(수소의 파스텔과 확실히 다르다).",
+     "old": null
+    },
+    {
+     "key": "kv_anime_gloss",
+     "name": "애니 광택(포켓몬 공방)",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "mmorpg_cg",
+     "name": "MMORPG CG",
+     "default": true,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "bright_2d_oil",
+     "name": "밝은 2D 유화",
+     "default": false,
+     "note": "",
      "old": null
     }
    ]
@@ -386,7 +505,7 @@
    "date": "2026-11-09",
    "card": "fe",
    "model": "gpt-image-2.6-sunburst",
-   "title": "철 — 일본 유화 애니(세계 셋 + 세계마다 일상 근접 · 원거리)",
+   "title": "철 — 화풍 열여덟(일본 유화 애니 먼저, 나머지 열일곱을 같은 장면으로), 짧은 판 지시문 · 세계 셋 + 세계마다 일상 근접 · 원거리",
    "kinds": [
     "world",
     "casual",
@@ -404,10 +523,129 @@
    },
    "styles": [
     {
+     "key": "mmorpg2d",
+     "name": "2D MMORPG 구조 지시문",
+     "default": false,
+     "note": "구조판 — 철의 피부가 조금 밝아지고 배경이 맑은 파스텔 쪽.",
+     "old": null
+    },
+    {
+     "key": "semireal",
+     "name": "반실사 구조 지시문",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "game_cgi",
+     "name": "게임 시네마틱 CGI",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "game_keyart",
+     "name": "게임 키아트 2.5D",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "cinematic_keyart",
+     "name": "시네마틱 키아트",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kr_mmorpg",
+     "name": "한국 MMORPG 프로모",
+     "default": false,
+     "note": "메카 세계 그림은 필터에 두 번 막혀 노출을 보통으로 낮춰 뽑았다(일상은 과감 그대로).",
+     "old": null
+    },
+    {
+     "key": "kr_promo_hikey",
+     "name": "한국 MMORPG 프로모 하이키",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kr_promo_hikey_oil",
+     "name": "한국 MMORPG 프로모 하이키 유화",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "glossy_kr_game",
+     "name": "한국형 글로시 게임 일러스트",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "glossy_kr_semireal",
+     "name": "한국형 글로시 반실사",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_lock",
+     "name": "한국 MMORPG 기준 판",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_23d",
+     "name": "한국 MMORPG 2.3D",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_jp_mobile",
+     "name": "일본 모바일게임 리얼 CG",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "kv_jp_paint",
+     "name": "일본 유화풍 게임 일러스트",
+     "default": false,
+     "note": "",
+     "old": null
+    },
+    {
      "key": "jp_paint_anime",
      "name": "일본 유화 애니",
      "default": false,
      "note": "철 — 녹 · 용광로의 주황 · 갈색으로 가장 진하고 따뜻하다, 짙은 피부와 애니 얼굴이 함께 읽힌다.",
+     "old": null
+    },
+    {
+     "key": "kv_anime_gloss",
+     "name": "애니 광택(포켓몬 공방)",
+     "default": false,
+     "note": "애니 광택 — 철의 짙은 피부가 밝게 바뀌어 나왔다(흰 · 은 파스텔 화풍이 피부색을 끌었다).",
+     "old": null
+    },
+    {
+     "key": "mmorpg_cg",
+     "name": "MMORPG CG",
+     "default": true,
+     "note": "",
+     "old": null
+    },
+    {
+     "key": "bright_2d_oil",
+     "name": "밝은 2D 유화",
+     "default": false,
+     "note": "밝은 2D 유화 v3 — 하이키 빛 때문에 철의 짙은 피부가 조금 밝아졌다.",
      "old": null
     }
    ]
