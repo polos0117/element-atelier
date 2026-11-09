@@ -168,6 +168,117 @@
      "old": null
     }
    ]
+  },
+  {
+   "key": "2026-11-09",
+   "date": "2026-11-09",
+   "card": "h",
+   "model": "gpt-image-2.6-sunburst",
+   "title": "수소 — 화풍 열셋, 짧은 판 지시문(2026-11-09 생성기 구조를 삼국지에 맞춘 뒤) · 일상컷은 판타지만",
+   "kinds": [
+    "world",
+    "casual",
+    "far"
+   ],
+   "casual": {
+    "fantasy": "공항 라운지 · 악마 코스튬 · 바람에 날림 · 벽에 기대 팔짱(가슴 위)"
+   },
+   "far": {
+    "fantasy": "목장 · 실크 파자마 · 엎드려 두 손으로 턱 괴기(전신)"
+   },
+   "styles": [
+    {
+     "key": "mmorpg2d",
+     "name": "2D MMORPG 구조 지시문",
+     "default": false,
+     "note": "구조판(긴 꼴) — 배경이 단순하고 기호 배지가 없다, 순한 2D 얼굴.",
+     "old": null
+    },
+    {
+     "key": "semireal",
+     "name": "반실사 구조 지시문",
+     "default": false,
+     "note": "구조판(긴 꼴) — mmorpg2d 와 거의 같은 구도, 얼굴만 조금 더 입체.",
+     "old": null
+    },
+    {
+     "key": "game_cgi",
+     "name": "게임 시네마틱 CGI",
+     "default": false,
+     "note": "짧은 판 — 3~7 묶음, 광택 보통.",
+     "old": null
+    },
+    {
+     "key": "game_keyart",
+     "name": "게임 키아트 2.5D",
+     "default": false,
+     "note": "짧은 판 — 3~7 묶음, 2.5D 키아트.",
+     "old": null
+    },
+    {
+     "key": "cinematic_keyart",
+     "name": "시네마틱 키아트",
+     "default": false,
+     "note": "짧은 판 — 3~7 묶음, 빛이 조금 더 극적.",
+     "old": null
+    },
+    {
+     "key": "kr_mmorpg",
+     "name": "한국 MMORPG 프로모",
+     "default": false,
+     "note": "짧은 판 — 3~7 묶음, 장식 광택이 강하다.",
+     "old": null
+    },
+    {
+     "key": "glossy_kr_game",
+     "name": "한국형 글로시 게임 일러스트",
+     "default": false,
+     "note": "짧은 판 — 3~7 묶음, 화사한 글로시.",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_lock",
+     "name": "한국 MMORPG 기준 판",
+     "default": false,
+     "note": "짧은 판 — 얼굴이 조금 더 반실사.",
+     "old": null
+    },
+    {
+     "key": "kv_kmmo_23d",
+     "name": "한국 MMORPG 2.3D",
+     "default": false,
+     "note": "짧은 판 — 장식이 촘촘한 2.3D.",
+     "old": null
+    },
+    {
+     "key": "kv_jp_mobile",
+     "name": "일본 모바일게임 리얼 CG",
+     "default": false,
+     "note": "짧은 판 — 얼굴이 가장 성숙하다. 스팀펑크는 필터에 한 번 막혀 같은 지시문으로 다시.",
+     "old": null
+    },
+    {
+     "key": "kv_jp_paint",
+     "name": "일본 유화풍 게임 일러스트",
+     "default": false,
+     "note": "짧은 판 — 색이 부드럽게 번진다, 붓 터치는 약하다.",
+     "old": null
+    },
+    {
+     "key": "kv_anime_gloss",
+     "name": "애니 광택(포켓몬 공방)",
+     "default": false,
+     "note": "짧은 판 — 혼자 확실히 애니풍(볼 홍조 · 큰 눈).",
+     "old": null
+    },
+    {
+     "key": "mmorpg_cg",
+     "name": "MMORPG CG",
+     "default": true,
+     "note": "지금 기본(짧은 판) — 3~7 묶음 쪽, 조금 더 화사하다.",
+     "old": null
+    }
+   ]
   }
  ]
 }
