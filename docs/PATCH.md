@@ -9,6 +9,9 @@
 
 
 
+## 2026-11-10 · claude · 철 표정 — 단호함에서 여유 있는 자신감으로
+- 새 설계로 뽑은 철 판타지 그림이 아직 날카로워(찌푸린 눈썹 · 다문 턱) 사용자 「응」 — data/element-design.json fe look.face.expr determined → confident(고른 눈썹 · 서두르지 않는 시선 · 살짝 든 턱 · 편히 다문 입). 근본 열다섯의 표정은 여전히 서로 다르다.
+
 ## 2026-11-10 · claude · 철 · 우라늄 — 얼굴은 부드럽게, 힘은 체형으로
 - 사용자 「철 같은건 얼굴에서 임펙트를 주기보다는 글래머러스한 체형이나 의상 등으로 효과를 주자. 너무 각지고 모나게 나와서 이쁘지가 않네. 다른 비슷한 설계 있어? 근본원소중에?」 → 「철은 근육형, 우라늄은 볼륨형」 — data/element-design.json.
 - 철(fe): 첫인상 rugged → glamorous, 눈 deep_set · small → almond_wide · medium, 눈썹 angled_sharp → soft_round, 입술 thin_long → heart_full, 표시 scar → red_lip, 얼굴형 세계 셋 oval · oval · heart, 체형 broad_strong → curvy_athletic. 구릿빛 피부 · 쇳빛 머리 · 불씨 눈 · 땋은 머리 그대로.
