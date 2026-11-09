@@ -478,7 +478,7 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
 {
   for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
     const t = P.buildWorldFree(D, SN, key, w, { style: SN.default }), our = P.build(D, SN, key, w, {}), her = (our.match(/^Her: (.*)$/m) || [])[1] || '';
-    assert(t.startsWith('Design brief') && t.includes('1024×1536') && t.includes(T.WORLD_FREE.free) && t.includes('New designs first:') && t.includes(T.SILHOUETTES[w][0].key.replace(/_/g, ' ')) && t.includes('Exposure (fixed): bold'), key + ' ' + w + ' 설계 주문');
+    assert(t.startsWith('Design brief') && t.includes('1024×1536') && t.includes(T.WORLD_FREE.free) && t.includes(T.WORLD_FREE.second) && (P.card(D, key).tier === 'citizen' ? t.includes(T.WORLD_FREE.citizenCostume) : t.includes(T.SILHOUETTES[w][0].en.split(' — ')[0])) && /\n\nCostume colours \(ours\): /.test(t) && t.includes('Exposure (fixed): bold'), key + ' ' + w + ' 설계 주문');
     assert(her && !t.includes(her.slice(0, 40)) && !/Outfit silhouette:/.test(t), key + ' ' + w + ' 설계표 얼굴 · 실루엣 없음');
   }
   console.log('PASS 임의 설계 주문');

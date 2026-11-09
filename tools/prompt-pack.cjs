@@ -150,10 +150,12 @@ function build(dir) {
     /* GPT 임의 설계 주문(2026-11-09) — 세계 그림 자리마다 <세계>-free.txt */
     if (s.kind === 'world') fs.writeFileSync(path.join(dir, s.slot + '-free.txt'), P.buildWorldFree(D, S, card.key, s.world, { style: STYLE }));
   }
+  /* 옷 목록(2026-11-09 「일상컷도 우리쪽 의상자료를 참고하라고해서 여기 없는걸 선택하라고 하자」) — 옷 자유 컷은 이 목록에 없는 옷을 짓는다 */
+  fs.writeFileSync(path.join(dir, 'outfit-catalog.md'), '# Our outfit catalog — every outfit type we already use for casual cuts\n\nFor a free-outfit cut, design an outfit that is NOT on this list.\n\n' + (tree.outfits || []).map(f => '## ' + f.key + ' — ' + f.en + '\n' + (f.items || []).map(i => '- ' + i.en).join('\n')).join('\n\n') + '\n');
   const rows = out.map(({ s, rec }, i) => `| ${i + 1} | ${s.slot} | ${s.kind === 'world' ? '세계 그림(첨부 없이)' : '일상(버전2)'} | ${s.attach.join(' + ') || '없음'} | ${rec.file} | ${rec.record} | ${sha(rec.prompt).slice(0, 12)} |`);
   fs.writeFileSync(path.join(dir, 'INDEX.md'), `# ${card.key}(${card.c.ko}) — 지시문 묶음\n\n만든 때 ${new Date().toISOString()} · 화풍 ${STYLE} · 사는 세계 ${card.worlds.join(' · ')} · 계획 ${plans.map(p => p.world).join(' · ') || '없음(일상 자리 없음)'}\n\n` +
-    '**세계 그림 → 멈춤 → 일상컷**(2026-11-09 삼국지와 같이). 세계 그림은 세계마다 **네 장**(기준 그림 없이 한 장씩) — **두 장은 우리 설계 `<세계>-prompt.txt` 그대로, 두 장은 임의 설계 `<세계>-free.txt`**(설계 주문 — 정해 둔 것만 지키고 얼굴 · 머리 · 옷 · 실루엣 · 색 · 자세 · 장면은 맡은 쪽이 지어 제 지시문을 쓴다, 우리 갈래에 없는 것 위주로). 네 장을 「우리 설계 1 · 2 / GPT 설계 1 · 2」 로 붙여 보이고 **멈추고 묻는다** — 고르기 전엔 일상컷으로 넘어가지 않고 세계 그림도 올리지 않는다. 고른 장만 올리고, 임의 설계 장이면 기록 `generation.design: "gpt_free"` 와 실제로 넘긴 지시문(`generation.free_prompt`)을 남긴다.\n\n' +
-    '**일상컷 옷 자유 컷 한 장** — 계획에 「옷 자유」 로 적힌 컷은 Outfit 줄이 「노출 의상을 네가 지어라」 다(우리 옷 계열에 없는 것 위주로).\n\n' +
+    '**세계 그림 → 멈춤 → 일상컷**(2026-11-09 삼국지와 같이). 세계 그림은 세계마다 **네 장**(기준 그림 없이 한 장씩) — **두 장은 우리 설계 `<세계>-prompt.txt` 그대로, 두 장은 임의 설계 `<세계>-free.txt`**(설계 주문 — 의상은 우리 실루엣에서 하나(주민은 그 물건) + 원소에서 딴 맡은 쪽의 아이디어 하나 · 색은 우리 것, 얼굴 · 눈색 · 머리색 · 헤어 · 자세 · 장면은 맡은 쪽이 지어 제 지시문을 쓴다, 둘째 장은 첫째와 확실히 다르게). 네 장을 「우리 설계 1 · 2 / GPT 설계 1 · 2」 로 붙여 보이고 **멈추고 묻는다** — 고르기 전엔 일상컷으로 넘어가지 않고 세계 그림도 올리지 않는다. 고른 장만 올리고, 임의 설계 장이면 기록 `generation.design: "gpt_free"` 와 실제로 넘긴 지시문(`generation.free_prompt`)을 남긴다.\n\n' +
+    '**일상컷 옷 자유 컷 한 장** — 계획에 「옷 자유」 로 적힌 컷은 Outfit 줄이 「노출 의상을 네가 지어라」 다 — 이 묶음의 `outfit-catalog.md`(우리가 쓰는 옷 전부)를 읽고 **거기 없는 옷**을 지어 그 줄에만 써 넣는다(실제로 넘긴 글은 기록 `generation.free_prompt`).\n\n' +
     '차례대로 그린다. 세계 그림은 기준 그림 없이 한 장씩, 일상컷은 그 세계 그림(이 세션의 원본, 이미 등록된 것이면 그림 저장소의 webp)을 붙인다. `<자리>-prompt.txt` 를 고치지 않고 그대로 낸다(임의 설계 주문으로 제 지시문을 쓰는 것만 예외).\n\n' +
     '| 차례 | 자리 | 갈래 | 첨부 | 올릴 파일 | 기록 자리 | 지시문 sha256 |\n|---|---|---|---|---|---|---|\n' + rows.join('\n') + '\n');
   console.log(`${card.key}(${card.c.ko}) — ${out.length} 자리 → ${dir}`);

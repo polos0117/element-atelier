@@ -9,6 +9,11 @@
 
 
 
+## 2026-11-09 · claude · 임의 설계 주문 — 의상은 우리 실루엣에서 + 원소에서 딴 아이디어 하나 · 일상 옷 자유는 목록 밖으로
+- 사용자 「세계컷 의상과 무기는 우리가 만든 의상들 안에서 선택하게 하자 … 그 외의 얼굴이나 헤어색, 스타일은 자유롭게」 · 「본인만의 생각을 담으면」 → 「응 좋은 아이디어야」 · 「일상컷도 우리쪽 의상자료를 참고하라고해서 여기 없는걸 선택하라고 하자」 — 삼국지 공방과 같이
+- lib/prompt-spec.js WORLD_FREE — free(얼굴 · 머리 · 자세 · 장면만) · costume(그 세계 실루엣에서 하나 + 원소에서 딴 아이디어를 의상 구조에) · citizenCostume(주민은 그 물건이 이끈다 + 아이디어) · palette(원소 · 가문 색) · second, avoid 는 뺐다. OUTFIT_FREE 는 outfit-catalog.md 밖으로. lib/prompt-element.js buildWorldFree
+- tools/prompt-pack.cjs outfit-catalog.md · INDEX 안내. 문서 IMAGE_RULES · IMAGE_AUTOMATION 0-1. 검사 prompt-element. ?v= prompt-spec 14 · prompt-element 19
+
 ## 2026-11-09 · claude · 세계 그림 네 장(우리 설계 둘 · 임의 설계 둘) · 일상컷 옷 자유 컷 한 장
 - 사용자 「element, pkm 쪽도 넣어주고」 · 「gpt나 너한테 맡긴다면 지금 우리쪽 갈래나 의상 등 없는거 위주로 … 최대한 없는걸로」 — 삼국지 공방과 같이
 - lib/prompt-spec.js WORLD_FREE(누구 · 원소 성질은 영감으로만 · 세계 · 화풍 · 1024×1536 · 노출 · 얼굴 비율 · 구도 · 기호와 번호만 정하고 나머지는 맡은 쪽이, 그 세계 실루엣 목록에 없는 꼴 먼저) · OUTFIT_FREE(옷 계열 목록에 없는 꼴 먼저). lib/prompt-element.js buildWorldFree, 장면 칸 ofree
