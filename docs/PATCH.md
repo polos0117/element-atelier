@@ -9,6 +9,9 @@
 
 
 
+## 2026-11-09 · claude · 되돌림 — GPT 설계 주문 머리색 고정(원소는 자유)
+- 사용자 「우선은 삼국지만, 원소는 자유롭게 놔둬줘」 · 「원소는 revert」 — 바로 앞 「GPT 설계 주문 — 머리색은 우리 설계값」(9d491bd)을 git revert 로 되돌렸다: WORLD_FREE.free 에 머리색 다시 자유, hair 줄 없음, second 는 「다른 얼굴 · 머리색 · 헤어스타일」, 검사 · 문서 원래대로. ?v= 는 앞으로만 — prompt-spec 17 · prompt-element 22. 삼국지는 고정 그대로.
+
 ## 2026-11-09 · claude · GPT 설계 주문 — 머리색은 우리 설계값
 - 사용자 「gpt에 세계컷 맡길때는 머리색까진 고정하는게 좋을거 같네. 마음에 안들면 설계를 바꾸는게 날 거 같아」 — lib/prompt-spec.js WORLD_FREE: free 에서 머리색을 빼고(얼굴 · 눈색 · 헤어스타일 · 화장 · 표정 · 자세 · 장면만 자유) 「머리색도 우리 것」, 새 줄 hair(「Hair colour (fixed — ours): {설계 머리색}. Keep exactly this hair colour; only the hairstyle is yours.」), second 는 「다른 얼굴 · 헤어스타일(머리색은 같게)」.
 - 조립부 buildWorldFree 가 그 세계 설계 머리색(lookOf silhouette.hair_color)을 채운다. 검사 · 문서(지시문 묶음 INDEX 안내 등) 고침. ?v= prompt-spec 16 · prompt-element 21.
