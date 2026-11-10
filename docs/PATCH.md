@@ -12,6 +12,12 @@
 ## 2026-11-11 · gpt · 오가네손 재작업 — 세계 선택 4·3·2
 - 선택한 판타지 4번·스팀펑크 3번·메카 2번 세계컷과 이를 기준으로 생성한 일상컷 18장을 교체. 그림 저장소 records/og에 실제 프롬프트·참고 이미지 해시·검수 결과를 남기고 records/replacement.json에 이전 파일 해시와 커밋을 보존했다. 도감 등록 파일명은 기존 21개를 유지한다.
 
+## 2026-11-10 · claude · 우라늄 색감 — 검정 · 은 · 에메랄드 초록, 초록 머리 · 구릿빛 피부 뺌
+- 사용자 「원소공방 우라늄 색감을 이렇게 바꾸자. 초록머리랑 까만피부 빼고」(검은 드레스에 은 세공 · 초록 수정 · 회색 머리 · 흰 피부 그림)
+- data/element-design.json 나라 u — 머리 uranium_green → lead_silver(은빛 도는 짙은 납회색) · 피부 bronze → porcelain · 눈 cherenkov_blue → emerald(그림처럼). 팔레트 「deep black, polished silver, uranium-glass emerald-green glow, a touch of Cherenkov blue」(노랑 · 경고 검정 뺌). 메카 design · 구조판(판타지 · 스팀펑크 · 메카) 색 · 소재 · 상의 · 하의 · 신발 · 액세서리 · 장면 팔레트를 검정 · 은 · 에메랄드로(노랑 · 금 · 연초록 · 크림 · 민트 뺌). 배경 장면은 그대로
+- lib/look-spec.js · tools/port-look-spec.cjs 머리색 lead_silver, lib/prompt-spec.js 한국어 말. 생성기 스크립트 판 올림
+- tests/screen.cjs 는 이 변경 전 코드에서도 갤러리 칸(.g-tile)을 기다리다 멈춘다 — 이 변경과 따로
+
 ## 2026-11-10 · claude · 세계컷 카메라는 얼굴 높이 · 향수 표정 시선은 눈높이
 - 사용자 「세계컷 만드는중인데 그 고개를 뒤로 젖히다보니 일상컷도 다 고개를 젖히거나 하관이 길어지게 나와」(오가네손) — 고개를 젖히라는 말은 없었고, 가슴 높이 카메라(얼굴을 아래에서 올려다봐 턱 밑 · 긴 하관)와 오가네손 기본 표정 향수의 「gaze past the camera」(시선이 위로 가며 턱이 들림)가 겹쳤다. 일상컷은 그 세계컷을 첨부해 얼굴 각도가 따라갔다
 - lib/prompt-spec.js composition(모든 세계컷) — 「Camera at chest height」 → 「Camera level with her face …; her head level, chin neither raised nor tucked — no upward perspective on her face」(포켓몬 공방과 같은 문장). 표정 nostalgic — 「soft distant eyes looking just beside the camera at her own eye level」, 한국어 말도. lib/prompt-element.js 일상컷 표정에서 시선 말 떼기에 새 문장. 생성기 · 도감 스크립트 판 올림

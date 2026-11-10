@@ -24,7 +24,9 @@ const EXTRA = {
     helium_peach: 'pale peach-pink hair glowing softly like a gas-discharge tube', wafer_iridescent: 'blue-grey hair with a rainbow silicon-wafer sheen',
     basalt_sulfur: 'volcanic basalt-black hair tipped with crystalline sulfur-yellow', chlorine_green: 'pale yellow-green hair with a misty translucency',
     pearl_white: 'lustrous pearl-white hair with a pink-and-silver nacre sheen', moon_silver: 'liquid mirror-silver hair reflecting cold blue moonlight',
-    uranium_green: 'hair glowing the eerie green of uranium glass'
+    uranium_green: 'hair glowing the eerie green of uranium glass',
+    /* 2026-11-10 우라늄 색감을 검정 · 은 · 에메랄드로(사용자) */
+    lead_silver: 'dark lead-grey hair with a soft silver sheen'
   },
   eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes',
     /* 2026-11-03 근본 여덟(헬륨 · 규소 · 황 · 염소 · 칼슘 · 구리 · 은 · 우라늄)과 앞으로 — 사용자 「머리 스타일이나 눈색이 부족하면 더 추가해도 괜찮아」 */
