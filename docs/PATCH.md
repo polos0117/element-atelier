@@ -9,6 +9,11 @@
 
 
 
+## 2026-11-10 · claude · 세계컷 카메라는 얼굴 높이 · 향수 표정 시선은 눈높이
+- 사용자 「세계컷 만드는중인데 그 고개를 뒤로 젖히다보니 일상컷도 다 고개를 젖히거나 하관이 길어지게 나와」(오가네손) — 고개를 젖히라는 말은 없었고, 가슴 높이 카메라(얼굴을 아래에서 올려다봐 턱 밑 · 긴 하관)와 오가네손 기본 표정 향수의 「gaze past the camera」(시선이 위로 가며 턱이 들림)가 겹쳤다. 일상컷은 그 세계컷을 첨부해 얼굴 각도가 따라갔다
+- lib/prompt-spec.js composition(모든 세계컷) — 「Camera at chest height」 → 「Camera level with her face …; her head level, chin neither raised nor tucked — no upward perspective on her face」(포켓몬 공방과 같은 문장). 표정 nostalgic — 「soft distant eyes looking just beside the camera at her own eye level」, 한국어 말도. lib/prompt-element.js 일상컷 표정에서 시선 말 떼기에 새 문장. 생성기 · 도감 스크립트 판 올림
+- 이미 만든 세계컷은 새 지시문으로 다시 뽑아야 고쳐진다(일상컷은 새 세계컷을 첨부해야)
+
 ## 2026-11-10 · claude · 피부 말 tan 을 beige 로
 - golden_tan 영어 'golden tan skin' → 'light warm-beige skin with a golden undertone' — 「tan」 이 애니에서 짙은 갈색으로 갔다(삼국지 docs/STYLE_LAB.md 시험). 열쇠는 그대로
 - 한국어 이름표 '따뜻한 황금빛 태닝 피부' → '황금빛이 도는 밝고 따뜻한 베이지 피부'. prompt-spec ?v=20. 올린 그림 · 설계표의 옛 한국어 피부색 글은 그대로
