@@ -9,6 +9,9 @@
 
 
 
+## 2026-11-11 · gpt · 은 선택 세계컷과 일상컷 도감 등록
+- data/img.json — 판타지 3 · 스팀펑크 4 · 메카 3 및 세계별 일상컷 여섯 장, 총 21장을 등록 도구로 반영. 생성·참고 원본 해시와 검수 기록은 그림 저장소 records/ag 에 보존.
+
 ## 2026-11-11 · claude · 얼굴 낱말 — 사실형 눈 · 광대 말 빼기
 - 사용자 「원소공방은 지금 화풍 놔둬도 되겠다. 설계가 문제 였나봐」 → 「응 적용해줘」 — 화풍공방에서 철 판타지를 원래 · 얼굴 말 뺀 판으로 견줘 보니 뺀 쪽 질감이 낫다고 봄(한 장씩)
 - lib/prompt-spec.js 공통 낱말: eye_size.medium 「moderately sized, realistically proportioned eyes」 → 「medium-sized eyes」(50명), age.late_20s 「with defined cheekbones」 빼기(26명), age.early_30s 「with defined cheekbones and jaw」 빼기(17명). 한글 이름표도 같이. prompt-spec ?v=23. 올린 그림 · 기록은 그대로, 새 지시문부터
