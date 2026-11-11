@@ -9,6 +9,12 @@
 
 
 
+## 2026-11-11 · claude · 그림 없는 화풍 열넷 내림
+- data/style.json — 도감에 등록 그림이 없는 화풍 열넷(mmorpg2d · semireal · kr_mmorpg · kr_promo_hikey · kr_promo_hikey_oil · glossy_kr_game · glossy_kr_semireal · kv_kmmo_lock · kv_kmmo_23d · kv_jp_mobile · kv_jp_paint · kv_anime_gloss · mmorpg_cg · bright_2d_oil)에 retired · retired_why — 지우지 않고(옛 기록 · 조립 참조가 남는다) 고르개에서만 뺀다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 남은 화풍은 jp_paint_anime(기본) · game_keyart · game_cgi · cinematic_keyart
+- lib/studio.js · prompt.html(studio.js ?v=6) — 생성기 화풍 고르개가 내린 화풍을 빼고, 주소 ?style= · 이 기기에 기억된 고른 화풍이 내린 것이면 기본 화풍으로
+- tests/screen.cjs — 내린 화풍을 쓰던 곳을 살아 있는 화풍으로 다시 씀: 고르개 검사는 목록 = 살아 있는 화풍(kv_jp_paint · mmorpg2d 없음) · game_keyart 를 고르면 화풍 단락이 바뀌고 ''로 돌아옴 · 내린 화풍 주소 · 기억값은 기본으로. 생성기 세계 그림 · 일상컷 흐름은 구조판 mmorpg2d 대신 기본 화풍(짧은 판)으로 — 머리말 · 화풍 단락 · 얼굴 비율 · 덧붙임 · 노출 · 장면 · 시간대 · 자세 · 표정 · 끝 줄, 일상컷의 시간대 · 머리 · 노출 축 · 소품, 파일 이름 fe-steel-sword_mecha_<기본>_f(_casual1).webp, 참고 그림 줄(등록부의 기본 화풍 칸)
+- tests/prompt-element.cjs — 손대지 않음: 이번 일 전부터 「og steampunk 낱말 868」(한도 850)로 멈춘다(git stash 로 확인 — 앞선 다른 커밋 탓)
+
 ## 2026-11-11 · gpt · 은 선택 세계컷과 일상컷 도감 등록
 - data/img.json — 판타지 3 · 스팀펑크 4 · 메카 3 및 세계별 일상컷 여섯 장, 총 21장을 등록 도구로 반영. 생성·참고 원본 해시와 검수 기록은 그림 저장소 records/ag 에 보존.
 

@@ -1,6 +1,6 @@
 {
  "version": 1,
- "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 mmorpg2d(2026-11-06 — 2D 한국 MMORPG 구조 지시문. semireal 과 같은 구조판이고 1절 작화 고정만 다르다. 사용자 「원소공방도 이그림체로 하자」). 그 전 기본은 semireal(2026-11-04 — 반실사 구조 지시문. 공통 적용 규칙 · 1절 작화 고정은 판의 rules · section1, 일상컷은 casual_rule 을 더 싣고, 2~4절은 카드마다 칸을 채운다. 생성기가 이 틀로 전체본을 짓는다 — lib/prompt-element.js 의 buildStructured · casualStructured, 칸 기본 글은 lib/prompt-spec.js 의 STRUCT, 카드 손글 칸은 설계표 struct. text 는 쓰지 않는다). 그 전 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다.",
+ "note": "화풍 기록 — 설계 지시문 뒤에 붙이는 공통 화풍 블록. 판을 바꾸면 versions 끝에 새 판을 더하고 current 를 옮긴다. 옛 판은 지우지 않는다(그림 기록이 어느 판으로 만들었는지 가리킨다). text 는 근본·가문주·주민 세 세계, casual 은 일상컷에 싣는다. 기본은 mmorpg2d(2026-11-06 — 2D 한국 MMORPG 구조 지시문. semireal 과 같은 구조판이고 1절 작화 고정만 다르다. 사용자 「원소공방도 이그림체로 하자」). 그 전 기본은 semireal(2026-11-04 — 반실사 구조 지시문. 공통 적용 규칙 · 1절 작화 고정은 판의 rules · section1, 일상컷은 casual_rule 을 더 싣고, 2~4절은 카드마다 칸을 채운다. 생성기가 이 틀로 전체본을 짓는다 — lib/prompt-element.js 의 buildStructured · casualStructured, 칸 기본 글은 lib/prompt-spec.js 의 STRUCT, 카드 손글 칸은 설계표 struct. text 는 쓰지 않는다). 그 전 기본은 game_keyart(2026-10-31 — 철나라 열다섯 장을 CGI·2.5D 로 나란히 보고 사용자가 「2.5d 가 낫다, CGI 는 얼굴이 각지고 못생기게 나오는 컷이 있다」). game_cgi(철나라 열여덟 장)·cinematic_keyart(비교 여섯 장)는 그 그림들의 열쇠로 남는다. 일상컷은 세계 그림을 참고 그림으로 붙이므로 그 그림의 화풍을 따른다. 전신 2:3·한 명·손 같은 조건은 여기가 아니라 생성기 문장(lib/prompt-spec.js 의 RULES)에 둔다. retired = 내린 화풍(2026-11-11 — 도감에 그림이 없는 것) — 생성기 화풍 고르개 · ?style= 에서 빠진다.",
  "default": "jp_paint_anime",
  "styles": {
   "mmorpg2d": {
@@ -22,7 +22,9 @@
      ],
      "text": "A premium 2D Korean MMORPG official character illustration: clearly hand-drawn 2D character art with delicate refined coloured linework, elegant adult anime facial design, expressive finely detailed eyes, carefully designed shapes, rich luminous colours and layered painted shading; elaborate Korean fantasy game costume illustration with clean detailed rendering. The face and body stay visibly illustrated in 2D — no 3D render, no photorealistic appearance."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "semireal": {
    "name": "반실사 구조 지시문",
@@ -43,7 +45,9 @@
      ],
      "text": "Digital illustration that combines anime-style idealized features with delicate semi-realistic skin rendering and precise material detail, a smooth high-end 3D character render look, soft rendering of the body balanced with structurally crisp objects, and a high-detail polished finish that keeps each surface's local color and material distinct."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "game_cgi": {
    "name": "게임 시네마틱 CGI",
@@ -234,7 +238,9 @@
      "by": "claude",
      "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 영어 틀 화풍 — 삼국지의 v4 글 그대로(text · casual)."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "kr_promo_hikey": {
    "name": "한국 MMORPG 프로모 하이키",
@@ -268,7 +274,9 @@
      "casualShort": true,
      "casualLight": "Light: the place's own light, with a soft rim light tracing her hair and shoulders and glossy highlights on skin and jewellery — the luxurious promotional glow of the attached image."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "kr_promo_hikey_oil": {
    "name": "한국 MMORPG 프로모 하이키 유화",
@@ -331,7 +339,9 @@
      "casualLight": "Light: the place's own soft, rich, bright natural light with gentle, subtle shadows — luminous, clear skin and vivid, full-bodied midtones that never wash out, as in the attached image.",
      "worldLight": "Light: soft, rich, bright natural light with gentle, subtle shadows — luminous, clear skin and vivid, full-bodied midtones that never wash out."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "glossy_kr_game": {
    "name": "한국형 글로시 게임 일러스트",
@@ -346,7 +356,9 @@
      "by": "claude",
      "why": "삼국지 공방(sam-atelier data/style.json)에서 옮긴 화풍 — 사용자 2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」. 영어 틀 화풍 — 삼국지의 v1 글 그대로(text · casual)."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "glossy_kr_semireal": {
    "name": "한국형 글로시 반실사",
@@ -361,7 +373,9 @@
      "check": "glossy Korean mobile-game illustration with a semi-realistic face — realistic facial structure, natural skin texture, selective highlights; a polished illustration, not a photo or 3D render; one figure, no readable text.",
      "why": "한국형 글로시(glossy_kr_game v1)의 「우아한 애니 얼굴」 을 반실사 얼굴 구조(자연스러운 눈 크기 · 콧대 · 광대 · 입술, 은은한 피부 결 · 피하 온기, 사실적인 빛 감쇠)로 바꾸고 마감은 글로시 일러스트 그대로(사진 · 3D 렌더 아님) — 이미 있는 반실사 3D 렌더 화풍(mmorpg_cg · 프로모 하이키 · kmmo_lock)과 겹치지 않게"
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "kv_kmmo_lock": {
    "name": "한국 MMORPG 기준 판",
@@ -383,7 +397,9 @@
      "text": "Premium Korean MMORPG official character illustration with an elegant idealised semi-realistic face, exceptionally refined dimensional modelling and precise material rendering. A polished 2.5D painted game illustration with convincingly three-dimensional forms and delicately finished surfaces. Use rich, clear local colours, deep luminous midtones and selective highlights. Hair has weight, sculpted flowing masses and individual fine wisps. Polished metal has sharp selective reflections; silk has soft directional lustre; leather has quieter broad reflections. The materials must look distinctly different. No visible contour outlines, no flat cel shading, no photographic skin texture, no plastic doll finish, no exaggerated eyeliner, no oily skin or overall glossy sheen. Maintain excellent facial clarity and colour richness without a washed-out veil, muddy shadows, excessive bloom or an overall blue colour cast. FACIAL DESIGN LOCK: model the eyelids, eyeballs, nose bridge and nose tip, lips, cheeks and jaw with continuous nuanced shading. The face remains soft and beautiful, with clean matte-satin skin and subtle natural highlights. Preserve the specified face shape, eye shape, skin colour and adult maturity.",
      "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "kv_kmmo_23d": {
    "name": "한국 MMORPG 2.3D",
@@ -405,7 +421,9 @@
      "text": "Premium Korean MMORPG official character illustration, approximately 2.3D in appearance. An elegant illustrated face with softly dimensional modelling, refined painted shading, rich colours and precise material rendering. Keep the face recognisably illustrated, with smooth skin and carefully controlled highlights. Detailed metal, embroidered fabric and flowing hair, all rendered consistently in the same polished game illustration style.",
      "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "kv_jp_mobile": {
    "name": "일본 모바일게임 리얼 CG",
@@ -428,7 +446,9 @@
      "tail": "FINISH: convincing armour construction and weight with sharp selective metallic reflections, soft silk lustre and restrained leather details. Cool daylight and restrained warm reflected light reveal her face and the costume clearly.\n\nANATOMY: Exactly one head, two arms, two natural human hands, five fingers on each hand, two legs. Both hands visible and correctly connected. No extra or missing limbs. No other characters. No logos, borders, interface or watermark; no writing except the chemical symbol and atomic number the rules above allow.",
      "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "kv_jp_paint": {
    "name": "일본 유화풍 게임 일러스트",
@@ -451,7 +471,9 @@
      "tail": "FINISH: the armour has beautifully painted metallic reflections, while the silk has a softer lustre. Clear directional light brings out the face, the costume and hair, with restrained atmospheric glow; the setting is softly painted and gives atmospheric depth without competing with her face and silhouette.\n\nANATOMY AND FINISH: One head, exactly two arms and two legs. Both natural human hands visible, five fingers on each hand, anatomically correct grip and clear wrists. No extra limbs, missing hands or cropped weapon. No other characters, logos, watermark, border or UI; no text except the chemical symbol and atomic number the rules above allow.",
      "casualSkin": "SKIN: dewy, moist, softly glowing skin on every bare area — face, shoulders, chest, arms and legs — with a fresh luminous sheen: soft glossy highlights on the cheekbones, nose bridge, lips, collarbones, shoulders and the curves of the body, modelled by gentle tonal shading; healthy and hydrated rather than oily or sweaty, and never a plastic, airbrushed doll finish."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "jp_paint_anime": {
    "name": "일본 유화 애니",
@@ -490,7 +512,9 @@
      "tail": "FINISH: her colours rendered within a low-saturation white-and-silver pastel palette, the deepest of them as the single deep accent colour; armour, cloth and leather carry a soft, broad natural sunlit sheen, never wet, oily or plastic-looking. Bright high-key daylight with soft bloom and small sparkles; glossy 2D anime gacha character illustration.\n\nANATOMY AND FINISH: One head, exactly two arms and two legs. Both natural human hands visible, five fingers on each hand, anatomically correct grip and clear wrists. No extra limbs, missing hands or cropped weapon. No other characters, logos, watermark, border or UI; no text except the chemical symbol and atomic number the rules above allow.",
      "casualSkin": "SKIN: softly luminous skin on every bare area with a gentle satin sheen — subtle highlights on the cheekbones, nose bridge, lips, collarbones and shoulders, modelled by gentle tonal shading; fresh and natural, never oily, sweaty or wet-looking, and never a plastic, airbrushed doll finish."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "mmorpg_cg": {
    "name": "MMORPG CG",
@@ -506,7 +530,9 @@
      "casualLight": "Light: the place's own light, with a strong soft rim light tracing her hair and shoulders, glossy highlights on skin and jewellery and drifting light particles — a luxurious promotional glow.",
      "worldLight": "Light: a strong soft rim light tracing her hair, shoulders and armour, glossy highlights on metal, skin and jewellery, drifting light particles and a luxurious promotional glow."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   },
   "bright_2d_oil": {
    "name": "밝은 2D 유화",
@@ -552,7 +578,9 @@
      "casualLight": "Light: the place's own bright, airy natural light with soft, subtle shadows — clear, luminous skin and fresh, vivid midtones that never wash out, as in the attached image.",
      "check": "bright 2D-to-light-2.5D Korean fantasy game illustration with luminous oil-paint texture — soft coloured linework, airy natural light, clear skin, visible brushwork; not a 3D render or semi-realistic; one figure."
     }
-   ]
+   ],
+   "retired": "2026-11-11",
+   "retired_why": "도감에 그림이 없는 화풍 — 2.5 때 만든 키라 2.6 에서 안 쓴다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 지우지 않고 고르개에서만 뺀다"
   }
  },
  "worldShort": true
