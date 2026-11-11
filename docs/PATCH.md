@@ -9,6 +9,12 @@
 
 
 
+## 2026-11-11 · claude · core v3 글 · 눈꼬리 모순 13자리
+- core v3: square_soft · angular · wide_smile 글(삼국지와 같음)
+- 설계값: 가는 올라간 눈 + 처진 꼬리 6자리 → 꼬리 up, 처진 눈 + 올라간 꼬리 7자리 → 꼬리 down(삼국지 11-10 EYE_TILT_FIX 와 같은 짝), tests/look-spec.cjs 에 눈꼬리 짝 · IMAGE_RULES 적음
+- 기본 화풍 세계 지시문 68개 Her 줄만 바뀜. 시험: 나트륨(wide_smile) · 녹슨 갑옷(눈꼬리) 한 쌍씩 — 그림 차이 거의 없음, 정리 몫. 사용자 2026-11-11 「정리하는 김에 깔끔하게 하는게 낫지?」
+- prompt.html · dex.html prompt-spec ?v=26 · look-spec ?v=7
+
 ## 2026-11-11 · claude · core v2 긴 얼굴 글 · 얼굴 비율 줄 금지 나열 빼기 · 눈 크기 모순 23자리
 - core v2: face_shape.long 「long face」 → 「gently long oval face」
 - WORLD_SHORT.face: 「— never a long face or a long, pointed or heavy jaw … never squeezed into narrow slits」 금지 나열을 빼고 「Her eyes keep the shape and size described above」(감사 E2 — Her 줄의 긴 얼굴 · 각진 얼굴 · 가는 눈을 다시 막았다). 기본 화풍 세계 지시문 240개 전부 이 줄이 바뀜

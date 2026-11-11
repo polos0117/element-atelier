@@ -1959,7 +1959,8 @@
           },
           "face": {
            "face_shape": "heart",
-           "eyes": "narrow_upturned"
+           "eyes": "narrow_upturned",
+           "eye_tilt": "up"
           }
          }
         },
@@ -2197,7 +2198,8 @@
           },
           "face": {
            "face_shape": "long",
-           "eyes": "droopy_soft"
+           "eyes": "droopy_soft",
+           "eye_tilt": "down"
           }
          },
          "mecha": {
@@ -3050,7 +3052,8 @@
           "face": {
            "face_shape": "square_soft",
            "eyes": "narrow_upturned",
-           "eye_size": "medium"
+           "eye_size": "medium",
+           "eye_tilt": "up"
           }
          },
          "mecha": {
@@ -4215,7 +4218,8 @@
         "face": {
          "face_shape": "heart",
          "eyes": "narrow_upturned",
-         "eye_size": "medium"
+         "eye_size": "medium",
+         "eye_tilt": "up"
         }
        },
        "mecha": {
@@ -4717,7 +4721,8 @@
           },
           "face": {
            "face_shape": "diamond",
-           "eyes": "droopy_soft"
+           "eyes": "droopy_soft",
+           "eye_tilt": "down"
           }
          }
         },
@@ -5329,7 +5334,8 @@
      "steampunk": {
       "face": {
        "face_shape": "oval",
-       "eyes": "droopy_soft"
+       "eyes": "droopy_soft",
+       "eye_tilt": "down"
       },
       "silhouette": {
        "hair": "braids",
@@ -5840,7 +5846,8 @@
         },
         "face": {
          "face_shape": "heart",
-         "eyes": "narrow_upturned"
+         "eyes": "narrow_upturned",
+         "eye_tilt": "up"
         }
        }
       },
@@ -6996,7 +7003,8 @@
           },
           "face": {
            "face_shape": "oval",
-           "eyes": "droopy_soft"
+           "eyes": "droopy_soft",
+           "eye_tilt": "down"
           }
          },
          "mecha": {
@@ -7112,7 +7120,8 @@
      "steampunk": {
       "face": {
        "face_shape": "heart",
-       "eyes": "droopy_soft"
+       "eyes": "droopy_soft",
+       "eye_tilt": "down"
       },
       "silhouette": {
        "hair": "twin_tails",
@@ -7464,7 +7473,8 @@
         },
         "face": {
          "face_shape": "long",
-         "eyes": "droopy_soft"
+         "eyes": "droopy_soft",
+         "eye_tilt": "down"
         }
        },
        "mecha": {
@@ -7960,7 +7970,8 @@
      "mecha": {
       "face": {
        "face_shape": "diamond",
-       "eyes": "narrow_upturned"
+       "eyes": "narrow_upturned",
+       "eye_tilt": "up"
       },
       "silhouette": {
        "hair": "bob",
@@ -8176,7 +8187,8 @@
      "mecha": {
       "face": {
        "face_shape": "diamond",
-       "eyes": "narrow_upturned"
+       "eyes": "narrow_upturned",
+       "eye_tilt": "up"
       },
       "silhouette": {
        "hair": "pixie_cut",
@@ -9403,7 +9415,8 @@
      "steampunk": {
       "face": {
        "face_shape": "heart",
-       "eyes": "droopy_soft"
+       "eyes": "droopy_soft",
+       "eye_tilt": "down"
       },
       "silhouette": {
        "hair": "wolf_cut",

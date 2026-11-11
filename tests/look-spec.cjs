@@ -61,14 +61,15 @@ for (const n of D.nations) {
     }
   }
 }
-/* 눈 크기가 그 세계 눈 모양과 부딪치지 않는다 — 삼국지 tests/look-spec.cjs 와 같은 짝(사용자 2026-11-11 「설계값 모순만 바꿔줘」 — 감사 E7 「smaller, narrower eyes … — large round eyes」 ·
-   「large eyes — narrow upturned eyes」). 생성기가 실제로 쓰는 외형(lookOf — 나라 · 가문주 · 주민 · 세계 덮기)으로 본다. 고칠 땐 모양을 살리고 그 세계 look.worlds.<세계>.face.eye_size 만 덮는다 */
+/* 눈 크기 · 눈꼬리가 그 세계 눈 모양과 부딪치지 않는다 — 삼국지 tests/look-spec.cjs 와 같은 짝(사용자 2026-11-11 「설계값 모순만 바꿔줘」 — 감사 E7 「smaller, narrower eyes … — large round eyes」 ·
+   「large eyes — narrow upturned eyes」). 생성기가 실제로 쓰는 외형(lookOf — 나라 · 가문주 · 주민 · 세계 덮기)으로 본다. 고칠 땐 모양을 살리고 그 세계 look.worlds.<세계>.face.eye_size · eye_tilt 만 덮는다 */
 { const W = load(['lib/prompt-spec.js', 'lib/look-spec.js', 'lib/prompt-element.js']), P = W.AtelierPrompt;
-  const CLASH = [['small', ['round_large', 'almond_wide']], ['large', ['narrow_upturned', 'phoenix', 'monolid_long']]];
+  const CLASH = [['eye_size', 'small', ['round_large', 'almond_wide']], ['eye_size', 'large', ['narrow_upturned', 'phoenix', 'monolid_long']],
+    ['eye_tilt', 'down', ['narrow_upturned', 'phoenix', 'cat']], ['eye_tilt', 'up', ['droopy_soft']]];   /* 눈꼬리(2026-11-11 「정리하는 김에 깔끔하게」 — 감사 E7) */
   let n = 0;
   for (const k of P.cards(D)) for (const w of P.worldsOf(D, k)) {
     const f = P.lookOf(P.card(D, k), w).face; n++;
-    for (const [v, shapes] of CLASH) assert(!(f.eye_size === v && shapes.includes(f.eyes)), k + ' ' + w + ' 눈 크기 ' + v + ' 가 눈 모양 ' + f.eyes + ' 와 부딪친다');
+    for (const [a, v, shapes] of CLASH) assert(!(f[a] === v && shapes.includes(f.eyes)), k + ' ' + w + ' ' + a + ' ' + v + ' 가 눈 모양 ' + f.eyes + ' 와 부딪친다');
   }
   assert(n > 200, '카드 × 세계 ' + n);
 }
