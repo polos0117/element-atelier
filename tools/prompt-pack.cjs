@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /* 지시문 묶음 — 브라우저 없이 생성기와 같은 지시문·기록을 파일로(2026-10-31, game-atelier 의 tools/prompt-pack.cjs 를 원소 꼴로 — 그쪽은 pkm 에서).
    GPT 세션은 브라우저를 못 띄운다 — 생성기 화면(lib/studio.js)이 부르는 조립부(lib/prompt-element.js 의 build · buildCasual)를
-   같은 값으로 불러, 한 카드의 자리(사는 세계마다 세계 그림 한 장 + 일상컷 여섯 장 — IMAGE_RULES 2절)의 지시문과 기록을 쓴다.
+   같은 값으로 불러, 한 카드의 자리(사는 세계마다 세계 그림 한 장 + 일상컷 일곱 장 — IMAGE_RULES 2절)의 지시문과 기록을 쓴다.
    기록(<자리>-ui.json)은 생성기 「기록 내보내기」 와 같은 꼴에 생성기 저장값(storage)을 더한 것 — 그 storage 를 생성기에 넣으면 같은 지시문이 나온다(tests/prompt-pack-screen.cjs).
 
    node tools/prompt-pack.cjs init <카드> --dir <작업 폴더> [--plan <세계 하나의 plan.json> …]
@@ -15,7 +15,8 @@
      worlds.<세계>   notes(scene · outfit · custom — 직접 입력, why) · look(params · faceDesignOn · silhouetteOn · exposure — 표에 없는 외형은 직접 입력이라 why) ·
                      shot(scene — 설계표 장면 변주 열쇠 · time · pose · expr · frame(실루엣 — 세계마다 제 갈래 · free · 비우면 카드 설계값 sil.<세계>) — 표의 값)
      casual.<자리>   scene · outfit · custom(직접 입력 — why) · exposure(moderate · low — 그 컷만 피부 노출 축을 낮춘다, why 필요) · color(옷 색 갈래 — 비우면 계획) · denier(d40 · d60 · d80 · none) ·
-                     situ(none — 상황 노출 컷이 노출을 낮춰도 막혔을 때만 상황을 뺀다, why 필요) · 나머지는 계획 그대로
+                     situ(none — 상황 노출 컷 · 갈래 자유 컷이 노출을 낮춰도 막혔을 때만 상황을 뺀다, why 필요) · 나머지는 계획 그대로
+                     자유 설계 칸(계획의 sfree — 옷 자유 · 갈래 자유)은 지시문의 FREE DESIGN 덩어리를 맡은 쪽이 채워 그린다(채운 글은 기록 generation.free_prompt · free_design)
      세계 그림의 노출은 worlds.<세계>.look.exposure. 낮추는 것은 필터 거절 뒤 노출 낮추기(사용자 2026-11-01 「필터 문제로 막히면 재시도 후, 노출 수위를 낮춰가며 재시도로」 — IMAGE_RULES 1절) 에만 */
 'use strict';
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm'), crypto = require('node:crypto');
@@ -107,6 +108,7 @@ function validate(set, card, plans) {
     if (p.card !== card.key || !card.worlds.includes(p.world)) { errs.push('계획 ' + p.path + ' 이 이 카드 · 세계 것이 아니다'); continue; }
     if (p.style && p.style !== STYLE) errs.push('계획 ' + p.world + ' 의 화풍 ' + p.style + ' 가 기본이 아니다');
     for (const cut of p.cuts) {
+      if (cut.sfree) continue;   /* 자유 설계 칸은 장면을 짜지 않는다(2026-11-11) */
       const { n, ...sc } = cut, fixed = C2.repair(C2.make(tree2, tree), { ...sc }, card.g);
       for (const k of C2.ORDER) if ((fixed[k] || '') !== (sc[k] || '')) errs.push(`계획 ${p.world} 컷 ${n} 의 ${k}=${sc[k]} 가 트리에 안 맞는다`);
     }
@@ -133,7 +135,7 @@ function recordOf(card, set, s) {
   if (x.exposure) scene.axes.skin_exposure = x.exposure;
   if (x.color) scene.color = x.color;   /* 옷 색 · 데니어 · 상황(2026-11-09 삼국지에서) */
   if (x.denier === 'none') delete scene.denier; else if (x.denier) scene.denier = x.denier;
-  if (x.situ === 'none') delete scene.situ;
+  if (x.situ === 'none') { delete scene.situ; delete scene.gsitu; }
   return { ...P.casualRecord(D, S, card.key, scene, { world: s.world, style: STYLE, tree, tree2 }, n), record: PLAN.recordRel(card.key, s.world, n), storage: storageOf(card, s, x, scene) };
 }
 
@@ -151,12 +153,12 @@ function build(dir) {
     if (s.kind === 'world') fs.writeFileSync(path.join(dir, s.slot + '-free.txt'), P.buildWorldFree(D, S, card.key, s.world, { style: STYLE }));
   }
   /* 옷 목록(2026-11-09 「일상컷도 우리쪽 의상자료를 참고하라고해서 여기 없는걸 선택하라고 하자」) — 옷 자유 컷은 이 목록에 없는 옷을 짓는다 */
-  fs.writeFileSync(path.join(dir, 'outfit-catalog.md'), '# Our outfit catalog — every outfit type we already use for casual cuts\n\nFor a free-outfit cut, design an outfit that is NOT on this list.\n\n' + (tree.outfits || []).map(f => '## ' + f.key + ' — ' + f.en + '\n' + (f.items || []).map(i => '- ' + i.en).join('\n')).join('\n\n') + '\n');
-  const rows = out.map(({ s, rec }, i) => `| ${i + 1} | ${s.slot} | ${s.kind === 'world' ? '세계 그림(첨부 없이)' : '일상(버전2)'} | ${s.attach.join(' + ') || '없음'} | ${rec.file} | ${rec.record} | ${sha(rec.prompt).slice(0, 12)} |`);
+  fs.writeFileSync(path.join(dir, 'outfit-catalog.md'), '# Our outfit catalog — every outfit type we already use for casual cuts\n\nFor a free-design cut, design an outfit that is NOT on this list.\n\n' + (tree.outfits || []).map(f => '## ' + f.key + ' — ' + f.en + '\n' + (f.items || []).map(i => '- ' + i.en).join('\n')).join('\n\n') + '\n');
+  const rows = out.map(({ s, rec }, i) => `| ${i + 1} | ${s.slot} | ${s.kind === 'world' ? '세계 그림(첨부 없이)' : s.cut.sfree ? (s.cut.gfree ? '일상 — 갈래 자유(덩어리 채우기)' : '일상 — 옷 자유(덩어리 채우기)') : '일상(버전2)'} | ${s.attach.join(' + ') || '없음'} | ${rec.file} | ${rec.record} | ${sha(rec.prompt).slice(0, 12)} |`);
   fs.writeFileSync(path.join(dir, 'INDEX.md'), `# ${card.key}(${card.c.ko}) — 지시문 묶음\n\n만든 때 ${new Date().toISOString()} · 화풍 ${STYLE} · 사는 세계 ${card.worlds.join(' · ')} · 계획 ${plans.map(p => p.world).join(' · ') || '없음(일상 자리 없음)'}\n\n` +
     '**세계 그림 → 멈춤 → 일상컷**(2026-11-09 삼국지와 같이). 세계 그림은 세계마다 **네 장**(기준 그림 없이 한 장씩) — **두 장은 우리 설계 `<세계>-prompt.txt` 그대로, 두 장은 임의 설계 `<세계>-free.txt`**(설계 주문 — 의상은 우리 실루엣에서 하나(주민은 그 물건) + 원소에서 딴 맡은 쪽의 아이디어 하나 · 색 · 머리색은 우리 것, 얼굴 · 눈색 · 헤어스타일 · 자세 · 장면은 맡은 쪽이 지어 제 지시문을 쓴다, 둘째 장은 첫째와 확실히 다르게). 네 장을 「우리 설계 1 · 2 / GPT 설계 1 · 2」 로 붙여 보이고 **멈추고 묻는다** — 고르기 전엔 일상컷으로 넘어가지 않고 세계 그림도 올리지 않는다. 고른 장만 올리고, 임의 설계 장이면 기록 `generation.design: "gpt_free"` 와 실제로 넘긴 지시문(`generation.free_prompt`)을 남긴다.\n\n' +
-    '**일상컷 옷 자유 컷 한 장** — 계획에 「옷 자유」 로 적힌 컷은 Outfit 줄이 「노출 의상을 네가 지어라」 다 — 이 묶음의 `outfit-catalog.md`(우리가 쓰는 옷 전부)를 읽고 **거기 없는 옷**을 지어 그 줄에만 써 넣는다(실제로 넘긴 글은 기록 `generation.free_prompt`).\n\n' +
-    '차례대로 그린다. 세계 그림은 기준 그림 없이 한 장씩, 일상컷은 그 세계 그림(이 세션의 원본, 이미 등록된 것이면 그림 저장소의 webp)을 붙인다. `<자리>-prompt.txt` 를 고치지 않고 그대로 낸다(임의 설계 주문으로 제 지시문을 쓰는 것만 예외).\n\n' +
+    '**일상컷 자유 설계 칸 두 장**(2026-11-11 — 사용자 「장소·활동·자세·구도·의상을 자유롭게 설계해줘 … 필수갈래랑 상황노출 두개를 묶어서 이렇게 가자. 그리고 지금 맡겨놓은 일상컷 1장도 같이 이런식으로」) — 계획에 「옷 자유」 · 「갈래 자유」 로 적힌 컷은 장면 줄 대신 `FREE DESIGN:` 덩어리다. 그 사람(아래 Her element 줄 · 첨부 그림)에서 출발해 장소 · 활동 · 자세 · 구도 · 의상을 지어 **덩어리의 「…」 줄(Place · Activity · Pose · Framing · Outfit)을 채운 뒤** 그린다 — 「Recent scenes to avoid」 와 비슷한 장면은 피하고, 옷은 이 묶음의 `outfit-catalog.md`(우리가 쓰는 옷 전부)에 **없는 것**. 갈래 자유 컷은 `Outfit family (required)` · `Situation (required)` 두 줄을 둘 다 지킨다. 덩어리 밖의 줄(얼굴 · 화풍 · 몸 · 첨부 그림)은 낱말 하나 고치지 않는다. 채운 글은 기록에 남긴다 — `generation.free_prompt`(실제로 넘긴 지시문 통째) · `generation.free_design`(채운 덩어리), `casual-plan.cjs --check` 가 본다.\n\n' +
+    '차례대로 그린다. 세계 그림은 기준 그림 없이 한 장씩, 일상컷은 그 세계 그림(이 세션의 원본, 이미 등록된 것이면 그림 저장소의 webp)을 붙인다. `<자리>-prompt.txt` 를 고치지 않고 그대로 낸다(임의 설계 주문으로 제 지시문을 쓰는 것 · 자유 설계 칸의 덩어리를 채우는 것만 예외).\n\n' +
     '| 차례 | 자리 | 갈래 | 첨부 | 올릴 파일 | 기록 자리 | 지시문 sha256 |\n|---|---|---|---|---|---|---|\n' + rows.join('\n') + '\n');
   console.log(`${card.key}(${card.c.ko}) — ${out.length} 자리 → ${dir}`);
   return 0;

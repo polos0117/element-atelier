@@ -9,6 +9,20 @@
 
 
 
+## 2026-11-11 · claude · 갈래 자유 설계 컷 — 상황은 열기, 옷 갈래는 큰 범위만
+- Outfit family 줄: 「any {family} outfit; you may pick one from our outfit catalog … or design your own, but prefer one that is not in it(그 갈래면 우리 목록에서 골라도 직접 지어도 되지만 목록에 없는 것 먼저)」
+- Situation 줄: 표에서 고르지 않고(gsitu 'free') 「a situational exposure moment of your own design that fits the scene — prefer one that is not among ours: …(장면에 맞는 상황 노출 순간을 직접 짓되 우리 넷이 아닌 것 먼저)」
+- 사용자 2026-11-11 「상황도 열어주자. 옷도 이제 큰범위로만 지정해줘. 수영복갈래면 우리쪽에서 선택해도 되고, 본인이 골라도 되는데, 최대한 우리쪽에 없는걸 고르게」 — tests/casual-plan.cjs 를 새 줄로
+
+## 2026-11-11 · claude · 일상컷 일곱 장 — 자유 설계 칸 둘(옷 자유 · 갈래 자유)
+- lib/prompt-spec.js — FREE_DESIGN 한 상수(자유 설계 덩어리 · 최근 장면 · 갈래 · 상황 · Outfit 줄 안내). 사용자 「한 장 더 생성하게 해서 필수갈래 또는 상황 노출을 더 그리게 추가해줘. 그럼 일상컷은 총 7장 되는거야」 → 「장소·활동·자세·구도·의상을 자유롭게 설계해줘 … 필수갈래랑 상황노출 두개를 묶어서 이렇게 가자. 그리고 지금 맡겨놓은 일상컷 1장도 같이 이런식으로」
+- lib/prompt-element.js — 자유 설계 칸(sfree)은 장면 줄 대신 덩어리(freeDesignLines), 트리로 채우지(repair) 않는다. 얼굴 · 화풍 · 몸 · 첨부 그림 줄은 짧은 판 그대로, 노출 · 몸 줄은 Outfit 줄 끝
+- tools/casual-plan.cjs — 세계마다 일곱 장(장면 컷 다섯 + 맨 뒤 자유 설계 칸 둘 — ofree · gfree+gsitu), 갈래는 노출 갈래 컷과 · 상황은 상황 노출 컷과 다르게, 최근 장면(recent — 그림 저장소 기록 여덟 + 같은 묶음). 장면 규칙은 장면 컷만, 옛 여섯 장 묶음은 그대로 통과하고 일곱째만 짜진다. --check 가 자유 설계 기록의 채운 글(generation.free_prompt)을 본다
+- tools/prompt-pack.cjs — 자유 설계 칸은 트리 검사 없이, situ none 은 갈래 자유 칸의 상황에도, INDEX 에 「덩어리 채우기」 안내 · 칸 표시
+- tools/image-claim.cjs — 일상컷 일곱 장(빈 자리 세 세계 21 → 24)
+- lib/studio.js · lib/words.js — 자유 설계 장면을 넣으면 고르는 단계 없이 덩어리 지시문, 「처음부터」 로 보통 장면. *.html ?v 올림
+- IMAGE_RULES.md · docs/IMAGE_AUTOMATION.md · AGENTS.md — 일곱 장 · 자유 설계 칸 둘 · 「자유 설계 덩어리를 채운다」 · 채운 글은 기록 free_prompt · free_design
+- tests/casual-plan.cjs · tests/prompt-pack-screen.cjs — 일곱 장 · 자유 설계 칸 둘 · 옛 여섯 장 + 일곱째 · 같은 갈래 · 상황을 잡는다
 ## 2026-11-11 · gpt · 황 재작업 21장 등록
 - data/img.json — 선택한 세계컷 판타지 4·스팀펑크 3·메카 3과 세계별 일상컷 여섯 장, 총 21장을 등록기로 반영. 기존 그림과 다른 카드 데이터는 보존.
 

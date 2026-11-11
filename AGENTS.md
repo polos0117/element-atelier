@@ -11,7 +11,7 @@
 | `docs/ELEMENT_CONCEPT.md` | 기획 — 왜 세 층인가·세계 셋·설계표 칸·지시문·첫 묶음·만드는 차례 |
 | `data/element-design.json` | 설계표. 나라(원소) › 가문(물질) › 주민(물건) |
 | `IMAGE_RULES.md` | 그림 만들기·파일 이름·기록·올리기 — 그림 작업 전에 |
-| `docs/IMAGE_AUTOMATION.md` | GPT 세션(사람이 안 지켜보는) 이미지 작업 — 잠금(`tools/image-claim.cjs`) · 일상컷 계획기(`tools/casual-plan.cjs`, 세계마다 다섯 장) · 지시문 묶음(`tools/prompt-pack.cjs`) · 검수 · 묻지 않고 올리기 |
+| `docs/IMAGE_AUTOMATION.md` | GPT 세션(사람이 안 지켜보는) 이미지 작업 — 잠금(`tools/image-claim.cjs`) · 일상컷 계획기(`tools/casual-plan.cjs`, 세계마다 일곱 장 — 장면 컷 다섯 + 자유 설계 칸 둘, 2026-11-11) · 지시문 묶음(`tools/prompt-pack.cjs`) · 검수 · 묻지 않고 올리기 |
 | `data/style.json` | 화풍 판 — 세계 그림은 `text`, 일상컷은 `casual`, 판의 `face` 는 지시문으로 옮길 때 바꿔 적는 얼굴 낱말(v3 — 2026-11-02, 평면 2D 로 나오던 귀여운 얼굴 낱말 · v4d — 2026-11-03, 실사 쪽 낱말). `game_keyart` 의 지금 판은 v2(2026-11-04 되돌림 — v3 · v4d 는 기록 판). **기본 화풍은 `mmorpg2d`(2D 한국 MMORPG 구조 지시문, 2026-11-06 — 사용자 「원소공방도 이그림체로 하자」 — `semireal` 과 같은 구조판에 1절 작화 고정만 다르다. 그 전 기본은 `semireal`, 반실사 구조 지시문, 2026-11-04 — 사용자 「이걸 기본화풍으로 처음부터 만들거야」)**: 판에 공통 적용 규칙(`rules`) · 일상컷 규칙(`casual_rule`) · 1절 작화 고정(`section1`, 그림 용어 영어 병기)을 두고 2~4절(캐릭터 외형 · 코디네이션 · 장면)은 카드마다 칸을 채운다. 생성기가 이 틀로 전체본을 짓는다(2026-11-04 — 사용자 「생성기부터 손봐줘」, 아래 1-3) |
 | 삼국지에서 옮긴 화풍 | `data/style.json` 일곱(2026-11-07 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가」) — 영어 틀 `kr_mmorpg` · `glossy_kr_game`(글 그대로), kv 판 `kv_kmmo_lock` · `kv_kmmo_23d` · `kv_jp_mobile` · `kv_jp_paint` · `kv_anime_gloss`(`lib/prompt-element.js` buildKv — 머리말 · STYLE · 장르 이름 · 끝 줄만 판이, CHARACTER · COSTUME · POSE AND SETTING 칸은 영어 틀과 같은 줄(worldLines)을 칸으로 묶음). 기본 화풍은 그대로. 생성기 위 화풍 고르개(주소 `?style=`, 기기에 기억) |
 | `docs/PORT_NOTES.md` | 어디서 무엇을 가져왔고, 무엇을 아직 안 가져왔나 |
@@ -112,7 +112,7 @@ python3 tests/style-compare.py           # 화풍 비교 묶음 — 열쇠 꼴 �
 python3 tools/casual-tree.py check      # 일상컷 트리 표(버전1 몫 — 시대·장소·의상) · audit — 하는 일 문장의 고정물이 장소에 없는 쌍
 python3 tools/casual-tree-v2.py check   # 일상컷 트리 버전2 표 — 없는 열쇠·두 손 칸·보이는 손 자리·다리 칸·다 되는 장소 없는 자세 추천
 python3 tests/casual-tree-v2.py · node tests/casual-tree-v2.cjs   # 검사기·거르기 모듈이 규칙마다 거는지
-node tests/casual-plan.cjs              # 일상컷 묶음 계획기 — 카드 × 사는 세계 × 씨앗이 여섯 장(2026-11-09) · 정해 둔 세 갈래 · 옷 색 · 데니어 · 상황 · 짧은 일상컷 · 묶음 규칙 · 네 시대 · 기록 꼴, 있는 컷 위에 모자란 만큼
+node tests/casual-plan.cjs              # 일상컷 묶음 계획기 — 카드 × 사는 세계 × 씨앗이 일곱 장(2026-11-11) · 자유 설계 칸 둘(옷 자유 · 갈래 자유) · 옛 여섯 장 + 일곱째 · 정해 둔 세 갈래 · 옷 색 · 데니어 · 상황 · 짧은 일상컷 · 묶음 규칙 · 네 시대 · 기록 꼴, 있는 컷 위에 모자란 만큼
 node tests/image-claim.cjs              # 이미지 작업 잠금 — bare 저장소로 잡기 · 겹침 · 몫 없음(원소) · push 경합 되돌림
 node tests/words.cjs                    # 낱말 표
 node tests/patch.cjs                    # 패치 기록 모양

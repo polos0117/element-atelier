@@ -1,5 +1,5 @@
 /* 지시문 묶음 = 생성기 화면 — tools/prompt-pack.cjs 가 쓴 기록의 저장값(storage)을 생성기에 넣으면 화면이 같은 지시문 · 같은 파일 이름을 만든다.
-   카드 둘(근본 철 · 주민 하나) × 사는 세계마다 세계 그림 + 일상 다섯(계획기 tools/casual-plan.cjs), 외형 · 장면 · 덧붙임을 고친 설정도 하나. 틀린 설정은 안 쓴다.
+   카드 둘(근본 철 · 주민 하나) × 사는 세계마다 세계 그림 + 일상 일곱(계획기 tools/casual-plan.cjs — 자유 설계 칸 둘 포함), 외형 · 장면 · 덧붙임을 고친 설정도 하나. 틀린 설정은 안 쓴다.
    Run: ESM_DIR=<preact 가 든 node_modules> CHROMIUM_PATH=<chrome> node tests/prompt-pack-screen.cjs   (PORT 로 자리 바꾸기, 기본 8795) */
 const assert = require('node:assert/strict'), http = require('node:http'), fs = require('node:fs'), path = require('node:path'), os = require('node:os');
 const { chromium } = require('playwright');
@@ -27,8 +27,8 @@ const server = http.createServer((q, s) => {
       fs.mkdirSync(dir);
       for (const w of card.worlds) {
         card.world = w;
-        const res = C.plan(card, [1, 2, 3, 4, 5, 6], [], { seed: 21 }), f = path.join(dir, 'plan-' + w + '.json');
-        fs.writeFileSync(f, JSON.stringify({ card: key, world: w, seed: 21, tree: 2, style: C.STYLE, required: res.required, slots: [1, 2, 3, 4, 5, 6], cuts: res.cuts }));
+        const res = C.plan(card, [1, 2, 3, 4, 5, 6, 7], [], { seed: 21, recent: ['a test place — standing'] }), f = path.join(dir, 'plan-' + w + '.json');
+        fs.writeFileSync(f, JSON.stringify({ card: key, world: w, seed: 21, tree: 2, style: C.STYLE, required: res.required, slots: [1, 2, 3, 4, 5, 6, 7], cuts: res.cuts }));
         plans.push(f);
       }
       const set = K.initSettings(card, plans);
@@ -37,7 +37,8 @@ const server = http.createServer((q, s) => {
       const log = console.log; console.log = () => {};
       try { assert.equal(K.build(dir), 0, key + ' build'); } finally { console.log = log; }
       const list = K.slots(card, plans.map(f => JSON.parse(fs.readFileSync(f, 'utf8'))));
-      assert.equal(list.length, card.worlds.length * 7, '세계마다 세계 그림 + 일상 여섯(2026-11-09)');
+      assert.equal(list.length, card.worlds.length * 8, '세계마다 세계 그림 + 일상 일곱(2026-11-11)');
+      assert.equal(list.filter(s => s.cut && s.cut.sfree).length, card.worlds.length * 2, '세계마다 자유 설계 칸 둘(옷 자유 · 갈래 자유)');
       for (const s of list) {
         const rec = JSON.parse(fs.readFileSync(path.join(dir, s.slot + '-ui.json'), 'utf8'));
         assert.equal(fs.readFileSync(path.join(dir, s.slot + '-prompt.txt'), 'utf8'), rec.prompt);
@@ -63,6 +64,6 @@ const server = http.createServer((q, s) => {
     try { assert.equal(K.build(bad), 1); } finally { console.error = err; }
     assert(!fs.existsSync(path.join(bad, 'fantasy-prompt.txt')), '틀리면 쓰지 않는다');
     for (const re of [/hair color 의 값 not-a-value/, /shot\.pose 의 값 nope/, /worlds\.mecha 에 직접 입력/, /worlds 에 없는 칸 ocean/]) assert(said.some(m => re.test(m)), re + ' 를 알린다');
-    console.log(`PASS 지시문 묶음 ↔ 생성기 화면: ${n} 자리(두 카드 · 세계 그림 · 세계마다 일상 다섯 · 고친 설정 하나)를 화면에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 쓴다`);
+    console.log(`PASS 지시문 묶음 ↔ 생성기 화면: ${n} 자리(두 카드 · 세계 그림 · 세계마다 일상 일곱(자유 설계 둘) · 고친 설정 하나)를 화면에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 쓴다`);
   } finally { await br.close(); server.close(); fs.rmSync(tmp, { recursive: true, force: true }); }
 })().catch(e => { console.error(e); process.exit(1); });
