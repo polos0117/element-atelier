@@ -9,6 +9,10 @@
 
 
 
+## 2026-11-11 · claude · 짧은 세계 그림 — 고른 외형 싣기 · 얼굴 끈 찌꺼기
+- 사용자 「응 둘 다 고쳐줘」 — 화면 검사를 다시 쓰다 찾은 둘(lib/prompt-element.js buildWorldShort): 1) 생성기에서 직접 고른 외형(머리색 등)이 짧은 판 지시문에 안 실렸다 — 고르면 설계의 그 칸이 빠지는데 긴 판의 IDENTITY 칸을 짧은 판이 안 옮겼다. 「Chosen look (overrides the automatic look): hair color: silver.」 한 줄로 Her 줄 바로 뒤에
+- 2) 얼굴 싣기를 끄면 「Her: . slender …」 — 빈 얼굴은 빼고 잇는다. prompt-element ?v=25. 검사 tests/prompt-short-look.cjs(네 카드 열두 장). prompt-element 는 전부터의 og 낱말 한도 실패 그대로
+
 ## 2026-11-11 · claude · 그림 없는 화풍 열넷 내림
 - data/style.json — 도감에 등록 그림이 없는 화풍 열넷(mmorpg2d · semireal · kr_mmorpg · kr_promo_hikey · kr_promo_hikey_oil · glossy_kr_game · glossy_kr_semireal · kv_kmmo_lock · kv_kmmo_23d · kv_jp_mobile · kv_jp_paint · kv_anime_gloss · mmorpg_cg · bright_2d_oil)에 retired · retired_why — 지우지 않고(옛 기록 · 조립 참조가 남는다) 고르개에서만 뺀다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 남은 화풍은 jp_paint_anime(기본) · game_keyart · game_cgi · cinematic_keyart
 - lib/studio.js · prompt.html(studio.js ?v=6) — 생성기 화풍 고르개가 내린 화풍을 빼고, 주소 ?style= · 이 기기에 기억된 고른 화풍이 내린 것이면 기본 화풍으로
