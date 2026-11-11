@@ -9,6 +9,11 @@
 
 
 
+## 2026-11-12 · claude · 근본 여덟 더 — 질소 · 네온 · 인 · 리튬 · 아연 · 주석 · 납 · 수은
+- 사용자 「원소공방 근본원소 추가해줘」 → 추천 여덟(기존 나라와 물질 짝이 생기는 것). data/element-design.json nations 끝 — 성격 · 성질 · 팔레트 · 세 세계(장소 · 장면 셋 · 메카 설계) · 손 물건 · 외형(세계마다 다른 사람) · 구조판 손글 칸(세 세계 3 · 4절) · 실루엣. 가문 · 주민은 아직
+- lib/prompt-spec.js SIL_TAGS 여덟(실루엣은 tools/sil-spread.py 가 나눴다) · 머리색 여덟 · 눈 색 cinnabar 한국어 이름. lib/look-spec.js · tools/port-look-spec.cjs EXTRA 같은 어휘
+- docs/ELEMENT_CONCEPT.md 2절 표. 검사 element-design check · tests/element-design.py · look-spec · prompt-element · prompt-sections · prompt-short-look · words
+
 ## 2026-11-12 · gpt · 염소 세계별 GPT 필수 갈래 일상컷 7 추가
 - data/img.json — 판타지·스팀펑크·메카의 7번 일상컷을 한 장씩 추가한다. 수영복·역할극·수영복 갈래와 새 상황을 함께 자유 설계했고, 실제 프롬프트·설계 덩어리·참고 해시·검수 차이는 그림 저장소 records/cl에 보존했다. 기존 여섯 장과 계획은 유지하며 생성된 결과는 임의 재생성하지 않았다.
 
