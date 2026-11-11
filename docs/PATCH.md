@@ -9,6 +9,13 @@
 
 
 
+## 2026-11-11 · claude · core v2 긴 얼굴 글 · 얼굴 비율 줄 금지 나열 빼기 · 눈 크기 모순 23자리
+- core v2: face_shape.long 「long face」 → 「gently long oval face」
+- WORLD_SHORT.face: 「— never a long face or a long, pointed or heavy jaw … never squeezed into narrow slits」 금지 나열을 빼고 「Her eyes keep the shape and size described above」(감사 E2 — Her 줄의 긴 얼굴 · 각진 얼굴 · 가는 눈을 다시 막았다). 기본 화풍 세계 지시문 240개 전부 이 줄이 바뀜
+- 설계값: 눈 크기가 그 세계 눈 모양과 부딪치는 23자리를 look.worlds.<세계>.face.eye_size 로 덮음(small+round_large → large 2, small+almond_wide → medium 5, large+narrow_upturned/monolid_long → medium 16) — 삼국지 11-10 과 같은 짝. tests/look-spec.cjs 가 생성기 외형으로 검사, IMAGE_RULES 적음
+- 사용자 2026-11-11 원소 금 판타지 두 쌍 시험(긴 얼굴이 세지지 않음) → 「넣어주고, 그대로 두고, 설계값 모순만 바꿔줘」
+- prompt.html · dex.html prompt-spec ?v=25 · look-spec ?v=6
+
 ## 2026-11-11 · claude · core v1 낱말 쓰기 — 표정 표 · 나이 줄 삼국지 글로
 - 화풍공방 core/v1/vocab.json 을 lib/prompt-spec.js · lib/look-spec.js 끝 「core:v1」 블록으로(사용자 「응 원소 글로 하고 core v1 만들어줘」 · 「기본 화풍들도 같이 옮기자」). 바뀐 것: 표정 32개 → 삼국지 11-03 누그러뜨린 글(턱 들기 · 이 악물기 · 시선 돌리기 없음 — 감사 E5), 나이 late_20s · early_30s → 「graceful … soft, smooth contours」(감사 E8), 외형 7개 삼국지 글(hime cut · copper-red 등)
 - 한글 이름표(표정 · 나이)도 새 글 뜻으로. 검사 tests/core-sync.cjs, prompt-element 의 표정 확인 둘을 core 기준으로. prompt-spec ?v=24 · look-spec ?v=5. prompt-element 는 전부터의 og 낱말 한도(이제 854/850)만 남음

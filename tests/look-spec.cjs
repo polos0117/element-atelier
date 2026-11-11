@@ -61,6 +61,17 @@ for (const n of D.nations) {
     }
   }
 }
+/* 눈 크기가 그 세계 눈 모양과 부딪치지 않는다 — 삼국지 tests/look-spec.cjs 와 같은 짝(사용자 2026-11-11 「설계값 모순만 바꿔줘」 — 감사 E7 「smaller, narrower eyes … — large round eyes」 ·
+   「large eyes — narrow upturned eyes」). 생성기가 실제로 쓰는 외형(lookOf — 나라 · 가문주 · 주민 · 세계 덮기)으로 본다. 고칠 땐 모양을 살리고 그 세계 look.worlds.<세계>.face.eye_size 만 덮는다 */
+{ const W = load(['lib/prompt-spec.js', 'lib/look-spec.js', 'lib/prompt-element.js']), P = W.AtelierPrompt;
+  const CLASH = [['small', ['round_large', 'almond_wide']], ['large', ['narrow_upturned', 'phoenix', 'monolid_long']]];
+  let n = 0;
+  for (const k of P.cards(D)) for (const w of P.worldsOf(D, k)) {
+    const f = P.lookOf(P.card(D, k), w).face; n++;
+    for (const [v, shapes] of CLASH) assert(!(f.eye_size === v && shapes.includes(f.eyes)), k + ' ' + w + ' 눈 크기 ' + v + ' 가 눈 모양 ' + f.eyes + ' 와 부딪친다');
+  }
+  assert(n > 200, '카드 × 세계 ' + n);
+}
 /* 화면 이름(LOOK_KO)은 설계 칸과 같은 열쇠 */
 assert(same(Object.keys(S.LOOK_KO.face), Object.keys(S.FACE_PARAM)) && same(Object.keys(S.LOOK_KO.sil), Object.keys(S.SIL_PARAM)), 'LOOK_KO 열쇠');
 console.log('PASS 외형 표: 선택지 ' + S.PARAM_DEFS.length + ' · 어휘 ' + Object.keys(S.VOCAB_EN).length + ' 묶음 · 노출 · 설계표 look ' + nLook + '칸(나라 ' + D.nations.length + ' · 가문 ' + D.nations.reduce((s, n) => s + n.families.length, 0) + ') 어휘에 다 있음');
