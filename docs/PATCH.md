@@ -9,6 +9,10 @@
 
 
 
+## 2026-11-11 · claude · core v1 낱말 쓰기 — 표정 표 · 나이 줄 삼국지 글로
+- 화풍공방 core/v1/vocab.json 을 lib/prompt-spec.js · lib/look-spec.js 끝 「core:v1」 블록으로(사용자 「응 원소 글로 하고 core v1 만들어줘」 · 「기본 화풍들도 같이 옮기자」). 바뀐 것: 표정 32개 → 삼국지 11-03 누그러뜨린 글(턱 들기 · 이 악물기 · 시선 돌리기 없음 — 감사 E5), 나이 late_20s · early_30s → 「graceful … soft, smooth contours」(감사 E8), 외형 7개 삼국지 글(hime cut · copper-red 등)
+- 한글 이름표(표정 · 나이)도 새 글 뜻으로. 검사 tests/core-sync.cjs, prompt-element 의 표정 확인 둘을 core 기준으로. prompt-spec ?v=24 · look-spec ?v=5. prompt-element 는 전부터의 og 낱말 한도(이제 854/850)만 남음
+
 ## 2026-11-11 · claude · 짧은 세계 그림 — 고른 외형 싣기 · 얼굴 끈 찌꺼기
 - 사용자 「응 둘 다 고쳐줘」 — 화면 검사를 다시 쓰다 찾은 둘(lib/prompt-element.js buildWorldShort): 1) 생성기에서 직접 고른 외형(머리색 등)이 짧은 판 지시문에 안 실렸다 — 고르면 설계의 그 칸이 빠지는데 긴 판의 IDENTITY 칸을 짧은 판이 안 옮겼다. 「Chosen look (overrides the automatic look): hair color: silver.」 한 줄로 Her 줄 바로 뒤에
 - 2) 얼굴 싣기를 끄면 「Her: . slender …」 — 빈 얼굴은 빼고 잇는다. prompt-element ?v=25. 검사 tests/prompt-short-look.cjs(네 카드 열두 장). prompt-element 는 전부터의 og 낱말 한도 실패 그대로

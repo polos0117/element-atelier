@@ -173,7 +173,7 @@ assert.equal(P.build(D, S, 'fe', 'modern', {}), '');
   /* v3b — 놀람을 낮추고 FACE 끝에 한 마디(같은 날 「2번은 넣어주고」) */
   const m3 = P.build(D, S3, 'o-fire-match', 'mecha', { style: 'game_keyart' });
   assert(m3.includes(v3.expr.surprised) && !m3.includes('mouth open in a small round shape') && m3.split('\n').find(l => l.startsWith('FACE')).includes(v3.face_tail), '성냥 v3 놀람 · FACE 끝');
-  assert(P.build(D, S2, 'o-fire-match', 'mecha', { style: 'game_keyart' }).includes('mouth open in a small round shape'), 'v2 놀람은 그대로');
+  assert(P.build(D, S2, 'o-fire-match', 'mecha', { style: 'game_keyart' }).includes('lightly raised brows, lips slightly parted'), 'v2 놀람은 공통 표정 표(core v1, 2026-11-11 — 전엔 원소 옛 글 「mouth open in a small round shape」)');
   const c3 = P.build(D, S3, 'na', 'fantasy', { style: 'game_keyart' });
   assert(c3.includes(v3.face['eyes.round_large']) && !c3.includes('large round eyes'), '나트륨 둥근 큰 눈');
   /* v2 — 기본 판(2026-11-04 「v2 로 바꿔줘」 — v3 · v4d 가 세션 · API 어디서도 v2 만큼 맞지 않았다) */
@@ -317,8 +317,9 @@ if (propPlace) {
   assert(pt.includes('RIGHT HAND: her own right hand is in PROP.') && pt.includes('LEFT HAND: her own left hand is in PROP.') && pt.includes('PROP: with both hands she '), '두 손 소품 ' + cupUse.key);
 }
 /* 표정 — 시선 말 떼기 */
-assert.equal(P.exprNoGaze(T.EXPRESSION_DETAIL.half_smile), 'one mouth corner lifted higher than the other, lips closed');
-assert.equal(P.exprNoGaze(T.EXPRESSION_DETAIL.confident), 'level brow, unhurried eyes, chin slightly raised, mouth closed and composed');
+assert.equal(P.exprNoGaze('one mouth corner lifted higher than the other, lips closed, gaze slightly to the side'), 'one mouth corner lifted higher than the other, lips closed');   /* 옛 글로 시선 떼기를 본다 — 표정 표는 core v1(2026-11-11, 시선 말 없음) */
+assert.equal(P.exprNoGaze('level brow, direct unhurried gaze, chin slightly raised, mouth closed and composed'), 'level brow, unhurried eyes, chin slightly raised, mouth closed and composed');
+assert.equal(P.exprNoGaze(T.EXPRESSION_DETAIL.half_smile), T.EXPRESSION_DETAIL.half_smile, 'core 표정 글은 시선 말이 없어 그대로');
 /* 고정값 — 비우거나 AUTO 면 strong · bold · 2:3, 손으로 고른 값은 그대로 */
 assert(same(P.casualFixed({}), { axes: { overall_intensity: 'strong', skin_exposure: 'bold' }, aspect: '2:3' }), '빈 장면은 고정값');
 assert(same(P.casualFixed({ axes: { skin_exposure: 'moderate', overall_intensity: 'AUTO' }, aspect: '3:2' }), { axes: { skin_exposure: 'moderate', overall_intensity: 'strong' }, aspect: '3:2' }), '고른 값은 그대로, AUTO 만 고정값');
