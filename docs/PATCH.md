@@ -9,6 +9,10 @@
 
 
 
+## 2026-11-11 · claude · 갈래 자유 설계 컷 — 갈래 이름은 짧게
+- Outfit family 줄의 {family} 가 두 번 들어가는데 트리 표의 긴 영어 글이 들어가 문장이 깨졌다(「any a playful adult event costume … outfit」) — FREE_DESIGN.familyNames 짧은 이름(lingerie-inspired · swimwear · role-play costume, 삼국지와 같음)
+- tests/casual-plan.cjs 를 짧은 이름으로, prompt-spec · prompt-element ?v 올림
+
 ## 2026-11-11 · claude · 갈래 자유 설계 컷 — 상황은 열기, 옷 갈래는 큰 범위만
 - Outfit family 줄: 「any {family} outfit; you may pick one from our outfit catalog … or design your own, but prefer one that is not in it(그 갈래면 우리 목록에서 골라도 직접 지어도 되지만 목록에 없는 것 먼저)」
 - Situation 줄: 표에서 고르지 않고(gsitu 'free') 「a situational exposure moment of your own design that fits the scene — prefer one that is not among ours: …(장면에 맞는 상황 노출 순간을 직접 짓되 우리 넷이 아닌 것 먼저)」

@@ -52,7 +52,7 @@ for (const key of pickKeys) {
         else {
           assert(ol.startsWith(FD.outfit + ', '), key + ' 갈래 자유 Outfit 줄');
           const fam = JSON.parse(fs.readFileSync(path.join(R, 'data/casual-tree.json'), 'utf8')).outfits.find(o => o.key === c.gfree);
-          assert(rec.prompt.includes('\nOutfit family (required): ' + fam.en + ' — ') && rec.prompt.includes('\n' + FD.situFree + '\nOutfit: ') && rec.prompt.includes('prefer one that is not in it'), key + ' 갈래(큰 범위) · 열린 상황 줄(2026-11-11)');
+          assert(rec.prompt.includes('\nOutfit family (required): ' + TS.FREE_DESIGN.familyNames[c.gfree] + ' — any ' + TS.FREE_DESIGN.familyNames[c.gfree] + ' outfit; ') && rec.prompt.includes('\n' + FD.situFree + '\nOutfit: ') && rec.prompt.includes('prefer one that is not in it'), key + ' 갈래(큰 범위) · 열린 상황 줄(2026-11-11)');
         }
         assert(!/-denier yarn|reads clearly at first glance/.test(ol), key + ' 자유 칸엔 옷 색 · 데니어 없음');
         continue;
