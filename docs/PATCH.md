@@ -9,6 +9,9 @@
 
 
 
+## 2026-11-12 · gpt · 황 GPT 갈래 자유 일상컷 세계별 1장 추가
+- data/img.json — 판타지·스팀펑크·메카의 7번 일상컷을 등록기로 추가. 필수 의상 갈래와 상황을 결합한 자유 설계 3장, 실제 프롬프트·설계·검수는 그림 저장소 기록에 보존.
+
 ## 2026-11-11 · claude · 갈래 자유 설계 컷 — 갈래 이름은 짧게
 - Outfit family 줄의 {family} 가 두 번 들어가는데 트리 표의 긴 영어 글이 들어가 문장이 깨졌다(「any a playful adult event costume … outfit」) — FREE_DESIGN.familyNames 짧은 이름(lingerie-inspired · swimwear · role-play costume, 삼국지와 같음)
 - tests/casual-plan.cjs 를 짧은 이름으로, prompt-spec · prompt-element ?v 올림
