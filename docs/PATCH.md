@@ -9,6 +9,10 @@
 
 
 
+## 2026-11-11 · claude · 진한 빨간 립스틱을 연하게(core v5)
+- 표식 red_lip 「bold red lipstick(진한 빨간 립스틱)」 → 「a soft rose-red tint on the lips(입술에 연한 장밋빛 붉은 기)」 — core v5 블록
+- 사용자 2026-11-11 「진한 빨간 입술은 다 빼거나 연하게 바꾸자」
+
 ## 2026-11-11 · claude · 스팀펑크 옷 · 빛 · 노출, 메카 노출 고침(감사 E3 · E6)
 - 스팀펑크 의상: 「a short bustle skirt over riding trousers(승마 바지 위 짧은 버슬 치마)」 → 「a short bustle skirt and laced boots(짧은 버슬 치마와 끈 부츠)」, 「muted palette with the traits above as accents(가라앉은 색에 특징 포인트)」 → 「the traits above as colour accents(특징을 색 포인트로)」 — 노출의 드러난 다리 · 화풍의 빛나는 색과 부딪혔다(11-04 헬륨 때 옛 구조판에만 들어갔던 것). 근본 · 가문주 39
 - 스팀펑크 빛(의상 · 주민 꼬리 둘 다): 「hazy gaslight and a smoky overcast sky(뿌연 가스등 · 흐린 하늘)」 → 「bright warm sunlight with soft sky light bounced from white clouds(밝고 따뜻한 햇빛, 흰 구름에 반사된 하늘빛)」. 스팀펑크 88
