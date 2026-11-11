@@ -9,6 +9,11 @@
 
 
 
+## 2026-11-11 · claude · 얼굴 낱말 — 사실형 눈 · 광대 말 빼기
+- 사용자 「원소공방은 지금 화풍 놔둬도 되겠다. 설계가 문제 였나봐」 → 「응 적용해줘」 — 화풍공방에서 철 판타지를 원래 · 얼굴 말 뺀 판으로 견줘 보니 뺀 쪽 질감이 낫다고 봄(한 장씩)
+- lib/prompt-spec.js 공통 낱말: eye_size.medium 「moderately sized, realistically proportioned eyes」 → 「medium-sized eyes」(50명), age.late_20s 「with defined cheekbones」 빼기(26명), age.early_30s 「with defined cheekbones and jaw」 빼기(17명). 한글 이름표도 같이. prompt-spec ?v=23. 올린 그림 · 기록은 그대로, 새 지시문부터
+- 검사: look-spec · casual-plan · screen · words · element-design 통과. prompt-element 는 이 수정 전부터 「og steampunk 낱말 871」(한도 850)로 걸려 있었다 — 이 수정 뒤 868, 손대지 않음
+
 ## 2026-11-11 · gpt · 칼슘 세계컷 선택 및 일상컷 등록
 - data/img.json — 선택한 세계컷(판타지 3 · 스팀펑크 2 · 메카 2)과 세계별 일상컷 여섯 장, 총 21장을 등록기로 추가.
 - 그림 및 검수 기록은 element-atelier-img의 records/ca/에 보존. 세계 간 자세·장소 중복과 생성 구도 차이는 기록하고 재생성하지 않음.
