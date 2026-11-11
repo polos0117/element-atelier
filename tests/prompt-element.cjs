@@ -42,13 +42,13 @@ for (const key of cards) {
     assert(!t.includes('IDENTITY ('), key + ' ' + w + ' 고른 외형이 없으면 IDENTITY 가 없다');
     const order = ['HOUSE TRAITS', 'AGE: ', 'SILHOUETTE: ', 'FACE — ', 'WORLD — ', 'STYLE: ', 'EXPOSURE (', 'OUTPUT: '].map(x => t.indexOf(x)).filter(i => i >= 0);
     assert(same(order, order.slice().sort((a, b) => a - b)), key + ' ' + w + ' 외형 줄 차례');
-    /* 과감 노출은 세계마다 — 판타지·스팀펑크는 제 문장(코르셋 없이), 메카는 공용 겉옷 문장. 세계 옷 뼈대가 서로 다르다(2026-10-30 — 둘이 같은 코르셋 옷으로 나왔다) */
+    /* 과감 노출은 세계마다 — 판타지·스팀펑크는 제 문장(코르셋 없이), 메카는 메카 전용 문장(2026-11-11 — 전엔 공용 겉옷 문장). 세계 옷 뼈대가 서로 다르다(2026-10-30 — 둘이 같은 코르셋 옷으로 나왔다) */
     /* 주민은 물건이 먼저(2026-10-31) — 세계 옷 뼈대 대신 citizenTail · 주민 과감(옷 뼈대 말 없이) · 메카는 물건이 설계를 이끈다 */
     const cit = c.tier === 'citizen';
     if (cit && w !== 'mecha') assert(t.includes('COSTUME (citizen, ' + w + '): her object leads') && t.includes(T.CITIZEN_EXPOSURE_BOLD) && !t.includes('pauldron') && !t.includes('high-necked blouse') && !/corset-like/.test(t), key + ' ' + w + ' 주민 옷·과감');
     else if (w === 'fantasy') assert(t.includes('between pauldron and bracer') && t.includes('COSTUME (fantasy)') && t.includes('No corset, no bustle') && !/corset-like/.test(t), key + ' 판타지 옷·과감');
-    else if (w === 'steampunk') assert(t.includes('sleeves rolled above the elbow') && t.includes('COSTUME (steampunk)') && t.includes('high-necked blouse') && !/corset-like/.test(t), key + ' 스팀펑크 옷·과감');
-    else assert(t.includes('her outer layer (coat, cloak, robe or armor) stays on both shoulders') && t.includes(T.CITIZEN_MECHA) === cit, key + ' 메카 과감은 겉옷 · 주민은 물건이 설계를 이끈다');
+    else if (w === 'steampunk') assert(t.includes('bare forearms, and bare legs above the boots or through a high slit where the silhouette allows') && !/riding trousers|muted palette|hazy gaslight/.test(t) && t.includes('COSTUME (steampunk)') && t.includes('high-necked blouse') && !/corset-like/.test(t), key + ' 스팀펑크 옷·과감');
+    else assert(t.includes('her mecha frame is cut open by design in only these places') && !t.includes('her outer layer (coat, cloak, robe or armor)') && t.includes(T.CITIZEN_MECHA) === cit, key + ' 메카 과감은 메카 전용 문장(주민도 — 2026-11-11 감사 E6) · 주민은 물건이 설계를 이끈다');
     if (w !== 'mecha') assert(/LIGHT: .*unless TIME & WEATHER says otherwise/.test(t), key + ' ' + w + ' 기본 빛');
     assert(t.includes(c.element.en), key + ' 원소 이름');
     if (c.family) assert(t.includes('HOUSE TRAITS of ' + c.family.en), key + ' 가문 성질');

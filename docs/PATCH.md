@@ -9,6 +9,13 @@
 
 
 
+## 2026-11-11 · claude · 스팀펑크 옷 · 빛 · 노출, 메카 노출 고침(감사 E3 · E6)
+- 스팀펑크 의상: 「a short bustle skirt over riding trousers(승마 바지 위 짧은 버슬 치마)」 → 「a short bustle skirt and laced boots(짧은 버슬 치마와 끈 부츠)」, 「muted palette with the traits above as accents(가라앉은 색에 특징 포인트)」 → 「the traits above as colour accents(특징을 색 포인트로)」 — 노출의 드러난 다리 · 화풍의 빛나는 색과 부딪혔다(11-04 헬륨 때 옛 구조판에만 들어갔던 것). 근본 · 가문주 39
+- 스팀펑크 빛(의상 · 주민 꼬리 둘 다): 「hazy gaslight and a smoky overcast sky(뿌연 가스등 · 흐린 하늘)」 → 「bright warm sunlight with soft sky light bounced from white clouds(밝고 따뜻한 햇빛, 흰 구름에 반사된 하늘빛)」. 스팀펑크 88
+- 스팀펑크 과감 노출: 「sleeves rolled above the elbow, a short bustle skirt showing the legs…; the waistcoat stays buttoned(소매 걷기 · 버슬 치마 아래 다리 · 조끼 잠금)」 → 「her outfit opens to show skin — the neckline opened down to the sternum…, bare forearms, and bare legs above the boots or through a high slit where the silhouette allows; pieces stay symmetrical(목선은 가슴뼈까지, 팔뚝 · 부츠 위 다리 또는 실루엣이 허락하는 트임)」 — 민소매 · 바지 실루엣과 어긋났다. 39
+- 메카 과감 노출: 세계 전용 문장을 새로 — 「her mecha frame is cut open by design in only these places — bare shoulders and upper arms between pauldron and gauntlet, and a deep open chest window…; everywhere else she stays fully plated(메카 몸은 이 두 곳만 열림: 어깨 · 위팔, 가슴 창. 나머지는 장갑)」(삼국지 메카와 같은 꼴). 전엔 천 옷용 공용 문장(겉옷 · 속옷 · 코르셋 · 옷깃)이 나갔다. 주민도 같은 문장(WORLDS mecha exposureBoldCitizen). 메카 78
+- 사용자 2026-11-11 「응 원소도 한글로 풀어서 보여줘」 → 「응 4,5도 수정해줘」. tests/prompt-element.cjs 스팀펑크 · 메카 노출 검사를 새 글로, prompt.html · dex.html prompt-spec ?v=28 · prompt-element ?v=27, 검사 전부 통과
+
 ## 2026-11-11 · claude · 세계 그림을 칸 꼴로 — 3단계 첫 공방
 - 기본 화풍(jp_paint_anime, 같은 열쇠)의 세계 그림이 짧은 판 → 칸 꼴: 머리말 → 1 STYLE → 2 CHARACTER → 3 COSTUME — 세계 → 4 SCENE → 5 CONSTRAINTS + Avoid. 칸 머리 · 해부 줄 · Avoid 줄은 화풍공방 core v4 칸 틀(AtelierSpec.CORE_FRAME — 삼국지와 같은 틀)
 - 글은 짧은 판 그대로 칸에 나눴고 걸림 다섯은 사용자가 고른 안대로: 빛 한 줄 · 얼굴 비율 줄 described below · 노출 줄 the costume above · 「No …」 금지는 Avoid(조건 unless 마디만 남김) · 5칸 손가락 말 빼기. HAIR 조각은 2칸 Hair 줄, 옛 줄 이름(WORLD · SILHOUETTE · CONCEPT · TIME & WEATHER · EXPOSURE)은 칸 말로
