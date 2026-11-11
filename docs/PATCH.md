@@ -9,6 +9,9 @@
 
 
 
+## 2026-11-12 · gpt · 철 세계컷과 일상컷 등록
+- data/img.json — 선택한 세계컷 4·4·2 및 세계별 일상컷 7장, 총 24장을 등록 도구로 추가. 기존 화풍·다른 캐릭터 기록 보존.
+
 ## 2026-11-12 · claude · 근본 여덟 더 — 질소 · 네온 · 인 · 리튬 · 아연 · 주석 · 납 · 수은
 - 사용자 「원소공방 근본원소 추가해줘」 → 추천 여덟(기존 나라와 물질 짝이 생기는 것). data/element-design.json nations 끝 — 성격 · 성질 · 팔레트 · 세 세계(장소 · 장면 셋 · 메카 설계) · 손 물건 · 외형(세계마다 다른 사람) · 구조판 손글 칸(세 세계 3 · 4절) · 실루엣. 가문 · 주민은 아직
 - lib/prompt-spec.js SIL_TAGS 여덟(실루엣은 tools/sil-spread.py 가 나눴다) · 머리색 여덟 · 눈 색 cinnabar 한국어 이름. lib/look-spec.js · tools/port-look-spec.cjs EXTRA 같은 어휘
