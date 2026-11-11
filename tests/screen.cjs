@@ -226,15 +226,15 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
       assert.equal(ov[0], '', '화풍 맨 위는 기본'); assert.deepEqual(ov.slice(1).sort(), LIVE.filter(k => k !== S.default).sort(), '화풍 목록 — 살아 있는 화풍만(기본은 맨 위 한 칸)');
       assert(ov.includes('game_keyart') && ov.includes('cinematic_keyart') && !ov.includes(S.default) && !RETIRED.some(k => ov.includes(k)), '화풍 목록 — 내린 화풍(kv_jp_paint · mmorpg2d …)이 없다');
       const d0 = await promptOf(gp);
-      assert(d0.startsWith('A full-body vertical 2:3 (1024×1536) character card image of an adult woman — ') && d0.includes('\n\nStyle: ' + P.shortStyle(S, S.default) + '\n\n'), '기본 화풍 지시문(짧은 판)');
-      await gp.selectOption('#st-style', 'game_keyart'); { const pk = await promptOf(gp); assert(/^A full-body vertical 2:3 \(1024×1536\)/.test(pk) && pk !== d0 && pk.includes('\n\nStyle: ' + P.shortStyle(S, 'game_keyart') + '\n\n'), '고른 화풍 지시문(짧은 판 — 2026-11-09, 화풍 단락만 바뀐다)'); }
+      assert(d0.startsWith('A full-body vertical 2:3 (1024×1536) character card image of an adult woman — ') && d0.includes('\n1. STYLE\n' + P.splitNo(P.shortStyle(S, S.default)).text + '\n'), '기본 화풍 지시문(칸 꼴 — 2026-11-11 3단계)');
+      await gp.selectOption('#st-style', 'game_keyart'); { const pk = await promptOf(gp); assert(/^A full-body vertical 2:3 \(1024×1536\)/.test(pk) && pk !== d0 && pk.includes('\n1. STYLE\n' + P.splitNo(P.shortStyle(S, 'game_keyart')).text + '\n'), '고른 화풍 지시문(짧은 판 — 2026-11-09, 화풍 단락만 바뀐다)'); }
       assert.equal(await gp.locator('#st-style').inputValue(), 'game_keyart'); assert.equal((await state(gp)).style, 'game_keyart', '고른 화풍으로 짓는다');
       await gp.selectOption('#st-style', ''); assert.equal(await promptOf(gp), d0, '기본으로 돌아옴');
       assert.deepEqual(gv.errors, [], '생성기 화풍 콘솔'); checks += 9; await gv.ctx.close(); }
     /* 내린 화풍은 주소 ?style= 로도 안 고른다 — 기본으로 */
     { const rv = await open('/prompt.html?card=fe&o=world&world=fantasy&style=mmorpg2d', vp), rp = rv.page; await rp.waitForSelector('.hchip');
       assert.equal(await rp.locator('#st-style').inputValue(), '', '내린 화풍 주소 — 고르개는 기본'); assert.equal((await state(rp)).style, S.default, '내린 화풍 주소 — 기본 화풍으로 짓는다');
-      assert((await promptOf(rp)).startsWith('A full-body vertical 2:3 (1024×1536)'), '내린 화풍 주소 — 짧은 판(구조판 아님)');
+      assert((await promptOf(rp)).startsWith('A full-body vertical 2:3 (1024×1536)'), '내린 화풍 주소 — 칸 꼴(구조판 아님)');
       /* 이 기기에 기억된 고른 화풍이 내린 것이어도 — 기본으로 */
       await rp.evaluate(() => { const k = 'element_studio_v1', o = JSON.parse(localStorage.getItem(k) || '{}'); o.stylePick = 'kv_jp_paint'; localStorage.setItem(k, JSON.stringify(o)); });
       await rp.goto(BASE + '/prompt.html?card=fe&o=world&world=fantasy'); await rp.waitForSelector('.hchip');
@@ -275,16 +275,16 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     assert.equal(await openOf(p), 'done');
     let t0 = await promptOf(p);
     const first = x => { const i = x.indexOf('. '); return i > 0 ? x.slice(0, i + 1) : x; };
-    assert(t0.startsWith(SH.head.split('{')[0] + 'a citizen of the Iron Nation, of the Steel House.') && t0.includes('\n\nStyle: ' + P.shortStyle(S, DEF) + '\n\n') && t0.includes('\n\n' + SH.face + '\n\n') && t0.includes('\n\nSCENE NOTE: a windy ridge\n\n'), '세계 지시문(짧은 판) ' + t0.slice(0, 80));
-    assert(t0.includes('\n\nEXPOSURE (moderate): the costume WORLD describes opens at the collarbone') && !/EXPOSURE \(bold\)/.test(t0) && !/\beyes\b|first impression/.test(lineOf(t0, 'Her: ')) && !t0.includes('tempered-blue') && /\bhair\b/.test(lineOf(t0, 'Her: ')) && /^World and costume: year 2150/.test(lineOf(t0, 'World and costume: ')) && lineOf(t0, 'World and costume: ').includes('MECHA DESIGN: '), '설계 칸(노출 · 얼굴 끔 · 실루엣 · 메카 설계)이 지시문에 ' + lineOf(t0, 'Her: '));
-    assert(lineOf(t0, 'This card: ').includes('the orbital foundry floor') && t0.includes('\n\n' + row(T.WORLD_TIMES, 'night').en + '\n\n') && lineOf(t0, 'Pose: ').startsWith('Pose: ' + row(T.WORLD_POSES, 'stride').en.replace(/[.;:]+$/, '') + '.') && [T.EXPRESSION_DETAIL.serious, T.EXPRESSION_DETAIL.confident].some(e => lineOf(t0, 'Pose: ').endsWith(' Expression: ' + first(e) + (/[.]$/.test(first(e)) ? '' : '.'))), '장면·시간대·자세·표정이 지시문에 ' + lineOf(t0, 'Pose: '));
-    assert(t0.endsWith(SH.end.replace('{symbol}', 'Fe').replace('{number}', '26')) && t0.includes('\n\n' + SH.composition + '\n\n'), '구도 · 끝 줄(기호 · 번호)');
+    assert(t0.startsWith(SH.head.split('{')[0] + 'a citizen of the Iron Nation, of the Steel House.') && t0.includes('\n1. STYLE\n' + P.splitNo(P.shortStyle(S, DEF)).text + '\n') && t0.includes('\n' + SH.face.replace('described above', 'described below') + '\n\n') && t0.includes('\nSCENE NOTE: a windy ridge\n'), '세계 지시문(칸 꼴) ' + t0.slice(0, 80));
+    assert(t0.includes('\nExposure (moderate): the costume above opens at the collarbone') && !/Exposure \(bold\)/.test(t0) && !lineOf(t0, 'Face — her own: ') && !/first impression/.test(t0) && !t0.includes('tempered-blue') && /\bhair\b/.test(lineOf(t0, 'Body and hair: ')) && /^World: year 2150/.test(lineOf(t0, 'World: ')) && lineOf(t0, 'Costume: ').includes('she is a female mecha personification'), '설계 칸(노출 · 얼굴 끔 · 실루엣 · 메카 설계)이 지시문에 ' + lineOf(t0, 'Body and hair: '));
+    assert(lineOf(t0, 'This card: ').includes('the orbital foundry floor') && t0.includes('\n' + row(T.WORLD_TIMES, 'night').en + '\n') && lineOf(t0, 'Pose: ') === 'Pose: ' + row(T.WORLD_POSES, 'stride').en.replace(/[.;:]+$/, '') + '.' && [T.EXPRESSION_DETAIL.serious, T.EXPRESSION_DETAIL.confident].some(e => lineOf(t0, 'Expression: ').startsWith('Expression: ' + first(e).replace(/\.$/, ''))), '장면·시간대·자세·표정이 지시문에 ' + lineOf(t0, 'Expression: '));
+    assert(t0.includes('\n' + SH.end.replace('{symbol}', 'Fe').replace('{number}', '26').replace('One figure only, natural hands with five fingers; ', 'One figure only; ')) && t0.includes('\n' + SH.composition + '\n') && /\nAvoid: [^\n]+$/.test(t0), '구도 · 끝 줄(기호 · 번호) · Avoid');
     assert((await p.locator(mob ? '.hres .file' : '#file-name').textContent()).includes('fe-steel-sword_mecha_' + DEF + '_f.webp'), '파일 이름');
     await p.click('[data-open="world"]'); await p.click('[data-pick="fantasy"]');
     assert.equal(await openOf(p), 'scene', '다 고른 뒤 고쳐도 바로 다음 칸(건너뛰지 않는다)');
     await toDone(p); assert.equal(await openOf(p), 'done', '「다 골랐다로」');
     const tf = await promptOf(p);
-    assert(!tf.includes('plating') && !tf.includes('MECHA DESIGN') && /\beyes\b/.test(lineOf(tf, 'Her: ')) && /^World and costume: a fantasy kingdom/.test(lineOf(tf, 'World and costume: ')) && !tf.includes('hair color: silver') && !tf.includes('\n\nThis card: ') && !tf.includes('SCENE NOTE: ') && lineOf(tf, 'Pose: ').startsWith('Pose: ' + SH.pose + '.') && tf.includes('\n\nEXPOSURE (bold)'), '세계가 바뀌면 외형·장면 칸도 그 세계 것(판타지는 아직 설계표대로) ' + lineOf(tf, 'Pose: '));
+    assert(!tf.includes('plating') && !tf.includes('MECHA DESIGN') && /\beyes\b/.test(lineOf(tf, 'Face — her own: ')) && /^World: a fantasy kingdom/.test(lineOf(tf, 'World: ')) && !tf.includes('hair color: silver') && !tf.includes('\nThis card: ') && !tf.includes('SCENE NOTE: ') && lineOf(tf, 'Pose: ').startsWith('Pose: ' + SH.pose + '.') && tf.includes('\nExposure (bold)'), '세계가 바뀌면 외형·장면 칸도 그 세계 것(판타지는 아직 설계표대로) ' + lineOf(tf, 'Pose: '));
     assert.match(p.url(), /card=fe-steel-sword&o=world&world=fantasy/, '주소에 적힌다');
     checks += 22;
 

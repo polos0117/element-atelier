@@ -7,7 +7,8 @@ const ctx = { window: {}, console }; vm.createContext(ctx);
 for (const f of ['lib/prompt-spec.js', 'lib/look-spec.js', 'lib/casual-tree.js', 'lib/casual-tree-v2.js', 'lib/prompt-element.js']) vm.runInContext(fs.readFileSync(f, 'utf8'), ctx);
 const P = ctx.window.AtelierPrompt, D = JSON.parse(fs.readFileSync('data/element-design.json', 'utf8')), S = JSON.parse(fs.readFileSync('data/style.json', 'utf8'));
 assert(P.worldShortOn(S, S['default']), '기본 화풍은 짧은 판');
-const blocks = t => t.split('\n\n'), her = t => blocks(t).find(x => x.startsWith('Her: '));
+/* 칸 꼴(2026-11-11 3단계)에선 줄이 칸 안에 한 줄씩 — 줄로 나눠 본다. 얼굴 줄은 「Face — her own: 」(칸 꼴) 또는 「Her: 」(짧은 판) */
+const blocks = t => t.split(/\n+/), her = t => blocks(t).find(x => x.startsWith('Her: ') || x.startsWith('Body and hair: '));
 let n = 0;
 for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
   const base = P.build(D, S, key, w, {});
@@ -15,7 +16,7 @@ for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.
   const pick = P.build(D, S, key, w, { look: { params: { 'hair color': 'silver' } } });
   assert(blocks(pick).includes('Chosen look (overrides the automatic look): hair color: silver.'), key + ' ' + w + ' 고른 머리색이 실린다');
   const off = P.build(D, S, key, w, { look: { faceDesignOn: false } });
-  assert(/^Her: [^.\s]/.test(her(off)) && !/^Her: \./.test(her(off)), key + ' ' + w + ' 얼굴 끄면 찌꺼기 없음: ' + her(off).slice(0, 30));
+  assert(/^(?:Her|Body and hair): [^.\s]/.test(her(off)) && !/^(?:Her|Body and hair): \./.test(her(off)) && !/^Face — her own: *\.?$/m.test(off), key + ' ' + w + ' 얼굴 끄면 찌꺼기 없음: ' + her(off).slice(0, 30));
   assert(!/\. \./.test(off) && !/\.\./.test(off), key + ' ' + w + ' 마침표 겹침 없음');
   n++;
 }

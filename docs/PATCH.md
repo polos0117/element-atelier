@@ -9,6 +9,13 @@
 
 
 
+## 2026-11-11 · claude · 세계 그림을 칸 꼴로 — 3단계 첫 공방
+- 기본 화풍(jp_paint_anime, 같은 열쇠)의 세계 그림이 짧은 판 → 칸 꼴: 머리말 → 1 STYLE → 2 CHARACTER → 3 COSTUME — 세계 → 4 SCENE → 5 CONSTRAINTS + Avoid. 칸 머리 · 해부 줄 · Avoid 줄은 화풍공방 core v4 칸 틀(AtelierSpec.CORE_FRAME — 삼국지와 같은 틀)
+- 글은 짧은 판 그대로 칸에 나눴고 걸림 다섯은 사용자가 고른 안대로: 빛 한 줄 · 얼굴 비율 줄 described below · 노출 줄 the costume above · 「No …」 금지는 Avoid(조건 unless 마디만 남김) · 5칸 손가락 말 빼기. HAIR 조각은 2칸 Hair 줄, 옛 줄 이름(WORLD · SILHOUETTE · CONCEPT · TIME & WEATHER · EXPOSURE)은 칸 말로
+- lib/prompt-element.js buildWorldSections · splitNo, data/style.json worldSections, 새 검사 tests/prompt-sections.cjs(240장), prompt-element · prompt-short-look · screen 검사를 칸 꼴로, IMAGE_RULES 적음. 일상컷은 그대로 짧은 판
+- 시험: 금 판타지 짧은 판 · 칸 꼴 한 쌍(2.6) — 얼굴 · 화풍 · 실루엣 같음. 사용자 2026-11-11 「다른거 먼저 3단계 진행해줘」 → 「응 네 안대로 하고 기존 화풍 열쇠로 해줘」
+- prompt.html · dex.html prompt-spec ?v=27 · look-spec ?v=8 · prompt-element ?v=26
+
 ## 2026-11-11 · claude · core v3 글 · 눈꼬리 모순 13자리
 - core v3: square_soft · angular · wide_smile 글(삼국지와 같음)
 - 설계값: 가는 올라간 눈 + 처진 꼬리 6자리 → 꼬리 up, 처진 눈 + 올라간 꼬리 7자리 → 꼬리 down(삼국지 11-10 EYE_TILT_FIX 와 같은 짝), tests/look-spec.cjs 에 눈꼬리 짝 · IMAGE_RULES 적음

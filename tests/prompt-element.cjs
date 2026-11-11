@@ -449,9 +449,11 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
    기본 mmorpg_cg · worldShort — 세계 그림은 머리말(1024×1536 · CONCEPT) · 화풍 단락 · 얼굴 · 얼굴 비율 · 원소 · 세계와 차림 · 노출 · 구도 · 빛 · 끝 줄, 400~800낱말. 구조판은 그대로 */
 {
   assert.equal(SN.default, 'jp_paint_anime'); assert(P.worldShortOn(SN, SN.default) && P.casualShortOn(SN, SN.default) && !P.worldShortOn(SN, 'mmorpg2d'), '짧은 판 켜짐 · 구조판은 끔');
+  /* 기본은 칸 꼴(2026-11-11 3단계 — tests/prompt-sections.cjs). 짧은 판은 worldSections 를 끈 판에서 그대로 본다 */
+  assert(P.worldSectionsOn(SN, SN.default), '기본은 칸 꼴'); const SNs = Object.assign({}, SN, { worldSections: false }); assert(!P.worldSectionsOn(SNs, SNs.default) && P.worldShortOn(SNs, SNs.default), '칸 꼴을 끄면 짧은 판');
   let nw = 0;
   for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
-    const t = P.build(D, SN, key, w, {}), wc = t.split(/\s+/).length;
+    const t = P.build(D, SNs, key, w, {}), wc = t.split(/\s+/).length;
     assert(t.startsWith('A full-body vertical 2:3 (1024×1536) character card image of an adult woman — ') && t.includes('\n\nStyle: ' + P.shortStyle(SN, SN.default)) && t.includes(T.WORLD_SHORT.face) && t.includes(T.WORLD_SHORT.composition) && /\n\nHer element: /.test(t) && /\n\nWorld and costume: /.test(t), key + ' ' + w + ' 짧은 세계 그림');
     assert(!/^(?:CONCEPT|FACE —|WORLD —|OUTPUT|ANATOMY|BODY):/m.test(t) && !/\.\./.test(t), key + ' ' + w + ' 긴 꼴 머리말 없음');
     assert(wc > 350 && wc < 850, key + ' ' + w + ' 낱말 ' + wc);
@@ -466,7 +468,7 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
     const c = P.card(D, key), t = P.build(D, LONG, key, w, { style: 'kr_mmorpg' }), mf = P.silOf(c, w, {});
     if (c.tier === 'citizen') { assert(!mf && !/(?:OUTFIT|MECHA) SILHOUETTE: /.test(t), key + ' 주민은 설계 실루엣 없음'); continue; }
     assert(mf && t.includes(T.SILHOUETTE_HEAD[w] + mf.en), key + ' ' + w + ' 실루엣 줄');
-    const sh = P.build(D, SN, key, w, {}); assert(sh.includes('\n\nOutfit silhouette: ' + mf.en), key + ' ' + w + ' 짧은 판 실루엣');
+    const sh = P.build(D, SN, key, w, {}); assert(sh.includes('\nSilhouette: ' + mf.en.replace('where EXPOSURE allows', 'where the exposure below allows')), key + ' ' + w + ' 칸 꼴 실루엣(3칸)');
     ns++;
   }
   const alt = T.SILHOUETTES.steampunk.find(x => x.key === 'aeronaut');
@@ -478,9 +480,9 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
 /* 임의 설계 주문(2026-11-09 — 세계 그림 네 장 중 둘) — 정해 둔 것만, 설계표 얼굴 · 실루엣은 없다, 우리 실루엣 목록 가운데 그 카드 원소 성격 묶음만 싣는다 · 메카는 장갑판 줄 */
 {
   for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
-    const t = P.buildWorldFree(D, SN, key, w, { style: SN.default }), our = P.build(D, SN, key, w, {}), her = (our.match(/^Her: (.*)$/m) || [])[1] || '';
+    const t = P.buildWorldFree(D, SN, key, w, { style: SN.default }), our = P.build(D, SN, key, w, {}), her = (our.match(/^(?:Her|Face — her own): (.*)$/m) || [])[1] || '';   /* 칸 꼴은 「Face — her own: 」 */
     assert(t.startsWith('Design brief') && t.includes('1024×1536') && t.includes(T.WORLD_FREE.free) && t.includes(T.WORLD_FREE.second) && (P.card(D, key).tier === 'citizen' ? t.includes(T.WORLD_FREE.citizenCostume) : (P.silPool(P.card(D, key), w).length < T.SILHOUETTES[w].length && T.SILHOUETTES[w].every(x => t.includes(x.en.split(' — ')[0].replace(/\.$/, '')) === P.silPool(P.card(D, key), w).includes(x)))) && (w === 'mecha') === t.includes(T.WORLD_FREE.mecha) && /\n\nHair colour \(fixed — ours\): [a-z]/.test(t) && !/hair colour, hairstyle/.test(t) && /\n\nCostume colours \(ours\): /.test(t) && t.includes('Exposure (fixed): bold'), key + ' ' + w + ' 설계 주문');
-    assert(her && !t.includes(her.slice(0, 40)) && !/Outfit silhouette:/.test(t), key + ' ' + w + ' 설계표 얼굴 · 실루엣 없음');
+    assert(her && !t.includes(her.slice(0, 40)) && !/Outfit silhouette:|^Silhouette: /m.test(t), key + ' ' + w + ' 설계표 얼굴 · 실루엣 없음');
   }
   console.log('PASS 임의 설계 주문');
 }
