@@ -11,7 +11,7 @@ body.walk {margin:0;min-height:100vh;min-height:100dvh;background:var(--w-bg);co
 .w-wait {position:relative;z-index:1;margin:0;padding:40vh 16px 0;text-align:center;color:var(--w-mute)}
 
 /* 위 막대 — 지나온 길 · 세계 · 도구 상자. 덮개는 두 줄(길 + 도구 / 세계 셋) */
-.w-bar {position:sticky;top:0;z-index:40;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:6px 14px;padding:6px var(--w-pad);background:#07080cf2;border-bottom:1px solid var(--w-line)}
+.w-bar {position:sticky;top:0;z-index:40;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:6px 14px;padding:6px var(--w-pad);background:#07080cc7;border-bottom:1px solid var(--w-line)}
 .w-crumbs {display:flex;align-items:center;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
 .w-crumbs::-webkit-scrollbar {display:none}
 .w-crumbs button {flex:none;min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--w-mute);cursor:pointer;font-size:13px}
@@ -30,11 +30,17 @@ body.walk {margin:0;min-height:100vh;min-height:100dvh;background:var(--w-bg);co
   .w-worlds button {min-height:44px;padding:0 6px}
 }
 
-/* 세계 · 테마 배경 자리 — 테마 프로젝트(그림 15장) 전까지 세계마다 다른 색 그라데이션 한 겹 */
-.w-scenery {position:fixed;left:0;right:0;bottom:0;height:42vh;z-index:0;pointer-events:none;transition:background .6s;
-  background:linear-gradient(0deg,color-mix(in srgb,#8a5cff 22%,transparent),transparent)}
-html[data-world="steampunk"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#e3ad62 22%,transparent),transparent)}
-html[data-world="mecha"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#62d6ff 20%,transparent),transparent)}
+/* 땅(테마) 배경(2026-11-13) — 고른 땅 x 지금 세계의 풍경 한 장이 화면 전체 뒤에(껍데기가 --w-scene 을 넣는다, 없으면 어두운 바탕 그대로). 그 위에 어둠 한 겹 —
+   글이 많은 층(목록 · 한 장)은 더 짙게. 땅마다 강조색 하나. 「풍경만 보기」(html[data-only])는 화면 요소와 어둠을 걷는다 */
+.w-scenery {position:fixed;inset:0;z-index:0;pointer-events:none;background:var(--w-scene,none) center/cover no-repeat}
+.w-scenery::after {content:'';position:absolute;inset:0;background:#07080c;opacity:.56;transition:opacity .4s}
+html[data-layer="list"] .w-scenery::after,html[data-layer="card"] .w-scenery::after,html[data-layer="family"] .w-scenery::after {opacity:.68}
+html[data-land="metal"] body.walk {--accent:#e08a4a} html[data-land="breath"] body.walk {--accent:#7fc66a} html[data-land="salt"] body.walk {--accent:#4fc3d0}
+html[data-land="crystal"] body.walk {--accent:#a48bf0} html[data-land="sky"] body.walk {--accent:#f07a6a} html[data-land="deep"] body.walk {--accent:#5fd6a0}
+html[data-only] .w-scenery::after {opacity:0}
+html[data-only] .w-bar,html[data-only] .w-main {visibility:hidden}
+.w-only {position:fixed;inset:0;z-index:80;border:0;background:none;cursor:pointer}
+::view-transition-old(root),::view-transition-new(root) {animation-duration:.6s}
 
 /* 분류 색 — 주기율표 칸 · 나라 카드 · 범례가 같이 쓰는 한 곳 */
 .walk [data-cat="alkali"] {--cat:#ff6b6b} .walk [data-cat="alkaline_earth"] {--cat:#ffa94d} .walk [data-cat="transition"] {--cat:#ffd43b}

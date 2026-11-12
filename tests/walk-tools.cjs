@@ -61,9 +61,8 @@ const { COVER, WIDE, serve, launch, open, noOverflow, shot } = require('./lib/ha
     await p.evaluate(() => localStorage.setItem('atelier_favorites_v1', JSON.stringify([{ a: 'element', key: 'fe', file: 'x.webp' }, { a: 'pkm', key: 'y', file: 'y.webp' }])));
     await p.reload(); await p.click('button.tb-open');
     assert.match(await p.locator('[data-tool="fav"]').textContent(), /즐겨찾기 1/);
-    const t0 = await p.evaluate(() => document.documentElement.dataset.theme);
-    const other = (await p.locator('#tb-theme option').evaluateAll(o => o.map(x => x.value))).find(v => v !== t0);
-    await p.selectOption('#tb-theme', other); assert.equal(await p.evaluate(() => document.documentElement.dataset.theme), other);
+    // 공방 안의 설정은 땅 고르개(2026-11-13 — 자세한 것은 tests/walk-theme.cjs). 예전 공간 고르개는 도구 화면에만
+    await p.click('.tb-land-grid [data-land="sky"]'); await p.waitForFunction(() => document.documentElement.dataset.land === 'sky');
     // 움직임 끄기(Global Constraints) — 한 곳(motionOn), 새로고침 뒤에도
     assert.equal(await p.evaluate(() => AtelierWalk.motionOn()), true);
     await p.click('.tb-motion [data-motion="off"]');

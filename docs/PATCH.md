@@ -10,6 +10,17 @@
 
 
 
+## 2026-11-13 · claude · 땅(테마) 여섯 — 풍경 배경 · 고르개 · 풍경만 보기
+- 사용자 「원소 테마 작업 시작해줘」 → 「여섯 개로 가자」 · 「이대로 가자」 — 원소가 자연에서 있는 곳 여섯(금속의 대지 · 숨결의 들판 · 소금의 바다 · 결정의 골짜기 · 빛의 하늘 · 깊은 땅의 불빛), 갈래 열이 하나씩 묶인다. 보는 원소를 따라 바뀌지 않고 사용자가 고른다
+- element-atelier-img-2/themes/ — 땅 x 세계 풍경 열여덟 장(1024×1536 webp, 과슈)과 thumb/ 작은 그림. 지시문 · 원본은 C:\Users\jjshs\element-theme-art
+- lib/walk-core.js — LANDS · landOf(갈래) · getLand/setLand(element_land_v1, element-land) · sceneURL
+- lib/walk.js — 고른 땅 x 지금 세계의 그림을 다 받은 뒤 --w-scene 에(땅을 바꾸면 View Transition 으로 겹쳐 넘어감, 움직임 끄기면 바로) · 풍경만 보기(역사 한 칸, 누르기 · 뒤로 · Esc)
+- lib/walk.css — .w-scenery 가 화면 전체 배경 + 어둠 한 겹(목록 · 가문 · 한 장은 더 짙게) · 땅마다 강조색 · 위 막대 반투명(blur 는 안 쓴다 — 막대 안 도구 상자의 fixed 가 막대에 갇힌다)
+- lib/toolbox.js · toolbox.css — 공방 안에서는 「공간」 고르개 대신 땅 그림 단추 여섯 + 풍경만 보기. 도구 화면은 그대로
+- lib/words.js — tool.land · tool.scenery · land.*
+- tests/walk-theme.cjs — 새 검사
+- *.html — ?v= walk-core 6 · toolbox.js 4 · toolbox.css 2 · words 28 · walk.css 14 · walk 16
+
 ## 2026-11-13 · claude · 주기율표 아래 나라 판(큰 타일 · 그림 장수)
 - 사용자 「주기율표 모바일에서는 화면이 좀 작긴하네. 터치가 좀 어렵고, 이미지 등록현황도 보기가 좀 어려워」 → 「장수까지」 · 「장수 세는 거 기준은 현재의 기본 화풍 기준으로 해줘」
 - lib/walk-table.js — 표는 지도로 두고 아래에 나라 판: 갈래마다 타일(기호 · 이름 · 세계 그림 채운/채울 · 일상컷 · 세계 셋 막대), 거르개(전부 · 그림 있음 · 그림 없음), 나라 카드는 고른 타일 줄 아래에 세계별 장수와 함께. 표를 누르면 가까운 나라가 골라지고 판의 그 자리로. 그림 없는 나라 칸은 테두리만(.bare)

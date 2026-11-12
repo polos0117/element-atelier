@@ -45,6 +45,7 @@ const D = require('../data/element-design.json'), S = require('../data/style.jso
     assert.equal(await pg.locator('.slot.dead').count(), dead, '안 사는 세계는 작고 흐린 칸');
     if (dead) assert((await pg.locator('.slot.dead').first().boundingBox()).height < 110, '흐린 칸은 작다');
     /* 어두운 바탕 대비 4.5:1(B8) — 흐린 칸 글 · 나라 설명 · 눌린 단추, 화풍 고르개 44px(B7) */
+    await pg.waitForTimeout(300);   // 눌린 단추의 바탕색 전환(.25s)이 끝난 뒤에 잰다 — 전환 중 값은 oklab(…) 으로 와서 대비 손이 못 읽는다
     for (const [t, r] of await contrast(pg, '.slot.dead .ph, .slot.dead .cap, .about summary, .seg [aria-pressed="true"], .w-worlds [aria-pressed="true"], .w-mode [aria-pressed="true"], .row-head .shared a')) assert(r >= 4.5, '대비 ' + t + ' ' + r);
     assert((await pg.locator('#dex-style').boundingBox()).height >= 44, '화풍 고르개 44px'); checks += 2;
     assert.equal(await pg.locator('.worlds.alt, .worlds.casuals, [data-more="alt"]').count(), 0, '세계 그림 보기 — 일상컷은 접혀 있고 다른 화풍 줄은 없다');
