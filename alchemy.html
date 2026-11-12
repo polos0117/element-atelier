@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07080c">
+<title>원소의 공방</title>
+<!-- 원소 합성(2026-11-12 사용자 「Phaser — 그림으로 놀기 … 원소 둘을 붙여 물질 만들기 … 이것도 해볼까?」 → 「합성 + 수집」).
+     근본 원소 패를 하나 ~ 셋 골라 합성로에 넣고 「합성」 — 설계표에서 그 원소 묶음으로 된 물질(가문)이 있으면 나라마다 가문주 카드가 뒤집히며 열리고 수집첩에 모인다.
+     규칙 · 자료는 lib/alchemy.js(node 검사 tests/alchemy.cjs), 그리는 것은 여기 Phaser(jsdelivr phaser@4.2.1). 찾은 것은 이 기기에(element_alchemy_v1).
+     캔버스는 논리 크기를 두 배(840×1720)로 짓고 화면에 맞춰 줄인다 — 폰의 높은 화소 밀도에서도 글자가 흐리지 않게.
+     화면 읽기 프로그램에는 결과를 #alchemy-status 로 알린다. 검사용 손잡이 window.AtelierAlchemyGame(state · pick · combine · clear · book · close). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
+<link rel="stylesheet" href="lib/workspace.css?v=3">
+<script src="lib/workspace-theme.js?v=3"></script>
+<script src="lib/words.js?v=17"></script>
+<script src="lib/img.js?v=9"></script>
+<script src="lib/alchemy.js?v=1"></script>
+<link rel="stylesheet" href="lib/element.css?v=10">
+<style>
+  .alchemy-page .wrap {max-width:none;padding:0}
+  #game {width:100%;height:calc(100dvh - var(--alchemy-top,120px));min-height:520px;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+  #game canvas {display:block}
+  .alchemy-note {padding:12px 16px;color:var(--muted)}
+  .sr-only {position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .cat-probe {display:none}
+</style>
+</head>
+<body class="prompt-page lab-page alchemy-page">
+<div class="wrap"><div id="app"></div><div id="game" role="application"></div><p id="alchemy-status" class="sr-only" role="status" aria-live="polite"></p></div>
+<script type="module">
+import {h,render} from 'https://esm.sh/preact@10.24.3';
+import {WorkspaceHeader} from './lib/workspace-ui.js?v=5';
+import * as Phaser from 'https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.esm.min.js';
+const W=window.W,IMG=window.AtelierImg,AL=window.AtelierAlchemy;
+render(h(WorkspaceHeader,{page:'alchemy'}),document.getElementById('app'));
+const fitTop=()=>{const g=document.getElementById('game');document.documentElement.style.setProperty('--alchemy-top',Math.ceil(g.getBoundingClientRect().top+window.scrollY)+'px');};
+requestAnimationFrame(fitTop);addEventListener('resize',fitTop);
+const say=t=>{const s=document.getElementById('alchemy-status');s.textContent='';setTimeout(()=>{s.textContent=t;},30);};
+
+/* 테마 색 — 주기율표와 같은 분류 색(lib/element.css 의 --cat), 바탕 · 글자 · 강조 */
+const css=(el,name)=>getComputedStyle(el).getPropertyValue(name).trim();
+const hex=c=>{const d=document.createElement('span');d.style.color=c;document.body.appendChild(d);const m=getComputedStyle(d).color.match(/\d+(\.\d+)?/g)||[0,0,0];d.remove();return (+m[0]<<16)+(+m[1]<<8)+(+m[2]|0);};
+const ROOT=document.documentElement,TH={bg:hex(css(ROOT,'--bg')||'#0b0d12'),inkHex:hex(css(ROOT,'--text')||'#eee'),ink:css(ROOT,'--text')||'#eee',dim:css(ROOT,'--muted')||'#999',accent:hex(css(ROOT,'--accent')||'#e0b05a'),accentCss:css(ROOT,'--accent')||'#e0b05a'};
+const catColor={};
+const catOf=k=>{if(catColor[k]!=null)return catColor[k];const p=document.createElement('span');p.className='cat-probe';p.dataset.cat=k;document.body.appendChild(p);const c=css(p,'--cat');p.remove();return catColor[k]=hex(c||'#888');};
+const FONT="'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif";
+const S=2,GW=420*S,GH=860*S;   /* 논리 크기 두 배 */
+const T=(scene,x,y,str,size,opt={})=>scene.add.text(x,y,str,Object.assign({fontFamily:FONT,fontSize:(size*S)+'px',color:TH.ink,align:'center'},opt)).setOrigin(0.5);
+
+async function docs(){
+  const [d,s,i]=await Promise.all([
+    fetch('data/element-design.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error(String(r.status)))),
+    fetch('data/style.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error(String(r.status)))),
+    fetch(IMG.DATA,{cache:'no-cache'}).then(r=>r.ok?r.json():{img:{}}).catch(()=>({img:{}}))]);
+  IMG.setShards(i);
+  return AL.build(d,i.img||{},s.default);
+}
+
+class Main extends Phaser.Scene{
+  constructor(){super('main');}
+  init(data){this.game_=data.game;this.state=AL.load();this.picks=[];this.busy=false;}
+  create(){
+    const G=this.game_,cx=GW/2;
+    this.cameras.main.setBackgroundColor(TH.bg);
+    this.progress=T(this,cx,34*S,'',15,{color:TH.dim});
+    /* 합성로 — 빛나는 원, 안에 칸 셋 */
+    const fy=200*S;
+    this.glow=this.add.circle(cx,fy,128*S,TH.accent,0.08);
+    this.ring=this.add.circle(cx,fy,112*S).setStrokeStyle(3*S,TH.accent,0.7);
+    T(this,cx,fy-82*S,W('alchemy.furnace'),13,{color:TH.dim});
+    this.slots=[-1,0,1].map(i=>{
+      const x=cx+i*70*S,c=this.add.circle(x,fy,30*S,TH.inkHex,0.05).setStrokeStyle(2*S,TH.inkHex,0.3);
+      const t=T(this,x,fy,'',20,{fontStyle:'700'});
+      c.setInteractive({useHandCursor:true}).on('pointerdown',()=>{const k=this.picks[i+1];if(k)this.unpick(k);});
+      return {c,t};
+    });
+    this.msg=T(this,cx,fy+76*S,W('alchemy.pick'),13,{color:TH.dim,wordWrap:{width:360*S}});
+    /* 단추 줄 */
+    const by=fy+128*S;
+    this.btnCombine=this.button(cx,by,W('alchemy.combine'),150,true,()=>this.combine());
+    this.button(cx-128*S,by,W('alchemy.clear'),86,false,()=>this.clear());
+    this.button(cx+128*S,by,W('alchemy.hint'),86,false,()=>this.hint());
+    this.button(cx,by+52*S,W('alchemy.book'),150,false,()=>this.openBook());
+    /* 원소 패 — 주기율표 번호 차례, 다섯 줄 */
+    const cols=5,gap=78*S,x0=cx-(cols-1)/2*gap,y0=by+118*S;
+    this.tokens={};
+    G.roots.forEach((r,i)=>{
+      const x=x0+(i%cols)*gap,y=y0+Math.floor(i/cols)*84*S,col=catOf(r.category);
+      const c=this.add.circle(x,y,30*S,col,0.22).setStrokeStyle(2*S,col,0.9);
+      const sym=T(this,x,y-2*S,r.symbol,19,{fontStyle:'700'}),name=T(this,x,y+42*S,r.ko,11,{color:TH.dim});
+      c.setInteractive({useHandCursor:true}).on('pointerdown',()=>this.toggle(r.key));
+      this.tokens[r.key]={c,sym,name,col};
+    });
+    this.refresh();
+    window.AtelierAlchemyGame={ready:true,state:()=>({picks:this.picks.slice(),found:this.state.found.slice(),tries:this.state.tries,total:G.lords.length,overlay:this.overlay?this.overlay.kind:null,cards:this.overlay&&this.overlay.cards||[],msg:this.msg.text}),
+      where:k=>{const o=this.tokens[k],r=this.game.canvas.getBoundingClientRect();return o?{x:r.left+o.c.x*r.width/GW,y:r.top+o.c.y*r.height/GH}:null;},
+      pick:k=>this.toggle(k),combine:()=>this.combine(),clear:()=>this.clear(),book:()=>this.openBook(),close:()=>this.closeOverlay(),hint:()=>this.hint(),
+      reset:()=>{this.state=AL.blank();AL.save(this.state);this.clear();this.refresh();}};
+  }
+  button(x,y,label,w,main,fn){
+    const bg=this.add.rectangle(x,y,w*S,40*S,main?TH.accent:TH.inkHex,main?0.95:0.06).setStrokeStyle(2*S,main?TH.accent:TH.inkHex,main?1:0.3);
+    const t=T(this,x,y,label,14,{color:main?'#111':TH.ink,fontStyle:main?'700':'400'});
+    bg.setInteractive({useHandCursor:true}).on('pointerdown',()=>{if(!this.overlay)fn();});
+    return {bg,t};
+  }
+  refresh(){
+    const G=this.game_;
+    this.progress.setText(W('alchemy.progress',{n:this.state.found.length,total:G.lords.length}));
+    this.slots.forEach((s,i)=>{const k=this.picks[i],r=k&&G.rootByKey[k];s.t.setText(r?r.symbol:'');s.c.setFillStyle(r?catOf(r.category):TH.inkHex,r?0.35:0.05);});
+    Object.entries(this.tokens).forEach(([k,o])=>{const on=this.picks.includes(k);o.c.setFillStyle(o.col,on?0.7:0.22);o.c.setScale(on?1.08:1);});
+    this.btnCombine.bg.setAlpha(this.picks.length?1:0.4);
+  }
+  toggle(k){
+    if(this.busy||this.overlay)return;
+    if(this.picks.includes(k))return this.unpick(k);
+    if(this.picks.length>=AL.MAX){this.note(W('alchemy.full'));return;}
+    this.picks.push(k);this.refresh();
+    const s=this.slots[this.picks.length-1].c;this.tweens.add({targets:s,scale:{from:1.25,to:1},duration:220,ease:'Back.Out'});
+  }
+  unpick(k){this.picks=this.picks.filter(x=>x!==k);this.refresh();}
+  clear(){this.picks=[];this.note(W('alchemy.pick'));this.refresh();}
+  note(t,announce){this.msg.setText(t);if(announce!==false)say(t);}
+  hint(){const r=AL.hint(this.game_,this.state);AL.save(this.state);this.note(r?W('alchemy.hint.text',r):W('alchemy.hint.done'));}
+  combine(){
+    if(this.busy||this.overlay||!this.picks.length)return;
+    const G=this.game_,res=AL.combine(G,this.state,this.picks);AL.save(this.state);
+    if(!res.ok){
+      this.note(W(res.why==='inert'?'alchemy.inert':'alchemy.none'));
+      this.tweens.add({targets:[this.ring,this.glow],x:{from:GW/2-10*S,to:GW/2},duration:70,yoyo:true,repeat:3,onComplete:()=>{this.ring.x=this.glow.x=GW/2;}});
+      return;
+    }
+    /* 빛이 터지고 카드가 열린다 */
+    this.busy=true;
+    this.tweens.add({targets:this.glow,scale:{from:1,to:1.6},alpha:{from:0.5,to:0.08},duration:420,ease:'Quad.Out',onComplete:()=>{this.glow.setScale(1);this.busy=false;this.reveal(res);}});
+    const names=[...new Set(res.lords.map(k=>G.byKey[k].ko))];
+    this.note(W('alchemy.made',{materials:names.join(' · '),els:this.picks.map(k=>G.rootByKey[k].symbol).join(' + ')}));
+    this.picks=[];this.refresh();
+    this.progress.setText(W('alchemy.progress',{n:this.state.found.length,total:G.lords.length}));
+  }
+  /* 덮개 — 결과(reveal)와 수집첩(book). 바탕을 누르거나 닫기 */
+  layer(kind){
+    this.closeOverlay();
+    const o={kind,items:[],cards:[]};
+    const dim=this.add.rectangle(GW/2,GH/2,GW,GH,TH.bg,0.985).setInteractive();   /* 뒤 화면이 비치지 않게 바탕색으로 */
+    o.items.push(dim);this.overlay=o;return o;
+  }
+  closeOverlay(){if(!this.overlay)return;this.overlay.items.forEach(x=>x.destroy());this.tweens.killAll();this.overlay=null;this.refresh();}
+  loadPics(keys){
+    const want=keys.filter(k=>k&&!this.textures.exists('p:'+k));
+    if(!want.length)return Promise.resolve();
+    return new Promise(ok=>{want.forEach(f=>this.load.image('p:'+f,IMG.thumbURL(f)));this.load.once('complete',ok);this.load.start();});
+  }
+  /* 카드 한 장 — 뒷면(원소 기호)에서 앞면(그림 + 이름)으로 */
+  card(x,y,w,l,o,{fresh,flipDelay,front}){
+    const hgt=w*1.5,G=this.game_;
+    const back=this.add.container(x,y);
+    back.add(this.add.rectangle(0,0,w,hgt,0x1a1d26,1).setStrokeStyle(2*S,TH.accent,0.8));
+    back.add(T(this,0,0,l.elements.map(k=>G.rootByKey[k]?G.rootByKey[k].symbol:k).join('+'),w/S/5,{color:'#f4f1ea',fontStyle:'700'}));   /* 카드는 어두운 판 — 글자는 늘 밝게(테마와 상관없이) */
+    const face=this.add.container(x,y).setScale(front?1:0,1);
+    const pic=l.pic&&this.textures.exists('p:'+l.pic)?this.add.image(0,0,'p:'+l.pic):null;
+    if(pic){const sc=Math.min(w/pic.width,hgt/pic.height);pic.setScale(sc);}   /* 2:3 그림이 카드를 꽉 채운다 — 이름 띠는 그 위에 */
+    face.add(this.add.rectangle(0,0,w,hgt,0x10131a,1).setStrokeStyle(2*S,fresh?TH.accent:0xffffff,fresh?1:0.35));
+    if(pic)face.add(pic);else face.add(T(this,0,-hgt*0.07,l.ko,w/S/6,{color:'#f4f1ea'}));
+    face.add(this.add.rectangle(0,hgt*0.43,w,hgt*0.14,0x000000,0.7));
+    face.add(T(this,0,hgt*0.43,W('alchemy.lord',{nation:l.nationKo,family:l.ko}),Math.max(10,w/S/10),{color:'#f4f1ea'}));
+    if(fresh)face.add(T(this,w*0.32,-hgt*0.44,W('alchemy.new'),10,{fontStyle:'700',color:'#111',backgroundColor:TH.accentCss,padding:{x:4*S,y:1*S}}));
+    o.items.push(back,face);
+    if(front){back.setVisible(false);}
+    else this.tweens.add({targets:back,scaleX:0,duration:180,delay:flipDelay,ease:'Quad.In',onComplete:()=>{back.setVisible(false);this.tweens.add({targets:face,scaleX:1,duration:220,ease:'Back.Out'});}});
+    const hit=this.add.rectangle(x,y,w,hgt,0xffffff,0.001).setInteractive({useHandCursor:true});
+    hit.on('pointerdown',()=>{location.href='dex.html?nation='+l.nation+'&card='+encodeURIComponent(l.key)+(l.pic?'&pic='+encodeURIComponent(l.pic):'');});
+    o.items.push(hit);o.cards.push(l.key);
+  }
+  async reveal(res){
+    const G=this.game_,ls=res.lords.map(k=>G.byKey[k]);
+    await this.loadPics(ls.map(l=>l.pic));
+    const o=this.layer('reveal'),n=ls.length,cols=n>2?2:n,w=(n>2?170:190)*S,rows=Math.ceil(n/cols),hgt=w*1.5,gx=w+16*S,gy=hgt+20*S;
+    const top=GH/2-(rows-1)*gy/2-30*S;
+    o.items.push(T(this,GW/2,top-hgt/2-46*S,W('alchemy.made.title',{els:[...new Set(ls.flatMap(l=>l.elements))].map(k=>G.rootByKey[k].symbol).join(' + ')}),18,{fontStyle:'700'}));
+    ls.forEach((l,i)=>{const r=Math.floor(i/cols),c=i%cols,inRow=Math.min(cols,n-r*cols);
+      this.card(GW/2+(c-(inRow-1)/2)*gx,top+r*gy,w,l,o,{fresh:res.fresh.includes(l.key),flipDelay:250+i*260});});
+    const done=this.button(GW/2,top+(rows-1)*gy+hgt/2+44*S,W('alchemy.continue'),150,true,()=>{});
+    done.bg.removeAllListeners('pointerdown').on('pointerdown',()=>this.closeOverlay());
+    o.items.push(done.bg,done.t,T(this,GW/2,top+(rows-1)*gy+hgt/2+84*S,W('alchemy.tap'),11,{color:TH.dim}));
+    say(W(res.fresh.length?'alchemy.say.new':'alchemy.say.again',{cards:ls.map(l=>W('alchemy.lord',{nation:l.nationKo,family:l.ko})).join(', ')}));
+  }
+  async openBook(){
+    if(this.busy)return;
+    const G=this.game_,found=this.state.found;
+    await this.loadPics(G.lords.filter(l=>found.includes(l.key)).map(l=>l.pic));
+    const o=this.layer('book'),cols=5,w=74*S,hgt=w*1.5,gx=w+8*S,gy=hgt+10*S,x0=GW/2-(cols-1)/2*gx,y0=96*S+hgt/2;   /* 다섯 칸 · 다섯 줄 — 폰 한 화면 */
+    o.items.push(T(this,GW/2,46*S,W('alchemy.book.title',{n:found.length,total:G.lords.length}),18,{fontStyle:'700'}));
+    G.lords.forEach((l,i)=>{const x=x0+(i%cols)*gx,y=y0+Math.floor(i/cols)*gy;
+      if(found.includes(l.key))this.card(x,y,w,l,o,{front:true,fresh:false});
+      else{const b=this.add.rectangle(x,y,w,hgt,TH.inkHex,0.04).setStrokeStyle(2*S,TH.inkHex,0.18);
+        o.items.push(b,T(this,x,y,'?',26,{color:TH.dim}),T(this,x,y+hgt*0.36,W('alchemy.locked',{count:l.elements.length}),10,{color:TH.dim}));}});
+    const rows=Math.ceil(G.lords.length/cols),bt=this.button(GW/2,Math.min(GH-40*S,y0+(rows-1)*gy+hgt/2+40*S),W('alchemy.close'),150,true,()=>{});
+    bt.bg.removeAllListeners('pointerdown').on('pointerdown',()=>this.closeOverlay());
+    o.items.push(bt.bg,bt.t);
+    say(W('alchemy.book.title',{n:found.length,total:G.lords.length}));
+  }
+}
+
+docs().then(game=>{
+  new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:TH.bg,scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:GW,height:GH},
+    loader:{crossOrigin:'anonymous'},banner:false,scene:[]}).scene.add('main',Main,true,{game});
+}).catch(()=>{document.getElementById('game').innerHTML='';const p=document.createElement('p');p.className='alchemy-note';p.textContent=W('alchemy.fail');document.getElementById('game').appendChild(p);});
+</script>
+</body>
+</html>
