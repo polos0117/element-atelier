@@ -181,7 +181,8 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 .walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 150px)}
 /* 단추 줄(홀로 · 즐겨찾기 · 지시문 · 닫기) — 덮개 344 에서 글이 세로로 꺾이지 않게: 단추 안 글은 한 줄, 넘치면 단추째 다음 줄로(사용자 「홀로, 즐겨찾기 그렇게 버튼 쭉 있는 텍스트가 세로로 안나오게 해줘」) */
 .walk .w-card .bar {flex-wrap:wrap;justify-content:center;max-width:100%}
-.walk .w-card .bar > * {display:inline-flex;align-items:center;justify-content:center;min-height:44px;white-space:nowrap}
+.walk .w-card .bar > * {display:inline-flex;align-items:center;justify-content:center;gap:.3em;min-height:44px;white-space:nowrap}
+.walk .lightbox.w-card:focus {outline:none}   /* 열 때 초점은 대화 상자 자신(테두리 없이) — 안의 단추는 그대로 테두리 */
 /* 그림이 안 와도(404) 칸이 무너지지 않게 — ‹ › 가 위 글에 겹치지 않는다(그림은 마지막 실패에 숨긴다, lib/walk-data.js imgFail) */
 .walk .w-card .lb-stage {flex:none;min-width:min(100%,240px);min-height:min(50dvh,360px)}
 

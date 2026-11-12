@@ -10,6 +10,11 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 고침 2 — 한 장 초점은 대화 상자 자신 · 즐겨찾기 단추 띄어쓰기
+- lib/walk-card.js — 열 때 초점을 닫기 단추가 아니라 한 장(대화 상자, tabIndex -1) 자신으로 — 주소로 바로 열면 닫기 단추에 초점 테두리가 떠 있었다(덮개 사진 5-card-fe). Tab 은 안의 첫 단추부터, 닫으면 연 자리로(B3 그대로)
+- lib/walk.css — 대화 상자 자신의 초점 테두리는 없이, 단추 줄 단추 안 gap(inline-flex 가 「♡ 즐겨찾기」 의 띄어쓰기를 먹었다)
+- index.html · lib/walk.js — walk.css ?v=10 · walk.js ?v=13 · walk-card ?v=4
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 B12 — 옛 브라우저 검사 넷을 ESM_DIR 없이도
 - tests/alchemy.cjs · tests/dex-holo.cjs · tests/dex-turn.cjs · tests/screen.cjs — ESM_DIR 이 비면 공용 손(tests/lib/harness.cjs 의 ESM_DIR — $HOME/.cache/element-esm/node_modules)으로. 맨 실행(tests/*.cjs 전부)이 지나간다
 
