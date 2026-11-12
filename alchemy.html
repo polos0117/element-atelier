@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#07080c">
 <title>원소의 공방</title>
+<style>@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }</style><script>addEventListener('pageswap', e => { const t = e.viewTransition; if (t) { t.skipTransition(); t.ready.catch(() => {}); } }); addEventListener('pagereveal', e => { const t = e.viewTransition; if (t) t.ready.catch(() => {}); });</script>   <!-- 공방 지도(polos0117.github.io)의 문에서 넘어올 때 페이드로 들어온다(2026-11-12 — 그쪽 README 「방에 들어가는 연출」). 여기서 나갈 때는 전환을 걸지 않아 공방 안에서 쪽을 옮길 때는 전과 같다. 모르는 브라우저는 그냥 넘어온다 -->
 <!-- 원소 합성(2026-11-12 사용자 「Phaser — 그림으로 놀기 … 원소 둘을 붙여 물질 만들기 … 이것도 해볼까?」 → 「합성 + 수집」).
      근본 원소 패를 하나 ~ 셋 골라 합성로에 넣고 「합성」 — 설계표에서 그 원소 묶음으로 된 물질(가문)이 있으면 나라마다 가문주 카드가 뒤집히며 열리고 수집첩에 모인다.
      규칙 · 자료는 lib/alchemy.js(node 검사 tests/alchemy.cjs), 그리는 것은 여기 Phaser(jsdelivr phaser@4.2.1). 찾은 것은 이 기기에(element_alchemy_v1).
