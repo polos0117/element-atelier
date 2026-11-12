@@ -10,6 +10,16 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 2 — 도구 상자 · 도구 화면은 가는 막대(탭 줄 걷기)
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 2 — 합성 · 화풍 · 프롬프트는 장소가 아니라 도구(설계 「도구 상자」 · 물음 6), 움직임 끄기(사용자 「움직임 끄기 옵션 넣어줘」)
+- lib/toolbox.js · lib/toolbox.css (새) — 구석 단추 하나 → 아래에서 오르는 판(PC 는 오른쪽 아래): 합성 · 화풍 · 프롬프트 · 즐겨찾기(원소 수) · 설정(공간 · 밀도 · 움직임) · 패치 기록(옛 주기율표 화면의 것). 판 밖 · Esc · 뒤로 가기로 닫힘, 판 안 링크는 판의 역사 칸을 걷고 간다. 도구 화면 머리 ToolBar(← 돌아가기 — 들어오기 전 층 · 도구 이름 · 도구 상자)
+- lib/walk-core.js — motionOn() · setMotion(on): 움직임 판단 한 곳(기기의 움직임 줄이기 또는 이 기기에서 끔 element_motion_v1=off), 바꾸면 element-motion 사건
+- lib/walk.js — 막대 끝에 도구 상자, 판의 역사 칸에서 새로고침해도 씨앗을 다시 심지 않음
+- alchemy.html · styles.html · prompt.html — 머리를 WorkspaceHeader(탭 줄 · 큰 제목) → ToolBar, favorites.js · patch.js · walk-core.js · toolbox.css 싣기
+- index.html — toolbox.css · patch.js 싣기, walk-core.js ?v=2 · walk.js ?v=2
+- lib/words.js — tool.* 낱말(움직임 켜기/끄기 포함). 싣는 화면 일곱 ?v=20
+- tests/walk-tools.cjs (새) · tests/screen.cjs 「화풍 탭」 · tests/alchemy.cjs 「메뉴의 합성」 — 탭 줄 대신 h1.tb-name
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 1 — 한 화면 껍데기 · 주소 층 · 뒤로 가기 한 층씩
 - 사용자 「괜찮네. 이대로 진행해줘」 — 설계 docs/superpowers/specs/2026-11-12-element-walk-in-design.md, 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 1
 - index.html — 타이틀 화면(공간 배경 · 그림 현판 · 그림 단추)을 「들어가는 곳」 껍데기로 통째 갈아치움. material.css · room.css 를 싣지 않는 어두운 바탕(#07080c)

@@ -203,10 +203,10 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
     }
 
-    /* 화풍 비교 탭(2026-11-07 — 삼국지 공방과 같이) — 항해에 화풍, 묶음이 없으면 빈 안내, 있으면 화풍마다 칸 */
+    /* 화풍 비교(2026-11-07 — 삼국지 공방과 같이) — 도구 막대에 화풍(2026-11-12 「들어가는 곳」), 묶음이 없으면 빈 안내, 있으면 화풍마다 칸 */
     { const SC = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style-compare.json'), 'utf8')), sv = await open('/styles.html', vp);
       await sv.page.waitForSelector('.sc-lede');
-      assert.equal(await sv.page.locator('.workspace-nav a[aria-current="page"]').getAttribute('href'), 'styles.html', '화풍 탭');
+      assert.equal(await sv.page.locator('h1.tb-name').textContent(), '화풍', '화풍 도구 막대');
       if (!SC.rounds.length) assert.equal(await sv.page.locator('.sc-cell').count(), 0, '묶음 없음 — 빈 안내');
       else { await sv.page.waitForSelector('.sc-cell'); const R0 = SC.rounds.slice().sort((a, b) => a.key < b.key ? 1 : -1)[0]; assert.equal(await sv.page.locator('.sc-style').count(), R0.styles.length, '화풍마다 한 칸'); }
       await noOverflow(sv.page, vp.width + ' 화풍 비교'); assert.deepEqual(sv.errors, [], '화풍 비교 콘솔'); checks += 4; await sv.ctx.close(); }
