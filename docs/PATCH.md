@@ -10,6 +10,10 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 10-2 — 스팀펑크 전환의 김을 부드럽게
+- lib/walk-fx.js — 세계 전환 스팀펑크 입자를 겹친 원 여럿으로(한 원은 덮개 사진에서 가장자리가 계단처럼 보였다)
+- lib/walk-table.js · lib/walk-orbit.js · lib/walk-family.js · lib/walk-list.js · lib/walk.js · index.html — walk-fx ?v=5 · walk-orbit ?v=6 · walk-table ?v=5 · walk-family ?v=4 · walk-list ?v=4 · walk.js ?v=11
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 10 — 안 쓰는 탭 머리 · 낱말 정리, AGENTS 화면 표 새로, DESIGN.md
 - 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 10 — 정리 · 문서 · 전체 검사
 - DESIGN.md (새) — 이 공방의 뼈대(「넘기는 곳이 아니라 들어가는 곳」 · 도구 상자 · 탭 줄 없음 · 어두운 바탕 · 효과 다섯 · 움직임 설정). 다른 공방의 뼈대를 가져오지 않는다 — 새 화면은 여기부터(사용자 「새로 만들어 달라고 하면 그전 공방 그대로 옮겨서 만든다」)
