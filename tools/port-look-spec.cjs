@@ -28,14 +28,17 @@ const EXTRA = {
     /* 2026-11-10 우라늄 색감을 검정 · 은 · 에메랄드로(사용자) */
     lead_silver: 'dark lead-grey hair with a soft silver sheen',
     /* 근본 여덟 더(2026-11-11 — 질소 · 네온 · 인 · 리튬 · 아연 · 주석 · 납 · 수은) */
-    nitrogen_frost: 'frost-blue hair trailing a pale mist like liquid-nitrogen vapor', neon_red: 'glowing neon red-orange hair like a lit sign tube', phosphor_white: 'pale ivory-white hair with a faint green phosphorescent glow', lithium_crimson: 'soft silver-white hair tipped with crimson flame-red', zinc_spangle: 'blue-grey hair with a crystalline galvanized-spangle sheen', pewter: 'soft pewter-silver hair with a satin sheen', lead_blue: 'heavy dull blue-grey lead hair with a soft sheen', quicksilver: 'flowing liquid-quicksilver hair beading into mirror droplets at the tips'
+    nitrogen_frost: 'frost-blue hair trailing a pale mist like liquid-nitrogen vapor', neon_red: 'glowing neon red-orange hair like a lit sign tube', phosphor_white: 'pale ivory-white hair with a faint green phosphorescent glow', lithium_crimson: 'soft silver-white hair tipped with crimson flame-red', zinc_spangle: 'blue-grey hair with a crystalline galvanized-spangle sheen', pewter: 'soft pewter-silver hair with a satin sheen', lead_blue: 'heavy dull blue-grey lead hair with a soft sheen', quicksilver: 'flowing liquid-quicksilver hair beading into mirror droplets at the tips',
+    /* 근본 여덟 C(2026-11-13 — 칼륨 · 망가니즈 · 비스무트 · 라듐 · 플루토늄 · 이리듐 · 네오디뮴 · 베릴륨) */
+    potash_lilac: 'ash-silver hair flaring into pale lilac flame at the tips', permanganate: 'deep permanganate-violet hair fading to rhodochrosite rose-pink at the tips', bismuth_rainbow: 'pinkish-silver hair banded with stepped iridescent gold, rose and blue like a bismuth crystal', radium_glow: 'pale ivory hair glowing a faint ghostly blue at the edges', plutonium_ember: 'dark gunmetal hair with tips glowing ember red-orange as if warmed from within', iridium_white: 'bright platinum-white hair with a faint rainbow iris sheen along the edges', neodymium_lavender: 'lavender hair that shifts to cool blue in shadow, like neodymium glass', beryl_aqua: 'pale aquamarine hair with clear crystal-faceted highlights'
   },
   eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes',
     /* 2026-11-03 근본 여덟(헬륨 · 규소 · 황 · 염소 · 칼슘 · 구리 · 은 · 우라늄)과 앞으로 — 사용자 「머리 스타일이나 눈색이 부족하면 더 추가해도 괜찮아」 */
     hazel: 'warm hazel eyes', storm_grey: 'storm-grey eyes', silver_grey: 'pale silver-grey eyes', honey: 'honey-gold eyes', rose: 'dusty rose-pink eyes',
     lilac: 'soft lilac eyes', mint: 'pale mint-green eyes', chartreuse: 'yellow-green chartreuse eyes', blue_flame: 'eerie blue-flame eyes',
     cherenkov_blue: 'luminous Cherenkov-blue eyes', peach: 'pale peach-pink eyes',
-    /* 2026-11-11 수은 */ cinnabar: 'cinnabar-red eyes' },
+    /* 2026-11-11 수은 */ cinnabar: 'cinnabar-red eyes',
+    /* 2026-11-13 비스무트 · 라듐 · 네오디뮴 */ iridescent: 'iridescent eyes shifting gold, rose and blue', radium_blue: 'eyes glowing a faint ghostly blue', dichroic: 'dichroic eyes shifting between lavender and blue' },
   /* 머리 윤곽 — game 어휘 열은 열다섯 나라 · 세 세계에 모자라 돌려쓰게 된다(2026-11-03 사용자 「머리스타일은 지금 수가 제한적이라 계속 돌려쓰는 추세」).
      위로 올려 묶는 것은 updo_bun 하나뿐 — 스팀펑크 올림머리 금지(element-design.py)가 그대로 듣게 새 것은 다 내리거나 반만 묶는다 */
   hair: {
