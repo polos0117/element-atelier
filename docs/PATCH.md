@@ -10,6 +10,10 @@
 
 
 
+## 2026-11-12 · claude · core 블록을 v5 원본에 다시 맞춤
+- lib/look-spec.js 끝 core:v5 블록에 손으로 넣은 새 근본 여덟의 머리색 · 눈색(공통 낱말이 아닌 원소 몫)이 끼어 화풍공방 tests/core.cjs 가 깨져 있었다 — node core/sync.cjs ../element-atelier 로 다시 옮김.
+- VOCAB_EN 결과는 전과 같다(새 열쇠는 위 본표에 그대로 있어 지시문 변화 없음). 원소 몫 낱말은 블록이 아니라 본표에 둔다(블록은 손으로 고치지 않는다).
+
 ## 2026-11-12 · claude · 검사 정리 — 겹친 검사 지우고 느린 검사 반복 줄이기
 - 사용자 2026-11-12 「각 공방별로 필요없고 쓸데없이 시간만 잡아먹는 검사들 좀 없애줘」 — 보는 것은 그대로, 반복만 줄였다
 - tests/core-sync.cjs 지움 — 화풍공방 tests/core.cjs 가 여섯 공방 core 블록을 같은 sync.cjs --check 로 본다(CLAUDE.md 「core 낱말 — 화풍공방 core.cjs 하나」)
