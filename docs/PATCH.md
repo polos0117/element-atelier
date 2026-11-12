@@ -10,6 +10,13 @@
 
 
 
+## 2026-11-12 · claude · 칸 꼴 세계 그림 — 시간대 · 덧붙임 줄 이름, 메카 의상 문장 이음
+- 사용자 2026-11-12 「응 둘 다 고쳐줘」 — 허브를 고치다 옆에서 찾은 두 군데
+- lib/prompt-element.js buildWorldSections — 장면에서 고른 시간대 · 덧붙임이 4칸에 옛 줄 이름(TIME & WEATHER: · SCENE NOTE: · OUTFIT NOTE: · EXTRA:)으로 들어가던 것을 4칸 다른 줄과 같은 꼴(Time & weather: · Scene note: …)로. 칸 꼴을 끈 옛 꼴은 그대로
+- lib/prompt-element.js worldLines — 메카 의상 줄 「…a back unit may carry the motif. heavy dark-iron…」: 틀 꼬리 뒤에 설계표 design 소문자 조각이 붙어서였다 → 첫 글자를 올려 새 문장으로(「motif. Heavy dark-iron…」, 모든 꼴)
+- tests/prompt-sections.cjs — 시간대 · 덧붙임을 고른 판(칸 꼴 이름 · 옛 꼴은 옛 이름)과 메카 의상 줄 문장 이음 단언 더함(전엔 장면을 안 고른 판만 봤다)
+- dex.html · prompt.html — prompt-element.js ?v=30
+
 ## 2026-11-12 · claude · core 블록을 v5 원본에 다시 맞춤
 - lib/look-spec.js 끝 core:v5 블록에 손으로 넣은 새 근본 여덟의 머리색 · 눈색(공통 낱말이 아닌 원소 몫)이 끼어 화풍공방 tests/core.cjs 가 깨져 있었다 — node core/sync.cjs ../element-atelier 로 다시 옮김.
 - VOCAB_EN 결과는 전과 같다(새 열쇠는 위 본표에 그대로 있어 지시문 변화 없음). 원소 몫 낱말은 블록이 아니라 본표에 둔다(블록은 손으로 고치지 않는다).

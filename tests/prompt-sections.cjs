@@ -34,6 +34,17 @@ assert(/^Hair: her hair is worn exactly as described above/m.test(sp) && /^Costu
 const times = T.WORLD_TIMES || [];
 if (times.length) {
   const tt = P.build(D, S, 'fe-rust', 'steampunk', { shot: { time: times[0].key } });
-  assert(tt.includes(times[0].en) && /unless the time and weather above say otherwise/.test(tt), '시간대를 고르면 빛 줄이 그것을 따른다');
+  assert(tt.includes(times[0].en.replace(/^TIME & WEATHER:/, 'Time & weather:')) && /unless the time and weather above say otherwise/.test(tt), '시간대를 고르면 빛 줄이 그것을 따른다');
+  /* 시간대 · 덧붙임을 고른 판 — 4칸 줄 이름도 칸 꼴(2026-11-12, 위 루프는 장면을 안 고른 판만 봐서 놓쳤다). 칸 꼴을 끈 옛 꼴은 옛 이름 그대로 */
+  const ts = P.build(D, S, 'fe-rust', 'steampunk', { shot: { time: times[0].key }, notes: { scene: 'a windy ridge' } }), T4 = ts.split('\n\n')[4];
+  assert(/^Time & weather: /m.test(T4) && /^Scene note: a windy ridge$/m.test(T4) && !/TIME & WEATHER|SCENE NOTE/.test(ts), '시간대 · 덧붙임 — 4칸에 칸 꼴 이름');
+  const SO = Object.assign({}, S, { worldSections: false }), to = P.build(D, SO, 'fe-rust', 'steampunk', { shot: { time: times[0].key }, notes: { scene: 'a windy ridge' } });
+  assert(!P.worldSectionsOn(SO, SO['default']) && to.includes(times[0].en) && to.includes('SCENE NOTE: a windy ridge'), '칸 꼴을 끈 옛 꼴 — 옛 이름 그대로');
 }
+/* 메카 의상 줄 — 틀 꼬리(「…carry the motif.」) 뒤 설계 글이 새 문장으로 대문자 시작(2026-11-12 「…motif. heavy dark-iron…」 고침) */
+for (const key of P.cards(D)) if (P.worldsOf(D, key).includes('mecha')) {
+  const mc = P.build(D, S, key, 'mecha', {}).split('\n').filter(l => /^Costume: /.test(l))[0] || '';
+  assert(/carry the motif\. [A-Z]/.test(mc) && !/[a-z]\. [a-z]/.test(mc), key + ' 메카 의상 줄 문장 이음');
+}
+assert(/carry the motif\. Heavy dark-iron plating/.test(P.build(D, S, 'fe', 'mecha', {})), 'fe 메카 — 「motif. Heavy dark-iron」');
 console.log('PASS 칸 꼴 세계 그림: ' + n + '장 · 칸 머리 = core 칸 틀 · 걸림 다섯 · 옛 줄 이름 없음 · 가장 긴 것 ' + maxW + '낱말');
