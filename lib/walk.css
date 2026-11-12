@@ -169,3 +169,26 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 /* 한 장 — 위 막대 아래를 채운다(막대의 세계 고르개 · 길 표시는 그대로 쓴다). 덮개는 그림 · 단추 아래 글 판(굴려 본다), 넓으면 그림 | 글 판 */
 .walk .lightbox.w-card {top:var(--w-bar-h,0px);justify-content:flex-start;overflow-y:auto;padding:10px 12px 96px;background:#05060af2}
 .walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 150px)}
+
+/* 가문 층 — 옛 전시관 .g-family · .g-hero · .g-cits 를 옮겨 이름을 바꿈. 넓으면 가문주 | 글 두 칸, 좁으면 한 칸 */
+.w-pic {position:relative;display:block;aspect-ratio:2/3;overflow:hidden;border-radius:10px;background:#ffffff08 center/cover no-repeat}
+.w-pic img {display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.w-fam-top {display:grid;grid-template-columns:minmax(0,1fr);gap:20px 48px;align-items:center}
+@media (min-width:861px) {.w-fam-top {grid-template-columns:minmax(0,420px) minmax(0,1fr)}}
+.w-hero {display:block;width:100%;max-width:420px;margin:0 auto;padding:0;border:0;background:none;cursor:pointer}
+.w-hero .w-pic {border-radius:14px;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 50%,transparent),0 0 60px color-mix(in srgb,var(--accent) 25%,transparent),0 30px 60px #000c}
+.w-hero.empty .w-empty-disc {width:min(60vw,260px);height:auto;aspect-ratio:2/3;border-radius:14px}
+.w-tier {margin:0;color:var(--accent);font-size:13px;letter-spacing:.04em}
+.w-shared {color:var(--w-mute);font-size:13px}
+.w-shared button {min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.w-cits {margin-top:clamp(28px,5vw,56px)}
+.w-cits h2 {margin:0 0 16px;font-size:20px}
+.w-cits ul {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,42vw),1fr));gap:clamp(12px,2.4vw,26px)}
+.w-cit {display:block;width:100%;padding:8px;border:1px solid var(--w-line);border-radius:12px;background:#ffffff08;color:var(--w-ink);cursor:pointer;text-align:left}
+.w-cit:hover {border-color:var(--accent)}
+.w-cit .w-pic {border-radius:6px}
+.w-cit .w-empty-disc {width:auto;height:auto;border-radius:6px}
+.w-cit.empty {color:var(--w-mute)}
+.w-cit-cap {display:block;padding:8px 2px 0}
+.w-cit-cap b {display:block;font-size:15px;line-height:1.3}
+.w-cit-cap small {color:var(--w-mute);font-size:12px}
