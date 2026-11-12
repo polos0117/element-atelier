@@ -5,6 +5,7 @@
    - 움직임 줄이기면 혼자 지나가지 않는다, 오류 없음 */
 const assert = require('node:assert/strict'), http = require('node:http'), fs = require('node:fs'), path = require('node:path');
 const { chromium } = require('playwright');
+process.env.ESM_DIR = process.env.ESM_DIR || require('./lib/harness.cjs').ESM_DIR;   /* ESM_DIR 이 비면 공용 손(tests/lib/harness.cjs)의 기본 자리 — 맨 실행으로도 돈다(최종 검토 B12) */
 const ROOT = path.resolve(__dirname, '..'), PORT = +(process.env.PORT || 8796), BASE = 'http://127.0.0.1:' + PORT;
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.css': 'text/css' };
 const ESM = { 'https://esm.sh/preact@10.24.3': 'preact/dist/preact.mjs', 'https://esm.sh/preact@10.24.3/hooks': 'preact/hooks/dist/hooks.mjs',

@@ -10,6 +10,9 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 B12 — 옛 브라우저 검사 넷을 ESM_DIR 없이도
+- tests/alchemy.cjs · tests/dex-holo.cjs · tests/dex-turn.cjs · tests/screen.cjs — ESM_DIR 이 비면 공용 손(tests/lib/harness.cjs 의 ESM_DIR — $HOME/.cache/element-esm/node_modules)으로. 맨 실행(tests/*.cjs 전부)이 지나간다
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 고침 — 뒤로 가기 한 층씩 · 한 장은 화풍을 안 바꾼다 · 깨진 그림 · 단추 줄 · 초점
 - lib/walk.js — 뒤로 가기가 mode 를 지금 보기로 덮지 않는다(빈 자리 → 목록으로 건너뛴 뒤 뒤로 가기가 한 층씩 오르지 못하던 것, A1) · 보기 기억은 고르개만(A3) · 역사 칸 walk 를 조상 칸 수로, 길 표시는 history.go(-k)(모르면 지금 칸을 바꾼다 — 한 장이 다시 열리던 것, A6) · 길이 넘치면 끝(지금 자리)이 보이게(B9)
 - lib/walk-card.js — 한 장은 그 그림의 화풍으로 보이되 st 를 주소 · 기기 기억에 쓰지 않는다(카드 하나 열면 목록 화풍이 바뀌고 생성기 링크가 사라지던 것, A2 — 결정대로) · 열면 초점을 닫기 단추로, 닫으면 연 자리로(B3) · 그림 실패면 숨김(B6)

@@ -4,6 +4,7 @@
    Run: ESM_DIR=<preact 가 든 node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   (PORT 로 자리 바꾸기, 기본 8794) */
 const assert = require('node:assert/strict'), http = require('node:http'), fs = require('node:fs'), path = require('node:path');
 const { chromium } = require('playwright');
+process.env.ESM_DIR = process.env.ESM_DIR || require('./lib/harness.cjs').ESM_DIR;   /* ESM_DIR 이 비면 공용 손(tests/lib/harness.cjs)의 기본 자리 — 맨 실행으로도 돈다(최종 검토 B12) */
 const ROOT = path.resolve(__dirname, '..'), PORT = +(process.env.PORT || 8794), BASE = 'http://127.0.0.1:' + PORT;
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.css': 'text/css', '.md': 'text/markdown', '.webp': 'image/webp', '.png': 'image/png' };
 const server = http.createServer((q, s) => {

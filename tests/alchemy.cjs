@@ -39,6 +39,7 @@ console.log('  규칙 ' + n + '가지 — 조합 ' + Object.keys(G.recipes).leng
 
 /* ── 화면 ── */
 let chromium; try { ({ chromium } = require('playwright')); } catch (e) { console.log('PASS 원소 합성 규칙: ' + n + '가지(브라우저 없음)'); process.exit(0); }
+process.env.ESM_DIR = process.env.ESM_DIR || require('./lib/harness.cjs').ESM_DIR;   /* ESM_DIR 이 비면 공용 손(tests/lib/harness.cjs)의 기본 자리 — 맨 실행으로도 돈다(최종 검토 B12) */
 const PORT = +(process.env.PORT || 8802), BASE = 'http://127.0.0.1:' + PORT;
 const MIME = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.css': 'text/css' };
 const ESM = { 'https://esm.sh/preact@10.24.3': 'preact/dist/preact.mjs', 'https://esm.sh/preact@10.24.3/hooks': 'preact/hooks/dist/hooks.mjs',
