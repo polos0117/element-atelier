@@ -10,6 +10,12 @@
 
 
 
+## 2026-11-12 · claude · 도감 크게 보기 넘기기 전환
+- 사용자 「원소 도감에도 넘기기 전환 넣어줘」 — dex.html Lightbox: pkm 도감 크게 보기와 같은 모양(0.42초 · 18px). 나가는 그림의 사본(.lb-ghost — 바뀌기 직전에 주소 · 자리를 떠 둔다)이 반대쪽으로 밀리며 흐려지고, 새 그림은 넘긴 쪽에서 들어온다(단추 · 방향키 · 밀기 모두). 새 그림이 오면(늦어도 0.9초) 시작, 빠르게 넘기면 앞 전환은 끝낸다, 움직임 줄이기면 바로. lib/motion-fx.js 는 삼국지와 같이 쓰는 파일이라 건드리지 않고 Web Animations 로
+- lib/element.css — 사본 < 새 그림 < 홀로 빛 · 넘기기 단추(z-index). ?v= element 10
+- lib/holo.js — pkm 과 같은 파일로(그림을 바꿀 때 빛도 0.45초에 다시 든다). holo.js?v=2
+- tests/dex-turn.cjs(새로) · AGENTS.md 검사 목록
+
 ## 2026-11-12 · claude · 도감 크게 보기 홀로 효과(PixiJS — pkm 과 같은 파일)
 - 사용자 「원소 도감에도 홀로 효과 붙여줘」 — lib/holo.js(pkm-atelier 와 같은 파일): PixiJS 8.19.0(jsdelivr, WebGL 만) 캔버스를 그림 위에 screen 으로. 무지갯빛 반사 + 빛 번짐, 밝고 차가운 곳에 세게 · 살색 같은 따뜻한 색엔 약하게, 마우스 · 폰 기울기 · 가만두면 천천히, 움직임 줄이기 존중, 그림의 둥근 모서리를 따라간다
 - dex.html 크게 보기 — 「홀로」 단추(켜고 끈 것은 공방 모음 공용 열쇠 atelier_holo_v1 — pkm 도감과 같이), 넘겨도 캔버스는 그대로 그림만 바꿈. lib/element.css(캔버스 · 넘기기 단추 z-index) · lib/words.js dex.holo · ?v= words 16 · element 9

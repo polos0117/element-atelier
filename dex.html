@@ -23,14 +23,14 @@
 <!-- 즐겨찾기 — lib/favorites.js(공방들과 공방 모음이 글자 하나 다르지 않게 나눠 쓴다. 원소는 a: element) -->
 <script src="lib/favorites.js?v=1"></script>
 <link rel="stylesheet" href="lib/room.css?v=2">
-<link rel="stylesheet" href="lib/element.css?v=9">
+<link rel="stylesheet" href="lib/element.css?v=10">
 <link rel="stylesheet" href="lib/material.css?v=5">
 </head>
 <body class="prompt-page lab-page">
 <div class="wrap"><div id="app"></div></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
-import {useState,useEffect,useRef} from 'https://esm.sh/preact@10.24.3/hooks';
+import {useState,useEffect,useRef,useLayoutEffect} from 'https://esm.sh/preact@10.24.3/hooks';
 import {WorkspaceHeader} from './lib/workspace-ui.js?v=4';
 /* 도감 판(2026-10-31, 사용자 「도감 보기가 좀 불편해」) — 한 나라가 3만 픽셀이 넘어 주민 하나 찾기가 어려웠다.
    · 위에 붙는 판: 보기(세계 그림 · 일상컷 · 전부) · 세계(모두 · 판타지 · 스팀펑크 · 메카) · 바로 가기(근본 · 가문 · 주민 칩) · 즐겨찾기 수
@@ -143,16 +143,46 @@ function Lightbox({doc,box,setBox,close,favs}){
     const stage=document.querySelector('.lightbox .lb-stage'),img=stage&&stage.querySelector('img');
     if(!stage||!img)return;
     let gone=false;
-    import('./lib/holo.js?v=1').then(m=>m.mountHolo(stage,img,{reduced:reducedMotion()})).then(x=>{if(gone)x&&x.destroy();else holoRef.current=x;},()=>{});
+    import('./lib/holo.js?v=2').then(m=>m.mountHolo(stage,img,{reduced:reducedMotion()})).then(x=>{if(gone)x&&x.destroy();else holoRef.current=x;},()=>{});
     return()=>{gone=true;if(holoRef.current){holoRef.current.destroy();holoRef.current=null;}};
   },[opened,holo]);
   useEffect(()=>{const x=holoRef.current,img=document.querySelector('.lightbox .lb-stage img');if(x&&img)x.setImage(img);},[box&&box.file]);
+  /* 넘기기 전환(2026-11-12 사용자 「원소 도감에도 넘기기 전환 넣어줘」 — pkm 도감 크게 보기와 같은 모양: 0.42초, 18px).
+     나가는 그림은 바뀌기 직전(그리는 때)에 주소 · 자리를 떠 둔 사본(.lb-ghost)이 반대쪽으로 밀리며 흐려지고, 새 그림은 넘긴 쪽에서 들어온다.
+     그림 요소는 넘길 때마다 새로 생긴다(key). 움직임 줄이기면 바로 바뀐다. lib/motion-fx.js 는 삼국지와 같이 쓰는 파일이라 건드리지 않고 여기서 Web Animations 로 */
+  const dirRef=useRef(1),lastFile=useRef(null),outgoing=useRef(null),turnRun=useRef(null);
+  if(box&&lastFile.current&&lastFile.current!==box.file&&!outgoing.current){
+    const old=document.querySelector('.lightbox .lb-stage img');
+    if(old&&(old.currentSrc||old.src))outgoing.current={src:old.currentSrc||old.src,x:old.offsetLeft,y:old.offsetTop,w:old.offsetWidth,h:old.offsetHeight,r:getComputedStyle(old).borderRadius};
+  }
+  useLayoutEffect(()=>{
+    const prev=lastFile.current,snap=outgoing.current,stage=document.querySelector('.lightbox .lb-stage'),img=stage&&stage.querySelector('img');
+    outgoing.current=null;lastFile.current=box?box.file:null;
+    if(turnRun.current){turnRun.current();turnRun.current=null;}
+    if(!box||!prev||!snap||!img||prev===box.file||reducedMotion()||!img.animate)return;
+    const dir=dirRef.current<0?-1:1,ghost=document.createElement('div');
+    ghost.className='lb-ghost';ghost.setAttribute('aria-hidden','true');
+    Object.assign(ghost.style,{left:snap.x+'px',top:snap.y+'px',width:snap.w+'px',height:snap.h+'px',borderRadius:snap.r,backgroundImage:'url("'+snap.src.replace(/["\\\n\r]/g,encodeURIComponent)+'")'});
+    stage.insertBefore(ghost,img);
+    img.style.opacity='0';
+    const anims=[];let done=false;
+    const end=()=>{if(done)return;done=true;anims.forEach(a=>{try{a.cancel();}catch{}});ghost.remove();img.style.opacity='';};
+    turnRun.current=end;
+    const go=()=>{if(done)return;
+      const a=img.animate([{opacity:0,transform:'translateX('+dir*18+'px)'},{opacity:1,transform:'translateX(0px)'}],{duration:420,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'});
+      anims.push(a,ghost.animate([{opacity:1,transform:'translateX(0px)'},{opacity:0,transform:'translateX('+(-dir*18*0.6)+'px)'}],{duration:357,easing:'ease-in',fill:'both'}));
+      img.style.opacity='';a.onfinish=()=>{if(turnRun.current===end)turnRun.current=null;end();};};
+    /* 새 그림이 다 오면(늦어도 0.9초) 시작 — 빈 자리가 들어오지 않게 */
+    let t=setTimeout(go,900);
+    (img.complete&&img.naturalWidth?Promise.resolve():new Promise(ok=>{img.addEventListener('load',ok,{once:true});img.addEventListener('error',ok,{once:true});})).then(()=>(img.decode?img.decode().catch(()=>{}):null)).then(()=>{clearTimeout(t);go();});
+  },[box&&box.file]);
+  useEffect(()=>()=>{if(turnRun.current)turnRun.current();},[]);
   useEffect(()=>{if(!box)return;const k=e=>{if(e.key==='Escape')close();else if(e.key==='ArrowRight')step(1);else if(e.key==='ArrowLeft')step(-1);};addEventListener('keydown',k);return()=>removeEventListener('keydown',k);});
   if(!box)return null;
   const pics=picsOf(doc,box.card,box.st),i=Math.max(0,pics.findIndex(p=>p.file===box.file)),p=pics[i];
   if(!p)return null;
   /* 늘 지금 값에서 한 칸 — 키를 빨리 두 번 누르면 옛 자리를 읽어 안 넘어갔다 */
-  function step(d){setBox(b=>{if(!b)return b;const ps=picsOf(doc,b.card,b.st),n=ps.length;if(n<2)return b;const j=Math.max(0,ps.findIndex(x=>x.file===b.file));return Object.assign({},b,{file:ps[(j+d+n)%n].file});});}
+  function step(d){dirRef.current=d;setBox(b=>{if(!b)return b;const ps=picsOf(doc,b.card,b.st),n=ps.length;if(n<2)return b;const j=Math.max(0,ps.findIndex(x=>x.file===b.file));return Object.assign({},b,{file:ps[(j+d+n)%n].file});});}
   const faved=favs.some(x=>x.a===A&&x.file===p.file);
   const toggleFav=()=>{if(!FAV)return;const q=new URLSearchParams({nation:box.nation,card:box.card.key,pic:p.file});if(box.st&&box.st!==doc.s.default)q.set('st',box.st);
     const on=FAV.toggle({a:A,key:box.card.key,file:p.file,title:box.card.name,sub:p.long||p.label,thumb:IMG.thumbURL(p.file),full:IMG.imgURL(p.file),link:new URL('dex.html',location.href).pathname+'?'+q.toString()});

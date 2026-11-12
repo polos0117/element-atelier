@@ -168,6 +168,9 @@
 /* 홀로 효과(lib/holo.js, 2026-11-12) — 그림 위에 빛만 더한다. 넘기기 단추는 그 위 */
 .lb-stage canvas.holo-layer {position:absolute;z-index:1;pointer-events:none;mix-blend-mode:screen}
 .lb-nav {z-index:2}
+/* 넘기기 전환(2026-11-12) — 나가는 그림의 사본은 새 그림 아래, 홀로 빛 · 넘기기 단추는 그 위 */
+.lb-stage img {position:relative;z-index:1}
+.lb-stage .lb-ghost {position:absolute;z-index:0;pointer-events:none;background:center/contain no-repeat;will-change:opacity,transform}
 .lightbox .holo-toggle[aria-pressed="true"] {border-color:#f5ddb2;color:#f5ddb2}
 .fav-toast {position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:90;max-width:calc(100vw - 32px);padding:9px 16px;border-radius:999px;background:#fff;color:#111;font-size:13px;font-weight:700;text-align:center;pointer-events:none}
 .fav-toast:empty {display:none}

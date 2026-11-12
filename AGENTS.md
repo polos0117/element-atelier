@@ -124,6 +124,7 @@ node tests/img-shards.cjs               # 그림 주소·등록기·워크플로
 CHROMIUM_PATH=<chrome> node tests/prompt-pack-screen.cjs   # 지시문 묶음(tools/prompt-pack.cjs)의 기록을 생성기에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 씀
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 타이틀·주기율표·도감·생성기 — 폰·PC, 118칸, 세 층, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/dex-holo.cjs   # 도감 크게 보기 홀로 효과(lib/holo.js · PixiJS — ESM_DIR 에 pixi.js@8.19.0 사본도) — 그림에 맞음 · 넘기기 단추 위 · 끄기 기억 · 움직임 줄이기
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/dex-turn.cjs   # 도감 크게 보기 넘기기 전환 — 옛 그림 자리의 사본 · 넘긴 쪽에서 들어옴 · 끝나면 정리 · 움직임 줄이기면 바로
 ```
 
 ### 도감과 즐겨찾기(2026-10-31)
