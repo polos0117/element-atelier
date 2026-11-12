@@ -10,6 +10,21 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 고침 — 뒤로 가기 한 층씩 · 한 장은 화풍을 안 바꾼다 · 깨진 그림 · 단추 줄 · 초점
+- lib/walk.js — 뒤로 가기가 mode 를 지금 보기로 덮지 않는다(빈 자리 → 목록으로 건너뛴 뒤 뒤로 가기가 한 층씩 오르지 못하던 것, A1) · 보기 기억은 고르개만(A3) · 역사 칸 walk 를 조상 칸 수로, 길 표시는 history.go(-k)(모르면 지금 칸을 바꾼다 — 한 장이 다시 열리던 것, A6) · 길이 넘치면 끝(지금 자리)이 보이게(B9)
+- lib/walk-card.js — 한 장은 그 그림의 화풍으로 보이되 st 를 주소 · 기기 기억에 쓰지 않는다(카드 하나 열면 목록 화풍이 바뀌고 생성기 링크가 사라지던 것, A2 — 결정대로) · 열면 초점을 닫기 단추로, 닫으면 연 자리로(B3) · 그림 실패면 숨김(B6)
+- lib/walk-data.js — imgFail 하나(썸네일 → 원본 한 번 → 숨김 — onerror=null 이 Preact 에선 안 들어 404 그림을 초당 수백 번 다시 부르던 것, B1 · B6), 안 쓰는 hasArt 지움(B11)
+- lib/walk-orbit.js · lib/walk-family.js · lib/walk-list.js — imgFail(B1 · B6), 다른 세계 그림이면 「… 의 그림」(A7), 가문의 「목록에서 보기」(A7), 궤도/목록 고르개가 보기를 기억(A3)
+- lib/walk-table.js — ① 의 출발 자리는 궤도로 들어갈 때만 넘긴다(목록으로 가면 남았다가 나중에 터지던 것, A3)
+- lib/toolbox.js — 판 안에서 Tab 이 돈다(B3) · 판을 연 채 새로고침하면 죽은 {tb:1} 칸에서 한 칸 물러난다(A5) · 도구 화면 「← 돌아가기」는 공방에서 왔으면 history.back()(A4) · 기기 움직임 줄이기면 움직임 고르개를 막고 까닭(B10)
+- lib/walk-fx.js — 입자가 멈추면 PixiJS system 틱도 멈춘다(화면 밖에서 rAF 60/초, B5)
+- lib/walk.css — 한 장 단추 줄 wrap · 단추 글 한 줄 · 44px(사용자 「홀로, 즐겨찾기 그렇게 버튼 쭉 있는 텍스트가 세로로 안나오게 해줘」, B2) · 그림 칸 최소 크기(B6) · 세계 단추 · 화풍 고르개 44px(B7) · 어두운 바탕 강조색 --w-acc 와 흐린 칸 글 4.5:1(B8) · 목록 머리 원소 기호를 나라 카드 칸 모양으로(B13) · 「… 의 그림」 · 「목록에서 보기」(A7)
+- lib/words.js — gallery.from · walk.inList · tool.motion.system
+- alchemy.html — 카드 열기를 index.html?n=&mode=list(&card=&pic= 또는 &at=)로 바로(A9)
+- index.html · alchemy.html · prompt.html · styles.html · lib/walk*.js — words ?v=25 · walk.css ?v=9 · walk.js ?v=12 · toolbox ?v=3 · walk-card ?v=3 · walk-data ?v=4 · walk-family ?v=5 · walk-fx ?v=6 · walk-list ?v=5 · walk-orbit ?v=7 · walk-table ?v=6
+- tests/walk-*.cjs · tests/lib/harness.cjs — 고친 것마다 검사(빈 자리 → 목록 뒤로 가기 · 화풍 고르개 그대로 · 404 그림 부르기 수 · 단추 줄 · 키 초점 · 판 Tab · 대비 4.5 · 길 표시 · 돌아가기 · 새로고침 · rAF), A2 로 느슨하게 했던 단언 셋 되돌림, 입자 검사의 주석에 묻힌 줄 꺼냄(B4), 대비 손 contrast
+- AGENTS.md · DESIGN.md · docs/superpowers/plans/2026-11-12-element-walk-in.md — st 는 화풍 고르개로만 · 길 표시는 위로 · 계획의 「실행 중 바뀐 것」 A2 되돌림 기록
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 10-2 — 스팀펑크 전환의 김을 부드럽게
 - lib/walk-fx.js — 세계 전환 스팀펑크 입자를 겹친 원 여럿으로(한 원은 덮개 사진에서 가장자리가 계단처럼 보였다)
 - lib/walk-table.js · lib/walk-orbit.js · lib/walk-family.js · lib/walk-list.js · lib/walk.js · index.html — walk-fx ?v=5 · walk-orbit ?v=6 · walk-table ?v=5 · walk-family ?v=4 · walk-list ?v=4 · walk.js ?v=11

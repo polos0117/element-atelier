@@ -1,10 +1,12 @@
 /* 「들어가는 곳」(2026-11-12) 새 층들의 겉모습 — 어두운 밤하늘 바탕 위에 빛나는 원소 칸. 장식 틀 · 그림 단추(lib/material.css)는 쓰지 않는다.
    강조색은 공간의 var(--accent)(lib/workspace.css) 하나만 물든다. 아래쪽에 세계 · 테마 배경이 들어갈 자리(.w-scenery — 지금은 색 그라데이션).
    폴드 덮개 344×882 가 먼저 — 누르는 자리 44px, 가로 넘침 0. */
-.walk {--w-bg:#07080c;--w-ink:#ece9f2;--w-mute:#a9a5b8;--w-line:#ffffff1f;--w-card:#12141c;--w-pad:clamp(12px,3vw,32px)}
+.walk {--w-bg:#07080c;--w-ink:#ece9f2;--w-mute:#a9a5b8;--w-line:#ffffff1f;--w-card:#12141c;--w-pad:clamp(12px,3vw,32px);
+  /* 어두운 바탕 위의 강조 글 · 눌린 단추 — 공간의 강조색을 밝혀 4.5:1 넘게(밝은 공간의 강조색은 어두운 바탕에서 4.3 ~ 4.5 였다, 최종 검토 B8). 눌린 단추 글은 늘 어두운 잉크 */
+  --w-acc:color-mix(in srgb,var(--accent) 72%,#fff);--w-on-acc:#0b0a10}
 body.walk {margin:0;min-height:100vh;min-height:100dvh;background:var(--w-bg);color:var(--w-ink);overflow-x:hidden}
 .walk button {font:inherit;color:inherit}
-.walk :focus-visible {outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.walk :focus-visible {outline:2px solid var(--w-acc);outline-offset:3px;border-radius:6px}
 .w-shell {position:relative;z-index:1;min-height:100vh;min-height:100dvh}
 .w-wait {position:relative;z-index:1;margin:0;padding:40vh 16px 0;text-align:center;color:var(--w-mute)}
 
@@ -14,11 +16,11 @@ body.walk {margin:0;min-height:100vh;min-height:100dvh;background:var(--w-bg);co
 .w-crumbs::-webkit-scrollbar {display:none}
 .w-crumbs button {flex:none;min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--w-mute);cursor:pointer;font-size:13px}
 .w-crumbs button[aria-current="page"] {color:var(--w-ink);font-weight:700}
-.w-crumbs button:hover {color:var(--accent)}
+.w-crumbs button:hover {color:var(--w-acc)}
 .w-crumbs i {font-style:normal;color:var(--w-mute);opacity:.6}
 .w-worlds {display:inline-flex;padding:3px;border:1px solid var(--w-line);border-radius:999px;background:#ffffff0a}
-.w-worlds button {min-height:38px;min-width:44px;padding:0 14px;border:0;border-radius:999px;background:none;color:var(--w-mute);cursor:pointer;font-size:13px;font-weight:600;transition:background-color .25s,color .25s}
-.w-worlds button[aria-pressed="true"] {background:var(--accent);color:var(--on-accent,#0b0a10)}
+.w-worlds button {min-height:44px;min-width:44px;padding:0 14px;border:0;border-radius:999px;background:none;color:var(--w-mute);cursor:pointer;font-size:13px;font-weight:600;transition:background-color .25s,color .25s}
+.w-worlds button[aria-pressed="true"] {background:var(--w-acc);color:var(--w-on-acc)}
 .w-tools {display:flex;align-items:center;justify-content:flex-end}
 .w-main {position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:16px var(--w-pad) 96px}
 @media (max-width:760px) {
@@ -72,7 +74,7 @@ html[data-motion="off"] .w-table .pcell.on {animation-name:none}
 .w-ncard-counts {margin:6px 0 0;color:var(--w-mute);font-size:13px}
 .w-ncard-acts {grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
 .w-ncard-acts button {min-height:48px;border:1px solid var(--w-line);border-radius:14px;background:#ffffff0d;color:var(--w-ink);font-weight:700;cursor:pointer}
-.w-ncard-acts .main {background:var(--accent);border-color:var(--accent);color:var(--on-accent,#0b0a10)}
+.w-ncard-acts .main {background:var(--w-acc);border-color:var(--w-acc);color:var(--w-on-acc)}
 
 /* 범례 — 분류 열 */
 .w-legend {display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;max-width:1042px;margin:16px auto 0;padding:0;list-style:none;color:var(--w-mute);font-size:12px}
@@ -84,7 +86,7 @@ html[data-motion="off"] .w-table .pcell.on {animation-name:none}
 .w-where .w-crumbs {flex:0 1 auto}
 .w-steps {display:flex;flex:none}
 .w-steps button {width:44px;height:44px;border:0;border-radius:12px;background:none;color:var(--w-ink);font-size:22px;line-height:1;cursor:pointer}
-.w-steps button:hover {background:#ffffff12;color:var(--accent)}
+.w-steps button:hover {background:#ffffff12;color:var(--w-acc)}
 
 /* 가문주 원의 가운데가 고리 위(translate -24px = 원 반지름 + 여백), 이름 · 주민 수는 그 아래. 나라 · 궤도 층 — 옛 전시관 무대(.g-stage …)를 옮겨 이름을 바꿈. 넓으면 무대 | 글 두 칸, 좁으면 한 칸 */
 .w-orbit {overflow-x:clip}   /* 고리 끝의 가문주 이름표가 덮개 폭을 넘지 않게 — 스크롤 칸은 만들지 않는다 */
@@ -101,7 +103,7 @@ html[data-motion="off"] .w-table .pcell.on {animation-name:none}
 .w-nuc-pic {position:absolute;inset:0;overflow:hidden;border-radius:50%;border:2px solid color-mix(in srgb,var(--accent) 60%,transparent);box-shadow:0 0 28px color-mix(in srgb,var(--accent) 35%,transparent);background:#0b0d14}
 .w-nuc-pic img,.w-node-pic img {width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
 .w-nuc-cap {position:absolute;left:50%;bottom:-16%;transform:translateX(-50%);white-space:nowrap;padding:5px 12px;border-radius:999px;background:#000d;border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);font-size:14px}
-.w-nuc-cap b {color:var(--accent)}
+.w-nuc-cap b {color:var(--w-acc)}
 .w-orbit-ring {position:absolute;inset:0;z-index:3;pointer-events:none}
 .w-node {position:absolute;transform:translate(-50%,-24px);transform-origin:50% 24px;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:44px;min-height:44px;padding:2px 4px;border:0;border-radius:14px;background:none;color:var(--w-ink);
   line-height:1.15;white-space:nowrap;cursor:pointer;pointer-events:auto}
@@ -120,7 +122,7 @@ html[data-motion="off"] .w-table .pcell.on {animation-name:none}
 /* 궤도로 / 목록으로 */
 .w-mode {display:grid;grid-template-columns:1fr 1fr;max-width:420px;margin:44px auto 0;padding:3px;border:1px solid var(--w-line);border-radius:999px;background:#ffffff0a}
 .w-mode button {min-height:44px;border:0;border-radius:999px;background:none;color:var(--w-mute);font-size:14px;font-weight:600;cursor:pointer}
-.w-mode button[aria-pressed="true"] {background:var(--accent);color:var(--on-accent,#0b0a10)}
+.w-mode button[aria-pressed="true"] {background:var(--w-acc);color:var(--w-on-acc)}
 /* 나라 글 — 사실 칸 · 인격 · 그 세계의 나라 · 성질(옛 .g-text) */
 .w-ntext {max-width:58ch;margin:0 auto}
 .w-sym {display:flex;align-items:baseline;gap:10px;margin:0;color:var(--cat,var(--accent))}
@@ -131,7 +133,7 @@ html[data-motion="off"] .w-table .pcell.on {animation-name:none}
 .w-facts {margin:0 0 14px;padding:8px 0;border-block:1px solid var(--w-line);color:var(--w-mute);font-size:13px;font-variant-numeric:tabular-nums}
 .w-persona {margin:0 0 16px;font-size:15.5px;line-height:1.75}
 .w-wtext {margin:0 0 16px;padding:2px 0 2px 14px;border-left:2px solid var(--accent)}
-.w-wtext h2 {margin:0 0 4px;font-size:13px;font-weight:600;color:var(--accent)}
+.w-wtext h2 {margin:0 0 4px;font-size:13px;font-weight:600;color:var(--w-acc)}
 .w-wtext p {margin:0;line-height:1.7}
 .w-traits {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
 .w-traits li {padding:4px 10px;border:1px solid var(--w-line);border-radius:999px;color:var(--w-mute);font-size:13px}
@@ -157,18 +159,31 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 .walk .dex-toc {position:static;margin:12px 0 0;padding:10px 0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-block:1px solid var(--line);display:grid;gap:8px}
 .walk .toc-row {flex-wrap:wrap;overflow:visible;padding-right:0;-webkit-mask-image:none;mask-image:none}
 .walk .style-pick {flex:1 1 100%;min-width:0;min-height:44px}
-.walk .style-pick select {flex:1;min-width:0;max-width:none;min-height:42px}
+.walk .style-pick select {flex:1;min-width:0;max-width:none;min-height:44px}
 .walk .dex-toc .seg {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:1 1 100%;min-width:0}
 .walk .dex-toc .seg button {min-height:44px;min-width:0;padding:0 6px}
 /* 바로 가기 띠 — 막대 아래 붙고(조작 줄은 붙지 않는다 — 덮개 화면을 덜 먹게), 옆으로 구르며 양끝을 흐린다 */
 .walk .toc-jump {position:sticky;top:var(--w-bar-h,0px);z-index:5;margin:0 calc(-1 * clamp(12px,3vw,24px));padding:8px clamp(12px,3vw,24px);background:#07080ce6;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   -webkit-mask-image:linear-gradient(90deg,#0000,#000 22px,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#0000,#000 22px,#000 calc(100% - 28px),#0000)}
 .walk .toc-jump .jump {min-height:44px;min-width:44px}
+/* 목록 · 한 장의 옛 도감 클래스 — 강조 글 · 눌린 단추를 밝힌 강조색으로, 안 사는 세계 칸은 흐리게 하되(점선 테두리) 글은 4.5:1 넘게(최종 검토 B8) */
+.walk .about summary,.walk .row-head .shared a,.walk .card-head .fav-mark,.walk .more-row .more[aria-expanded="true"] {color:var(--w-acc)}
+.walk .seg button[aria-pressed="true"],.walk .tb-seg button[aria-pressed="true"] {background:var(--w-acc);border-color:var(--w-acc);color:var(--w-on-acc)}
+.walk .w-list .slot.dead {opacity:1;background:transparent}
+.walk .w-list .slot.dead .ph,.walk .w-list .slot.dead .cap {color:var(--w-mute)}
+/* 목록 머리의 원소 기호 — 나라 카드(.w-ncard-sym)와 같은 칸 모양. element.css 의 font 줄은 이 화면에 없는 제목 글꼴 변수로 무너져 작게 보였다(최종 검토 B13) */
+.walk .dex-head .sym {display:grid;place-items:center;flex:none;width:64px;height:64px;border:2px solid var(--cat,var(--w-acc));border-radius:14px;background:color-mix(in srgb,var(--cat,var(--w-acc)) 22%,transparent);
+  color:var(--w-ink);font-family:inherit;font-size:28px;font-weight:700;line-height:1}
 @media (max-width:760px) {.w-bar .w-worlds {grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-columns:none}}   /* 목록 층의 「전부」 까지 넷이 한 줄 */
 
 /* 한 장 — 위 막대 아래를 채운다(막대의 세계 고르개 · 길 표시는 그대로 쓴다). 덮개는 그림 · 단추 아래 글 판(굴려 본다), 넓으면 그림 | 글 판 */
 .walk .lightbox.w-card {top:var(--w-bar-h,0px);justify-content:flex-start;overflow-y:auto;padding:10px 12px 96px;background:#05060a}
 .walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 150px)}
+/* 단추 줄(홀로 · 즐겨찾기 · 지시문 · 닫기) — 덮개 344 에서 글이 세로로 꺾이지 않게: 단추 안 글은 한 줄, 넘치면 단추째 다음 줄로(사용자 「홀로, 즐겨찾기 그렇게 버튼 쭉 있는 텍스트가 세로로 안나오게 해줘」) */
+.walk .w-card .bar {flex-wrap:wrap;justify-content:center;max-width:100%}
+.walk .w-card .bar > * {display:inline-flex;align-items:center;justify-content:center;min-height:44px;white-space:nowrap}
+/* 그림이 안 와도(404) 칸이 무너지지 않게 — ‹ › 가 위 글에 겹치지 않는다(그림은 마지막 실패에 숨긴다, lib/walk-data.js imgFail) */
+.walk .w-card .lb-stage {flex:none;min-width:min(100%,240px);min-height:min(50dvh,360px)}
 
 /* 가문 층 — 옛 전시관 .g-family · .g-hero · .g-cits 를 옮겨 이름을 바꿈. 넓으면 가문주 | 글 두 칸, 좁으면 한 칸 */
 .w-pic {position:relative;display:block;aspect-ratio:2/3;overflow:hidden;border-radius:10px;background:#ffffff08 center/cover no-repeat}
@@ -178,9 +193,9 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 .w-hero {display:block;width:100%;max-width:420px;margin:0 auto;padding:0;border:0;background:none;cursor:pointer}
 .w-hero .w-pic {border-radius:14px;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 50%,transparent),0 0 60px color-mix(in srgb,var(--accent) 25%,transparent),0 30px 60px #000c}
 .w-hero.empty .w-empty-disc {width:min(60vw,260px);height:auto;aspect-ratio:2/3;border-radius:14px}
-.w-tier {margin:0;color:var(--accent);font-size:13px;letter-spacing:.04em}
+.w-tier {margin:0;color:var(--w-acc);font-size:13px;letter-spacing:.04em}
 .w-shared {color:var(--w-mute);font-size:13px}
-.w-shared button {min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--accent);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.w-shared button {min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--w-acc);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .w-cits {margin-top:clamp(28px,5vw,56px)}
 .w-cits h2 {margin:0 0 16px;font-size:20px}
 .w-cits ul {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,42vw),1fr));gap:clamp(12px,2.4vw,26px)}
@@ -192,12 +207,17 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 .w-cit-cap {display:block;padding:8px 2px 0}
 .w-cit-cap b {display:block;font-size:15px;line-height:1.3}
 .w-cit-cap small {color:var(--w-mute);font-size:12px}
+/* 다른 세계에서 빌려 온 그림 「… 의 그림」(옛 전시관 .pic .from) · 가문의 「목록에서 보기」(최종 검토 A7) */
+.w-from {position:absolute;left:50%;bottom:8px;transform:translateX(-50%);max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis;padding:2px 8px;border-radius:999px;background:#000b;color:#fff;font-size:11px;font-style:normal;white-space:nowrap;pointer-events:none}
+.w-nuc-pic .w-from {bottom:14%}
+.w-inlist {display:inline-flex;align-items:center;min-height:44px;color:var(--w-mute);font-size:13px;text-underline-offset:3px}
+.w-inlist:hover {color:var(--w-acc)}
 /* 한 장의 글 판(옛 전시관 한 장 글 몫) — 덮개는 그림 · 단추 아래(굴려 본다), 넓으면 그림 | 글 판 */
 .w-lore {width:100%;max-width:58ch;margin:14px auto 0;text-align:left}
 .w-lore .w-ntext {margin:0}
 .w-lore h1 {font-size:clamp(22px,3vw,30px)}
 .w-motif {margin:0 0 12px;color:var(--w-mute);font-size:13px}
-.w-motif b {color:var(--accent);font-weight:600}
+.w-motif b {color:var(--w-acc);font-weight:600}
 .w-lives {margin:0;color:var(--w-mute);font-size:13px}
 @media (min-width:900px) {
   .walk .lightbox.w-card {display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);grid-template-rows:auto minmax(0,1fr) auto;column-gap:clamp(20px,3vw,40px);align-items:center;justify-items:center;padding:16px clamp(16px,3vw,40px) 24px}

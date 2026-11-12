@@ -56,6 +56,10 @@ const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b =>
     // orbit image fails(Review Focus 5)
     const f = await open(br, base, '/index.html?n=fe&mode=orbit', { failURL: /orbit-fe\.webp/ });
     await f.page.waitForSelector('.w-ring-dash'); assert.equal(await f.page.locator('.w-ring-line').count(), 1); assert.deepEqual(f.errors, []); await f.ctx.close();
+    // 그림이 다 404(B6) — 근본 · 가문주 원에 깨진 그림 표시 없이(마지막 실패면 숨긴다)
+    const g = await open(br, base, '/index.html?n=fe&mode=orbit', { failURL: /\.(webp|png)(\?.*)?$/ }); await g.page.waitForSelector('.w-stage'); await g.page.waitForTimeout(1500);
+    assert.deepEqual(await g.page.locator('.w-nuc-pic img, .w-node-pic img').evaluateAll(es => [...new Set(es.map(e => getComputedStyle(e).visibility))]), ['hidden']);
+    await g.ctx.close();
     // 움직임 줄이기 — 주기율표에서 들어가도 ① 없음
     const r = await open(br, base, '/index.html', { reduced: true });
     await r.page.locator('.pcell.on[data-n="fe"]').click(); await r.page.click('.w-ncard [data-act="enter"]'); await r.page.waitForSelector('.w-stage');

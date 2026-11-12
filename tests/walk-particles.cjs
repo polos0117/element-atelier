@@ -23,7 +23,12 @@ const { COVER, WIDE, serve, launch, open, shot } = require('./lib/harness.cjs');
     await p.evaluate(() => { Object.defineProperty(document, 'hidden', { value: false, configurable: true }); document.dispatchEvent(new Event('visibilitychange')); });
     assert.equal((await part(p)).running, true);
     // 화면 밖으로 굴리면 멈춘다
-    await p.evaluate(() => { document.body.style.paddingBottom = '3000px'; scrollTo(0, 2500); });   // 나라 글이 짧아도 무대가 화면 밖으로 나가게 await p.waitForFunction(() => AtelierWalkFx.particles && !AtelierWalkFx.particles.running);
+    await p.evaluate(() => { document.body.style.paddingBottom = '3000px'; scrollTo(0, 2500); });   // 나라 글이 짧아도 무대가 화면 밖으로 나가게
+    await p.waitForFunction(() => AtelierWalkFx.particles && !AtelierWalkFx.particles.running);   // (최종 검토 B4 — 이 줄이 위 줄 주석 안에 묻혀 있었다)
+    // 멈춘 동안 그림 틀 요청도 멎는다(B5 — PixiJS system 틱이 초당 60번 돌던 것)
+    const raf = await p.evaluate(() => new Promise(ok => { let n = 0; const r = window.requestAnimationFrame; window.requestAnimationFrame = cb => { n++; return r.call(window, cb); };
+      setTimeout(() => { window.requestAnimationFrame = r; ok(n); }, 1000); }));
+    assert(raf < 10, '화면 밖에서 멈춘 동안 rAF ' + raf + '/초');
     await p.evaluate(() => { scrollTo(0, 0); document.body.style.paddingBottom = ''; }); await p.waitForFunction(() => AtelierWalkFx.particles && AtelierWalkFx.particles.running);
     // 도는 고리 — 손대면 멈춤
     const play = () => p.locator('.w-orbit-ring').evaluate(e => [getComputedStyle(e).animationName, getComputedStyle(e).animationPlayState].join(' '));

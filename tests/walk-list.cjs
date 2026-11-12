@@ -2,7 +2,7 @@
    더한 것: 조작 줄 두 줄(344 안) · 세계 거르기는 막대(「전부」 는 목록에서만) · ?at= 로 그 칸 · 목록 깊이에서 열고 닫으면 제자리 · 옛 dex.html 주소 · 옛 즐겨찾기 link 의 뒤로 가기.
    Run: NODE_PATH=<playwright 가 든 node_modules> node tests/walk-list.cjs */
 const assert = require('node:assert/strict');
-const { COVER, WIDE, serve, launch, open, noOverflow, shot } = require('./lib/harness.cjs');
+const { COVER, WIDE, serve, launch, open, noOverflow, shot, contrast } = require('./lib/harness.cjs');
 const D = require('../data/element-design.json'), S = require('../data/style.json'), IMGJ = require('../data/img.json');
 
 (async () => {
@@ -44,6 +44,9 @@ const D = require('../data/element-design.json'), S = require('../data/style.jso
     const dead = fe.families.reduce((s, f) => s + f.citizens.reduce((x, c) => x + (3 - c.worlds.length), 0), 0);
     assert.equal(await pg.locator('.slot.dead').count(), dead, '안 사는 세계는 작고 흐린 칸');
     if (dead) assert((await pg.locator('.slot.dead').first().boundingBox()).height < 110, '흐린 칸은 작다');
+    /* 어두운 바탕 대비 4.5:1(B8) — 흐린 칸 글 · 나라 설명 · 눌린 단추, 화풍 고르개 44px(B7) */
+    for (const [t, r] of await contrast(pg, '.slot.dead .ph, .slot.dead .cap, .about summary, .seg [aria-pressed="true"], .w-worlds [aria-pressed="true"], .w-mode [aria-pressed="true"], .row-head .shared a')) assert(r >= 4.5, '대비 ' + t + ' ' + r);
+    assert((await pg.locator('#dex-style').boundingBox()).height >= 44, '화풍 고르개 44px'); checks += 2;
     assert.equal(await pg.locator('.worlds.alt, .worlds.casuals, [data-more="alt"]').count(), 0, '세계 그림 보기 — 일상컷은 접혀 있고 다른 화풍 줄은 없다');
     assert.equal(await pg.locator('.toc-jump .jump').count(), 1 + fams + cit, '바로 가기 칩 — 근본·가문주·주민');
     /* 접은 단추 — 근본의 일상컷(고른 화풍 것만) */
@@ -112,7 +115,7 @@ const D = require('../data/element-design.json'), S = require('../data/style.jso
     await pg.goBack(); await pg.waitForFunction(() => document.documentElement.dataset.layer === 'list');
     assert(Math.abs((await pg.evaluate(() => scrollY)) - y0) <= 2, '닫으면 제자리'); checks += 2;
     /* 옛 주소 — 셋 중 도감 */
-    await pg.evaluate(() => localStorage.removeItem('element_dex_v1'));   // 위에서 기억된 화풍(game_keyart)이 빈 st 를 채우지 않게 — 처음 오는 사람처럼
+    await pg.evaluate(() => localStorage.removeItem('element_dex_v1'));   // 위에서 화풍 고르개로 고른 화풍(game_keyart)은 기억된다 — 처음 오는 사람처럼 지우고 본다
     await pg.goto(base + '/dex.html?nation=fe&view=casual&w=mecha'); await pg.waitForSelector('.dex-toc');
     assert.equal(new URL(pg.url()).search, '?n=fe&mode=list&w=mecha&view=casual');
     assert.equal(await pg.getAttribute('[data-view="casual"]', 'aria-pressed'), 'true'); checks += 2;
@@ -128,9 +131,12 @@ const D = require('../data/element-design.json'), S = require('../data/style.jso
     assert((await p2.getAttribute('.lightbox img', 'src')).endsWith(pic));
     await p2.goBack(); await p2.waitForFunction(() => document.documentElement.dataset.layer === 'list'); assert.equal(await p2.inputValue('#dex-style'), 'game_keyart');
     await p2.goBack(); await p2.waitForFunction(() => document.documentElement.dataset.layer === 'table');
-    /* 화풍 없는 옛 link 도 그 그림이 든 화풍으로 옮긴다 */
+    /* 화풍 없는 옛 link 도 그 그림을 연다 — 그림의 화풍으로 보이되 st 는 쓰지 않는다(A2): 뒤로 가면 목록은 고르개 그대로 */
+    await p2.evaluate(() => localStorage.removeItem('element_dex_v1'));
     await p2.goto(base + '/dex.html?nation=fe&card=fe&pic=' + encodeURIComponent(pic)); await p2.waitForSelector('.lightbox img');
-    await p2.waitForFunction(() => /st=game_keyart/.test(location.search));
+    assert((await p2.getAttribute('.lightbox img', 'src')).endsWith(pic)); assert.doesNotMatch(p2.url(), /[?&]st=/);
+    await p2.goBack(); await p2.waitForFunction(() => document.documentElement.dataset.layer === 'list');
+    assert.equal(await p2.inputValue('#dex-style'), S.default, '옛 link 의 그림 화풍이 고르개를 옮기지 않는다');
     assert.deepEqual(v.errors, []); checks += 4; await v.ctx.close();
     /* 빈 자리는 생성기로 — 그림이 없는 (카드, 세계) 하나를 등록부에서 찾아(나라 차례대로) 그 나라 목록에서 본다 */
     const holes = D.nations.flatMap(n => [n.key, ...n.families.flatMap(f => [n.key + '-' + f.key, ...f.citizens.map(c => n.key + '-' + f.key + '-' + c.key)])].flatMap(k => {
@@ -146,9 +152,19 @@ const D = require('../data/element-design.json'), S = require('../data/style.jso
     assert.equal(await v.page.locator('.row-head .shared a[href="index.html?n=o&mode=list"]').count(), 1, '물 가문은 산소나라와 나눈다');
     await v.page.click('.row-head .shared a[href="index.html?n=o&mode=list"]'); await v.page.waitForURL(/n=o&mode=list/);
     assert(await noOverflow(v.page)); assert.deepEqual(v.errors, []); checks += 4; await v.ctx.close();
+    /* 그림이 다 404(B1) — 썸네일 → 원본 한 번씩만, load 가 온다, 마지막 실패면 숨긴다 */
+    v = await open(br, base, '/index.html?n=fe&mode=list', { failURL: /\.(webp|png)(\?.*)?$/ }); await v.page.waitForSelector('.dex-head'); await v.page.waitForTimeout(2000);
+    { const per = {}; for (const u of v.requests.filter(u => /\.(webp|png)(\?|$)/.test(u))) per[u] = (per[u] || 0) + 1;
+      assert(Math.max(0, ...Object.values(per)) <= 2, '그림 부르기 ' + JSON.stringify(Object.entries(per).sort((a, b) => b[1] - a[1]).slice(0, 2)));
+      const seen = await v.page.locator('.slot .face img').evaluateAll(es => es.filter(e => e.complete && e.getBoundingClientRect().top < innerHeight).map(e => getComputedStyle(e).visibility));
+      assert(seen.length && seen.every(x => x === 'hidden'), '실패한 그림은 숨긴다 ' + seen); }
+    await v.ctx.close(); checks += 2;
     /* WIDE — 열고 칸 수 · 넘침 · 오류 */
     const w = await open(br, base, '/index.html?n=fe&mode=list', { viewport: WIDE }); await w.page.waitForSelector('.dex-head');
     assert.equal(await w.page.locator('.worlds.main .slot').count(), 3 + fams * 3 + cit * 3);
+    /* 목록 머리의 원소 기호는 나라 카드처럼 칸(B13) */
+    const sym = await w.page.locator('.dex-head .sym').evaluate(e => ({ w: e.getBoundingClientRect().width, f: parseFloat(getComputedStyle(e).fontSize) }));
+    assert(sym.w >= 56 && sym.f >= 24, '원소 기호 칸 ' + JSON.stringify(sym));
     assert(await noOverflow(w.page)); assert.deepEqual(w.errors, []); checks += 3; await w.ctx.close();
     console.log('PASS walk-list: ' + checks + '가지 — 세 층 · 흐린 칸 · 화풍 고르개 · 일상컷 · 바로 가기 · 조작 줄 두 줄(344 안) · 막대의 세계 거르기 · 한 장 넘기기 · 하트 · 즐겨찾기 수는 도구 상자 · 뒤로 가기는 한 장만 · ?at= · 목록 제자리 · 옛 dex 주소 · 옛 즐겨찾기 link · 빈 자리 → 생성기 · 겹치는 가문 · ' + COVER.width + ' · ' + WIDE.width);
   } finally { await br.close(); close(); }

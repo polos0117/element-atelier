@@ -50,4 +50,7 @@ const K = { transition: 'ember', alkali: 'ember', alkaline_earth: 'ember', post_
   noble_gas: 'mote', metalloid: 'glint', lanthanide: 'flicker', actinide: 'flicker', unknown: 'mote' };
 for (const [c, k] of Object.entries(K)) assert.equal(R.particleKind(c), k, c);
 assert.equal(R.particleCap(344), 24); assert.equal(R.particleCap(1280), 48);
+// 합성의 카드 열기는 새 주소로 바로(A9 — 옛 dex.html 넘김을 거치지 않는다)
+const ALC = require('node:fs').readFileSync(require('node:path').join(__dirname, '..', 'alchemy.html'), 'utf8');
+assert(!/['"]dex\.html/.test(ALC), 'alchemy.html 에 옛 dex.html 링크가 없다'); assert(ALC.includes("'index.html?n='+l.nation+'&mode=list&'"), 'alchemy.html — 목록의 그 카드로');
 console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례 · 입자 종류/상한');

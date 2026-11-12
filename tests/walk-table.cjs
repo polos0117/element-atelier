@@ -2,7 +2,7 @@
    나라 카드(가문 · 주민 수, 들어가기 · 목록 44px, Esc) · 「들어가기」 두 번에 역사 한 칸 · PixiJS 안 받음 · 옛 hall.html · 효과 ④(숨쉬기 · 불꽃)와 움직임 줄이기/끄기.
    Run: NODE_PATH=<playwright 가 든 node_modules> node tests/walk-table.cjs */
 const assert = require('node:assert/strict');
-const { COVER, WIDE, serve, launch, open, noOverflow, shot } = require('./lib/harness.cjs');
+const { COVER, WIDE, serve, launch, open, noOverflow, shot, contrast } = require('./lib/harness.cjs');
 const D = require('../data/element-design.json');
 
 (async () => {
@@ -26,6 +26,7 @@ const D = require('../data/element-design.json');
     const n = D.nations.find(x => x.key === 'fe'), cit = n.families.reduce((s, f) => s + f.citizens.length, 0);
     assert((await p.locator('.w-ncard').textContent()).includes('가문 ' + n.families.length + ' · 주민 ' + cit));
     for (const a of ['enter', 'list']) assert((await p.locator('.w-ncard [data-act="' + a + '"]').boundingBox()).height >= 44);
+    for (const [t, r] of await contrast(p, '.w-ncard [data-act="enter"], .w-worlds [aria-pressed="true"]')) assert(r >= 4.5, '대비(B8) ' + t + ' ' + r);
     // Esc 로 닫힘 — 역사는 그대로
     const len0 = await p.evaluate(() => history.length);
     await p.keyboard.press('Escape'); await p.waitForSelector('.w-ncard', { state: 'detached' });

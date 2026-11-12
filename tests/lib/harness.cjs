@@ -62,4 +62,17 @@ async function shot(page, name) {
   fs.mkdirSync(process.env.SHOT_DIR, { recursive: true });
   await page.screenshot({ path: path.join(process.env.SHOT_DIR, name + '.png') });
 }
-module.exports = { ROOT, COVER, WIDE, serve, launch, open, noOverflow, shot };
+/* 글 대비 — 고른 요소마다 [글, 대비] (글자색 × 조상 투명도를 조상 바탕 겹(맨 아래 #07080c) 위에 섞어 WCAG 대비) */
+const contrast = (page, sel) => page.locator(sel).evaluateAll(els => {
+  const parse = c => { const s = String(c), k = s.match(/color\(srgb ([^)]+)\)/), m = s.match(/rgba?\(([^)]+)\)/); if (!k && !m) return null;   /* color-mix 는 color(srgb 0~1 …) 로 온다 */
+    const p = (k || m)[1].split(/[ ,\/]+/).filter(Boolean).map(Number), x = k ? 255 : 1; return [p[0] * x, p[1] * x, p[2] * x, p.length > 3 ? p[3] : 1]; };
+  const lum = c => { const f = v => { v /= 255; return v <= .03928 ? v / 12.92 : Math.pow((v + .055) / 1.055, 2.4); }; return .2126 * f(c[0]) + .7152 * f(c[1]) + .0722 * f(c[2]); };
+  return els.map(el => {
+    const stack = []; for (let p = el; p; p = p.parentElement) { const c = parse(getComputedStyle(p).backgroundColor); if (c && c[3] > 0) { stack.push(c); if (c[3] >= .99) break; } }
+    let bg = [7, 8, 12]; for (const c of stack.reverse()) bg = bg.map((v, i) => v * (1 - c[3]) + c[i] * c[3]);
+    let op = 1; for (let p = el; p; p = p.parentElement) op *= +getComputedStyle(p).opacity;
+    const fg = parse(getComputedStyle(el).color), a = fg[3] * op, mix = fg.slice(0, 3).map((v, i) => v * a + bg[i] * (1 - a)), L1 = lum(mix), L2 = lum(bg);
+    return [el.textContent.trim().slice(0, 16), +((Math.max(L1, L2) + .05) / (Math.min(L1, L2) + .05)).toFixed(2)];
+  });
+});
+module.exports = { ROOT, ESM_DIR, contrast, COVER, WIDE, serve, launch, open, noOverflow, shot };
