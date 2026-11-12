@@ -32,7 +32,9 @@ const seen = new Set(); for (let i = 0; i < 40; i++) { const hh = A.hint(G, st);
 assert(seen.size >= 4, '힌트가 남은 조합을 돈다 ' + [...seen]);
 const all = A.blank(); Object.keys(G.recipes).forEach(k => A.combine(G, all, k.split('+')));
 assert.equal(all.found.length, G.lords.length, '조합표로 모든 카드를 찾을 수 있다'); assert.equal(A.hint(G, all), null, '다 찾으면 힌트 없음');
-n += 10;
+const stale = { found: ['h-water', 'h-water', 'gone-key', 'o-water'], tries: 1, hints: 0 };
+assert.deepEqual(A.tidy(G, stale).found, ['h-water', 'o-water'], '지금 없는 카드 · 겹친 열쇠는 뺀다(수집 25 / 24 막기)');
+n += 11;
 console.log('  규칙 ' + n + '가지 — 조합 ' + Object.keys(G.recipes).length + ' · 카드 ' + G.lords.length);
 
 /* ── 화면 ── */

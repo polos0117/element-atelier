@@ -19,7 +19,7 @@
 <script src="lib/workspace-theme.js?v=3"></script>
 <script src="lib/words.js?v=17"></script>
 <script src="lib/img.js?v=9"></script>
-<script src="lib/alchemy.js?v=1"></script>
+<script src="lib/alchemy.js?v=2"></script>
 <link rel="stylesheet" href="lib/element.css?v=10">
 <style>
   .alchemy-page .wrap {max-width:none;padding:0}
@@ -63,7 +63,7 @@ async function docs(){
 
 class Main extends Phaser.Scene{
   constructor(){super('main');}
-  init(data){this.game_=data.game;this.state=AL.load();this.picks=[];this.busy=false;}
+  init(data){this.game_=data.game;this.state=AL.tidy(data.game,AL.load());this.picks=[];this.busy=false;}
   create(){
     const G=this.game_,cx=GW/2;
     this.cameras.main.setBackgroundColor(TH.bg);
@@ -149,7 +149,8 @@ class Main extends Phaser.Scene{
     const dim=this.add.rectangle(GW/2,GH/2,GW,GH,TH.bg,0.985).setInteractive();   /* 뒤 화면이 비치지 않게 바탕색으로 */
     o.items.push(dim);this.overlay=o;return o;
   }
-  closeOverlay(){if(!this.overlay)return;this.overlay.items.forEach(x=>x.destroy());this.tweens.killAll();this.overlay=null;this.refresh();}
+  /* 덮개의 트윈만 멈춘다 — 전부(killAll) 멈추면 합성로 · 칸의 움직임까지 끊겨 크기가 중간에 남는다(2026-11-12 game-feel 스킬 점검: 움직임은 늘 제자리로) */
+  closeOverlay(){if(!this.overlay)return;this.tweens.killTweensOf(this.overlay.items);this.overlay.items.forEach(x=>x.destroy());this.overlay=null;this.refresh();}
   loadPics(keys){
     const want=keys.filter(k=>k&&!this.textures.exists('p:'+k));
     if(!want.length)return Promise.resolve();

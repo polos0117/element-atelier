@@ -10,6 +10,12 @@
 
 
 
+## 2026-11-12 · claude · 홀로 · 합성 점검(허브 게임 스킬)
+- 사용자 「응 스킬 읽고 만든 것들 점검해줘」 — 허브 .claude/skills 의 pixijs-rendering · shader-programming · phaser-core · card-game · game-feel 로 대조
+- lib/holo.js(pkm 과 같은 파일) — 거꾸로 준 smoothstep 가장자리 · 셰이더 정밀도 highp · 앱 정리 releaseGlobalResources. dex.html holo.js?v=3
+- lib/alchemy.js tidy · alchemy.html — 저장된 열쇠 가운데 지금 설계표에 없는 카드 · 겹친 열쇠는 뺀다(가문을 고치면 「수집 25 / 24」 가 될 수 있었다). 덮개를 닫을 때 모든 트윈(killAll)이 아니라 덮개 것만 멈춘다(합성로 · 칸 움직임이 중간에 끊겨 크기가 남지 않게). alchemy.js?v=2
+- tests/alchemy.cjs — tidy
+
 ## 2026-11-12 · claude · 원소 합성(Phaser) — 근본 원소를 붙여 가문주 카드 모으기
 - 사용자 「Phaser — 그림으로 놀기 … 원소 둘을 붙여 물질 만들기 … 이것도 해볼까?」 → 「합성 + 수집」. alchemy.html(새로): 근본 원소 패(주기율표 번호 차례 · 분류 색)를 하나 ~ 셋 골라 합성로에 넣고 「합성」 — 그 원소 묶음으로 된 물질(설계표 가문 elements)이 있으면 나라마다 가문주 카드가 뒤집히며 열린다(H + O → 수소의 물 · 산소의 물, Fe + O → 녹 · 피 넷, 한 원소 → 그 나라 혼자 가진 물질). 비활성 기체는 「섞이지 않는다」, 힌트(원소 몇 개 · 그중 하나), 수집첩(24장 — 찾은 카드는 그림, 누르면 도감), 찾은 것은 이 기기에(element_alchemy_v1). Phaser 4.2.1(jsdelivr), 캔버스는 논리 두 배 크기 · 테마 색을 읽는다, 결과는 화면 읽기에도
 - lib/alchemy.js(새로) — 조합표 · 합성 · 힌트 · 저장(node 와 같이). lib/workspace-ui.js 메뉴에 「합성」, lib/words.js nav.alchemy · alchemy.*. 모든 화면 ?v= words 17 · workspace-ui 5

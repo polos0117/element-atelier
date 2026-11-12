@@ -143,7 +143,7 @@ function Lightbox({doc,box,setBox,close,favs}){
     const stage=document.querySelector('.lightbox .lb-stage'),img=stage&&stage.querySelector('img');
     if(!stage||!img)return;
     let gone=false;
-    import('./lib/holo.js?v=2').then(m=>m.mountHolo(stage,img,{reduced:reducedMotion()})).then(x=>{if(gone)x&&x.destroy();else holoRef.current=x;},()=>{});
+    import('./lib/holo.js?v=3').then(m=>m.mountHolo(stage,img,{reduced:reducedMotion()})).then(x=>{if(gone)x&&x.destroy();else holoRef.current=x;},()=>{});
     return()=>{gone=true;if(holoRef.current){holoRef.current.destroy();holoRef.current=null;}};
   },[opened,holo]);
   useEffect(()=>{const x=holoRef.current,img=document.querySelector('.lightbox .lb-stage img');if(x&&img)x.setImage(img);},[box&&box.file]);
