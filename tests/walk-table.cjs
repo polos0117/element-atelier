@@ -61,6 +61,30 @@ const D = require('../data/element-design.json');
     await m.page.locator('.pcell.on[data-n="fe"]').click(); await m.page.waitForSelector('.w-ncard');
     assert.equal(await m.page.locator('.w-spark').count(), 0); assert.deepEqual(await m.page.evaluate(() => AtelierWalkFx.fired), []);
     await m.ctx.close();
+    // 나라 판(2026-11-13) — 타일 = 나라 수 · 덮개에서 누를 만한 크기 · 장수는 기본 화풍만 · 거르개 · 타일 → 카드(세계별 장수) · 그림 없는 나라는 표에서 테두리만
+    const b = await open(br, base, '/index.html'); await b.page.waitForSelector('.w-tile');
+    const IMGS = require('../data/img.json').img, ST = require('../data/style.json').default, WS = D.vocab.worlds;
+    const count = n => { let done = 0, all = 0, cas = 0; const one = (k, ws) => { const f = ((IMGS[k] || {}).byStyle || {})[ST]; const m = (f && f.byForm) || {};
+        for (const w of ws) { all++; if (m[w] && m[w].f) done++; } for (const w of WS) cas += (((m[w] || {}).casual || {}).f || []).length; };
+      one(n.key, WS); for (const f of n.families || []) { one(n.key + '-' + f.key, WS); for (const c of f.citizens || []) one(n.key + '-' + f.key + '-' + c.key, c.worlds || []); }
+      return { done, all, cas }; };
+    assert.equal(await b.page.locator('.w-tile').count(), D.nations.length, '타일 = 나라 수');
+    for (const bx of await b.page.locator('.w-tile').evaluateAll(es => es.map(e => { const r = e.getBoundingClientRect(); return [r.width, r.height]; }))) assert(bx[0] >= 90 && bx[1] >= 44, '타일 크기 ' + bx);
+    const cFe = count(D.nations.find(x => x.key === 'fe')), tFe = await b.page.locator('.w-tile[data-n="fe"]').textContent();
+    assert(tFe.includes('세계 ' + cFe.done + '/' + cFe.all) && tFe.includes('일상 ' + cFe.cas), '철 장수(기본 화풍) ' + tFe);
+    const none = D.nations.filter(n => { const c = count(n); return !c.done && !c.cas; }).length;
+    assert.equal(await b.page.locator('.pcell.on.bare').count(), none, '그림 없는 나라 칸은 테두리만');
+    await b.page.click('.w-filter [data-f="none"]'); assert.equal(await b.page.locator('.w-tile').count(), none);
+    await b.page.click('.w-filter [data-f="has"]'); assert.equal(await b.page.locator('.w-tile').count(), D.nations.length - none);
+    for (const bx of await b.page.locator('.w-filter button').evaluateAll(es => es.map(e => e.getBoundingClientRect().height))) assert(bx >= 44);
+    await b.page.click('.w-tile[data-n="fe"]'); await b.page.waitForSelector('.w-tiles .w-ncard[data-n="fe"]');
+    assert.equal(await b.page.locator('.w-ncard-tally > div').count(), WS.length + 1);
+    assert.equal((await b.page.locator('.w-ncard-tally [data-w="casual"] dd').textContent()).trim(), String(cFe.cas));
+    assert(await noOverflow(b.page)); await shot(b.page, 'table-board');
+    await b.page.click('.w-tile[data-n="fe"]'); await b.page.waitForSelector('.w-ncard', { state: 'detached' });   // 같은 타일 다시 = 닫기
+    // 표를 누르면 거르개가 전부로 돌아가고 그 나라 카드가 판에 뜬다
+    await b.page.click('.w-filter [data-f="none"]'); await b.page.locator('.pcell.on[data-n="h"]').click(); await b.page.waitForSelector('.w-tiles .w-ncard[data-n="h"]');
+    assert.equal(await b.page.locator('.w-tile').count(), D.nations.length); assert.deepEqual(b.errors, []); await b.ctx.close();
     // WIDE — 118 · 나라 수 · 넘침 · 오류
     const w = await open(br, base, '/index.html', { viewport: WIDE }); await w.page.waitForSelector('.w-table .pcell');
     assert.equal(await w.page.locator('.w-table .pcell').count(), 118); assert.equal(await w.page.locator('.w-table .pcell.on').count(), D.nations.length);
