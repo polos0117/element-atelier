@@ -81,12 +81,26 @@ const server = http.createServer((q, s) => {
       await p.evaluate(() => window.AtelierAlchemyGame.combine());
       await p.waitForFunction(() => window.AtelierAlchemyGame.state().overlay === 'reveal', null, { timeout: 10000 });
       let s = await S(p);
+      /* 합성 연출(2026-11-12) — 처음 찾은 물질은 큰 단계(입자 · 번쩍임 · 흔들림), 끝나면 모두 제자리 */
+      assert.deepEqual(s.fx, { tier: 'big', burst: 28, shake: true, flash: true }, '처음 찾음 — 큰 단계');
+      await p.waitForTimeout(1600);
+      const rest = (await S(p)).rest;
+      assert(rest.ring === 1 && rest.glow === 1 && rest.ringX === (await p.evaluate(() => window.AtelierAlchemyGame.state().rest.ringX)) && rest.flash === 0 && rest.cam[0] === 0 && rest.cam[1] === 0, '연출이 끝나면 제자리 ' + JSON.stringify(rest));
+      assert(rest.slots.every(([dx, dy, sc, al]) => dx === 0 && dy === 0 && sc === 1 && al === 1), '칸이 제자리 ' + JSON.stringify(rest.slots)); n += 3;
       assert.deepEqual(s.cards.slice().sort(), ['h-water', 'o-water'], '카드가 열린다'); assert.deepEqual(s.found.slice().sort(), ['h-water', 'o-water']); assert.deepEqual(s.picks, [], '합성로는 비운다'); n += 3;
       await p.waitForTimeout(1200);
       if (vp.width === 390) await p.screenshot({ path: process.env.SHOT_DIR ? path.join(process.env.SHOT_DIR, 'alchemy-reveal.png') : '/dev/null' }).catch(() => {});
       await p.evaluate(() => window.AtelierAlchemyGame.close());
+      /* 이미 찾은 조합은 작은 단계, 실패는 회색 김 */
+      await p.evaluate(() => { const g = window.AtelierAlchemyGame; g.pick('h'); g.pick('o'); g.combine(); });
+      await p.waitForFunction(() => window.AtelierAlchemyGame.state().overlay === 'reveal', null, { timeout: 10000 });   /* 연출은 모으기(0.22초) 뒤에 터진다 */
+      assert.deepEqual((await S(p)).fx, { tier: 'small', burst: 8, shake: false, flash: false }, '이미 찾음 — 작은 단계');
+      await p.evaluate(() => window.AtelierAlchemyGame.close());   /* 카드가 뒤집히는 중에 닫아도 탈 없이 */
+      await p.evaluate(() => { const g = window.AtelierAlchemyGame; g.pick('fe'); g.pick('au'); g.combine(); });
+      assert.equal((await S(p)).fx.tier, 'fail', '실패 — 회색 김'); n += 2;
       /* 비활성 · 셋까지 · 없는 조합 */
-      await p.evaluate(() => { const g = window.AtelierAlchemyGame; g.pick('he'); g.pick('o'); g.combine(); });
+      await p.waitForTimeout(400);
+      await p.evaluate(() => { const g = window.AtelierAlchemyGame; g.clear(); g.pick('he'); g.pick('o'); g.combine(); });
       s = await S(p); assert.equal(s.overlay, null); assert.match(s.msg, /비활성/, '비활성 기체'); n += 2;
       await p.evaluate(() => { const g = window.AtelierAlchemyGame; g.clear(); ['c', 'h', 'o', 'fe'].forEach(k => g.pick(k)); });
       s = await S(p); assert.deepEqual(s.picks, ['c', 'h', 'o'], '셋까지'); assert.match(s.msg, /세 칸/); n += 2;
@@ -106,6 +120,17 @@ const server = http.createServer((q, s) => {
       assert.deepEqual(errors, [], vp.width + ' 오류'); n++;
       await ctx.close();
     }
+    /* 움직임 줄이기 — 입자 · 흔들림 · 번쩍임 없이 바로 결과, 카드는 앞면 */
+    { const ctx = await br.newContext({ viewport: { width: 390, height: 844 }, reducedMotion: 'reduce' });
+      await ctx.route(/^https?:\/\/(?!127\.0\.0\.1)/, rt => { const url = rt.request().url();
+        if (/\.(webp|png)(\?.*)?$/.test(url)) return rt.fulfill({ contentType: 'image/svg+xml', headers: { 'Access-Control-Allow-Origin': '*' }, body: SVG });
+        const file = process.env.ESM_DIR && ESM[url.split('?')[0]]; if (!file || !fs.existsSync(path.join(process.env.ESM_DIR, file))) return rt.abort();
+        return rt.fulfill({ status: 200, contentType: 'text/javascript', body: fs.readFileSync(path.join(process.env.ESM_DIR, file), 'utf8').replace(/from"preact"/g, 'from"https://esm.sh/preact@10.24.3"') }); });
+      const { page: q, errors } = await open(null, ctx);
+      await q.evaluate(() => { const g = window.AtelierAlchemyGame; g.pick('fe'); g.pick('c'); g.combine(); });
+      await q.waitForFunction(() => window.AtelierAlchemyGame.state().overlay === 'reveal', null, { timeout: 10000 });
+      assert.deepEqual((await S(q)).fx, { tier: 'big', burst: 0, shake: false, flash: false }, '움직임 줄이기 — 연출 없음');
+      assert.deepEqual(errors, [], '움직임 줄이기 오류'); n += 2; await ctx.close(); }
     console.log('PASS 원소 합성: ' + n + '가지 — 규칙(조합표 · 나눈 물질 · 한 원소 · 비활성 · 셋까지 · 힌트) · 화면(폰 · PC 맞춤 · 눌러 고르기 · 카드 열림 · 수집첩 · 남음 · 메뉴)');
   } finally { await br.close(); server.close(); }
 })().catch(e => { console.error(e); process.exit(1); });

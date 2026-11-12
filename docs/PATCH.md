@@ -10,6 +10,11 @@
 
 
 
+## 2026-11-12 · claude · 원소 합성 — 성공 연출(손맛)
+- 사용자 「합성 성공 연출 손맛 있게 넣어줘」 — 허브 game-feel 스킬의 단계표대로 alchemy.html 에 연출 묶음(feedback): 처음 찾은 물질(큰 단계) = 모으기(고른 칸이 가운데로 빨려 들고 합성로가 움츠림, Cubic.In) → 터짐(합성로가 넘쳤다 제자리 Back.Out · 빛 번짐 · 강조색 번쩍임 한 번 · 고른 원소의 분류 색 입자 28 · 살짝 흔들림) → 잠깐 숨 → 카드가 넘치게 튀어나오며 반짝이 · 「새 카드 +n」 떠오르기 · 수집 수가 하나씩 올라감. 이미 찾은 물질(작은 단계) = 입자 8, 흔들림 · 번쩍임 없음. 실패 = 회색 김 + 도리질. 움직임 줄이기면 연출 없이 바로 결과(카드도 앞면)
+- 입자 장치 하나를 돌려 쓰고, 모든 움직임은 끝나면 제자리(크기 1 · 자리 · 카메라 0)로. 합성 중엔 다시 못 눌러 번쩍임이 1초 세 번을 넘지 않는다(WCAG 2.3.1). 위 수집 수는 결과를 닫을 때 바뀐다
+- lib/words.js alchemy.gain, ?v= words 18(합성 화면). tests/alchemy.cjs — 단계 · 끝나면 제자리 · 뒤집히는 중에 닫기 · 움직임 줄이기
+
 ## 2026-11-12 · claude · 홀로 · 합성 점검(허브 게임 스킬)
 - 사용자 「응 스킬 읽고 만든 것들 점검해줘」 — 허브 .claude/skills 의 pixijs-rendering · shader-programming · phaser-core · card-game · game-feel 로 대조
 - lib/holo.js(pkm 과 같은 파일) — 거꾸로 준 smoothstep 가장자리 · 셰이더 정밀도 highp · 앱 정리 releaseGlobalResources. dex.html holo.js?v=3

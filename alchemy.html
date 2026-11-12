@@ -17,7 +17,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=3"></script>
-<script src="lib/words.js?v=17"></script>
+<script src="lib/words.js?v=18"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/alchemy.js?v=2"></script>
 <link rel="stylesheet" href="lib/element.css?v=10">
@@ -50,6 +50,11 @@ const catColor={};
 const catOf=k=>{if(catColor[k]!=null)return catColor[k];const p=document.createElement('span');p.className='cat-probe';p.dataset.cat=k;document.body.appendChild(p);const c=css(p,'--cat');p.remove();return catColor[k]=hex(c||'#888');};
 const FONT="'IBM Plex Sans KR','Apple SD Gothic Neo','Noto Sans KR',system-ui,sans-serif";
 const S=2,GW=420*S,GH=860*S;   /* 논리 크기 두 배 */
+const reduced=()=>{try{return matchMedia('(prefers-reduced-motion: reduce)').matches;}catch{return false;}};
+/* 합성 연출 단계(2026-11-12 사용자 「합성 성공 연출 손맛 있게 넣어줘」 — 허브 game-feel 스킬의 단계표: 이벤트마다 단계 하나, 그 묶음을 한 번에).
+   big = 처음 찾은 물질(모으기 → 터짐 · 번쩍임 한 번 · 입자 · 살짝 흔들림 → 카드 튀어나오기 · 「새 카드 +n」), small = 이미 찾은 물질(입자 조금), fail = 아무 일 없음(회색 김 · 도리질).
+   움직임 줄이기면 흔들림 · 번쩍임 · 입자 · 모으기 없이 바로 결과(카드도 뒤집지 않고 앞면). 번쩍임은 합성 한 번에 한 번 — 합성 중엔 다시 못 눌러 1초 세 번을 넘지 않는다(WCAG 2.3.1) */
+const FX={big:{burst:28,shake:180,shakeAmt:0.006,flash:true,card:10},small:{burst:8,shake:0,flash:false,card:0},fail:{burst:5,shake:0,flash:false,card:0}};
 const T=(scene,x,y,str,size,opt={})=>scene.add.text(x,y,str,Object.assign({fontFamily:FONT,fontSize:(size*S)+'px',color:TH.ink,align:'center'},opt)).setOrigin(0.5);
 
 async function docs(){
@@ -96,8 +101,18 @@ class Main extends Phaser.Scene{
       c.setInteractive({useHandCursor:true}).on('pointerdown',()=>this.toggle(r.key));
       this.tokens[r.key]={c,sym,name,col};
     });
+    /* 입자 — 작은 점 텍스처 하나, 터뜨리는 장치 하나를 돌려 쓴다(그때마다 만들지 않는다). 색은 고른 원소의 분류 색 */
+    if(!this.textures.exists('spark')){const g=this.add.graphics();g.fillStyle(0xffffff,1);g.fillCircle(8*S,8*S,8*S);g.generateTexture('spark',16*S,16*S);g.destroy();}
+    this.burstColors=[TH.accent];
+    this.sparks=this.add.particles(0,0,'spark',{emitting:false,speed:{min:120*S,max:330*S},lifespan:{min:450,max:850},scale:{start:0.9,end:0},alpha:{start:1,end:0},
+      gravityY:260*S,tint:{onEmit:()=>this.burstColors[Math.floor(Math.random()*this.burstColors.length)]}}).setDepth(1000);
+    this.flash=this.add.circle(cx,fy,150*S,TH.accent,1).setAlpha(0).setDepth(999);   /* 강조색 — 밝은 테마에선 흰 번쩍임이 바탕에 묻힌다 */
+    this.slotBase=this.slots.map(sl=>({x:sl.c.x,y:sl.c.y}));
+    this.lastFx=null;
     this.refresh();
-    window.AtelierAlchemyGame={ready:true,state:()=>({picks:this.picks.slice(),found:this.state.found.slice(),tries:this.state.tries,total:G.lords.length,overlay:this.overlay?this.overlay.kind:null,cards:this.overlay&&this.overlay.cards||[],msg:this.msg.text}),
+    window.AtelierAlchemyGame={ready:true,state:()=>({picks:this.picks.slice(),found:this.state.found.slice(),tries:this.state.tries,total:G.lords.length,overlay:this.overlay?this.overlay.kind:null,cards:this.overlay&&this.overlay.cards||[],msg:this.msg.text,
+        fx:this.lastFx,busy:this.busy,rest:{ring:this.ring.scale,glow:this.glow.scale,ringX:this.ring.x,flash:this.flash.alpha,cam:[this.cameras.main.scrollX,this.cameras.main.scrollY],slots:this.slots.map((sl,i)=>[sl.c.x-this.slotBase[i].x,sl.c.y-this.slotBase[i].y,sl.c.scale,sl.t.alpha])}}),
+      slow:f=>{this.tweens.timeScale=f;this.time.timeScale=f;this.sparks.timeScale=f;},   /* 검사 · 화면 찍기용 — 연출을 느리게 */
       where:k=>{const o=this.tokens[k],r=this.game.canvas.getBoundingClientRect();return o?{x:r.left+o.c.x*r.width/GW,y:r.top+o.c.y*r.height/GH}:null;},
       pick:k=>this.toggle(k),combine:()=>this.combine(),clear:()=>this.clear(),book:()=>this.openBook(),close:()=>this.closeOverlay(),hint:()=>this.hint(),
       reset:()=>{this.state=AL.blank();AL.save(this.state);this.clear();this.refresh();}};
@@ -110,7 +125,8 @@ class Main extends Phaser.Scene{
   }
   refresh(){
     const G=this.game_;
-    this.progress.setText(W('alchemy.progress',{n:this.state.found.length,total:G.lords.length}));
+    /* 수집 수는 결과를 닫을 때 바뀐다(결과 화면에서 하나씩 올라가는 것을 먼저 본다) */
+    this.progress.setText(W('alchemy.progress',{n:this.shown!=null?this.shown:this.state.found.length,total:G.lords.length}));
     this.slots.forEach((s,i)=>{const k=this.picks[i],r=k&&G.rootByKey[k];s.t.setText(r?r.symbol:'');s.c.setFillStyle(r?catOf(r.category):TH.inkHex,r?0.35:0.05);});
     Object.entries(this.tokens).forEach(([k,o])=>{const on=this.picks.includes(k);o.c.setFillStyle(o.col,on?0.7:0.22);o.c.setScale(on?1.08:1);});
     this.btnCombine.bg.setAlpha(this.picks.length?1:0.4);
@@ -126,21 +142,47 @@ class Main extends Phaser.Scene{
   clear(){this.picks=[];this.note(W('alchemy.pick'));this.refresh();}
   note(t,announce){this.msg.setText(t);if(announce!==false)say(t);}
   hint(){const r=AL.hint(this.game_,this.state);AL.save(this.state);this.note(r?W('alchemy.hint.text',r):W('alchemy.hint.done'));}
+  /* 연출 한 묶음 — 단계(tier)마다 정해진 것만. 움직임 줄이기면 아무것도 안 한다 */
+  feedback(tier,x,y,colors){
+    const f=FX[tier],calm=reduced();
+    this.lastFx={tier,burst:calm?0:f.burst,shake:!calm&&!!f.shake,flash:!calm&&f.flash};
+    if(calm)return;
+    this.burstColors=colors&&colors.length?colors:[TH.accent];
+    if(f.burst)this.sparks.explode(f.burst,x,y);
+    if(f.flash){this.flash.setPosition(x,y).setAlpha(0.45).setScale(0.6);this.tweens.add({targets:this.flash,alpha:0,scale:1.25,duration:240,ease:'Quad.Out',onComplete:()=>this.flash.setAlpha(0).setScale(1)});}
+    if(f.shake)this.cameras.main.shake(f.shake,f.shakeAmt);
+  }
   combine(){
     if(this.busy||this.overlay||!this.picks.length)return;
-    const G=this.game_,res=AL.combine(G,this.state,this.picks);AL.save(this.state);
+    const G=this.game_,picks=this.picks.slice(),res=AL.combine(G,this.state,picks);AL.save(this.state);
+    const colors=[...new Set(picks.map(k=>catOf(G.rootByKey[k].category)))],cx=GW/2,cy=this.ring.y;
     if(!res.ok){
       this.note(W(res.why==='inert'?'alchemy.inert':'alchemy.none'));
-      this.tweens.add({targets:[this.ring,this.glow],x:{from:GW/2-10*S,to:GW/2},duration:70,yoyo:true,repeat:3,onComplete:()=>{this.ring.x=this.glow.x=GW/2;}});
+      this.feedback('fail',cx,cy,[TH.inkHex]);
+      if(!reduced())this.tweens.add({targets:[this.ring,this.glow],x:{from:cx-10*S,to:cx},duration:70,yoyo:true,repeat:3,onComplete:()=>{this.ring.x=this.glow.x=cx;}});
       return;
     }
-    /* 빛이 터지고 카드가 열린다 */
+    const names=[...new Set(res.lords.map(k=>G.byKey[k].ko))],tier=res.fresh.length?'big':'small';
+    this.shown=this.state.found.length-res.fresh.length;
+    this.note(W('alchemy.made',{materials:names.join(' · '),els:picks.map(k=>G.rootByKey[k].symbol).join(' + ')}));
+    this.picks=[];
+    const done=()=>{this.busy=false;this.refresh();this.reveal(res);};
+    if(reduced()){this.feedback(tier,cx,cy,colors);this.refresh();done();return;}
     this.busy=true;
-    this.tweens.add({targets:this.glow,scale:{from:1,to:1.6},alpha:{from:0.5,to:0.08},duration:420,ease:'Quad.Out',onComplete:()=>{this.glow.setScale(1);this.busy=false;this.reveal(res);}});
-    const names=[...new Set(res.lords.map(k=>G.byKey[k].ko))];
-    this.note(W('alchemy.made',{materials:names.join(' · '),els:this.picks.map(k=>G.rootByKey[k].symbol).join(' + ')}));
-    this.picks=[];this.refresh();
-    this.progress.setText(W('alchemy.progress',{n:this.state.found.length,total:G.lords.length}));
+    /* ① 모으기(예비 동작 — 느리게 시작해 빨라지게): 고른 칸들이 가운데로 빨려 들고 합성로가 살짝 움츠린다 */
+    const used=this.slots.slice(0,picks.length);
+    this.tweens.add({targets:used.flatMap(sl=>[sl.c,sl.t]),x:cx,y:cy,scale:0.35,duration:220,ease:'Cubic.In'});
+    this.tweens.add({targets:this.ring,scale:0.9,duration:220,ease:'Cubic.In',onComplete:()=>{
+      /* ② 터짐: 합성로가 넘쳤다 제자리(눌렀다 펴기), 빛이 번지고, 입자 · 번쩍임 · 흔들림(단계대로) */
+      this.slots.forEach((sl,i)=>{sl.c.setPosition(this.slotBase[i].x,this.slotBase[i].y).setScale(1);sl.t.setPosition(this.slotBase[i].x,this.slotBase[i].y).setScale(1).setAlpha(0);});
+      this.refresh();
+      this.tweens.add({targets:this.slots.map(sl=>sl.t),alpha:1,duration:200});
+      this.ring.setScale(1.16);this.tweens.add({targets:this.ring,scale:1,duration:320,ease:'Back.Out'});
+      this.tweens.add({targets:this.glow,scale:{from:1,to:1.7},alpha:{from:0.6,to:0.08},duration:420,ease:'Quad.Out',onComplete:()=>this.glow.setScale(1).setAlpha(0.08)});
+      this.feedback(tier,cx,cy,colors);
+      /* ③ 잠깐 숨 — 터진 것을 본 뒤 카드 */
+      this.time.delayedCall(tier==='big'?420:260,done);
+    }});
   }
   /* 덮개 — 결과(reveal)와 수집첩(book). 바탕을 누르거나 닫기 */
   layer(kind){
@@ -150,7 +192,7 @@ class Main extends Phaser.Scene{
     o.items.push(dim);this.overlay=o;return o;
   }
   /* 덮개의 트윈만 멈춘다 — 전부(killAll) 멈추면 합성로 · 칸의 움직임까지 끊겨 크기가 중간에 남는다(2026-11-12 game-feel 스킬 점검: 움직임은 늘 제자리로) */
-  closeOverlay(){if(!this.overlay)return;this.tweens.killTweensOf(this.overlay.items);this.overlay.items.forEach(x=>x.destroy());this.overlay=null;this.refresh();}
+  closeOverlay(){if(!this.overlay)return;this.shown=null;this.tweens.killTweensOf(this.overlay.items);this.overlay.items.forEach(x=>x.destroy());this.overlay=null;this.refresh();}
   loadPics(keys){
     const want=keys.filter(k=>k&&!this.textures.exists('p:'+k));
     if(!want.length)return Promise.resolve();
@@ -171,8 +213,12 @@ class Main extends Phaser.Scene{
     face.add(T(this,0,hgt*0.43,W('alchemy.lord',{nation:l.nationKo,family:l.ko}),Math.max(10,w/S/10),{color:'#f4f1ea'}));
     if(fresh)face.add(T(this,w*0.32,-hgt*0.44,W('alchemy.new'),10,{fontStyle:'700',color:'#111',backgroundColor:TH.accentCss,padding:{x:4*S,y:1*S}}));
     o.items.push(back,face);
-    if(front){back.setVisible(false);}
-    else this.tweens.add({targets:back,scaleX:0,duration:180,delay:flipDelay,ease:'Quad.In',onComplete:()=>{back.setVisible(false);this.tweens.add({targets:face,scaleX:1,duration:220,ease:'Back.Out'});}});
+    if(front||reduced()){back.setVisible(false);face.setScale(1);}
+    else this.tweens.add({targets:back,scaleX:0,duration:180,delay:flipDelay,ease:'Quad.In',onComplete:()=>{back.setVisible(false);
+      if(!fresh){this.tweens.add({targets:face,scaleX:1,duration:220,ease:'Back.Out'});return;}
+      /* 처음 찾은 카드 — 넘치게 튀어나왔다 제자리, 둘레에 반짝이 */
+      face.setScale(0,1.08);this.tweens.add({targets:face,scaleX:1.08,duration:200,ease:'Back.Out',onComplete:()=>this.tweens.add({targets:face,scale:1,duration:180,ease:'Quad.Out'})});
+      this.burstColors=[TH.accent,0xffffff];this.sparks.explode(FX.big.card,x,y-hgt*0.3);}});
     const hit=this.add.rectangle(x,y,w,hgt,0xffffff,0.001).setInteractive({useHandCursor:true});
     hit.on('pointerdown',()=>{location.href='dex.html?nation='+l.nation+'&card='+encodeURIComponent(l.key)+(l.pic?'&pic='+encodeURIComponent(l.pic):'');});
     o.items.push(hit);o.cards.push(l.key);
@@ -188,6 +234,16 @@ class Main extends Phaser.Scene{
     const done=this.button(GW/2,top+(rows-1)*gy+hgt/2+44*S,W('alchemy.continue'),150,true,()=>{});
     done.bg.removeAllListeners('pointerdown').on('pointerdown',()=>this.closeOverlay());
     o.items.push(done.bg,done.t,T(this,GW/2,top+(rows-1)*gy+hgt/2+84*S,W('alchemy.tap'),11,{color:TH.dim}));
+    /* 「새 카드 +n」 — 떠오르며 사라진다(숫자 튀기), 수집 수는 하나씩 올라간다 */
+    if(res.fresh.length){
+      const gy0=top-hgt/2-82*S,gain=T(this,GW/2,gy0,W('alchemy.gain',{n:res.fresh.length}),15,{fontStyle:'700',color:TH.accentCss});
+      const cnt=T(this,GW/2,gy0-30*S,'',12,{color:TH.dim}),from=this.state.found.length-res.fresh.length,G2=this.game_;
+      o.items.push(gain,cnt);
+      if(reduced())cnt.setText(W('alchemy.progress',{n:this.state.found.length,total:G2.lords.length}));
+      else{gain.setScale(0.6).setAlpha(0);this.tweens.add({targets:gain,scale:1,alpha:1,y:gy0-6*S,duration:320,ease:'Back.Out',delay:250});
+        const c={v:from};this.tweens.add({targets:c,v:this.state.found.length,duration:500,delay:400,ease:'Quad.Out',onUpdate:()=>{if(cnt.active)cnt.setText(W('alchemy.progress',{n:Math.round(c.v),total:G2.lords.length}));},onComplete:()=>{if(cnt.active)cnt.setText(W('alchemy.progress',{n:this.state.found.length,total:G2.lords.length}));}});   /* 덮개를 먼저 닫아도(글자가 지워져도) 탈 없게 */
+        cnt.setText(W('alchemy.progress',{n:from,total:G2.lords.length}));}
+    }
     say(W(res.fresh.length?'alchemy.say.new':'alchemy.say.again',{cards:ls.map(l=>W('alchemy.lord',{nation:l.nationKo,family:l.ko})).join(', ')}));
   }
   async openBook(){
