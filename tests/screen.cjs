@@ -1,4 +1,4 @@
-/* 화면 검사 — 전시관·생성기를 브라우저로 연다(도감은 2026-11-12 「들어가는 곳」 목록 층으로 — tests/walk-list.cjs). 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
+/* 화면 검사 — 화풍 비교·생성기를 브라우저로 연다(전시관 · 도감은 2026-11-12 「들어가는 곳」 층으로 — tests/walk-orbit · walk-family · walk-list · walk-card.cjs). 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
    생성기(공방 모음 통합 생성기 꼴): 나라 › 카드 › 갈래 › 단계. 세계 그림은 세계 → 덧붙임 → 지시문. 일상컷은 트리 버전2 — 시대 → 장소 → … 한 칸씩,
    해방(트리 밖 + 까닭), 랜덤(처음부터), 여기부터 다시, 다 골랐다 결과(지시문·파일 이름), 폰은 칩 레일 + 아래 막대 + 시트. 주소 ?card=&o=. 콘솔 오류 없음. 옆으로 넘치지 않음.
    Run: ESM_DIR=<preact 가 든 node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   (PORT 로 자리 바꾸기, 기본 8794) */
@@ -58,43 +58,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
 
   for (const vp of [{ width: 390, height: 844 }, { width: 1280, height: 900 }]) {
     const mob = vp.width <= 768;
-    /* 전시관(2026-11-02) — 섬(그림 걸린 나라) → 나라(가운데 근본 · 궤도의 가문주) → 가문(주민 액자) → 한 장, 세계는 늘 위에서 바꾼다 */
-    {
-      const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b => Object.values(b.byForm || {}).some(f => f.f));
-      const ns = D.nations.filter(n => anyPic(n.key));
-      let gv = await open('/gallery.html', vp), gp = gv.page;
-      await gp.waitForSelector('.g-tile');
-      assert.equal(await gp.locator('.g-tile').count(), ns.length, '섬 — 그림 걸린 나라 ' + ns.length);
-      /* 깊은 흐름(도감 · 전시관 · 화풍 고르개 · 즐겨찾기 link)은 폰 한 판에서만 — PC 는 열고 칸 수 · 넘침 · 콘솔만(2026-11-12 검사 정리, 화면 꼴이 다른 생성기 걸음은 둘 다) */
-      if (!mob) { await noOverflow(gp, vp.width); assert.deepEqual(gv.errors, [], '전시관 콘솔'); checks += 2; await gv.ctx.close(); } else {
-      await gp.click('.g-tile[data-n="h"]'); await gp.waitForSelector('.g-stage');
-      const hn = D.nations.find(n => n.key === 'h'), lordsH = hn.families.filter(f => anyPic('h-' + f.key));
-      assert.equal(await gp.locator('.g-node').count(), lordsH.length, '나라 — 궤도 그림 위 가문 이름표');
-      assert.match(await gp.locator('.g-stage').evaluate(e => getComputedStyle(e, '::before').backgroundImage), /orbits\/orbit-h\.webp/, '원소마다 궤도 그림');
-      assert.match(gp.url(), /n=h/);
-      await gp.click('.g-worlds [data-w="mecha"]'); await gp.waitForTimeout(600);
-      assert.equal(await gp.getAttribute('.g-worlds [data-w="mecha"]', 'aria-pressed'), 'true');
-      await gp.click('.g-nucleus'); await gp.waitForSelector('.g-peek');
-      assert.match(await gp.locator('.g-peek .pic img').getAttribute('src'), /_mecha_/, '가운데를 누르면 근본 미리 보기 — 고른 세계 그림');
-      await gp.keyboard.press('Escape'); await gp.waitForSelector('.g-peek', { state: 'detached' });
-      assert.match(gp.url(), /w=mecha/);
-      const fam = lordsH[0];
-      await gp.click('.g-node[data-f="' + fam.key + '"]'); await gp.waitForSelector('.g-peek');
-      await gp.click('.g-act[data-act="family"]'); await gp.waitForSelector('.g-hero');
-      const cits = fam.citizens.filter(c => anyPic('h-' + fam.key + '-' + c.key));
-      assert.equal(await gp.locator('.g-cit').count(), cits.length, '가문 — 주민 액자');
-      if (cits.length) {
-        await gp.locator('.g-cit').first().click(); await gp.waitForSelector('.g-lore');
-        assert.ok(await gp.locator('.g-lore-pic img').count(), '한 장 — 화면 가득');
-        await gp.keyboard.press('Escape'); await gp.waitForSelector('.g-hero');
-      }
-      await gp.goBack(); await gp.waitForSelector('.g-stage'); assert.ok(await gp.locator('.g-node').count(), '뒤로 — 한 층 위(나라)');
-      await gp.click('.g-node[data-f="' + fam.key + '"]'); await gp.click('.g-act[data-act="open"]'); await gp.waitForSelector('.g-lore'); assert.match(gp.url(), /v=1/, '미리 보기 → 크게 보기');
-      await noOverflow(gp, vp.width); assert.deepEqual(gv.errors, [], '전시관 콘솔'); checks += 8; await gv.ctx.close();
-      }
-    }
     let v;
-
     /* 화풍 비교(2026-11-07 — 삼국지 공방과 같이) — 도구 막대에 화풍(2026-11-12 「들어가는 곳」), 묶음이 없으면 빈 안내, 있으면 화풍마다 칸 */
     { const SC = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style-compare.json'), 'utf8')), sv = await open('/styles.html', vp);
       await sv.page.waitForSelector('.sc-lede');
@@ -257,5 +221,5 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     await noOverflow(p, vp.width); assert.deepEqual(v.errors, []); checks += 6; await v.ctx.close();
   }
   await br.close(); server.close();
-  console.log('PASS 화면: 전시관(섬·궤도 그림·이름표 → 미리 보기 → 크게 보기 · 주민 보기·세계 바꾸기·주민 액자·한 장·뒤로) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
+  console.log('PASS 화면: 화풍 비교 · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
 })().catch(e => { console.error(e); server.close(); process.exit(1); });

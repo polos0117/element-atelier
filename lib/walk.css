@@ -167,7 +167,7 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 @media (max-width:760px) {.w-bar .w-worlds {grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-columns:none}}   /* 목록 층의 「전부」 까지 넷이 한 줄 */
 
 /* 한 장 — 위 막대 아래를 채운다(막대의 세계 고르개 · 길 표시는 그대로 쓴다). 덮개는 그림 · 단추 아래 글 판(굴려 본다), 넓으면 그림 | 글 판 */
-.walk .lightbox.w-card {top:var(--w-bar-h,0px);justify-content:flex-start;overflow-y:auto;padding:10px 12px 96px;background:#05060af2}
+.walk .lightbox.w-card {top:var(--w-bar-h,0px);justify-content:flex-start;overflow-y:auto;padding:10px 12px 96px;background:#05060a}
 .walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 150px)}
 
 /* 가문 층 — 옛 전시관 .g-family · .g-hero · .g-cits 를 옮겨 이름을 바꿈. 넓으면 가문주 | 글 두 칸, 좁으면 한 칸 */
@@ -192,3 +192,16 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 .w-cit-cap {display:block;padding:8px 2px 0}
 .w-cit-cap b {display:block;font-size:15px;line-height:1.3}
 .w-cit-cap small {color:var(--w-mute);font-size:12px}
+/* 한 장의 글 판(옛 전시관 한 장 글 몫) — 덮개는 그림 · 단추 아래(굴려 본다), 넓으면 그림 | 글 판 */
+.w-lore {width:100%;max-width:58ch;margin:14px auto 0;text-align:left}
+.w-lore .w-ntext {margin:0}
+.w-lore h1 {font-size:clamp(22px,3vw,30px)}
+.w-motif {margin:0 0 12px;color:var(--w-mute);font-size:13px}
+.w-motif b {color:var(--accent);font-weight:600}
+.w-lives {margin:0;color:var(--w-mute);font-size:13px}
+@media (min-width:900px) {
+  .walk .lightbox.w-card {display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);grid-template-rows:auto minmax(0,1fr) auto;column-gap:clamp(20px,3vw,40px);align-items:center;justify-items:center;padding:16px clamp(16px,3vw,40px) 24px}
+  .walk .w-card .lb-top {grid-column:1;grid-row:1} .walk .w-card .lb-stage {grid-column:1;grid-row:2} .walk .w-card .bar {grid-column:1;grid-row:3}
+  .walk .w-card .w-lore {grid-column:2;grid-row:1/4;align-self:center;max-height:100%;margin:0;overflow-y:auto}
+  .walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 140px)}
+}
