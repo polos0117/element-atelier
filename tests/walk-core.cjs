@@ -45,4 +45,9 @@ assert.equal(R.nearestNation(cells, 100, 120, 27), null);
 const order = R.nationOrder(D);
 assert.deepEqual(order.slice(0, 3), ['h', 'he', 'li']); assert.equal(order.at(-1), 'og'); assert.equal(order.length, D.nations.length);
 assert.deepEqual(R.neighbors(order, 'h'), { prev: 'og', next: 'he' }); assert.deepEqual(R.neighbors(order, 'fe'), { prev: 'ca', next: 'cu' });
-console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례');
+// 입자 종류 · 상한(효과 ②)
+const K = { transition: 'ember', alkali: 'ember', alkaline_earth: 'ember', post_transition: 'ember', nonmetal: 'breeze', halogen: 'breeze',
+  noble_gas: 'mote', metalloid: 'glint', lanthanide: 'flicker', actinide: 'flicker', unknown: 'mote' };
+for (const [c, k] of Object.entries(K)) assert.equal(R.particleKind(c), k, c);
+assert.equal(R.particleCap(344), 24); assert.equal(R.particleCap(1280), 48);
+console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례 · 입자 종류/상한');

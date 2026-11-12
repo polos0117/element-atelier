@@ -31,16 +31,19 @@ const D = require('../data/element-design.json');
     await p.keyboard.press('Escape'); await p.waitForSelector('.w-ncard', { state: 'detached' });
     assert.equal(await p.evaluate(() => history.length), len0);
     await p.locator('.pcell.on[data-n="fe"]').click(); await p.waitForSelector('.w-ncard[data-n="fe"]');
+    assert.equal(requests.filter(u => /pixi/.test(u)).length, 0, '주기율표는 PixiJS 를 받지 않는다(궤도 입자 — 과제 5 — 는 궤도에 들어가서야)');
     // double enter(Review Focus 4) — 역사는 한 칸만
     const len = await p.evaluate(() => history.length);
     await p.locator('.w-ncard [data-act="enter"]').evaluate(b => { b.click(); b.click(); });   // 다시 그리기 전에 두 번
     await p.waitForFunction(() => document.documentElement.dataset.layer === 'orbit');
     assert.equal(await p.evaluate(() => history.length), len + 1); assert.match(p.url(), /\?n=fe&mode=orbit/);
     await p.goBack(); await p.waitForFunction(() => document.documentElement.dataset.layer === 'table');
-    await p.locator('.pcell.on[data-n="h"]').click(); await p.click('.w-ncard [data-act="list"]');
-    await p.waitForFunction(() => document.documentElement.dataset.layer === 'list');
-    assert.equal(requests.filter(u => /pixi/.test(u)).length, 0, '주기율표 · 목록은 PixiJS 를 받지 않는다');
-    assert(await noOverflow(p)); assert.deepEqual(errors, []);
+    assert(await noOverflow(p)); assert.deepEqual(errors, []); await p.context().close();
+    // 주기율표 → 목록(궤도를 거치지 않고) — PixiJS 0
+    const l = await open(br, base, '/index.html'); await l.page.waitForSelector('.pcell.on');
+    await l.page.locator('.pcell.on[data-n="h"]').click(); await l.page.click('.w-ncard [data-act="list"]');
+    await l.page.waitForFunction(() => document.documentElement.dataset.layer === 'list'); await l.page.waitForTimeout(500);
+    assert.equal(l.requests.filter(u => /pixi/.test(u)).length, 0, '주기율표 · 목록은 PixiJS 를 받지 않는다'); assert.deepEqual(l.errors, []); await l.ctx.close();
     // 옛 주소
     const hl = await open(br, base, '/hall.html?x=1'); await hl.page.waitForSelector('.w-table');
     assert.equal(new URL(hl.page.url()).pathname + new URL(hl.page.url()).search, '/index.html'); assert.deepEqual(hl.errors, []); await hl.ctx.close();

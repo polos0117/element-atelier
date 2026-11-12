@@ -10,6 +10,15 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 5 — 궤도가 천천히 돌고(손대면 멈춤) 분류마다 입자(PixiJS 늦게 불러오기)
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 5 — 효과 ②(궤도 화면에 머무는 동안), 설계 「입자 수 상한, 화면 밖 · 숨은 탭에서는 멈춘다」 · 움직임 끄기
+- lib/walk-fx.js — loadPixi(한 번만, 실패하면 다음에 다시 — 주소는 holo.js 의 PIXI_URL) · mountParticles: 분류마다 입자(불티 · 바람결 · 빛 알갱이 · 결정 반짝임 · 푸른 깜빡임), 수 상한, 숨은 탭 · 화면 밖이면 멈춤, 움직임이 꺼졌거나 WebGL 이 없거나 PixiJS 를 못 받으면 조용히 빠짐(WebGL 이 없으면 받지도 않는다)
+- lib/walk-core.js — particleKind(분류 → 입자 종류) · particleCap(덮개 24 · 넓으면 48)
+- lib/walk-orbit.js — 궤도 층에 입자를 붙이고 떼기(움직임 끄기를 바로 따른다), 고리에 손대면 멈춤(뗀 뒤 2초)
+- lib/walk.css — 고리가 180초에 한 바퀴(가문주 원은 거꾸로 돌아 똑바로), 손대면 멈춤, 움직임이 꺼지면 없음 · 입자 캔버스 자리
+- index · hall · alchemy · styles · prompt 의 walk-core.js ?v=5, index 의 walk.css ?v=4 · walk.js ?v=5
+- tests/walk-particles.cjs (새) · tests/walk-core.cjs(입자 종류 · 상한) · tests/walk-table.cjs(PixiJS 0 은 주기율표 · 목록만 본다 — 궤도에 들어가면 이제 받는다)
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 4 — 나라 궤도 층(설계된 가문 전부 · 점선 고리 · 빈 원) · 앞뒤 나라 · 들어가기 확대
 - 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 4 — 설계 목표 2(나라 = 궤도) · 물음 1(설계된 카드를 다 보인다) · 물음 7(궤도 그림 없는 나라는 코드가 그린 고리) · 효과 ①
 - lib/walk-orbit.js (새) — 궤도 층: 가운데 근본(그림이면 둥근 그림 → 한 장, 없으면 빈 원 → 목록의 그 칸), 고리 위에 설계된 가문 전부(가문주 원 · 가문 이름 · 주민 수, 그림 없으면 빈 원 + 「아직 그림 없음」 → 목록의 그 칸, 그림 있으면 → 가문). 궤도 그림 일곱(RING)은 그 그림, 나머지 · 그림 404 는 점선 고리. 아래에 궤도로/목록으로(역사 칸 없이, 기기에 기억) · 사실 칸 · 인격 · 그 세계의 나라 · 성질. 주기율표에서 들어오면 ① 근본이 누른 칸에서 날아와 커지고 고리가 그려지고 가문주가 퍼진다. EmptyArt · ModeSwitch 는 가문 · 목록 층도 쓴다

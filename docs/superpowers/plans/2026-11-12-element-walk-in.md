@@ -74,6 +74,8 @@ fnm exec --using=22 node tests/walk-shell.cjs
 
 ## 공유 약속(과제들이 서로 기대는 이름)
 
+> **실행 중 바뀐 것(과제 4 · 5):** 입자 캔버스는 `.w-stage` 에 바로 붙지 않고 그 안의 빈 자리 `div.w-fx`(Preact 가 안을 그리지 않는 칸)에 붙는다 — `mountParticles(.w-stage .w-fx, …)`. `canvas.w-particles` 는 여전히 `.w-stage` 안. 가문주 원 `.w-node` 의 `transform` 은 `translate(-50%,-24px)`(원의 가운데가 고리 위) — 효과 ⑤ 는 `.w-node-pic`(원)에서 `markFrom` 한다. `walk-data` 의 `Card` 는 `{…, citizen}` 에 더해 근본 · 가문주도 `citizen: null` 을 갖는다. 「들어가기」는 기억된 보기(`element_dex_v1.mode`)로 가므로 `walk-orbit.cjs` 의 ① 단계는 기억값을 `orbit` 으로 되돌린 뒤 들어간다.
+
 **주소 쿼리(`index.html`)** — 쓰는 차례도 이대로: `n` 나라 열쇠 · `mode` `orbit|list` · `f` 가문 열쇠 · `card` 카드 열쇠 · `pic` 그림 파일 · `at` 목록에서 내려갈 카드 열쇠 · `w` `fantasy|steampunk|mecha|all` · `st` 화풍 열쇠 · `view` `world|casual|all`(목록의 보기).
 - 비어 있으면 뺀다. `w` 가 없으면 「전부」(`all`) 와 같다. 목록이 아닌 층은 `worldOf()` 로 그림 세계를 정한다(`all` → `vocab.worlds[0]` = `fantasy`, 고르개도 `fantasy` 가 눌림).
 - **전역 값** `GLOBALS = ['mode','w','st','view']` — 뒤로 가기(`popstate`)에도 지금 값이 남고, 주소는 `replaceState` 로 바로잡는다(「세계는 하나의 상태」).
