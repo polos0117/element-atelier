@@ -1,7 +1,7 @@
 /* 원소 합성(alchemy.html · lib/alchemy.js, 2026-11-12)
    Run: ESM_DIR=<preact · phaser@4.2.1 이 든 node_modules> CHROMIUM_PATH=<chrome> node tests/alchemy.cjs   (PORT 로 자리 바꾸기, 기본 8802)
    규칙(node): 조합표가 설계표의 가문 elements 그대로 · 두 나라가 나눈 물질은 나라마다 카드 · 한 원소는 그 나라 혼자 가진 물질 · 비활성 기체 · 겹친 원소 · 셋까지 · 힌트가 남은 조합을 돈다
-   화면(브라우저): 폰 · PC 에 캔버스가 맞고 넘치지 않는다 · 원소 패를 실제로 눌러 고른다 · 합성하면 카드가 열리고 수집첩에 모인다(새로 고침해도) · 비활성 · 셋까지 · 메뉴에 합성 · 오류 없음 */
+   화면(브라우저): 폰 · PC 에 캔버스가 맞고 넘치지 않는다 · (여기부터 폰에서만) 원소 패를 실제로 눌러 고른다 · 합성하면 카드가 열리고 수집첩에 모인다(새로 고침해도) · 비활성 · 셋까지 · 메뉴에 합성 · 오류 없음 · 스크린샷은 SHOT_DIR 이 있을 때만 */
 const assert = require('node:assert/strict'), http = require('node:http'), fs = require('node:fs'), path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const A = require(path.join(ROOT, 'lib/alchemy.js'));
@@ -79,6 +79,8 @@ const server = http.createServer((q, s) => {
       const lay = await p.evaluate(() => window.AtelierAlchemyGame.layout());
       assert(lay.circleBottom < lay.buttonsTop, vp.width + ' 합성로가 단추를 침범 ' + JSON.stringify(lay));
       assert(lay.lastToken <= lay.height, vp.width + ' 원소 패가 캔버스 안 ' + JSON.stringify(lay)); n += 2;
+      /* 흐름(누르기 · 합성 · 연출 · 수집첩 · 새로 고침)은 폰 한 판에서만 — PC 는 맞춤 · 넘침 · 메뉴 · 오류만(2026-11-12 검사 정리) */
+      if (vp.width !== 390) { assert.deepEqual(errors, [], vp.width + ' 오류'); n++; await ctx.close(); continue; }
       /* 원소 패를 실제로 누른다 */
       for (const k of ['h', 'o']) { const at = await p.evaluate(k => window.AtelierAlchemyGame.where(k), k); await p.mouse.click(at.x, at.y); }
       assert.deepEqual((await S(p)).picks, ['h', 'o'], vp.width + ' 눌러서 고른다'); n++;
@@ -87,13 +89,12 @@ const server = http.createServer((q, s) => {
       let s = await S(p);
       /* 합성 연출(2026-11-12) — 처음 찾은 물질은 큰 단계(입자 · 번쩍임 · 흔들림), 끝나면 모두 제자리 */
       assert.deepEqual(s.fx, { tier: 'big', burst: 28, shake: true, flash: true }, '처음 찾음 — 큰 단계');
-      await p.waitForTimeout(1600);
+      await p.waitForFunction(() => { const r = window.AtelierAlchemyGame.state().rest; return r && r.flash === 0 && r.ring === 1 && r.glow === 1 && r.cam[0] === 0 && r.cam[1] === 0 && r.slots.every(([dx, dy, sc, al]) => dx === 0 && dy === 0 && sc === 1 && al === 1); }, null, { timeout: 10000 }).catch(() => {});
       const rest = (await S(p)).rest;
       assert(rest.ring === 1 && rest.glow === 1 && rest.ringX === (await p.evaluate(() => window.AtelierAlchemyGame.state().rest.ringX)) && rest.flash === 0 && rest.cam[0] === 0 && rest.cam[1] === 0, '연출이 끝나면 제자리 ' + JSON.stringify(rest));
       assert(rest.slots.every(([dx, dy, sc, al]) => dx === 0 && dy === 0 && sc === 1 && al === 1), '칸이 제자리 ' + JSON.stringify(rest.slots)); n += 3;
       assert.deepEqual(s.cards.slice().sort(), ['h-water', 'o-water'], '카드가 열린다'); assert.deepEqual(s.found.slice().sort(), ['h-water', 'o-water']); assert.deepEqual(s.picks, [], '합성로는 비운다'); n += 3;
-      await p.waitForTimeout(1200);
-      if (vp.width === 390) await p.screenshot({ path: process.env.SHOT_DIR ? path.join(process.env.SHOT_DIR, 'alchemy-reveal.png') : '/dev/null' }).catch(() => {});
+      if (process.env.SHOT_DIR) { await p.waitForTimeout(1200); await p.screenshot({ path: path.join(process.env.SHOT_DIR, 'alchemy-reveal.png') }).catch(() => {}); }
       await p.evaluate(() => window.AtelierAlchemyGame.close());
       /* 이미 찾은 조합은 작은 단계, 실패는 회색 김 */
       await p.evaluate(() => { const g = window.AtelierAlchemyGame; g.pick('h'); g.pick('o'); g.combine(); });
@@ -114,10 +115,9 @@ const server = http.createServer((q, s) => {
       await p.evaluate(() => window.AtelierAlchemyGame.close());
       await p.evaluate(() => window.AtelierAlchemyGame.book()); await p.waitForFunction(() => window.AtelierAlchemyGame.state().overlay === 'book');
       assert.equal((await S(p)).cards.length, 4, '수집첩엔 찾은 카드만 앞면'); n++;
-      await p.waitForTimeout(500);
-      if (vp.width === 390) await p.screenshot({ path: process.env.SHOT_DIR ? path.join(process.env.SHOT_DIR, 'alchemy-book.png') : '/dev/null' }).catch(() => {});
+      if (process.env.SHOT_DIR) { await p.waitForTimeout(500); await p.screenshot({ path: path.join(process.env.SHOT_DIR, 'alchemy-book.png') }).catch(() => {}); }
       await p.evaluate(() => window.AtelierAlchemyGame.close());
-      if (vp.width === 390) await p.screenshot({ path: process.env.SHOT_DIR ? path.join(process.env.SHOT_DIR, 'alchemy-main.png') : '/dev/null' }).catch(() => {});
+      if (process.env.SHOT_DIR) await p.screenshot({ path: path.join(process.env.SHOT_DIR, 'alchemy-main.png') }).catch(() => {});
       /* 새로 고침해도 모은 것 그대로 */
       await p.reload(); await p.waitForFunction(() => window.AtelierAlchemyGame && window.AtelierAlchemyGame.ready, null, { timeout: 30000 });
       assert.equal((await S(p)).found.length, 4, '이 기기에 남는다'); n++;

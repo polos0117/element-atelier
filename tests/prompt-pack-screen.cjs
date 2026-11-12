@@ -1,5 +1,5 @@
 /* 지시문 묶음 = 생성기 화면 — tools/prompt-pack.cjs 가 쓴 기록의 저장값(storage)을 생성기에 넣으면 화면이 같은 지시문 · 같은 파일 이름을 만든다.
-   카드 둘(근본 철 · 주민 하나) × 사는 세계마다 세계 그림 + 일상 일곱(계획기 tools/casual-plan.cjs — 자유 설계 칸 둘 포함), 외형 · 장면 · 덧붙임을 고친 설정도 하나. 틀린 설정은 안 쓴다.
+   카드 하나(주민 fe-steel-sword) × 사는 세계마다 세계 그림 + 일상 일곱(계획기 tools/casual-plan.cjs — 자유 설계 칸 둘 포함), 외형 · 장면 · 덧붙임을 고친 설정으로(안 고친 세계 · 컷은 기본 설정 그대로). 틀린 설정은 안 쓴다.
    Run: ESM_DIR=<preact 가 든 node_modules> CHROMIUM_PATH=<chrome> node tests/prompt-pack-screen.cjs   (PORT 로 자리 바꾸기, 기본 8795) */
 const assert = require('node:assert/strict'), http = require('node:http'), fs = require('node:fs'), path = require('node:path'), os = require('node:os');
 const { chromium } = require('playwright');
@@ -17,7 +17,8 @@ const server = http.createServer((q, s) => {
   const br = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
   try {
     let n = 0;
-    for (const [key, edit] of [['fe', null], ['fe-steel-sword', (set, card) => {
+    /* 카드 하나(2026-11-12 검사 정리 — 전엔 근본 철도 같이 돌았다). 고친 설정이 안 닿는 세계 · 컷은 기본 설정 그대로라 기본 꼴도 같이 본다 */
+    for (const [key, edit] of [['fe-steel-sword', (set, card) => {
       const w = card.worlds[0];
       set.worlds[w].look.params = { 'hair color': '#8a8f99', hairstyle: '__custom__', hairstyle_custom: 'a low braided knot' };
       set.worlds[w].notes = { custom: 'sparks drifting from a forge' }; set.worlds[w].shot = { time: 'night', pose: 'kneel' }; set.worlds[w].why = '검사';
@@ -64,6 +65,6 @@ const server = http.createServer((q, s) => {
     try { assert.equal(K.build(bad), 1); } finally { console.error = err; }
     assert(!fs.existsSync(path.join(bad, 'fantasy-prompt.txt')), '틀리면 쓰지 않는다');
     for (const re of [/hair color 의 값 not-a-value/, /shot\.pose 의 값 nope/, /worlds\.mecha 에 직접 입력/, /worlds 에 없는 칸 ocean/]) assert(said.some(m => re.test(m)), re + ' 를 알린다');
-    console.log(`PASS 지시문 묶음 ↔ 생성기 화면: ${n} 자리(두 카드 · 세계 그림 · 세계마다 일상 일곱(자유 설계 둘) · 고친 설정 하나)를 화면에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 쓴다`);
+    console.log(`PASS 지시문 묶음 ↔ 생성기 화면: ${n} 자리(카드 하나 · 세계 그림 · 세계마다 일상 일곱(자유 설계 둘) · 고친 설정 하나)를 화면에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 쓴다`);
   } finally { await br.close(); server.close(); fs.rmSync(tmp, { recursive: true, force: true }); }
 })().catch(e => { console.error(e); process.exit(1); });

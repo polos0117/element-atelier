@@ -1,7 +1,7 @@
 """일상컷 트리 버전2 검사기. python3 tests/casual-tree-v2.py
    - 실제 표(data/casual-tree-v2.json)가 통과한다
    - 없는 열쇠·한글 영어 칸·두 동작 문장·두 손 칸·보이지 않는 손 자리·다리 칸·받침·장소 없는 추천을 건다"""
-import copy, importlib.util, pathlib
+import copy, importlib.util, multiprocessing, pathlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 spec = importlib.util.spec_from_file_location('ct2', ROOT / 'tools' / 'casual-tree-v2.py')
@@ -9,10 +9,19 @@ T = importlib.util.module_from_spec(spec); spec.loader.exec_module(T)
 doc, v1 = T.load()
 assert T.check(doc, v1) == [], T.check(doc, v1)
 
+# 걸림 시험은 모아 두었다가 끝에서 나눠 돌린다(2026-11-12 검사 정리 — check 한 번이 0.2초라 예순 번 줄 세우면 20초)
+CASES = []
+
+
 def fails(mutate, word):
+    CASES.append((mutate, word))
+
+
+def run_case(i):
+    mutate, word = CASES[i]
     d = copy.deepcopy(doc); mutate(d)
     e = ' | '.join(T.check(d, v1))
-    assert word in e, (word, e)
+    return None if word in e else (word, e)
 
 row = lambda d, table, k: next(r for r in d[table] if r['key'] == k)
 pre = lambda d, k: row(d, 'presets', k)
@@ -113,4 +122,8 @@ assert not any('since' in p for p in doc['props'])
 sig = [p for p in doc['props'] if p.get('signature')]
 assert [p['key'] for p in sig] == ['signature'] and sig[0]['places'] == ['*'], sig
 assert len([u for u in doc['prop_uses'] if u['prop'] == 'signature']) == 3
+with multiprocessing.get_context('fork').Pool() as pool:
+    bad = [x for x in pool.map(run_case, range(len(CASES))) if x]
+assert not bad, bad
+assert len(CASES) >= 60, len(CASES)
 print('casual-tree-v2 ok — 추천', len(doc['presets']), '· 장소', len(doc['places']), '· 원소 소품 여섯')

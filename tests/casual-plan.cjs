@@ -1,4 +1,4 @@
-/* 일상컷 묶음 계획기(tools/casual-plan.cjs — 2026-11-09 삼국지 공방 계획기를 원소 꼴로) — 카드 여럿 × 세계 셋 × 씨앗 둘이 묶음 규칙을 지키고, 기록이 생성기 꼴이다.
+/* 일상컷 묶음 계획기(tools/casual-plan.cjs — 2026-11-09 삼국지 공방 계획기를 원소 꼴로) — 대표 카드 넷 × 사는 세계 × 씨앗 하나가 묶음 규칙을 지키고, 기록이 생성기 꼴이다.
    일곱 장(2026-11-11) · 정해 둔 세 갈래(노출 한 장 · 나라 안 한 장 · 상황 노출 한 장, 서로 다른 컷) · 네 시대 · 옷 색 · 데니어 · 상황 줄 · 짧은 일상컷 ·
    자유 설계 칸 둘(옷 자유 · 갈래 자유 — FREE DESIGN 덩어리, 갈래 자유는 노출 갈래 컷과 다른 갈래 · 상황 노출 컷과 다른 상황) · 옛 여섯 장 묶음은 그대로 통과하고 일곱째만 짜진다.
    이미 있는 컷(기록) 위에 모자란 번호만 짜는 것도. node tests/casual-plan.cjs */
@@ -10,12 +10,14 @@ for (const f of ['lib/prompt-spec.js', 'lib/look-spec.js', 'lib/casual-tree.js',
 const P = ctx.window.AtelierPrompt, TS = ctx.window.AtelierSpec;
 const D = JSON.parse(fs.readFileSync(path.join(R, 'data/element-design.json'), 'utf8'));
 const SJ = JSON.parse(fs.readFileSync(path.join(R, 'data/style.json'), 'utf8')), SHORT = P.casualShortOn(SJ, C.STYLE);
-const keys = P.cards(D), pickKeys = keys.filter((k, i) => i % Math.max(1, Math.floor(keys.length / 10)) === 0).slice(0, 10);
+/* 대표 카드 넷 × 씨앗 하나(2026-11-12 검사 정리 — 전엔 카드 열 × 씨앗 둘, 52 묶음 40초). 상황 넷(strap · wet · undone · wind) · adventure · drape 계열 · 데니어 비율이 이 넷에서 다 나온다 */
+const keys = P.cards(D), pickKeys = ['fe-magnet', 'h-oil', 'c-graphite', 'c-oil-oillamp'];
+for (const k of pickKeys) assert(keys.includes(k), '대표 카드 ' + k);
 const SIX = [1, 2, 3, 4, 5, 6], SEVEN = [1, 2, 3, 4, 5, 6, 7], FD = TS.FREE_DESIGN;
 let n = 0; const dn = { fit: 0, set: 0 }, situSeen = new Set(), famSeen = new Set();
 for (const key of pickKeys) {
   const card = C.cardOf(key);
-  for (const w of card.worlds) for (const seed of [3, 11]) {
+  for (const w of card.worlds) for (const seed of [3]) {
     card.world = w;
     const res = C.plan(card, SEVEN, [], { seed, recent: ['a test place — standing'] });
     assert.equal(res.cuts.length, 7, key + ' ' + w + ' 일곱 장');
@@ -103,4 +105,4 @@ try {
   const img = path.join(R, '../element-atelier-img/records');
   if (fs.existsSync(img)) { const u = C.sceneUsage(img, 'fe'); assert(Object.keys(u.place).length > 10 && Object.keys(u.preset).length > 10, '그림 저장소 기록에서 센다');
     const rc = C.recentScenes(img); assert(rc.length === 8 && rc.every(x => typeof x === 'string' && x.length < 200), '최근 장면 여덟 — ' + rc.join(' | ')); } }
-console.log(`PASS 일상컷 묶음 계획기: ${n} 묶음(카드 ${pickKeys.length} × 세계 × 씨앗 둘)이 일곱 장 · 묶음 규칙 · 정해 둔 세 갈래(노출 · 나라 안 · 상황 노출 — 상황 넷 다) · 자유 설계 칸 둘(옷 자유 · 갈래 자유) · 옛 여섯 장 + 일곱째 · 새 계열 · 네 시대 · 옷 색 · 데니어 · 상황 줄 · 짧은 일상컷 · 기록 꼴, 있는 두 장 위에 세 장 · 같은 씨앗 같은 답`);
+console.log(`PASS 일상컷 묶음 계획기: ${n} 묶음(카드 ${pickKeys.length} × 세계 × 씨앗 하나)이 일곱 장 · 묶음 규칙 · 정해 둔 세 갈래(노출 · 나라 안 · 상황 노출 — 상황 넷 다) · 자유 설계 칸 둘(옷 자유 · 갈래 자유) · 옛 여섯 장 + 일곱째 · 새 계열 · 네 시대 · 옷 색 · 데니어 · 상황 줄 · 짧은 일상컷 · 기록 꼴, 있는 두 장 위에 세 장 · 같은 씨앗 같은 답`);

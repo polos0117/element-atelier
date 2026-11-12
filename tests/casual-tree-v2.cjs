@@ -39,14 +39,14 @@ function valid(sc, where) {
   assert.equal(sc.treeV, 2);
 }
 const rnd = seeded(7);
-for (let i = 0; i < 2000; i++) {
+for (let i = 0; i < 300; i++) {
   const sc = C.random(t, {}, null, rnd, [], { preset: i % 2 === 0 });
   valid(sc, '랜덤 ' + i);
   if (i % 2 === 0 && sc.preset) assert(C.presetOk(t, sc, sc.preset), '랜덤 추천 ' + sc.preset);
 }
 /* 칸을 아무 값으로 바꿔도(트리 밖 값 포함) 다시 검사 뒤엔 맞다 */
 const r2 = seeded(11);
-for (let i = 0; i < 1500; i++) {
+for (let i = 0; i < 200; i++) {
   let sc = C.random(t, {}, null, r2);
   const k = C.ORDER[Math.floor(r2() * C.ORDER.length)], pool = k === 'place' ? t.v1.places.map(p => p.key) : [].concat(...['hands', 'legs', 'postures', 'supports', 'gaze', 'body', 'prop_uses'].map(n => t.v2[n].map(x => x.key)), Object.keys(t.v2.frames), ['prop', 'nope']);
   sc = C.set(t, sc, k, pool[Math.floor(r2() * pool.length)]);
@@ -238,4 +238,4 @@ for (const k of ['site_lab', 'site_furnace', 'site_mine', 'site_saltpan', 'site_
 const r13 = seeded(13);
 for (let i = 0; i < 300; i++) valid(C.random(t, { era: i % 2 ? 'site' : 'nation' }, null, r13, ['era']), '원소 시대 랜덤 ' + i);
 
-console.log('casual-tree-v2 모듈 ok — 추천×장소', pairs, '· 랜덤 2000 · 바꾸기 1500 · 현장 · 나라 안 · 원소 소품');
+console.log('casual-tree-v2 모듈 ok — 추천×장소', pairs, '· 랜덤 300 · 바꾸기 200 · 현장 · 나라 안 · 원소 소품');

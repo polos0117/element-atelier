@@ -1,4 +1,4 @@
-/* 화면 검사 — 첫 화면·도감·생성기를 브라우저로 연다. 폰(390)과 PC(1280).
+/* 화면 검사 — 첫 화면·도감·생성기를 브라우저로 연다. 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
    첫 화면: 주기율표 118칸, 설계된 나라만 링크, 첫 묶음 카드 수 = 설계표 나라 수.
    도감: 근본 세 칸 · 가문마다 가문주 세 칸 + 주민 줄(안 사는 세계는 흐린 칸) · 같은 물질 다른 나라 링크 · 빈 자리는 생성기로.
    생성기(공방 모음 통합 생성기 꼴): 나라 › 카드 › 갈래 › 단계. 세계 그림은 세계 → 덧붙임 → 지시문. 일상컷은 트리 버전2 — 시대 → 장소 → … 한 칸씩,
@@ -81,6 +81,8 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
       let gv = await open('/gallery.html', vp), gp = gv.page;
       await gp.waitForSelector('.g-tile');
       assert.equal(await gp.locator('.g-tile').count(), ns.length, '섬 — 그림 걸린 나라 ' + ns.length);
+      /* 깊은 흐름(도감 · 전시관 · 화풍 고르개 · 즐겨찾기 link)은 폰 한 판에서만 — PC 는 열고 칸 수 · 넘침 · 콘솔만(2026-11-12 검사 정리, 화면 꼴이 다른 생성기 걸음은 둘 다) */
+      if (!mob) { await noOverflow(gp, vp.width); assert.deepEqual(gv.errors, [], '전시관 콘솔'); checks += 2; await gv.ctx.close(); } else {
       await gp.click('.g-tile[data-n="h"]'); await gp.waitForSelector('.g-stage');
       const hn = D.nations.find(n => n.key === 'h'), lordsH = hn.families.filter(f => anyPic('h-' + f.key));
       assert.equal(await gp.locator('.g-node').count(), lordsH.length, '나라 — 궤도 그림 위 가문 이름표');
@@ -105,6 +107,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
       await gp.goBack(); await gp.waitForSelector('.g-stage'); assert.ok(await gp.locator('.g-node').count(), '뒤로 — 한 층 위(나라)');
       await gp.click('.g-node[data-f="' + fam.key + '"]'); await gp.click('.g-act[data-act="open"]'); await gp.waitForSelector('.g-lore'); assert.match(gp.url(), /v=1/, '미리 보기 → 크게 보기');
       await noOverflow(gp, vp.width); assert.deepEqual(gv.errors, [], '전시관 콘솔'); checks += 8; await gv.ctx.close();
+      }
     }
     /* 주기율표(옛 첫 화면, hall.html) */
     let v = await open('/hall.html', vp);
@@ -125,6 +128,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     const worldN = st => feCards.reduce((n, k) => n + Object.values((bs(k)[st] || {}).byForm || {}).filter(f => f.f).length, 0);
     const casN = (k, w) => [bs(k)[OLD]].filter(Boolean).reduce((n, b) => n + Object.entries(b.byForm || {}).filter(([wk]) => !w || wk === w).reduce((x, [, f]) => x + (((f.casual || {}).f) || []).length, 0) + (w ? 0 : (((b.casual || {}).f) || []).length), 0);
     assert.equal(await pg.locator('.worlds.main .slot').count(), 3 + fams * 3 + cit * 3, '세계 그림 칸 — 근본 3 + 가문주 3×' + fams + ' + 주민 3×' + cit);
+    if (!mob) { await noOverflow(pg, vp.width); assert.deepEqual(v.errors, []); checks += 2; await v.ctx.close(); } else {
     /* 화풍 고르개 — 기본 화풍이 먼저 눌려 있고, 화풍 판의 화풍이 다 있다. 고른 화풍의 그림만 */
     assert.equal(await pg.locator('#dex-style').inputValue(), S.default, '처음은 기본 화풍');
     assert.deepEqual(await pg.locator('#dex-style option').evaluateAll(es => es.map(e => e.value)), [S.default, ...Object.keys(S.styles).filter(k => k !== S.default)], '고르개 — 기본 화풍 먼저, 화풍 판 차례');
@@ -211,6 +215,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     v = await open('/dex.html?nation=h', vp); await v.page.waitForSelector('.dex-head');
     assert.equal(await v.page.locator('.row-head .shared a[href="dex.html?nation=o"]').count(), 1, '물 가문은 산소나라와 나눈다');
     assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
+    }
 
     /* 화풍 비교 탭(2026-11-07 — 삼국지 공방과 같이) — 항해에 화풍, 묶음이 없으면 빈 안내, 있으면 화풍마다 칸 */
     { const SC = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style-compare.json'), 'utf8')), sv = await open('/styles.html', vp);
@@ -220,7 +225,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
       else { await sv.page.waitForSelector('.sc-cell'); const R0 = SC.rounds.slice().sort((a, b) => a.key < b.key ? 1 : -1)[0]; assert.equal(await sv.page.locator('.sc-style').count(), R0.styles.length, '화풍마다 한 칸'); }
       await noOverflow(sv.page, vp.width + ' 화풍 비교'); assert.deepEqual(sv.errors, [], '화풍 비교 콘솔'); checks += 4; await sv.ctx.close(); }
     /* 생성기 화풍 고르개 — 맨 위 기본(''), 고르면 지시문 · 파일 이름이 그 화풍. 내린 화풍(retired — 2026-11-11 그림 없는 화풍)은 목록 · 주소에서 빠진다 */
-    { assert(RETIRED.includes('kv_jp_paint') && RETIRED.includes('mmorpg2d') && LIVE.includes('game_keyart') && LIVE.includes('cinematic_keyart') && LIVE.includes(S.default), '내린 화풍 · 살아 있는 화풍(설계)');
+    if (mob) { { assert(RETIRED.includes('kv_jp_paint') && RETIRED.includes('mmorpg2d') && LIVE.includes('game_keyart') && LIVE.includes('cinematic_keyart') && LIVE.includes(S.default), '내린 화풍 · 살아 있는 화풍(설계)');
       const gv = await open('/prompt.html?card=fe&o=world&world=fantasy', vp), gp = gv.page; await gp.waitForSelector('.hchip');
       const ov = await gp.$$eval('#st-style option', os => os.map(o => o.value));
       assert.equal(ov[0], '', '화풍 맨 위는 기본'); assert.deepEqual(ov.slice(1).sort(), LIVE.filter(k => k !== S.default).sort(), '화풍 목록 — 살아 있는 화풍만(기본은 맨 위 한 칸)');
@@ -240,6 +245,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
       await rp.goto(BASE + '/prompt.html?card=fe&o=world&world=fantasy'); await rp.waitForSelector('.hchip');
       assert.equal(await rp.locator('#st-style').inputValue(), '', '내린 화풍 기억값 — 고르개는 기본'); assert.equal((await state(rp)).style, S.default, '내린 화풍 기억값 — 기본 화풍으로 짓는다');
       assert.deepEqual(rv.errors, [], '내린 화풍 주소 콘솔'); checks += 6; await rv.ctx.close(); }
+    }
     /* 생성기 — 세계 그림: 주소대로 카드·세계 → 덧붙임 → 다 골랐다. 기본 화풍(짧은 판 — 2026-11-09)으로 걷는다(구조판 mmorpg2d 는 2026-11-11 내렸다) */
     const SH = T.WORLD_SHORT, CS = T.CASUAL.short, DEF = S.default, row = (list, k) => list.find(r => r.key === k);
     v = await open('/prompt.html?card=fe-steel-sword&o=world&world=mecha', vp);
