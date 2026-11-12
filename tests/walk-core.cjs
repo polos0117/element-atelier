@@ -44,7 +44,8 @@ assert.equal(R.nearestNation(cells, 100, 120, 27), null);
 // 나라 차례 · 앞뒤 나라(끝에서 처음으로 돈다)
 const order = R.nationOrder(D);
 assert.deepEqual(order.slice(0, 3), ['h', 'he', 'li']); assert.equal(order.at(-1), 'og'); assert.equal(order.length, D.nations.length);
-assert.deepEqual(R.neighbors(order, 'h'), { prev: 'og', next: 'he' }); assert.deepEqual(R.neighbors(order, 'cu'), { prev: 'ni', next: 'zn' });   /* 철 둘레(망가니즈 · 크로뮴 · 코발트)는 나라가 늘며 바뀐다 — 2026-11-13 구리로 */
+assert.deepEqual(R.neighbors(order, 'h'), { prev: 'og', next: 'he' }); const num = Object.fromEntries(D.elements.map(e => [e.key, e.number])), fi = order.indexOf('fe');   /* 나라가 늘어도 — 원자 번호 차례, 철의 앞뒤는 그 차례의 이웃 */
+assert(order.every((k, i) => !i || num[order[i - 1]] < num[k]), '나라 차례는 원자 번호 순'); assert.deepEqual(R.neighbors(order, 'fe'), { prev: order[fi - 1], next: order[fi + 1] });
 // 입자 종류 · 상한(효과 ②)
 const K = { transition: 'ember', alkali: 'ember', alkaline_earth: 'ember', post_transition: 'ember', nonmetal: 'breeze', halogen: 'breeze',
   noble_gas: 'mote', metalloid: 'glint', lanthanide: 'flicker', actinide: 'flicker', unknown: 'mote' };
