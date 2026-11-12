@@ -32,3 +32,49 @@ body.walk {margin:0;min-height:100vh;min-height:100dvh;background:var(--w-bg);co
   background:linear-gradient(0deg,color-mix(in srgb,#8a5cff 22%,transparent),transparent)}
 html[data-world="steampunk"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#e3ad62 22%,transparent),transparent)}
 html[data-world="mecha"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#62d6ff 20%,transparent),transparent)}
+
+/* 분류 색 — 주기율표 칸 · 나라 카드 · 범례가 같이 쓰는 한 곳 */
+.walk [data-cat="alkali"] {--cat:#ff6b6b} .walk [data-cat="alkaline_earth"] {--cat:#ffa94d} .walk [data-cat="transition"] {--cat:#ffd43b}
+.walk [data-cat="post_transition"] {--cat:#69db7c} .walk [data-cat="metalloid"] {--cat:#38d9a9} .walk [data-cat="nonmetal"] {--cat:#4dabf7}
+.walk [data-cat="halogen"] {--cat:#22b8cf} .walk [data-cat="noble_gas"] {--cat:#b197fc} .walk [data-cat="lanthanide"] {--cat:#f783ac}
+.walk [data-cat="actinide"] {--cat:#e599f7} .walk [data-cat="unknown"] {--cat:#868e96}
+
+/* 주기율표 — 가로 스크롤 없이 폭에 맞춘다. 덮개는 옆 여백 12px · 칸 사이 2px(칸 ≈ 16px), 넓으면 칸 최대 56px 로 가운데 */
+.w-note {margin:0 0 10px;color:var(--w-mute);font-size:12.5px}
+.w-table {max-width:calc(18 * 56px + 17 * 2px);margin:0 auto;cursor:pointer;touch-action:manipulation}
+.w-table .ptable {display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:2px}
+.w-table .ptable-f {margin-top:6px}
+.w-table .pcell {position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;min-width:0;padding:0;margin:0;border:1px solid #ffffff0d;border-radius:min(.6vw,6px);
+  background:color-mix(in srgb,var(--cat) 9%,transparent);color:#ffffff3d;font:inherit;line-height:1;overflow:hidden}
+.w-table .pcell b {font-size:min(2.4vw,18px);font-weight:700}
+.w-table .pcell small {display:none;font-size:min(1.1vw,10px);opacity:.75}
+.w-table .pcell.on {color:#fff;background:color-mix(in srgb,var(--cat) 34%,#0b0d14);border-color:var(--cat);box-shadow:0 0 6px color-mix(in srgb,var(--cat) 45%,transparent);
+  animation:w-breathe 2.8s ease-in-out infinite;cursor:pointer}
+.w-table .pcell.on[aria-pressed="true"] {background:color-mix(in srgb,var(--cat) 60%,#0b0d14);outline:2px solid #fff;outline-offset:1px}
+@keyframes w-breathe {50% {box-shadow:0 0 14px 1px color-mix(in srgb,var(--cat) 80%,transparent)}}
+html[data-motion="off"] .w-table .pcell.on {animation-name:none}
+@media (min-width:600px) {.w-table .pcell small {display:block}}
+/* 효과 4 불꽃 — lib/walk-fx.js spark 가 고른 칸 둘레에 붙였다 지운다 */
+.w-spark {position:fixed;z-index:70;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--cat,#fff);box-shadow:0 0 6px var(--cat,#fff);pointer-events:none;
+  animation:w-spark .65s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes w-spark {to {transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+
+/* 나라 카드 — 표 바로 아래 큰 카드(칸 → 카드 두 단계라 칸이 작아도 누르기 쉽다) */
+.w-ncard {position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;max-width:640px;margin:14px auto 0;padding:14px;
+  border:1px solid color-mix(in srgb,var(--cat) 55%,transparent);border-radius:18px;background:linear-gradient(160deg,color-mix(in srgb,var(--cat) 18%,var(--w-card)),var(--w-card) 60%)}
+.w-ncard-x {position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;border-radius:12px;background:none;color:var(--w-mute);font-size:22px;cursor:pointer}
+.w-ncard-sym {display:grid;place-items:center;align-content:center;width:64px;height:64px;margin:0;border:2px solid var(--cat);border-radius:14px;background:color-mix(in srgb,var(--cat) 22%,transparent)}
+.w-ncard-sym b {font-size:26px;line-height:1} .w-ncard-sym small {font-size:11px;color:var(--w-mute)}
+.w-ncard-text {padding-right:36px}
+.w-ncard h2 {margin:0;font-size:20px} .w-ncard h2 small {margin-left:8px;font-size:13px;font-weight:400;color:var(--w-mute)}
+.w-ncard-cat {margin:2px 0 0;color:var(--cat);font-size:12.5px;font-weight:700}
+.w-ncard-persona {margin:6px 0 0;font-size:14px;line-height:1.55}
+.w-ncard-counts {margin:6px 0 0;color:var(--w-mute);font-size:13px}
+.w-ncard-acts {grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.w-ncard-acts button {min-height:48px;border:1px solid var(--w-line);border-radius:14px;background:#ffffff0d;color:var(--w-ink);font-weight:700;cursor:pointer}
+.w-ncard-acts .main {background:var(--accent);border-color:var(--accent);color:var(--on-accent,#0b0a10)}
+
+/* 범례 — 분류 열 */
+.w-legend {display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;max-width:1042px;margin:16px auto 0;padding:0;list-style:none;color:var(--w-mute);font-size:12px}
+.w-legend li {display:inline-flex;align-items:center;gap:5px}
+.w-legend i {width:10px;height:10px;border-radius:3px;background:var(--cat);box-shadow:0 0 5px var(--cat)}

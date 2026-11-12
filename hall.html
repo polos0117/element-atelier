@@ -4,114 +4,11 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#f7f9fc">
+<meta name="theme-color" content="#07080c">
 <title>원소의 공방</title>
-<style>@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }</style><script>addEventListener('pageswap', e => { const t = e.viewTransition; if (t) { t.skipTransition(); t.ready.catch(() => {}); } }); addEventListener('pagereveal', e => { const t = e.viewTransition; if (t) t.ready.catch(() => {}); });</script>   <!-- 공방 지도(polos0117.github.io)의 문에서 넘어올 때 페이드로 들어온다(2026-11-12 — 그쪽 README 「방에 들어가는 연출」). 여기서 나갈 때는 전환을 걸지 않아 공방 안에서 쪽을 옮길 때는 전과 같다. 모르는 브라우저는 그냥 넘어온다 -->
-<!-- 글꼴 — game-atelier 와 같다(고딕). 못 받으면(오프라인·막힘) 기기 글꼴로 그대로 뜬다 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap" media="print" onload="this.media='all'">   <!-- 본문 글꼴 — 화면 그리기를 막지 않게(오면 바뀐다). 제목 글꼴은 lib/workspace-theme.js 가 공간 것 하나만 -->
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
-<link rel="stylesheet" href="lib/workspace.css?v=3">
-<script src="lib/workspace-theme.js?v=3"></script>
-<script src="lib/words.js?v=20"></script>
-<script src="lib/patch.js?v=1"></script>
-<script src="lib/fresh.js?v=1"></script>
-<script src="lib/img.js?v=9"></script>
-<link rel="stylesheet" href="lib/room.css?v=2">
-<link rel="stylesheet" href="lib/element.css?v=8">
-<link rel="stylesheet" href="lib/material.css?v=5">
+<!-- 옛 주기율표 화면(2026-11-02) — 「들어가는 곳」(2026-11-12)의 첫 화면이 주기율표가 되어 옛 주소만 남는다: 새 주소로 넘긴다(lib/walk-core.js legacyURL) -->
+<script src="lib/walk-core.js?v=3"></script>
+<script>location.replace(window.AtelierWalk.legacyURL(location.pathname, location.search));</script>
 </head>
-<body class="prompt-page lab-page">
-<div class="wrap"><div id="app"></div></div>
-<script type="module">
-import {h,render} from 'https://esm.sh/preact@10.24.3';
-import {useState,useEffect} from 'https://esm.sh/preact@10.24.3/hooks';
-import {WorkspaceHeader,ThemeGallery} from './lib/workspace-ui.js?v=5';
-const W=window.W,IMG=window.AtelierImg;
-/* 설계표와 등록부를 한 번 읽는다 */
-function useDocs(){
-  const [doc,setDoc]=useState(null);
-  useEffect(()=>{
-    Promise.all([
-      fetch('data/element-design.json',{cache:'no-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error(String(r.status)))),
-      fetch(IMG.DATA,{cache:'no-cache'}).then(r=>r.ok?r.json():{img:{}}).catch(()=>({img:{}}))
-    ]).then(([d,i])=>{IMG.setShards(i);IMG.setAdded(i);setDoc({d,img:i.img||{}});}).catch(()=>setDoc({failed:true}));
-  },[]);
-  return doc;
-}
-/* 카드 하나의 그림 수 — 세계 셋 + 일상컷(세계 몫 안의 것과 세계 없는 옛 시안) */
-function artCount(img,key){
-  const e=img[key];if(!e)return 0;
-  return Object.values(IMG.styleMap(e)).reduce((n,b)=>n+IMG.shotsOf(b,'f').length,0);
-}
-function nationArt(img,n){
-  let keys=[n.key];for(const f of n.families||[]){keys.push(n.key+'-'+f.key);for(const c of f.citizens||[])keys.push(n.key+'-'+f.key+'-'+c.key);}
-  return keys.reduce((s,k)=>s+artCount(img,k),0);
-}
-/* 주기율표 — 18열 7줄 + 란타넘·악티늄족 두 줄. 설계된 나라만 색·링크 */
-function Table({d}){
-  const byNum=new Map(d.elements.map(e=>[e.number,e])),on=new Set(d.nations.map(n=>n.key));
-  const cell=(e,f)=>{
-    if(!e)return h('span',{class:'gap'});
-    const a={class:'pcell'+(on.has(e.key)?' on':'')+(f?' f':''),'data-cat':e.category,title:e.ko+' · '+e.en};
-    const body=[h('small',null,e.number),h('b',null,e.symbol)];
-    return on.has(e.key)?h('a',{...a,href:'dex.html?nation='+e.key,key:e.number},body):h('span',{...a,key:e.number},body);
-  };
-  /* 번호 → (줄, 열). 란타넘·악티늄족(족 없음)은 아래 표 */
-  const main=[];for(let p=1;p<=7;p++){for(let g=1;g<=18;g++){const e=d.elements.find(x=>x.period===p&&x.group===g);main.push(cell(e));}}
-  const fblock=[];for(const [a,b] of [[57,71],[89,103]]){fblock.push(h('span',{class:'gap'}),h('span',{class:'gap'}),h('span',{class:'gap'}));for(let n=a;n<=b;n++)fblock.push(cell(byNum.get(n),true));}
-  return h('div',{class:'ptable-scroll'},h('div',{class:'ptable',role:'list'},main),h('div',{class:'ptable ptable-f',role:'list'},fblock));
-}
-function Home(){
-  const doc=useDocs();
-  return h('section',{class:'ek-section','aria-label':W('home.title')},
-    h('h2',null,W('home.title')),
-    h('p',null,W('home.intro')),
-    h('p',{class:'ek-tag'},W('home.tag')),
-    !doc?h('p',{class:'ek-note'},W('home.first.loading')):
-    doc.failed?h('p',{class:'ek-note'},W('home.first.fail')):
-    h('div',null,
-      h('h2',{style:'margin-top:18px'},W('home.table')),
-      h('p',{class:'ek-note',style:'margin:0 0 6px'},W('home.table.note',{n:doc.d.nations.length})),
-      h(Table,{d:doc.d}),
-      h('h2',{style:'margin-top:22px'},W('home.first')),
-      h('p',{class:'ek-note',style:'margin:0 0 10px'},W('home.first.note',{n:doc.d.nations.length})),
-      h('ul',{class:'nations'},doc.d.nations.map(n=>{
-        const e=doc.d.elements.find(x=>x.key===n.key)||{},fam=n.families||[],cit=fam.reduce((s,f)=>s+(f.citizens||[]).length,0);
-        return h('li',{key:n.key,class:'nation-card','data-cat':e.category},
-          h('div',{class:'nation-top'},h('span',{class:'sym'},e.symbol),h('a',{href:'dex.html?nation='+n.key},e.ko),h('span',{class:'en'},e.en)),
-          h('p',{class:'nation-persona'},n.persona),
-          h('p',{class:'nation-meta'},h('span',null,W('home.first.families',{n:fam.length})),h('span',null,W('home.first.citizens',{n:cit})),h('span',null,W('home.first.art',{n:nationArt(doc.img,n)}))));
-      }))));
-}
-/* 패치 기록 — docs/PATCH.md 를 그대로 읽는다(game-atelier 와 같다) */
-function Patch(){
-  const [open,setOpen]=useState(false),[log,setLog]=useState(null);
-  useEffect(()=>{
-    if(!open||log)return;
-    fetch(window.AtelierPatch.PATH,{cache:'no-cache'})
-      .then(r=>r.ok?r.text():Promise.reject(new Error(String(r.status))))
-      .then(t=>setLog({entries:window.AtelierPatch.parse(t)}))
-      .catch(()=>setLog({entries:[],failed:true}));
-  },[open,log]);
-  if(!open)return h('button',{type:'button',class:'patch-open',onClick:()=>setOpen(true)},h('span',{'aria-hidden':'true'},'◷'),W('home.patch.open'));
-  return h('section',{class:'patch-panel','aria-label':W('home.patch')},
-    h('div',{class:'patch-head'},
-      h('div',null,h('h3',null,W('home.patch')),h('p',null,W('home.patch.note'))),
-      h('button',{type:'button',class:'patch-close',onClick:()=>setOpen(false)},W('home.patch.close'))),
-    !log?h('p',{class:'patch-empty'},W('home.patch.loading')):
-    log.failed?h('p',{class:'patch-empty'},W('home.patch.fail')):
-    !log.entries.length?h('p',{class:'patch-empty'},W('home.patch.none')):
-    h('ul',{class:'patch-list'},log.entries.map((e,i)=>
-      h('li',{class:'patch-entry',key:i},
-        h('div',{class:'patch-when'},h('span',null,e.date),h('span',{class:'patch-who'},e.who)),
-        h('strong',null,e.title),
-        !!e.items.length&&h('ul',null,e.items.map((x,j)=>h('li',{key:j},x)))))));
-}
-function App(){return h('div',null,h(WorkspaceHeader,{page:'hall'}),h(Home),h(Patch),h(ThemeGallery));}
-render(h(App),document.getElementById('app'));
-window.AtelierFresh.watch();
-</script>
-</body>
+<body></body>
 </html>

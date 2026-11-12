@@ -37,4 +37,8 @@ assert.equal(R.legacyURL('/dex.html', '?card=h-water-bottle&pic=b.webp'), 'index
 assert.equal(R.legacyURL('/dex.html', '?nation=fe&view=casual&w=mecha'), 'index.html?n=fe&mode=list&w=mecha&view=casual');
 // 세계
 assert.equal(R.worldOf(r('?w=all'), D.vocab.worlds), 'fantasy'); assert.equal(R.worldOf(r('?w=mecha'), D.vocab.worlds), 'mecha');
-console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계');
+// 가까운 나라 칸 — 흐린 칸 위를 눌러도
+const cells = [{ key: 'fe', x: 100, y: 50 }, { key: 'cu', x: 154, y: 50 }];
+assert.equal(R.nearestNation(cells, 114, 52, 27), 'fe'); assert.equal(R.nearestNation(cells, 140, 50, 27), 'cu');
+assert.equal(R.nearestNation(cells, 100, 120, 27), null);
+console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸');

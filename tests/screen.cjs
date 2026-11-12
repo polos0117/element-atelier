@@ -1,5 +1,4 @@
-/* 화면 검사 — 전시관·주기율표·도감·생성기를 브라우저로 연다. 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
-   첫 화면: 주기율표 118칸, 설계된 나라만 링크, 첫 묶음 카드 수 = 설계표 나라 수.
+/* 화면 검사 — 전시관·도감·생성기를 브라우저로 연다. 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
    도감: 근본 세 칸 · 가문마다 가문주 세 칸 + 주민 줄(안 사는 세계는 흐린 칸) · 같은 물질 다른 나라 링크 · 빈 자리는 생성기로.
    생성기(공방 모음 통합 생성기 꼴): 나라 › 카드 › 갈래 › 단계. 세계 그림은 세계 → 덧붙임 → 지시문. 일상컷은 트리 버전2 — 시대 → 장소 → … 한 칸씩,
    해방(트리 밖 + 까닭), 랜덤(처음부터), 여기부터 다시, 다 골랐다 결과(지시문·파일 이름), 폰은 칩 레일 + 아래 막대 + 시트. 주소 ?card=&o=. 콘솔 오류 없음. 옆으로 넘치지 않음.
@@ -95,14 +94,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
       await noOverflow(gp, vp.width); assert.deepEqual(gv.errors, [], '전시관 콘솔'); checks += 8; await gv.ctx.close();
       }
     }
-    /* 주기율표(옛 첫 화면, hall.html) */
-    let v = await open('/hall.html', vp);
-    await v.page.waitForSelector('.pcell');
-    assert.equal(await v.page.locator('.pcell').count(), 118, '주기율표 118칸');
-    assert.equal(await v.page.locator('a.pcell').count(), D.nations.length, '설계된 나라만 링크');
-    assert.equal(await v.page.locator('.nation-card').count(), D.nations.length, '첫 묶음 카드');
-    await noOverflow(v.page, vp.width); assert.deepEqual(v.errors, []); checks += 3; await v.ctx.close();
-
+    let v;
     /* 도감 — 철(2026-10-31 판): 위에 붙는 판(보기·세계·화풍·바로 가기·즐겨찾기) · 카드마다 세계 그림만 펴고 일상컷은 접는다 · 크게 보기 넘기기·하트.
        화풍 고르개(2026-11-04) — 처음은 기본 화풍, 고른 화풍의 그림만(다른 화풍으로 메우지 않는다). 그림 검사는 옛 화풍 game_keyart 를 골라서 */
     v = await open('/dex.html?nation=fe', vp);
@@ -365,5 +357,5 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     await noOverflow(p, vp.width); assert.deepEqual(v.errors, []); checks += 6; await v.ctx.close();
   }
   await br.close(); server.close();
-  console.log('PASS 화면: 전시관(섬·궤도 그림·이름표 → 미리 보기 → 크게 보기 · 주민 보기·세계 바꾸기·주민 액자·한 장·뒤로) · 주기율표(118·나라 링크·첫 묶음) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
+  console.log('PASS 화면: 전시관(섬·궤도 그림·이름표 → 미리 보기 → 크게 보기 · 주민 보기·세계 바꾸기·주민 액자·한 장·뒤로) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
 })().catch(e => { console.error(e); server.close(); process.exit(1); });

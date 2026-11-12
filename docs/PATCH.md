@@ -10,6 +10,17 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 3 — 첫 화면 주기율표 · 나라 카드 · 칸 숨쉬기와 불꽃
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 3 — 설계 목표 1(첫 화면 = 주기율표) · 효과 ④
+- lib/walk-table.js (새) — 118칸(옛 hall.html 칸 배치 그대로), 나라 칸만 분류 색으로 빛남, 가로 스크롤 없이 폭에 맞춤(덮개 칸 16px 남짓 · 넓으면 최대 56px). 누르기는 표 한 곳에서 받아 가장 가까운 나라(흐린 칸 위를 눌러도), 고르면 표 아래 큰 나라 카드(기호 · 이름 · 분류 · 인격 · 가문 · 주민 수, 「들어가기」 — 기억된 보기 · 「목록」), Esc 로 닫힘, 역사는 안 늘림. 범례 분류 열
+- lib/walk-fx.js (새) — 효과 문: fx()(움직임 판단은 walk-core motionOn 한 곳 — 기기의 움직임 줄이기 · 도구 상자의 움직임 끄기), 누른 자리 넘기기, ④ 불꽃(고른 칸 둘레 불티 여덟). 검사 손잡이 window.AtelierWalkFx
+- lib/walk-core.js — nearestNation(가까운 나라 칸)
+- lib/walk.js — 주기율표 층을 붙임, html[data-motion] 에 움직임 판단을 걸어 CSS 숨쉬기도 같은 판단을 봄
+- lib/walk.css — 분류 색 열(칸 · 카드 · 범례가 같이), 주기율표 · 숨쉬기(움직임 꺼지면 없음) · 불꽃 · 나라 카드 · 범례
+- hall.html — 옛 주기율표 화면을 지우고 새 주소로 넘기는 껍데기(walk-core legacyURL). 패치 기록은 도구 상자로 옮겨 갔다
+- index.html · alchemy.html · styles.html · prompt.html — walk-core.js ?v=3, index 의 walk.css ?v=2 · walk.js ?v=3. lib/words.js — walk.enter · walk.list · walk.counts · walk.legend · walk.table.note, 싣는 화면 ?v=21
+- tests/walk-table.cjs (새) · tests/walk-core.cjs(가까운 칸) · tests/screen.cjs(옛 hall 묶음 지움 — 같은 몫은 walk-table.cjs)
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 2 — 도구 상자 · 도구 화면은 가는 막대(탭 줄 걷기)
 - 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 2 — 합성 · 화풍 · 프롬프트는 장소가 아니라 도구(설계 「도구 상자」 · 물음 6), 움직임 끄기(사용자 「움직임 끄기 옵션 넣어줘」)
 - lib/toolbox.js · lib/toolbox.css (새) — 구석 단추 하나 → 아래에서 오르는 판(PC 는 오른쪽 아래): 합성 · 화풍 · 프롬프트 · 즐겨찾기(원소 수) · 설정(공간 · 밀도 · 움직임) · 패치 기록(옛 주기율표 화면의 것). 판 밖 · Esc · 뒤로 가기로 닫힘, 판 안 링크는 판의 역사 칸을 걷고 간다. 도구 화면 머리 ToolBar(← 돌아가기 — 들어오기 전 층 · 도구 이름 · 도구 상자)
