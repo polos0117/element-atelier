@@ -10,6 +10,18 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 6 — 목록 보기(지금 도감) · 조작 줄 두 줄 · 세계 하나 · 크게 보기를 주소 층으로
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 6 — 설계 목표 3 · 7(원소 알약 줄이 없어지고 조작 줄이 잘리지 않는다) · 물음 2 · 3 · 4
+- lib/walk-list.js (새) — 옛 dex.html 몸통(나라 · 카드 · 세계 칸 · 그림 칸 · 조작 판)을 옮김. 원소 알약 줄 없음, 조작 줄은 두 줄(화풍 한 줄 · 보기 한 줄 — 344 에서도 안 잘림), 세계 거르기는 막대의 세계 고르개(목록에선 「전부」), 즐겨찾기 수는 도구 상자로, 바로 가기 띠는 막대 아래 붙고 양끝이 흐림, 머리에 궤도로/목록으로, ?at= 이면 그 칸으로, 그림을 누르면 한 장 층(뒤로 가기로 닫힘), 같은 물질 다른 나라는 그 나라 목록으로
+- lib/walk-card.js (새) — 옛 도감 크게 보기를 주소 층(?card=&pic=)으로: 홀로 · 넘기기 전환 · 하트 그대로, 넘기기 · 화풍 맞추기는 역사 칸 없이, 닫기 · Esc · 바깥 · 뒤로 가기는 한 층 위. 즐겨찾기 link 는 index.html?n=&mode=list&card=&pic=(&st=). 열자마자 누른 키도 받는다
+- lib/walk-data.js — fileOf · styleList · picsOf · styleOfPic(옛 dex.html 에서 옮김, 몸 그대로)
+- lib/walk.js — 목록 · 한 장 층을 붙임(한 장은 부모 층 위에), 목록 층에서만 세계 고르개 끝에 「전부」, 위 막대 높이를 --w-bar-h 로
+- lib/walk.css — 목록 · 한 장을 어두운 바탕으로(element.css 의 공간 변수를 두 층 안에서만 바꿈), 조작 줄 두 줄 · 바로 가기 띠 · 한 장은 막대 아래. element.css 의 폰 주기율표 규칙이 새 주기율표를 넓히지 않게
+- dex.html — 옛 도감을 지우고 새 주소로 넘기는 껍데기(즐겨찾기의 옛 link 도 이 길로 산다)
+- index.html — element.css · prompt-spec.js · prompt-element.js 싣기(옛 dex.html 과 같은 버전), walk.css ?v=5 · walk.js ?v=6. lib/words.js — walk.world.all, 싣는 화면 ?v=23
+- lib/walk-orbit.js — walk-data.js ?v=3 만(가져오는 파일 버전)
+- tests/walk-list.cjs (새 — screen.cjs 도감 묶음을 옮기고 더함) · tests/screen.cjs(도감 묶음 지움) · tests/dex-holo.cjs · tests/dex-turn.cjs(여는 주소만)
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 5 — 궤도가 천천히 돌고(손대면 멈춤) 분류마다 입자(PixiJS 늦게 불러오기)
 - 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 5 — 효과 ②(궤도 화면에 머무는 동안), 설계 「입자 수 상한, 화면 밖 · 숨은 탭에서는 멈춘다」 · 움직임 끄기
 - lib/walk-fx.js — loadPixi(한 번만, 실패하면 다음에 다시 — 주소는 holo.js 의 PIXI_URL) · mountParticles: 분류마다 입자(불티 · 바람결 · 빛 알갱이 · 결정 반짝임 · 푸른 깜빡임), 수 상한, 숨은 탭 · 화면 밖이면 멈춤, 움직임이 꺼졌거나 WebGL 이 없거나 PixiJS 를 못 받으면 조용히 빠짐(WebGL 이 없으면 받지도 않는다)

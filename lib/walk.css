@@ -146,3 +146,26 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 /* 입자 캔버스(lib/walk-fx.js mountParticles) — 그림 · 고리 위, 근본 · 가문주 아래, 누르기는 지나간다 */
 .w-fx {position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:50%}
 .w-fx canvas.w-particles {position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* 목록 보기 · 한 장 — 옛 도감 겉모습 클래스(lib/element.css — 도구 화면도 쓰니 고치지 않는다)를 어두운 바탕에 맞게 덮는다: 그 파일이 쓰는 공간 변수를 이 두 층 안에서만 바꾼다 */
+.walk .w-list,.walk .w-card {--bg:#07080c;--card:#12141c;--card2:#0d0f16;--line:#ffffff1f;--text:var(--w-ink);--muted:var(--w-mute);--shadow:none}
+.walk .w-table .ptable {width:auto}   /* element.css 의 폰 규칙(18열 44px · max-content)이 주기율표를 넓히지 않게 */
+.w-list > .w-mode {margin:0 auto 14px}
+.w-list .ek-section {margin:0;padding:16px clamp(12px,3vw,24px);border-radius:18px}
+.w-list .ek-card {scroll-margin-top:calc(var(--w-bar-h,0px) + 64px)}
+/* 조작 줄 — 두 줄(화풍 한 줄 · 보기 한 줄), 아무것도 옆으로 잘리지 않는다(옛 폰 규칙의 옆으로 밀기 · 흐림을 걷는다) */
+.walk .dex-toc {position:static;margin:12px 0 0;padding:10px 0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-block:1px solid var(--line);display:grid;gap:8px}
+.walk .toc-row {flex-wrap:wrap;overflow:visible;padding-right:0;-webkit-mask-image:none;mask-image:none}
+.walk .style-pick {flex:1 1 100%;min-width:0;min-height:44px}
+.walk .style-pick select {flex:1;min-width:0;max-width:none;min-height:42px}
+.walk .dex-toc .seg {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:1 1 100%;min-width:0}
+.walk .dex-toc .seg button {min-height:44px;min-width:0;padding:0 6px}
+/* 바로 가기 띠 — 막대 아래 붙고(조작 줄은 붙지 않는다 — 덮개 화면을 덜 먹게), 옆으로 구르며 양끝을 흐린다 */
+.walk .toc-jump {position:sticky;top:var(--w-bar-h,0px);z-index:5;margin:0 calc(-1 * clamp(12px,3vw,24px));padding:8px clamp(12px,3vw,24px);background:#07080ce6;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  -webkit-mask-image:linear-gradient(90deg,#0000,#000 22px,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#0000,#000 22px,#000 calc(100% - 28px),#0000)}
+.walk .toc-jump .jump {min-height:44px;min-width:44px}
+@media (max-width:760px) {.w-bar .w-worlds {grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-columns:none}}   /* 목록 층의 「전부」 까지 넷이 한 줄 */
+
+/* 한 장 — 위 막대 아래를 채운다(막대의 세계 고르개 · 길 표시는 그대로 쓴다). 덮개는 그림 · 단추 아래 글 판(굴려 본다), 넓으면 그림 | 글 판 */
+.walk .lightbox.w-card {top:var(--w-bar-h,0px);justify-content:flex-start;overflow-y:auto;padding:10px 12px 96px;background:#05060af2}
+.walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 150px)}

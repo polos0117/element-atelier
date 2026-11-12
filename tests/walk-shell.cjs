@@ -19,8 +19,11 @@ const { COVER, WIDE, serve, launch, open, noOverflow, shot } = require('./lib/ha
     await p.waitForFunction(() => document.documentElement.dataset.layer === 'card');
     for (const [layer, search] of [['family', '?n=fe&mode=orbit&f=steel'], ['orbit', '?n=fe&mode=orbit'], ['table', '']]) {
       await p.goBack(); await p.waitForFunction(l => document.documentElement.dataset.layer === l, layer);
-      assert.equal(new URL(p.url()).pathname, '/index.html'); assert.equal(new URL(p.url()).search, search);
+      assert.equal(new URL(p.url()).pathname, '/index.html');
+      /* 한 장이 그림이 든 화풍으로 고르개를 옮긴다(과제 6 — st 는 전역 값이라 위 층에도 남는다). 층 열쇠만 본다 */
+      assert.equal(new URL(p.url()).search.replace(/[?&]st=[^&]*/, ''), search);
     }
+    await p.evaluate(() => localStorage.removeItem('element_dex_v1'));   // 위 한 장이 기억시킨 화풍이 빈 st 를 채우지 않게
     // stale keys(Review Focus 3) — 빈 화면 없이, 주소도 바로잡힌다
     for (const [u, layer, search] of [['?n=zz', 'table', ''], ['?n=fe&f=nope', 'orbit', '?n=fe&mode=orbit'], ['?n=fe&card=h-water', 'orbit', '?n=fe&mode=orbit'], ['?n=fe&mode=weird', 'orbit', '?n=fe&mode=orbit']]) {
       await p.goto(base + '/index.html' + u); await p.waitForFunction(l => document.documentElement.dataset.layer === l, layer);

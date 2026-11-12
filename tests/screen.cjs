@@ -1,5 +1,4 @@
-/* 화면 검사 — 전시관·도감·생성기를 브라우저로 연다. 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
-   도감: 근본 세 칸 · 가문마다 가문주 세 칸 + 주민 줄(안 사는 세계는 흐린 칸) · 같은 물질 다른 나라 링크 · 빈 자리는 생성기로.
+/* 화면 검사 — 전시관·생성기를 브라우저로 연다(도감은 2026-11-12 「들어가는 곳」 목록 층으로 — tests/walk-list.cjs). 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
    생성기(공방 모음 통합 생성기 꼴): 나라 › 카드 › 갈래 › 단계. 세계 그림은 세계 → 덧붙임 → 지시문. 일상컷은 트리 버전2 — 시대 → 장소 → … 한 칸씩,
    해방(트리 밖 + 까닭), 랜덤(처음부터), 여기부터 다시, 다 골랐다 결과(지시문·파일 이름), 폰은 칩 레일 + 아래 막대 + 시트. 주소 ?card=&o=. 콘솔 오류 없음. 옆으로 넘치지 않음.
    Run: ESM_DIR=<preact 가 든 node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   (PORT 로 자리 바꾸기, 기본 8794) */
@@ -95,105 +94,6 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
       }
     }
     let v;
-    /* 도감 — 철(2026-10-31 판): 위에 붙는 판(보기·세계·화풍·바로 가기·즐겨찾기) · 카드마다 세계 그림만 펴고 일상컷은 접는다 · 크게 보기 넘기기·하트.
-       화풍 고르개(2026-11-04) — 처음은 기본 화풍, 고른 화풍의 그림만(다른 화풍으로 메우지 않는다). 그림 검사는 옛 화풍 game_keyart 를 골라서 */
-    v = await open('/dex.html?nation=fe', vp);
-    await v.page.waitForSelector('.dex-head');
-    const pg = v.page, fe = D.nations.find(n => n.key === 'fe'), fams = fe.families.length, cit = fe.families.reduce((s, f) => s + f.citizens.length, 0);
-    const feCards = ['fe', ...fe.families.flatMap(f => ['fe-' + f.key, ...f.citizens.map(c => 'fe-' + f.key + '-' + c.key)])];
-    /* 등록부에서 센다 — 한 화풍의 세계 그림, 일상컷(세계 몫 + 화풍 몫의 옛 시안) */
-    const OLD = 'game_keyart', bs = k => (IMGJ.img[k] || {}).byStyle || {};
-    const worldN = st => feCards.reduce((n, k) => n + Object.values((bs(k)[st] || {}).byForm || {}).filter(f => f.f).length, 0);
-    const casN = (k, w) => [bs(k)[OLD]].filter(Boolean).reduce((n, b) => n + Object.entries(b.byForm || {}).filter(([wk]) => !w || wk === w).reduce((x, [, f]) => x + (((f.casual || {}).f) || []).length, 0) + (w ? 0 : (((b.casual || {}).f) || []).length), 0);
-    assert.equal(await pg.locator('.worlds.main .slot').count(), 3 + fams * 3 + cit * 3, '세계 그림 칸 — 근본 3 + 가문주 3×' + fams + ' + 주민 3×' + cit);
-    if (!mob) { await noOverflow(pg, vp.width); assert.deepEqual(v.errors, []); checks += 2; await v.ctx.close(); } else {
-    /* 화풍 고르개 — 기본 화풍이 먼저 눌려 있고, 화풍 판의 화풍이 다 있다. 고른 화풍의 그림만 */
-    assert.equal(await pg.locator('#dex-style').inputValue(), S.default, '처음은 기본 화풍');
-    assert.deepEqual(await pg.locator('#dex-style option').evaluateAll(es => es.map(e => e.value)), [S.default, ...Object.keys(S.styles).filter(k => k !== S.default)], '고르개 — 기본 화풍 먼저, 화풍 판 차례');
-    assert.equal(await pg.locator('.worlds.main .slot img').count(), worldN(S.default), '기본 화풍 그림만 ' + worldN(S.default));
-    assert.match(await pg.locator('#dex-style option').first().textContent(), new RegExp(worldN(S.default) + '장'), '고르개에 그 화풍 장수');
-    for (const st of Object.keys(S.styles).filter(k => k !== S.default && k !== OLD && worldN(k))) {
-      await pg.selectOption('#dex-style', st);
-      assert.equal(await pg.locator('.worlds.main .slot img').count(), worldN(st), st + ' 그림만');
-      assert.equal(await pg.locator('.worlds.main a.slot').count(), 0, st + ' — 기본 화풍이 아니면 빈 칸이 생성기로 안 간다');
-      assert.match(pg.url(), new RegExp('st=' + st));
-    }
-    await pg.selectOption('#dex-style', OLD); assert.match(pg.url(), /st=game_keyart/, '고른 화풍이 주소에');
-    assert.equal(await pg.locator('.worlds.main .slot img').count(), worldN(OLD), '옛 화풍을 고르면 옛 그림 ' + worldN(OLD));
-    const dead = fe.families.reduce((s, f) => s + f.citizens.reduce((x, c) => x + (3 - c.worlds.length), 0), 0);
-    assert.equal(await pg.locator('.slot.dead').count(), dead, '안 사는 세계는 작고 흐린 칸');
-    if (dead) assert((await pg.locator('.slot.dead').first().boundingBox()).height < 110, '흐린 칸은 작다');
-    assert.equal(await pg.locator('.worlds.alt, .worlds.casuals, [data-more="alt"]').count(), 0, '세계 그림 보기 — 일상컷은 접혀 있고 다른 화풍 줄은 없다');
-    assert.equal(await pg.locator('.toc-jump .jump').count(), 1 + fams + cit, '바로 가기 칩 — 근본·가문주·주민');
-    /* 접은 단추 — 근본의 일상컷(고른 화풍 것만) */
-    await pg.click('#c-fe [data-more="casual"]'); assert.equal(await pg.locator('#c-fe .worlds.casuals .slot').count(), casN('fe'), '일상컷 펼치기');
-    const capH = await pg.locator('#c-fe .worlds.casuals .slot .cap').first().evaluate(e => e.getBoundingClientRect().height);
-    assert(capH < 40, '일상컷 이름은 한 줄(세로로 쌓이지 않는다 — 여백 포함) ' + capH);
-    assert.match(await pg.locator('#c-fe .worlds.casuals .slot .cap').first().textContent(), /^(판타지|스팀펑크|메카|시안) \d+$/, '이름은 「판타지 1」 꼴');
-    /* 바로 가기 — 누르면 그 카드가 위 판 바로 아래로 */
-    const far = feCards[Math.floor(feCards.length / 2)];   // 맨 끝 카드는 페이지가 끝나 위로 못 올라온다 — 가운데
-    await pg.click('[data-jump="' + far + '"]'); await pg.waitForTimeout(900);
-    const top = await pg.evaluate(k => { const el = document.getElementById('c-' + k), toc = document.querySelector('.dex-toc'); return { card: el.getBoundingClientRect().top, toc: toc.getBoundingClientRect().bottom }; }, far);
-    assert(top.card >= top.toc - 20 && top.card < top.toc + 160, '바로 가기 ' + JSON.stringify(top));
-    /* 보기 — 일상컷 + 메카: 세계 그림은 없고 메카 일상컷만 */
-    await pg.click('[data-view="casual"]'); await pg.click('[data-wf="mecha"]');
-    assert.equal(await pg.locator('.worlds.main').count(), 0, '일상컷 보기엔 세계 그림이 없다');
-    assert.equal(await pg.locator('.worlds.casuals .slot').count(), feCards.reduce((n, k) => n + casN(k, 'mecha'), 0), '메카 일상컷 수');
-    assert.deepEqual([...new Set((await pg.locator('.worlds.casuals .slot .cap').allTextContents()).map(t => t.split(' ')[0]))], ['메카'], '메카만');
-    assert.match(pg.url(), /view=casual/); assert.match(pg.url(), /w=mecha/);
-    /* 전부 — 세계 그림 + 일상컷, 다른 화풍 줄은 없다 */
-    await pg.click('[data-view="all"]'); await pg.click('[data-wf="all"]');
-    assert.equal(await pg.locator('.worlds.alt').count(), 0, '전부 보기 — 다른 화풍 줄은 없다(고르개로)');
-    assert.equal(await pg.locator('.worlds.casuals .slot').count(), feCards.reduce((n, k) => n + casN(k), 0), '전부 보기 — 고른 화풍 일상컷');
-    await pg.click('[data-view="world"]');
-    /* 크게 보기 — 넘기기 · 하트(공방 모음 즐겨찾기 a: element) · Esc */
-    await pg.click('[data-jump="fe"]'); await pg.waitForTimeout(500);
-    await pg.click('#c-fe .worlds.main .slot >> nth=0');
-    await pg.waitForSelector('.lightbox');
-    const total = await pg.locator('.lightbox .lb-n').textContent();
-    assert.match(total, /^1 \/ \d+$/, '몇 번째 ' + total);
-    await pg.keyboard.press('ArrowRight'); assert.match(await pg.locator('.lightbox .lb-n').textContent(), /^2 \//, '→ 다음');
-    await pg.keyboard.press('ArrowLeft'); await pg.keyboard.press('ArrowLeft'); assert.equal(await pg.locator('.lightbox .lb-n').textContent(), total.replace(/^1 /, total.split(' / ')[1] + ' '), '← 처음에서 끝으로');
-    await pg.click('#dex-fav');
-    const favs = await pg.evaluate(() => JSON.parse(localStorage.getItem('atelier_favorites_v1') || '[]'));
-    assert(favs.length === 1 && favs[0].a === 'element' && favs[0].key === 'fe' && /\/dex\.html\?nation=fe&card=fe&pic=.+&st=game_keyart$/.test(favs[0].link) && /^https:\/\//.test(favs[0].thumb), '하트 — 즐겨찾기 칸 ' + JSON.stringify(favs[0]));
-    assert.equal(await pg.locator('#dex-fav').getAttribute('aria-pressed'), 'true');
-    assert.match(await pg.locator('#dex-fav-count').textContent(), /즐겨찾기 1/, '즐겨찾기 수');
-    assert.equal(await pg.locator('#dex-fav-count').getAttribute('href'), '/favorites.html', '공방 모음 즐겨찾기로');
-    await pg.keyboard.press('Escape'); assert.equal(await pg.locator('.lightbox').count(), 0, 'Esc');
-    /* 뒤로 가기는 팝업만 닫는다 — 페이지는 그대로(일상컷 크게 보기에서). Esc 로 닫은 뒤의 뒤로 가기도 남은 칸이 없다 */
-    const before = pg.url();
-    await pg.click('#c-fe [data-more="casual"]').catch(() => {}); if (!(await pg.locator('#c-fe .worlds.casuals .slot').count())) await pg.click('#c-fe [data-more="casual"]');
-    await pg.click('#c-fe .worlds.casuals .slot >> nth=0'); await pg.waitForSelector('.lightbox');
-    await pg.goBack(); await pg.waitForTimeout(300);
-    assert.equal(await pg.locator('.lightbox').count(), 0, '뒤로 가기 — 팝업이 닫힌다'); assert.equal(pg.url(), before, '뒤로 가기 — 도감에 그대로');
-    assert(await pg.locator('.dex-head').count(), '뒤로 가기 — 이전 화면으로 안 넘어간다');
-    await pg.click('#c-fe .worlds.casuals .slot >> nth=0'); await pg.waitForSelector('.lightbox'); await pg.click('.lightbox .bar button:last-child'); await pg.waitForTimeout(300);
-    assert.equal(await pg.locator('.lightbox').count(), 0, '닫기'); assert.equal(await pg.evaluate(() => !!(history.state && history.state.elementLb)), false, '닫기가 기록 칸을 지웠다');
-    await noOverflow(pg, vp.width); assert.deepEqual(v.errors, []); checks += 30;
-    /* 공방 모음 즐겨찾기의 link 로 다시 오면 그 그림이 열린다 */
-    const pic = favs[0].file; await v.ctx.close();
-    v = await open(favs[0].link.replace(/^.*dex\.html/, '/dex.html'), vp); await v.page.waitForSelector('.lightbox img');
-    assert((await v.page.locator('.lightbox img').getAttribute('src')).endsWith(pic), '즐겨찾기 link 가 그 그림을 연다');
-    assert.equal(await v.page.locator('#dex-style').inputValue(), OLD, '즐겨찾기 link — 그 그림의 화풍으로');
-    await v.ctx.close();
-    v = await open('/dex.html?nation=fe&card=fe&pic=' + encodeURIComponent(pic), vp); await v.page.waitForSelector('.lightbox img');
-    assert.equal(await v.page.locator('#dex-style').inputValue(), OLD, '화풍 없는 옛 link 도 그 그림이 든 화풍으로 옮긴다');
-    assert.deepEqual(v.errors, []); checks += 3; await v.ctx.close();
-    /* 빈 자리는 생성기로 — 그림이 없는 (카드, 세계) 하나를 등록부에서 찾아(나라 차례대로 — 그림이 차면 자리가 옮겨 간다) 그 나라 도감에서 본다 */
-    const holes = D.nations.flatMap(n => [n.key, ...n.families.flatMap(f => [n.key + '-' + f.key, ...f.citizens.map(c => n.key + '-' + f.key + '-' + c.key)])].flatMap(k => {
-      const fam = n.families.find(f => k.split('-')[1] === f.key), cit = fam && fam.citizens.find(c => k.split('-')[2] === c.key);
-      const ws = cit ? cit.worlds : ['fantasy', 'steampunk', 'mecha'], have = (((IMGJ.img[k] || {}).byStyle || {})[S.default] || {}).byForm || {};
-      return ws.filter(w => !(have[w] && have[w].f)).map(w => [n.key, k, w]);
-    }));
-    assert(holes.length, '빈 자리가 하나도 없다 — 이 검사를 다시 생각할 때');
-    v = await open('/dex.html?nation=' + holes[0][0], vp); await v.page.waitForSelector('.dex-head');
-    assert((await v.page.locator('a.slot[href^="prompt.html?card=' + holes[0][1] + '&world=' + holes[0][2] + '"]').count()) >= 1, '빈 자리는 생성기로 ' + holes[0]);
-    assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
-    v = await open('/dex.html?nation=h', vp); await v.page.waitForSelector('.dex-head');
-    assert.equal(await v.page.locator('.row-head .shared a[href="dex.html?nation=o"]').count(), 1, '물 가문은 산소나라와 나눈다');
-    assert.deepEqual(v.errors, []); checks += 1; await v.ctx.close();
-    }
 
     /* 화풍 비교(2026-11-07 — 삼국지 공방과 같이) — 도구 막대에 화풍(2026-11-12 「들어가는 곳」), 묶음이 없으면 빈 안내, 있으면 화풍마다 칸 */
     { const SC = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/style-compare.json'), 'utf8')), sv = await open('/styles.html', vp);
@@ -357,5 +257,5 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     await noOverflow(p, vp.width); assert.deepEqual(v.errors, []); checks += 6; await v.ctx.close();
   }
   await br.close(); server.close();
-  console.log('PASS 화면: 전시관(섬·궤도 그림·이름표 → 미리 보기 → 크게 보기 · 주민 보기·세계 바꾸기·주민 액자·한 장·뒤로) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
+  console.log('PASS 화면: 전시관(섬·궤도 그림·이름표 → 미리 보기 → 크게 보기 · 주민 보기·세계 바꾸기·주민 액자·한 장·뒤로) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
 })().catch(e => { console.error(e); server.close(); process.exit(1); });

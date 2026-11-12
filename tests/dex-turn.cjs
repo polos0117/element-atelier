@@ -33,7 +33,7 @@ const server = http.createServer((q, s) => {
     });
     const page = await ctx.newPage(), errors = [];
     page.on('pageerror', e => errors.push(String(e)));
-    await page.goto(BASE + '/dex.html?nation=fe');
+    await page.goto(BASE + '/index.html?n=fe&mode=list');
     await page.click('#c-fe .worlds.main .slot >> nth=0'); await page.waitForSelector('.lightbox img');
     await page.locator('.lightbox img').evaluate(i => i.decode());
     return { ctx, page, errors };
