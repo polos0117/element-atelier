@@ -18,7 +18,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=3"></script>
-<script src="lib/words.js?v=23"></script>
+<script src="lib/words.js?v=24"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/alchemy.js?v=2"></script>
 <link rel="stylesheet" href="lib/element.css?v=10">
@@ -39,7 +39,7 @@
 <div class="wrap"><div id="app"></div><div id="game" role="application"></div><p id="alchemy-status" class="sr-only" role="status" aria-live="polite"></p></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
-import {ToolBar} from './lib/toolbox.js?v=1';
+import {ToolBar} from './lib/toolbox.js?v=2';
 import * as Phaser from 'https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.esm.min.js';
 const W=window.W,IMG=window.AtelierImg,AL=window.AtelierAlchemy;
 render(h(ToolBar,{tool:'alchemy'}),document.getElementById('app'));

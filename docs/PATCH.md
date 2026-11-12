@@ -10,6 +10,19 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 10 — 안 쓰는 탭 머리 · 낱말 정리, AGENTS 화면 표 새로, DESIGN.md
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 10 — 정리 · 문서 · 전체 검사
+- DESIGN.md (새) — 이 공방의 뼈대(「넘기는 곳이 아니라 들어가는 곳」 · 도구 상자 · 탭 줄 없음 · 어두운 바탕 · 효과 다섯 · 움직임 설정). 다른 공방의 뼈대를 가져오지 않는다 — 새 화면은 여기부터(사용자 「새로 만들어 달라고 하면 그전 공방 그대로 옮겨서 만든다」)
+- AGENTS.md — 먼저 읽을 것에 DESIGN.md, 화면 표(타이틀 · 전시관 · 주기율표 · 도감 → 원소 공방 · 도구 상자), PAGES 문장 지움, 목록과 즐겨찾기 link 꼴, 검사 목록에 tests/walk-*.cjs, 꾸밈에 새 층은 --frame · --ui-* 를 안 쓴다고
+- README.md · docs/PORT_NOTES.md — 화면 줄 · 옛 탭 머리 지움 표시
+- lib/workspace-ui.js — 지움(아무도 안 싣는다 — 탭 머리 · AppearanceControls)
+- lib/words.js — 쓰는 곳이 없는 열쇠 지움(nav.* · title.* · ui.header.* · home.title/intro/tag/table*/first*/themes · gallery.island* 와 옛 전시관 · 도감 머리 낱말), 첫 줄 보기 W('walk.table')
+- lib/walk-orbit.js · lib/walk-family.js — 효과 ① · ⑤ 를 그리기 전(useLayoutEffect)에 — 끝 모습이 한 틀 먼저 비치지 않게(walk-orbit 검사가 가끔 「enter」 를 못 보던 것)
+- lib/toolbox.js — Esc 를 그리자마자 받는다(useLayoutEffect — 열고 바로 누른 Esc 를 놓쳐 walk-list 가 가끔 시간 초과)
+- alchemy.html · prompt.html · styles.html · index.html — words.js ?v=24 · toolbox.js ?v=2, walk.js ?v=10(walk-orbit ?v=5 · walk-list ?v=3 · walk-family ?v=3)
+- tests/screen.cjs — 세계 그림 칸 꼴의 줄 이름(Scene note: · Time & weather: — main 2887e08 의 생성기 그대로)으로 단언
+- tests/lib/harness.cjs — 낱말 표에 없는 열쇠(console.warn 'words: …')도 오류로 센다
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 9 — 세계 바꾸기 전환(가루 · 김 · 주사선)
 - 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 9 — 설계 효과 ③(세계마다 다른 전환)
 - lib/walk-fx.js — PixiJS 를 닫을 때 전역 자원(releaseGlobalResources)은 놓지 않는다(궤도 입자 · 세계 전환 · 한 장의 홀로가 한 화면에 같이 살아서 — 하나를 닫으면 남은 쪽이 「null 의 '2'」 오류로 깨졌다, walk-list 에서 잡힘)

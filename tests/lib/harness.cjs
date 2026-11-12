@@ -51,7 +51,7 @@ async function open(browser, base, url, opt = {}) {
   });
   const page = await ctx.newPage(), errors = [], requests = [];
   page.on('pageerror', e => errors.push(String(e)));
-  page.on('console', m => { if (m.type() === 'error' && !/ERR_FAILED|net::|Failed to load resource/.test(m.text())) errors.push(m.text()); });
+  page.on('console', m => { if ((m.type() === 'error' && !/ERR_FAILED|net::|Failed to load resource/.test(m.text())) || (m.type() === 'warning' && /^words: /.test(m.text()))) errors.push(m.text()); });   /* 낱말 표에 없는 열쇠도 오류로 */
   page.on('request', q => requests.push(q.url()));
   await page.goto(base + url);
   return { ctx, page, errors, requests };

@@ -9,7 +9,7 @@
 |---|---|---|
 | `lib/workspace.css` · `lib/room.css` | 테마·화면 밀도·껍데기·공간 풍경 | 색은 그대로, 공간 이름만(실험실·천문대·연금술 공방·광산·제어실). 배경 그림 자리는 `element-atelier-img/backgrounds/` |
 | `lib/workspace-theme.js` | 테마·배경 고르기 | 열쇠 `element_room_v1`·`element_background_v1` |
-| `lib/workspace-ui.js` | 머리·항해·⚙ 설정·머리 접기·공간 고르개 | 문양을 원소 물건(플라스크·궤도·도가니·결정·원자 고리)으로, 접기 열쇠 `element_header_fold`, `PAGES=['index','dex','prompt']` |
+| ~~`lib/workspace-ui.js`~~ (2026-11-12 지움 — 원소 공방 「들어가는 곳」 은 탭 머리 없이 도구 상자, `DESIGN.md`) | 머리·항해·⚙ 설정·머리 접기·공간 고르개 | 문양을 원소 물건(플라스크·궤도·도가니·결정·원자 고리)으로, 접기 열쇠 `element_header_fold`, `PAGES=['index','dex','prompt']` |
 | `lib/words.js` · `tests/words.cjs` | 낱말 표 — 화면에 말을 박지 않는다 | 원소 낱말. 표 파일은 `lib/words.js`·`lib/prompt-spec.js`·`lib/look-spec.js` |
 | `lib/prompt-spec.js` 의 외형 선택지(PARAM_DEFS · 얼굴 다섯 묶음 · 실루엣 어휘) | 외형 칸 · FACE · SILHOUETTE · IDENTITY | `lib/look-spec.js` 로 — `tools/port-look-spec.cjs` 가 game 표에서 글자 그대로 만들고(원소 몫 머리·눈 색만 더함) `tests/look-spec.cjs` 가 같은지 본다(2026-10-30) |
 | `lib/fresh.js` · `lib/patch.js` · `tests/patch.cjs` | 새 판 살피기 · 패치 기록 | 그대로 |

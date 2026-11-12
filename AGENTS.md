@@ -1,13 +1,14 @@
 # 작업 지침
 
 **뼈대 · 설계표(일곱 나라) · 생성기 · 도감 · 그림 등록 자동화** 까지 왔다(2026-10-30). 지금은 철나라를 끝까지 그리는 단계 — `docs/ELEMENT_CONCEPT.md` 6절.
-껍데기는 game-atelier 에서 가져왔다 — 무엇을 어디서 가져왔는지는 `docs/PORT_NOTES.md`.
+자료 · 생성기 · 그림 등록 몫은 game-atelier 에서 가져왔다 — 무엇을 어디서 가져왔는지는 `docs/PORT_NOTES.md`. 화면 뼈대는 가져오지 않은 이 공방 것이다(2026-11-12 「들어가는 곳」) — `DESIGN.md`.
 
 ## 먼저 읽을 것
 
 | 문서 | 무엇 |
 |---|---|
 | 이 문서 | 규칙과 자리 |
+| `DESIGN.md` | 이 공방의 뼈대 — 「넘기는 곳이 아니라 들어가는 곳」(주기율표 → 나라 → 가문 → 한 장 · 도구 상자 · 탭 줄 없음 · 어두운 바탕 · 효과 다섯 · 움직임 설정). 새 화면은 여기부터 |
 | `docs/ELEMENT_CONCEPT.md` | 기획 — 왜 세 층인가·세계 셋·설계표 칸·지시문·첫 묶음·만드는 차례 |
 | `data/element-design.json` | 설계표. 나라(원소) › 가문(물질) › 주민(물건) |
 | `IMAGE_RULES.md` | 그림 만들기·파일 이름·기록·올리기 — 그림 작업 전에 |
@@ -21,21 +22,20 @@
 
 | 화면 | 파일 | 무엇 |
 |---|---|---|
-| 타이틀 | `index.html` · `lib/material.css` | 게임 첫 진입 화면처럼(2026-11-02 「메인화면 구성을 지금 삼국지처럼」): 공간의 배경 장면을 화면 가득, 공간마다 생성한 그림 현판 · 단추(그림 저장소 `backgrounds/ui/`)로 메뉴 넷(머리 메뉴와 같은 차례 — 주기율표 · 전시관 · 도감 · 프롬프트, 강조는 전시관), ◀ ▶ · ← → 로 공간 넘기기, 빈 곳을 누르면 배경만 |
-| 전시관 | `gallery.html` · `lib/gallery.css` | 감상용(2026-11-02 「감상용 디지털 아카이브 — 레이어 줌인 · 원형」). 그려진 카드만 건다 — 섬(나라들) → 나라(원소마다 생성한 궤도 그림 — 그림 저장소 `backgrounds/orbits/orbit-<나라>.webp`, 큰 고리 반지름은 기록 `ring` · `gallery.html` 의 `RING` — 위에 가문 이름표만, 누르면 큰 그림 미리 보기 → 「크게 보기」(한 장) · 「주민 보기」(가문)) → 가문(가문주 크게 · 주민은 장식 틀 액자) → 한 장(화면 가득 · ← → 세계 · Esc). 세계(판타지 · 스팀펑크 · 메카)는 위 막대에 늘 있고 바꾸면 같은 카드가 그 세계 그림으로(새 그림이 스르르 — 뷰 전환은 폰에서 터치를 3초 넘게 붙잡아 뺐다). 그 세계 그림이 없으면 다른 세계 것을 「…의 그림」 표시로. 사실 칸은 elements 의 것만. 주소 `?n=&f=&c=&w=&v=1`, 층마다 뒤로 가기. 도감은 그림을 채우는 작업 화면으로 그대로 |
-| 주기율표 | `hall.html` · `lib/element.css` | 주기율표 118칸(설계된 나라만 색·누르면 도감) · 첫 묶음 나라 카드(인격·가문·주민·그림 수) · 패치 기록 · 공간 |
-| 도감 | `dex.html` · `lib/img.js` · `lib/element.css` | 나라 하나 — 화풍 고르개(고른 화풍의 그림만, 처음은 기본 화풍) · 사실 칸·인격·성질 · 근본 세 세계 · 가문마다 가문주 세 세계 + 주민들(사는 세계만) · 같은 물질 다른 나라 잇기 · 크게 보기 · 빈 자리를 누르면 그 카드의 생성기. 등록부 `data/img.json` 에 적힌 것만 |
-| 화풍 비교 | `styles.html` · `data/style-compare.json` · `tools/style-compare.py` | 머리 항해의 「화풍」 탭(2026-11-07 — 삼국지 공방과 같이). 묶음(rounds)마다 같은 카드를 화풍별 세계 그림 셋 + 일상컷(근접 · 원거리)으로, 보기 화풍별 · 세계별 · 크게 보기. 그림은 그림 저장소 `style-test/compare/<묶음 열쇠>/`(등록 그림 아님). **묶음은 더하기만** — 열쇠는 날짜, 같은 날 또 올리면 날짜-2 …, 세션마다 세계 하나씩 같은 열쇠로 `put` 하면 합쳐진다(IMAGE_RULES 화풍 비교 절) |
+| 원소 공방 | `index.html` · `lib/walk*.js` · `lib/walk.css` | 「넘기는 곳이 아니라 들어가는 곳」(2026-11-12, 설계 `docs/superpowers/specs/2026-11-12-element-walk-in-design.md`, 뼈대는 `DESIGN.md`) — 한 화면에서 주기율표 → 나라(궤도 · 목록) → 가문 → 한 장으로 확대해 들어간다. 주소 쿼리가 층을 정한다 `?n=&mode=&f=&card=&pic=&at=&w=&st=&view=`(`lib/walk-core.js` — 순수 함수, node 로도 돈다). 아래로 들어가면 역사 한 칸, 옆으로(세계 · 화풍 · 보기 · ‹ › · 그림 넘기기)는 칸 없이 — 뒤로 가기는 늘 한 층 위. 위 막대 하나(지나온 길 · 세계 고르개 · 도구). 층마다 모듈 하나 — 주기율표 · 나라 카드 `walk-table` · 궤도 `walk-orbit`(궤도 그림 `backgrounds/orbits/orbit-<나라>.webp`, 없으면 점선 고리) · 목록 `walk-list`(옛 도감 — 화풍 고르개 · 일상컷 · 빈 자리 → 생성기) · 가문 `walk-family` · 한 장 `walk-card`(글 판 · 홀로 · 하트 · 세계 넘기기). 효과 다섯은 `lib/walk-fx.js` 한 곳. 옛 `hall.html` · `dex.html` · `gallery.html` 은 새 주소로 넘기는 껍데기 |
+| 도구 상자 | `lib/toolbox.js` · `lib/toolbox.css` | 오른쪽 아래 「도구」 단추 하나 → 아래에서 오르는 판: 합성 · 화풍 · 프롬프트 · 즐겨찾기(수) · 설정(공간 · 밀도 · 움직임) · 패치 기록. 도구 화면(`alchemy.html` · `styles.html` · `prompt.html`)의 머리는 가는 막대 `ToolBar`(「← 돌아가기」 = 들어오기 전 층 · 도구 이름 · 도구 상자). 탭 줄은 없다 |
+| 화풍 비교 | `styles.html` · `data/style-compare.json` · `tools/style-compare.py` | 도구 상자의 「화풍」(2026-11-07 — 삼국지 공방과 같이). 묶음(rounds)마다 같은 카드를 화풍별 세계 그림 셋 + 일상컷(근접 · 원거리)으로, 보기 화풍별 · 세계별 · 크게 보기. 그림은 그림 저장소 `style-test/compare/<묶음 열쇠>/`(등록 그림 아님). **묶음은 더하기만** — 열쇠는 날짜, 같은 날 또 올리면 날짜-2 …, 세션마다 세계 하나씩 같은 열쇠로 `put` 하면 합쳐진다(IMAGE_RULES 화풍 비교 절) |
 | 프롬프트 | `prompt.html` · `lib/studio.js` · `lib/studio.css`(판) · `lib/prompt-spec.js`(표) · `lib/prompt-element.js`(조립) · `lib/casual-tree.js` · `lib/casual-tree-v2.js` · `data/casual-tree.json` · `data/casual-tree-v2.json`(일상컷 트리) | 생성기 — 공방 모음 통합 생성기 꼴(한 단계씩, 칩·판·폰 아래 막대·시트). 나라 › 카드(근본·가문주·주민) › 갈래(세계 그림 · 일상컷) › 단계 → 지시문·올릴 파일 이름·기록 JSON. 세계 그림은 세계 → 덧붙임. 일상컷은 트리 버전2 — 시대 → 장소 → 계절·날씨 → 의상 → 옷 → 자세 추천 → 몸 자세 → 받침 → 프레이밍 → 몸·머리 방향 → 카메라 → 오른손·왼손 → 소품 동작 → 다리 → 시선 → 표정 → 덧붙임. 해방(트리 밖 + 까닭)·랜덤·여기부터 다시·처음부터. 고른 것은 이 브라우저에(`element_studio_v1`), 주소 `?card=&o=&world=` |
 
-머리·항해·⚙ 설정은 `lib/workspace-ui.js`, 공간(테마)은 `lib/workspace-theme.js`·`lib/workspace.css`·`lib/room.css` — 공간 다섯(실험실·천문대·연금술 공방·광산·제어실)은 색과 배경 그림(그림 저장소 `backgrounds/room-<공간>.webp`, 기록 `records/backgrounds/`)을 원소에 맞게 새로 짰다(2026-10-30).
+머리 · 탭 줄은 없다(2026-11-12 — 옛 `lib/workspace-ui.js` 는 지웠다). 설정은 도구 상자, 공간(테마)은 `lib/workspace-theme.js`·`lib/workspace.css`·`lib/room.css` — 공간 다섯(실험실·천문대·연금술 공방·광산·제어실)은 색과 배경 그림(그림 저장소 `backgrounds/room-<공간>.webp`, 기록 `records/backgrounds/`)을 원소에 맞게 새로 짰다(2026-10-30).
 `lib/casual-tree.js`·`lib/casual-tree-v2.js` 는 game·book·myth·pkm 이 글자 하나 다르지 않게 복사해 쓰는 공용 모듈이다 — 여기서 따로 고치지 않는다(고치면 다섯 저장소에 같이). 트리 표(`data/casual-tree*.json`)는 원소 몫 — 시대는 지금 현실·쓰임의 현장·나라 안·무대·환상, 원소의 현장(`site_*`)·나라 안(`nation_*`) 장소. 무엇을 바꿨나는 `docs/CASUAL_TREE_PORT.md`, 설계는 game 의 `docs/CASUAL_TREE_V2.md`.
-화면 차례는 `lib/workspace-ui.js` 의 `PAGES` 한 곳이다 — 화면을 붙이면 거기 더한다.
+새 화면 · 새 층을 붙이기 전에 `DESIGN.md` 부터 본다 — 다른 공방의 뼈대 · 머리 · 탭 줄을 가져오지 않는다. 장소는 층(`lib/walk-core.js` 의 `layerOf`), 도구는 도구 상자(`lib/toolbox.js` 의 `TOOLS`)에 더한다.
 `lib/favorites.js` 는 공방 모음(polos0117.github.io)의 `favorites.js` 를 글자 하나 다르지 않게 복사한 공용 모듈이다. 여기서 따로 고치지 않는다.
 
 ## 꾸밈 · 글꼴
 
 - 공간 다섯의 장식 틀(`--frame`, 그림 저장소 `backgrounds/frames/frame-<공간>.webp` — 투명 여백을 잘라낸 9칸 틀, 자르기 %는 기록 `processing`), 그림 단추(`--ui-*`, 그림 저장소 `backgrounds/ui/ui-<공간>-<title|main|btn|round>.webp`)와 제목 글꼴(`--gallery-serif` — 실험실 · 제어실 Orbit · 천문대 Hahmlet · 연금술 공방 Song Myung · 광산 Black Han Sans)은 `lib/material.css` 한 곳. 본문 글꼴은 IBM Plex Sans KR(400 · 700 두 굵기). 제목 글꼴은 `lib/workspace-theme.js` 가 지금 공간의 것 하나만 붙이고, 글꼴 줄은 전부 화면 그리기를 막지 않는다(`media="print"` → onload — 2026-11-02 「화면 로딩이 엄청 느린데」 — 다섯 글꼴을 모든 화면이 받아 글꼴 목록만 514KB 였다).
+- 원소 공방의 층(주기율표 · 궤도 · 목록 · 가문 · 한 장)은 어두운 바탕(`#07080c`, `lib/walk.css`) — 장식 틀 `--frame` · 그림 단추 `--ui-*` 를 쓰지 않는다(`index.html` 은 `material.css` · `room.css` 를 싣지 않는다). 강조색은 공간의 `var(--accent)` 하나, 분류 색은 `lib/walk.css` 의 `[data-cat]` 한 곳. 효과 다섯은 `lib/walk-fx.js` 한 곳에서 `AtelierWalk.motionOn()`(기기의 움직임 줄이기 · 도구 상자의 움직임 끄기)을 본다 — CSS 효과는 `html[data-motion="off"]` 로 끈다.
 - 움직임은 `lib/motion-fx.js`(툭 나타나기 · 차례로 · 날아와 커지기 · 퍼지기 · 선 그리기 · 깃발 꽂기) — Motion 작은 판(`lib/vendor/motion-mini.mjs`, animate + spring, 손으로 고치지 않는다)을 쓴다. 위치 · 크기 · 투명도만, 움직임 줄이기면 끈다. sam-atelier 와 글자 하나 다르지 않게 같이.
 - 디자인 점검 skill: `.claude/skills/frontend-design`(방향 · 글꼴 · 테두리), `.claude/skills/ui-ux-pro-max`(글꼴 짝 · 스타일 · UX 규칙 검색 — `python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<질문>" --domain typography`), `.claude/skills/web-design-guidelines`(규칙 점검). sam-atelier 에서 옮겼다(2026-11-02).
 
@@ -122,13 +122,24 @@ node tests/img-shards.cjs               # 그림 주소·등록기·워크플로
 
 # 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
 CHROMIUM_PATH=<chrome> node tests/prompt-pack-screen.cjs   # 지시문 묶음(tools/prompt-pack.cjs)의 기록을 생성기에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 씀
-ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 타이틀·주기율표·도감·생성기 — 폰·PC, 118칸, 세 층, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
-ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/dex-holo.cjs   # 도감 크게 보기 홀로 효과(lib/holo.js · PixiJS — ESM_DIR 에 pixi.js@8.19.0 사본도) — 그림에 맞음 · 넘기기 단추 위 · 끄기 기억 · 움직임 줄이기
-ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/dex-turn.cjs   # 도감 크게 보기 넘기기 전환 — 옛 그림 자리의 사본 · 넘긴 쪽에서 들어옴 · 끝나면 정리 · 움직임 줄이기면 바로
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/screen.cjs   # 화풍 비교·생성기 — 폰·PC, 세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·다시, 폰 레일·막대·시트, 콘솔 오류 없음
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/dex-holo.cjs   # 한 장 홀로 효과(lib/holo.js · PixiJS — ESM_DIR 에 pixi.js@8.19.0 사본도) — 그림에 맞음 · 넘기기 단추 위 · 끄기 기억 · 움직임 줄이기
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/dex-turn.cjs   # 한 장 넘기기 전환 — 옛 그림 자리의 사본 · 넘긴 쪽에서 들어옴 · 끝나면 정리 · 움직임 줄이기면 바로
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/alchemy.cjs    # 원소 합성(alchemy.html · lib/alchemy.js · Phaser — ESM_DIR 에 phaser@4.2.1 사본도) — 조합표 · 나눈 물질 · 한 원소 · 비활성 · 셋까지 · 힌트 · 폰 · PC · 카드 열림 · 수집첩 · 남음
+# 원소 공방(index.html) — 한 줄에 하나, 바꾼 층의 것만. 마지막 줄이 PASS
+node tests/walk-core.cjs                # 주소 · 층 · 부모/조상 · 검증 · 기억값 · 옛 주소 · 나라 차례 · 입자 종류/수(브라우저 없음)
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-shell.cjs     # 한 화면 · 탭 줄 없음 · 깊은 주소 뒤로 가기 한 층씩 · 낡은 열쇠
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-tools.cjs     # 도구 상자 · 도구 화면의 가는 막대 · 움직임 설정
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-table.cjs     # 주기율표 · 나라 카드 · 효과 ④ · 옛 hall.html
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-orbit.cjs     # 궤도 · 점선 고리 · 앞뒤 나라 · 효과 ①
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-particles.cjs # 효과 ② 궤도 입자(PixiJS) · 멈춤 · 끄기 · WebGL 없음
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-list.cjs      # 목록(옛 도감) · 한 장 · 즐겨찾기 · 옛 dex.html
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-family.cjs    # 가문 · 효과 ⑤
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-card.cjs      # 한 장(글 판 · 세계 넘기기) · 옛 gallery.html
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-world.cjs     # 효과 ③ 세계 바꾸기 전환
 ```
 
-### 도감과 즐겨찾기(2026-10-31)
+### 목록(옛 도감)과 즐겨찾기(2026-10-31 · 2026-11-12 원소 공방 안으로)
 
-도감(`dex.html`)은 위에 붙는 판(보기: 세계 그림·일상컷·전부 / 세계 / 바로 가기 / 즐겨찾기 수) 아래 카드마다 세계 그림 셋만 펴고, 일상컷은 접은 단추로 연다. 화풍은 판 맨 앞 고르개(2026-11-04 — 사용자 「화풍키를 둬서 도감에 화풍선택 셀렉트 박스를 넣자. 기존 원소공방 이미지들은 거기서 셀렉트하면 보이는걸로」)로 하나만 보인다 — 처음은 기본 화풍, 옛 그림은 그 화풍을 고르면 보이고, 고른 화풍에 그림이 없으면 빈 칸(다른 화풍으로 메우지 않는다 · 생성기 링크는 기본 화풍일 때만). 주소 `st=`(기본이면 뺀다), 이 기기에도(`element_dex_v1`). 즐겨찾기 link 는 그 그림이 든 화풍으로 고르개를 옮긴다. 크게 보기는 그 카드 그림을 차례로 넘기고(← → · 밀기 · Esc) 하트로 공방 모음 즐겨찾기에 담는다 —
-`lib/favorites.js`(공방 모음 `favorites.js` 와 글자 하나 다르지 않게, `node tests/favorites.cjs`), 공방 열쇠 `a: element`, link 는 `/element-atelier/dex.html?nation=&card=&pic=`(그 그림을 크게 보기로 연다). 공방 모음 `favorites.html` 이 「원소의 섬」 칩으로 모아 보인다.
+목록(`index.html?n=<나라>&mode=list`, `lib/walk-list.js` — 옛 `dex.html` 몸통)은 조작 줄 두 줄(화풍 / 보기: 세계 그림·일상컷·전부, 세계는 위 막대의 고르개 — 목록에서만 「전부」, 즐겨찾기 수는 도구 상자) 아래 카드마다 세계 그림 셋만 펴고, 일상컷은 접은 단추로 연다. 화풍은 판 맨 앞 고르개(2026-11-04 — 사용자 「화풍키를 둬서 도감에 화풍선택 셀렉트 박스를 넣자. 기존 원소공방 이미지들은 거기서 셀렉트하면 보이는걸로」)로 하나만 보인다 — 처음은 기본 화풍, 옛 그림은 그 화풍을 고르면 보이고, 고른 화풍에 그림이 없으면 빈 칸(다른 화풍으로 메우지 않는다 · 생성기 링크는 기본 화풍일 때만). 주소 `st=`(기본이면 뺀다), 이 기기에도(`element_dex_v1`). 즐겨찾기 link 는 그 그림이 든 화풍으로 고르개를 옮긴다. 한 장(`&card=&pic=` 층)은 그 카드 그림을 차례로 넘기고(← → · 밀기 · Esc) 하트로 공방 모음 즐겨찾기에 담는다 —
+`lib/favorites.js`(공방 모음 `favorites.js` 와 글자 하나 다르지 않게, `node tests/favorites.cjs`), 공방 열쇠 `a: element`, link 는 `/element-atelier/index.html?n=&mode=list&card=&pic=`(그 그림을 한 장으로 연다 — 화풍이 기본이 아니면 `&st=`). 옛 `dex.html?nation=&card=&pic=` link 는 `dex.html` 이 새 주소로 넘겨 그대로 산다. 공방 모음 `favorites.html` 이 「원소의 섬」 칩으로 모아 보인다.
