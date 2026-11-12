@@ -10,6 +10,11 @@
 
 
 
+## 2026-11-13 · gpt · 플루오린 3·3·3 확정과 일상컷 등록
+- element-atelier-img-2/img/f_* — 선택한 판타지·스팀펑크·메카 GPT 설계 3번과 세계별 일상컷 7장, 총 24장 추가; 기존 생성 이미지 보존
+- element-atelier-img/records/f/ — 실제 생성 프롬프트·원본 SHA256·자유 설계·동일 지시문 재시도·검수 기록; 자세/배경 차이와 메카 일상컷 3번 추가 팔, 7번 수중 발 윤곽 이상을 통과로 처리하지 않고 기록
+- data/img.json — 그림 등록 워크플로가 24장과 둘째 그림 저장소 위치를 자동 반영한 것을 확인; 손으로 수정하지 않음
+
 ## 2026-11-13 · claude · 근본 스물넷 더(나라 마흔일곱) · 합성 원소 패 판
 - 사용자 「원소공방에 근본 원소 추가해줘」 → 「많을수록 좋긴한데」 · 「이번에 체형 2가지 추가 한것도 같이 설계 들어가는거지?」 — 세 묶음(nations-A · B · C 브랜치)을 main 에 합쳤다
 - data/element-design.json — nations 끝에 A(al · mg · ti · ni · pt · w · cr · co) · B(f · i · br · ar · xe · b · as · se) · C(k · mn · bi · ra · pu · ir · nd · be), 근본만(가문 · 주민 · 그림은 아직). 체형에 lean_toned 셋 · petite_voluptuous 셋
