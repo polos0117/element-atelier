@@ -20,6 +20,8 @@ const threeWorlds = (() => { for (const [k, e] of Object.entries(IMGJ.img)) for 
       assert.equal(await p.locator('.w-lore h1').evaluate(e => e.firstChild.textContent), '철');
       assert.equal(await p.locator('#dex-fav, #dex-holo, .lb-n').count(), 3);
       assert(await noOverflow(p)); if (from.includes('orbit')) await shot(p, 'card-fe');
+      /* 한 장 층은 가로 굴림 막대를 띄우지 않는다(hidden — 손으로 못 굴리고 막대도 없다) — 넘길 때 화면 아래에 하얀 줄이 뜨던 것 */
+      assert.equal(await p.locator('.lightbox.w-card').evaluate(e => getComputedStyle(e).overflowX), 'hidden', '한 장 층 가로 굴림 없음');
       await p.keyboard.press('Escape'); await p.waitForFunction(() => document.documentElement.dataset.layer !== 'card');
       assert.deepEqual(errors, []); await ctx.close();
     }
