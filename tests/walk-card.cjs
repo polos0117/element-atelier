@@ -118,6 +118,36 @@ const threeWorlds = (() => { for (const [k, e] of Object.entries(IMGJ.img)) for 
     const [img, lore] = [await w.page.locator('.lb-stage').boundingBox(), await w.page.locator('.w-lore').boundingBox()];
     assert(lore.x >= img.x + img.width - 1, '넓으면 글 판이 옆');
     assert(await noOverflow(w.page)); assert.deepEqual(w.errors, []); await shot(w.page, 'card-wide'); await w.ctx.close();
+    /* 세계 안에서만 넘긴다 · 안 사는 세계 탭은 끈다(2026-11-12) — 산소 녹 가문의 화성(판타지 · 메카에만 산다) */
+    {
+      const mars = 'o-rust-mars', fan = 'o-rust-mars_fantasy_game_keyart_f.webp';
+      const { page: p, errors, ctx } = await open(br, base, '/index.html?n=o&mode=list&card=' + mars + '&pic=' + fan + '&w=fantasy');
+      await p.waitForSelector('.lightbox.w-card .lb-stage img');
+      const tabs = () => p.locator('.w-worlds button').evaluateAll(es => es.map(e => [e.dataset.w, e.disabled, e.getAttribute('aria-pressed')]));
+      assert.deepEqual(await tabs(), [['fantasy', false, 'true'], ['steampunk', true, 'false'], ['mecha', false, 'false']], '화성 — 스팀펑크 탭 꺼짐');
+      const pic = () => p.evaluate(() => new URLSearchParams(location.search).get('pic'));
+      const n = Number((await p.locator('.lb-n').textContent()).split('/')[1]);
+      const seen = [await pic()];
+      for (let i = 1; i < n; i++) { await p.keyboard.press('ArrowRight'); await p.waitForFunction(f => new URLSearchParams(location.search).get('pic') !== f, seen[seen.length - 1]); seen.push(await pic()); }
+      assert.equal(n, 6, '판타지 — 세계 그림 하나 + 일상컷 다섯');
+      assert(seen.every(f => f.includes('_fantasy_')), '판타지 탭에서는 판타지 그림만 — ' + seen.join(','));
+      assert(seen[1].includes('casual1'), '세계 그림 다음은 그 세계의 일상컷');
+      await p.keyboard.press('ArrowRight'); await p.waitForFunction(f => new URLSearchParams(location.search).get('pic') === f, fan);   /* 끝에서 처음으로 */
+      /* 꺼진 탭은 눌러도 그대로 */
+      await p.locator('.w-worlds button[data-w="steampunk"]').click({ force: true }).catch(() => {});
+      assert.equal(await pic(), fan); assert.equal(await p.evaluate(() => new URLSearchParams(location.search).get('w')), 'fantasy');
+      /* 메카 탭 — 메카 세계 그림으로, 넘기면 메카 일상컷 */
+      await p.locator('.w-worlds button[data-w="mecha"]').click();
+      await p.waitForFunction(() => (new URLSearchParams(location.search).get('pic') || '').includes('_mecha_game_keyart_f.webp'));
+      await p.keyboard.press('ArrowRight'); await p.waitForFunction(() => /_mecha_.*casual1/.test(new URLSearchParams(location.search).get('pic') || ''));
+      /* 다른 세계 그림의 주소로 오면 막대가 그 세계로 맞춘다 */
+      await p.goto(base + '/index.html?n=o&mode=list&card=' + mars + '&pic=o-rust-mars_mecha_game_keyart_f.webp&w=fantasy'); await p.waitForSelector('.lightbox.w-card .lb-stage img');
+      await p.waitForFunction(() => document.querySelector('.w-worlds button[data-w="mecha"]').getAttribute('aria-pressed') === 'true');
+      /* 한 장을 닫으면 탭이 다시 살아난다 */
+      await p.keyboard.press('Escape'); await p.waitForFunction(() => document.documentElement.dataset.layer !== 'card');
+      assert((await tabs()).every(t => t[1] === false), '한 장 밖에서는 탭이 다 켜진다');
+      assert.deepEqual(errors, []); await ctx.close();
+    }
     console.log('PASS walk-card: 궤도 · 목록 어디서나 같은 한 장(글 판 · 홀로 · 하트) · 세계 넘기기 · 없는 세계는 글 판만 · 화풍은 층을 건너 · 옛 전시관 뒤로 가기 · 옛 전시관 첫 주소 · ' + COVER.width + ' · ' + WIDE.width + skipped);
   } finally { await br.close(); close(); }
 })().catch(e => { console.error(e); process.exit(1); });
