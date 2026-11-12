@@ -2,6 +2,7 @@
    Run: ESM_DIR=<preact · pixi.js@8.19.0 이 든 node_modules> CHROMIUM_PATH=<chrome> node tests/dex-turn.cjs   (PORT 로 자리 바꾸기, 기본 8798)
    - 넘기면 나가는 그림의 사본(.lb-ghost)이 옛 그림 자리에 겹쳐 흐려지고, 새 그림은 넘긴 쪽에서 들어온다(→ 오른쪽에서, ← 왼쪽에서)
    - 끝나면 사본이 없어지고 새 그림이 다 보인다, 빠르게 넘겨도 사본은 하나, 사본은 새 그림 아래 · 넘기기 단추는 위
+   - 그림이 늦게 와도 칸이 줄었다 커지지 않는다(이름 줄 · 단추 줄 그대로), 그때까지 옛 그림이 보인다
    - 움직임 줄이기면 사본 없이 바로 바뀐다, 오류 없음 */
 const assert = require('node:assert/strict'), http = require('node:http'), fs = require('node:fs'), path = require('node:path');
 const { chromium } = require('playwright');
@@ -20,12 +21,12 @@ const server = http.createServer((q, s) => {
 (async () => {
   await new Promise(r => server.listen(PORT, r));
   const br = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
-  let n = 0;
+  let n = 0, slow = 0;   /* slow — 그림이 늦게 오는 폰 · 느린 망 */
   const open = async (opt = {}) => {
     const ctx = await br.newContext({ viewport: { width: 1000, height: 900 }, ...(opt.reduced ? { reducedMotion: 'reduce' } : {}) });
     await ctx.route(/^https?:\/\/(?!127\.0\.0\.1)/, r => {
       const url = r.request().url();
-      if (/\.(webp|png)(\?.*)?$/.test(url)) return r.fulfill({ contentType: 'image/svg+xml', headers: { 'Access-Control-Allow-Origin': '*' }, body: SVG });
+      if (/\.(webp|png)(\?.*)?$/.test(url)) return new Promise(z => setTimeout(z, slow)).then(() => r.fulfill({ contentType: 'image/svg+xml', headers: { 'Access-Control-Allow-Origin': '*' }, body: SVG }));
       const file = process.env.ESM_DIR && ESM[url.split('?')[0]];
       if (!file || !fs.existsSync(path.join(process.env.ESM_DIR, file))) return r.abort();
       return r.fulfill({ status: 200, contentType: 'text/javascript', body: fs.readFileSync(path.join(process.env.ESM_DIR, file), 'utf8').replace(/from"preact"/g, 'from"https://esm.sh/preact@10.24.3"') });
@@ -64,6 +65,22 @@ const server = http.createServer((q, s) => {
     await p.locator('.lb-ghost').waitFor({ state: 'detached', timeout: 3000 }).catch(() => {});
     assert.equal(await p.locator('.lb-ghost').count(), 0, '다 끝나면 사본 없음');
     assert.equal(await p.locator('.lb-stage img').evaluate(i => +getComputedStyle(i).opacity), 1, '마지막 그림이 다 보인다'); n += 2;
+    /* 그림이 늦게 와도(1.2초) 칸이 줄었다 커지지 않는다 — 위 이름 줄 · 아래 단추 줄이 그대로, 그동안 옛 그림(사본)이 그대로 보인다
+       (사용자 「넘길 때 카드가 밑으로 이동했다가 다시 올라오네」 — 새 그림 요소가 크기 0 인 동안 칸이 줄었다) */
+    slow = 1200;
+    const cdp = await ctx.newCDPSession(p); await cdp.send('Network.setCacheDisabled', { cacheDisabled: true });   /* 본 그림도 다시 받게 — 늦은 망 흉내 */
+    const rows = () => p.evaluate(() => [document.querySelector('.lightbox .lb-top'), document.querySelector('.lightbox .bar')].map(e => Math.round(e.getBoundingClientRect().top)));
+    const still = await rows(); await p.keyboard.press('ArrowRight');
+    const t0 = Date.now();
+    for (let i = 0; Date.now() - t0 < 900; i++) {   /* 그림이 오기 전(1.2초) 동안만 */
+      await p.waitForTimeout(80);
+      assert.deepEqual(await rows(), still, '늦은 그림 — 줄들이 그대로 ' + i);
+      assert.equal(await p.locator('.lb-ghost').evaluate(g => +getComputedStyle(g).opacity), 1, '늦은 그림 — 옛 그림이 그대로 보인다 ' + i);
+    }
+    await p.locator('.lb-ghost').waitFor({ state: 'detached', timeout: 4000 });
+    assert.deepEqual(await rows(), still, '다 바뀐 뒤에도 줄들이 그대로');
+    assert.equal(await p.locator('.lb-stage').evaluate(e => e.style.minHeight), '', '붙잡은 칸 크기를 푼다'); n += 3;
+    slow = 0;
     assert.deepEqual(errors, [], '오류'); n++;
     await ctx.close();
     const b = await open({ reduced: true });
@@ -72,6 +89,6 @@ const server = http.createServer((q, s) => {
     assert.equal(await b.page.locator('.lb-stage img').evaluate(i => +getComputedStyle(i).opacity), 1, '움직임 줄이기 — 바로 다 보인다');
     assert.deepEqual(b.errors, [], '오류'); n += 3;
     await b.ctx.close();
-    console.log('PASS 원소 도감 넘기기 전환: ' + n + '가지 — 옛 그림 자리의 사본 · 넘긴 쪽에서 들어옴 · 사본 < 새 그림 < 단추 · 끝나면 정리 · 빠르게 넘겨도 하나 · 움직임 줄이기');
+    console.log('PASS 원소 도감 넘기기 전환: ' + n + '가지 — 늦은 그림에도 칸이 그대로 · 옛 그림 자리의 사본 · 넘긴 쪽에서 들어옴 · 사본 < 새 그림 < 단추 · 끝나면 정리 · 빠르게 넘겨도 하나 · 움직임 줄이기');
   } finally { await br.close(); server.close(); }
 })().catch(e => { console.error(e); process.exit(1); });
