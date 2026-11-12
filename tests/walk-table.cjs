@@ -15,9 +15,9 @@ const D = require('../data/element-design.json');
     assert.equal(await p.locator('.w-legend [data-cat]').count(), 10);
     assert(await p.evaluate(() => { const t = document.querySelector('.w-table'); return t.scrollWidth <= t.clientWidth + 1; }), '표 안 가로 스크롤 없음');
     assert.equal(await p.locator('.pcell.on >> nth=0').evaluate(e => getComputedStyle(e).animationName), 'w-breathe');
-    // 흐린 칸(코발트) 쪽을 눌러도 철이 잡힌다
+    // 흐린 칸(루테늄 — 철 바로 아래) 쪽을 눌러도 철이 잡힌다. 옆의 코발트 · 망가니즈는 나라가 됐다(2026-11-13)
     const fe = await p.locator('.pcell.on[data-n="fe"]').boundingBox();
-    await p.mouse.click(fe.x + fe.width * 1.4, fe.y + fe.height / 2);
+    await p.mouse.click(fe.x + fe.width / 2, fe.y + fe.height * 1.4);
     await p.waitForSelector('.w-ncard[data-n="fe"]');
     assert(await p.locator('.w-spark').count() >= 1, '④ 불꽃');
     await shot(p, 'table-ncard');

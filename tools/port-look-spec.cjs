@@ -28,14 +28,17 @@ const EXTRA = {
     /* 2026-11-10 우라늄 색감을 검정 · 은 · 에메랄드로(사용자) */
     lead_silver: 'dark lead-grey hair with a soft silver sheen',
     /* 근본 여덟 더(2026-11-11 — 질소 · 네온 · 인 · 리튬 · 아연 · 주석 · 납 · 수은) */
-    nitrogen_frost: 'frost-blue hair trailing a pale mist like liquid-nitrogen vapor', neon_red: 'glowing neon red-orange hair like a lit sign tube', phosphor_white: 'pale ivory-white hair with a faint green phosphorescent glow', lithium_crimson: 'soft silver-white hair tipped with crimson flame-red', zinc_spangle: 'blue-grey hair with a crystalline galvanized-spangle sheen', pewter: 'soft pewter-silver hair with a satin sheen', lead_blue: 'heavy dull blue-grey lead hair with a soft sheen', quicksilver: 'flowing liquid-quicksilver hair beading into mirror droplets at the tips'
+    nitrogen_frost: 'frost-blue hair trailing a pale mist like liquid-nitrogen vapor', neon_red: 'glowing neon red-orange hair like a lit sign tube', phosphor_white: 'pale ivory-white hair with a faint green phosphorescent glow', lithium_crimson: 'soft silver-white hair tipped with crimson flame-red', zinc_spangle: 'blue-grey hair with a crystalline galvanized-spangle sheen', pewter: 'soft pewter-silver hair with a satin sheen', lead_blue: 'heavy dull blue-grey lead hair with a soft sheen', quicksilver: 'flowing liquid-quicksilver hair beading into mirror droplets at the tips',
+    /* 근본 여덟(A) — 알루미늄 · 마그네슘 · 타이타늄 · 니켈 · 백금 · 텅스텐 · 크로뮴 · 코발트 */
+    anodized_silver: 'bright satin aluminium-silver hair with soft anodized pastel blue and rose tints', flare_white: 'brilliant silver-white hair flaring blinding white at the tips, streaked with fresh chlorophyll green', titanium_tint: 'dark gunmetal-grey hair blooming at the ends into titanium heat-tint bands of straw gold, purple and blue', meteor_nickel: 'warm nickel silver-grey hair with a fine criss-cross sheen like a polished meteorite slice', platinum_white: 'cool satin platinum-white hair with a soft untarnished sheen', tungsten_ember: 'dark tungsten-grey hair glowing white-hot gold at the tips like a lit filament', chrome_prism: 'mirror-chrome silver hair streaked with chrome yellow, ruby red and viridian green', cobalt_blue: 'deep cobalt-blue hair with a glassy smalt sheen'
   },
   eye_color: { violet: 'pale violet eyes', graphite_grey: 'graphite-grey eyes', rust_amber: 'rust-amber eyes', sodium_yellow: 'sodium-yellow eyes',
     /* 2026-11-03 근본 여덟(헬륨 · 규소 · 황 · 염소 · 칼슘 · 구리 · 은 · 우라늄)과 앞으로 — 사용자 「머리 스타일이나 눈색이 부족하면 더 추가해도 괜찮아」 */
     hazel: 'warm hazel eyes', storm_grey: 'storm-grey eyes', silver_grey: 'pale silver-grey eyes', honey: 'honey-gold eyes', rose: 'dusty rose-pink eyes',
     lilac: 'soft lilac eyes', mint: 'pale mint-green eyes', chartreuse: 'yellow-green chartreuse eyes', blue_flame: 'eerie blue-flame eyes',
     cherenkov_blue: 'luminous Cherenkov-blue eyes', peach: 'pale peach-pink eyes',
-    /* 2026-11-11 수은 */ cinnabar: 'cinnabar-red eyes' },
+    /* 2026-11-11 수은 */ cinnabar: 'cinnabar-red eyes',
+    /* 근본 여덟(A) — 알루미늄 · 마그네슘 · 타이타늄 · 니켈 · 크로뮴 */ sapphire: 'clear sapphire-blue eyes', chlorophyll_green: 'fresh chlorophyll-green eyes', anodized_violet: 'anodized violet-blue eyes with a gold rim', nickel_green: 'clear apple-green eyes like nickel salts', ruby: 'ruby-red eyes' },
   /* 머리 윤곽 — game 어휘 열은 열다섯 나라 · 세 세계에 모자라 돌려쓰게 된다(2026-11-03 사용자 「머리스타일은 지금 수가 제한적이라 계속 돌려쓰는 추세」).
      위로 올려 묶는 것은 updo_bun 하나뿐 — 스팀펑크 올림머리 금지(element-design.py)가 그대로 듣게 새 것은 다 내리거나 반만 묶는다 */
   hair: {
