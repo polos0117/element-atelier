@@ -15959,7 +15959,7 @@
      "scenes": [
       {
        "key": "chart",
-       "ko": "별지도의 빈칸",
+       "ko": "마지막 행성 너머의 빈칸",
        "en": "on the blank beyond the last planet of an ancient star-chart"
       },
       {
@@ -16189,23 +16189,23 @@
      ]
     },
     "steampunk": {
-     "ko": "1889 파리 근교 공원 속 국제 도량형국 파빌리온 — 세 겹 유리 종 아래 놓인 백금 · 이리듐 킬로그램 원기, 맞춤 상자의 미터 원기, 유리장 속 정밀 저울",
-     "en": "around 1889, the Pavillon de Breteuil in a park near Paris, home of the new international weights and measures: in a cool vault the platinum-iridium prototype kilogram rests under three nested glass bell jars, the prototype metre bar lies in a fitted case, precision balances stand behind glass",
+     "ko": "1803 런던 테넌트의 실험실 — 백금을 왕수에 녹이고 남은 검은 찌꺼기에서 새 금속을 찾아낸 해, 무지개처럼 갖가지 색으로 맺힌 소금 병이 늘어선 선반, 김 오르는 왕수 실험대의 레토르트와 플라스크",
+     "en": "around 1803 in Smithson Tennant's London laboratory, the year a new metal was found in the black residue left after crude platinum dissolved in aqua regia: tall shelves of glass phials holding its salts in every colour of the rainbow, a fuming aqua-regia bench of retorts and flasks, a dark crucible of insoluble black powder glinting with silver flecks",
      "scenes": [
       {
-       "key": "vault",
-       "ko": "원기 금고",
-       "en": "in a cool vault before a cylinder under three nested bell jars"
+       "key": "residue",
+       "ko": "검은 찌꺼기 도가니",
+       "en": "beside a crucible of black residue glinting with silver flecks"
       },
       {
-       "key": "balances",
-       "ko": "정밀 저울실",
-       "en": "among precision balances standing behind glass"
+       "key": "salts",
+       "ko": "무지개 소금 선반",
+       "en": "before tall shelves of glass phials of salts in every colour of the rainbow"
       },
       {
-       "key": "pavilion",
-       "ko": "공원 파빌리온",
-       "en": "on the steps of a pavilion in a bright park near Paris"
+       "key": "bench",
+       "ko": "왕수 실험대",
+       "en": "at a fuming aqua-regia bench of retorts and flasks"
       }
      ]
     },
@@ -16316,24 +16316,24 @@
     },
     "steampunk": {
      "3": {
-      "철학": "공상 모험 이야기 속 국제 도량형국 원기 금고의 수석 보관관 — 세 겹 유리 종 아래 놓인 킬로그램 원기, 녹슬지 않아 기준이 된 백금 · 이리듐, 한 치의 어긋남도 허락하지 않는 엄정함을 담은 밝고 화사한 빅토리아풍 의상, 유리 종을 닮은 놋쇠 철테 크리놀린이 새장처럼 퍼지는 실루엣. 노출: 걷어 올린 소매의 맨팔, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "철학": "공상 모험 이야기 속 1803년 런던 실험실에서 백금 찌꺼기 속 새 금속을 찾아낸 화학자의 수석 조수 — 왕수도 녹이지 못한 검은 가루, 무지개 여신의 이름을 준 갖가지 색 소금, 녹슬지 않아 기준이 된 금속, 한 치의 어긋남도 허락하지 않는 엄정함을 담은 밝고 화사한 빅토리아풍 의상, 둥근 플라스크를 닮은 놋쇠 철테 크리놀린이 새장처럼 퍼지는 실루엣. 노출: 걷어 올린 소매의 맨팔, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
       "주요 색상": "크림빛 백색, 밝은 백금빛 은색, 옅은 무지갯빛 광택, 깊은 한밤 남색 포인트, 밝은 연금색 놋쇠",
-      "주요 소재": "윤기 있는 크림빛 실크 블라우스, 은빛 새틴 조끼, 진주 단추, 유리 종처럼 둥근 놋쇠 철테 크리놀린 틀, 무지갯빛이 도는 얇은 은빛 겉치마, 남색 벨벳 리본",
+      "주요 소재": "윤기 있는 크림빛 실크 블라우스, 은빛 새틴 조끼, 진주 단추, 플라스크처럼 둥근 놋쇠 철테 크리놀린 틀, 무지갯빛이 도는 얇은 은빛 겉치마, 남색 벨벳 리본",
       "상의": "흉골까지 단추를 풀어 자연스러운 가슴골이 보이는 크림빛 실크 하이넥 블라우스가 가슴과 몸통을 덮음, 팔꿈치 위로 걷어 올린 소매의 맨팔, 허리에서 진주 단추를 채운 은빛 새틴 조끼, 목에 맨 깊은 남색 벨벳 리본",
-      "하의": "허리 아래 드러난 유리 종 모양의 놋쇠 철테 크리놀린 틀과 그 위를 덮은 무릎 길이의 얇은 은빛 겉치마 — 앞이 짧아 다리가 드러나고 옆으로 새장처럼 퍼짐 — 허리의 남색 가죽 벨트와 백금빛 고정쇠",
+      "하의": "허리 아래 드러난 둥근 플라스크 모양의 놋쇠 철테 크리놀린 틀과 그 위를 덮은 무릎 길이의 얇은 은빛 겉치마 — 앞이 짧아 다리가 드러나고 옆으로 새장처럼 퍼짐 — 허리의 남색 가죽 벨트와 백금빛 고정쇠",
       "신발": "끈으로 묶는 은회색 가죽 부츠, 은은한 광택, 놋쇠 끈 고리",
       "액세서리": "비대칭 단발 옆에 꽂은 작은 백금빛 자 모양 핀, 조끼 주머니에서 늘어진 은 회중시계 줄, 크리놀린 허리 테의 작은 백금판에 새긴 \"Ir\"와 \"77\"",
       "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
-      "부가 요소": "벨트에 매단 작은 은빛 저울추 셋, 크리놀린 철테 사이로 비치는 무지갯빛 겉치마 광택, 손목에 감은 남색 벨벳 띠"
+      "부가 요소": "벨트에 매단 작은 유리 약병 셋(분홍 · 초록 · 보라 소금), 크리놀린 철테 사이로 비치는 무지갯빛 겉치마 광택, 손목에 감은 남색 벨벳 띠"
      },
      "4": {
-      "액션": "도량형국 원기 금고의 반질한 돌바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 한 치도 어긋나지 않는 정확하고 곧은 걸음",
+      "액션": "테넌트 실험실의 반질한 돌바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 한 치도 어긋나지 않는 정확하고 곧은 걸음",
       "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
       "머리카락·의상 움직임": "한쪽이 긴 비대칭 단발의 머리끝과 일자 앞머리, 크리놀린 겉치마가 걸음에 맞춰 가볍게 흔들림",
-      "광원": "높은 아치 창으로 쏟아지는 밝고 서늘한 햇빛, 유리 종과 놋쇠 철테에 반사된 맑은 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 유리 종 가장자리에서 갈라지는 작은 무지개 빛",
-      "장면 팔레트": "밝은 하늘색, 크림빛 벽, 백금빛 은색, 유리의 맑은 빛, 깊은 남색 한 점, 밝은 연금색 놋쇠 — 밝고 화사한 파스텔 톤(high-key pastel)",
-      "배경": "공상 모험 이야기 속 1889년 파리 근교 공원 속 국제 도량형국 파빌리온 — 서늘한 금고 한가운데 세 겹 유리 종 아래 놓인 작은 백금빛 원통(킬로그램 원기), 맞춤 상자에 누운 미터 원기 막대, 유리장 속 정밀 저울들, 아치 창 너머 밝은 공원과 강. 글자는 \"Ir\"와 \"77\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
-      "환경 효과": "햇빛 속 아주 작은 은빛 먼지, 유리 종이 바닥에 던지는 작은 무지개 조각, 반질한 돌바닥에 비치는 인물"
+      "광원": "높은 창으로 쏟아지는 밝고 서늘한 햇빛, 유리 병과 놋쇠 철테에 반사된 맑은 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 색색 소금 병을 지나 갈라지는 작은 무지개 빛",
+      "장면 팔레트": "밝은 하늘색, 크림빛 벽, 백금빛 은색, 유리의 맑은 빛, 분홍 · 초록 · 보라 소금빛 점들, 깊은 남색 한 점, 밝은 연금색 놋쇠 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1803년 런던의 실험실 — 무지개처럼 갖가지 색 소금이 든 유리 병이 늘어선 높은 선반, 김이 오르는 왕수 실험대의 레토르트와 플라스크, 검은 찌꺼기가 담긴 도가니 속 은빛 알갱이, 높은 창 너머 밝은 런던 하늘. 글자는 \"Ir\"와 \"77\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛 속 아주 작은 은빛 먼지, 색색 유리 병이 바닥에 던지는 작은 무지개 조각, 반질한 돌바닥에 비치는 인물"
      }
     },
     "mecha": {

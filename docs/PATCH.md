@@ -10,6 +10,16 @@
 
 
 
+## 2026-11-13 · claude · 근본 스물넷 더(나라 마흔일곱) · 합성 원소 패 판
+- 사용자 「원소공방에 근본 원소 추가해줘」 → 「많을수록 좋긴한데」 · 「이번에 체형 2가지 추가 한것도 같이 설계 들어가는거지?」 — 세 묶음(nations-A · B · C 브랜치)을 main 에 합쳤다
+- data/element-design.json — nations 끝에 A(al · mg · ti · ni · pt · w · cr · co) · B(f · i · br · ar · xe · b · as · se) · C(k · mn · bi · ra · pu · ir · nd · be), 근본만(가문 · 주민 · 그림은 아직). 체형에 lean_toned 셋 · petite_voluptuous 셋
+- data/element-design.json — 겹침 고침: 이리듐 스팀펑크(백금과 같은 1889 원기 금고 · 저울실)를 1803 런던 테넌트 실험실로 — 세계 글 · 장면 셋 · 구조판 3 · 4절. 플루토늄 판타지 장면 이름을 오가네손과 다르게
+- lib/prompt-spec.js — SIL_TAGS 스물넷 · 머리색 스물넷 · 눈 색 열하나 한국어 이름. tools/port-look-spec.cjs EXTRA · lib/look-spec.js VOCAB_EN 같은 어휘(생성 결과와 같은 줄만 손으로 — core:v6 블록 그대로)
+- tools/sil-spread.py — 마흔일곱 위에서 다시 돌림: 빈 칸 없음 · 바뀐 것 없음(구조판 3절 · 메카 설계가 실루엣에 맞춰 적혀 있어 처음부터 다시 나누지 않았다)
+- alchemy.html — 원소 패를 캔버스의 다섯 줄 고정 칸에서 HTML 단추 판(#tray)으로: 단추 줄 아래 자리에 겹쳐 접어 싸고 위아래로 굴린다, 패 한 칸 44px 이상, 결과 · 수집첩이 열리면 숨김. 규칙은 그대로(나라 서른 넘으면 패가 캔버스 밖으로 넘쳤다)
+- tests/alchemy.cjs — 폴드 겉화면 344×882 더함 · 패 판(나라 수 · 굴려서 다 닿음 · 44px · 옆으로 안 넘침 · 덮개에 숨음). tests/walk-core.cjs 철 이웃을 원자 번호 차례에서 · walk-orbit 철 다음 코발트 · walk-table 흐린 칸 루테늄
+- docs/ELEMENT_CONCEPT.md — 「근본 스물넷 더」 절. index.html · prompt.html — ?v= prompt-spec 33 · look-spec 11
+
 ## 2026-11-13 · claude · core v6 · 체형 두 열쇠(슬림 근육형 · 아담한 풍만형)
 - lib/look-spec.js VOCAB_EN.body · tools/port-look-spec.cjs EXTRA.body — lean_toned · petite_voluptuous(삼국지에서 만든 글, core v6). 사용자 「공통으로 다 넣어주면 돼」 · 「원소 … 추가되는 케릭터 있을 때 넣어주면 돼」 — 설계표 체형은 그대로
 - lib/prompt-spec.js STRUCT.body — 두 체형의 여덟 칸(체형 표가 어휘 열쇠와 같아야 한다 · 「근육 결 · 탄탄」 말 없이)

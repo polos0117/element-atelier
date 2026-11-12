@@ -11,6 +11,8 @@
      근본 원소 패를 하나 ~ 셋 골라 합성로에 넣고 「합성」 — 설계표에서 그 원소 묶음으로 된 물질(가문)이 있으면 나라마다 가문주 카드가 뒤집히며 열리고 수집첩에 모인다.
      규칙 · 자료는 lib/alchemy.js(node 검사 tests/alchemy.cjs), 그리는 것은 여기 Phaser(jsdelivr phaser@4.2.1). 찾은 것은 이 기기에(element_alchemy_v1).
      캔버스는 논리 크기를 두 배(840×1720)로 짓고 화면에 맞춰 줄인다 — 폰의 높은 화소 밀도에서도 글자가 흐리지 않게.
+     원소 패는 캔버스 밖 HTML 단추 판(#tray, 2026-11-13 — 나라 마흔일곱에서 다섯 줄 고정 칸이 넘쳤다): 캔버스 단추 줄 아래 자리에 겹쳐 놓고 접어 싸며 위아래로 굴린다.
+     나라가 더 늘어도 판만 길어진다 — 합성로 · 단추는 그대로 보이고, 패는 한 칸 44px 이상. 결과 · 수집첩 덮개가 열리면 판을 숨긴다.
      화면 읽기 프로그램에는 결과를 #alchemy-status 로 알린다. 검사용 손잡이 window.AtelierAlchemyGame(state · pick · combine · clear · book · close). -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,11 +26,18 @@
 <link rel="stylesheet" href="lib/element.css?v=10">
 <style>
   .alchemy-page .wrap {max-width:none;padding:0}
-  #game {width:100%;height:calc(100dvh - var(--alchemy-top,120px));min-height:520px;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+  #game {position:relative;width:100%;height:calc(100dvh - var(--alchemy-top,120px));min-height:520px;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
   #game canvas {display:block}
   .alchemy-note {padding:12px 16px;color:var(--muted)}
   .sr-only {position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   .cat-probe {display:none}
+  .alchemy-tray {position:absolute;display:flex;flex-wrap:wrap;justify-content:center;align-content:flex-start;gap:6px 4px;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;padding:4px 8px 16px;box-sizing:border-box;touch-action:pan-y}
+  .alchemy-tray[hidden] {display:none}
+  .alchemy-tok {width:56px;min-height:66px;display:flex;flex-direction:column;align-items:center;gap:3px;padding:0;margin:0;background:none;border:0;color:var(--text);font:inherit}
+  .alchemy-tok b {width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-size:18px;border:2px solid var(--cat);background:color-mix(in srgb,var(--cat) 22%,transparent);transition:transform .12s}
+  .alchemy-tok span {font-size:11px;line-height:1.2;color:var(--muted);white-space:nowrap}
+  .alchemy-tok[aria-pressed="true"] b {background:color-mix(in srgb,var(--cat) 70%,transparent);transform:scale(1.08)}
+  html[data-motion="off"] .alchemy-tok b {transition:none}
 </style>
 <script src="lib/favorites.js?v=1"></script>
 <script src="lib/patch.js?v=1"></script>
@@ -36,7 +45,7 @@
 <link rel="stylesheet" href="lib/toolbox.css?v=1">
 </head>
 <body class="prompt-page lab-page alchemy-page">
-<div class="wrap"><div id="app"></div><div id="game" role="application"></div><p id="alchemy-status" class="sr-only" role="status" aria-live="polite"></p></div>
+<div class="wrap"><div id="app"></div><div id="game" role="application"><div id="tray" class="alchemy-tray" hidden></div></div><p id="alchemy-status" class="sr-only" role="status" aria-live="polite"></p></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
 import {ToolBar} from './lib/toolbox.js?v=3';
@@ -96,17 +105,19 @@ class Main extends Phaser.Scene{
     this.btnCombine=this.button(cx,by,W('alchemy.combine'),150,true,()=>this.combine());
     this.button(cx-128*S,by,W('alchemy.clear'),86,false,()=>this.clear());
     this.button(cx+128*S,by,W('alchemy.hint'),86,false,()=>this.hint());
-    this.button(cx,by+52*S,W('alchemy.book'),150,false,()=>this.openBook());
-    /* 원소 패 — 주기율표 번호 차례, 다섯 줄 */
-    const cols=5,gap=78*S,x0=cx-(cols-1)/2*gap,y0=by+112*S;
-    this.tokens={};
-    G.roots.forEach((r,i)=>{
-      const x=x0+(i%cols)*gap,y=y0+Math.floor(i/cols)*84*S,col=catOf(r.category);
-      const c=this.add.circle(x,y,30*S,col,0.22).setStrokeStyle(2*S,col,0.9);
-      const sym=T(this,x,y-2*S,r.symbol,19,{fontStyle:'700'}),name=T(this,x,y+42*S,r.ko,11,{color:TH.dim});
-      c.setInteractive({useHandCursor:true}).on('pointerdown',()=>this.toggle(r.key));
-      this.tokens[r.key]={c,sym,name,col};
+    this.btnBook=this.button(cx,by+52*S,W('alchemy.book'),150,false,()=>this.openBook());
+    /* 원소 패 — 주기율표 번호 차례, HTML 단추 판(접어 싸고 위아래로 굴린다). 캔버스의 단추 줄 아래(TRAY_Y)부터 #game 바닥까지 */
+    this.trayY=by+52*S+20*S+16*S;
+    const tray=document.getElementById('tray');tray.textContent='';this.tokens={};
+    G.roots.forEach(r=>{
+      const b=document.createElement('button'),sym=document.createElement('b'),name=document.createElement('span');
+      b.type='button';b.className='alchemy-tok';b.dataset.cat=r.category;b.dataset.key=r.key;sym.textContent=r.symbol;name.textContent=r.ko;
+      b.append(sym,name);b.addEventListener('click',()=>this.toggle(r.key));tray.appendChild(b);this.tokens[r.key]=b;
     });
+    const place=()=>{const g=document.getElementById('game').getBoundingClientRect(),c=this.game.canvas.getBoundingClientRect();
+      Object.assign(tray.style,{left:(c.left-g.left)+'px',width:c.width+'px',top:(c.top-g.top+this.trayY*c.height/GH)+'px',bottom:'0px'});};
+    place();addEventListener('resize',place);new ResizeObserver(place).observe(this.game.canvas);
+    tray.hidden=false;
     /* 입자 — 작은 점 텍스처 하나, 터뜨리는 장치 하나를 돌려 쓴다(그때마다 만들지 않는다). 색은 고른 원소의 분류 색 */
     if(!this.textures.exists('spark')){const g=this.add.graphics();g.fillStyle(0xffffff,1);g.fillCircle(8*S,8*S,8*S);g.generateTexture('spark',16*S,16*S);g.destroy();}
     this.burstColors=[TH.accent];
@@ -121,8 +132,8 @@ class Main extends Phaser.Scene{
       slow:f=>{this.tweens.timeScale=f;this.time.timeScale=f;this.sparks.timeScale=f;},   /* 검사 · 화면 찍기용 — 연출을 느리게 */
       /* 검사용 — 합성로가 가장 크게 번진 아래 끝(빛 번짐 × 1.35 · 번쩍임 × 1.25 · 합성로 × 1.16)과 단추 줄 위 끝, 마지막 원소 이름 아래 끝 */
       layout:()=>({circleBottom:this.ring.y+Math.max(this.glow.radius*1.35,this.flash.radius*1.25,this.ring.radius*1.16),buttonsTop:this.btnCombine.bg.y-this.btnCombine.bg.height/2,
-        lastToken:Math.max(...Object.values(this.tokens).map(o=>o.name.y+o.name.height/2)),height:GH}),
-      where:k=>{const o=this.tokens[k],r=this.game.canvas.getBoundingClientRect();return o?{x:r.left+o.c.x*r.width/GW,y:r.top+o.c.y*r.height/GH}:null;},
+        buttonsBottom:this.btnBook.bg.y+this.btnBook.bg.height/2,trayY:this.trayY,height:GH}),
+      where:k=>{const o=this.tokens[k];if(!o)return null;o.scrollIntoView({block:'nearest'});const r=o.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+r.height/2};},   /* 판 안에서 굴려 보인 뒤 가운데 */
       pick:k=>this.toggle(k),combine:()=>this.combine(),clear:()=>this.clear(),book:()=>this.openBook(),close:()=>this.closeOverlay(),hint:()=>this.hint(),
       reset:()=>{this.state=AL.blank();AL.save(this.state);this.clear();this.refresh();}};
   }
@@ -137,7 +148,7 @@ class Main extends Phaser.Scene{
     /* 수집 수는 결과를 닫을 때 바뀐다(결과 화면에서 하나씩 올라가는 것을 먼저 본다) */
     this.progress.setText(W('alchemy.progress',{n:this.shown!=null?this.shown:this.state.found.length,total:G.lords.length}));
     this.slots.forEach((s,i)=>{const k=this.picks[i],r=k&&G.rootByKey[k];s.t.setText(r?r.symbol:'');s.c.setFillStyle(r?catOf(r.category):TH.inkHex,r?0.35:0.05);});
-    Object.entries(this.tokens).forEach(([k,o])=>{const on=this.picks.includes(k);o.c.setFillStyle(o.col,on?0.7:0.22);o.c.setScale(on?1.08:1);});
+    Object.entries(this.tokens).forEach(([k,b])=>b.setAttribute('aria-pressed',String(this.picks.includes(k))));
     this.btnCombine.bg.setAlpha(this.picks.length?1:0.4);
   }
   toggle(k){
@@ -198,10 +209,10 @@ class Main extends Phaser.Scene{
     this.closeOverlay();
     const o={kind,items:[],cards:[]};
     const dim=this.add.rectangle(GW/2,GH/2,GW,GH,TH.bg,0.985).setInteractive();   /* 뒤 화면이 비치지 않게 바탕색으로 */
-    o.items.push(dim);this.overlay=o;return o;
+    o.items.push(dim);this.overlay=o;document.getElementById('tray').hidden=true;return o;
   }
   /* 덮개의 트윈만 멈춘다 — 전부(killAll) 멈추면 합성로 · 칸의 움직임까지 끊겨 크기가 중간에 남는다(2026-11-12 game-feel 스킬 점검: 움직임은 늘 제자리로) */
-  closeOverlay(){if(!this.overlay)return;this.shown=null;this.tweens.killTweensOf(this.overlay.items);this.overlay.items.forEach(x=>x.destroy());this.overlay=null;this.refresh();}
+  closeOverlay(){if(!this.overlay)return;this.shown=null;this.tweens.killTweensOf(this.overlay.items);this.overlay.items.forEach(x=>x.destroy());this.overlay=null;document.getElementById('tray').hidden=false;this.refresh();}
   loadPics(keys){
     const want=keys.filter(k=>k&&!this.textures.exists('p:'+k));
     if(!want.length)return Promise.resolve();

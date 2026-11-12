@@ -1,7 +1,7 @@
 /* 원소 합성(alchemy.html · lib/alchemy.js, 2026-11-12)
    Run: ESM_DIR=<preact · phaser@4.2.1 이 든 node_modules> CHROMIUM_PATH=<chrome> node tests/alchemy.cjs   (PORT 로 자리 바꾸기, 기본 8802)
    규칙(node): 조합표가 설계표의 가문 elements 그대로 · 두 나라가 나눈 물질은 나라마다 카드 · 한 원소는 그 나라 혼자 가진 물질 · 비활성 기체 · 겹친 원소 · 셋까지 · 힌트가 남은 조합을 돈다
-   화면(브라우저): 폰 · PC 에 캔버스가 맞고 넘치지 않는다 · (여기부터 폰에서만) 원소 패를 실제로 눌러 고른다 · 합성하면 카드가 열리고 수집첩에 모인다(새로 고침해도) · 비활성 · 셋까지 · 메뉴에 합성 · 오류 없음 · 스크린샷은 SHOT_DIR 이 있을 때만 */
+   화면(브라우저): 폴드 겉화면(344×882) · 폰 · PC 에 캔버스가 맞고 넘치지 않는다 · 원소 패 판(나라 수만큼 · 44px 이상 · 굴려서 다 닿음 · 옆으로 안 넘침) · (여기부터 폰에서만) 원소 패를 실제로 눌러 고른다 · 합성하면 카드가 열리고 수집첩에 모인다(새로 고침해도) · 비활성 · 셋까지 · 메뉴에 합성 · 오류 없음 · 스크린샷은 SHOT_DIR 이 있을 때만 */
 const assert = require('node:assert/strict'), http = require('node:http'), fs = require('node:fs'), path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const A = require(path.join(ROOT, 'lib/alchemy.js'));
@@ -70,7 +70,7 @@ const server = http.createServer((q, s) => {
   };
   const S = p => p.evaluate(() => window.AtelierAlchemyGame.state());
   try {
-    for (const vp of [{ width: 390, height: 844 }, { width: 1280, height: 900 }]) {
+    for (const vp of [{ width: 344, height: 882 }, { width: 390, height: 844 }, { width: 1280, height: 900 }]) {
       const { ctx, page: p, errors } = await open(vp);
       const box = await p.locator('#game canvas').boundingBox();
       assert(box && box.width > 200 && box.x >= -1 && box.x + box.width <= vp.width + 1 && box.y + box.height <= vp.height + 2, vp.width + ' 캔버스가 화면 안 ' + JSON.stringify(box));
@@ -79,7 +79,17 @@ const server = http.createServer((q, s) => {
       /* 합성로 원(빛 번짐 · 터질 때 가장 크게 번진 것까지)이 아래 단추 줄에 닿지 않는다(사용자 「동그란 부분이 밑에 버튼을 침범하고 있어」) */
       const lay = await p.evaluate(() => window.AtelierAlchemyGame.layout());
       assert(lay.circleBottom < lay.buttonsTop, vp.width + ' 합성로가 단추를 침범 ' + JSON.stringify(lay));
-      assert(lay.lastToken <= lay.height, vp.width + ' 원소 패가 캔버스 안 ' + JSON.stringify(lay)); n += 2;
+      assert(lay.trayY >= lay.buttonsBottom, vp.width + ' 원소 패 판이 단추 줄 아래 ' + JSON.stringify(lay)); n += 2;
+      /* 원소 패 판(2026-11-13 — 나라 마흔일곱에서 고정 칸이 넘쳤다): 나라마다 패 하나, 판은 화면 안 · 옆으로 안 넘침, 패마다 굴려서 보이고 눌리며 44px 이상 */
+      const tr = await p.evaluate(() => { const t = document.getElementById('tray'), toks = [...t.querySelectorAll('.alchemy-tok')], bad = [];
+        for (const b of toks) { b.scrollIntoView({ block: 'nearest' }); const q = b.getBoundingClientRect(), r = t.getBoundingClientRect(), hit = document.elementFromPoint(q.left + q.width / 2, q.top + q.height / 2);
+          if (q.width < 44 || q.height < 44 || q.top < r.top - 1 || q.bottom > r.bottom + 1 || q.left < 0 || q.right > innerWidth || !b.contains(hit)) bad.push(b.dataset.key); }
+        t.scrollTop = 0; const r = t.getBoundingClientRect();
+        return { n: toks.length, bad, top: r.top, bottom: r.bottom, left: r.left, right: r.right, sw: t.scrollWidth, cw: t.clientWidth, h: innerHeight, hidden: t.hidden }; });
+      assert.equal(tr.n, D.nations.length, vp.width + ' 나라마다 원소 패');
+      assert.deepEqual(tr.bad, [], vp.width + ' 굴려서 닿지 않거나 44px 보다 작은 패');
+      assert(!tr.hidden && tr.top >= 0 && tr.bottom <= tr.h + 1 && tr.left >= -1 && tr.right <= vp.width + 1 && tr.sw <= tr.cw + 1, vp.width + ' 판이 화면 안 · 옆으로 안 넘침 ' + JSON.stringify(tr));
+      assert(tr.bottom - tr.top >= 140, vp.width + ' 판이 두 줄은 보인다 ' + JSON.stringify(tr)); n += 4;
       /* 흐름(누르기 · 합성 · 연출 · 수집첩 · 새로 고침)은 폰 한 판에서만 — PC 는 맞춤 · 넘침 · 메뉴 · 오류만(2026-11-12 검사 정리) */
       if (vp.width !== 390) { assert.deepEqual(errors, [], vp.width + ' 오류'); n++; await ctx.close(); continue; }
       /* 원소 패를 실제로 누른다 */
@@ -88,6 +98,7 @@ const server = http.createServer((q, s) => {
       await p.evaluate(() => window.AtelierAlchemyGame.combine());
       await p.waitForFunction(() => window.AtelierAlchemyGame.state().overlay === 'reveal', null, { timeout: 10000 });
       let s = await S(p);
+      assert(await p.evaluate(() => document.getElementById('tray').hidden), '결과가 열리면 패 판은 숨는다'); n++;
       /* 합성 연출(2026-11-12) — 처음 찾은 물질은 큰 단계(입자 · 번쩍임 · 흔들림), 끝나면 모두 제자리 */
       assert.deepEqual(s.fx, { tier: 'big', burst: 28, shake: true, flash: true }, '처음 찾음 — 큰 단계');
       await p.waitForFunction(() => { const r = window.AtelierAlchemyGame.state().rest; return r && r.flash === 0 && r.ring === 1 && r.glow === 1 && r.cam[0] === 0 && r.cam[1] === 0 && r.slots.every(([dx, dy, sc, al]) => dx === 0 && dy === 0 && sc === 1 && al === 1); }, null, { timeout: 10000 }).catch(() => {});
@@ -97,6 +108,7 @@ const server = http.createServer((q, s) => {
       assert.deepEqual(s.cards.slice().sort(), ['h-water', 'o-water'], '카드가 열린다'); assert.deepEqual(s.found.slice().sort(), ['h-water', 'o-water']); assert.deepEqual(s.picks, [], '합성로는 비운다'); n += 3;
       if (process.env.SHOT_DIR) { await p.waitForTimeout(1200); await p.screenshot({ path: path.join(process.env.SHOT_DIR, 'alchemy-reveal.png') }).catch(() => {}); }
       await p.evaluate(() => window.AtelierAlchemyGame.close());
+      assert(!(await p.evaluate(() => document.getElementById('tray').hidden)), '닫으면 패 판이 돌아온다'); n++;
       /* 이미 찾은 조합은 작은 단계, 실패는 회색 김 */
       await p.evaluate(() => { const g = window.AtelierAlchemyGame; g.pick('h'); g.pick('o'); g.combine(); });
       await p.waitForFunction(() => window.AtelierAlchemyGame.state().overlay === 'reveal', null, { timeout: 10000 });   /* 연출은 모으기(0.22초) 뒤에 터진다 */
@@ -136,6 +148,6 @@ const server = http.createServer((q, s) => {
       await q.waitForFunction(() => window.AtelierAlchemyGame.state().overlay === 'reveal', null, { timeout: 10000 });
       assert.deepEqual((await S(q)).fx, { tier: 'big', burst: 0, shake: false, flash: false }, '움직임 줄이기 — 연출 없음');
       assert.deepEqual(errors, [], '움직임 줄이기 오류'); n += 2; await ctx.close(); }
-    console.log('PASS 원소 합성: ' + n + '가지 — 규칙(조합표 · 나눈 물질 · 한 원소 · 비활성 · 셋까지 · 힌트) · 화면(폰 · PC 맞춤 · 눌러 고르기 · 카드 열림 · 수집첩 · 남음 · 메뉴)');
+    console.log('PASS 원소 합성: ' + n + '가지 — 규칙(조합표 · 나눈 물질 · 한 원소 · 비활성 · 셋까지 · 힌트) · 화면(폴드 · 폰 · PC 맞춤 · 패 판 · 눌러 고르기 · 카드 열림 · 수집첩 · 남음 · 메뉴)');
   } finally { await br.close(); server.close(); }
 })().catch(e => { console.error(e); process.exit(1); });
