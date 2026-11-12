@@ -78,3 +78,60 @@ html[data-motion="off"] .w-table .pcell.on {animation-name:none}
 .w-legend {display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;max-width:1042px;margin:16px auto 0;padding:0;list-style:none;color:var(--w-mute);font-size:12px}
 .w-legend li {display:inline-flex;align-items:center;gap:5px}
 .w-legend i {width:10px;height:10px;border-radius:3px;background:var(--cat);box-shadow:0 0 5px var(--cat)}
+
+/* 길 표시 옆 ‹ › — 나라 층(궤도 · 목록)에서 앞 · 뒤 나라 */
+.w-where {display:flex;align-items:center;gap:2px;min-width:0}
+.w-where .w-crumbs {flex:0 1 auto}
+.w-steps {display:flex;flex:none}
+.w-steps button {width:44px;height:44px;border:0;border-radius:12px;background:none;color:var(--w-ink);font-size:22px;line-height:1;cursor:pointer}
+.w-steps button:hover {background:#ffffff12;color:var(--accent)}
+
+/* 가문주 원의 가운데가 고리 위(translate -24px = 원 반지름 + 여백), 이름 · 주민 수는 그 아래. 나라 · 궤도 층 — 옛 전시관 무대(.g-stage …)를 옮겨 이름을 바꿈. 넓으면 무대 | 글 두 칸, 좁으면 한 칸 */
+.w-orbit {overflow-x:clip}   /* 고리 끝의 가문주 이름표가 덮개 폭을 넘지 않게 — 스크롤 칸은 만들지 않는다 */
+.w-nation {display:grid;grid-template-columns:minmax(0,1fr);gap:20px 48px;align-items:center}
+@media (min-width:1000px) {.w-nation {grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr)}}
+.w-stage {position:relative;width:min(100%,calc(100dvh - 200px),640px);min-width:min(100%,300px);aspect-ratio:1;margin:0 auto;isolation:isolate}
+.w-orbit-img {position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;border-radius:50%;
+  -webkit-mask-image:radial-gradient(closest-side,#000 82%,#0000 100%);mask-image:radial-gradient(closest-side,#000 82%,#0000 100%)}
+.w-ring {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.w-ring circle {fill:none}
+.w-ring-dash {stroke:color-mix(in srgb,var(--accent) 70%,#fff);stroke-width:.35;stroke-dasharray:.6 2.4;opacity:.7}
+.w-ring-line {stroke:color-mix(in srgb,var(--accent) 60%,#fff);stroke-width:.2;stroke-dasharray:1;stroke-dashoffset:0;opacity:.45}   /* pathLength=1 — ① 이 처음부터 끝까지 그린다 */
+.w-nucleus {position:absolute;left:50%;top:50%;z-index:2;width:30%;aspect-ratio:1;transform:translate(-50%,-50%);padding:0;border:0;border-radius:50%;background:none;color:var(--w-ink);cursor:pointer}
+.w-nuc-pic {position:absolute;inset:0;overflow:hidden;border-radius:50%;border:2px solid color-mix(in srgb,var(--accent) 60%,transparent);box-shadow:0 0 28px color-mix(in srgb,var(--accent) 35%,transparent);background:#0b0d14}
+.w-nuc-pic img,.w-node-pic img {width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.w-nuc-cap {position:absolute;left:50%;bottom:-16%;transform:translateX(-50%);white-space:nowrap;padding:5px 12px;border-radius:999px;background:#000d;border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);font-size:14px}
+.w-nuc-cap b {color:var(--accent)}
+.w-orbit-ring {position:absolute;inset:0;z-index:3;pointer-events:none}
+.w-node {position:absolute;transform:translate(-50%,-24px);transform-origin:50% 24px;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:44px;min-height:44px;padding:2px 4px;border:0;border-radius:14px;background:none;color:var(--w-ink);
+  line-height:1.15;white-space:nowrap;cursor:pointer;pointer-events:auto}
+.w-node-pic {display:block;width:44px;height:44px;margin-bottom:2px;overflow:hidden;border-radius:50%;border:2px solid var(--accent);background:#0b0d14;box-shadow:0 0 14px color-mix(in srgb,var(--accent) 45%,transparent)}
+.w-node b {padding:1px 8px;border-radius:999px;background:#000c;font-size:13px}
+.w-node small,.w-node em {font-size:11px;font-style:normal;color:var(--w-mute);text-shadow:0 1px 3px #000}
+.w-node:hover .w-node-pic,.w-node:focus-visible .w-node-pic {box-shadow:0 0 22px var(--accent)}
+.w-node.empty .w-node-pic,.w-empty-disc {border:1.5px dashed #ffffff4d;background:#ffffff08;box-shadow:none}
+.w-node.empty b {color:var(--w-mute)}
+/* 빈 원(EmptyArt) — 흐린 원 + 이름 · 「아직 그림 없음」 */
+.w-empty {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;border:0;background:none;color:var(--w-mute);cursor:pointer}
+.w-empty-disc {display:block;width:56px;height:56px;border-radius:50%}
+.w-empty b {font-size:14px;color:var(--w-ink);opacity:.75} .w-empty small {font-size:11px}
+.w-nucleus.empty .w-empty-disc {position:absolute;inset:0;width:auto;height:auto}
+.w-nucleus.empty b,.w-nucleus.empty small {position:relative}
+/* 궤도로 / 목록으로 */
+.w-mode {display:grid;grid-template-columns:1fr 1fr;max-width:420px;margin:44px auto 0;padding:3px;border:1px solid var(--w-line);border-radius:999px;background:#ffffff0a}
+.w-mode button {min-height:44px;border:0;border-radius:999px;background:none;color:var(--w-mute);font-size:14px;font-weight:600;cursor:pointer}
+.w-mode button[aria-pressed="true"] {background:var(--accent);color:var(--on-accent,#0b0a10)}
+/* 나라 글 — 사실 칸 · 인격 · 그 세계의 나라 · 성질(옛 .g-text) */
+.w-ntext {max-width:58ch;margin:0 auto}
+.w-sym {display:flex;align-items:baseline;gap:10px;margin:0;color:var(--cat,var(--accent))}
+.w-sym span {font-size:clamp(44px,8vw,88px);line-height:1;font-weight:700}
+.w-sym small {font-size:14px;color:var(--w-mute)}
+.w-ntext h1 {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:6px 0 8px;font-size:clamp(24px,3.4vw,36px);line-height:1.15}
+.w-ntext h1 small {font-size:15px;font-weight:400;color:var(--w-mute)}
+.w-facts {margin:0 0 14px;padding:8px 0;border-block:1px solid var(--w-line);color:var(--w-mute);font-size:13px;font-variant-numeric:tabular-nums}
+.w-persona {margin:0 0 16px;font-size:15.5px;line-height:1.75}
+.w-wtext {margin:0 0 16px;padding:2px 0 2px 14px;border-left:2px solid var(--accent)}
+.w-wtext h2 {margin:0 0 4px;font-size:13px;font-weight:600;color:var(--accent)}
+.w-wtext p {margin:0;line-height:1.7}
+.w-traits {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
+.w-traits li {padding:4px 10px;border:1px solid var(--w-line);border-radius:999px;color:var(--w-mute);font-size:13px}

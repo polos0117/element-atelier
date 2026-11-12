@@ -10,6 +10,16 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 4 — 나라 궤도 층(설계된 가문 전부 · 점선 고리 · 빈 원) · 앞뒤 나라 · 들어가기 확대
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 4 — 설계 목표 2(나라 = 궤도) · 물음 1(설계된 카드를 다 보인다) · 물음 7(궤도 그림 없는 나라는 코드가 그린 고리) · 효과 ①
+- lib/walk-orbit.js (새) — 궤도 층: 가운데 근본(그림이면 둥근 그림 → 한 장, 없으면 빈 원 → 목록의 그 칸), 고리 위에 설계된 가문 전부(가문주 원 · 가문 이름 · 주민 수, 그림 없으면 빈 원 + 「아직 그림 없음」 → 목록의 그 칸, 그림 있으면 → 가문). 궤도 그림 일곱(RING)은 그 그림, 나머지 · 그림 404 는 점선 고리. 아래에 궤도로/목록으로(역사 칸 없이, 기기에 기억) · 사실 칸 · 인격 · 그 세계의 나라 · 성질. 주기율표에서 들어오면 ① 근본이 누른 칸에서 날아와 커지고 고리가 그려지고 가문주가 퍼진다. EmptyArt · ModeSwitch 는 가문 · 목록 층도 쓴다
+- lib/walk-core.js — nationOrder(주기율표 번호 차례) · neighbors(앞뒤 나라, 끝에서 처음으로)
+- lib/walk-data.js — cardsOf(근본 → 가문주 → 주민) · pick(고른 화풍 → 다른 화풍, 그 세계 → 다른 세계) · hasArt
+- lib/walk.js — 궤도 층을 붙임, 나라 층(궤도 · 목록)이면 길 표시 옆 ‹ ›(역사 칸 없이 옆 나라)
+- lib/walk.css — ‹ › · 궤도 무대(옛 전시관 .g-stage 를 옮김) · 가문주 원 · 빈 원 · 보기 고르개 · 나라 글
+- lib/words.js — walk.mode · walk.mode.orbit · walk.mode.list · walk.noart · walk.prev · walk.next, 싣는 화면 ?v=22. index · hall · alchemy · styles · prompt 의 walk-core.js ?v=4, index 의 walk.css ?v=3 · walk.js ?v=4
+- tests/walk-orbit.cjs (새) · tests/walk-core.cjs(나라 차례)
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 3 — 첫 화면 주기율표 · 나라 카드 · 칸 숨쉬기와 불꽃
 - 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 3 — 설계 목표 1(첫 화면 = 주기율표) · 효과 ④
 - lib/walk-table.js (새) — 118칸(옛 hall.html 칸 배치 그대로), 나라 칸만 분류 색으로 빛남, 가로 스크롤 없이 폭에 맞춤(덮개 칸 16px 남짓 · 넓으면 최대 56px). 누르기는 표 한 곳에서 받아 가장 가까운 나라(흐린 칸 위를 눌러도), 고르면 표 아래 큰 나라 카드(기호 · 이름 · 분류 · 인격 · 가문 · 주민 수, 「들어가기」 — 기억된 보기 · 「목록」), Esc 로 닫힘, 역사는 안 늘림. 범례 분류 열

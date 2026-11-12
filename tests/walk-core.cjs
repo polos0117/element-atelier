@@ -41,4 +41,8 @@ assert.equal(R.worldOf(r('?w=all'), D.vocab.worlds), 'fantasy'); assert.equal(R.
 const cells = [{ key: 'fe', x: 100, y: 50 }, { key: 'cu', x: 154, y: 50 }];
 assert.equal(R.nearestNation(cells, 114, 52, 27), 'fe'); assert.equal(R.nearestNation(cells, 140, 50, 27), 'cu');
 assert.equal(R.nearestNation(cells, 100, 120, 27), null);
-console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸');
+// 나라 차례 · 앞뒤 나라(끝에서 처음으로 돈다)
+const order = R.nationOrder(D);
+assert.deepEqual(order.slice(0, 3), ['h', 'he', 'li']); assert.equal(order.at(-1), 'og'); assert.equal(order.length, D.nations.length);
+assert.deepEqual(R.neighbors(order, 'h'), { prev: 'og', next: 'he' }); assert.deepEqual(R.neighbors(order, 'fe'), { prev: 'ca', next: 'cu' });
+console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례');
