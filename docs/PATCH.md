@@ -10,6 +10,14 @@
 
 
 
+## 2026-11-13 · claude · 새 그림은 둘째 그림 저장소(element-atelier-img-2)로
+- 사용자 「이미지 저장소 많이 차서 img-2로 저장경로 옮겨줘. repo랑 토큰은 다 설정해놨어」 — 첫 저장소가 Pages 한도(1 GB)에 가깝다
+- element-atelier-img-2(그림 저장소) — 썸네일 워크플로 · README · img/ 자리를 넣어 열었다(첫 저장소 것을 옮김)
+- lib/img.js — BASES 에 1 번(element-atelier-img-2). img.js?v=10
+- tools/register-images.py — SHARDS · EXTRA_DIRS 에 둘째(img-2). 새 이름은 열린 저장소(둘째)만 받고, 첫 저장소는 교체만
+- .github/workflows/register-images.yml · .gitignore — 둘째 저장소를 img-repo-2 로 받아 img-2 로 잇는다(못 받아도 등록은 돈다)
+- IMAGE_RULES.md(3 · 4절 — 저장소 표) · AGENTS.md · docs/IMAGE_AUTOMATION.md — 새 그림은 둘째에, 기록 · 잠금 · 배경 · 화풍 비교는 첫 저장소 그대로
+
 ## 2026-11-12 · claude · 한 장은 고른 세계 안에서만 넘긴다 · 안 사는 세계 탭은 끈다
 - 사용자 「상단 탭은 판타지인데 그 다음 이미지가 스팀펑크 세계컷이 나오는것보다 그 세계의 일상컷이 나오게」 · 「산소 녹가문에 화성처럼 스팀펑크가 없잖아. 그럼 그 없는 세계 탭을 비활성화」
 - lib/walk-card.js — 넘기는 차례가 지금 그림의 세계 안에서만: 그 세계의 세계 그림 → 그 세계의 일상컷(세계 없는 일상컷은 끝에). 몇 번째(1 / n)도 그 세계 것만 센다. 세계 탭을 누르면 그 세계의 세계 그림(없으면 첫 일상컷)으로. 한 장의 세계는 그림의 세계 — 목록의 「전부」 에서 열어도 목록의 세계 거르기는 그대로. 사는 세계인데 그림이 없으면 전처럼 글 판만 그 세계로

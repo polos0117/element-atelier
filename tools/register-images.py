@@ -40,13 +40,13 @@ import roster
 # 폴더 없이 파일 이름만 적는다 — 주소는 화면 쪽 lib/img.js 가 붙인다(where 로 저장소를 고른다).
 IMG_DIR = "img"
 # 그림 저장소는 여럿이 될 수 있다(pkm 은 2026-10-13 에 둘이 됐다). 한 Pages 사이트는 1 GB 까지라 차면 새 그림은
-# 다음 저장소에 올린다. 지금은 하나다. 0 번이 IMG_DIR, 그 뒤가 EXTRA_DIRS 차례 — lib/img.js 의 BASES 와 같은 차례다
+# 다음 저장소에 올린다. 지금은 둘이다(2026-11-13 — element-atelier-img-2 를 열었다, 첫 저장소는 닫힘). 0 번이 IMG_DIR, 그 뒤가 EXTRA_DIRS 차례 — lib/img.js 의 BASES 와 같은 차례다
 # (tests/img-shards.cjs 가 맞춰 본다). 워크플로는 각 저장소의 img/ 를 이 이름으로 잇는다.
 # 어느 파일이 몇 번 저장소에 있는지는 img.json 의 where 에 적는다(0 번은 적지 않는다 — 옛 주소 그대로).
 # 새 그림은 "열린 저장소" 에만 받는다: 체크아웃에 있는 저장소 가운데 번호가 가장 큰 것.
 # 닫힌 저장소에는 이미 있는 이름의 교체만 받는다 — 새 이름이 오면 등록 전체를 멈춘다.
-SHARDS = ["element-atelier-img"]
-EXTRA_DIRS = []
+SHARDS = ["element-atelier-img", "element-atelier-img-2"]
+EXTRA_DIRS = ["img-2"]
 
 # 연출컷(action)은 받지 않는다 — 이름에 끼면 "이름 꼴이 안 맞는다" 로 선다
 PAT = re.compile(r"^(.+?)_(m|f|casual(\d+)|extra(\d+))\.webp$", re.I)

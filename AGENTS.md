@@ -84,7 +84,7 @@
 
 ### 5. 그림은 이 저장소에 두지 않는다
 
-그림은 `element-atelier-img` 에 올린다. `img/` 는 `.gitignore` 에 있다. 원본 PNG 는 올리지 않는다.
+새 그림은 `element-atelier-img-2` 에 올린다(2026-11-13 — 첫 저장소 `element-atelier-img` 는 차서 닫힘: 교체만 · 기록 · 잠금 · 배경 · 화풍 비교는 계속 거기, IMAGE_RULES 3절 표). `img/` · `img-2/` 는 `.gitignore` 에 있다. 원본 PNG 는 올리지 않는다.
 그림 규칙은 `IMAGE_RULES.md`. 그림 저장소에 올리면 썸네일(`element-atelier-img` 워크플로)과 등록(`그림 등록` 워크플로 · `tools/register-images.py`)이 알아서 된다 — `data/img.json` 은 손으로 고치지 않는다.
 
 ### 6. 고쳤으면 적는다

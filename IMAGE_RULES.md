@@ -129,7 +129,15 @@ game·pkm 이 쓰는 일상컷 트리 버전2(`lib/casual-tree-v2.js`, 설계는
 
 ## 3. 파일 이름과 자리
 
-그림 저장소 `element-atelier-img` 의 `img/` 에 올린다(코드 저장소에는 두지 않는다).
+**새 그림은 둘째 그림 저장소 `element-atelier-img-2` 의 `img/` 에 올린다**(코드 저장소에는 두지 않는다 — 2026-11-13 사용자 「이미지 저장소 많이 차서 img-2로 저장경로 옮겨줘」).
+
+| 번호 | 저장소 | 상태 | 무엇 |
+|---|---|---|---|
+| 0 | `element-atelier-img` | 닫힘 | 2026-11-12 까지의 그림. **이미 있는 이름의 교체만** — 새 이름을 올리면 등록이 멈춘다. 기록(`records/`) · 잠금(`records/automation/claims/`) · 배경(`backgrounds/`) · 화풍 비교(`style-test/`)는 계속 여기 |
+| 1 | `element-atelier-img-2` | 열림 | **새 그림(webp) 전부** — `img/` 만 |
+
+같은 이름의 그림을 두 저장소에 두지 않는다(등록기가 멈춘다). 어느 그림이 어디 있는지는 등록기가 `data/img.json` 의 `where` 에 적고(0 번은 적지 않는다) `lib/img.js` 의 `BASES[번호]` 가 주소를 만든다.
+저장소를 더할 때는 `BASES` · `tools/register-images.py` 의 `SHARDS` · `EXTRA_DIRS` · 등록 워크플로 · `.gitignore` 를 같이 고친다 — `node tests/img-shards.cjs` 가 맞춰 본다. 다음 저장소도 Pages 를 켜고 썸네일 워크플로 · `CODE_REPO_TOKEN` 을 넣는다.
 
 ```
 <카드>_<세계>_<화풍>_f.webp           세계 그림 — 세계는 fantasy · steampunk · mecha
@@ -148,14 +156,14 @@ game·pkm 이 쓰는 일상컷 트리 버전2(`lib/casual-tree-v2.js`, 설계는
 ## 4. 등록 — 올리면 자동이다
 
 1. 결과를 사람에게 보여 주고 "올릴까?" 를 묻는다.
-2. webp 로 바꿔 `element-atelier-img` 의 `img/` 에, 기록은 `records/` 에 일반 push 한다. 썸네일은 만들지 않는다.
+2. webp 로 바꿔 **`element-atelier-img-2` 의 `img/`** 에(이미 첫 저장소에 있는 이름을 바꾸는 것만 첫 저장소에), 기록은 **첫 저장소 `element-atelier-img` 의 `records/`** 에 일반 push 한다. 썸네일은 만들지 않는다.
 3. 그림 저장소의 `썸네일` 워크플로가 `img/thumb/` 를 만들어 되커밋하고, 코드 저장소의 `그림 등록` 을 깨운다
    (그림 저장소의 Actions 비밀 `CODE_REPO_TOKEN` 이 있을 때. 없으면 코드 저장소가 한 시간마다 스스로 돈다 — 기다리기 싫으면 Actions 의 Run workflow).
 4. `그림 등록` 이 `tools/register-images.py` 로 파일 이름을 읽어 `data/img.json` 에 적고 등록한 날(`added`)을 남겨 되커밋한다.
    이름 꼴(3절)이 틀린 파일이 하나라도 있으면 아무것도 쓰지 않고 실패한다.
 5. `썸네일` 실행이 초록인지, `그림 등록` 커밋이 생겼는지 본다.
 
-`data/img.json` 을 손으로 고치지 않는다. 자리에서 직접 돌리려면 `element-atelier-img` 를 옆에 받고 `ln -s ../element-atelier-img/img img` 뒤
+`data/img.json` 을 손으로 고치지 않는다. 자리에서 직접 돌리려면 두 그림 저장소를 옆에 받고 `ln -s ../element-atelier-img/img img` · `ln -s ../element-atelier-img-2/img img-2` 뒤
 `python3 tools/register-images.py --check` · `python3 tools/register-images.py`.
 
 ## 5. 중단과 재개

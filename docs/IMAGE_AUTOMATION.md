@@ -31,7 +31,7 @@ pkm-atelier 의 `docs/IMAGE_AUTOMATION.md` 를 원소 꼴로 옮긴 것이다(ga
 
 ## 1. 준비
 
-- `AGENTS.md` · `IMAGE_RULES.md` 를 먼저 읽는다. 코드(`element-atelier`)와 그림(`element-atelier-img`) 저장소를 **나란히** 받아 최신 `main` 으로 둔다.
+- `AGENTS.md` · `IMAGE_RULES.md` 를 먼저 읽는다. 코드(`element-atelier`)와 그림 저장소 둘(`element-atelier-img` — 기록 · 잠금 · 옛 그림, `element-atelier-img-2` — **새 그림은 여기 `img/`**, 2026-11-13)을 **나란히** 받아 최신 `main` 으로 둔다.
   남의 로컬 변경을 reset 하지 않는다.
 - Node 와 Python 3 + Pillow 가 있으면 된다. **브라우저는 쓰지 않는다** — 생성기 화면 대신 지시문 묶음(`tools/prompt-pack.cjs`)이 같은 글을 파일로 준다
   (`tests/prompt-pack-screen.cjs` 가 세계 그림 · 일상컷 자리를 실제 화면과 글자 하나까지 견준다).
