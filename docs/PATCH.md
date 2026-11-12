@@ -10,6 +10,137 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 고침 2 — 한 장 초점은 대화 상자 자신 · 즐겨찾기 단추 띄어쓰기
+- lib/walk-card.js — 열 때 초점을 닫기 단추가 아니라 한 장(대화 상자, tabIndex -1) 자신으로 — 주소로 바로 열면 닫기 단추에 초점 테두리가 떠 있었다(덮개 사진 5-card-fe). Tab 은 안의 첫 단추부터, 닫으면 연 자리로(B3 그대로)
+- lib/walk.css — 대화 상자 자신의 초점 테두리는 없이, 단추 줄 단추 안 gap(inline-flex 가 「♡ 즐겨찾기」 의 띄어쓰기를 먹었다)
+- index.html · lib/walk.js — walk.css ?v=10 · walk.js ?v=13 · walk-card ?v=4
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 B12 — 옛 브라우저 검사 넷을 ESM_DIR 없이도
+- tests/alchemy.cjs · tests/dex-holo.cjs · tests/dex-turn.cjs · tests/screen.cjs — ESM_DIR 이 비면 공용 손(tests/lib/harness.cjs 의 ESM_DIR — $HOME/.cache/element-esm/node_modules)으로. 맨 실행(tests/*.cjs 전부)이 지나간다
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 최종 검토 고침 — 뒤로 가기 한 층씩 · 한 장은 화풍을 안 바꾼다 · 깨진 그림 · 단추 줄 · 초점
+- lib/walk.js — 뒤로 가기가 mode 를 지금 보기로 덮지 않는다(빈 자리 → 목록으로 건너뛴 뒤 뒤로 가기가 한 층씩 오르지 못하던 것, A1) · 보기 기억은 고르개만(A3) · 역사 칸 walk 를 조상 칸 수로, 길 표시는 history.go(-k)(모르면 지금 칸을 바꾼다 — 한 장이 다시 열리던 것, A6) · 길이 넘치면 끝(지금 자리)이 보이게(B9)
+- lib/walk-card.js — 한 장은 그 그림의 화풍으로 보이되 st 를 주소 · 기기 기억에 쓰지 않는다(카드 하나 열면 목록 화풍이 바뀌고 생성기 링크가 사라지던 것, A2 — 결정대로) · 열면 초점을 닫기 단추로, 닫으면 연 자리로(B3) · 그림 실패면 숨김(B6)
+- lib/walk-data.js — imgFail 하나(썸네일 → 원본 한 번 → 숨김 — onerror=null 이 Preact 에선 안 들어 404 그림을 초당 수백 번 다시 부르던 것, B1 · B6), 안 쓰는 hasArt 지움(B11)
+- lib/walk-orbit.js · lib/walk-family.js · lib/walk-list.js — imgFail(B1 · B6), 다른 세계 그림이면 「… 의 그림」(A7), 가문의 「목록에서 보기」(A7), 궤도/목록 고르개가 보기를 기억(A3)
+- lib/walk-table.js — ① 의 출발 자리는 궤도로 들어갈 때만 넘긴다(목록으로 가면 남았다가 나중에 터지던 것, A3)
+- lib/toolbox.js — 판 안에서 Tab 이 돈다(B3) · 판을 연 채 새로고침하면 죽은 {tb:1} 칸에서 한 칸 물러난다(A5) · 도구 화면 「← 돌아가기」는 공방에서 왔으면 history.back()(A4) · 기기 움직임 줄이기면 움직임 고르개를 막고 까닭(B10)
+- lib/walk-fx.js — 입자가 멈추면 PixiJS system 틱도 멈춘다(화면 밖에서 rAF 60/초, B5)
+- lib/walk.css — 한 장 단추 줄 wrap · 단추 글 한 줄 · 44px(사용자 「홀로, 즐겨찾기 그렇게 버튼 쭉 있는 텍스트가 세로로 안나오게 해줘」, B2) · 그림 칸 최소 크기(B6) · 세계 단추 · 화풍 고르개 44px(B7) · 어두운 바탕 강조색 --w-acc 와 흐린 칸 글 4.5:1(B8) · 목록 머리 원소 기호를 나라 카드 칸 모양으로(B13) · 「… 의 그림」 · 「목록에서 보기」(A7)
+- lib/words.js — gallery.from · walk.inList · tool.motion.system
+- alchemy.html — 카드 열기를 index.html?n=&mode=list(&card=&pic= 또는 &at=)로 바로(A9)
+- index.html · alchemy.html · prompt.html · styles.html · lib/walk*.js — words ?v=25 · walk.css ?v=9 · walk.js ?v=12 · toolbox ?v=3 · walk-card ?v=3 · walk-data ?v=4 · walk-family ?v=5 · walk-fx ?v=6 · walk-list ?v=5 · walk-orbit ?v=7 · walk-table ?v=6
+- tests/walk-*.cjs · tests/lib/harness.cjs — 고친 것마다 검사(빈 자리 → 목록 뒤로 가기 · 화풍 고르개 그대로 · 404 그림 부르기 수 · 단추 줄 · 키 초점 · 판 Tab · 대비 4.5 · 길 표시 · 돌아가기 · 새로고침 · rAF), A2 로 느슨하게 했던 단언 셋 되돌림, 입자 검사의 주석에 묻힌 줄 꺼냄(B4), 대비 손 contrast
+- AGENTS.md · DESIGN.md · docs/superpowers/plans/2026-11-12-element-walk-in.md — st 는 화풍 고르개로만 · 길 표시는 위로 · 계획의 「실행 중 바뀐 것」 A2 되돌림 기록
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 10-2 — 스팀펑크 전환의 김을 부드럽게
+- lib/walk-fx.js — 세계 전환 스팀펑크 입자를 겹친 원 여럿으로(한 원은 덮개 사진에서 가장자리가 계단처럼 보였다)
+- lib/walk-table.js · lib/walk-orbit.js · lib/walk-family.js · lib/walk-list.js · lib/walk.js · index.html — walk-fx ?v=5 · walk-orbit ?v=6 · walk-table ?v=5 · walk-family ?v=4 · walk-list ?v=4 · walk.js ?v=11
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 10 — 안 쓰는 탭 머리 · 낱말 정리, AGENTS 화면 표 새로, DESIGN.md
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 10 — 정리 · 문서 · 전체 검사
+- DESIGN.md (새) — 이 공방의 뼈대(「넘기는 곳이 아니라 들어가는 곳」 · 도구 상자 · 탭 줄 없음 · 어두운 바탕 · 효과 다섯 · 움직임 설정). 다른 공방의 뼈대를 가져오지 않는다 — 새 화면은 여기부터(사용자 「새로 만들어 달라고 하면 그전 공방 그대로 옮겨서 만든다」)
+- AGENTS.md — 먼저 읽을 것에 DESIGN.md, 화면 표(타이틀 · 전시관 · 주기율표 · 도감 → 원소 공방 · 도구 상자), PAGES 문장 지움, 목록과 즐겨찾기 link 꼴, 검사 목록에 tests/walk-*.cjs, 꾸밈에 새 층은 --frame · --ui-* 를 안 쓴다고
+- README.md · docs/PORT_NOTES.md — 화면 줄 · 옛 탭 머리 지움 표시
+- lib/workspace-ui.js — 지움(아무도 안 싣는다 — 탭 머리 · AppearanceControls)
+- lib/words.js — 쓰는 곳이 없는 열쇠 지움(nav.* · title.* · ui.header.* · home.title/intro/tag/table*/first*/themes · gallery.island* 와 옛 전시관 · 도감 머리 낱말), 첫 줄 보기 W('walk.table')
+- lib/walk-orbit.js · lib/walk-family.js — 효과 ① · ⑤ 를 그리기 전(useLayoutEffect)에 — 끝 모습이 한 틀 먼저 비치지 않게(walk-orbit 검사가 가끔 「enter」 를 못 보던 것)
+- lib/toolbox.js — Esc 를 그리자마자 받는다(useLayoutEffect — 열고 바로 누른 Esc 를 놓쳐 walk-list 가 가끔 시간 초과)
+- alchemy.html · prompt.html · styles.html · index.html — words.js ?v=24 · toolbox.js ?v=2, walk.js ?v=10(walk-orbit ?v=5 · walk-list ?v=3 · walk-family ?v=3)
+- tests/screen.cjs — 세계 그림 칸 꼴의 줄 이름(Scene note: · Time & weather: — main 2887e08 의 생성기 그대로)으로 단언
+- tests/lib/harness.cjs — 낱말 표에 없는 열쇠(console.warn 'words: …')도 오류로 센다
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 9 — 세계 바꾸기 전환(가루 · 김 · 주사선)
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 9 — 설계 효과 ③(세계마다 다른 전환)
+- lib/walk-fx.js — PixiJS 를 닫을 때 전역 자원(releaseGlobalResources)은 놓지 않는다(궤도 입자 · 세계 전환 · 한 장의 홀로가 한 화면에 같이 살아서 — 하나를 닫으면 남은 쪽이 「null 의 '2'」 오류로 깨졌다, walk-list 에서 잡힘)
+- lib/walk-fx.js — playShift: 막대 아래 덮개 .w-shift 하나(늘 하나 · 누르기를 막지 않음 · 900ms 안에 지움), WebGL · PixiJS 가 되면 덮개 안에 그 세계 입자 한 번(가루 · 김 · 주사선 잡음), 안 되면 CSS 만. 움직임 판단은 motionOn 한 곳
+- lib/walk.js — 세계 고르개: 주소를 먼저 바꾸고(효과를 기다리지 않음) 그 뒤 전환. 목록의 「전부」 · 같은 세계는 전환 없음
+- lib/walk.css — 세계마다 가면 움직임(판타지 점무늬 가루 · 스팀펑크 아래서 오르는 김 · 메카 주사선과 어긋나는 띠, 600ms), 한 장 위 · 막대 아래
+- lib/walk-table.js · lib/walk-orbit.js · lib/walk-family.js · lib/walk-list.js — walk-fx ?v=4 · walk-orbit ?v=4(walk-fx 를 싣는 곳은 모두 같은 ?v= — 누른 자리 기억을 같이 쓴다)
+- index.html — walk.css ?v=8 · walk.js ?v=9
+- tests/walk-world.cjs (새)
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 8 — 한 장 하나로(글 판 · 세계 넘기기) · 전시관 옛 주소 이어 주기
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 8 — 설계 물음 4(목록 · 가문 · 궤도 어디서 눌러도 같은 한 장, 전시관 한 장의 글 판과 세계 넘기기를 더한다)
+- lib/walk-card.js — 글 판(층 · 기호 이름 · 이름 · 영어 · 근본이면 사실 칸과 그 세계의 나라 · 인격 · 주민이면 모티브 · 사는 세계 — 옛 전시관 한 장의 글), 막대의 세계를 바꾸면 지금 화풍의 그 세계 그림으로(없으면 그림은 그대로, 글 판만)
+- lib/walk.css — 글 판(덮개는 그림 아래, 넓으면 옆)
+- gallery.html — 옛 전시관을 지우고 새 주소로 넘기는 껍데기(?n=&f=&c=&w=&v=1 → 같은 층)
+- lib/gallery.css — 지움(옮길 몫은 궤도 · 가문 · 한 장으로 다 옮겼다)
+- index.html — walk.css ?v=7 · walk.js ?v=8(walk-card.js ?v=2)
+- 계획 공유 약속 맨 위 — 과제 6 · 7 · 8 에서 바뀐 것(바로 가기 띠 · 막대 높이 · 한 장은 막대 아래 · st 가 위 층에 남음 …)
+- tests/walk-card.cjs (새) · tests/screen.cjs(전시관 묶음 지움 — 궤도 · 가문 · 한 장 검사가 같은 것을 본다)
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 7 — 가문 층(주민 전부 · 빈 원은 목록 그 칸으로) · 가문주가 날아와 머리 그림으로
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 7 — 설계 목표 4 · 물음 1(설계된 카드를 다 보인다) · 효과 ⑤
+- lib/walk-family.js (새) — 옛 전시관 가문 층을 바탕으로: 가문주 크게(그림 → 한 장, 없으면 빈 원 → 목록의 그 칸) · 층 · 이름 · 인격 · 성질 · 설계된 주민 전부(아직 안 그린 주민은 빈 원 + 「아직 그림 없음」 → 목록의 그 칸) · 같은 물질의 다른 나라(그 나라의 같은 가문으로). 궤도에서 들어오면 ⑤ 누른 가문주 원에서 머리 그림이 날아와 커지고 주민이 차례로
+- lib/walk.js — 가문 층을 붙임(빈 자리 층 코드는 지움)
+- lib/walk.css — 가문 층(옛 gallery.css .g-fam-top · .g-hero · .g-cits 를 옮겨 이름을 바꿈)
+- index.html — walk.css ?v=6 · walk.js ?v=7
+- tests/walk-family.cjs (새)
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 6 — 목록 보기(지금 도감) · 조작 줄 두 줄 · 세계 하나 · 크게 보기를 주소 층으로
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 6 — 설계 목표 3 · 7(원소 알약 줄이 없어지고 조작 줄이 잘리지 않는다) · 물음 2 · 3 · 4
+- lib/walk-list.js (새) — 옛 dex.html 몸통(나라 · 카드 · 세계 칸 · 그림 칸 · 조작 판)을 옮김. 원소 알약 줄 없음, 조작 줄은 두 줄(화풍 한 줄 · 보기 한 줄 — 344 에서도 안 잘림), 세계 거르기는 막대의 세계 고르개(목록에선 「전부」), 즐겨찾기 수는 도구 상자로, 바로 가기 띠는 막대 아래 붙고 양끝이 흐림, 머리에 궤도로/목록으로, ?at= 이면 그 칸으로, 그림을 누르면 한 장 층(뒤로 가기로 닫힘), 같은 물질 다른 나라는 그 나라 목록으로
+- lib/walk-card.js (새) — 옛 도감 크게 보기를 주소 층(?card=&pic=)으로: 홀로 · 넘기기 전환 · 하트 그대로, 넘기기 · 화풍 맞추기는 역사 칸 없이, 닫기 · Esc · 바깥 · 뒤로 가기는 한 층 위. 즐겨찾기 link 는 index.html?n=&mode=list&card=&pic=(&st=). 열자마자 누른 키도 받는다
+- lib/walk-data.js — fileOf · styleList · picsOf · styleOfPic(옛 dex.html 에서 옮김, 몸 그대로)
+- lib/walk.js — 목록 · 한 장 층을 붙임(한 장은 부모 층 위에), 목록 층에서만 세계 고르개 끝에 「전부」, 위 막대 높이를 --w-bar-h 로
+- lib/walk.css — 목록 · 한 장을 어두운 바탕으로(element.css 의 공간 변수를 두 층 안에서만 바꿈), 조작 줄 두 줄 · 바로 가기 띠 · 한 장은 막대 아래. element.css 의 폰 주기율표 규칙이 새 주기율표를 넓히지 않게
+- dex.html — 옛 도감을 지우고 새 주소로 넘기는 껍데기(즐겨찾기의 옛 link 도 이 길로 산다)
+- index.html — element.css · prompt-spec.js · prompt-element.js 싣기(옛 dex.html 과 같은 버전), walk.css ?v=5 · walk.js ?v=6. lib/words.js — walk.world.all, 싣는 화면 ?v=23
+- lib/walk-orbit.js — walk-data.js ?v=3 만(가져오는 파일 버전)
+- tests/walk-list.cjs (새 — screen.cjs 도감 묶음을 옮기고 더함) · tests/screen.cjs(도감 묶음 지움) · tests/dex-holo.cjs · tests/dex-turn.cjs(여는 주소만)
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 5 — 궤도가 천천히 돌고(손대면 멈춤) 분류마다 입자(PixiJS 늦게 불러오기)
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 5 — 효과 ②(궤도 화면에 머무는 동안), 설계 「입자 수 상한, 화면 밖 · 숨은 탭에서는 멈춘다」 · 움직임 끄기
+- lib/walk-fx.js — loadPixi(한 번만, 실패하면 다음에 다시 — 주소는 holo.js 의 PIXI_URL) · mountParticles: 분류마다 입자(불티 · 바람결 · 빛 알갱이 · 결정 반짝임 · 푸른 깜빡임), 수 상한, 숨은 탭 · 화면 밖이면 멈춤, 움직임이 꺼졌거나 WebGL 이 없거나 PixiJS 를 못 받으면 조용히 빠짐(WebGL 이 없으면 받지도 않는다)
+- lib/walk-core.js — particleKind(분류 → 입자 종류) · particleCap(덮개 24 · 넓으면 48)
+- lib/walk-orbit.js — 궤도 층에 입자를 붙이고 떼기(움직임 끄기를 바로 따른다), 고리에 손대면 멈춤(뗀 뒤 2초)
+- lib/walk.css — 고리가 180초에 한 바퀴(가문주 원은 거꾸로 돌아 똑바로), 손대면 멈춤, 움직임이 꺼지면 없음 · 입자 캔버스 자리
+- index · hall · alchemy · styles · prompt 의 walk-core.js ?v=5, index 의 walk.css ?v=4 · walk.js ?v=5
+- tests/walk-particles.cjs (새) · tests/walk-core.cjs(입자 종류 · 상한) · tests/walk-table.cjs(PixiJS 0 은 주기율표 · 목록만 본다 — 궤도에 들어가면 이제 받는다)
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 4 — 나라 궤도 층(설계된 가문 전부 · 점선 고리 · 빈 원) · 앞뒤 나라 · 들어가기 확대
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 4 — 설계 목표 2(나라 = 궤도) · 물음 1(설계된 카드를 다 보인다) · 물음 7(궤도 그림 없는 나라는 코드가 그린 고리) · 효과 ①
+- lib/walk-orbit.js (새) — 궤도 층: 가운데 근본(그림이면 둥근 그림 → 한 장, 없으면 빈 원 → 목록의 그 칸), 고리 위에 설계된 가문 전부(가문주 원 · 가문 이름 · 주민 수, 그림 없으면 빈 원 + 「아직 그림 없음」 → 목록의 그 칸, 그림 있으면 → 가문). 궤도 그림 일곱(RING)은 그 그림, 나머지 · 그림 404 는 점선 고리. 아래에 궤도로/목록으로(역사 칸 없이, 기기에 기억) · 사실 칸 · 인격 · 그 세계의 나라 · 성질. 주기율표에서 들어오면 ① 근본이 누른 칸에서 날아와 커지고 고리가 그려지고 가문주가 퍼진다. EmptyArt · ModeSwitch 는 가문 · 목록 층도 쓴다
+- lib/walk-core.js — nationOrder(주기율표 번호 차례) · neighbors(앞뒤 나라, 끝에서 처음으로)
+- lib/walk-data.js — cardsOf(근본 → 가문주 → 주민) · pick(고른 화풍 → 다른 화풍, 그 세계 → 다른 세계) · hasArt
+- lib/walk.js — 궤도 층을 붙임, 나라 층(궤도 · 목록)이면 길 표시 옆 ‹ ›(역사 칸 없이 옆 나라)
+- lib/walk.css — ‹ › · 궤도 무대(옛 전시관 .g-stage 를 옮김) · 가문주 원 · 빈 원 · 보기 고르개 · 나라 글
+- lib/words.js — walk.mode · walk.mode.orbit · walk.mode.list · walk.noart · walk.prev · walk.next, 싣는 화면 ?v=22. index · hall · alchemy · styles · prompt 의 walk-core.js ?v=4, index 의 walk.css ?v=3 · walk.js ?v=4
+- tests/walk-orbit.cjs (새) · tests/walk-core.cjs(나라 차례)
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 3 — 첫 화면 주기율표 · 나라 카드 · 칸 숨쉬기와 불꽃
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 3 — 설계 목표 1(첫 화면 = 주기율표) · 효과 ④
+- lib/walk-table.js (새) — 118칸(옛 hall.html 칸 배치 그대로), 나라 칸만 분류 색으로 빛남, 가로 스크롤 없이 폭에 맞춤(덮개 칸 16px 남짓 · 넓으면 최대 56px). 누르기는 표 한 곳에서 받아 가장 가까운 나라(흐린 칸 위를 눌러도), 고르면 표 아래 큰 나라 카드(기호 · 이름 · 분류 · 인격 · 가문 · 주민 수, 「들어가기」 — 기억된 보기 · 「목록」), Esc 로 닫힘, 역사는 안 늘림. 범례 분류 열
+- lib/walk-fx.js (새) — 효과 문: fx()(움직임 판단은 walk-core motionOn 한 곳 — 기기의 움직임 줄이기 · 도구 상자의 움직임 끄기), 누른 자리 넘기기, ④ 불꽃(고른 칸 둘레 불티 여덟). 검사 손잡이 window.AtelierWalkFx
+- lib/walk-core.js — nearestNation(가까운 나라 칸)
+- lib/walk.js — 주기율표 층을 붙임, html[data-motion] 에 움직임 판단을 걸어 CSS 숨쉬기도 같은 판단을 봄
+- lib/walk.css — 분류 색 열(칸 · 카드 · 범례가 같이), 주기율표 · 숨쉬기(움직임 꺼지면 없음) · 불꽃 · 나라 카드 · 범례
+- hall.html — 옛 주기율표 화면을 지우고 새 주소로 넘기는 껍데기(walk-core legacyURL). 패치 기록은 도구 상자로 옮겨 갔다
+- index.html · alchemy.html · styles.html · prompt.html — walk-core.js ?v=3, index 의 walk.css ?v=2 · walk.js ?v=3. lib/words.js — walk.enter · walk.list · walk.counts · walk.legend · walk.table.note, 싣는 화면 ?v=21
+- tests/walk-table.cjs (새) · tests/walk-core.cjs(가까운 칸) · tests/screen.cjs(옛 hall 묶음 지움 — 같은 몫은 walk-table.cjs)
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 2 — 도구 상자 · 도구 화면은 가는 막대(탭 줄 걷기)
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 2 — 합성 · 화풍 · 프롬프트는 장소가 아니라 도구(설계 「도구 상자」 · 물음 6), 움직임 끄기(사용자 「움직임 끄기 옵션 넣어줘」)
+- lib/toolbox.js · lib/toolbox.css (새) — 구석 단추 하나 → 아래에서 오르는 판(PC 는 오른쪽 아래): 합성 · 화풍 · 프롬프트 · 즐겨찾기(원소 수) · 설정(공간 · 밀도 · 움직임) · 패치 기록(옛 주기율표 화면의 것). 판 밖 · Esc · 뒤로 가기로 닫힘, 판 안 링크는 판의 역사 칸을 걷고 간다. 도구 화면 머리 ToolBar(← 돌아가기 — 들어오기 전 층 · 도구 이름 · 도구 상자)
+- lib/walk-core.js — motionOn() · setMotion(on): 움직임 판단 한 곳(기기의 움직임 줄이기 또는 이 기기에서 끔 element_motion_v1=off), 바꾸면 element-motion 사건
+- lib/walk.js — 막대 끝에 도구 상자, 판의 역사 칸에서 새로고침해도 씨앗을 다시 심지 않음
+- alchemy.html · styles.html · prompt.html — 머리를 WorkspaceHeader(탭 줄 · 큰 제목) → ToolBar, favorites.js · patch.js · walk-core.js · toolbox.css 싣기
+- index.html — toolbox.css · patch.js 싣기, walk-core.js ?v=2 · walk.js ?v=2
+- lib/words.js — tool.* 낱말(움직임 켜기/끄기 포함). 싣는 화면 일곱 ?v=20
+- tests/walk-tools.cjs (새) · tests/screen.cjs 「화풍 탭」 · tests/alchemy.cjs 「메뉴의 합성」 — 탭 줄 대신 h1.tb-name
+
+## 2026-11-12 · claude · 원소 「들어가는 곳」 1 — 한 화면 껍데기 · 주소 층 · 뒤로 가기 한 층씩
+- 사용자 「괜찮네. 이대로 진행해줘」 — 설계 docs/superpowers/specs/2026-11-12-element-walk-in-design.md, 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 1
+- index.html — 타이틀 화면(공간 배경 · 그림 현판 · 그림 단추)을 「들어가는 곳」 껍데기로 통째 갈아치움. material.css · room.css 를 싣지 않는 어두운 바탕(#07080c)
+- lib/walk-core.js (새) — 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 채우기 · 검증(낡은 열쇠는 가장 가까운 맞는 층) · 옛 주소(hall · gallery · dex) · 세계. node 로도 돈다
+- lib/walk-data.js (새) — 설계표 · 화풍 판 · 등록부 한 번 읽기(옛 gallery.html useDocs 그대로)
+- lib/walk.js (새) — 껍데기 앱: 주소 ↔ 상태, 깊은 주소로 들어오면 조상 층을 역사에 한 칸씩 심기, 내려가기 push · 옆으로 replace, 같은 주소는 다시 안 씀(두 번 눌러도 한 칸), 세계 · 보기는 뒤로 가도 남음, 위 막대(지나온 길 · 세계), 층 다섯은 아직 빈 자리
+- lib/walk.css (새) — 새 층들의 어두운 겉모습 · 막대 · 세계 고르개(44px) · 세계 · 테마 배경 자리(.w-scenery)
+- lib/words.js — walk.* 낱말 여섯. 싣는 화면 일곱 ?v=19
+- tests/walk-core.cjs · tests/walk-shell.cjs · tests/lib/harness.cjs (새) — 순수 함수 · 껍데기 브라우저 검사, 공용 손(서버 · 가로채기 · 넘침 · 사진)
+- tests/screen.cjs — 타이틀 묶음 지움(그 화면이 없어졌다 — 같은 몫은 walk-shell.cjs)
+
 ## 2026-11-12 · claude · 칸 꼴 세계 그림 — 시간대 · 덧붙임 줄 이름, 메카 의상 문장 이음
 - 사용자 2026-11-12 「응 둘 다 고쳐줘」 — 허브를 고치다 옆에서 찾은 두 군데
 - lib/prompt-element.js buildWorldSections — 장면에서 고른 시간대 · 덧붙임이 4칸에 옛 줄 이름(TIME & WEATHER: · SCENE NOTE: · OUTFIT NOTE: · EXTRA:)으로 들어가던 것을 4칸 다른 줄과 같은 꼴(Time & weather: · Scene note: …)로. 칸 꼴을 끈 옛 꼴은 그대로

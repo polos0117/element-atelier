@@ -18,7 +18,7 @@
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;700&display=swap"></noscript>
 <link rel="stylesheet" href="lib/workspace.css?v=3">
 <script src="lib/workspace-theme.js?v=3"></script>
-<script src="lib/words.js?v=18"></script>
+<script src="lib/words.js?v=25"></script>
 <script src="lib/img.js?v=9"></script>
 <script src="lib/alchemy.js?v=2"></script>
 <link rel="stylesheet" href="lib/element.css?v=10">
@@ -30,15 +30,19 @@
   .sr-only {position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
   .cat-probe {display:none}
 </style>
+<script src="lib/favorites.js?v=1"></script>
+<script src="lib/patch.js?v=1"></script>
+<script src="lib/walk-core.js?v=5"></script>
+<link rel="stylesheet" href="lib/toolbox.css?v=1">
 </head>
 <body class="prompt-page lab-page alchemy-page">
 <div class="wrap"><div id="app"></div><div id="game" role="application"></div><p id="alchemy-status" class="sr-only" role="status" aria-live="polite"></p></div>
 <script type="module">
 import {h,render} from 'https://esm.sh/preact@10.24.3';
-import {WorkspaceHeader} from './lib/workspace-ui.js?v=5';
+import {ToolBar} from './lib/toolbox.js?v=3';
 import * as Phaser from 'https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.esm.min.js';
 const W=window.W,IMG=window.AtelierImg,AL=window.AtelierAlchemy;
-render(h(WorkspaceHeader,{page:'alchemy'}),document.getElementById('app'));
+render(h(ToolBar,{tool:'alchemy'}),document.getElementById('app'));
 const fitTop=()=>{const g=document.getElementById('game');document.documentElement.style.setProperty('--alchemy-top',Math.ceil(g.getBoundingClientRect().top+window.scrollY)+'px');};
 requestAnimationFrame(fitTop);addEventListener('resize',fitTop);
 const say=t=>{const s=document.getElementById('alchemy-status');s.textContent='';setTimeout(()=>{s.textContent=t;},30);};
@@ -225,7 +229,7 @@ class Main extends Phaser.Scene{
       face.setScale(0,1.08);this.tweens.add({targets:face,scaleX:1.08,duration:200,ease:'Back.Out',onComplete:()=>this.tweens.add({targets:face,scale:1,duration:180,ease:'Quad.Out'})});
       this.burstColors=[TH.accent,0xffffff];this.sparks.explode(FX.big.card,x,y-hgt*0.3);}});
     const hit=this.add.rectangle(x,y,w,hgt,0xffffff,0.001).setInteractive({useHandCursor:true});
-    hit.on('pointerdown',()=>{location.href='dex.html?nation='+l.nation+'&card='+encodeURIComponent(l.key)+(l.pic?'&pic='+encodeURIComponent(l.pic):'');});
+    hit.on('pointerdown',()=>{location.href='index.html?n='+l.nation+'&mode=list&'+(l.pic?'card='+encodeURIComponent(l.key)+'&pic='+encodeURIComponent(l.pic):'at='+encodeURIComponent(l.key));});   /* 원소 공방 목록의 그 카드(그림이면 한 장) — 옛 dex.html 넘김을 거치지 않는다 */
     o.items.push(hit);o.cards.push(l.key);
   }
   async reveal(res){

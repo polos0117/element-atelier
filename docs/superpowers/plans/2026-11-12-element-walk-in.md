@@ -74,6 +74,13 @@ fnm exec --using=22 node tests/walk-shell.cjs
 
 ## 공유 약속(과제들이 서로 기대는 이름)
 
+> **실행 중 바뀐 것(과제 4 · 5):** 입자 캔버스는 `.w-stage` 에 바로 붙지 않고 그 안의 빈 자리 `div.w-fx`(Preact 가 안을 그리지 않는 칸)에 붙는다 — `mountParticles(.w-stage .w-fx, …)`. `canvas.w-particles` 는 여전히 `.w-stage` 안. 가문주 원 `.w-node` 의 `transform` 은 `translate(-50%,-24px)`(원의 가운데가 고리 위) — 효과 ⑤ 는 `.w-node-pic`(원)에서 `markFrom` 한다. `walk-data` 의 `Card` 는 `{…, citizen}` 에 더해 근본 · 가문주도 `citizen: null` 을 갖는다. 「들어가기」는 기억된 보기(`element_dex_v1.mode`)로 가므로 `walk-orbit.cjs` 의 ① 단계는 기억값을 `orbit` 으로 되돌린 뒤 들어간다.
+
+> **실행 중 바뀐 것(과제 6 · 7 · 8):** `walk.js` 가 위 막대 높이를 `html` 의 `--w-bar-h` 로 둔다(ResizeObserver). 목록의 바로 가기 띠 `.toc-jump` 는 `.dex-toc` 안이 아니라 **바로 뒤 형제**이고 혼자 막대 아래에 붙는다(`top: var(--w-bar-h)`) — `.dex-toc`(두 줄)는 붙지 않는다(덮개에서 막대 + 세 줄이 화면 3할을 먹어서). 옮긴 「바로 가기」 단언은 `.toc-jump` 아래 끝을 잰다. 같은 물질 다른 나라 링크는 `a[href="index.html?n=<나라>&mode=list"]`(누르면 `go({n})` push). 한 장 `.lightbox.w-card` 는 `.w-main` 안, 막대 **아래**(`top: var(--w-bar-h)`) — 막대의 세계 고르개 · 길 표시 · 도구 상자를 한 장 위에서 그대로 쓴다. ~~한 장이 그림이 든 화풍으로 `st` 를 옮긴다~~ → **최종 검토 A2(2026-11-12) 로 되돌림:** 한 장은 그 그림이 든 화풍(`styleOfPic` — `ps`)으로 넘기고 보이되 `st` 를 주소 · 기기 기억에 쓰지 않는다(카드 하나를 열었다고 이 기기의 목록 화풍이 바뀌고 생성기 링크가 사라지던 것). `st` 는 목록의 화풍 고르개(또는 `&st=` 를 실은 주소 — 즐겨찾기 link)로만 바뀐다. 그래서 그때 느슨하게 한 단언 셋을 되돌렸다 — `walk-shell.cjs` 깊은 주소 뒤로 가기는 다시 주소 그대로 견주고(기억값 지우기도 뺌), `walk-card` 의 옛 `gallery.html` 첫 주소는 `?w=mecha` 그대로(그림 화풍이 기억되지 않음), `walk-list` 의 화풍 없는 옛 link 는 `st` 없이 그 그림을 열고 뒤로 가면 고르개가 기본 화풍. `walk-list` 옛 dex 주소 앞의 기억값 지우기는 남긴다 — 그 검사가 앞에서 고르개로 화풍을 골랐다.
+> **최종 검토 고침(2026-11-12):** 뒤로 가기는 층 열쇠와 `mode` 를 그 칸의 것으로(전역 값 중 `mode` 는 이어 가지 않는다 — A1). 보기 기억(`element_dex_v1.mode`)은 궤도/목록 고르개만 쓴다(A3). 역사 칸의 `walk` 는 이제 수 — 그 칸 바로 아래로 이어진 조상 칸 수(씨앗은 층 깊이, 바로 아래 층으로 들어가면 +1, 건너뛰기는 0) — 길 표시는 `history.go(-k)` 로 오르고 모르면 지금 칸을 바꾼다(A6). 그림 실패는 `walk-data` 의 `imgFail` 하나(B1 · B6). 한 장의 홀로 · 넘기기 전환은 `prefers-reduced-motion` 대신 `motionOn()` 을 본다(움직임 끄기 설정도 따름). 한 장의 키(Esc · ← →)는 `useLayoutEffect` 로 그리자마자 받는다. 가문 층의 그림 없는 주민은 `EmptyArt` 가 아닌 `button.w-cit.empty[data-c]`(안에 `.w-empty-disc`), 그림 없는 가문주는 `EmptyArt({class:'w-hero empty'})`. `walk-data` 에 `fileOf` · `styleList` · `picsOf` · `styleOfPic` 이 있다(이름 그대로).
+
+> **실행 중 바뀐 것(과제 9 · 10):** 세계 전환 덮개 `.w-shift` 는 `main.w-main` 안 `position:fixed`(막대 아래 `top: var(--w-bar-h)`, `z-index:55` — 한 장 `.lightbox`(50) 위). 고르개는 눌린 세계와 같거나 목록의 「전부」 면 전환 없이 주소만. 이 화면의 PixiJS 앱(궤도 입자 · 세계 전환)은 닫을 때 `releaseGlobalResources` 를 쓰지 않는다 — 한 장의 홀로와 한 화면에 같이 살아서, 하나가 전역 자원을 놓으면 남은 쪽이 깨졌다(`lib/holo.js` 는 공용 파일이라 그대로 — 홀로를 닫을 때는 여전히 놓는다). 효과 ① · ⑤ 와 도구 상자의 Esc 는 `useLayoutEffect`(그리기 전에 — 가끔 지던 `walk-orbit` · `walk-list` 검사). `tests/lib/harness.cjs` 는 낱말 표에 없는 열쇠 경고도 오류로 센다.
+
 **주소 쿼리(`index.html`)** — 쓰는 차례도 이대로: `n` 나라 열쇠 · `mode` `orbit|list` · `f` 가문 열쇠 · `card` 카드 열쇠 · `pic` 그림 파일 · `at` 목록에서 내려갈 카드 열쇠 · `w` `fantasy|steampunk|mecha|all` · `st` 화풍 열쇠 · `view` `world|casual|all`(목록의 보기).
 - 비어 있으면 뺀다. `w` 가 없으면 「전부」(`all`) 와 같다. 목록이 아닌 층은 `worldOf()` 로 그림 세계를 정한다(`all` → `vocab.worlds[0]` = `fantasy`, 고르개도 `fantasy` 가 눌림).
 - **전역 값** `GLOBALS = ['mode','w','st','view']` — 뒤로 가기(`popstate`)에도 지금 값이 남고, 주소는 `replaceState` 로 바로잡는다(「세계는 하나의 상태」).
@@ -559,7 +566,7 @@ for (const opt of [{ reduced: true }, { noWebGL: true }, { blockPixi: true }]) {
     - 머리에 `ModeSwitch`. `route.at` 이 있으면 그려진 뒤 `#c-<at>` 로 내려간다(`scrollIntoView({block:'start'})`).
     - 보기 · 화풍 바꾸기 → `go({view})` · `go({st})`, `{replace:true}`(옛 `remember` 대신 — 기억은 껍데기가 한다).
     - 그림을 누르면 → `go({card: card.key, pic: file})`(push). 빈 칸 → 생성기 링크 그대로(`prompt.html?card=&world=`, 기본 화풍일 때만).
-  - `CardLayer({doc, route, go, back})` = 옛 `dex.html` `Lightbox` 를 주소 층으로: 뿌리 `div.lightbox.w-card`, 안의 이름(`.lb-top` `.lb-stage` `.lb-nav` `.lb-n` `.bar` `#dex-holo` `#dex-fav` `.lb-ghost`)과 홀로 · 넘기기 전환 코드는 그대로. 바뀌는 것만: 상자 상태(`box`) 대신 `route.card` · `route.pic`. `pic` 이 비었거나 어느 화풍에도 없으면 `pick(doc, card, worldOf(route), route.st || 기본).file` 로 정해 `go({pic}, {replace:true})`, 그림이 하나도 없는 카드면 `go({card:'', pic:'', mode:'list', at: card.key}, {replace:true})`. 화풍은 `pic` 이 든 화풍(`styleOfPic`)이 `route.st` 와 다르면 `go({st}, {replace:true})`; 넘기기 → `go({pic}, {replace:true})`; 닫기 · Esc · 바깥 → `back()`; 옛 `elementLb` 역사 칸 코드는 지운다(껍데기 역사가 대신). 즐겨찾기 link = `new URL('index.html', location.href).pathname + routeSearch({n, mode:'list', card, pic, st: 기본 화풍이 아니면 st})`.
+  - `CardLayer({doc, route, go, back})` = 옛 `dex.html` `Lightbox` 를 주소 층으로: 뿌리 `div.lightbox.w-card`, 안의 이름(`.lb-top` `.lb-stage` `.lb-nav` `.lb-n` `.bar` `#dex-holo` `#dex-fav` `.lb-ghost`)과 홀로 · 넘기기 전환 코드는 그대로. 바뀌는 것만: 상자 상태(`box`) 대신 `route.card` · `route.pic`. `pic` 이 비었거나 어느 화풍에도 없으면 `pick(doc, card, worldOf(route), route.st || 기본).file` 로 정해 `go({pic}, {replace:true})`, 그림이 하나도 없는 카드면 `go({card:'', pic:'', mode:'list', at: card.key}, {replace:true})`. 화풍은 `pic` 이 든 화풍(`styleOfPic`)으로 보인다(~~`route.st` 와 다르면 `go({st}, {replace:true})`~~ — 최종 검토 A2 에서 뺐다, `st` 는 쓰지 않는다); 넘기기 → `go({pic}, {replace:true})`; 닫기 · Esc · 바깥 → `back()`; 옛 `elementLb` 역사 칸 코드는 지운다(껍데기 역사가 대신). 즐겨찾기 link = `new URL('index.html', location.href).pathname + routeSearch({n, mode:'list', card, pic, st: 기본 화풍이 아니면 st})`.
   - 껍데기: 층이 `card` 면 `parentOf(route)` 의 층을 먼저 그리고(그대로 붙은 채 `inert`) 그 위에 `CardLayer`.
   - `dex.html` → `hall.html` 과 같은 넘김 껍데기(즐겨찾기 link 도 이 길로 산다).
   - 낱말: `'walk.world.all':'전부'`.
@@ -677,7 +684,7 @@ assert.deepEqual(await r.page.evaluate(() => AtelierWalkFx.fired), []);
 - Produces: `CardLayer` 에 더함 —
   - `.w-lore` 글 판(옛 `gallery.html` `Lore` 의 글 몫): 층 · 기호 이름(주민이면 가문) · 이름 · 영어 · 근본이면 사실 칸 · 인격 · 근본이면 그 세계의 나라 글 · 주민이면 모티브 · 사는 세계. 덮개에선 그림 아래, 넓으면 옆.
   - 세계 넘기기: 막대의 세계를 바꾸면(`route.w` 가 바뀌면) 지금 화풍에서 그 카드의 그 세계 그림이 있으면 `go({pic: 그 파일}, {replace:true})`, 없으면 그림은 그대로 두고 글 판만 그 세계로.
-  - 궤도 · 가문에서 들어올 때 `pic` 은 그 자리에 보이던 파일(`pick(...).file`) — 그 그림이 든 화풍으로 고르개도 옮긴다(과제 6 의 `styleOfPic` 규칙).
+  - 궤도 · 가문에서 들어올 때 `pic` 은 그 자리에 보이던 파일(`pick(...).file`) — 한 장은 그 그림이 든 화풍(`styleOfPic`)으로 보인다. ~~고르개도 옮긴다~~(최종 검토 A2 — `st` 는 쓰지 않는다).
   - `gallery.html` → 넘김 껍데기.
 
 - [ ] **Step 1: 검사를 쓴다** — `tests/walk-card.cjs`(`threeWorlds` = 등록부에서 한 화풍에 세 세계 그림이 다 있는 첫 카드와 그 화풍 — 없으면 이 몫을 건너뛰고 그 사실을 PASS 줄에 적는다):

@@ -1,0 +1,38 @@
+/* 도구 상자 · 도구 화면의 가는 막대(lib/toolbox.js, 2026-11-12). 판은 새 층과 같은 어두운 토큰을 여기 따로 둔다 — 도구 화면은 walk.css 를 싣지 않는다.
+   폰은 아래에서 오르는 시트, 768 넘으면 오른쪽 아래에 붙은 판. 누르는 자리 44px */
+.tb-open,.tb-backdrop,.tb-sheet {--tb-bg:#0d0f16;--tb-card:#161924;--tb-ink:#ece9f2;--tb-mute:#a9a5b8;--tb-line:#ffffff1f}
+.tb-open {position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:60;min-width:56px;min-height:56px;padding:0 18px;
+  border:1px solid var(--tb-line);border-radius:999px;background:var(--tb-card);color:var(--tb-ink);font:700 14px/1 'IBM Plex Sans KR',system-ui,sans-serif;box-shadow:0 6px 22px #000a;cursor:pointer}
+.tb-open[aria-expanded="true"] {border-color:var(--accent)}
+.tb-backdrop {position:fixed;inset:0;z-index:1000;background:#000a}
+.tb-sheet {position:fixed;left:0;right:0;bottom:0;z-index:1001;max-height:82vh;max-height:82dvh;overflow:auto;overscroll-behavior:contain;
+  padding:10px 16px max(16px,env(safe-area-inset-bottom));background:var(--tb-bg);color:var(--tb-ink);border-top:1px solid var(--tb-line);border-radius:18px 18px 0 0;
+  font:14px/1.5 'IBM Plex Sans KR',system-ui,sans-serif;box-shadow:0 -10px 30px #000a}
+@media (min-width:768px) {.tb-sheet {left:auto;right:16px;bottom:16px;width:380px;border:1px solid var(--tb-line);border-radius:18px}}
+.tb-sheet h2,.tb-sheet h3 {margin:0;font-size:15px}
+.tb-sheet h3 {margin:6px 0 2px;font-size:13px;color:var(--tb-mute)}
+.tb-head {display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tb-sheet button,.tb-sheet a,.tb-sheet select {min-height:44px;border:1px solid var(--tb-line);border-radius:12px;background:var(--tb-card);color:var(--tb-ink);font:inherit;cursor:pointer}
+.tb-sheet :focus-visible {outline:2px solid var(--accent);outline-offset:2px}
+.tb-close {padding:0 14px}
+.tb-tools {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}
+.tb-tools a {display:flex;align-items:center;justify-content:center;padding:0 10px;text-decoration:none;font-weight:700;text-align:center}
+.tb-tools a[aria-current="page"] {border-color:var(--accent);box-shadow:inset 0 -2px var(--accent)}
+.tb-settings {display:grid;gap:8px;padding:10px 0;border-top:1px solid var(--tb-line)}
+.tb-field {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);align-items:center;gap:8px}
+.tb-field select {width:100%;padding:0 10px}
+.tb-seg {display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.tb-seg button[aria-pressed="true"] {background:var(--accent);border-color:var(--accent);color:var(--on-accent,#0b0a10);font-weight:700}
+.tb-patch {padding-top:10px;border-top:1px solid var(--tb-line)}
+.tb-patch > button {width:100%}
+.tb-note {margin:8px 0 0;color:var(--tb-mute)}
+.tb-patch-list {margin:8px 0 0;padding:0;list-style:none;display:grid;gap:10px}
+.tb-patch-list .patch-when {margin:0;color:var(--tb-mute);font-size:12px}
+.tb-patch-list strong {display:block;font-size:13px}
+.tb-patch-list ul {margin:4px 0 0;padding-left:18px;color:var(--tb-mute);font-size:12.5px;overflow-wrap:anywhere}
+
+/* 도구 화면의 가는 막대 — 탭 줄 · 큰 제목 대신. 겉모습은 그 화면의 토큰 그대로(테마 프로젝트 때 다시 본다) */
+.tb-bar {display:flex;align-items:center;gap:8px;min-height:52px;margin:0 0 12px;padding:4px 0;border-bottom:1px solid var(--line)}
+.tb-back {display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);text-decoration:none;font-size:13px;font-weight:700;white-space:nowrap}
+.tb-name {flex:1;min-width:0;margin:0;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-bar .tb-open {position:static;min-height:44px;min-width:44px;padding:0 14px;box-shadow:none}

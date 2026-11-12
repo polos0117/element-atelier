@@ -1,0 +1,247 @@
+/* 「들어가는 곳」(2026-11-12) 새 층들의 겉모습 — 어두운 밤하늘 바탕 위에 빛나는 원소 칸. 장식 틀 · 그림 단추(lib/material.css)는 쓰지 않는다.
+   강조색은 공간의 var(--accent)(lib/workspace.css) 하나만 물든다. 아래쪽에 세계 · 테마 배경이 들어갈 자리(.w-scenery — 지금은 색 그라데이션).
+   폴드 덮개 344×882 가 먼저 — 누르는 자리 44px, 가로 넘침 0. */
+.walk {--w-bg:#07080c;--w-ink:#ece9f2;--w-mute:#a9a5b8;--w-line:#ffffff1f;--w-card:#12141c;--w-pad:clamp(12px,3vw,32px);
+  /* 어두운 바탕 위의 강조 글 · 눌린 단추 — 공간의 강조색을 밝혀 4.5:1 넘게(밝은 공간의 강조색은 어두운 바탕에서 4.3 ~ 4.5 였다, 최종 검토 B8). 눌린 단추 글은 늘 어두운 잉크 */
+  --w-acc:color-mix(in srgb,var(--accent) 72%,#fff);--w-on-acc:#0b0a10}
+body.walk {margin:0;min-height:100vh;min-height:100dvh;background:var(--w-bg);color:var(--w-ink);overflow-x:hidden}
+.walk button {font:inherit;color:inherit}
+.walk :focus-visible {outline:2px solid var(--w-acc);outline-offset:3px;border-radius:6px}
+.w-shell {position:relative;z-index:1;min-height:100vh;min-height:100dvh}
+.w-wait {position:relative;z-index:1;margin:0;padding:40vh 16px 0;text-align:center;color:var(--w-mute)}
+
+/* 위 막대 — 지나온 길 · 세계 · 도구 상자. 덮개는 두 줄(길 + 도구 / 세계 셋) */
+.w-bar {position:sticky;top:0;z-index:40;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:6px 14px;padding:6px var(--w-pad);background:#07080cf2;border-bottom:1px solid var(--w-line)}
+.w-crumbs {display:flex;align-items:center;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.w-crumbs::-webkit-scrollbar {display:none}
+.w-crumbs button {flex:none;min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--w-mute);cursor:pointer;font-size:13px}
+.w-crumbs button[aria-current="page"] {color:var(--w-ink);font-weight:700}
+.w-crumbs button:hover {color:var(--w-acc)}
+.w-crumbs i {font-style:normal;color:var(--w-mute);opacity:.6}
+.w-worlds {display:inline-flex;padding:3px;border:1px solid var(--w-line);border-radius:999px;background:#ffffff0a}
+.w-worlds button {min-height:44px;min-width:44px;padding:0 14px;border:0;border-radius:999px;background:none;color:var(--w-mute);cursor:pointer;font-size:13px;font-weight:600;transition:background-color .25s,color .25s}
+.w-worlds button[aria-pressed="true"] {background:var(--w-acc);color:var(--w-on-acc)}
+.w-tools {display:flex;align-items:center;justify-content:flex-end}
+.w-main {position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:16px var(--w-pad) 96px}
+@media (max-width:760px) {
+  .w-bar {grid-template-columns:minmax(0,1fr) auto}
+  .w-worlds {grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,1fr)}
+  .w-worlds button {min-height:44px;padding:0 6px}
+}
+
+/* 세계 · 테마 배경 자리 — 테마 프로젝트(그림 15장) 전까지 세계마다 다른 색 그라데이션 한 겹 */
+.w-scenery {position:fixed;left:0;right:0;bottom:0;height:42vh;z-index:0;pointer-events:none;transition:background .6s;
+  background:linear-gradient(0deg,color-mix(in srgb,#8a5cff 22%,transparent),transparent)}
+html[data-world="steampunk"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#e3ad62 22%,transparent),transparent)}
+html[data-world="mecha"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#62d6ff 20%,transparent),transparent)}
+
+/* 분류 색 — 주기율표 칸 · 나라 카드 · 범례가 같이 쓰는 한 곳 */
+.walk [data-cat="alkali"] {--cat:#ff6b6b} .walk [data-cat="alkaline_earth"] {--cat:#ffa94d} .walk [data-cat="transition"] {--cat:#ffd43b}
+.walk [data-cat="post_transition"] {--cat:#69db7c} .walk [data-cat="metalloid"] {--cat:#38d9a9} .walk [data-cat="nonmetal"] {--cat:#4dabf7}
+.walk [data-cat="halogen"] {--cat:#22b8cf} .walk [data-cat="noble_gas"] {--cat:#b197fc} .walk [data-cat="lanthanide"] {--cat:#f783ac}
+.walk [data-cat="actinide"] {--cat:#e599f7} .walk [data-cat="unknown"] {--cat:#868e96}
+
+/* 주기율표 — 가로 스크롤 없이 폭에 맞춘다. 덮개는 옆 여백 12px · 칸 사이 2px(칸 ≈ 16px), 넓으면 칸 최대 56px 로 가운데 */
+.w-note {margin:0 0 10px;color:var(--w-mute);font-size:12.5px}
+.w-table {max-width:calc(18 * 56px + 17 * 2px);margin:0 auto;cursor:pointer;touch-action:manipulation}
+.w-table .ptable {display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:2px}
+.w-table .ptable-f {margin-top:6px}
+.w-table .pcell {position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:1;min-width:0;padding:0;margin:0;border:1px solid #ffffff0d;border-radius:min(.6vw,6px);
+  background:color-mix(in srgb,var(--cat) 9%,transparent);color:#ffffff3d;font:inherit;line-height:1;overflow:hidden}
+.w-table .pcell b {font-size:min(2.4vw,18px);font-weight:700}
+.w-table .pcell small {display:none;font-size:min(1.1vw,10px);opacity:.75}
+.w-table .pcell.on {color:#fff;background:color-mix(in srgb,var(--cat) 34%,#0b0d14);border-color:var(--cat);box-shadow:0 0 6px color-mix(in srgb,var(--cat) 45%,transparent);
+  animation:w-breathe 2.8s ease-in-out infinite;cursor:pointer}
+.w-table .pcell.on[aria-pressed="true"] {background:color-mix(in srgb,var(--cat) 60%,#0b0d14);outline:2px solid #fff;outline-offset:1px}
+@keyframes w-breathe {50% {box-shadow:0 0 14px 1px color-mix(in srgb,var(--cat) 80%,transparent)}}
+html[data-motion="off"] .w-table .pcell.on {animation-name:none}
+@media (min-width:600px) {.w-table .pcell small {display:block}}
+/* 효과 4 불꽃 — lib/walk-fx.js spark 가 고른 칸 둘레에 붙였다 지운다 */
+.w-spark {position:fixed;z-index:70;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--cat,#fff);box-shadow:0 0 6px var(--cat,#fff);pointer-events:none;
+  animation:w-spark .65s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes w-spark {to {transform:translate(var(--dx),var(--dy)) scale(.3);opacity:0}}
+
+/* 나라 카드 — 표 바로 아래 큰 카드(칸 → 카드 두 단계라 칸이 작아도 누르기 쉽다) */
+.w-ncard {position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 14px;max-width:640px;margin:14px auto 0;padding:14px;
+  border:1px solid color-mix(in srgb,var(--cat) 55%,transparent);border-radius:18px;background:linear-gradient(160deg,color-mix(in srgb,var(--cat) 18%,var(--w-card)),var(--w-card) 60%)}
+.w-ncard-x {position:absolute;top:6px;right:6px;width:44px;height:44px;border:0;border-radius:12px;background:none;color:var(--w-mute);font-size:22px;cursor:pointer}
+.w-ncard-sym {display:grid;place-items:center;align-content:center;width:64px;height:64px;margin:0;border:2px solid var(--cat);border-radius:14px;background:color-mix(in srgb,var(--cat) 22%,transparent)}
+.w-ncard-sym b {font-size:26px;line-height:1} .w-ncard-sym small {font-size:11px;color:var(--w-mute)}
+.w-ncard-text {padding-right:36px}
+.w-ncard h2 {margin:0;font-size:20px} .w-ncard h2 small {margin-left:8px;font-size:13px;font-weight:400;color:var(--w-mute)}
+.w-ncard-cat {margin:2px 0 0;color:var(--cat);font-size:12.5px;font-weight:700}
+.w-ncard-persona {margin:6px 0 0;font-size:14px;line-height:1.55}
+.w-ncard-counts {margin:6px 0 0;color:var(--w-mute);font-size:13px}
+.w-ncard-acts {grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.w-ncard-acts button {min-height:48px;border:1px solid var(--w-line);border-radius:14px;background:#ffffff0d;color:var(--w-ink);font-weight:700;cursor:pointer}
+.w-ncard-acts .main {background:var(--w-acc);border-color:var(--w-acc);color:var(--w-on-acc)}
+
+/* 범례 — 분류 열 */
+.w-legend {display:flex;flex-wrap:wrap;justify-content:center;gap:6px 12px;max-width:1042px;margin:16px auto 0;padding:0;list-style:none;color:var(--w-mute);font-size:12px}
+.w-legend li {display:inline-flex;align-items:center;gap:5px}
+.w-legend i {width:10px;height:10px;border-radius:3px;background:var(--cat);box-shadow:0 0 5px var(--cat)}
+
+/* 길 표시 옆 ‹ › — 나라 층(궤도 · 목록)에서 앞 · 뒤 나라 */
+.w-where {display:flex;align-items:center;gap:2px;min-width:0}
+.w-where .w-crumbs {flex:0 1 auto}
+.w-steps {display:flex;flex:none}
+.w-steps button {width:44px;height:44px;border:0;border-radius:12px;background:none;color:var(--w-ink);font-size:22px;line-height:1;cursor:pointer}
+.w-steps button:hover {background:#ffffff12;color:var(--w-acc)}
+
+/* 가문주 원의 가운데가 고리 위(translate -24px = 원 반지름 + 여백), 이름 · 주민 수는 그 아래. 나라 · 궤도 층 — 옛 전시관 무대(.g-stage …)를 옮겨 이름을 바꿈. 넓으면 무대 | 글 두 칸, 좁으면 한 칸 */
+.w-orbit {overflow-x:clip}   /* 고리 끝의 가문주 이름표가 덮개 폭을 넘지 않게 — 스크롤 칸은 만들지 않는다 */
+.w-nation {display:grid;grid-template-columns:minmax(0,1fr);gap:20px 48px;align-items:center}
+@media (min-width:1000px) {.w-nation {grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr)}}
+.w-stage {position:relative;width:min(100%,calc(100dvh - 200px),640px);min-width:min(100%,300px);aspect-ratio:1;margin:0 auto;isolation:isolate}
+.w-orbit-img {position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;border-radius:50%;
+  -webkit-mask-image:radial-gradient(closest-side,#000 82%,#0000 100%);mask-image:radial-gradient(closest-side,#000 82%,#0000 100%)}
+.w-ring {position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.w-ring circle {fill:none}
+.w-ring-dash {stroke:color-mix(in srgb,var(--accent) 70%,#fff);stroke-width:.35;stroke-dasharray:.6 2.4;opacity:.7}
+.w-ring-line {stroke:color-mix(in srgb,var(--accent) 60%,#fff);stroke-width:.2;stroke-dasharray:1;stroke-dashoffset:0;opacity:.45}   /* pathLength=1 — ① 이 처음부터 끝까지 그린다 */
+.w-nucleus {position:absolute;left:50%;top:50%;z-index:2;width:30%;aspect-ratio:1;transform:translate(-50%,-50%);padding:0;border:0;border-radius:50%;background:none;color:var(--w-ink);cursor:pointer}
+.w-nuc-pic {position:absolute;inset:0;overflow:hidden;border-radius:50%;border:2px solid color-mix(in srgb,var(--accent) 60%,transparent);box-shadow:0 0 28px color-mix(in srgb,var(--accent) 35%,transparent);background:#0b0d14}
+.w-nuc-pic img,.w-node-pic img {width:100%;height:100%;object-fit:cover;object-position:50% 18%;display:block}
+.w-nuc-cap {position:absolute;left:50%;bottom:-16%;transform:translateX(-50%);white-space:nowrap;padding:5px 12px;border-radius:999px;background:#000d;border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);font-size:14px}
+.w-nuc-cap b {color:var(--w-acc)}
+.w-orbit-ring {position:absolute;inset:0;z-index:3;pointer-events:none}
+.w-node {position:absolute;transform:translate(-50%,-24px);transform-origin:50% 24px;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:44px;min-height:44px;padding:2px 4px;border:0;border-radius:14px;background:none;color:var(--w-ink);
+  line-height:1.15;white-space:nowrap;cursor:pointer;pointer-events:auto}
+.w-node-pic {display:block;width:44px;height:44px;margin-bottom:2px;overflow:hidden;border-radius:50%;border:2px solid var(--accent);background:#0b0d14;box-shadow:0 0 14px color-mix(in srgb,var(--accent) 45%,transparent)}
+.w-node b {padding:1px 8px;border-radius:999px;background:#000c;font-size:13px}
+.w-node small,.w-node em {font-size:11px;font-style:normal;color:var(--w-mute);text-shadow:0 1px 3px #000}
+.w-node:hover .w-node-pic,.w-node:focus-visible .w-node-pic {box-shadow:0 0 22px var(--accent)}
+.w-node.empty .w-node-pic,.w-empty-disc {border:1.5px dashed #ffffff4d;background:#ffffff08;box-shadow:none}
+.w-node.empty b {color:var(--w-mute)}
+/* 빈 원(EmptyArt) — 흐린 원 + 이름 · 「아직 그림 없음」 */
+.w-empty {display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:0;border:0;background:none;color:var(--w-mute);cursor:pointer}
+.w-empty-disc {display:block;width:56px;height:56px;border-radius:50%}
+.w-empty b {font-size:14px;color:var(--w-ink);opacity:.75} .w-empty small {font-size:11px}
+.w-nucleus.empty .w-empty-disc {position:absolute;inset:0;width:auto;height:auto}
+.w-nucleus.empty b,.w-nucleus.empty small {position:relative}
+/* 궤도로 / 목록으로 */
+.w-mode {display:grid;grid-template-columns:1fr 1fr;max-width:420px;margin:44px auto 0;padding:3px;border:1px solid var(--w-line);border-radius:999px;background:#ffffff0a}
+.w-mode button {min-height:44px;border:0;border-radius:999px;background:none;color:var(--w-mute);font-size:14px;font-weight:600;cursor:pointer}
+.w-mode button[aria-pressed="true"] {background:var(--w-acc);color:var(--w-on-acc)}
+/* 나라 글 — 사실 칸 · 인격 · 그 세계의 나라 · 성질(옛 .g-text) */
+.w-ntext {max-width:58ch;margin:0 auto}
+.w-sym {display:flex;align-items:baseline;gap:10px;margin:0;color:var(--cat,var(--accent))}
+.w-sym span {font-size:clamp(44px,8vw,88px);line-height:1;font-weight:700}
+.w-sym small {font-size:14px;color:var(--w-mute)}
+.w-ntext h1 {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:6px 0 8px;font-size:clamp(24px,3.4vw,36px);line-height:1.15}
+.w-ntext h1 small {font-size:15px;font-weight:400;color:var(--w-mute)}
+.w-facts {margin:0 0 14px;padding:8px 0;border-block:1px solid var(--w-line);color:var(--w-mute);font-size:13px;font-variant-numeric:tabular-nums}
+.w-persona {margin:0 0 16px;font-size:15.5px;line-height:1.75}
+.w-wtext {margin:0 0 16px;padding:2px 0 2px 14px;border-left:2px solid var(--accent)}
+.w-wtext h2 {margin:0 0 4px;font-size:13px;font-weight:600;color:var(--w-acc)}
+.w-wtext p {margin:0;line-height:1.7}
+.w-traits {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
+.w-traits li {padding:4px 10px;border:1px solid var(--w-line);border-radius:999px;color:var(--w-mute);font-size:13px}
+
+/* 효과 ② — 고리가 아주 천천히 돌고(가문주 원은 거꾸로 같은 속도로 돌아 똑바로 선다), 손대면 멈춤(.held — lib/walk-orbit.js). 움직임이 꺼지면 없음 */
+.w-orbit-ring {animation:w-spin 180s linear infinite}
+.w-node {animation:w-unspin 180s linear infinite}
+@keyframes w-spin {to {transform:rotate(360deg)}}
+@keyframes w-unspin {from {transform:translate(-50%,-24px) rotate(0)} to {transform:translate(-50%,-24px) rotate(-360deg)}}
+.w-stage.held .w-orbit-ring,.w-stage.held .w-node {animation-play-state:paused}
+html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation:none}
+/* 입자 캔버스(lib/walk-fx.js mountParticles) — 그림 · 고리 위, 근본 · 가문주 아래, 누르기는 지나간다 */
+.w-fx {position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;border-radius:50%}
+.w-fx canvas.w-particles {position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+
+/* 목록 보기 · 한 장 — 옛 도감 겉모습 클래스(lib/element.css — 도구 화면도 쓰니 고치지 않는다)를 어두운 바탕에 맞게 덮는다: 그 파일이 쓰는 공간 변수를 이 두 층 안에서만 바꾼다 */
+.walk .w-list,.walk .w-card {--bg:#07080c;--card:#12141c;--card2:#0d0f16;--line:#ffffff1f;--text:var(--w-ink);--muted:var(--w-mute);--shadow:none}
+.walk .w-table .ptable {width:auto}   /* element.css 의 폰 규칙(18열 44px · max-content)이 주기율표를 넓히지 않게 */
+.w-list > .w-mode {margin:0 auto 14px}
+.w-list .ek-section {margin:0;padding:16px clamp(12px,3vw,24px);border-radius:18px}
+.w-list .ek-card {scroll-margin-top:calc(var(--w-bar-h,0px) + 64px)}
+/* 조작 줄 — 두 줄(화풍 한 줄 · 보기 한 줄), 아무것도 옆으로 잘리지 않는다(옛 폰 규칙의 옆으로 밀기 · 흐림을 걷는다) */
+.walk .dex-toc {position:static;margin:12px 0 0;padding:10px 0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-block:1px solid var(--line);display:grid;gap:8px}
+.walk .toc-row {flex-wrap:wrap;overflow:visible;padding-right:0;-webkit-mask-image:none;mask-image:none}
+.walk .style-pick {flex:1 1 100%;min-width:0;min-height:44px}
+.walk .style-pick select {flex:1;min-width:0;max-width:none;min-height:44px}
+.walk .dex-toc .seg {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));flex:1 1 100%;min-width:0}
+.walk .dex-toc .seg button {min-height:44px;min-width:0;padding:0 6px}
+/* 바로 가기 띠 — 막대 아래 붙고(조작 줄은 붙지 않는다 — 덮개 화면을 덜 먹게), 옆으로 구르며 양끝을 흐린다 */
+.walk .toc-jump {position:sticky;top:var(--w-bar-h,0px);z-index:5;margin:0 calc(-1 * clamp(12px,3vw,24px));padding:8px clamp(12px,3vw,24px);background:#07080ce6;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  -webkit-mask-image:linear-gradient(90deg,#0000,#000 22px,#000 calc(100% - 28px),#0000);mask-image:linear-gradient(90deg,#0000,#000 22px,#000 calc(100% - 28px),#0000)}
+.walk .toc-jump .jump {min-height:44px;min-width:44px}
+/* 목록 · 한 장의 옛 도감 클래스 — 강조 글 · 눌린 단추를 밝힌 강조색으로, 안 사는 세계 칸은 흐리게 하되(점선 테두리) 글은 4.5:1 넘게(최종 검토 B8) */
+.walk .about summary,.walk .row-head .shared a,.walk .card-head .fav-mark,.walk .more-row .more[aria-expanded="true"] {color:var(--w-acc)}
+.walk .seg button[aria-pressed="true"],.walk .tb-seg button[aria-pressed="true"] {background:var(--w-acc);border-color:var(--w-acc);color:var(--w-on-acc)}
+.walk .w-list .slot.dead {opacity:1;background:transparent}
+.walk .w-list .slot.dead .ph,.walk .w-list .slot.dead .cap {color:var(--w-mute)}
+/* 목록 머리의 원소 기호 — 나라 카드(.w-ncard-sym)와 같은 칸 모양. element.css 의 font 줄은 이 화면에 없는 제목 글꼴 변수로 무너져 작게 보였다(최종 검토 B13) */
+.walk .dex-head .sym {display:grid;place-items:center;flex:none;width:64px;height:64px;border:2px solid var(--cat,var(--w-acc));border-radius:14px;background:color-mix(in srgb,var(--cat,var(--w-acc)) 22%,transparent);
+  color:var(--w-ink);font-family:inherit;font-size:28px;font-weight:700;line-height:1}
+@media (max-width:760px) {.w-bar .w-worlds {grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);grid-template-columns:none}}   /* 목록 층의 「전부」 까지 넷이 한 줄 */
+
+/* 한 장 — 위 막대 아래를 채운다(막대의 세계 고르개 · 길 표시는 그대로 쓴다). 덮개는 그림 · 단추 아래 글 판(굴려 본다), 넓으면 그림 | 글 판 */
+.walk .lightbox.w-card {top:var(--w-bar-h,0px);justify-content:flex-start;overflow-y:auto;padding:10px 12px 96px;background:#05060a}
+.walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 150px)}
+/* 단추 줄(홀로 · 즐겨찾기 · 지시문 · 닫기) — 덮개 344 에서 글이 세로로 꺾이지 않게: 단추 안 글은 한 줄, 넘치면 단추째 다음 줄로(사용자 「홀로, 즐겨찾기 그렇게 버튼 쭉 있는 텍스트가 세로로 안나오게 해줘」) */
+.walk .w-card .bar {flex-wrap:wrap;justify-content:center;max-width:100%}
+.walk .w-card .bar > * {display:inline-flex;align-items:center;justify-content:center;gap:.3em;min-height:44px;white-space:nowrap}
+.walk .lightbox.w-card:focus {outline:none}   /* 열 때 초점은 대화 상자 자신(테두리 없이) — 안의 단추는 그대로 테두리 */
+/* 그림이 안 와도(404) 칸이 무너지지 않게 — ‹ › 가 위 글에 겹치지 않는다(그림은 마지막 실패에 숨긴다, lib/walk-data.js imgFail) */
+.walk .w-card .lb-stage {flex:none;min-width:min(100%,240px);min-height:min(50dvh,360px)}
+
+/* 가문 층 — 옛 전시관 .g-family · .g-hero · .g-cits 를 옮겨 이름을 바꿈. 넓으면 가문주 | 글 두 칸, 좁으면 한 칸 */
+.w-pic {position:relative;display:block;aspect-ratio:2/3;overflow:hidden;border-radius:10px;background:#ffffff08 center/cover no-repeat}
+.w-pic img {display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+.w-fam-top {display:grid;grid-template-columns:minmax(0,1fr);gap:20px 48px;align-items:center}
+@media (min-width:861px) {.w-fam-top {grid-template-columns:minmax(0,420px) minmax(0,1fr)}}
+.w-hero {display:block;width:100%;max-width:420px;margin:0 auto;padding:0;border:0;background:none;cursor:pointer}
+.w-hero .w-pic {border-radius:14px;box-shadow:0 0 0 1px color-mix(in srgb,var(--accent) 50%,transparent),0 0 60px color-mix(in srgb,var(--accent) 25%,transparent),0 30px 60px #000c}
+.w-hero.empty .w-empty-disc {width:min(60vw,260px);height:auto;aspect-ratio:2/3;border-radius:14px}
+.w-tier {margin:0;color:var(--w-acc);font-size:13px;letter-spacing:.04em}
+.w-shared {color:var(--w-mute);font-size:13px}
+.w-shared button {min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--w-acc);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.w-cits {margin-top:clamp(28px,5vw,56px)}
+.w-cits h2 {margin:0 0 16px;font-size:20px}
+.w-cits ul {list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(180px,42vw),1fr));gap:clamp(12px,2.4vw,26px)}
+.w-cit {display:block;width:100%;padding:8px;border:1px solid var(--w-line);border-radius:12px;background:#ffffff08;color:var(--w-ink);cursor:pointer;text-align:left}
+.w-cit:hover {border-color:var(--accent)}
+.w-cit .w-pic {border-radius:6px}
+.w-cit .w-empty-disc {width:auto;height:auto;border-radius:6px}
+.w-cit.empty {color:var(--w-mute)}
+.w-cit-cap {display:block;padding:8px 2px 0}
+.w-cit-cap b {display:block;font-size:15px;line-height:1.3}
+.w-cit-cap small {color:var(--w-mute);font-size:12px}
+/* 다른 세계에서 빌려 온 그림 「… 의 그림」(옛 전시관 .pic .from) · 가문의 「목록에서 보기」(최종 검토 A7) */
+.w-from {position:absolute;left:50%;bottom:8px;transform:translateX(-50%);max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis;padding:2px 8px;border-radius:999px;background:#000b;color:#fff;font-size:11px;font-style:normal;white-space:nowrap;pointer-events:none}
+.w-nuc-pic .w-from {bottom:14%}
+.w-inlist {display:inline-flex;align-items:center;min-height:44px;color:var(--w-mute);font-size:13px;text-underline-offset:3px}
+.w-inlist:hover {color:var(--w-acc)}
+/* 한 장의 글 판(옛 전시관 한 장 글 몫) — 덮개는 그림 · 단추 아래(굴려 본다), 넓으면 그림 | 글 판 */
+.w-lore {width:100%;max-width:58ch;margin:14px auto 0;text-align:left}
+.w-lore .w-ntext {margin:0}
+.w-lore h1 {font-size:clamp(22px,3vw,30px)}
+.w-motif {margin:0 0 12px;color:var(--w-mute);font-size:13px}
+.w-motif b {color:var(--w-acc);font-weight:600}
+.w-lives {margin:0;color:var(--w-mute);font-size:13px}
+@media (min-width:900px) {
+  .walk .lightbox.w-card {display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,380px);grid-template-rows:auto minmax(0,1fr) auto;column-gap:clamp(20px,3vw,40px);align-items:center;justify-items:center;padding:16px clamp(16px,3vw,40px) 24px}
+  .walk .w-card .lb-top {grid-column:1;grid-row:1} .walk .w-card .lb-stage {grid-column:1;grid-row:2} .walk .w-card .bar {grid-column:1;grid-row:3}
+  .walk .w-card .w-lore {grid-column:2;grid-row:1/4;align-self:center;max-height:100%;margin:0;overflow-y:auto}
+  .walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 140px)}
+}
+
+/* 효과 3 세계 바꾸기 — lib/walk-fx.js playShift 가 main.w-main 안에 붙였다 900ms 안에 지운다. 막대 아래 화면 전부, 한 장(.lightbox z 50)보다 위, 누르기는 그대로 통과.
+   판타지 — 가루가 흩어지듯 점무늬가 커지며 걷힘 · 스팀펑크 — 아래에서 김이 훅 올랐다 걷힘 · 메카 — 가로 주사선이 지나가며 띠가 어긋났다 맞춰짐(600ms) */
+.w-shift {position:fixed;left:0;right:0;top:var(--w-bar-h,0px);bottom:0;z-index:55;pointer-events:none;overflow:hidden}
+.w-shift canvas {position:absolute;inset:0;width:100%;height:100%}
+.w-shift[data-to="fantasy"] {background:radial-gradient(circle,#f3e6ff 0 1.6px,transparent 2.4px) 0 0/16px 16px,radial-gradient(circle,#ffe08a 0 1.2px,transparent 2px) 8px 8px/16px 16px,
+  radial-gradient(ellipse at center,#8a5cff66,#8a5cff22 70%);animation:w-shift-dust .6s ease-out forwards}
+@keyframes w-shift-dust {0% {opacity:0;background-size:10px 10px,10px 10px,100% 100%} 25% {opacity:1} 100% {opacity:0;background-size:44px 44px,44px 44px,100% 100%;filter:blur(2px)}}
+.w-shift[data-to="steampunk"]::before {content:"";position:absolute;left:-10%;right:-10%;top:0;height:160%;filter:blur(14px);
+  background:radial-gradient(ellipse 60% 30% at 30% 70%,#fff4e2d0,transparent),radial-gradient(ellipse 55% 26% at 75% 60%,#f3e1c4c0,transparent),linear-gradient(0deg,#e3ad6255,transparent 70%);
+  animation:w-shift-steam .6s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes w-shift-steam {0% {transform:translateY(60%);opacity:0} 35% {opacity:1} 100% {transform:translateY(-45%);opacity:0}}
+.w-shift[data-to="mecha"] {background:repeating-linear-gradient(0deg,#62d6ff1c 0 1px,transparent 1px 4px);animation:w-shift-scan .6s steps(12,end) forwards}
+.w-shift[data-to="mecha"]::before {content:"";position:absolute;left:0;right:0;height:18%;background:linear-gradient(180deg,transparent,#62d6ff55 45%,#e8fbff 50%,#62d6ff55 55%,transparent);
+  animation:w-shift-beam .6s linear forwards}
+@keyframes w-shift-scan {0% {opacity:1;clip-path:inset(0 0 0 0);transform:translateX(0)} 20% {transform:translateX(-6px)} 40% {transform:translateX(5px);clip-path:inset(10% 0 30% 0)}
+  60% {transform:translateX(-3px);clip-path:inset(40% 0 0 0)} 80% {transform:translateX(0);opacity:.6} 100% {opacity:0;clip-path:inset(0 0 0 0)}}
+@keyframes w-shift-beam {from {top:-18%} to {top:100%}}
+html[data-motion="off"] .w-shift {display:none}
