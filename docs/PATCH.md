@@ -10,6 +10,16 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 9 — 세계 바꾸기 전환(가루 · 김 · 주사선)
+- 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 9 — 설계 효과 ③(세계마다 다른 전환)
+- lib/walk-fx.js — PixiJS 를 닫을 때 전역 자원(releaseGlobalResources)은 놓지 않는다(궤도 입자 · 세계 전환 · 한 장의 홀로가 한 화면에 같이 살아서 — 하나를 닫으면 남은 쪽이 「null 의 '2'」 오류로 깨졌다, walk-list 에서 잡힘)
+- lib/walk-fx.js — playShift: 막대 아래 덮개 .w-shift 하나(늘 하나 · 누르기를 막지 않음 · 900ms 안에 지움), WebGL · PixiJS 가 되면 덮개 안에 그 세계 입자 한 번(가루 · 김 · 주사선 잡음), 안 되면 CSS 만. 움직임 판단은 motionOn 한 곳
+- lib/walk.js — 세계 고르개: 주소를 먼저 바꾸고(효과를 기다리지 않음) 그 뒤 전환. 목록의 「전부」 · 같은 세계는 전환 없음
+- lib/walk.css — 세계마다 가면 움직임(판타지 점무늬 가루 · 스팀펑크 아래서 오르는 김 · 메카 주사선과 어긋나는 띠, 600ms), 한 장 위 · 막대 아래
+- lib/walk-table.js · lib/walk-orbit.js · lib/walk-family.js · lib/walk-list.js — walk-fx ?v=4 · walk-orbit ?v=4(walk-fx 를 싣는 곳은 모두 같은 ?v= — 누른 자리 기억을 같이 쓴다)
+- index.html — walk.css ?v=8 · walk.js ?v=9
+- tests/walk-world.cjs (새)
+
 ## 2026-11-12 · claude · 원소 「들어가는 곳」 8 — 한 장 하나로(글 판 · 세계 넘기기) · 전시관 옛 주소 이어 주기
 - 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 8 — 설계 물음 4(목록 · 가문 · 궤도 어디서 눌러도 같은 한 장, 전시관 한 장의 글 판과 세계 넘기기를 더한다)
 - lib/walk-card.js — 글 판(층 · 기호 이름 · 이름 · 영어 · 근본이면 사실 칸과 그 세계의 나라 · 인격 · 주민이면 모티브 · 사는 세계 — 옛 전시관 한 장의 글), 막대의 세계를 바꾸면 지금 화풍의 그 세계 그림으로(없으면 그림은 그대로, 글 판만)

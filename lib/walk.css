@@ -205,3 +205,22 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
   .walk .w-card .w-lore {grid-column:2;grid-row:1/4;align-self:center;max-height:100%;margin:0;overflow-y:auto}
   .walk .w-card .lb-stage img {max-height:calc(100dvh - var(--w-bar-h,0px) - 140px)}
 }
+
+/* 효과 3 세계 바꾸기 — lib/walk-fx.js playShift 가 main.w-main 안에 붙였다 900ms 안에 지운다. 막대 아래 화면 전부, 한 장(.lightbox z 50)보다 위, 누르기는 그대로 통과.
+   판타지 — 가루가 흩어지듯 점무늬가 커지며 걷힘 · 스팀펑크 — 아래에서 김이 훅 올랐다 걷힘 · 메카 — 가로 주사선이 지나가며 띠가 어긋났다 맞춰짐(600ms) */
+.w-shift {position:fixed;left:0;right:0;top:var(--w-bar-h,0px);bottom:0;z-index:55;pointer-events:none;overflow:hidden}
+.w-shift canvas {position:absolute;inset:0;width:100%;height:100%}
+.w-shift[data-to="fantasy"] {background:radial-gradient(circle,#f3e6ff 0 1.6px,transparent 2.4px) 0 0/16px 16px,radial-gradient(circle,#ffe08a 0 1.2px,transparent 2px) 8px 8px/16px 16px,
+  radial-gradient(ellipse at center,#8a5cff66,#8a5cff22 70%);animation:w-shift-dust .6s ease-out forwards}
+@keyframes w-shift-dust {0% {opacity:0;background-size:10px 10px,10px 10px,100% 100%} 25% {opacity:1} 100% {opacity:0;background-size:44px 44px,44px 44px,100% 100%;filter:blur(2px)}}
+.w-shift[data-to="steampunk"]::before {content:"";position:absolute;left:-10%;right:-10%;top:0;height:160%;filter:blur(14px);
+  background:radial-gradient(ellipse 60% 30% at 30% 70%,#fff4e2d0,transparent),radial-gradient(ellipse 55% 26% at 75% 60%,#f3e1c4c0,transparent),linear-gradient(0deg,#e3ad6255,transparent 70%);
+  animation:w-shift-steam .6s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes w-shift-steam {0% {transform:translateY(60%);opacity:0} 35% {opacity:1} 100% {transform:translateY(-45%);opacity:0}}
+.w-shift[data-to="mecha"] {background:repeating-linear-gradient(0deg,#62d6ff1c 0 1px,transparent 1px 4px);animation:w-shift-scan .6s steps(12,end) forwards}
+.w-shift[data-to="mecha"]::before {content:"";position:absolute;left:0;right:0;height:18%;background:linear-gradient(180deg,transparent,#62d6ff55 45%,#e8fbff 50%,#62d6ff55 55%,transparent);
+  animation:w-shift-beam .6s linear forwards}
+@keyframes w-shift-scan {0% {opacity:1;clip-path:inset(0 0 0 0);transform:translateX(0)} 20% {transform:translateX(-6px)} 40% {transform:translateX(5px);clip-path:inset(10% 0 30% 0)}
+  60% {transform:translateX(-3px);clip-path:inset(40% 0 0 0)} 80% {transform:translateX(0);opacity:.6} 100% {opacity:0;clip-path:inset(0 0 0 0)}}
+@keyframes w-shift-beam {from {top:-18%} to {top:100%}}
+html[data-motion="off"] .w-shift {display:none}
