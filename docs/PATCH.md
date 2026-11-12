@@ -1,3 +1,8 @@
+## 2026-11-12 · claude · 도감 크게 보기 홀로 효과(PixiJS — pkm 과 같은 파일)
+- 사용자 「원소 도감에도 홀로 효과 붙여줘」 — lib/holo.js(pkm-atelier 와 같은 파일): PixiJS 8.19.0(jsdelivr, WebGL 만) 캔버스를 그림 위에 screen 으로. 무지갯빛 반사 + 빛 번짐, 밝고 차가운 곳에 세게 · 살색 같은 따뜻한 색엔 약하게, 마우스 · 폰 기울기 · 가만두면 천천히, 움직임 줄이기 존중, 그림의 둥근 모서리를 따라간다
+- dex.html 크게 보기 — 「홀로」 단추(켜고 끈 것은 공방 모음 공용 열쇠 atelier_holo_v1 — pkm 도감과 같이), 넘겨도 캔버스는 그대로 그림만 바꿈. lib/element.css(캔버스 · 넘기기 단추 z-index) · lib/words.js dex.holo · ?v= words 16 · element 9
+- tests/dex-holo.cjs(새로) · AGENTS.md 검사 목록
+
 ## 2026-11-12 · gpt · 리튬 선택 세계컷 등록
 - data/img.json — 판타지 4 · 스팀펑크 4 · 메카 3 선택본 세 장 등록. 일상컷 21장은 생성 후 세계 사이 의상·구도 중복 검사 실패로 보류, 재생성하지 않고 보존.
 

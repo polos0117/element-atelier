@@ -165,6 +165,10 @@
 .lb-nav {position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border:1px solid #fff4;border-radius:10px;background:#0007;color:#fff;font-size:30px;line-height:1;cursor:pointer}
 .lb-nav.prev {left:6px} .lb-nav.next {right:6px}
 .lightbox .fav-heart[aria-pressed="true"] {border-color:#ff8fb1;color:#ffb3c8}
+/* 홀로 효과(lib/holo.js, 2026-11-12) — 그림 위에 빛만 더한다. 넘기기 단추는 그 위 */
+.lb-stage canvas.holo-layer {position:absolute;z-index:1;pointer-events:none;mix-blend-mode:screen}
+.lb-nav {z-index:2}
+.lightbox .holo-toggle[aria-pressed="true"] {border-color:#f5ddb2;color:#f5ddb2}
 .fav-toast {position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:90;max-width:calc(100vw - 32px);padding:9px 16px;border-radius:999px;background:#fff;color:#111;font-size:13px;font-weight:700;text-align:center;pointer-events:none}
 .fav-toast:empty {display:none}
 /* ── 점검(2026-11-02, frontend-design · ui-ux-pro-max) — 손가락 크기 · 나라 카드 전체가 도감 길 ── */
