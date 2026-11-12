@@ -37,6 +37,9 @@
 
 ## Global Constraints
 
+- **움직임 끄기 설정(계획 뒤에 더함 — 사용자 요청, 이 줄이 계획의 다른 「prefers-reduced-motion 만」 서술을 이긴다):** 움직임 판단은 한 곳 — `lib/walk-core.js` 의 `motionOn()`(= 기기 `prefers-reduced-motion` 이 아니고 `localStorage.element_motion_v1 !== 'off'`)과 `setMotion(on)`(저장 + `window` 에 `element-motion` 사건). 효과 ①~⑤ · 층 사이 확대/날아오기 · 세계 전환이 모두 `motionOn()` 을 본다. 도구 상자 설정에 「움직임」 켜기/끄기 단추(낱말 `tool.motion` · `tool.motion.on` · `tool.motion.off`, `aria-pressed`) — Task 2 가 만든다. 검사: 끄면 Task 5 · 9 의 Pixi 캔버스/전환 덮개가 안 생기고 새로고침 뒤에도 유지.
+- 커밋 메시지 끝 줄: `Co-Authored-By: Claude Fable 5.2 <noreply@anthropic.com>`
+
 - **기기:** 폴드 덮개 344×882 터치가 1순위. 누르는 자리 44×44 이상(주기율표 칸만 예외 — 칸 → 큰 나라 카드 두 단계). 344 · 1280 에서 `document.documentElement.scrollWidth <= innerWidth + 1`.
 - **말:** 화면 말은 전부 `lib/words.js`(`W('…')`). html/js 에는 주석과 `<title>원소의 공방</title>` 말고 한글이 없다 — `node tests/words.cjs`. 외래어 대신 한국어.
 - **사실:** 번호 · 기호 · 이름 · 분류 · 상태는 설계표 `elements` 의 것만(AGENTS 3). 나라 카드에 「대장장이의 나라」 같은 별칭 칸은 없다 — `nation.persona` 를 그대로 쓴다.
