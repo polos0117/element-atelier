@@ -50,7 +50,10 @@ const EXTRA = {
     hourglass: 'hourglass-figured — full bust and hips, distinctly narrow-waisted',
     voluptuous: 'voluptuous, generously curved at bust, hips and thighs',
     busty_slender: 'slender and full-busted, narrow-waisted',
-    curvy_athletic: 'toned athletic-curvy, full-busted with rounded hips'
+    curvy_athletic: 'toned athletic-curvy, full-busted with rounded hips',
+    /* 2026-11-12 화풍공방 core v6 — 삼국지에서 만든 두 체형(사용자 「공통으로 다 넣어주면 돼」). 글은 core 블록이 덮는다 */
+    lean_toned: 'lean and toned — a slim, firm waist with softly defined vertical abs and lightly sculpted arms and shoulders, a full bust',
+    petite_voluptuous: 'petite and short in stature yet voluptuous — a very full, heavy bust, a narrow waist and generously rounded hips on a small, compact frame, with realistic thighs and legs'
   }
 };
 const KO = {   // 설계표의 얼굴·실루엣 열쇠 → 화면 이름(lib/words.js 의 look.* 와 같다 — 검사가 맞춰 본다)

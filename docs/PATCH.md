@@ -10,6 +10,12 @@
 
 
 
+## 2026-11-13 · claude · core v6 · 체형 두 열쇠(슬림 근육형 · 아담한 풍만형)
+- lib/look-spec.js VOCAB_EN.body · tools/port-look-spec.cjs EXTRA.body — lean_toned · petite_voluptuous(삼국지에서 만든 글, core v6). 사용자 「공통으로 다 넣어주면 돼」 · 「원소 … 추가되는 케릭터 있을 때 넣어주면 돼」 — 설계표 체형은 그대로
+- lib/prompt-spec.js STRUCT.body — 두 체형의 여덟 칸(체형 표가 어휘 열쇠와 같아야 한다 · 「근육 결 · 탄탄」 말 없이)
+- lib/prompt-spec.js · lib/look-spec.js — core:v6 블록. 자동으로 체형을 고르는 도구는 없다(설계표는 손으로) — 고를 수 있는 어휘에만 더했다
+- index.html · prompt.html — ?v= 올림
+
 ## 2026-11-13 · gpt · 선택 시트 기본 화질을 원본 컷 해상도로
 - docs/IMAGE_AUTOMATION.md — 사용자 「시트 기본 화질 좀 올려줘」: 각 컷 1024×1536을 축소 없이 배치하고 PNG 무손실 시트를 제공하도록 기본 규칙 명시
 
