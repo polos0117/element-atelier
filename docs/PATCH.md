@@ -10,6 +10,17 @@
 
 
 
+## 2026-11-12 · claude · 원소 「들어가는 곳」 1 — 한 화면 껍데기 · 주소 층 · 뒤로 가기 한 층씩
+- 사용자 「괜찮네. 이대로 진행해줘」 — 설계 docs/superpowers/specs/2026-11-12-element-walk-in-design.md, 계획 docs/superpowers/plans/2026-11-12-element-walk-in.md 과제 1
+- index.html — 타이틀 화면(공간 배경 · 그림 현판 · 그림 단추)을 「들어가는 곳」 껍데기로 통째 갈아치움. material.css · room.css 를 싣지 않는 어두운 바탕(#07080c)
+- lib/walk-core.js (새) — 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 채우기 · 검증(낡은 열쇠는 가장 가까운 맞는 층) · 옛 주소(hall · gallery · dex) · 세계. node 로도 돈다
+- lib/walk-data.js (새) — 설계표 · 화풍 판 · 등록부 한 번 읽기(옛 gallery.html useDocs 그대로)
+- lib/walk.js (새) — 껍데기 앱: 주소 ↔ 상태, 깊은 주소로 들어오면 조상 층을 역사에 한 칸씩 심기, 내려가기 push · 옆으로 replace, 같은 주소는 다시 안 씀(두 번 눌러도 한 칸), 세계 · 보기는 뒤로 가도 남음, 위 막대(지나온 길 · 세계), 층 다섯은 아직 빈 자리
+- lib/walk.css (새) — 새 층들의 어두운 겉모습 · 막대 · 세계 고르개(44px) · 세계 · 테마 배경 자리(.w-scenery)
+- lib/words.js — walk.* 낱말 여섯. 싣는 화면 일곱 ?v=19
+- tests/walk-core.cjs · tests/walk-shell.cjs · tests/lib/harness.cjs (새) — 순수 함수 · 껍데기 브라우저 검사, 공용 손(서버 · 가로채기 · 넘침 · 사진)
+- tests/screen.cjs — 타이틀 묶음 지움(그 화면이 없어졌다 — 같은 몫은 walk-shell.cjs)
+
 ## 2026-11-12 · claude · 칸 꼴 세계 그림 — 시간대 · 덧붙임 줄 이름, 메카 의상 문장 이음
 - 사용자 2026-11-12 「응 둘 다 고쳐줘」 — 허브를 고치다 옆에서 찾은 두 군데
 - lib/prompt-element.js buildWorldSections — 장면에서 고른 시간대 · 덧붙임이 4칸에 옛 줄 이름(TIME & WEATHER: · SCENE NOTE: · OUTFIT NOTE: · EXTRA:)으로 들어가던 것을 4칸 다른 줄과 같은 꼴(Time & weather: · Scene note: …)로. 칸 꼴을 끈 옛 꼴은 그대로

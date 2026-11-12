@@ -1,0 +1,34 @@
+/* 「들어가는 곳」(2026-11-12) 새 층들의 겉모습 — 어두운 밤하늘 바탕 위에 빛나는 원소 칸. 장식 틀 · 그림 단추(lib/material.css)는 쓰지 않는다.
+   강조색은 공간의 var(--accent)(lib/workspace.css) 하나만 물든다. 아래쪽에 세계 · 테마 배경이 들어갈 자리(.w-scenery — 지금은 색 그라데이션).
+   폴드 덮개 344×882 가 먼저 — 누르는 자리 44px, 가로 넘침 0. */
+.walk {--w-bg:#07080c;--w-ink:#ece9f2;--w-mute:#a9a5b8;--w-line:#ffffff1f;--w-card:#12141c;--w-pad:clamp(12px,3vw,32px)}
+body.walk {margin:0;min-height:100vh;min-height:100dvh;background:var(--w-bg);color:var(--w-ink);overflow-x:hidden}
+.walk button {font:inherit;color:inherit}
+.walk :focus-visible {outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.w-shell {position:relative;z-index:1;min-height:100vh;min-height:100dvh}
+.w-wait {position:relative;z-index:1;margin:0;padding:40vh 16px 0;text-align:center;color:var(--w-mute)}
+
+/* 위 막대 — 지나온 길 · 세계 · 도구 상자. 덮개는 두 줄(길 + 도구 / 세계 셋) */
+.w-bar {position:sticky;top:0;z-index:40;display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:6px 14px;padding:6px var(--w-pad);background:#07080cf2;border-bottom:1px solid var(--w-line)}
+.w-crumbs {display:flex;align-items:center;gap:2px;min-width:0;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+.w-crumbs::-webkit-scrollbar {display:none}
+.w-crumbs button {flex:none;min-height:44px;min-width:44px;padding:0 6px;border:0;background:none;color:var(--w-mute);cursor:pointer;font-size:13px}
+.w-crumbs button[aria-current="page"] {color:var(--w-ink);font-weight:700}
+.w-crumbs button:hover {color:var(--accent)}
+.w-crumbs i {font-style:normal;color:var(--w-mute);opacity:.6}
+.w-worlds {display:inline-flex;padding:3px;border:1px solid var(--w-line);border-radius:999px;background:#ffffff0a}
+.w-worlds button {min-height:38px;min-width:44px;padding:0 14px;border:0;border-radius:999px;background:none;color:var(--w-mute);cursor:pointer;font-size:13px;font-weight:600;transition:background-color .25s,color .25s}
+.w-worlds button[aria-pressed="true"] {background:var(--accent);color:var(--on-accent,#0b0a10)}
+.w-tools {display:flex;align-items:center;justify-content:flex-end}
+.w-main {position:relative;z-index:1;max-width:1440px;margin:0 auto;padding:16px var(--w-pad) 96px}
+@media (max-width:760px) {
+  .w-bar {grid-template-columns:minmax(0,1fr) auto}
+  .w-worlds {grid-column:1/-1;grid-row:2;display:grid;grid-template-columns:repeat(3,1fr)}
+  .w-worlds button {min-height:44px;padding:0 6px}
+}
+
+/* 세계 · 테마 배경 자리 — 테마 프로젝트(그림 15장) 전까지 세계마다 다른 색 그라데이션 한 겹 */
+.w-scenery {position:fixed;left:0;right:0;bottom:0;height:42vh;z-index:0;pointer-events:none;transition:background .6s;
+  background:linear-gradient(0deg,color-mix(in srgb,#8a5cff 22%,transparent),transparent)}
+html[data-world="steampunk"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#e3ad62 22%,transparent),transparent)}
+html[data-world="mecha"] .w-scenery {background:linear-gradient(0deg,color-mix(in srgb,#62d6ff 20%,transparent),transparent)}

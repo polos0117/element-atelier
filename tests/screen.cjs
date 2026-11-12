@@ -1,4 +1,4 @@
-/* 화면 검사 — 첫 화면·도감·생성기를 브라우저로 연다. 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
+/* 화면 검사 — 전시관·주기율표·도감·생성기를 브라우저로 연다. 폰(390)과 PC(1280) — 깊은 흐름은 폰에서만, PC 는 열고 칸 수 · 넘침 · 콘솔 + 생성기 걸음(2026-11-12).
    첫 화면: 주기율표 118칸, 설계된 나라만 링크, 첫 묶음 카드 수 = 설계표 나라 수.
    도감: 근본 세 칸 · 가문마다 가문주 세 칸 + 주민 줄(안 사는 세계는 흐린 칸) · 같은 물질 다른 나라 링크 · 빈 자리는 생성기로.
    생성기(공방 모음 통합 생성기 꼴): 나라 › 카드 › 갈래 › 단계. 세계 그림은 세계 → 덧붙임 → 지시문. 일상컷은 트리 버전2 — 시대 → 장소 → … 한 칸씩,
@@ -60,20 +60,6 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
 
   for (const vp of [{ width: 390, height: 844 }, { width: 1280, height: 900 }]) {
     const mob = vp.width <= 768;
-    /* 타이틀(2026-11-02) — 메뉴 셋(머리 메뉴 차례) · 공간 ◀ ▶ · 배경 장면 · 그림 현판 · 단추 · 빈 곳 누르면 배경만 */
-    let tv = await open('/index.html', vp);
-    await tv.page.waitForSelector('#m-dex span');
-    assert.deepEqual(await tv.page.locator('.menu-btn').evaluateAll(es => es.map(e => e.getAttribute('href'))), ['hall.html', 'gallery.html', 'dex.html', 'prompt.html'], '메뉴 넷 — 머리 메뉴와 같은 차례');
-    const tt0 = await tv.page.evaluate(() => document.documentElement.dataset.theme);
-    await tv.page.click('#next'); assert.notEqual(await tv.page.evaluate(() => document.documentElement.dataset.theme), tt0, '◀ ▶ 로 공간이 바뀐다');
-    await tv.page.keyboard.press('ArrowLeft'); assert.equal(await tv.page.evaluate(() => document.documentElement.dataset.theme), tt0, '← 로 돌아온다');
-    assert.match(await tv.page.evaluate(() => getComputedStyle(document.querySelector('.title-bg')).backgroundImage), /room-/, '배경 장면');
-    assert.match(await tv.page.evaluate(() => [getComputedStyle(document.querySelector('.title-plaque')).backgroundImage, getComputedStyle(document.querySelector('.menu-btn.main')).backgroundImage, getComputedStyle(document.querySelector('.menu-btn:not(.main)')).backgroundImage, getComputedStyle(document.querySelector('#next')).backgroundImage].join(' ')), /ui-\w+-title.*ui-\w+-main.*ui-\w+-btn.*ui-\w+-round/, '현판 · 단추 그림');
-    await tv.page.mouse.click(vp.width - 20, 20); await tv.page.waitForTimeout(450);
-    assert.equal(await tv.page.locator('#menu').isVisible(), false, '빈 곳 → 배경만');
-    await tv.page.mouse.click(vp.width - 20, 20); await tv.page.waitForTimeout(450);
-    assert.ok(await tv.page.locator('#menu').isVisible(), '다시 → 메뉴');
-    await noOverflow(tv.page, vp.width); assert.deepEqual(tv.errors, [], '타이틀 콘솔'); checks += 6; await tv.ctx.close();
     /* 전시관(2026-11-02) — 섬(그림 걸린 나라) → 나라(가운데 근본 · 궤도의 가문주) → 가문(주민 액자) → 한 장, 세계는 늘 위에서 바꾼다 */
     {
       const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b => Object.values(b.byForm || {}).some(f => f.f));
@@ -379,5 +365,5 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     await noOverflow(p, vp.width); assert.deepEqual(v.errors, []); checks += 6; await v.ctx.close();
   }
   await br.close(); server.close();
-  console.log('PASS 화면: 타이틀(메뉴 넷·공간 넘기기·배경 장면·현판·단추 그림·빈 곳 누르면 배경만) · 전시관(섬·궤도 그림·이름표 → 미리 보기 → 크게 보기 · 주민 보기·세계 바꾸기·주민 액자·한 장·뒤로) · 주기율표(118·나라 링크·첫 묶음) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
+  console.log('PASS 화면: 전시관(섬·궤도 그림·이름표 → 미리 보기 → 크게 보기 · 주민 보기·세계 바꾸기·주민 액자·한 장·뒤로) · 주기율표(118·나라 링크·첫 묶음) · 도감(세 층·흐린 칸·겹치는 가문·빈 자리→생성기) · 생성기(세계 그림·일상컷 버전2 한 칸씩·자세 추천·해방·랜덤·여기부터 다시·처음부터·주소·저장·폰 레일/막대/시트) · 폰·PC — ' + checks + '가지');
 })().catch(e => { console.error(e); server.close(); process.exit(1); });
