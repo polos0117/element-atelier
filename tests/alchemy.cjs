@@ -75,6 +75,10 @@ const server = http.createServer((q, s) => {
       assert(box && box.width > 200 && box.x >= -1 && box.x + box.width <= vp.width + 1 && box.y + box.height <= vp.height + 2, vp.width + ' 캔버스가 화면 안 ' + JSON.stringify(box));
       assert(await p.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), vp.width + ' 옆으로 넘친다');
       assert.equal(await p.locator('.workspace-nav a[aria-current="page"]').getAttribute('href'), 'alchemy.html', '메뉴의 합성'); n += 3;
+      /* 합성로 원(빛 번짐 · 터질 때 가장 크게 번진 것까지)이 아래 단추 줄에 닿지 않는다(사용자 「동그란 부분이 밑에 버튼을 침범하고 있어」) */
+      const lay = await p.evaluate(() => window.AtelierAlchemyGame.layout());
+      assert(lay.circleBottom < lay.buttonsTop, vp.width + ' 합성로가 단추를 침범 ' + JSON.stringify(lay));
+      assert(lay.lastToken <= lay.height, vp.width + ' 원소 패가 캔버스 안 ' + JSON.stringify(lay)); n += 2;
       /* 원소 패를 실제로 누른다 */
       for (const k of ['h', 'o']) { const at = await p.evaluate(k => window.AtelierAlchemyGame.where(k), k); await p.mouse.click(at.x, at.y); }
       assert.deepEqual((await S(p)).picks, ['h', 'o'], vp.width + ' 눌러서 고른다'); n++;

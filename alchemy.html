@@ -75,25 +75,26 @@ class Main extends Phaser.Scene{
     this.cameras.main.setBackgroundColor(TH.bg);
     this.progress=T(this,cx,34*S,'',15,{color:TH.dim});
     /* 합성로 — 빛나는 원, 안에 칸 셋 */
-    const fy=200*S;
-    this.glow=this.add.circle(cx,fy,128*S,TH.accent,0.08);
-    this.ring=this.add.circle(cx,fy,112*S).setStrokeStyle(3*S,TH.accent,0.7);
-    T(this,cx,fy-82*S,W('alchemy.furnace'),13,{color:TH.dim});
+    /* 합성로 — 원(빛 번짐 포함)이 아래 단추 줄에 닿지 않게(사용자 「동그란 부분이 밑에 버튼을 침범하고 있어」): 반지름 92, 번짐 104, 안내 글은 원 밑, 단추는 그 아래 */
+    const fy=180*S,R=92*S;
+    this.glow=this.add.circle(cx,fy,R+12*S,TH.accent,0.08);
+    this.ring=this.add.circle(cx,fy,R).setStrokeStyle(3*S,TH.accent,0.7);
+    T(this,cx,fy-62*S,W('alchemy.furnace'),13,{color:TH.dim});
     this.slots=[-1,0,1].map(i=>{
-      const x=cx+i*70*S,c=this.add.circle(x,fy,30*S,TH.inkHex,0.05).setStrokeStyle(2*S,TH.inkHex,0.3);
+      const x=cx+i*58*S,c=this.add.circle(x,fy,25*S,TH.inkHex,0.05).setStrokeStyle(2*S,TH.inkHex,0.3);
       const t=T(this,x,fy,'',20,{fontStyle:'700'});
       c.setInteractive({useHandCursor:true}).on('pointerdown',()=>{const k=this.picks[i+1];if(k)this.unpick(k);});
       return {c,t};
     });
-    this.msg=T(this,cx,fy+76*S,W('alchemy.pick'),13,{color:TH.dim,wordWrap:{width:360*S}});
+    this.msg=T(this,cx,fy+R+28*S,W('alchemy.pick'),13,{color:TH.dim,wordWrap:{width:360*S}});
     /* 단추 줄 */
-    const by=fy+128*S;
+    const by=fy+R+78*S;
     this.btnCombine=this.button(cx,by,W('alchemy.combine'),150,true,()=>this.combine());
     this.button(cx-128*S,by,W('alchemy.clear'),86,false,()=>this.clear());
     this.button(cx+128*S,by,W('alchemy.hint'),86,false,()=>this.hint());
     this.button(cx,by+52*S,W('alchemy.book'),150,false,()=>this.openBook());
     /* 원소 패 — 주기율표 번호 차례, 다섯 줄 */
-    const cols=5,gap=78*S,x0=cx-(cols-1)/2*gap,y0=by+118*S;
+    const cols=5,gap=78*S,x0=cx-(cols-1)/2*gap,y0=by+112*S;
     this.tokens={};
     G.roots.forEach((r,i)=>{
       const x=x0+(i%cols)*gap,y=y0+Math.floor(i/cols)*84*S,col=catOf(r.category);
@@ -107,13 +108,16 @@ class Main extends Phaser.Scene{
     this.burstColors=[TH.accent];
     this.sparks=this.add.particles(0,0,'spark',{emitting:false,speed:{min:120*S,max:330*S},lifespan:{min:450,max:850},scale:{start:0.9,end:0},alpha:{start:1,end:0},
       gravityY:260*S,tint:{onEmit:()=>this.burstColors[Math.floor(Math.random()*this.burstColors.length)]}}).setDepth(1000);
-    this.flash=this.add.circle(cx,fy,150*S,TH.accent,1).setAlpha(0).setDepth(999);   /* 강조색 — 밝은 테마에선 흰 번쩍임이 바탕에 묻힌다 */
+    this.flash=this.add.circle(cx,fy,R+20*S,TH.accent,1).setAlpha(0).setDepth(999);   /* 강조색 — 밝은 테마에선 흰 번쩍임이 바탕에 묻힌다 */
     this.slotBase=this.slots.map(sl=>({x:sl.c.x,y:sl.c.y}));
     this.lastFx=null;
     this.refresh();
     window.AtelierAlchemyGame={ready:true,state:()=>({picks:this.picks.slice(),found:this.state.found.slice(),tries:this.state.tries,total:G.lords.length,overlay:this.overlay?this.overlay.kind:null,cards:this.overlay&&this.overlay.cards||[],msg:this.msg.text,
         fx:this.lastFx,busy:this.busy,rest:{ring:this.ring.scale,glow:this.glow.scale,ringX:this.ring.x,flash:this.flash.alpha,cam:[this.cameras.main.scrollX,this.cameras.main.scrollY],slots:this.slots.map((sl,i)=>[sl.c.x-this.slotBase[i].x,sl.c.y-this.slotBase[i].y,sl.c.scale,sl.t.alpha])}}),
       slow:f=>{this.tweens.timeScale=f;this.time.timeScale=f;this.sparks.timeScale=f;},   /* 검사 · 화면 찍기용 — 연출을 느리게 */
+      /* 검사용 — 합성로가 가장 크게 번진 아래 끝(빛 번짐 × 1.35 · 번쩍임 × 1.25 · 합성로 × 1.16)과 단추 줄 위 끝, 마지막 원소 이름 아래 끝 */
+      layout:()=>({circleBottom:this.ring.y+Math.max(this.glow.radius*1.35,this.flash.radius*1.25,this.ring.radius*1.16),buttonsTop:this.btnCombine.bg.y-this.btnCombine.bg.height/2,
+        lastToken:Math.max(...Object.values(this.tokens).map(o=>o.name.y+o.name.height/2)),height:GH}),
       where:k=>{const o=this.tokens[k],r=this.game.canvas.getBoundingClientRect();return o?{x:r.left+o.c.x*r.width/GW,y:r.top+o.c.y*r.height/GH}:null;},
       pick:k=>this.toggle(k),combine:()=>this.combine(),clear:()=>this.clear(),book:()=>this.openBook(),close:()=>this.closeOverlay(),hint:()=>this.hint(),
       reset:()=>{this.state=AL.blank();AL.save(this.state);this.clear();this.refresh();}};
@@ -179,7 +183,7 @@ class Main extends Phaser.Scene{
       this.refresh();
       this.tweens.add({targets:this.slots.map(sl=>sl.t),alpha:1,duration:200});
       this.ring.setScale(1.16);this.tweens.add({targets:this.ring,scale:1,duration:320,ease:'Back.Out'});
-      this.tweens.add({targets:this.glow,scale:{from:1,to:1.7},alpha:{from:0.6,to:0.08},duration:420,ease:'Quad.Out',onComplete:()=>this.glow.setScale(1).setAlpha(0.08)});
+      this.tweens.add({targets:this.glow,scale:{from:1,to:1.35},alpha:{from:0.6,to:0.08},duration:420,ease:'Quad.Out',onComplete:()=>this.glow.setScale(1).setAlpha(0.08)});   /* 번져도 단추 줄 위에서 멈춘다 */
       this.feedback(tier,cx,cy,colors);
       /* ③ 잠깐 숨 — 터진 것을 본 뒤 카드 */
       this.time.delayedCall(tier==='big'?420:260,done);
