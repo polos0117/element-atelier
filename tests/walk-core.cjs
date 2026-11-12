@@ -44,7 +44,7 @@ assert.equal(R.nearestNation(cells, 100, 120, 27), null);
 // 나라 차례 · 앞뒤 나라(끝에서 처음으로 돈다)
 const order = R.nationOrder(D);
 assert.deepEqual(order.slice(0, 3), ['h', 'he', 'li']); assert.equal(order.at(-1), 'og'); assert.equal(order.length, D.nations.length);
-assert.deepEqual(R.neighbors(order, 'h'), { prev: 'og', next: 'he' }); assert.deepEqual(R.neighbors(order, 'fe'), { prev: 'ca', next: 'cu' });
+assert.deepEqual(R.neighbors(order, 'h'), { prev: 'og', next: 'he' }); assert.deepEqual(R.neighbors(order, 'cu'), { prev: 'ni', next: 'zn' });   /* 철 둘레(망가니즈 · 크로뮴 · 코발트)는 나라가 늘며 바뀐다 — 2026-11-13 구리로 */
 // 입자 종류 · 상한(효과 ②)
 const K = { transition: 'ember', alkali: 'ember', alkaline_earth: 'ember', post_transition: 'ember', nonmetal: 'breeze', halogen: 'breeze',
   noble_gas: 'mote', metalloid: 'glint', lanthanide: 'flicker', actinide: 'flicker', unknown: 'mote' };

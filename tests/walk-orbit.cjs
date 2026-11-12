@@ -38,7 +38,7 @@ const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b =>
     // ‹ › — 주기율표 번호 차례, 역사는 그대로, 뒤로 가기는 주기율표
     assert.deepEqual(await p.locator('.w-crumbs button').allTextContents(), ['주기율표', '철 Fe']);
     const len = await p.evaluate(() => history.length);
-    await p.click('[data-step="next"]'); await p.waitForURL(/n=cu/); assert.equal(await p.evaluate(() => history.length), len);
+    await p.click('[data-step="next"]'); await p.waitForURL(/n=co&/);   /* 철 다음은 코발트(2026-11-13 — 그 전엔 구리) */ assert.equal(await p.evaluate(() => history.length), len);
     // 궤도로 / 목록으로 — 역사 그대로, 기기에 기억
     await p.click('.w-mode [data-mode="list"]'); await p.waitForFunction(() => document.documentElement.dataset.layer === 'list');
     assert.equal(await p.evaluate(() => history.length), len); assert.equal(JSON.parse(await p.evaluate(() => localStorage.getItem('element_dex_v1'))).mode, 'list');
