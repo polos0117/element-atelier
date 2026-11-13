@@ -1873,7 +1873,7 @@
   },
   "se": {
    "root": {
-    "ko": "달의 이름 — 빛을 받으면 깨어난다",
+    "ko": "달의 이름 — 빛을 받으면 깨어난다, 달 위를 걷는 춤",
     "from": "name"
    },
    "mode": "per_world",
@@ -1907,15 +1907,15 @@
      }
     },
     "mecha": {
-     "job_ko": "태양광 패널 설치 기사",
-     "base": "nation_roof",
-     "place": "a rooftop field of solar panels of her element's kingdom — rows of dark glass panels, a tool case and a wide bright sky",
-     "activity": "she is a solar-panel installer taking a break on the roof",
-     "preset": "floor_horizon",
+     "job_ko": "문워크 무대 댄서",
+     "base": "nation_workshop",
+     "place": "a concert stage of her element's kingdom — a single white spotlight on a glossy black floor, drifting haze and a wall of dim lights behind",
+     "activity": "she is a stage dancer famous for gliding backwards as if walking on the moon, holding her pose under the spotlight",
+     "preset": "hip_contra",
      "outfit": {
-      "bold": "a solar installer look fitted to her body — a cropped work tank, low-slung cargo shorts, a safety harness, work gloves and a cap",
-      "moderate": "a solar installer look — a fitted work tee, knee-length cargo shorts, a safety harness and a cap",
-      "low": "a solar installer look — a long-sleeved work shirt, cargo trousers, a safety harness and a cap"
+      "bold": "a stage dancer look fitted to her body — a cropped sequined jacket open over a bandeau top, high-cut black shorts, one sparkling glove, white socks, black loafers and a tilted fedora",
+      "moderate": "a stage dancer look — a sequined jacket over a fitted sleeveless top, cropped slim trousers showing white socks, one sparkling glove, black loafers and a tilted fedora",
+      "low": "a stage dancer look — a buttoned sequined jacket, slim trousers showing white socks, one sparkling glove, black loafers and a tilted fedora"
      }
     }
    }
