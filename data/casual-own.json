@@ -497,37 +497,37 @@
   },
   "cl": {
    "root": {
-    "ko": "염소 = goat → GOAT · faker — 속이는 사람, 덤불에 숨는 사람, 역대 최고",
+    "ko": "염소 = goat → GOAT · faker — 속이는 환영 마술사, 덤불에 숨는 사람, 역대 최고",
     "from": "name"
    },
    "mode": "per_world",
    "worlds": {
     "fantasy": {
-     "job_ko": "흉내쟁이 광대",
+     "job_ko": "환영 마술사",
      "base": "nation_square",
-     "place": "a fairground stage of her element's kingdom — a painted curtain, juggling clubs and a row of lanterns",
-     "activity": "she is a mimic jester who can copy anyone's voice and walk, about to fool the crowd again",
+     "place": "a moonlit palace courtyard of her element's kingdom — drifting petals of pale green light, a marble stair and tall dark windows",
+     "activity": "she is an illusionist and deceiver, smiling as if the one standing here might not be the real her",
      "preset": "raise_chest",
      "use": "sig_raise",
-     "prop": "a jester's bauble stick",
+     "prop": "a slim crystal-tipped wand",
      "outfit": {
-      "bold": "a jester look fitted to her body — a pale green and white harlequin bandeau and high-cut shorts, a belled collar, striped stockings and a two-pointed cap",
-      "moderate": "a jester look — a pale green and white sleeveless harlequin tunic to mid-thigh over tights, a belled collar and a two-pointed cap",
-      "low": "a jester look — a pale green and white long-sleeved harlequin tunic over tights, a belled collar and a two-pointed cap"
+      "bold": "an illusionist look fitted to her body — a deep-cut bodice with a high open collar, a short asymmetric skirt, a long split cape, thigh-high boots and a jewelled circlet",
+      "moderate": "an illusionist look — a fitted sleeveless bodice with a high collar, a knee-length asymmetric skirt, a long cape, tall boots and a jewelled circlet",
+      "low": "an illusionist look — a long-sleeved high-collared gown under a long cape and a jewelled circlet"
      }
     },
     "steampunk": {
-     "job_ko": "덤불 은신처의 야생 사진가",
-     "base": "nation_square",
-     "place": "a leafy hide at the edge of a park of her element's kingdom — a screen of cut branches, a folding stool, a brass tripod and a flask",
-     "activity": "she is a wildlife photographer hidden in the bushes, waiting without a sound",
-     "preset": "squat_prop",
+     "job_ko": "덤불에 숨은 사냥꾼",
+     "base": "nation_training",
+     "place": "a thicket at the edge of a misty moor of her element's kingdom — a screen of leafy branches, a canvas game bag and a brass spyglass on a stump",
+     "activity": "she is a hunter hidden in the bushes, waiting without a sound",
+     "preset": "half_kneel_use",
      "use": "sig_hold",
-     "prop": "a brass field camera",
+     "prop": "a long brass-fitted hunting rifle",
      "outfit": {
-      "bold": "a field photographer look fitted to her body — a leaf-netted short cape over a khaki corset top, short field breeches, tall boots and a twig-pinned hat",
-      "moderate": "a field photographer look — a leaf-netted short cape over a sleeveless khaki blouse, knee breeches, tall boots and a twig-pinned hat",
-      "low": "a field photographer look — a leaf-netted long field coat, breeches, tall boots and a twig-pinned hat"
+      "bold": "a hunter look fitted to her body — a short leaf-netted cape over a khaki corset top, short field breeches, tall boots, a cartridge belt and a feathered hunting hat",
+      "moderate": "a hunter look — a short leaf-netted cape over a sleeveless khaki blouse, knee breeches, tall boots, a cartridge belt and a feathered hunting hat",
+      "low": "a hunter look — a leaf-netted long hunting coat, breeches, tall boots, a cartridge belt and a feathered hunting hat"
      }
     },
     "mecha": {
@@ -1482,17 +1482,17 @@
    "mode": "per_world",
    "worlds": {
     "fantasy": {
-     "job_ko": "거리 요술쟁이",
-     "base": "nation_square",
-     "place": "a market square of her element's kingdom at dusk — a small folding table with cups and scarves, lanterns and cobblestones",
-     "activity": "she is a street conjurer about to make a blue glass ball vanish",
-     "preset": "lookback_raise",
-     "use": "sig_raise",
-     "prop": "a deep blue glass ball",
+     "job_ko": "장난 물건 가게 주인",
+     "base": "nation_inn",
+     "place": "a joke and trick shop of her element's kingdom — shelves of trick boxes, trap-lid chests, grinning masks and bottles of blue smoke",
+     "activity": "she is the keeper of a trick shop, holding out a box that is about to pop",
+     "preset": "counter_cup",
+     "use": "sig_hold",
+     "prop": "a small blue jack-in-the-box",
      "outfit": {
-      "bold": "a street conjurer look fitted to her body — a short cropped jacket over a bandeau, a ragged short skirt with a sash of scarves, striped stockings and a tilted cap",
-      "moderate": "a street conjurer look — a cropped jacket over a sleeveless top, a knee-length skirt with a sash of scarves and a tilted cap",
-      "low": "a street conjurer look — a buttoned short jacket, a long skirt with a sash of scarves and a tilted cap"
+      "bold": "a trick-shop keeper look fitted to her body — a short cobalt-blue vest over a bandeau, a ragged short skirt with a sash of scarves, striped stockings and a tilted cap",
+      "moderate": "a trick-shop keeper look — a cobalt-blue vest over a sleeveless top, a knee-length skirt with a sash of scarves and a tilted cap",
+      "low": "a trick-shop keeper look — a buttoned cobalt-blue jacket, a long skirt with a sash of scarves and a tilted cap"
      }
     },
     "steampunk": {
