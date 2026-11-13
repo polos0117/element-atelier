@@ -61,6 +61,10 @@ node tests/casual-tree.cjs              # 모듈 ↔ 검사기 길 596 · requir
 node tests/casual-tree-v2.cjs           # 추천×장소 · 랜덤 · 바꾸기 · 현장 · 나라 안 · 원소 소품
 ```
 
+## 2026-11-13 일상컷 검토 뒤 — 모듈이 game 과 달라졌다
+
+`lib/casual-tree-v2.js` · `tools/casual-tree-v2.py` 에 규칙을 더했다(시선의 장소 특징 · 뒤쪽 몸 방향의 소품 자리 · 자세가 받는 손 · 손 쪽 · 받침의 손별 목록 · 카메라의 자세 계열 · sideLook · aux · extras · ambience — `docs/casual-review-2026-11-13.md` 8절). 원소 · 삼국지는 같은 파일, pkm 은 거기에 raised 규칙이 더 있는 판. **game · book · myth 의 같은 파일은 안 고쳤다** — 위 표의 「byte-identical」 은 이제 원소 ↔ 삼국지 사이에서만 맞다. 그쪽에 옮길 때는 표에 장소 특징(has 의 indoor · window · sky …)부터 붙여야 한다(없으면 시선 「창밖」 · 「위」, 까치발이 어디서도 안 골라진다).
+
 ## 아직
 
 - 생성기(`prompt.html`·`lib/prompt-element.js`)에 일상 갈래를 붙이는 일 — 이 문서 밖. 시대 `nation` 의 지시문은 카드의 세계 글(`worlds.<세계>.en`)을 장소 문장 뒤에 이어야 한다(game 의 `casualWorld` 자리).

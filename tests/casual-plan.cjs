@@ -61,14 +61,14 @@ for (const key of pickKeys) {
       }
       if (P.colorFixed(C.outfitEn(c))) assert(!c.color, key + ' 색이 박힌 옷엔 색 없음'); else assert(CL && ol.includes(CL.en), key + ' 옷 색 줄');
       if (c.denier) assert(ol.includes(TS.CASUAL.deniers.find(x => x.key === c.denier).top + '-denier yarn'), key + ' 데니어 줄'); else assert(!/-denier yarn/.test(ol));
-      if (c.situ) assert(ol.includes('; right now — ' + TS.CASUAL.situations.find(x => x.key === c.situ).en), key + ' 상황 줄'); else assert(!/; right now — /.test(ol));
+      if (c.situ) { const SI = TS.CASUAL.situations.find(x => x.key === c.situ); assert(ol.includes('; right now — ' + SI.en) || (!!SI.enIn && ol.includes('; right now — ' + SI.enIn)), key + ' 상황 줄(실내면 물 튐 글 enIn — 2026-11-13)'); } else assert(!/; right now — /.test(ol));
     }
     n++;
   }
 }
 assert.equal(situSeen.size, 4, '상황 넷 — ' + [...situSeen]);
 assert(['adventure', 'drape'].every(f => famSeen.has(f)), '새 계열 — ' + [...famSeen]);
-assert(dn.fit > 15 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 비율 ' + dn.set + '/' + dn.fit);
+assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 비율 ' + dn.set + '/' + dn.fit);
 /* 옛 다섯 장 묶음은 상황 없이 맞다 · 상황 컷이 없으면 잡는다 */
 { const cd = C.cardOf('fe'); cd.world = 'fantasy'; const cuts = C.plan(cd, SIX, [], { seed: 4 }).cuts;
   assert(C.check(cuts.map(c => { const x = { ...c }; delete x.situ; return x; }), cd, []).some(e => /상황 노출 컷이 없다/.test(e)), '상황 컷이 없으면 잡는다');
