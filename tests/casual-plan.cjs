@@ -67,7 +67,7 @@ for (const key of pickKeys) {
   }
 }
 assert(situSeen.size >= 4, '상황 넷 넘게(2026-11-13 상황이 늘었다 — 아홉) — ' + [...situSeen]);
-assert(['adventure', 'drape'].every(f => famSeen.has(f)), '새 계열 — ' + [...famSeen]);
+assert(['adventure', 'drape', 'resort', 'workwear'].filter(f => famSeen.has(f)).length >= 2, '새 계열 넷 가운데 둘 넘게(2026-11-13 — 계열이 늘고 장소 종류 조건이 생겨 표본 묶음에 넷이 다 들지는 않는다) — ' + [...famSeen]);
 assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 비율 ' + dn.set + '/' + dn.fit);
 /* 옛 다섯 장 묶음은 상황 없이 맞다 · 상황 컷이 없으면 잡는다 */
 { const cd = C.cardOf('fe'); cd.world = 'fantasy'; const cuts = C.plan(cd, SIX, [], { seed: 4 }).cuts;

@@ -66,7 +66,9 @@ function cardOf(key) {
   const c = P.card(D, key);
   if (!c) throw new Error('카드가 없다: ' + key + ' (설계표의 나라 · 가문 · 주민 열쇠를 하이픈으로)');
   const h = P.holdOf(c);   /* 그 원소의 물건(설계표 hold, 주민은 object) — 일상컷에서 손에 든다 */
-  return { key, c, g: { key, signature: h ? [h] : [], signature_hold: h ? [0] : [] }, worlds: P.worldsOf(D, key) };
+  /* 땅 — 나라의 갈래가 정한다(표 lands_of = lib/walk-core.js LAND_OF). 그 땅의 현장만 뽑힌다(표 place_lands) */
+  const land = (tree2.lands_of || {})[(c.element || {}).category] || '';
+  return { key, c, g: { key, signature: h ? [h] : [], signature_hold: h ? [0] : [], land }, worlds: P.worldsOf(D, key) };
 }
 /* 필수 갈래 종류 — 옷 계열이 곧 노출 갈래면 그 계열, 세계 안의 방 · 목욕 · 지붕 · 여관 · 서재 · 부엌 · 군영 · 정원 · 다리 · 사당 · 숲길 · 나루 일상이면 nation(세계 안 갈래) */
 function requiredType(sc) {
@@ -100,7 +102,7 @@ const sigProp = c => { const u = C2.use(T2, c.use); return !!u && u.prop === 'si
 const WEIGHT_UNUSED = 12;
 /* 카메라용 몸짓 추천(쉿 · 브이 · 엄지 척 · 손 흔들기 · 카메라로 손 뻗기 … — 표의 pose)은 덜 고른다(2026-11-13 검토 — 추천 47 중 카메라 응시 28 · 눈높이 34 라
    장소가 달라도 「사진 찍히는 중」 한 장이 됐다). 없애지는 않는다 */
-const POSE_WEIGHT = 0.4;
+const POSE_WEIGHT = 0.4, ACT_MOST = 2;
 /* 어색한 조합(⚠ — 표 awkward: 수영복으로 작업 자리, 휴양지 차림으로 현장 …)인 의상 계열은 덜 고른다(2026-11-13 — 새 장소 · 새 계열이 새 모순이 되지 않게). 묶음마다 한 장까지는 여전히 된다 */
 const AWKWARD_WEIGHT = 0.15;
 const wOf = n => n ? 1 / Math.pow(1 + n, 3) : WEIGHT_UNUSED;
@@ -134,7 +136,7 @@ function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = ''
   let sc;
   if (reqType) { const paths = requiredPaths(reqType).filter(x => !wantEra || x.era === wantEra); if (!paths.length) return null; sc = { ...lean(r, paths, U.place, x => x.place, famW) }; }
   else {
-    const era = wantEra || weighted(r, ERA_WEIGHT), place = lean(r, C2.choices(T2, { era }, 'place', null), U.place);
+    const era = wantEra || weighted(r, ERA_WEIGHT), place = lean(r, C2.choices(T2, { era }, 'place', g), U.place);
     if (!place) return null;
     sc = { era, place, ofam: lean(r, C2.choices(T2, { era, place }, 'ofam', null), U.ofam, x => x, f => famW(f) * (C2.awkward(T2, f, place).length ? AWKWARD_WEIGHT : 1)) };
   }
@@ -192,6 +194,8 @@ function check(cuts, card, base = [], others = []) {
   if (sCuts.length >= 4) { const eras = new Set(sAll.map(c => c.era)), want = Math.min(tree.eras.length, sAll.length); if (eras.size < want) errs.push(`시대가 ${eras.size} 가지뿐이다(${want} 가지 다)`); }
   over('프레이밍', c => c.frame, Math.max(1, Math.ceil(sAll.length / FRAMES.length)));
   over('자세 추천', c => c.preset, 1);
+  /* 하는 일 갈래(표 presets[].act — 이동 · 야영 · 손보기 · 집안일 · 채비 · 살피기 · 걷기 · 쉬기 · 먹고 마시기 · 카메라용 몸짓)는 묶음에 두 장까지(2026-11-13 — 한 사람의 묶음이 한 갈래로 몰리지 않게) */
+  over('하는 일 갈래', c => (by(tree2.presets, c.preset) || {}).act, ACT_MOST);
   over('몸 방향', c => c.body, 2);
   over('머리 어깨 너머', c => (by(tree2.head, c.head) || {}).look_back && 'over_shoulder', 1);
   over('소품', c => { const u = C2.use(T2, c.use); return u && u.prop; }, 1);
@@ -362,6 +366,7 @@ function recentScenes(dir, n = RECENT_N) {
 const MUST = /^(필수 갈래가 없다|먼 컷|가까운 컷|그 원소의 물건을 든 컷이 없다|시대가 |상황 노출 컷이 없다|갈래 자유 컷이 없다)/;
 function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, others = [], recent = [] } = {}) {
   /* 씨앗에 카드 · 세계를 섞는다 — 같은 씨앗이면 카드마다 같은 묶음이 나왔다 */
+  card.g.world = card.world || '';   /* 그 세계에만 있는 자리(worlds_only) */
   const mix = [...(card.key + '|' + (card.world || ''))].reduce((h, ch) => Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0, 2166136261);
   const rUse = rng((seed ^ mix ^ 0x5bd1e995) >>> 0), r = rng((seed ^ mix) >>> 0);
   const ci = P.cards(D).indexOf(card.key), oldEx = old.some(c => EXPOSE_TYPES.includes(requiredType(c))), oldIn = old.some(c => requiredType(c) === 'nation');
