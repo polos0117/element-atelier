@@ -66,7 +66,7 @@ for (const key of pickKeys) {
     n++;
   }
 }
-assert.equal(situSeen.size, 4, '상황 넷 — ' + [...situSeen]);
+assert(situSeen.size >= 4, '상황 넷 넘게(2026-11-13 상황이 늘었다 — 아홉) — ' + [...situSeen]);
 assert(['adventure', 'drape'].every(f => famSeen.has(f)), '새 계열 — ' + [...famSeen]);
 assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 비율 ' + dn.set + '/' + dn.fit);
 /* 옛 다섯 장 묶음은 상황 없이 맞다 · 상황 컷이 없으면 잡는다 */

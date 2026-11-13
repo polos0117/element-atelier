@@ -96,6 +96,7 @@ node tools/prompt-pack.cjs build --dir $W/pack                                  
   세계 그림이면 고른 세계(판타지 · 스팀펑크 · 메카)대로인가, 주민이 물건을 손에 들지 않았나(모티브로만 — 입는 물건은 입은 그대로) ·
   일상컷이면 첨부한 세계 그림과 같은 얼굴 · 머리 · 몸인가, 첨부의 옷 · 갑옷을 가져오지 않았나, 계획 칸(시대 · 장소 · 의상 · 프레이밍 · 몸·머리 방향 · 두 손 · 소품 동작)대로인가,
   원소 성질을 옷의 색 · 무늬로 옮기지 않았나 · **팔·다리·손의 수와 이어짐**.
+- 몸 이상은 `qa.anatomy` 에 따로 적는다(2026-11-13 — 「계획과 구도가 조금 다르다」 는 `passed: false` 가 많아 추가 팔 같은 진짜 사고가 그 속에 묻혔다): `ok` 또는 걸린 것의 목록 `["arm", "hand", "foot", "leg"]`(추가 · 끊긴 · 떠 있는 · 뒤바뀐 팔은 arm, 손가락 수 · 떠 있는 손은 hand, 발 · 발 윤곽은 foot, 다리는 leg) — 무엇을 봤는지는 지금처럼 `observations` 에. 이미 쓴 기록은 고치지 않는다.
 - 검수에서 걸린 것은 `passed: false` 와 함께 그대로 적고 **올린다**(0절 승인 — 사용자가 올라간 뒤 본다). 다시 그리지 않는다.
   지시문에서 부딪힌 줄(세계 · 장소 · 의상 · 자세 · 프레이밍 · HAND · ANGLE · WARDROBE · 시대)을 찾았으면 원인도 적는다 — 규칙 · 계획기를 고치는 일은 사람이 지켜보는 세션이 한다.
 
@@ -134,7 +135,7 @@ node tools/image-claim.cjs done <카드> --execution $ATELIER_EXECUTION_ID
                 "size": [1024, 1536], "png_sha256": "<원본>", "webp": {"quality": 90}, "note": "원본 PNG 는 올리지 않는다 — sha256 만 남긴다",
                 "free_prompt": "<자유 설계 칸만 — 「…」 를 채운 지시문 통째>", "free_design": "<자유 설계 칸만 — 채운 FREE DESIGN 덩어리>"},
  "execution": "<실행 ID>", "imported": "<YYYY-MM-DD>",
- "qa": {"reviewer": "<세션>", "image_sha256": "<원본>", "passed": true, "observations": ["<본 것 하나씩>"], "cause": "<어긋났으면 부딪힌 줄>"},
+ "qa": {"reviewer": "<세션>", "image_sha256": "<원본>", "passed": true, "anatomy": "ok", "observations": ["<본 것 하나씩>"], "cause": "<어긋났으면 부딪힌 줄>"},
  "acceptance": "user_approval_2026-10-31 — 묻지 않고 올리고 사용자가 올라간 뒤 본다"}
 ```
 

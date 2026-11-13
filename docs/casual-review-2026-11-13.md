@@ -421,7 +421,7 @@
 
 ## 8. 고친 것 · 정한 것 (2026-11-13 뒤이어 — 6절 1 ~ 17)
 
-사용자 「4번까지하고 gpt도 다 비슷한 장면을 쓴다면 그거를 우리쪽 일상틀에 넣어줘」. 다섯째(18번 — 자유 설계 칸 한 줄)와 검수 칸은 안 했다. 이미 그린 그림 · 등록부 · 기록은 그대로다. 저장소마다 `docs/PATCH.md` 맨 위 칸에 파일별로 적었다.
+사용자 「4번까지하고 gpt도 다 비슷한 장면을 쓴다면 그거를 우리쪽 일상틀에 넣어줘」. 다섯째(18번 — 자유 설계 칸 한 줄)와 검수 칸은 뒤이어 했다(9절). 이미 그린 그림 · 등록부 · 기록은 그대로다. 저장소마다 `docs/PATCH.md` 맨 위 칸에 파일별로 적었다.
 
 ### 번호별
 
@@ -487,3 +487,168 @@
 - 문제였던 기록 장면을 새 코드로 다시 조립: `o-rust/mecha-casual3`(왼손 「바닥 짚기」 가 비워짐 · 「lying on her left side」), `f/mecha-casual3`(「holds … at chest height」 → 「carries … low at her side」, 화면 쪽 말 빠짐), `fe/mecha-casual4`(갱도 — 「a sudden rain shower or」 빠짐), `au/fantasy-casual1`(여관 — 「LEGS: rising onto her toes」 빠짐 · 가까운 팔 말), `ag/steampunk-casual1`(금고 — 「GAZE: she looks out of the window」 빠짐).
 - 새로 짠 묶음: 원소 270컷 · 삼국지 84컷 · pkm 54컷에서 실내 소나기 · 실내 바람 · 창 없는 창밖 · 까닭 없는 까치발 · 실외 등불 0건. 원소 270컷 중 빛의 방향 줄 159 · 가까운 팔 줄 67 · 시간대 124 · 날씨 49 · 머리 94 · 카메라 눈높이 138(전 73% → 51%).
 - 못 한 것: 그림을 새로 뽑아 보지 않았다(지시문 글만 확인). 생성기 화면 검사(브라우저)는 안 돌렸다 — 화면 코드는 안 바꿨고 추천 · 자세 목록이 길어졌을 뿐이다. 원소 `tests/casual-tree-v2.py` 와 pkm `tests/casual-ledger-replacement.py` 는 고치기 전에도 이 윈도우에서 안 돈다(`fork` · 경로).
+
+---
+
+## 9. 더한 장소 · 의상 · 상황 — 빼거나 고칠 수 있게 (2026-11-13 뒤이어)
+
+사용자 「구도나 저런 날씨 지시말고, 장소나 의상 추가 등을 더 해 줄수는 없어?」 · 「상황연출 … 종류가 적은걸로 알아」 · 「응 5번도 해줘」.
+
+### 먼저 본 것 — 몰려 뽑혔나
+
+- **장소는 가짓수보다 시대 몫이 몰림을 만든다.** 묶음마다 네 시대가 한 장 이상씩 들어가는데, 원소 「쓰임의 현장」 은 10곳 · 「나라 안」 은 16곳뿐이라 기록 1,325장에서 현장 한 곳이 29 ~ 35장, 나라 안 한 곳이 33 ~ 44장씩 나왔다(「지금 현실」 60여 곳은 한 곳에 평균 7장). 삼국지도 같다(세계 안 · 역사의 자리 한 곳 30 ~ 43장). pkm 은 고르다(한 묶음 최대 9%). 그래서 **작은 시대에 장소를 더했다**.
+- 의상 계열은 고르게 뽑힌다(원소 상위 홈웨어 10% · 역할극 9% · 란제리풍 9% …, 필수 갈래 몫). 가짓수를 늘리는 쪽으로 했다.
+- 상황 노출은 세 공방 다 넷(젖은 옷 · 바람에 날림 · 반쯤 푼 차림 · 흘러내린 어깨끈)이었다. 필수 갈래는 ① 노출 갈래(란제리풍 · 수영복 · 역할극) ② 세계 안 갈래(원소 · 삼국지) ③ **상황 노출**(pkm 은 ①을 셋 다 한 장씩 + 코스튬 + 상황 노출) — 사용자가 말한 「상황연출」 은 ③으로 봤다. 기록: 원소 젖은 옷 27 · 어깨끈 23 · 바람 18 · 반쯤 푼 차림 4, 삼국지 68 · 50 · 54 · 22, pkm 30 · 29 · 32 · 27.
+
+### 상황 노출 — 넷 → 아홉 (세 공방 같은 글)
+
+옷 상태만 말하고 팔 동작은 말하지 않는다(손 줄과 부딪힌다). 「옷 갈아입는 중」 처럼 필터에 걸리기 쉬운 것은 안 넣었다.
+
+| 열쇠 | 이름 | 지시문 글 | 붙는 조건 |
+|---|---|---|---|
+| `knot` | 밑단을 묶어 올림 | she has knotted the hem of her top up under her bust to keep it out of the way, baring her midriff and waist | 셔츠 · 티 · 니트 · 후드 같은 상의(이미 짧거나 원피스 · 수영복 · 란제리면 안 붙음) |
+| `waist_tied` | 겉옷을 허리에 묶음 | she has slipped her outer layer off and tied it around her waist by its sleeves, leaving only the fitted inner top over her bare shoulders and arms | 재킷 · 후드 · 카디건 · 코트 · 작업복 · 점프슈트가 있는 옷 |
+| `sweat` | 더위에 밴 땀 | the heat of the place has left a fine sheen on her skin, her top clinging lightly at the collar and the small of her back, a few damp strands at her temples; the fabric stays opaque | 더운 곳만 — 목욕 · 운동 묶음, 또는 장소 글에 용광로 · 가마 · 사우나 · 부엌 · 온실 · 사막 · 체육관 … |
+| `sheer_light` | 역광에 비친 실루엣 | strong light from behind passes through the thin outer fabric, so the outline of her figure shows as a soft silhouette inside it; the inner layer stays fully opaque | 창이나 하늘이 있는 곳 · 밤 고정 장소 아님 · 드레스 · 셔츠 · 로브 · 린넨 같은 얇은 겉옷(가죽 · 데님 · 수영복 아님). 계획기가 빛을 역광으로 맞추고 밤 시간대를 뗀다 |
+| `slit` | 움직임에 벌어진 트임 | the slit or wrap of her skirt has fallen open along one thigh with her movement, baring that leg up to the hip line; the fabric stays in place | 트임 · 랩 · 치파오 · 기모노 · 사롱 · 로브가 있는 옷 · 걷기 · 한 발 올려 서기 · 앉기 · 무릎 꿇기 · 다리가 보이는 컷(3/4 · 전신 · 환경) |
+
+있던 넷 가운데 **바람에 날림은 실내가 아닌 곳만**, **젖은 옷은 실내면 물 튐 글**(8절). 젖은 옷은 거의 모든 옷에 맞아 늘 후보라 가장 많이 나왔다 — 원소 · 삼국지 계획기는 다른 후보가 있으면 열에 넷만 남긴다(pkm 은 원래 최근에 덜 쓴 것부터). 자유 설계 칸의 「우리 것 말고」 목록에도 다섯을 더했다. 조건은 모듈 `situOk`, 글은 공방마다 `lib/prompt-spec.js` 의 상황 표.
+새 묶음 시범(상황 컷만): 원소 54컷 — 어깨끈 20 · 역광 10 · 반쯤 푼 차림 5 · 젖은 옷 5 · 땀 5 · 바람 4 · 트임 4 · 밑단 1.
+
+### 장소
+
+**원소** — 27곳(표의 장소 159)
+
+| 열쇠 | 이름 | 시대 · 묶음 | 지시문 글 | 특징 |
+|---|---|---|---|---|
+| `repair_kiosk` | 수리 가게 작업대 | 지금 현실 · 거리·도시 | a small repair kiosk with a cluttered workbench, a low stool, tools hanging on the wall and an open shutter onto the street | 스툴 · 높은 선반 · 실내 · 창 · 문간 |
+| `maintenance_shed` | 정비 창고 | 지금 현실 · 작업실·공방 | a maintenance shed with a long workbench, tool racks overhead and its door open onto the yard | 스툴 · 높은 선반 · 실내 · 문간 · 창 |
+| `pool_gear_room` | 수영 클럽 장비실 | 지금 현실 · 물가 | the equipment room of a swimming club — a slatted bench, racks of kickboards and floats, tiled walls and a high window | 스툴 · 높은 선반 · 실내 · 창 |
+| `drying_terrace` | 옥상 빨래 건조대 | 지금 현실 · 집 | a rooftop drying terrace with laundry lines overhead, a low stool, a parapet and the city beyond | 스툴 · 높은 선반 · 하늘 |
+| `museum_workshop` | 개관 전 전시실 체험대 | 지금 현실 · 거리·도시 | a museum hands-on workshop table before opening, glass display cases, stools and tall windows | 스툴 · 실내 · 창 |
+| `stair_landing` | 계단참 | 지금 현실 · 거리·도시 | a stairwell landing with a tall window, a handrail and worn stone steps | 계단 · 실내 · 창 |
+| `home_closet` | 드레스룸 | 지금 현실 · 집 | a walk-in closet with open shelves, hanging rails, a full-length mirror and a low stool | 스툴 · 높은 선반 · 실내 |
+| `home_veranda` | 볕 드는 베란다 | 지금 현실 · 집 | a sunny enclosed veranda with drying racks overhead, floor cushions and a sliding glass door | 스툴 · 높은 선반 · 문간 · 실내 · 창 |
+| `street_bookstall` | 헌책 노점 | 지금 현실 · 거리·도시 | a second-hand book stall under an awning on a quiet street, crates of books on trestle tables and a folding stool | 스툴 · 높은 선반 · 하늘 |
+| `street_bus_stop` | 버스 정류장 | 지금 현실 · 거리·도시 | a bus shelter on a quiet street, a narrow bench, a glass side panel and the road beyond | 스툴 · 하늘 |
+| `street_bike_path` | 강변 자전거 길 | 지금 현실 · 여행지 | a riverside cycle path with a parked bicycle, a low stone wall and reeds along the water | 하늘 |
+| `water_indoor_pool` | 실내 수영장 | 지금 현실 · 물가 | an indoor lap pool with lane ropes, a tiled deck, a starting block and tall windows | 실내 · 창 |
+| `site_shipyard` | 조선소 선대 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a shipyard slipway beside a half-built steel hull, scaffolding, cranes and coiled cables under an open sky | 계단 · 하늘 |
+| `site_dam` | 댐 위 통로 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | the crest walkway of a hydroelectric dam, a steel railing, spillway gates and a wide reservoir below | 하늘 |
+| `site_pharmacy` | 약국 조제실 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a pharmacy dispensing room with a long wooden counter, drawers of unlabelled glass jars, a brass scale and tall shelves | 스툴 · 높은 선반 · 실내 · 창 |
+| `site_jeweler` | 보석 세공대 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a jeweller's bench with a loupe lamp, trays of cut stones and fine tools, a shop window behind | 스툴 · 실내 · 창 |
+| `site_windfarm` | 풍력 단지 언덕 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a hillside wind farm, white turbine towers, a service ladder and tall grass moving in the wind | 계단 · 하늘 |
+| `site_darkroom` | 사진 암실 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a photographic darkroom under red safelight, trays of solution on a wet bench and prints clipped to a line overhead | 스툴 · 높은 선반 · 실내 · 시간 고정 |
+| `site_brewery` | 양조장 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a brewery hall of copper kettles, steel tanks, hoses and a mezzanine stair | 계단 · 실내 |
+| `site_quarry` | 대리석 채석장 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a marble quarry of stepped white terraces, cut blocks and a still green pool at the bottom | 계단 · 하늘 |
+| `site_perfumery` | 조향실 | 지금 현실 · 쓰임의 현장 · 원소의 현장 | a perfumer's desk with tiers of small glass bottles, paper blotter strips and a window onto a herb garden | 스툴 · 높은 선반 · 실내 · 창 |
+| `nation_workshop` | 나라의 공방 | 나라 안 · 나라 안 | a craftsman's workshop of her element's kingdom, a heavy workbench, hanging tools and an open door | 스툴 · 높은 선반 · 문간 · 실내 · 창 |
+| `nation_stairs` | 나라의 돌계단 | 나라 안 · 나라 안 | a long outdoor stairway climbing through a town of her element's kingdom, lamps along the steps and rooftops below | 계단 · 하늘 |
+| `nation_laundry` | 나라의 빨래터 | 나라 안 · 나라 안 | a washing place by a water channel of her element's kingdom, stone basins, drying lines overhead and wet flagstones | 높은 선반 · 하늘 |
+| `nation_balcony` | 나라의 발코니 | 나라 안 · 나라 안 | a balcony of her own house in a town of her element's kingdom, a balustrade, a small table and the street below | 하늘 |
+| `nation_platform` | 나라의 정거장 | 나라 안 · 나라 안 | a small station or dock platform of her element's kingdom, benches, a signal post and a waiting carriage | 스툴 · 하늘 |
+| `nation_greenhouse` | 나라의 온실 | 나라 안 · 나라 안 | a glass conservatory of her element's kingdom, raised planting beds, a potting bench and hanging baskets | 스툴 · 높은 선반 · 실내 · 창 |
+
+**삼국지** — 22곳(표의 장소 163)
+
+| 열쇠 | 이름 | 시대 · 묶음 | 지시문 글 | 특징 |
+|---|---|---|---|---|
+| `repair_kiosk` | 수리 가게 작업대 | 지금 현실 · 거리·도시 | a small repair kiosk with a cluttered workbench, a low stool, tools hanging on the wall and an open shutter onto the street | 스툴 · 높은 선반 · 실내 · 창 · 문간 |
+| `maintenance_shed` | 정비 창고 | 지금 현실 · 작업실·공방 | a maintenance shed with a long workbench, tool racks overhead and its door open onto the yard | 스툴 · 높은 선반 · 실내 · 문간 · 창 |
+| `pool_gear_room` | 수영 클럽 장비실 | 지금 현실 · 물가 | the equipment room of a swimming club — a slatted bench, racks of kickboards and floats, tiled walls and a high window | 스툴 · 높은 선반 · 실내 · 창 |
+| `drying_terrace` | 옥상 빨래 건조대 | 지금 현실 · 집 | a rooftop drying terrace with laundry lines overhead, a low stool, a parapet and the city beyond | 스툴 · 높은 선반 · 하늘 |
+| `museum_workshop` | 개관 전 전시실 체험대 | 지금 현실 · 거리·도시 | a museum hands-on workshop table before opening, glass display cases, stools and tall windows | 스툴 · 실내 · 창 |
+| `stair_landing` | 계단참 | 지금 현실 · 거리·도시 | a stairwell landing with a tall window, a handrail and worn stone steps | 계단 · 실내 · 창 |
+| `home_closet` | 드레스룸 | 지금 현실 · 집 | a walk-in closet with open shelves, hanging rails, a full-length mirror and a low stool | 스툴 · 높은 선반 · 실내 |
+| `home_veranda` | 볕 드는 베란다 | 지금 현실 · 집 | a sunny enclosed veranda with drying racks overhead, floor cushions and a sliding glass door | 스툴 · 높은 선반 · 문간 · 실내 · 창 |
+| `street_bookstall` | 헌책 노점 | 지금 현실 · 거리·도시 | a second-hand book stall under an awning on a quiet street, crates of books on trestle tables and a folding stool | 스툴 · 높은 선반 · 하늘 |
+| `street_bus_stop` | 버스 정류장 | 지금 현실 · 거리·도시 | a bus shelter on a quiet street, a narrow bench, a glass side panel and the road beyond | 스툴 · 하늘 |
+| `street_bike_path` | 강변 자전거 길 | 지금 현실 · 여행지 | a riverside cycle path with a parked bicycle, a low stone wall and reeds along the water | 하늘 |
+| `water_indoor_pool` | 실내 수영장 | 지금 현실 · 물가 | an indoor lap pool with lane ropes, a tiled deck, a starting block and tall windows | 실내 · 창 |
+| `nation_workshop` | 세계의 공방 | 세계 안 · 세계 안 | a craftsman's workshop of her world, a heavy workbench, hanging tools and an open door<br>세계별: 대장간 옆 공방 / 길드 공방 / 정비 격납고 작업대 | 스툴 · 높은 선반 · 문간 · 실내 · 창 |
+| `nation_stairs` | 세계의 돌계단 | 세계 안 · 세계 안 | a long outdoor stairway climbing through a town of her world, lamps along the steps and rooftops below<br>세계별: 성벽 돌계단 / 성곽 계단 / 승강 계단 | 계단 · 하늘 |
+| `nation_laundry` | 세계의 빨래터 | 세계 안 · 세계 안 | a washing place by a water channel of her world, stone basins, drying lines overhead and wet flagstones<br>세계별: 냇가 빨래터 / 수로 빨래터 / 함내 세탁실 | 높은 선반 · 하늘 |
+| `nation_balcony` | 세계의 발코니 | 세계 안 · 세계 안 | a balcony of her own house in a town of her world, a balustrade, a small table and the street below<br>세계별: 누각 난간 / 석조 발코니 / 관측 발코니 | 하늘 |
+| `nation_platform` | 세계의 정거장 | 세계 안 · 세계 안 | a small station or dock platform of her world, benches, a signal post and a waiting carriage<br>세계별: 역참 마당 / 마차 정거장 / 궤도 승강장 | 스툴 · 하늘 |
+| `heritage_inkshop` | 문방사우 가게 | 지금 현실 · 역사의 자리 · 역사의 자리 | an old brush-and-ink shop in a heritage quarter, racks of hanging brushes, ink sticks and rolls of paper, a worn wooden counter | 스툴 · 높은 선반 · 실내 · 창 |
+| `heritage_boat` | 장강 유람 목선 | 지금 현실 · 역사의 자리 · 역사의 자리 | the open deck of a wooden sightseeing boat on the Yangtze, a low rail, benches and cliffs sliding past | 하늘 |
+| `heritage_gate_stairs` | 옛 성문 누각 계단 | 지금 현실 · 역사의 자리 · 역사의 자리 | the stone stairway up to an old city gate tower, red lanterns under the eaves and the town roofs below | 계단 · 문간 · 하늘 |
+| `heritage_tea_terrace` | 촉 땅 차밭 | 지금 현실 · 역사의 자리 · 역사의 자리 | terraced tea fields on a misty Sichuan hillside, narrow stone steps and a bamboo rest hut | 계단 · 스툴 · 하늘 |
+| `heritage_archery` | 전통 활터 | 지금 현실 · 역사의 자리 · 역사의 자리 | a traditional archery ground beside a temple wall, straw targets, a bow rack and a shaded bench | 스툴 · 높은 선반 · 하늘 |
+
+**pkm** — 17곳(표의 장소 178)
+
+| 열쇠 | 이름 | 시대 · 묶음 | 지시문 글 | 특징 |
+|---|---|---|---|---|
+| `repair_kiosk` | 수리 가게 작업대 | 지금 현실 · 거리·도시 | a small repair kiosk with a cluttered workbench, a low stool, tools hanging on the wall and an open shutter onto the street | 스툴 · 높은 선반 · 실내 · 창 · 문간 |
+| `maintenance_shed` | 정비 창고 | 지금 현실 · 화실·공방 | a maintenance shed with a long workbench, tool racks overhead and its door open onto the yard | 스툴 · 높은 선반 · 실내 · 문간 · 창 |
+| `pool_gear_room` | 수영 클럽 장비실 | 지금 현실 · 물가 | the equipment room of a swimming club — a slatted bench, racks of kickboards and floats, tiled walls and a high window | 스툴 · 높은 선반 · 실내 · 창 |
+| `drying_terrace` | 옥상 빨래 건조대 | 지금 현실 · 집 | a rooftop drying terrace with laundry lines overhead, a low stool, a parapet and the city beyond | 스툴 · 높은 선반 · 하늘 |
+| `museum_workshop` | 개관 전 전시실 체험대 | 지금 현실 · 거리·도시 | a museum hands-on workshop table before opening, glass display cases, stools and tall windows | 스툴 · 실내 · 창 |
+| `stair_landing` | 계단참 | 지금 현실 · 거리·도시 | a stairwell landing with a tall window, a handrail and worn stone steps | 계단 · 실내 · 창 |
+| `home_closet` | 드레스룸 | 지금 현실 · 집 | a walk-in closet with open shelves, hanging rails, a full-length mirror and a low stool | 스툴 · 높은 선반 · 실내 |
+| `home_veranda` | 볕 드는 베란다 | 지금 현실 · 집 | a sunny enclosed veranda with drying racks overhead, floor cushions and a sliding glass door | 스툴 · 높은 선반 · 문간 · 실내 · 창 |
+| `street_bookstall` | 헌책 노점 | 지금 현실 · 거리·도시 | a second-hand book stall under an awning on a quiet street, crates of books on trestle tables and a folding stool | 스툴 · 높은 선반 · 하늘 |
+| `street_bus_stop` | 버스 정류장 | 지금 현실 · 거리·도시 | a bus shelter on a quiet street, a narrow bench, a glass side panel and the road beyond | 스툴 · 하늘 |
+| `street_bike_path` | 강변 자전거 길 | 지금 현실 · 여행지 | a riverside cycle path with a parked bicycle, a low stone wall and reeds along the water | 하늘 |
+| `water_indoor_pool` | 실내 수영장 | 지금 현실 · 물가 | an indoor lap pool with lane ropes, a tiled deck, a starting block and tall windows | 실내 · 창 |
+| `pw_workshop` | 포켓몬 세계 공방 | 포켓몬 세계 안 · 포켓몬 세계 | a craftsman's workshop of a Pokémon-world town, a heavy workbench, hanging tools and an open door | 스툴 · 높은 선반 · 문간 · 실내 · 창 |
+| `pw_stairs` | 포켓몬 세계 돌계단 | 포켓몬 세계 안 · 포켓몬 세계 | a long outdoor stairway climbing through a town of a Pokémon-world town, lamps along the steps and rooftops below | 계단 · 하늘 |
+| `pw_laundry` | 포켓몬 세계 빨래터 | 포켓몬 세계 안 · 포켓몬 세계 | a washing place by a water channel of a Pokémon-world town, stone basins, drying lines overhead and wet flagstones | 높은 선반 · 하늘 |
+| `pw_balcony` | 포켓몬 세계 발코니 | 포켓몬 세계 안 · 포켓몬 세계 | a balcony of her own house in a town of a Pokémon-world town, a balustrade, a small table and the street below | 하늘 |
+| `pw_platform` | 포켓몬 세계 정거장 | 포켓몬 세계 안 · 포켓몬 세계 | a small station or dock platform of a Pokémon-world town, benches, a signal post and a waiting carriage | 스툴 · 하늘 |
+
+삼국지 세계 안 다섯 곳은 세계마다 글이 따로 있다(삼국시대 · 판타지 · 메카 — 표의 `worlds`). 앞의 여섯(수리 가게 작업대 ~ 계단참)은 8절에서 넣은 것.
+
+### 의상 계열
+
+**세 공방 — `resort` 휴양지 차림**(a resort look — light holiday clothes for sun and sea air, worn loose over bare skin). 원소 시대: 지금 현실 · 나라 안 · 무대·환상
+
+| 열쇠 | 이름 | 지시문 글 |
+|---|---|---|
+| `kaftan_open` | 열어 입은 카프탄 | a long printed kaftan worn open over a bandeau top and tailored shorts, flat sandals |
+| `sarong_set` | 사롱 세트 | a knotted sarong skirt with a matching halter crop top and a shell anklet |
+| `linen_shirt_shorts` | 린넨 셔츠와 반바지 | an oversized linen shirt half-buttoned over a bralette top with linen shorts |
+| `crochet_set` | 크로셰 투피스 | a fully lined crochet two-piece — a short-sleeved crochet crop top and a matching mini skirt |
+| `sundress_backless` | 등 파인 선드레스 | a backless halter sundress with a short flared hem and espadrilles |
+| `palazzo_bandeau` | 와이드 팬츠와 밴도 | wide-leg palazzo trousers with a bandeau top and a wide-brimmed straw hat |
+| `romper_wrap` | 랩 점프슈트(짧은) | a wrap-front holiday romper with a deep V neckline and a tie belt |
+| `aloha_knot` | 묶어 입은 알로하 셔츠 | a tropical-print shirt knotted at the waist over a bikini-style top with denim cut-offs |
+
+**원소 · 삼국지 — `workwear` 작업복·현장 차림**(a workwear look — practical work clothes worn fitted and short, sleeves rolled, one layer opened or tied). 원소 시대: 지금 현실 · 쓰임의 현장 · 나라 안
+
+| 열쇠 | 이름 | 지시문 글 |
+|---|---|---|
+| `coverall_tied` | 허리에 묶은 작업복 | a mechanic's coverall with its top half peeled down and the sleeves tied at the waist over a fitted cropped tank top, work boots |
+| `dungaree_bandeau` | 짧은 멜빵 데님 | short denim dungarees over a bandeau top, one strap unhooked, canvas sneakers |
+| `utility_vest_shorts` | 유틸리티 조끼와 카고 반바지 | a multi-pocket utility vest worn closed over bare shoulders with high-waisted cargo shorts and ankle boots |
+| `apron_knit_dress` | 공방 앞치마와 니트 원피스 | a canvas workshop apron over a fitted ribbed mini dress, sleeves pushed up |
+| `lab_coat_crop` | 짧은 실험 가운 | a short white lab coat worn open over a cropped knit top and a pencil mini skirt |
+| `gardener_set` | 정원사 차림 | a gardener's look — a knotted linen shirt, high-waisted shorts, a tool belt and rubber boots |
+| `leather_apron_top` | 가죽 앞치마 | a leather work apron over a sleeveless fitted top and slim work trousers, gauntlet gloves tucked in the belt |
+| `painter_dungaree` | 페인트 묻은 멜빵바지 | paint-flecked white painter's dungarees with one strap down over a cropped tee |
+
+**삼국지** — `resort` 같은 여덟 벌. 시대: 지금 현실 · 세계 안 · 무대·환상
+
+**삼국지** — `workwear` 같은 여덟 벌. 시대: 지금 현실 · 역사의 자리 · 세계 안
+
+**pkm** — `resort` 같은 여덟 벌. 시대: 지금 현실 · 포켓몬 세계 안 · 무대·환상
+
+pkm 에는 `workwear` 를 안 넣었다 — 「일하는 차림」(`work`, 15벌)이 이미 있다.
+
+**조건**: 어색한 조합 표에 세 줄을 더했다 — 휴양지 차림으로 현장 · 운동 · 격식 자리 · 작업 자리, 작업복으로 목욕 · 물가 · 격식 자리 · 밤 문화, 새 작업 자리 · 길가에 수영복 · 목욕 차림 · 란제리풍. 어색한 조합은 원래 표시(⚠)만 하고 묶음마다 한 장까지 됐는데, 원소 · 삼국지 계획기가 이제 **어색한 조합인 계열을 무게 0.15 로 덜 고른다**(pkm 은 원래 어색하지 않은 쪽을 먼저 고른다). 막지는 않았다 — 「장소 · 의상 제한을 푼」 원래 뜻을 지키려고.
+각 저장소의 노출 규칙은 그대로다(피부 노출 bold · 가슴과 골반은 덮는다 · 젖어도 불투명). 새 옷은 있던 옷들의 수위에 맞춰 썼다.
+
+### 다섯째(18번) — 자유 설계 칸
+
+1. 머리글 끝에 한 문장: 「In your pose, give each hand one job only and say plainly where each arm goes; avoid poses where it is unclear which shoulder an arm comes from — an arm behind her back, behind her head or pinned under her body — and never state where a foot sits under water.」 (원소 · 삼국지 `FREE_DESIGN.head`, pkm `FREE_SCENE.head`)
+2. 굳은 장면 피하기: 「Do not make it another small repair, adjusting, measuring or sorting task at a workbench, repair stall, equipment room or locker room — those scenes are already in our own list; choose another kind of everyday moment (rest, play, a meal, travel, weather, getting ready, simply being in the place).」 (원소 · 삼국지는 머리글 끝, pkm 은 「최근 작업 피하기」 줄 끝). 최근 장면 목록은 원소 · 삼국지가 원래 넘기고 있다(`Recent scenes to avoid` — 그림 저장소 기록의 최근 여덟 + 같은 묶음), pkm 은 묶음의 다른 일상컷 지시문 파일을 보라고 한다 — 그대로 뒀다.
+3. 검수 기록의 몸 이상 칸: 원소 · 삼국지 `docs/IMAGE_AUTOMATION.md` 의 기록 틀에 `"anatomy": "ok"`(걸리면 `["arm", "hand", "foot", "leg"]` 가운데), pkm `IMAGE_RULES.md` 의 `anatomy` 안내에 `anatomy.issue`(같은 낱말). 안내 문서만 고쳤다 — 이미 쓴 기록 · 기록을 읽는 도구는 그대로다.
+
+### 이번에 스스로 정한 것
+
+1. 새 장소는 버전2 표의 `extra_places` 에 넣었다(버전1 표는 그대로). 세계 안 새 장소는 「세계 안 필수 갈래」 장소 목록에 안 넣었다 — 필수 컷은 있던 열두 곳에서 나오고, 새 곳은 나머지 컷에서 나온다.
+2. 원소 현장 아홉 곳은 원소를 가리지 않는 일반 현장이다(그 원소와 맞는지는 안 본다 — 있던 열 곳도 그렇다).
+3. 「땀」 상황의 더운 곳은 장소 묶음 + 장소 글 낱말로 가렸다. 표에 `hot` 칸을 따로 두지 않았다.
+4. pkm 의 옛(버전1) 계획 길(`--v1`)은 상황의 장소 조건을 안 본다 — 버전1 엔 자세 · 장소 특징 칸이 없다.
+5. pkm `tests/casual-plan-v2.cjs` 의 「피할 값」 시험은 씨앗을 바꿔 다시 하게 고쳤다 — 전신 프레이밍을 통째로 피하는 계획은 고치기 전에도 60번 중 12번 「맞는 구도 없음」 이었고(지금 17번), 도구는 원래 씨앗을 바꿔 다시 정한다.
