@@ -2329,22 +2329,24 @@
     },
     "steampunk": {
      "job_ko": "철골 건설 현장 감독",
-     "base": "nation_stairs",
+     "base": "nation_square",
      "place": "a building site of her element's kingdom — a frame of steel girders against the sky, a hanging hook and stacked beams",
-     "activity": "she is the forewoman of a steel-frame building site looking over the day's work",
-     "preset": "step_pause",
+     "activity": "she is the forewoman of a steel-frame building site holding a rolled plan against her chest",
+     "preset": "wrap_close",
      "outfit": {
       "bold": "a site forewoman look fitted to her body — a cropped work vest over a bandeau top, low-slung work shorts, a tool belt, gloves and heavy boots",
       "moderate": "a site forewoman look — a work vest over a fitted sleeveless top, work trousers, a tool belt and heavy boots",
       "low": "a site forewoman look — a work jacket, work trousers, a tool belt and heavy boots"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a rolled blueprint"
     },
     "mecha": {
      "job_ko": "철골 건설 현장 감독",
-     "base": "nation_stairs",
+     "base": "nation_temple",
      "place": "a building site of her element's kingdom — a frame of steel girders against the sky, a hanging hook and stacked beams",
-     "activity": "she is the forewoman of a steel-frame building site looking over the day's work",
-     "preset": "step_pause",
+     "activity": "she is the forewoman of a steel-frame building site standing with her hands together as the last beam is hoisted",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a site forewoman look fitted to her body — a cropped work vest over a bandeau top, low-slung work shorts, a tool belt, gloves and heavy boots",
       "moderate": "a site forewoman look — a work vest over a fitted sleeveless top, work trousers, a tool belt and heavy boots",
@@ -2374,22 +2376,24 @@
     },
     "steampunk": {
      "job_ko": "검술 사범",
-     "base": "nation_training",
+     "base": "nation_square",
      "place": "a fencing hall of her element's kingdom — a rack of practice swords, a marked floor and tall windows",
-     "activity": "she is a fencing master waiting for her next pupil",
-     "preset": "hip_contra",
+     "activity": "she is a fencing master raising a practice sword to check its edge",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a fencing master look fitted to her body — a fencing jacket worn open over a bandeau, fitted breeches cut short, one glove and tall boots",
       "moderate": "a fencing master look — a sleeveless fencing vest, fitted breeches, one glove and tall boots",
       "low": "a fencing master look — a buttoned fencing jacket, fitted breeches, one glove and tall boots"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a practice sword"
     },
     "mecha": {
      "job_ko": "검술 사범",
-     "base": "nation_training",
+     "base": "nation_square",
      "place": "a fencing hall of her element's kingdom — a rack of practice swords, a marked floor and tall windows",
-     "activity": "she is a fencing master waiting for her next pupil",
-     "preset": "hip_contra",
+     "activity": "she is a fencing master signalling that the bout was well fought",
+     "preset": "thumbs_waist",
      "outfit": {
       "bold": "a fencing master look fitted to her body — a fencing jacket worn open over a bandeau, fitted breeches cut short, one glove and tall boots",
       "moderate": "a fencing master look — a sleeveless fencing vest, fitted breeches, one glove and tall boots",
@@ -2423,29 +2427,28 @@
      "job_ko": "목수",
      "base": "nation_workshop",
      "place": "a carpenter's shop of her element's kingdom — a half-built frame on trestles, curls of wood shavings and tools on the wall",
-     "activity": "she is a carpenter driving the last nail",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a hammer and a steel nail",
+     "activity": "she is a carpenter holding up a steel nail to check that it is straight",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a carpenter look fitted to her body — a carpenter's apron over a tube top and short denim shorts, a pencil behind her ear and boots",
       "moderate": "a carpenter look — a carpenter's apron over a fitted tee and work trousers, a pencil behind her ear",
       "low": "a carpenter look — a carpenter's apron over a rolled-sleeve shirt and work trousers"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a steel nail"
     },
     "mecha": {
      "job_ko": "목수",
      "base": "nation_workshop",
      "place": "a carpenter's shop of her element's kingdom — a half-built frame on trestles, curls of wood shavings and tools on the wall",
-     "activity": "she is a carpenter driving the last nail",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a hammer and a steel nail",
+     "activity": "she is a carpenter sitting on a stool to smooth a small piece of wood",
+     "preset": "bench_fix",
      "outfit": {
       "bold": "a carpenter look fitted to her body — a carpenter's apron over a tube top and short denim shorts, a pencil behind her ear and boots",
       "moderate": "a carpenter look — a carpenter's apron over a fitted tee and work trousers, a pencil behind her ear",
       "low": "a carpenter look — a carpenter's apron over a rolled-sleeve shirt and work trousers"
-     }
+     },
+     "use": "tool_fix"
     }
    }
   },
@@ -2470,15 +2473,17 @@
     },
     "mecha": {
      "job_ko": "교량 점검원",
-     "base": "nation_stairs",
+     "base": "nation_square",
      "place": "the walkway of a great iron truss bridge of her element's kingdom — riveted girders overhead, a river far below and an inspection ladder",
-     "activity": "she is a bridge inspector pausing on the walkway",
-     "preset": "step_pause",
+     "activity": "she is a bridge inspector looking down at her small hammer between checks",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a bridge inspector look fitted to her body — an inspection harness over a cropped tank top, short work shorts, a hard cap and boots",
       "moderate": "a bridge inspector look — an inspection harness over a fitted tee, work trousers, a hard cap and boots",
       "low": "a bridge inspector look — an inspection harness over a work jacket and trousers, a hard cap and boots"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a small inspection hammer"
     }
    }
   },
@@ -2503,15 +2508,17 @@
     },
     "mecha": {
      "job_ko": "역 신호수",
-     "base": "nation_platform",
+     "base": "nation_square",
      "place": "a railway signal post beside shining rails of her element's kingdom — a lever frame, a signal arm and a small cabin",
-     "activity": "she is a railway signalwoman watching the line",
-     "preset": "hip_contra",
+     "activity": "she is a railway signalwoman walking along the rails with a lantern at her side",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a signalwoman look fitted to her body — a short uniform jacket open over a bustier, a mini skirt, stockings, a peaked cap and a rolled flag in her belt",
       "moderate": "a signalwoman look — a short-sleeved uniform jacket, a knee-length skirt, a peaked cap and a rolled flag in her belt",
       "low": "a signalwoman look — a buttoned uniform jacket, a long skirt, a peaked cap and a rolled flag in her belt"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a hand lantern"
     }
    }
   },
@@ -2540,10 +2547,8 @@
      "job_ko": "고물상 주인",
      "base": "nation_square",
      "place": "a scrapyard of her element's kingdom — heaps of rusting iron, an old boiler shell and a hand cart",
-     "activity": "she is a scrapyard keeper turning over a find",
-     "preset": "squat_prop",
-     "use": "sig_hold",
-     "prop": "a rusted gear",
+     "activity": "she is a scrapyard keeper standing with a hand on her hip, surveying her heaps",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a scrap dealer look fitted to her body — a patched vest over a bandeau, cut-off work shorts, mismatched gloves and scuffed boots",
       "moderate": "a scrap dealer look — a patched vest over a sleeveless top, work trousers, gloves and scuffed boots",
@@ -2554,15 +2559,15 @@
      "job_ko": "고물상 주인",
      "base": "nation_square",
      "place": "a scrapyard of her element's kingdom — heaps of rusting iron, an old boiler shell and a hand cart",
-     "activity": "she is a scrapyard keeper turning over a find",
-     "preset": "squat_prop",
-     "use": "sig_hold",
-     "prop": "a rusted gear",
+     "activity": "she is a scrapyard keeper walking back to the hand cart with a gear at her side",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a scrap dealer look fitted to her body — a patched vest over a bandeau, cut-off work shorts, mismatched gloves and scuffed boots",
       "moderate": "a scrap dealer look — a patched vest over a sleeveless top, work trousers, gloves and scuffed boots",
       "low": "a scrap dealer look — a patched coat, work trousers, gloves and scuffed boots"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a rusted gear"
     }
    }
   },
@@ -2590,27 +2595,29 @@
      "job_ko": "무구 복원가",
      "base": "nation_workshop",
      "place": "a restorer's workshop of her element's kingdom — an old rusted breastplate on a stand, jars of oil and fine brushes on the bench",
-     "activity": "she is an armour restorer cleaning a small rusted piece",
-     "preset": "bench_fix",
-     "use": "tool_fix",
+     "activity": "she is an armour restorer holding up a brush to check its bristles",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a restorer look fitted to her body — a conservator's apron over a lace camisole and short shorts, thin gloves and a loupe on her brow",
       "moderate": "a restorer look — a conservator's apron over a sleeveless blouse and slim trousers, thin gloves",
       "low": "a restorer look — a conservator's apron over a long-sleeved blouse and slim trousers, thin gloves"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a fine brush"
     },
     "mecha": {
      "job_ko": "무구 복원가",
      "base": "nation_workshop",
      "place": "a restorer's workshop of her element's kingdom — an old rusted breastplate on a stand, jars of oil and fine brushes on the bench",
-     "activity": "she is an armour restorer cleaning a small rusted piece",
-     "preset": "bench_fix",
-     "use": "tool_fix",
+     "activity": "she is an armour restorer looking down at a jar of oil in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a restorer look fitted to her body — a conservator's apron over a lace camisole and short shorts, thin gloves and a loupe on her brow",
       "moderate": "a restorer look — a conservator's apron over a sleeveless blouse and slim trousers, thin gloves",
       "low": "a restorer look — a conservator's apron over a long-sleeved blouse and slim trousers, thin gloves"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a small jar of oil"
     }
    }
   },
@@ -2639,15 +2646,15 @@
      "job_ko": "열쇠공",
      "base": "nation_workshop",
      "place": "a locksmith's shop of her element's kingdom — a wall of hanging keys, old padlocks and a small vice on the bench",
-     "activity": "she is a locksmith reading the teeth of an old key",
-     "preset": "raise_chest",
-     "use": "sig_raise",
-     "prop": "an old iron key",
+     "activity": "she is a locksmith filing a key at her bench",
+     "preset": "counter_work",
      "outfit": {
       "bold": "a locksmith look fitted to her body — a short leather vest worn with nothing beneath, low-slung trousers cut short, a ring of keys at her hip",
       "moderate": "a locksmith look — a leather vest over a sleeveless top, slim trousers and a ring of keys at her hip",
       "low": "a locksmith look — a leather vest over a long-sleeved shirt, slim trousers and a ring of keys at her hip"
-     }
+     },
+     "use": "sig_both",
+     "prop": "an old iron key"
     }
    }
   },
@@ -2672,10 +2679,10 @@
     },
     "mecha": {
      "job_ko": "선박 해체공",
-     "base": "nation_harbor",
+     "base": "nation_square",
      "place": "a ship-breaking beach of her element's kingdom — a great rusting hull run aground, cut plates stacked on the sand and chains",
-     "activity": "she is a ship-breaker resting on a cut plate",
-     "preset": "edge_brace",
+     "activity": "she is a ship-breaker standing with a hand on her hip, eyeing the great hull",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a ship-breaker look fitted to her body — a cropped tank top, work overalls rolled down to the hips, heavy gloves and boots",
       "moderate": "a ship-breaker look — a fitted tank top, work overalls with one strap down and boots",
@@ -2707,12 +2714,10 @@
     },
     "steampunk": {
      "job_ko": "분실물 센터 직원",
-     "base": "nation_inn",
+     "base": "nation_study",
      "place": "a lost-property office of her element's kingdom — shelves of tagged umbrellas, hats and cases behind a counter",
-     "activity": "she is a lost-property clerk waiting for an owner",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a single lost glove",
+     "activity": "she is a lost-property clerk waiting behind the counter with her hands folded",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a lost-property clerk look fitted to her body — a fitted waistcoat over a sheer sleeveless blouse open at the neck, a short skirt and stockings",
       "moderate": "a lost-property clerk look — a fitted waistcoat over a short-sleeved blouse and a knee-length skirt",
@@ -2721,17 +2726,17 @@
     },
     "mecha": {
      "job_ko": "분실물 센터 직원",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a lost-property office of her element's kingdom — shelves of tagged umbrellas, hats and cases behind a counter",
-     "activity": "she is a lost-property clerk waiting for an owner",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a single lost glove",
+     "activity": "she is a lost-property clerk holding up a glove to find its tag",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a lost-property clerk look fitted to her body — a fitted waistcoat over a sheer sleeveless blouse open at the neck, a short skirt and stockings",
       "moderate": "a lost-property clerk look — a fitted waistcoat over a short-sleeved blouse and a knee-length skirt",
       "low": "a lost-property clerk look — a fitted jacket over a blouse and a long skirt"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a single lost glove"
     }
    }
   },
@@ -2760,10 +2765,8 @@
      "job_ko": "길잡이",
      "base": "nation_square",
      "place": "a crossroads outside the town of her element's kingdom — a weathered signpost, a pack on the ground and far hills",
-     "activity": "she is a pathfinder checking her bearing",
-     "preset": "pocket_look",
-     "use": "sig_hold",
-     "prop": "a brass compass",
+     "activity": "she is a pathfinder waving to show that the road ahead is clear",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a pathfinder look fitted to her body — a cropped travel jacket over a bandeau, short trekking shorts, a map case on a strap and boots",
       "moderate": "a pathfinder look — a travel jacket over a fitted top, trekking shorts to the knee, a map case and boots",
@@ -2772,17 +2775,17 @@
     },
     "mecha": {
      "job_ko": "길잡이",
-     "base": "nation_square",
+     "base": "nation_training",
      "place": "a crossroads outside the town of her element's kingdom — a weathered signpost, a pack on the ground and far hills",
-     "activity": "she is a pathfinder checking her bearing",
-     "preset": "pocket_look",
-     "use": "sig_hold",
-     "prop": "a brass compass",
+     "activity": "she is a pathfinder kneeling on one knee to set her compass on the ground",
+     "preset": "half_kneel_use",
      "outfit": {
       "bold": "a pathfinder look fitted to her body — a cropped travel jacket over a bandeau, short trekking shorts, a map case on a strap and boots",
       "moderate": "a pathfinder look — a travel jacket over a fitted top, trekking shorts to the knee, a map case and boots",
       "low": "a pathfinder look — a travel jacket, trekking trousers, a map case and boots"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a brass compass"
     }
    }
   },
@@ -2811,15 +2814,15 @@
      "job_ko": "과학 교사",
      "base": "nation_square",
      "place": "a science classroom of her element's kingdom — a board of field-line drawings, a bench of iron filings and a tall window",
-     "activity": "she is a science teacher turning from the board with a magnet",
-     "preset": "lookback_raise",
-     "use": "sig_raise",
-     "prop": "a red and blue horseshoe magnet",
+     "activity": "she is a science teacher holding a magnet in both hands to explain the field lines",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a science teacher look fitted to her body — a lab coat worn open over a low-cut blouse and a short tight skirt, stockings and glasses",
       "moderate": "a science teacher look — a lab coat over a fitted blouse and a knee-length skirt, glasses",
       "low": "a science teacher look — a buttoned lab coat over a blouse and trousers, glasses"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a red and blue horseshoe magnet"
     }
    }
   },
@@ -2844,10 +2847,10 @@
     },
     "steampunk": {
      "job_ko": "헌혈의 집 간호사",
-     "base": "nation_inn",
+     "base": "nation_study",
      "place": "a blood donation room of her element's kingdom — a reclining donor chair, a tray of bandages and a small table of juice and biscuits",
-     "activity": "she is a donation-room nurse between donors",
-     "preset": "ankles_sit",
+     "activity": "she is a donation-room nurse standing ready with her hands folded",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a donation nurse look fitted to her body — a short nurse dress unbuttoned at the top, white stockings and a small cap",
       "moderate": "a donation nurse look — a short-sleeved nurse dress to the knee and a small cap",
@@ -2856,15 +2859,17 @@
     },
     "mecha": {
      "job_ko": "헌혈의 집 간호사",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a blood donation room of her element's kingdom — a reclining donor chair, a tray of bandages and a small table of juice and biscuits",
-     "activity": "she is a donation-room nurse between donors",
-     "preset": "ankles_sit",
+     "activity": "she is a donation-room nurse holding a bandage to her chest while she prepares the tray",
+     "preset": "wrap_close",
      "outfit": {
       "bold": "a donation nurse look fitted to her body — a short nurse dress unbuttoned at the top, white stockings and a small cap",
       "moderate": "a donation nurse look — a short-sleeved nurse dress to the knee and a small cap",
       "low": "a donation nurse look — a long-sleeved nurse dress and a small cap"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a rolled bandage"
     }
    }
   },
@@ -2891,17 +2896,17 @@
     },
     "mecha": {
      "job_ko": "응급 구조사",
-     "base": "nation_training",
+     "base": "nation_square",
      "place": "an emergency bay of her element's kingdom — an open response kit, a stretcher and flashing lights beyond a wide door",
-     "activity": "she is a paramedic kneeling ready with a transfusion bag",
-     "preset": "half_kneel_use",
-     "use": "sig_hold",
-     "prop": "a transfusion bag",
+     "activity": "she is a paramedic holding up a transfusion bag to check it",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a paramedic look fitted to her body — a paramedic vest over a sports-bra top, short tactical shorts, thin gloves and boots",
       "moderate": "a paramedic look — a paramedic vest over a fitted tee, slim trousers, thin gloves and boots",
       "low": "a paramedic look — a paramedic jacket, slim trousers, thin gloves and boots"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a transfusion bag"
     }
    }
   },
@@ -2926,22 +2931,24 @@
     },
     "steampunk": {
      "job_ko": "기상 관측관",
-     "base": "nation_roof",
+     "base": "nation_square",
      "place": "a weather station on a hilltop of her element's kingdom — a rain gauge, a wind vane, a white instrument box and clouds building far off",
-     "activity": "she is a weather observer watching the clouds come in",
-     "preset": "floor_horizon",
+     "activity": "she is a weather observer reading a thermometer in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a weather observer look fitted to her body — a cropped rain jacket open over a bandeau, short shorts and rain boots",
       "moderate": "a weather observer look — a rain jacket over a fitted top, knee-length shorts and rain boots",
       "low": "a weather observer look — a zipped rain jacket, trousers and rain boots"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a small brass thermometer"
     },
     "mecha": {
      "job_ko": "기상 관측관",
-     "base": "nation_roof",
+     "base": "nation_square",
      "place": "a weather station on a hilltop of her element's kingdom — a rain gauge, a wind vane, a white instrument box and clouds building far off",
-     "activity": "she is a weather observer watching the clouds come in",
-     "preset": "floor_horizon",
+     "activity": "she is a weather observer signalling that the weather looks fair",
+     "preset": "thumbs_waist",
      "outfit": {
       "bold": "a weather observer look fitted to her body — a cropped rain jacket open over a bandeau, short shorts and rain boots",
       "moderate": "a weather observer look — a rain jacket over a fitted top, knee-length shorts and rain boots",
@@ -2975,15 +2982,15 @@
      "job_ko": "급수대 봉사자",
      "base": "nation_square",
      "place": "a water station on a race course of her element's kingdom — a long table of bottles and cups, bunting and a painted road line",
-     "activity": "she is handing out water at a road race",
-     "preset": "raise_chest",
-     "use": "sig_raise",
-     "prop": "a clear bottle of water",
+     "activity": "she is a water-station volunteer walking along the long table with a bottle at her side",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a race volunteer look fitted to her body — a cropped event tee knotted under the bust, running shorts, a cap and sneakers",
       "moderate": "a race volunteer look — a fitted event tee, knee-length shorts, a cap and sneakers",
       "low": "a race volunteer look — an event jacket, track trousers, a cap and sneakers"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a clear bottle of water"
     }
    }
   },
@@ -3010,17 +3017,17 @@
     },
     "steampunk": {
      "job_ko": "물지게꾼",
-     "base": "nation_square",
+     "base": "nation_training",
      "place": "a village well of her element's kingdom — a stone well with a wooden roof, a rope and wet flagstones",
-     "activity": "she is a water carrier walking back from the well",
-     "preset": "stride_prop",
-     "use": "sig_low",
-     "prop": "a wooden water bucket",
+     "activity": "she is a water carrier kneeling on one knee to set her bucket down by the well",
+     "preset": "half_kneel_use",
      "outfit": {
       "bold": "a water carrier look fitted to her body — a damp chemise slipped off one shoulder, a skirt hitched up at one hip and bare feet",
       "moderate": "a water carrier look — a short-sleeved chemise, a knee-length skirt and sandals",
       "low": "a water carrier look — a long-sleeved chemise, a long skirt with an apron and sandals"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a wooden water bucket"
     }
    }
   },
@@ -3049,24 +3056,22 @@
      "job_ko": "우산 가게 주인",
      "base": "nation_square",
      "place": "an umbrella shop front of her element's kingdom — open umbrellas hanging overhead, a stand of canes and a wet street",
-     "activity": "she is an umbrella seller on a rainy day",
-     "preset": "wrap_close",
-     "use": "sig_both",
-     "prop": "a folded umbrella",
+     "activity": "she is an umbrella seller holding up an umbrella to show it off",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "an umbrella seller look fitted to her body — a short open raincoat over a fitted mini dress and rain boots",
       "moderate": "an umbrella seller look — a raincoat over a knee-length dress and rain boots",
       "low": "an umbrella seller look — a belted raincoat to the calf and rain boots"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a folded umbrella"
     },
     "mecha": {
      "job_ko": "우산 가게 주인",
-     "base": "nation_square",
+     "base": "nation_temple",
      "place": "an umbrella shop front of her element's kingdom — open umbrellas hanging overhead, a stand of canes and a wet street",
-     "activity": "she is an umbrella seller on a rainy day",
-     "preset": "wrap_close",
-     "use": "sig_both",
-     "prop": "a folded umbrella",
+     "activity": "she is an umbrella seller waiting out the rain with her hands together",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "an umbrella seller look fitted to her body — a short open raincoat over a fitted mini dress and rain boots",
       "moderate": "an umbrella seller look — a raincoat over a knee-length dress and rain boots",
@@ -3096,10 +3101,10 @@
     },
     "mecha": {
      "job_ko": "한증탕 관리인",
-     "base": "nation_bath",
+     "base": "nation_temple",
      "place": "a steam bath house of her element's kingdom — a tiled pool, wooden benches, brass pipes and thick white steam",
-     "activity": "she is a steam-bath attendant cooling her feet",
-     "preset": "edge_dangle",
+     "activity": "she is a steam-bath attendant standing in the steam with her hands folded",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a bath attendant look fitted to her body — a short towel wrap tied at the bust and a towel turban",
       "moderate": "a bath attendant look — a bath wrap dress to the knee and a towel turban",
@@ -3131,26 +3136,24 @@
     },
     "steampunk": {
      "job_ko": "공중 측량사",
-     "base": "nation_study",
+     "base": "nation_workshop",
      "place": "a survey office of her element's kingdom — a wide map table, a model balloon hanging from the ceiling and a brass telescope",
-     "activity": "she is an aerial surveyor drawing what she saw from above",
-     "preset": "table_lean_use",
-     "use": "sig_both",
-     "prop": "an aerial map and dividers",
+     "activity": "she is an aerial surveyor looking down at the dividers in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "an aerial surveyor look fitted to her body — a cropped survey jacket open over a bandeau, short breeches, tall boots and goggles pushed up",
       "moderate": "an aerial surveyor look — a survey jacket over a sleeveless blouse, breeches, tall boots and goggles pushed up",
       "low": "an aerial surveyor look — a buttoned survey jacket, breeches, tall boots and goggles pushed up"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a pair of dividers"
     },
     "mecha": {
      "job_ko": "공중 측량사",
      "base": "nation_study",
      "place": "a survey office of her element's kingdom — a wide map table, a model balloon hanging from the ceiling and a brass telescope",
-     "activity": "she is an aerial surveyor drawing what she saw from above",
-     "preset": "table_lean_use",
-     "use": "sig_both",
-     "prop": "an aerial map and dividers",
+     "activity": "she is an aerial surveyor standing back from the map table with her hands together",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "an aerial surveyor look fitted to her body — a cropped survey jacket open over a bandeau, short breeches, tall boots and goggles pushed up",
       "moderate": "an aerial surveyor look — a survey jacket over a sleeveless blouse, breeches, tall boots and goggles pushed up",
@@ -3182,8 +3185,8 @@
      "job_ko": "파티 플래너",
      "base": "nation_square",
      "place": "a party garden of her element's kingdom — clusters of pale balloons, a ribboned table and paper streamers",
-     "activity": "she is a party planner welcoming the first guests",
-     "preset": "wave_chest",
+     "activity": "she is a party planner looking over the garden with a hand on her hip",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a party planner look fitted to her body — a strapless party mini dress, a ribbon choker and heels",
       "moderate": "a party planner look — a sleeveless party dress to the knee and heels",
@@ -3194,13 +3197,15 @@
      "job_ko": "파티 플래너",
      "base": "nation_square",
      "place": "a party garden of her element's kingdom — clusters of pale balloons, a ribboned table and paper streamers",
-     "activity": "she is a party planner welcoming the first guests",
-     "preset": "wave_chest",
+     "activity": "she is a party planner holding a balloon to her chest while she checks the ribbons",
+     "preset": "wrap_close",
      "outfit": {
       "bold": "a party planner look fitted to her body — a strapless party mini dress, a ribbon choker and heels",
       "moderate": "a party planner look — a sleeveless party dress to the knee and heels",
       "low": "a party planner look — a long-sleeved party dress to the calf and heels"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a pale balloon on a ribbon"
     }
    }
   },
@@ -3246,10 +3251,10 @@
     },
     "steampunk": {
      "job_ko": "충전소 직원",
-     "base": "nation_square",
+     "base": "nation_temple",
      "place": "a fuelling station of her element's kingdom — white dispensers under a canopy, a coiled hose and a clean forecourt",
-     "activity": "she is a fuelling-station attendant waiting for the next vehicle",
-     "preset": "hip_contra",
+     "activity": "she is a fuelling-station attendant standing at ease on the forecourt",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a station attendant look fitted to her body — a cropped attendant jacket open over a tube top, short shorts, a cap and sneakers",
       "moderate": "a station attendant look — an attendant jacket over a fitted tee, slim trousers and a cap",
@@ -3260,13 +3265,15 @@
      "job_ko": "충전소 직원",
      "base": "nation_square",
      "place": "a fuelling station of her element's kingdom — white dispensers under a canopy, a coiled hose and a clean forecourt",
-     "activity": "she is a fuelling-station attendant waiting for the next vehicle",
-     "preset": "hip_contra",
+     "activity": "she is a fuelling-station attendant walking across the forecourt with a hose at her side",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a station attendant look fitted to her body — a cropped attendant jacket open over a tube top, short shorts, a cap and sneakers",
       "moderate": "a station attendant look — an attendant jacket over a fitted tee, slim trousers and a cap",
       "low": "a station attendant look — a zipped attendant jacket, slim trousers and a cap"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a coiled hose"
     }
    }
   },
@@ -3349,8 +3356,8 @@
      "job_ko": "천체 투영관 해설사",
      "base": "nation_square",
      "place": "a planetarium hall of her element's kingdom — a domed ceiling of projected stars, a great projector and rows of reclining seats",
-     "activity": "she is a planetarium guide about to dim the lights",
-     "preset": "clasp_low",
+     "activity": "she is a planetarium guide waving to begin the show",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a planetarium guide look fitted to her body — a midnight-blue mini dress with a plunging neckline and star pins, sheer tights and heels",
       "moderate": "a planetarium guide look — a midnight-blue fitted dress to the knee with star pins and heels",
@@ -3361,13 +3368,15 @@
      "job_ko": "천체 투영관 해설사",
      "base": "nation_square",
      "place": "a planetarium hall of her element's kingdom — a domed ceiling of projected stars, a great projector and rows of reclining seats",
-     "activity": "she is a planetarium guide about to dim the lights",
-     "preset": "clasp_low",
+     "activity": "she is a planetarium guide raising a pointer toward the domed ceiling",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a planetarium guide look fitted to her body — a midnight-blue mini dress with a plunging neckline and star pins, sheer tights and heels",
       "moderate": "a planetarium guide look — a midnight-blue fitted dress to the knee with star pins and heels",
       "low": "a planetarium guide look — a midnight-blue long-sleeved dress to the calf with star pins"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a small pointer"
     }
    }
   },
@@ -3392,10 +3401,10 @@
     },
     "mecha": {
      "job_ko": "일광욕 테라스 관리인",
-     "base": "nation_roof",
+     "base": "nation_square",
      "place": "a sun terrace of her element's kingdom — rows of loungers, folded towels, a parasol and a blazing clear sky",
-     "activity": "she is the keeper of a sun terrace taking her own turn in the sun",
-     "preset": "floor_horizon",
+     "activity": "she is the keeper of a sun terrace giving a thumbs-up to the fine weather",
+     "preset": "thumbs_waist",
      "outfit": {
       "bold": "a sun-terrace keeper look fitted to her body — a gold bikini with a sheer sarong tied low on the hip and sunglasses pushed up",
       "moderate": "a sun-terrace keeper look — a gold one-piece swimsuit with a sarong to the knee and sunglasses",
@@ -3452,29 +3461,29 @@
      "job_ko": "양초 장인",
      "base": "nation_workshop",
      "place": "a chandler's workshop of her element's kingdom — racks of hanging candles, a pot of melted wax and coils of wick",
-     "activity": "she is a candle maker lifting a fresh pair from the wax",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a pair of freshly dipped candles",
+     "activity": "she is a candle maker holding up a candle to check that it is even",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a candle maker look fitted to her body — a wax-spotted apron over an off-shoulder chemise and a short skirt, rolled stockings",
       "moderate": "a candle maker look — a wax-spotted apron over a short-sleeved chemise and a knee-length skirt",
       "low": "a candle maker look — a wax-spotted apron over a long-sleeved chemise and a long skirt"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a pair of freshly dipped candles"
     },
     "mecha": {
      "job_ko": "양초 장인",
      "base": "nation_workshop",
      "place": "a chandler's workshop of her element's kingdom — racks of hanging candles, a pot of melted wax and coils of wick",
-     "activity": "she is a candle maker lifting a fresh pair from the wax",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a pair of freshly dipped candles",
+     "activity": "she is a candle maker looking down at a length of wick in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a candle maker look fitted to her body — a wax-spotted apron over an off-shoulder chemise and a short skirt, rolled stockings",
       "moderate": "a candle maker look — a wax-spotted apron over a short-sleeved chemise and a knee-length skirt",
       "low": "a candle maker look — a wax-spotted apron over a long-sleeved chemise and a long skirt"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a coil of wick"
     }
    }
   },
@@ -3503,15 +3512,15 @@
      "job_ko": "촛불 식당 종업원",
      "base": "nation_square",
      "place": "a candlelit dining room of her element's kingdom — small tables with white cloths, dozens of candles and dark panelled walls",
-     "activity": "she is a waitress bringing a candle to a table",
-     "preset": "wrap_close",
-     "use": "sig_both",
-     "prop": "a lit candle in a small holder",
+     "activity": "she is a waitress carrying a candle between the tables",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a waitress look fitted to her body — a black strapless mini dress with a small white apron, stockings and a ribbon choker",
       "moderate": "a waitress look — a black sleeveless dress to the knee with a small white apron",
       "low": "a waitress look — a black long-sleeved dress to the calf with a white apron"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a lit candle in a small holder"
     }
    }
   },
@@ -3538,13 +3547,15 @@
      "job_ko": "야간 순찰 경관",
      "base": "nation_square",
      "place": "a night street under gas lamps of her element's kingdom — iron lamp posts, pools of warm light on wet cobbles and shuttered shop fronts",
-     "activity": "she is a night constable on her beat",
-     "preset": "hip_contra",
+     "activity": "she is a night constable walking her beat with a lantern at her side",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a night constable look fitted to her body — a short uniform jacket open over a corset top, a mini skirt, stockings, a peaked cap and a whistle chain",
       "moderate": "a night constable look — a fitted uniform jacket, a knee-length skirt, a peaked cap and a whistle chain",
       "low": "a night constable look — a buttoned uniform coat, trousers, a peaked cap and a whistle chain"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a small hand lantern"
     }
    }
   },
@@ -3569,10 +3580,10 @@
     },
     "steampunk": {
      "job_ko": "분수 정원지기",
-     "base": "nation_bath",
+     "base": "nation_temple",
      "place": "a water garden of her element's kingdom — a wide stone fountain basin, lily pads and clipped hedges",
-     "activity": "she is the keeper of the fountain garden cooling her feet",
-     "preset": "edge_dangle",
+     "activity": "she is the keeper of the fountain garden standing by the basin with her hands folded",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a fountain keeper look fitted to her body — a sheer wrap dress slipping off one shoulder and hitched high on her thighs, bare feet",
       "moderate": "a fountain keeper look — a sleeveless sundress to the knee, bare feet",
@@ -3581,10 +3592,10 @@
     },
     "mecha": {
      "job_ko": "분수 정원지기",
-     "base": "nation_bath",
+     "base": "nation_square",
      "place": "a water garden of her element's kingdom — a wide stone fountain basin, lily pads and clipped hedges",
-     "activity": "she is the keeper of the fountain garden cooling her feet",
-     "preset": "edge_dangle",
+     "activity": "she is the keeper of the fountain garden waving a friendly greeting",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a fountain keeper look fitted to her body — a sheer wrap dress slipping off one shoulder and hitched high on her thighs, bare feet",
       "moderate": "a fountain keeper look — a sleeveless sundress to the knee, bare feet",
@@ -3614,10 +3625,10 @@
     },
     "steampunk": {
      "job_ko": "갑판원",
-     "base": "nation_harbor",
+     "base": "nation_square",
      "place": "a quay beside a moored sailing ship of her element's kingdom — coiled ropes, a bollard and bright open sea",
-     "activity": "she is a deckhand waiting for the tide",
-     "preset": "edge_brace",
+     "activity": "she is a deckhand standing with a hand on her hip, watching the ropes",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a deckhand look fitted to her body — a striped crop top, tiny sailor shorts with buttons, a neckerchief and a sailor cap",
       "moderate": "a deckhand look — a striped fitted top, knee-length sailor shorts, a neckerchief and a sailor cap",
@@ -3626,15 +3637,17 @@
     },
     "mecha": {
      "job_ko": "갑판원",
-     "base": "nation_harbor",
+     "base": "nation_square",
      "place": "a quay beside a moored sailing ship of her element's kingdom — coiled ropes, a bollard and bright open sea",
-     "activity": "she is a deckhand waiting for the tide",
-     "preset": "edge_brace",
+     "activity": "she is a deckhand coiling a rope in both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a deckhand look fitted to her body — a striped crop top, tiny sailor shorts with buttons, a neckerchief and a sailor cap",
       "moderate": "a deckhand look — a striped fitted top, knee-length sailor shorts, a neckerchief and a sailor cap",
       "low": "a deckhand look — a striped long-sleeved top, wide sailor trousers and a sailor cap"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a coil of rope"
     }
    }
   },
@@ -3661,17 +3674,17 @@
     },
     "steampunk": {
      "job_ko": "약수터 안내원",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a spring pump room of her element's kingdom — a marble counter with a brass tap, rows of glasses and a mossy stone niche",
-     "activity": "she is a pump-room hostess offering the waters",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a glass of spring water",
+     "activity": "she is a pump-room hostess holding a glass of water to her chest",
+     "preset": "wrap_close",
      "outfit": {
       "bold": "a pump-room hostess look fitted to her body — an off-shoulder blouse, a corset belt, a short gathered skirt and a lace cap",
       "moderate": "a pump-room hostess look — a short-sleeved blouse, a corset belt, a knee-length skirt and a lace cap",
       "low": "a pump-room hostess look — a long-sleeved blouse, a corset belt, a long skirt and a lace cap"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a glass of spring water"
     }
    }
   },
@@ -3696,15 +3709,17 @@
     },
     "mecha": {
      "job_ko": "빙하 산악 안내인",
-     "base": "nation_stairs",
+     "base": "nation_square",
      "place": "a glacier trail of her element's kingdom — steps cut in blue-white ice, a coiled rope, an ice axe planted in the snow and far peaks",
-     "activity": "she is a glacier guide looking up the route",
-     "preset": "step_pause",
+     "activity": "she is a glacier guide gripping her ice axe in both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a glacier guide look fitted to her body — a cropped fur-trimmed parka open over a bandeau, short thermal shorts, tall fur boots and snow goggles",
       "moderate": "a glacier guide look — a fur-trimmed parka open over a fitted top, thermal leggings, tall boots and snow goggles",
       "low": "a glacier guide look — a zipped fur-trimmed parka, thermal trousers, tall boots and snow goggles"
-     }
+     },
+     "use": "sig_both",
+     "prop": "an ice axe"
     }
    }
   },
@@ -3731,12 +3746,10 @@
     },
     "steampunk": {
      "job_ko": "연잎차 찻집 주인",
-     "base": "nation_inn",
+     "base": "nation_study",
      "place": "a tea house beside a lotus pond of her element's kingdom — a low table, an open lattice door on pink lotus flowers and a clay teapot",
-     "activity": "she is the hostess of a lotus tea house",
-     "preset": "chair_cross_prop",
-     "use": "sig_hold",
-     "prop": "a small tea cup",
+     "activity": "she is the hostess of a lotus tea house standing with her hands folded, waiting for the first pot to brew",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a tea-house hostess look fitted to her body — a silk wrap robe worn off the shoulders with a deep neckline and slit high on the thigh, a wide sash",
       "moderate": "a tea-house hostess look — a short-sleeved silk wrap dress slit to the knee, a wide sash",
@@ -3766,10 +3779,10 @@
     },
     "steampunk": {
      "job_ko": "잠수 강사",
-     "base": "nation_harbor",
+     "base": "nation_square",
      "place": "a dive jetty of her element's kingdom — a rack of air tanks, fins and masks on the boards and clear deep water",
-     "activity": "she is a diving instructor waiting on the jetty",
-     "preset": "edge_brace",
+     "activity": "she is a diving instructor waving the all-clear signal",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a diving instructor look fitted to her body — a wetsuit peeled down to the hips over a bikini top, a mask pushed up on her head",
       "moderate": "a diving instructor look — a short-sleeved shorty wetsuit unzipped at the chest, a mask pushed up on her head",
@@ -3778,15 +3791,17 @@
     },
     "mecha": {
      "job_ko": "잠수 강사",
-     "base": "nation_harbor",
+     "base": "nation_square",
      "place": "a dive jetty of her element's kingdom — a rack of air tanks, fins and masks on the boards and clear deep water",
-     "activity": "she is a diving instructor waiting on the jetty",
-     "preset": "edge_brace",
+     "activity": "she is a diving instructor holding up a mask to check its seal",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a diving instructor look fitted to her body — a wetsuit peeled down to the hips over a bikini top, a mask pushed up on her head",
       "moderate": "a diving instructor look — a short-sleeved shorty wetsuit unzipped at the chest, a mask pushed up on her head",
       "low": "a diving instructor look — a full wetsuit zipped up, a mask pushed up on her head"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a diving mask"
     }
    }
   },
@@ -3813,17 +3828,17 @@
     },
     "mecha": {
      "job_ko": "산소 용접공",
-     "base": "nation_hangar",
+     "base": "nation_workshop",
      "place": "a welding bay of her element's kingdom — gas cylinders chained to the wall, a steel plate on trestles and scorch marks on the floor",
-     "activity": "she is a welder about to strike her torch",
-     "preset": "half_kneel_use",
-     "use": "sig_hold",
-     "prop": "a cutting torch",
+     "activity": "she is a welder looking down at her torch",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a welder look fitted to her body — a leather welding apron over a bandeau and short work shorts, long gauntlets and a visor pushed up",
       "moderate": "a welder look — a leather welding apron over a tank top and work trousers, gauntlets and a visor pushed up",
       "low": "a welder look — a leather welding jacket, work trousers, gauntlets and a visor pushed up"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a cutting torch"
     }
    }
   },
@@ -3873,24 +3888,22 @@
      "job_ko": "벽화 화가",
      "base": "nation_square",
      "place": "a long plaster wall of her element's kingdom — a half-painted mural in red earth colours, a low scaffold and pots of pigment",
-     "activity": "she is a mural painter laying in the red",
-     "preset": "camera_shot",
-     "use": "sig_both",
-     "prop": "a wide brush and a pot of red paint",
+     "activity": "she is a mural painter holding up a brush to judge the colour",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a mural painter look fitted to her body — a paint-streaked crop top, cut-off shorts, a kerchief and bare feet",
       "moderate": "a mural painter look — a paint-streaked sleeveless top, knee-length shorts and a kerchief",
       "low": "a mural painter look — a paint-streaked smock, trousers and a kerchief"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a wide brush"
     },
     "mecha": {
      "job_ko": "벽화 화가",
      "base": "nation_square",
      "place": "a long plaster wall of her element's kingdom — a half-painted mural in red earth colours, a low scaffold and pots of pigment",
-     "activity": "she is a mural painter laying in the red",
-     "preset": "camera_shot",
-     "use": "sig_both",
-     "prop": "a wide brush and a pot of red paint",
+     "activity": "she is a mural painter standing back with a hand on her hip to look over the wall",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a mural painter look fitted to her body — a paint-streaked crop top, cut-off shorts, a kerchief and bare feet",
       "moderate": "a mural painter look — a paint-streaked sleeveless top, knee-length shorts and a kerchief",
@@ -3924,15 +3937,15 @@
      "job_ko": "도공",
      "base": "nation_workshop",
      "place": "a potter's shed of her element's kingdom — shelves of drying red-clay pots, a wheel and a bucket of slip",
-     "activity": "she is a potter turning a finished bowl in her hands",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a red clay bowl",
+     "activity": "she is a potter holding up a bowl to check its shape",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a potter look fitted to her body — a clay-smeared apron over a bandeau and short shorts, bare arms dusted red",
       "moderate": "a potter look — a clay-smeared apron over a sleeveless top and rolled trousers",
       "low": "a potter look — a clay-smeared apron over a rolled-sleeve shirt and trousers"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a red clay bowl"
     }
    }
   },
@@ -3961,15 +3974,15 @@
      "job_ko": "행성 지질학자",
      "base": "nation_square",
      "place": "a red desert plain of her element's kingdom — rust-coloured stones, a sample case, a planted marker flag and a dusty pink sky",
-     "activity": "she is a field geologist picking up a red stone",
-     "preset": "squat_prop",
-     "use": "sig_hold",
-     "prop": "a red rock sample",
+     "activity": "she is a field geologist looking down at a rock sample in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a field geologist look fitted to her body — a cropped field vest over a sports-bra top, short cargo shorts, gloves and dusty boots",
       "moderate": "a field geologist look — a field vest over a fitted tee, cargo shorts to the knee and dusty boots",
       "low": "a field geologist look — a field jacket, cargo trousers and dusty boots"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a red rock sample"
     }
    }
   },
@@ -3998,10 +4011,8 @@
      "job_ko": "항만 일꾼",
      "base": "nation_square",
      "place": "a harbour wharf of her element's kingdom — a great rusted anchor on the stones, salt-crusted chain and moored hulls",
-     "activity": "she is a wharf hand carrying a line down the quay",
-     "preset": "stride_prop",
-     "use": "sig_low",
-     "prop": "a coil of heavy rope",
+     "activity": "she is a wharf hand resting with a hand on her hip beside the great anchor",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a wharf hand look fitted to her body — a tied-up striped shirt, cut-off canvas shorts, a kerchief and boots",
       "moderate": "a wharf hand look — a striped short-sleeved shirt, canvas trousers rolled to the knee and boots",
@@ -4031,10 +4042,10 @@
     },
     "steampunk": {
      "job_ko": "유산소 운동 강사",
-     "base": "nation_training",
+     "base": "nation_square",
      "place": "a fitness studio of her element's kingdom — a mirror wall, a row of step boards and a pulse chart on the wall",
-     "activity": "she is a cardio instructor catching her breath after a class",
-     "preset": "hip_contra",
+     "activity": "she is a cardio instructor giving a thumbs-up for a good class",
+     "preset": "thumbs_waist",
      "outfit": {
       "bold": "a cardio instructor look fitted to her body — a red sports bra and tiny training shorts, wrist bands and sneakers",
       "moderate": "a cardio instructor look — a red cropped tank and training leggings to the calf, wrist bands and sneakers",
@@ -4043,10 +4054,10 @@
     },
     "mecha": {
      "job_ko": "유산소 운동 강사",
-     "base": "nation_training",
+     "base": "nation_square",
      "place": "a fitness studio of her element's kingdom — a mirror wall, a row of step boards and a pulse chart on the wall",
-     "activity": "she is a cardio instructor catching her breath after a class",
-     "preset": "hip_contra",
+     "activity": "she is a cardio instructor waving goodbye at the end of class",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a cardio instructor look fitted to her body — a red sports bra and tiny training shorts, wrist bands and sneakers",
       "moderate": "a cardio instructor look — a red cropped tank and training leggings to the calf, wrist bands and sneakers",
@@ -4078,17 +4089,17 @@
     },
     "steampunk": {
      "job_ko": "연애편지 대필가",
-     "base": "nation_study",
+     "base": "nation_workshop",
      "place": "a letter-writer's booth of her element's kingdom — a small desk, ribbons and sealing wax, and a red heart locket hanging by the window",
-     "activity": "she is a writer of love letters finding the next line",
-     "preset": "table_lean_use",
-     "use": "sig_both",
-     "prop": "a love letter and a pen",
+     "activity": "she is a writer of love letters holding up a page to read it over",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a letter writer look fitted to her body — a lace-trimmed blouse slipping off both shoulders, a corset belt and a short skirt, stockings",
       "moderate": "a letter writer look — a short-sleeved lace-trimmed blouse, a corset belt and a knee-length skirt",
       "low": "a letter writer look — a long-sleeved lace-trimmed blouse and a long skirt"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a love letter"
     }
    }
   },
@@ -4117,15 +4128,15 @@
      "job_ko": "혈액 검사 기사",
      "base": "nation_workshop",
      "place": "a blood laboratory of her element's kingdom — a brass microscope, racks of small tubes and a bright window",
-     "activity": "she is a blood-lab technician checking a slide against the light",
-     "preset": "raise_chest",
-     "use": "sig_raise",
-     "prop": "a glass slide",
+     "activity": "she is a blood-lab technician setting a slide under the microscope",
+     "preset": "counter_work",
      "outfit": {
       "bold": "a lab technician look fitted to her body — a lab coat worn open over a low-cut camisole and a short skirt, sheer stockings",
       "moderate": "a lab technician look — a lab coat over a fitted blouse and a knee-length skirt",
       "low": "a lab technician look — a buttoned lab coat over a blouse and trousers"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a glass slide"
     }
    }
   },
@@ -4152,8 +4163,8 @@
      "job_ko": "소방관",
      "base": "nation_square",
      "place": "a fire station yard of her element's kingdom — a polished engine, coiled hoses and a brass bell",
-     "activity": "she is a firefighter back from a call",
-     "preset": "hip_contra",
+     "activity": "she is a firefighter giving a thumbs-up that the call went well",
+     "preset": "thumbs_waist",
      "outfit": {
       "bold": "a firefighter look fitted to her body — fire trousers with braces over a cropped tank top, the jacket tied at her waist and heavy boots",
       "moderate": "a firefighter look — fire trousers with braces over a fitted tee and heavy boots",
@@ -4164,13 +4175,15 @@
      "job_ko": "소방관",
      "base": "nation_square",
      "place": "a fire station yard of her element's kingdom — a polished engine, coiled hoses and a brass bell",
-     "activity": "she is a firefighter back from a call",
-     "preset": "hip_contra",
+     "activity": "she is a firefighter walking with a coil of hose at her side",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a firefighter look fitted to her body — fire trousers with braces over a cropped tank top, the jacket tied at her waist and heavy boots",
       "moderate": "a firefighter look — fire trousers with braces over a fitted tee and heavy boots",
       "low": "a firefighter look — a fire jacket and trousers, heavy boots"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a coil of hose"
     }
    }
   },
@@ -4197,17 +4210,17 @@
     },
     "steampunk": {
      "job_ko": "풀무꾼",
-     "base": "nation_training",
+     "base": "nation_square",
      "place": "a forge yard of her element's kingdom — an open hearth of glowing coals, an anvil and a rack of tongs",
-     "activity": "she is the forge's bellows hand feeding air to the fire",
-     "preset": "half_kneel_use",
-     "use": "sig_hold",
-     "prop": "a leather bellows",
+     "activity": "she is the forge's bellows hand working the bellows with both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a bellows hand look fitted to her body — a leather apron over a bandeau and short breeches, soot on her bare arms and boots",
       "moderate": "a bellows hand look — a leather apron over a sleeveless tunic and breeches, boots",
       "low": "a bellows hand look — a leather apron over a rolled-sleeve tunic and breeches, boots"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a leather bellows"
     }
    }
   },
@@ -4236,15 +4249,15 @@
      "job_ko": "성화 봉송 주자",
      "base": "nation_square",
      "place": "a ceremonial road of her element's kingdom — banners on poles, a waiting brazier on a stone stand and a cheering-day sky",
-     "activity": "she is a torch relay runner on her stretch of the road",
-     "preset": "stride_prop",
-     "use": "sig_low",
-     "prop": "a relay torch",
+     "activity": "she is a torch relay runner holding the torch up beside her face",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a relay runner look fitted to her body — a white crop top and tiny running shorts with a sash across her chest, running shoes",
       "moderate": "a relay runner look — a white fitted running vest and knee-length shorts with a sash, running shoes",
       "low": "a relay runner look — a white long-sleeved running top and leggings with a sash, running shoes"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a relay torch"
     }
    }
   },
@@ -4271,17 +4284,17 @@
     },
     "mecha": {
      "job_ko": "시가 라운지 호스티스",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a smoking lounge of her element's kingdom — leather armchairs, a bar of cut-glass decanters and low amber lamps",
-     "activity": "she is a lounge hostess ready with a light",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a box of matches",
+     "activity": "she is a lounge hostess looking down at a box of matches in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a lounge hostess look fitted to her body — a satin slip dress with thin straps and a deep neckline, cut short, long gloves and heels",
       "moderate": "a lounge hostess look — a satin sleeveless dress to the knee, long gloves and heels",
       "low": "a lounge hostess look — a satin long-sleeved dress to the calf and heels"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a box of matches"
     }
    }
   },
@@ -4306,10 +4319,10 @@
     },
     "steampunk": {
      "job_ko": "산림 감시원",
-     "base": "nation_stairs",
+     "base": "nation_square",
      "place": "a forest lookout of her element's kingdom — the wooden steps of a watch tower, tall trunks and green light through the leaves",
-     "activity": "she is a forest ranger pausing on the tower steps",
-     "preset": "step_pause",
+     "activity": "she is a forest ranger waving the all-clear from the tower steps",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a forest ranger look fitted to her body — a ranger shirt tied under the bust, short ranger shorts, a brimmed hat and hiking boots",
       "moderate": "a forest ranger look — a short-sleeved ranger shirt, knee-length shorts, a brimmed hat and hiking boots",
@@ -4318,15 +4331,17 @@
     },
     "mecha": {
      "job_ko": "산림 감시원",
-     "base": "nation_stairs",
+     "base": "nation_square",
      "place": "a forest lookout of her element's kingdom — the wooden steps of a watch tower, tall trunks and green light through the leaves",
-     "activity": "she is a forest ranger pausing on the tower steps",
-     "preset": "step_pause",
+     "activity": "she is a forest ranger raising a spyglass beside her face",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a forest ranger look fitted to her body — a ranger shirt tied under the bust, short ranger shorts, a brimmed hat and hiking boots",
       "moderate": "a forest ranger look — a short-sleeved ranger shirt, knee-length shorts, a brimmed hat and hiking boots",
       "low": "a forest ranger look — a ranger jacket, trousers, a brimmed hat and hiking boots"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a brass spyglass"
     }
    }
   },
@@ -4355,10 +4370,8 @@
      "job_ko": "찻잎 따는 사람",
      "base": "nation_square",
      "place": "a tea terrace on a hillside of her element's kingdom — rows of clipped green bushes, a drying tray and morning mist",
-     "activity": "she is a tea picker with a full basket",
-     "preset": "wrap_close",
-     "use": "sig_both",
-     "prop": "a basket of fresh green leaves",
+     "activity": "she is a tea picker resting with a hand on her hip between the rows",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a tea picker look fitted to her body — a wrap top tied open over a bandeau, a short wrap skirt, a wide straw hat and bare legs",
       "moderate": "a tea picker look — a short-sleeved wrap top, a knee-length wrap skirt and a wide straw hat",
@@ -4369,15 +4382,15 @@
      "job_ko": "찻잎 따는 사람",
      "base": "nation_square",
      "place": "a tea terrace on a hillside of her element's kingdom — rows of clipped green bushes, a drying tray and morning mist",
-     "activity": "she is a tea picker with a full basket",
-     "preset": "wrap_close",
-     "use": "sig_both",
-     "prop": "a basket of fresh green leaves",
+     "activity": "she is a tea picker clipping a bush with shears in both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a tea picker look fitted to her body — a wrap top tied open over a bandeau, a short wrap skirt, a wide straw hat and bare legs",
       "moderate": "a tea picker look — a short-sleeved wrap top, a knee-length wrap skirt and a wide straw hat",
       "low": "a tea picker look — a long-sleeved wrap top, loose trousers and a wide straw hat"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a pair of small shears"
     }
    }
   },
@@ -4404,13 +4417,15 @@
      "job_ko": "나무 의사",
      "base": "nation_square",
      "place": "the foot of an ancient hollow oak of her element's kingdom — spreading roots, hanging moss, a coiled climbing rope and a tool bag",
-     "activity": "she is a tree doctor looking over her oldest patient",
-     "preset": "hip_contra",
+     "activity": "she is a tree doctor looking down at a small saw in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a tree surgeon look fitted to her body — a cropped tank top, short work shorts, a climbing harness, gloves and boots",
       "moderate": "a tree surgeon look — a fitted tee, work trousers rolled to the knee, a climbing harness and boots",
       "low": "a tree surgeon look — a work shirt, work trousers, a climbing harness and boots"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a small pruning saw"
     }
    }
   },
@@ -4439,29 +4454,29 @@
      "job_ko": "보석 감정사",
      "base": "nation_workshop",
      "place": "a gem appraiser's room of her element's kingdom — a velvet tray of stones, a small balance and a bright desk lamp",
-     "activity": "she is a gem appraiser reading a stone",
-     "preset": "raise_chest",
-     "use": "sig_raise",
-     "prop": "a cut diamond held in tweezers",
+     "activity": "she is a gem appraiser looking down at a stone held in tweezers",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a gem appraiser look fitted to her body — a tailored waistcoat worn with nothing beneath, a short tight skirt, sheer stockings and a loupe on a chain",
       "moderate": "a gem appraiser look — a tailored waistcoat over a sleeveless blouse, a knee-length skirt and a loupe on a chain",
       "low": "a gem appraiser look — a tailored jacket over a blouse, a long skirt and a loupe on a chain"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a cut diamond held in tweezers"
     },
     "mecha": {
      "job_ko": "보석 감정사",
      "base": "nation_workshop",
      "place": "a gem appraiser's room of her element's kingdom — a velvet tray of stones, a small balance and a bright desk lamp",
-     "activity": "she is a gem appraiser reading a stone",
-     "preset": "raise_chest",
-     "use": "sig_raise",
-     "prop": "a cut diamond held in tweezers",
+     "activity": "she is a gem appraiser studying a stone at her desk with a loupe",
+     "preset": "counter_work",
      "outfit": {
       "bold": "a gem appraiser look fitted to her body — a tailored waistcoat worn with nothing beneath, a short tight skirt, sheer stockings and a loupe on a chain",
       "moderate": "a gem appraiser look — a tailored waistcoat over a sleeveless blouse, a knee-length skirt and a loupe on a chain",
       "low": "a gem appraiser look — a tailored jacket over a blouse, a long skirt and a loupe on a chain"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a small jeweller's loupe"
     }
    }
   },
@@ -4488,26 +4503,24 @@
     },
     "steampunk": {
      "job_ko": "보석 가게 점원",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a jeweller's shop of her element's kingdom — a glass counter of rings on velvet, a mirror and soft spotlights",
-     "activity": "she is a jeweller's clerk showing a ring",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "an open ring box",
+     "activity": "she is a jeweller's clerk holding a ring box to her chest",
+     "preset": "wrap_close",
      "outfit": {
       "bold": "a jeweller's clerk look fitted to her body — a black bodycon mini dress with a plunging neckline, white gloves and heels",
       "moderate": "a jeweller's clerk look — a black fitted dress to the knee with short sleeves, white gloves and heels",
       "low": "a jeweller's clerk look — a black long-sleeved dress to the calf, white gloves and heels"
-     }
+     },
+     "use": "sig_both",
+     "prop": "an open ring box"
     },
     "mecha": {
      "job_ko": "보석 가게 점원",
-     "base": "nation_inn",
+     "base": "nation_study",
      "place": "a jeweller's shop of her element's kingdom — a glass counter of rings on velvet, a mirror and soft spotlights",
-     "activity": "she is a jeweller's clerk showing a ring",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "an open ring box",
+     "activity": "she is a jeweller's clerk waiting behind the counter with her hands folded",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a jeweller's clerk look fitted to her body — a black bodycon mini dress with a plunging neckline, white gloves and heels",
       "moderate": "a jeweller's clerk look — a black fitted dress to the knee with short sleeves, white gloves and heels",
@@ -4539,17 +4552,17 @@
     },
     "mecha": {
      "job_ko": "굴착 기사",
-     "base": "nation_hangar",
+     "base": "nation_workshop",
      "place": "a tunnelling bay of her element's kingdom — the great toothed face of a boring machine, rock dust and work lamps",
-     "activity": "she is a tunnel driller checking a bit",
-     "preset": "half_kneel_use",
-     "use": "sig_hold",
-     "prop": "a diamond-tipped drill bit",
+     "activity": "she is a tunnel driller fitting a drill bit with both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a tunnel driller look fitted to her body — a high-vis vest over a sports-bra top, low-slung work shorts, a helmet lamp, gloves and boots",
       "moderate": "a tunnel driller look — a high-vis vest over a fitted tee, work trousers, a helmet lamp and boots",
       "low": "a tunnel driller look — a high-vis jacket, work trousers, a helmet lamp and boots"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a diamond-tipped drill bit"
     }
    }
   },
@@ -4576,31 +4589,30 @@
     },
     "steampunk": {
      "job_ko": "건축 설계사",
-     "base": "nation_study",
+     "base": "nation_workshop",
      "place": "an architect's studio of her element's kingdom — a slanted drawing table, rolled plans and a white model of a tower",
-     "activity": "she is an architect drawing a clean line",
-     "preset": "table_lean_use",
-     "use": "sig_both",
-     "prop": "a drafting pencil and a building plan",
+     "activity": "she is an architect holding up a pencil to sight along a line",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "an architect look fitted to her body — a white shirt unbuttoned low with sleeves rolled, a short pencil skirt, sheer tights and glasses",
       "moderate": "an architect look — a white short-sleeved shirt, a knee-length pencil skirt and glasses",
       "low": "an architect look — a white shirt under a waistcoat, trousers and glasses"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a drafting pencil"
     },
     "mecha": {
      "job_ko": "건축 설계사",
-     "base": "nation_study",
+     "base": "nation_workshop",
      "place": "an architect's studio of her element's kingdom — a slanted drawing table, rolled plans and a white model of a tower",
-     "activity": "she is an architect drawing a clean line",
-     "preset": "table_lean_use",
-     "use": "sig_both",
-     "prop": "a drafting pencil and a building plan",
+     "activity": "she is an architect sitting on a stool to work on a small detail of the model",
+     "preset": "bench_fix",
      "outfit": {
       "bold": "an architect look fitted to her body — a white shirt unbuttoned low with sleeves rolled, a short pencil skirt, sheer tights and glasses",
       "moderate": "an architect look — a white short-sleeved shirt, a knee-length pencil skirt and glasses",
       "low": "an architect look — a white shirt under a waistcoat, trousers and glasses"
-     }
+     },
+     "use": "tool_fix"
     }
    }
   },
@@ -4629,24 +4641,22 @@
      "job_ko": "취재 기자",
      "base": "nation_square",
      "place": "a busy street corner of her element's kingdom — a news stand, posted bills and a lamp post",
-     "activity": "she is a reporter looking over her notes",
-     "preset": "pocket_look",
-     "use": "sig_hold",
-     "prop": "a notepad and a pencil",
+     "activity": "she is a reporter walking down the street with her notepad at her side",
+     "preset": "stride_prop",
      "outfit": {
       "bold": "a reporter look fitted to her body — a short trench vest worn open over a camisole, a mini skirt, stockings and a press card in her hat band",
       "moderate": "a reporter look — a trench vest over a blouse, a knee-length skirt and a hat with a press card",
       "low": "a reporter look — a belted trench coat, trousers and a hat with a press card"
-     }
+     },
+     "use": "sig_low",
+     "prop": "a notepad and a pencil"
     },
     "mecha": {
      "job_ko": "취재 기자",
      "base": "nation_square",
      "place": "a busy street corner of her element's kingdom — a news stand, posted bills and a lamp post",
-     "activity": "she is a reporter looking over her notes",
-     "preset": "pocket_look",
-     "use": "sig_hold",
-     "prop": "a notepad and a pencil",
+     "activity": "she is a reporter waiting at the corner with a hand on her hip",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a reporter look fitted to her body — a short trench vest worn open over a camisole, a mini skirt, stockings and a press card in her hat band",
       "moderate": "a reporter look — a trench vest over a blouse, a knee-length skirt and a hat with a press card",
@@ -4680,29 +4690,29 @@
      "job_ko": "칼 대장장이",
      "base": "nation_workshop",
      "place": "a bladesmith's forge of her element's kingdom — a quench trough, a rack of blades with flowing patterns and a low red hearth",
-     "activity": "she is a bladesmith sighting down a new edge",
-     "preset": "raise_chest",
-     "use": "sig_raise",
-     "prop": "a freshly tempered blade",
+     "activity": "she is a bladesmith polishing a blade at her bench",
+     "preset": "counter_work",
      "outfit": {
       "bold": "a bladesmith look fitted to her body — a leather apron over a bandeau and short work breeches, arm wraps and boots",
       "moderate": "a bladesmith look — a leather apron over a sleeveless tunic and work breeches, arm wraps and boots",
       "low": "a bladesmith look — a leather apron over a rolled-sleeve tunic and work breeches, boots"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a freshly tempered blade"
     },
     "mecha": {
      "job_ko": "칼 대장장이",
      "base": "nation_workshop",
      "place": "a bladesmith's forge of her element's kingdom — a quench trough, a rack of blades with flowing patterns and a low red hearth",
-     "activity": "she is a bladesmith sighting down a new edge",
-     "preset": "raise_chest",
-     "use": "sig_raise",
-     "prop": "a freshly tempered blade",
+     "activity": "she is a bladesmith looking down the length of a blade in her hand",
+     "preset": "pocket_look",
      "outfit": {
       "bold": "a bladesmith look fitted to her body — a leather apron over a bandeau and short work breeches, arm wraps and boots",
       "moderate": "a bladesmith look — a leather apron over a sleeveless tunic and work breeches, arm wraps and boots",
       "low": "a bladesmith look — a leather apron over a rolled-sleeve tunic and work breeches, boots"
-     }
+     },
+     "use": "sig_hold",
+     "prop": "a freshly tempered blade"
     }
    }
   },
@@ -4727,15 +4737,17 @@
     },
     "steampunk": {
      "job_ko": "숯불 구이 장인",
-     "base": "nation_camp",
+     "base": "nation_square",
      "place": "a grill pit of her element's kingdom — a bed of glowing charcoal, an iron grate, a stack of black charcoal sticks and hanging tongs",
-     "activity": "she is a charcoal grill master tending her coals",
-     "preset": "fire_sit",
+     "activity": "she is a charcoal grill master turning coals with tongs in both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a grill master look fitted to her body — a soot-smudged apron over a bandeau and short shorts, a headband and sandals",
       "moderate": "a grill master look — a soot-smudged apron over a sleeveless top and rolled trousers, a headband",
       "low": "a grill master look — a soot-smudged apron over a rolled-sleeve shirt and trousers, a headband"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a pair of tongs"
     }
    }
   },
@@ -4762,26 +4774,24 @@
     },
     "steampunk": {
      "job_ko": "국밥집 주인",
-     "base": "nation_kitchen",
+     "base": "nation_workshop",
      "place": "a cookhouse kitchen of her element's kingdom — a great black iron pot steaming on the range, stacked bowls and hanging herbs",
-     "activity": "she is the cook of a stew house stirring the big pot",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a long wooden ladle",
+     "activity": "she is the cook of a stew house tasting from a ladle",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a stew-house cook look fitted to her body — a kitchen apron over an off-shoulder top and a short skirt, a headscarf",
       "moderate": "a stew-house cook look — a kitchen apron over a short-sleeved top and a knee-length skirt, a headscarf",
       "low": "a stew-house cook look — a kitchen apron over a long-sleeved top and a long skirt, a headscarf"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a long wooden ladle"
     },
     "mecha": {
      "job_ko": "국밥집 주인",
-     "base": "nation_kitchen",
+     "base": "nation_study",
      "place": "a cookhouse kitchen of her element's kingdom — a great black iron pot steaming on the range, stacked bowls and hanging herbs",
-     "activity": "she is the cook of a stew house stirring the big pot",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a long wooden ladle",
+     "activity": "she is the cook of a stew house waiting with her hands together for the pot to boil",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a stew-house cook look fitted to her body — a kitchen apron over an off-shoulder top and a short skirt, a headscarf",
       "moderate": "a stew-house cook look — a kitchen apron over a short-sleeved top and a knee-length skirt, a headscarf",
@@ -4813,17 +4823,17 @@
     },
     "mecha": {
      "job_ko": "칼솜씨 요리사",
-     "base": "nation_kitchen",
+     "base": "nation_workshop",
      "place": "an open show kitchen of her element's kingdom — a long cutting board, a rack of patterned knives and bright pass lights",
-     "activity": "she is a chef known for her knife work",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a chef's knife with a flowing watery pattern",
+     "activity": "she is a chef holding up her knife to show its pattern",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a knife chef look fitted to her body — a chef jacket worn open over a bandeau top, short black shorts and a long apron tied at the hip",
       "moderate": "a knife chef look — a short-sleeved chef jacket, slim black trousers and a long apron",
       "low": "a knife chef look — a buttoned chef jacket, slim black trousers and a long apron"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a chef's knife with a flowing watery pattern"
     }
    }
   },
@@ -4848,10 +4858,10 @@
     },
     "steampunk": {
      "job_ko": "굴뚝 청소부",
-     "base": "nation_stairs",
+     "base": "nation_square",
      "place": "a rooftop among chimney pots of her element's kingdom — a ladder, coiled brushes and thin smoke over the town",
-     "activity": "she is a chimney sweep pausing on the roof ladder",
-     "preset": "step_pause",
+     "activity": "she is a chimney sweep waving from the rooftop",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a chimney sweep look fitted to her body — a soot-smudged short jacket open over a bandeau, tiny patched shorts, striped stockings and a flat cap",
       "moderate": "a chimney sweep look — a soot-smudged jacket over a sleeveless top, knee breeches and a flat cap",
@@ -4860,15 +4870,17 @@
     },
     "mecha": {
      "job_ko": "굴뚝 청소부",
-     "base": "nation_stairs",
+     "base": "nation_square",
      "place": "a rooftop among chimney pots of her element's kingdom — a ladder, coiled brushes and thin smoke over the town",
-     "activity": "she is a chimney sweep pausing on the roof ladder",
-     "preset": "step_pause",
+     "activity": "she is a chimney sweep pushing a brush into a chimney pot with both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a chimney sweep look fitted to her body — a soot-smudged short jacket open over a bandeau, tiny patched shorts, striped stockings and a flat cap",
       "moderate": "a chimney sweep look — a soot-smudged jacket over a sleeveless top, knee breeches and a flat cap",
       "low": "a chimney sweep look — a soot-smudged jacket, long trousers and a flat cap"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a long chimney brush"
     }
    }
   },
@@ -4893,10 +4905,10 @@
     },
     "steampunk": {
      "job_ko": "야영 안내인",
-     "base": "nation_camp",
+     "base": "nation_temple",
      "place": "a forest campsite of her element's kingdom — a campfire of crossed logs, a canvas tent and a kettle on a hook",
-     "activity": "she is a camp guide warming her hands by the fire",
-     "preset": "fire_sit",
+     "activity": "she is a camp guide standing by the fire with her hands together",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a camp guide look fitted to her body — a plaid shirt tied under the bust, short hiking shorts, wool socks and boots",
       "moderate": "a camp guide look — a plaid short-sleeved shirt, knee-length hiking shorts and boots",
@@ -4928,8 +4940,8 @@
      "job_ko": "탄광 광부",
      "base": "nation_square",
      "place": "a pithead yard of her element's kingdom — a winding tower, a row of coal tubs on rails and black dust on everything",
-     "activity": "she is a coal miner just up from her shift",
-     "preset": "hip_contra",
+     "activity": "she is a coal miner giving a thumbs-up at the end of her shift",
+     "preset": "thumbs_waist",
      "outfit": {
       "bold": "a coal miner look fitted to her body — coal-dusted overalls with the bib down over a cropped tank top, a lamp helmet and boots",
       "moderate": "a coal miner look — coal-dusted overalls over a fitted tee, a lamp helmet and boots",
@@ -4962,27 +4974,29 @@
      "job_ko": "정비사",
      "base": "nation_workshop",
      "place": "a motor garage of her element's kingdom — an engine on a stand, an oil can, a wall of spanners and a stained bench",
-     "activity": "she is a mechanic working on a small engine part",
-     "preset": "bench_fix",
-     "use": "tool_fix",
+     "activity": "she is a mechanic tightening a bolt with a spanner at the bench",
+     "preset": "counter_work",
      "outfit": {
       "bold": "a mechanic look fitted to her body — oil-stained coveralls peeled to the waist with the sleeves tied over a cropped tank top, a rag in her pocket",
       "moderate": "a mechanic look — oil-stained coveralls unzipped to the chest over a fitted tank top",
       "low": "a mechanic look — zipped oil-stained coveralls with rolled sleeves"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a spanner"
     },
     "mecha": {
      "job_ko": "정비사",
      "base": "nation_workshop",
      "place": "a motor garage of her element's kingdom — an engine on a stand, an oil can, a wall of spanners and a stained bench",
-     "activity": "she is a mechanic working on a small engine part",
-     "preset": "bench_fix",
-     "use": "tool_fix",
+     "activity": "she is a mechanic holding up an oil can to check its level",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a mechanic look fitted to her body — oil-stained coveralls peeled to the waist with the sleeves tied over a cropped tank top, a rag in her pocket",
       "moderate": "a mechanic look — oil-stained coveralls unzipped to the chest over a fitted tank top",
       "low": "a mechanic look — zipped oil-stained coveralls with rolled sleeves"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "an oil can"
     }
    }
   },
@@ -5007,15 +5021,17 @@
     },
     "steampunk": {
      "job_ko": "밤 서고 사서",
-     "base": "nation_study",
+     "base": "nation_workshop",
      "place": "a library at night of her element's kingdom — tall shelves, a rolling ladder and a glass oil lamp glowing on the desk",
-     "activity": "she is the night librarian reaching for a high book",
-     "preset": "reach_shelf",
+     "activity": "she is the night librarian holding a book up beside her face to check its binding",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a night librarian look fitted to her body — a blouse unbuttoned low and tucked into a short tight skirt with a side slit, stockings and glasses on a chain",
       "moderate": "a night librarian look — a short-sleeved blouse, a knee-length skirt and glasses on a chain",
       "low": "a night librarian look — a long-sleeved blouse with a shawl, a long skirt and glasses on a chain"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a closed book"
     }
    }
   },
@@ -5077,24 +5093,22 @@
      "job_ko": "벌목꾼",
      "base": "nation_square",
      "place": "a logging clearing of her element's kingdom — stacked trunks, fresh stumps and sawdust in slanting light",
-     "activity": "she is a lumberjack walking back from the cut",
-     "preset": "stride_prop",
-     "use": "sig_low",
-     "prop": "a felling axe",
+     "activity": "she is a lumberjack swinging an axe in both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a lumberjack look fitted to her body — a plaid shirt tied under the bust with sleeves torn off, cut-off denim shorts, braces and boots",
       "moderate": "a lumberjack look — a sleeveless plaid shirt, work trousers with braces and boots",
       "low": "a lumberjack look — a plaid shirt, work trousers with braces and boots"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a felling axe"
     },
     "mecha": {
      "job_ko": "벌목꾼",
      "base": "nation_square",
      "place": "a logging clearing of her element's kingdom — stacked trunks, fresh stumps and sawdust in slanting light",
-     "activity": "she is a lumberjack walking back from the cut",
-     "preset": "stride_prop",
-     "use": "sig_low",
-     "prop": "a felling axe",
+     "activity": "she is a lumberjack resting with a hand on her hip beside the stacked trunks",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a lumberjack look fitted to her body — a plaid shirt tied under the bust with sleeves torn off, cut-off denim shorts, braces and boots",
       "moderate": "a lumberjack look — a sleeveless plaid shirt, work trousers with braces and boots",
@@ -5126,17 +5140,17 @@
     },
     "steampunk": {
      "job_ko": "서예가",
-     "base": "nation_study",
+     "base": "nation_workshop",
      "place": "a calligrapher's room of her element's kingdom — a low desk, an ink stone, hanging scrolls of flowing strokes and paper screens",
-     "activity": "she is a calligrapher about to make the first stroke",
-     "preset": "table_lean_use",
-     "use": "sig_both",
-     "prop": "a long brush over a paper scroll",
+     "activity": "she is a calligrapher holding up a brush to judge its tip",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a calligrapher look fitted to her body — a robe worn off both shoulders over a chest wrap, slit high on the thigh, sleeves tied back with a cord",
       "moderate": "a calligrapher look — a short-sleeved robe slit to the knee, sleeves tied back with a cord",
       "low": "a calligrapher look — a long-sleeved robe, sleeves tied back with a cord"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a long brush"
     }
    }
   },
@@ -5163,17 +5177,17 @@
     },
     "steampunk": {
      "job_ko": "술 저장고지기",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a wine cellar of her element's kingdom — rows of oak barrels with iron hoops, a tasting table and a single lamp",
-     "activity": "she is a cellar master tasting from the barrel",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a glass of dark wine",
+     "activity": "she is a cellar master holding up a glass of wine to the lamp",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a cellar master look fitted to her body — a laced corset over an off-shoulder chemise, a short skirt, a cellar apron and boots",
       "moderate": "a cellar master look — a laced bodice over a short-sleeved chemise, a knee-length skirt and a cellar apron",
       "low": "a cellar master look — a laced bodice over a long-sleeved chemise, a long skirt and a cellar apron"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a glass of dark wine"
     }
    }
   },
@@ -5200,26 +5214,24 @@
     },
     "steampunk": {
      "job_ko": "절임 가게 주인",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a pickle and cured-meat shop of her element's kingdom — crocks of brine, hanging hams and jars along the counter",
-     "activity": "she is the keeper of a pickle shop",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a jar of pickles",
+     "activity": "she is the keeper of a pickle shop holding a jar to her chest",
+     "preset": "wrap_close",
      "outfit": {
       "bold": "a pickle seller look fitted to her body — a shop apron over a tied-up blouse and a short skirt, a headscarf",
       "moderate": "a pickle seller look — a shop apron over a short-sleeved blouse and a knee-length skirt, a headscarf",
       "low": "a pickle seller look — a shop apron over a long-sleeved blouse and a long skirt, a headscarf"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a jar of pickles"
     },
     "mecha": {
      "job_ko": "절임 가게 주인",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a pickle and cured-meat shop of her element's kingdom — crocks of brine, hanging hams and jars along the counter",
-     "activity": "she is the keeper of a pickle shop",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a jar of pickles",
+     "activity": "she is the keeper of a pickle shop giving a thumbs-up for a fresh batch",
+     "preset": "thumbs_waist",
      "outfit": {
       "bold": "a pickle seller look fitted to her body — a shop apron over a tied-up blouse and a short skirt, a headscarf",
       "moderate": "a pickle seller look — a shop apron over a short-sleeved blouse and a knee-length skirt, a headscarf",
@@ -5251,17 +5263,17 @@
     },
     "steampunk": {
      "job_ko": "간 보는 찬모",
-     "base": "nation_kitchen",
+     "base": "nation_workshop",
      "place": "a big house kitchen of her element's kingdom — a scrubbed table, hanging pans, a row of earthen jars and a steaming pot",
-     "activity": "she is the kitchen's seasoning cook, a pinch of salt between her fingers",
-     "preset": "counter_work",
-     "use": "sig_both",
-     "prop": "a glazed salt jar",
+     "activity": "she is the kitchen's seasoning cook holding up a jar to check how much salt is left",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a kitchen cook look fitted to her body — a kitchen apron over a bandeau and a hitched-up skirt, sleeves tied back",
       "moderate": "a kitchen cook look — a kitchen apron over a short-sleeved top and a knee-length skirt, sleeves tied back",
       "low": "a kitchen cook look — a kitchen apron over a long-sleeved top and a long skirt, sleeves tied back"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a glazed salt jar"
     }
    }
   },
@@ -5290,24 +5302,22 @@
      "job_ko": "염전 일꾼",
      "base": "nation_square",
      "place": "a salt pan at low sun of her element's kingdom — shallow white basins mirroring the sky, heaps of salt and a small windmill pump",
-     "activity": "she is a salt raker walking the edge of the pans",
-     "preset": "stride_prop",
-     "use": "sig_low",
-     "prop": "a wooden salt rake",
+     "activity": "she is a salt raker drawing a rake through a basin in both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a salt raker look fitted to her body — a tied-up thin shirt, shorts rolled high, a wide straw hat and bare feet",
       "moderate": "a salt raker look — a short-sleeved thin shirt, trousers rolled to the knee, a wide straw hat and bare feet",
       "low": "a salt raker look — a long-sleeved thin shirt, loose trousers, a wide straw hat and rubber boots"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a wooden salt rake"
     },
     "mecha": {
      "job_ko": "염전 일꾼",
      "base": "nation_square",
      "place": "a salt pan at low sun of her element's kingdom — shallow white basins mirroring the sky, heaps of salt and a small windmill pump",
-     "activity": "she is a salt raker walking the edge of the pans",
-     "preset": "stride_prop",
-     "use": "sig_low",
-     "prop": "a wooden salt rake",
+     "activity": "she is a salt raker resting with a hand on her hip beside the heaps of salt",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a salt raker look fitted to her body — a tied-up thin shirt, shorts rolled high, a wide straw hat and bare feet",
       "moderate": "a salt raker look — a short-sleeved thin shirt, trousers rolled to the knee, a wide straw hat and bare feet",
@@ -5339,31 +5349,31 @@
     },
     "steampunk": {
      "job_ko": "환전상",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a money changer's counter of her element's kingdom — stacks of coins, a small balance, a ledger and a barred window",
-     "activity": "she is a money changer weighing a coin",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a gold coin",
+     "activity": "she is a money changer holding a coin up to the light",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a money changer look fitted to her body — a brocade vest worn open over a bandeau, a hip-slit skirt and a coin chain at her waist",
       "moderate": "a money changer look — a brocade vest over a sleeveless top, a skirt slit to the knee and a coin chain",
       "low": "a money changer look — a brocade jacket, a long skirt and a coin chain"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a gold coin"
     },
     "mecha": {
      "job_ko": "환전상",
-     "base": "nation_inn",
+     "base": "nation_workshop",
      "place": "a money changer's counter of her element's kingdom — stacks of coins, a small balance, a ledger and a barred window",
-     "activity": "she is a money changer weighing a coin",
-     "preset": "counter_cup",
-     "use": "sig_hold",
-     "prop": "a gold coin",
+     "activity": "she is a money changer counting stacks of coins at her counter",
+     "preset": "counter_work",
      "outfit": {
       "bold": "a money changer look fitted to her body — a brocade vest worn open over a bandeau, a hip-slit skirt and a coin chain at her waist",
       "moderate": "a money changer look — a brocade vest over a sleeveless top, a skirt slit to the knee and a coin chain",
       "low": "a money changer look — a brocade jacket, a long skirt and a coin chain"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a gold coin"
     }
    }
   },
@@ -5392,29 +5402,29 @@
      "job_ko": "보물 사냥꾼",
      "base": "nation_square",
      "place": "a ruin in the dunes of her element's kingdom — a half-buried chest, a spade stuck in the sand and broken columns",
-     "activity": "she is a treasure hunter who has just found the first coin",
-     "preset": "squat_prop",
-     "use": "sig_hold",
-     "prop": "a gold coin",
+     "activity": "she is a treasure hunter holding a coin up to the sun",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a treasure hunter look fitted to her body — a cropped explorer shirt tied under the bust, tiny shorts, a satchel, a wide hat and tall boots",
       "moderate": "a treasure hunter look — an explorer shirt with rolled sleeves, knee-length shorts, a satchel, a wide hat and tall boots",
       "low": "a treasure hunter look — an explorer jacket, trousers, a satchel, a wide hat and tall boots"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a gold coin"
     },
     "mecha": {
      "job_ko": "보물 사냥꾼",
      "base": "nation_square",
      "place": "a ruin in the dunes of her element's kingdom — a half-buried chest, a spade stuck in the sand and broken columns",
-     "activity": "she is a treasure hunter who has just found the first coin",
-     "preset": "squat_prop",
-     "use": "sig_hold",
-     "prop": "a gold coin",
+     "activity": "she is a treasure hunter digging with a spade in both hands",
+     "preset": "camera_shot",
      "outfit": {
       "bold": "a treasure hunter look fitted to her body — a cropped explorer shirt tied under the bust, tiny shorts, a satchel, a wide hat and tall boots",
       "moderate": "a treasure hunter look — an explorer shirt with rolled sleeves, knee-length shorts, a satchel, a wide hat and tall boots",
       "low": "a treasure hunter look — an explorer jacket, trousers, a satchel, a wide hat and tall boots"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a spade"
     }
    }
   },
@@ -5439,10 +5449,10 @@
     },
     "mecha": {
      "job_ko": "금고 경비원",
-     "base": "nation_square",
+     "base": "nation_temple",
      "place": "a vault corridor of her element's kingdom — a great round vault door standing open on stacked gold bars and steel bars across the passage",
-     "activity": "she is a vault guard on watch",
-     "preset": "hip_contra",
+     "activity": "she is a vault guard standing at her post with her hands together",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a vault guard look fitted to her body — a short-sleeved guard shirt unbuttoned low and tied at the waist, a mini skirt, a duty belt and a peaked cap",
       "moderate": "a vault guard look — a short-sleeved guard shirt, a knee-length skirt, a duty belt and a peaked cap",
@@ -5475,27 +5485,29 @@
      "job_ko": "금세공사",
      "base": "nation_workshop",
      "place": "a goldsmith's bench of her element's kingdom — a small flame, fine pliers, gold wire and a tray of unfinished rings",
-     "activity": "she is a goldsmith finishing a small gold piece",
-     "preset": "bench_fix",
-     "use": "tool_fix",
+     "activity": "she is a goldsmith holding a ring up to check its shine",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a goldsmith look fitted to her body — a jeweller's apron over a lace bralette and short shorts, gold bangles and a loupe on her brow",
       "moderate": "a goldsmith look — a jeweller's apron over a sleeveless blouse and slim trousers, a loupe on her brow",
       "low": "a goldsmith look — a jeweller's apron over a long-sleeved blouse and slim trousers, a loupe on her brow"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a small gold ring"
     },
     "mecha": {
      "job_ko": "금세공사",
      "base": "nation_workshop",
      "place": "a goldsmith's bench of her element's kingdom — a small flame, fine pliers, gold wire and a tray of unfinished rings",
-     "activity": "she is a goldsmith finishing a small gold piece",
-     "preset": "bench_fix",
-     "use": "tool_fix",
+     "activity": "she is a goldsmith bending gold wire with pliers at her bench",
+     "preset": "counter_work",
      "outfit": {
       "bold": "a goldsmith look fitted to her body — a jeweller's apron over a lace bralette and short shorts, gold bangles and a loupe on her brow",
       "moderate": "a goldsmith look — a jeweller's apron over a sleeveless blouse and slim trousers, a loupe on her brow",
       "low": "a goldsmith look — a jeweller's apron over a long-sleeved blouse and slim trousers, a loupe on her brow"
-     }
+     },
+     "use": "sig_both",
+     "prop": "a pair of fine pliers"
     }
    }
   },
@@ -5522,8 +5534,8 @@
      "job_ko": "미인 대회 우승자",
      "base": "nation_square",
      "place": "a pageant stage of her element's kingdom — a runway of lights, a flower arch and a velvet cushion for the crown",
-     "activity": "she is the newly crowned queen of the pageant, a gold crown on her head",
-     "preset": "wave_chest",
+     "activity": "she is the newly crowned queen of the pageant posing with a hand on her hip, a gold crown on her head",
+     "preset": "hip_contra",
      "outfit": {
       "bold": "a pageant queen look fitted to her body — a gold sequin gown with a plunging neckline and a thigh-high slit, a winner's sash",
       "moderate": "a pageant queen look — a gold sequin gown with thin straps and a knee-high slit, a winner's sash",
@@ -5532,10 +5544,10 @@
     },
     "mecha": {
      "job_ko": "미인 대회 우승자",
-     "base": "nation_square",
+     "base": "nation_temple",
      "place": "a pageant stage of her element's kingdom — a runway of lights, a flower arch and a velvet cushion for the crown",
-     "activity": "she is the newly crowned queen of the pageant, a gold crown on her head",
-     "preset": "wave_chest",
+     "activity": "she is the newly crowned queen of the pageant standing with her hands together, a gold crown on her head",
+     "preset": "clasp_low",
      "outfit": {
       "bold": "a pageant queen look fitted to her body — a gold sequin gown with a plunging neckline and a thigh-high slit, a winner's sash",
       "moderate": "a pageant queen look — a gold sequin gown with thin straps and a knee-high slit, a winner's sash",
@@ -5567,8 +5579,8 @@
      "job_ko": "웨딩 플래너",
      "base": "nation_square",
      "place": "a wedding garden of her element's kingdom — an aisle of white chairs, a flower arch and a ring cushion on a small table",
-     "activity": "she is a wedding planner waiting for the ceremony to begin",
-     "preset": "clasp_low",
+     "activity": "she is a wedding planner waving to signal that the ceremony can begin",
+     "preset": "wave_chest",
      "outfit": {
       "bold": "a wedding planner look fitted to her body — a white blazer dress worn with nothing beneath, cut short, a headset and heels",
       "moderate": "a wedding planner look — a white fitted dress to the knee under a blazer, a headset and heels",
@@ -5579,13 +5591,15 @@
      "job_ko": "웨딩 플래너",
      "base": "nation_square",
      "place": "a wedding garden of her element's kingdom — an aisle of white chairs, a flower arch and a ring cushion on a small table",
-     "activity": "she is a wedding planner waiting for the ceremony to begin",
-     "preset": "clasp_low",
+     "activity": "she is a wedding planner holding up a ring to check it",
+     "preset": "raise_chest",
      "outfit": {
       "bold": "a wedding planner look fitted to her body — a white blazer dress worn with nothing beneath, cut short, a headset and heels",
       "moderate": "a wedding planner look — a white fitted dress to the knee under a blazer, a headset and heels",
       "low": "a wedding planner look — a white trouser suit, a headset and heels"
-     }
+     },
+     "use": "sig_raise",
+     "prop": "a small gold ring"
     }
    }
   }
