@@ -285,17 +285,15 @@
      }
     },
     "mecha": {
-     "job_ko": "프로게이머",
-     "base": "nation_study",
-     "place": "a tournament booth of an esports arena of her element's kingdom — a racing-style chair, glowing monitors and a trophy on the desk",
-     "activity": "she is a pro gamer mid-match in her tournament booth",
-     "preset": "side_chair_read",
-     "use": "sig_both",
-     "prop": "a game controller",
+     "job_ko": "육상 금메달리스트",
+     "base": "nation_training",
+     "place": "the finish line of a stadium track of her element's kingdom — bright lane lines, a photo-finish gate and a winner's podium",
+     "activity": "she is a sprint gold medallist catching her breath at the finish line, a gold medal around her neck",
+     "preset": "thumbs_waist",
      "outfit": {
-      "bold": "a pro gamer look fitted to her body — a cropped team jersey knotted under the bust, short gym shorts, knee-high socks and a headset around her neck",
-      "moderate": "a pro gamer look — a fitted short-sleeved team jersey, track shorts, knee-high socks and a headset around her neck",
-      "low": "a pro gamer look — a team jersey over a long-sleeved top, track trousers and a headset around her neck"
+      "bold": "a sprinter look fitted to her body — a gold-trimmed racing crop top and brief racing shorts, running spikes and a gold medal on a ribbon",
+      "moderate": "a sprinter look — a gold-trimmed fitted racing vest and mid-thigh racing shorts, running spikes and a gold medal on a ribbon",
+      "low": "a sprinter look — a gold-trimmed team track jacket and track trousers, running shoes and a gold medal on a ribbon"
      }
     }
    }
@@ -499,45 +497,51 @@
   },
   "cl": {
    "root": {
-    "ko": "수영장 냄새의 주인 — 물을 지키는 소독",
-    "from": "use"
+    "ko": "염소 = goat → GOAT · faker — 속이는 사람, 덤불에 숨는 사람, 역대 최고",
+    "from": "name"
    },
    "mode": "per_world",
    "worlds": {
     "fantasy": {
-     "job_ko": "우물 정화 사제",
-     "base": "nation_temple",
-     "place": "a sacred well court of her element's kingdom — a round stone well, white banners and bowls of clear water on the steps",
-     "activity": "she is the priestess who keeps the well water pure",
-     "preset": "clasp_low",
+     "job_ko": "흉내쟁이 광대",
+     "base": "nation_square",
+     "place": "a fairground stage of her element's kingdom — a painted curtain, juggling clubs and a row of lanterns",
+     "activity": "she is a mimic jester who can copy anyone's voice and walk, about to fool the crowd again",
+     "preset": "raise_chest",
+     "use": "sig_raise",
+     "prop": "a jester's bauble stick",
      "outfit": {
-      "bold": "a well priestess look fitted to her body — a white priestess drape pinned at one shoulder with open sides, slit to the hip, and a pale green sash",
-      "moderate": "a well priestess look — a white sleeveless priestess gown slit to the knee with a pale green sash",
-      "low": "a well priestess look — a white long-sleeved priestess gown with a pale green sash"
+      "bold": "a jester look fitted to her body — a pale green and white harlequin bandeau and high-cut shorts, a belled collar, striped stockings and a two-pointed cap",
+      "moderate": "a jester look — a pale green and white sleeveless harlequin tunic to mid-thigh over tights, a belled collar and a two-pointed cap",
+      "low": "a jester look — a pale green and white long-sleeved harlequin tunic over tights, a belled collar and a two-pointed cap"
      }
     },
     "steampunk": {
-     "job_ko": "실내 수영장 수영 교사",
-     "base": "nation_bath",
-     "place": "a tiled indoor swimming bath of her element's kingdom — a long green pool under an iron and glass roof, brass rails and changing cabins",
-     "activity": "she is a swimming teacher sitting at the pool edge",
-     "preset": "edge_dangle",
+     "job_ko": "덤불 은신처의 야생 사진가",
+     "base": "nation_square",
+     "place": "a leafy hide at the edge of a park of her element's kingdom — a screen of cut branches, a folding stool, a brass tripod and a flask",
+     "activity": "she is a wildlife photographer hidden in the bushes, waiting without a sound",
+     "preset": "squat_prop",
+     "use": "sig_hold",
+     "prop": "a brass field camera",
      "outfit": {
-      "bold": "a swimming teacher look fitted to her body — a striped one-piece bathing suit cut high on the leg with thin straps and a ribbon in her hair",
-      "moderate": "a swimming teacher look — a striped sleeveless bathing costume with short legs and a ribbon in her hair",
-      "low": "a swimming teacher look — a striped bathing dress with short sleeves and knee-length bloomers"
+      "bold": "a field photographer look fitted to her body — a leaf-netted short cape over a khaki corset top, short field breeches, tall boots and a twig-pinned hat",
+      "moderate": "a field photographer look — a leaf-netted short cape over a sleeveless khaki blouse, knee breeches, tall boots and a twig-pinned hat",
+      "low": "a field photographer look — a leaf-netted long field coat, breeches, tall boots and a twig-pinned hat"
      }
     },
     "mecha": {
-     "job_ko": "워터파크 인명구조원",
-     "base": "nation_stairs",
-     "place": "a lifeguard stand at a water park of her element's kingdom — a tall white chair ladder, a rescue float and bright blue slides behind",
-     "activity": "she is a lifeguard watching the pool from her stand",
-     "preset": "step_pause",
+     "job_ko": "프로게이머(역대 최고)",
+     "base": "nation_study",
+     "place": "the champion's booth on the main stage of an esports arena of her element's kingdom — a racing-style chair, glowing monitors and a row of trophies",
+     "activity": "she is a pro gamer called the greatest of all time, calm in the last round",
+     "preset": "side_chair_read",
+     "use": "sig_both",
+     "prop": "a game controller",
      "outfit": {
-      "bold": "a lifeguard look fitted to her body — a red high-cut lifeguard swimsuit, a whistle on a cord and a visor",
-      "moderate": "a lifeguard look — a red lifeguard swimsuit under short shorts, a whistle on a cord and a visor",
-      "low": "a lifeguard look — a red lifeguard rash guard and shorts, a whistle on a cord and a visor"
+      "bold": "a pro gamer look fitted to her body — a cropped white and pale green team jersey knotted under the bust, short gym shorts, knee-high socks and a headset around her neck",
+      "moderate": "a pro gamer look — a fitted short-sleeved white and pale green team jersey, track shorts, knee-high socks and a headset around her neck",
+      "low": "a pro gamer look — a white and pale green team jacket over a long-sleeved top, track trousers and a headset around her neck"
      }
     }
    }
