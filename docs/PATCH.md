@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 50806)
-Total output lines: 1131
-
 ## 2026-11-13 · gpt · 규소 필수 직업 일상컷
 - 등록 도구로 규소의 세 세계 casual90을 data/img.json에 추가했다. 기존 그림과 기록은 보존했다.
 
@@ -358,7 +355,467 @@ Total output lines: 1131
 
 
 ## 2026-11-12 · gpt · 철 세계컷과 일상컷 등록
-- data/img.json — 선택한 세계…20806 tokens truncated…는 몫에서 관점 · 외형(얼굴 설계 칸까지)을 잡았다. 사용자 「H2O 같이 여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 산소쪽은 다른 주민을 편성하는 구조로」 → 「둘 다 해줘」
+- data/img.json — 선택한 세계컷 4·4·2 및 세계별 일상컷 7장, 총 24장을 등록 도구로 추가. 기존 화풍·다른 캐릭터 기록 보존.
+
+## 2026-11-12 · claude · 근본 여덟 더 — 질소 · 네온 · 인 · 리튬 · 아연 · 주석 · 납 · 수은
+- 사용자 「원소공방 근본원소 추가해줘」 → 추천 여덟(기존 나라와 물질 짝이 생기는 것). data/element-design.json nations 끝 — 성격 · 성질 · 팔레트 · 세 세계(장소 · 장면 셋 · 메카 설계) · 손 물건 · 외형(세계마다 다른 사람) · 구조판 손글 칸(세 세계 3 · 4절) · 실루엣. 가문 · 주민은 아직
+- lib/prompt-spec.js SIL_TAGS 여덟(실루엣은 tools/sil-spread.py 가 나눴다) · 머리색 여덟 · 눈 색 cinnabar 한국어 이름. lib/look-spec.js · tools/port-look-spec.cjs EXTRA 같은 어휘
+- docs/ELEMENT_CONCEPT.md 2절 표. 검사 element-design check · tests/element-design.py · look-spec · prompt-element · prompt-sections · prompt-short-look · words
+
+## 2026-11-12 · gpt · 염소 세계별 GPT 필수 갈래 일상컷 7 추가
+- data/img.json — 판타지·스팀펑크·메카의 7번 일상컷을 한 장씩 추가한다. 수영복·역할극·수영복 갈래와 새 상황을 함께 자유 설계했고, 실제 프롬프트·설계 덩어리·참고 해시·검수 차이는 그림 저장소 records/cl에 보존했다. 기존 여섯 장과 계획은 유지하며 생성된 결과는 임의 재생성하지 않았다.
+
+## 2026-11-12 · gpt · 우라늄 세계별 갈래 자유 일상컷 7 추가
+- data/img.json — 변경된 일곱 장 규칙에 따라 판타지·스팀펑크·메카의 7번 일상컷을 각각 한 장씩 추가한다. 기준 세계 그림을 첨부하고 필수 의상 갈래와 새 상황을 함께 자유 설계했다. 실제 프롬프트·FREE DESIGN 덩어리·참고 해시·검수 결과는 그림 저장소 records/u에 기록했고, 기존 여섯 장과 계획은 보존했다.
+
+## 2026-11-12 · gpt · 황 GPT 갈래 자유 일상컷 세계별 1장 추가
+- data/img.json — 판타지·스팀펑크·메카의 7번 일상컷을 등록기로 추가. 필수 의상 갈래와 상황을 결합한 자유 설계 3장, 실제 프롬프트·설계·검수는 그림 저장소 기록에 보존.
+
+## 2026-11-11 · claude · 갈래 자유 설계 컷 — 갈래 이름은 짧게
+- Outfit family 줄의 {family} 가 두 번 들어가는데 트리 표의 긴 영어 글이 들어가 문장이 깨졌다(「any a playful adult event costume … outfit」) — FREE_DESIGN.familyNames 짧은 이름(lingerie-inspired · swimwear · role-play costume, 삼국지와 같음)
+- tests/casual-plan.cjs 를 짧은 이름으로, prompt-spec · prompt-element ?v 올림
+
+## 2026-11-11 · claude · 갈래 자유 설계 컷 — 상황은 열기, 옷 갈래는 큰 범위만
+- Outfit family 줄: 「any {family} outfit; you may pick one from our outfit catalog … or design your own, but prefer one that is not in it(그 갈래면 우리 목록에서 골라도 직접 지어도 되지만 목록에 없는 것 먼저)」
+- Situation 줄: 표에서 고르지 않고(gsitu 'free') 「a situational exposure moment of your own design that fits the scene — prefer one that is not among ours: …(장면에 맞는 상황 노출 순간을 직접 짓되 우리 넷이 아닌 것 먼저)」
+- 사용자 2026-11-11 「상황도 열어주자. 옷도 이제 큰범위로만 지정해줘. 수영복갈래면 우리쪽에서 선택해도 되고, 본인이 골라도 되는데, 최대한 우리쪽에 없는걸 고르게」 — tests/casual-plan.cjs 를 새 줄로
+
+## 2026-11-11 · claude · 일상컷 일곱 장 — 자유 설계 칸 둘(옷 자유 · 갈래 자유)
+- lib/prompt-spec.js — FREE_DESIGN 한 상수(자유 설계 덩어리 · 최근 장면 · 갈래 · 상황 · Outfit 줄 안내). 사용자 「한 장 더 생성하게 해서 필수갈래 또는 상황 노출을 더 그리게 추가해줘. 그럼 일상컷은 총 7장 되는거야」 → 「장소·활동·자세·구도·의상을 자유롭게 설계해줘 … 필수갈래랑 상황노출 두개를 묶어서 이렇게 가자. 그리고 지금 맡겨놓은 일상컷 1장도 같이 이런식으로」
+- lib/prompt-element.js — 자유 설계 칸(sfree)은 장면 줄 대신 덩어리(freeDesignLines), 트리로 채우지(repair) 않는다. 얼굴 · 화풍 · 몸 · 첨부 그림 줄은 짧은 판 그대로, 노출 · 몸 줄은 Outfit 줄 끝
+- tools/casual-plan.cjs — 세계마다 일곱 장(장면 컷 다섯 + 맨 뒤 자유 설계 칸 둘 — ofree · gfree+gsitu), 갈래는 노출 갈래 컷과 · 상황은 상황 노출 컷과 다르게, 최근 장면(recent — 그림 저장소 기록 여덟 + 같은 묶음). 장면 규칙은 장면 컷만, 옛 여섯 장 묶음은 그대로 통과하고 일곱째만 짜진다. --check 가 자유 설계 기록의 채운 글(generation.free_prompt)을 본다
+- tools/prompt-pack.cjs — 자유 설계 칸은 트리 검사 없이, situ none 은 갈래 자유 칸의 상황에도, INDEX 에 「덩어리 채우기」 안내 · 칸 표시
+- tools/image-claim.cjs — 일상컷 일곱 장(빈 자리 세 세계 21 → 24)
+- lib/studio.js · lib/words.js — 자유 설계 장면을 넣으면 고르는 단계 없이 덩어리 지시문, 「처음부터」 로 보통 장면. *.html ?v 올림
+- IMAGE_RULES.md · docs/IMAGE_AUTOMATION.md · AGENTS.md — 일곱 장 · 자유 설계 칸 둘 · 「자유 설계 덩어리를 채운다」 · 채운 글은 기록 free_prompt · free_design
+- tests/casual-plan.cjs · tests/prompt-pack-screen.cjs — 일곱 장 · 자유 설계 칸 둘 · 옛 여섯 장 + 일곱째 · 같은 갈래 · 상황을 잡는다
+## 2026-11-11 · gpt · 황 재작업 21장 등록
+- data/img.json — 선택한 세계컷 판타지 4·스팀펑크 3·메카 3과 세계별 일상컷 여섯 장, 총 21장을 등록기로 반영. 기존 그림과 다른 카드 데이터는 보존.
+
+## 2026-11-11 · claude · 진한 빨간 립스틱을 연하게(core v5)
+- 표식 red_lip 「bold red lipstick(진한 빨간 립스틱)」 → 「a soft rose-red tint on the lips(입술에 연한 장밋빛 붉은 기)」 — core v5 블록
+- 사용자 2026-11-11 「진한 빨간 입술은 다 빼거나 연하게 바꾸자」
+
+## 2026-11-11 · claude · 스팀펑크 옷 · 빛 · 노출, 메카 노출 고침(감사 E3 · E6)
+- 스팀펑크 의상: 「a short bustle skirt over riding trousers(승마 바지 위 짧은 버슬 치마)」 → 「a short bustle skirt and laced boots(짧은 버슬 치마와 끈 부츠)」, 「muted palette with the traits above as accents(가라앉은 색에 특징 포인트)」 → 「the traits above as colour accents(특징을 색 포인트로)」 — 노출의 드러난 다리 · 화풍의 빛나는 색과 부딪혔다(11-04 헬륨 때 옛 구조판에만 들어갔던 것). 근본 · 가문주 39
+- 스팀펑크 빛(의상 · 주민 꼬리 둘 다): 「hazy gaslight and a smoky overcast sky(뿌연 가스등 · 흐린 하늘)」 → 「bright warm sunlight with soft sky light bounced from white clouds(밝고 따뜻한 햇빛, 흰 구름에 반사된 하늘빛)」. 스팀펑크 88
+- 스팀펑크 과감 노출: 「sleeves rolled above the elbow, a short bustle skirt showing the legs…; the waistcoat stays buttoned(소매 걷기 · 버슬 치마 아래 다리 · 조끼 잠금)」 → 「her outfit opens to show skin — the neckline opened down to the sternum…, bare forearms, and bare legs above the boots or through a high slit where the silhouette allows; pieces stay symmetrical(목선은 가슴뼈까지, 팔뚝 · 부츠 위 다리 또는 실루엣이 허락하는 트임)」 — 민소매 · 바지 실루엣과 어긋났다. 39
+- 메카 과감 노출: 세계 전용 문장을 새로 — 「her mecha frame is cut open by design in only these places — bare shoulders and upper arms between pauldron and gauntlet, and a deep open chest window…; everywhere else she stays fully plated(메카 몸은 이 두 곳만 열림: 어깨 · 위팔, 가슴 창. 나머지는 장갑)」(삼국지 메카와 같은 꼴). 전엔 천 옷용 공용 문장(겉옷 · 속옷 · 코르셋 · 옷깃)이 나갔다. 주민도 같은 문장(WORLDS mecha exposureBoldCitizen). 메카 78
+- 사용자 2026-11-11 「응 원소도 한글로 풀어서 보여줘」 → 「응 4,5도 수정해줘」. tests/prompt-element.cjs 스팀펑크 · 메카 노출 검사를 새 글로, prompt.html · dex.html prompt-spec ?v=28 · prompt-element ?v=27, 검사 전부 통과
+
+## 2026-11-11 · claude · 세계 그림을 칸 꼴로 — 3단계 첫 공방
+- 기본 화풍(jp_paint_anime, 같은 열쇠)의 세계 그림이 짧은 판 → 칸 꼴: 머리말 → 1 STYLE → 2 CHARACTER → 3 COSTUME — 세계 → 4 SCENE → 5 CONSTRAINTS + Avoid. 칸 머리 · 해부 줄 · Avoid 줄은 화풍공방 core v4 칸 틀(AtelierSpec.CORE_FRAME — 삼국지와 같은 틀)
+- 글은 짧은 판 그대로 칸에 나눴고 걸림 다섯은 사용자가 고른 안대로: 빛 한 줄 · 얼굴 비율 줄 described below · 노출 줄 the costume above · 「No …」 금지는 Avoid(조건 unless 마디만 남김) · 5칸 손가락 말 빼기. HAIR 조각은 2칸 Hair 줄, 옛 줄 이름(WORLD · SILHOUETTE · CONCEPT · TIME & WEATHER · EXPOSURE)은 칸 말로
+- lib/prompt-element.js buildWorldSections · splitNo, data/style.json worldSections, 새 검사 tests/prompt-sections.cjs(240장), prompt-element · prompt-short-look · screen 검사를 칸 꼴로, IMAGE_RULES 적음. 일상컷은 그대로 짧은 판
+- 시험: 금 판타지 짧은 판 · 칸 꼴 한 쌍(2.6) — 얼굴 · 화풍 · 실루엣 같음. 사용자 2026-11-11 「다른거 먼저 3단계 진행해줘」 → 「응 네 안대로 하고 기존 화풍 열쇠로 해줘」
+- prompt.html · dex.html prompt-spec ?v=27 · look-spec ?v=8 · prompt-element ?v=26
+
+## 2026-11-11 · claude · core v3 글 · 눈꼬리 모순 13자리
+- core v3: square_soft · angular · wide_smile 글(삼국지와 같음)
+- 설계값: 가는 올라간 눈 + 처진 꼬리 6자리 → 꼬리 up, 처진 눈 + 올라간 꼬리 7자리 → 꼬리 down(삼국지 11-10 EYE_TILT_FIX 와 같은 짝), tests/look-spec.cjs 에 눈꼬리 짝 · IMAGE_RULES 적음
+- 기본 화풍 세계 지시문 68개 Her 줄만 바뀜. 시험: 나트륨(wide_smile) · 녹슨 갑옷(눈꼬리) 한 쌍씩 — 그림 차이 거의 없음, 정리 몫. 사용자 2026-11-11 「정리하는 김에 깔끔하게 하는게 낫지?」
+- prompt.html · dex.html prompt-spec ?v=26 · look-spec ?v=7
+
+## 2026-11-11 · claude · core v2 긴 얼굴 글 · 얼굴 비율 줄 금지 나열 빼기 · 눈 크기 모순 23자리
+- core v2: face_shape.long 「long face」 → 「gently long oval face」
+- WORLD_SHORT.face: 「— never a long face or a long, pointed or heavy jaw … never squeezed into narrow slits」 금지 나열을 빼고 「Her eyes keep the shape and size described above」(감사 E2 — Her 줄의 긴 얼굴 · 각진 얼굴 · 가는 눈을 다시 막았다). 기본 화풍 세계 지시문 240개 전부 이 줄이 바뀜
+- 설계값: 눈 크기가 그 세계 눈 모양과 부딪치는 23자리를 look.worlds.<세계>.face.eye_size 로 덮음(small+round_large → large 2, small+almond_wide → medium 5, large+narrow_upturned/monolid_long → medium 16) — 삼국지 11-10 과 같은 짝. tests/look-spec.cjs 가 생성기 외형으로 검사, IMAGE_RULES 적음
+- 사용자 2026-11-11 원소 금 판타지 두 쌍 시험(긴 얼굴이 세지지 않음) → 「넣어주고, 그대로 두고, 설계값 모순만 바꿔줘」
+- prompt.html · dex.html prompt-spec ?v=25 · look-spec ?v=6
+
+## 2026-11-11 · claude · core v1 낱말 쓰기 — 표정 표 · 나이 줄 삼국지 글로
+- 화풍공방 core/v1/vocab.json 을 lib/prompt-spec.js · lib/look-spec.js 끝 「core:v1」 블록으로(사용자 「응 원소 글로 하고 core v1 만들어줘」 · 「기본 화풍들도 같이 옮기자」). 바뀐 것: 표정 32개 → 삼국지 11-03 누그러뜨린 글(턱 들기 · 이 악물기 · 시선 돌리기 없음 — 감사 E5), 나이 late_20s · early_30s → 「graceful … soft, smooth contours」(감사 E8), 외형 7개 삼국지 글(hime cut · copper-red 등)
+- 한글 이름표(표정 · 나이)도 새 글 뜻으로. 검사 tests/core-sync.cjs, prompt-element 의 표정 확인 둘을 core 기준으로. prompt-spec ?v=24 · look-spec ?v=5. prompt-element 는 전부터의 og 낱말 한도(이제 854/850)만 남음
+
+## 2026-11-11 · claude · 짧은 세계 그림 — 고른 외형 싣기 · 얼굴 끈 찌꺼기
+- 사용자 「응 둘 다 고쳐줘」 — 화면 검사를 다시 쓰다 찾은 둘(lib/prompt-element.js buildWorldShort): 1) 생성기에서 직접 고른 외형(머리색 등)이 짧은 판 지시문에 안 실렸다 — 고르면 설계의 그 칸이 빠지는데 긴 판의 IDENTITY 칸을 짧은 판이 안 옮겼다. 「Chosen look (overrides the automatic look): hair color: silver.」 한 줄로 Her 줄 바로 뒤에
+- 2) 얼굴 싣기를 끄면 「Her: . slender …」 — 빈 얼굴은 빼고 잇는다. prompt-element ?v=25. 검사 tests/prompt-short-look.cjs(네 카드 열두 장). prompt-element 는 전부터의 og 낱말 한도 실패 그대로
+
+## 2026-11-11 · claude · 그림 없는 화풍 열넷 내림
+- data/style.json — 도감에 등록 그림이 없는 화풍 열넷(mmorpg2d · semireal · kr_mmorpg · kr_promo_hikey · kr_promo_hikey_oil · glossy_kr_game · glossy_kr_semireal · kv_kmmo_lock · kv_kmmo_23d · kv_jp_mobile · kv_jp_paint · kv_anime_gloss · mmorpg_cg · bright_2d_oil)에 retired · retired_why — 지우지 않고(옛 기록 · 조립 참조가 남는다) 고르개에서만 뺀다(사용자 2026-11-11 「도감에 그림 등록이 없는 키들은 빼는게 좋을거 같아」 → 「1,2번 다 내려줘」). 남은 화풍은 jp_paint_anime(기본) · game_keyart · game_cgi · cinematic_keyart
+- lib/studio.js · prompt.html(studio.js ?v=6) — 생성기 화풍 고르개가 내린 화풍을 빼고, 주소 ?style= · 이 기기에 기억된 고른 화풍이 내린 것이면 기본 화풍으로
+- tests/screen.cjs — 내린 화풍을 쓰던 곳을 살아 있는 화풍으로 다시 씀: 고르개 검사는 목록 = 살아 있는 화풍(kv_jp_paint · mmorpg2d 없음) · game_keyart 를 고르면 화풍 단락이 바뀌고 ''로 돌아옴 · 내린 화풍 주소 · 기억값은 기본으로. 생성기 세계 그림 · 일상컷 흐름은 구조판 mmorpg2d 대신 기본 화풍(짧은 판)으로 — 머리말 · 화풍 단락 · 얼굴 비율 · 덧붙임 · 노출 · 장면 · 시간대 · 자세 · 표정 · 끝 줄, 일상컷의 시간대 · 머리 · 노출 축 · 소품, 파일 이름 fe-steel-sword_mecha_<기본>_f(_casual1).webp, 참고 그림 줄(등록부의 기본 화풍 칸)
+- tests/prompt-element.cjs — 손대지 않음: 이번 일 전부터 「og steampunk 낱말 868」(한도 850)로 멈춘다(git stash 로 확인 — 앞선 다른 커밋 탓)
+
+## 2026-11-11 · gpt · 은 선택 세계컷과 일상컷 도감 등록
+- data/img.json — 판타지 3 · 스팀펑크 4 · 메카 3 및 세계별 일상컷 여섯 장, 총 21장을 등록 도구로 반영. 생성·참고 원본 해시와 검수 기록은 그림 저장소 records/ag 에 보존.
+
+## 2026-11-11 · claude · 얼굴 낱말 — 사실형 눈 · 광대 말 빼기
+- 사용자 「원소공방은 지금 화풍 놔둬도 되겠다. 설계가 문제 였나봐」 → 「응 적용해줘」 — 화풍공방에서 철 판타지를 원래 · 얼굴 말 뺀 판으로 견줘 보니 뺀 쪽 질감이 낫다고 봄(한 장씩)
+- lib/prompt-spec.js 공통 낱말: eye_size.medium 「moderately sized, realistically proportioned eyes」 → 「medium-sized eyes」(50명), age.late_20s 「with defined cheekbones」 빼기(26명), age.early_30s 「with defined cheekbones and jaw」 빼기(17명). 한글 이름표도 같이. prompt-spec ?v=23. 올린 그림 · 기록은 그대로, 새 지시문부터
+- 검사: look-spec · casual-plan · screen · words · element-design 통과. prompt-element 는 이 수정 전부터 「og steampunk 낱말 871」(한도 850)로 걸려 있었다 — 이 수정 뒤 868, 손대지 않음
+
+## 2026-11-11 · gpt · 칼슘 세계컷 선택 및 일상컷 등록
+- data/img.json — 선택한 세계컷(판타지 3 · 스팀펑크 2 · 메카 2)과 세계별 일상컷 여섯 장, 총 21장을 등록기로 추가.
+- 그림 및 검수 기록은 element-atelier-img의 records/ca/에 보존. 세계 간 자세·장소 중복과 생성 구도 차이는 기록하고 재생성하지 않음.
+
+## 2026-11-11 · gpt · 금 세계컷 선택 및 일상컷 등록
+- data/img.json — 선택한 판타지 1번·스팀펑크 3번·메카 2번과 세계별 일상컷 여섯 장(총 21장)을 등록기로 추가. 기존 그림과 기록을 보존.
+
+## 2026-11-11 · gpt · 염소 세계 선택 3·4·3 및 일상컷 등록
+- data/img.json — 판타지 3번·스팀펑크 4번·메카 3번 세계컷과 각 세계의 일상컷 6장, 총 21장을 표준 등록기로 추가했다. 실제 생성 프롬프트·참고 원본 해시·자유 의상·검수 차이는 그림 저장소 records/cl에 기록했고, 생성 완료된 그림은 임의 재생성하지 않았다.
+
+## 2026-11-11 · gpt · 우라늄 세계 선택 3·1·3 및 일상컷 등록
+- data/img.json — 판타지 3번·스팀펑크 1번·메카 3번 세계컷과 각 세계의 일상컷 6장, 총 21장을 표준 등록기로 추가했다. 실제 생성 프롬프트·참고 이미지 해시·검수 차이·이미지 미반환 차단과 노출 단계 조정 기록은 그림 저장소 records/u에 보존했다.
+
+## 2026-11-11 · gpt · 오가네손 재작업 — 세계 선택 4·3·2
+- 선택한 판타지 4번·스팀펑크 3번·메카 2번 세계컷과 이를 기준으로 생성한 일상컷 18장을 교체. 그림 저장소 records/og에 실제 프롬프트·참고 이미지 해시·검수 결과를 남기고 records/replacement.json에 이전 파일 해시와 커밋을 보존했다. 도감 등록 파일명은 기존 21개를 유지한다.
+
+## 2026-11-10 · claude · 우라늄 색감 — 검정 · 은 · 에메랄드 초록, 초록 머리 · 구릿빛 피부 뺌
+- 사용자 「원소공방 우라늄 색감을 이렇게 바꾸자. 초록머리랑 까만피부 빼고」(검은 드레스에 은 세공 · 초록 수정 · 회색 머리 · 흰 피부 그림)
+- data/element-design.json 나라 u — 머리 uranium_green → lead_silver(은빛 도는 짙은 납회색) · 피부 bronze → porcelain · 눈 cherenkov_blue → emerald(그림처럼). 팔레트 「deep black, polished silver, uranium-glass emerald-green glow, a touch of Cherenkov blue」(노랑 · 경고 검정 뺌). 메카 design · 구조판(판타지 · 스팀펑크 · 메카) 색 · 소재 · 상의 · 하의 · 신발 · 액세서리 · 장면 팔레트를 검정 · 은 · 에메랄드로(노랑 · 금 · 연초록 · 크림 · 민트 뺌). 배경 장면은 그대로
+- lib/look-spec.js · tools/port-look-spec.cjs 머리색 lead_silver, lib/prompt-spec.js 한국어 말. 생성기 스크립트 판 올림
+- tests/screen.cjs 는 이 변경 전 코드에서도 갤러리 칸(.g-tile)을 기다리다 멈춘다 — 이 변경과 따로
+
+## 2026-11-10 · claude · 세계컷 카메라는 얼굴 높이 · 향수 표정 시선은 눈높이
+- 사용자 「세계컷 만드는중인데 그 고개를 뒤로 젖히다보니 일상컷도 다 고개를 젖히거나 하관이 길어지게 나와」(오가네손) — 고개를 젖히라는 말은 없었고, 가슴 높이 카메라(얼굴을 아래에서 올려다봐 턱 밑 · 긴 하관)와 오가네손 기본 표정 향수의 「gaze past the camera」(시선이 위로 가며 턱이 들림)가 겹쳤다. 일상컷은 그 세계컷을 첨부해 얼굴 각도가 따라갔다
+- lib/prompt-spec.js composition(모든 세계컷) — 「Camera at chest height」 → 「Camera level with her face …; her head level, chin neither raised nor tucked — no upward perspective on her face」(포켓몬 공방과 같은 문장). 표정 nostalgic — 「soft distant eyes looking just beside the camera at her own eye level」, 한국어 말도. lib/prompt-element.js 일상컷 표정에서 시선 말 떼기에 새 문장. 생성기 · 도감 스크립트 판 올림
+- 이미 만든 세계컷은 새 지시문으로 다시 뽑아야 고쳐진다(일상컷은 새 세계컷을 첨부해야)
+
+## 2026-11-10 · claude · 피부 말 tan 을 beige 로
+- golden_tan 영어 'golden tan skin' → 'light warm-beige skin with a golden undertone' — 「tan」 이 애니에서 짙은 갈색으로 갔다(삼국지 docs/STYLE_LAB.md 시험). 열쇠는 그대로
+- 한국어 이름표 '따뜻한 황금빛 태닝 피부' → '황금빛이 도는 밝고 따뜻한 베이지 피부'. prompt-spec ?v=20. 올린 그림 · 설계표의 옛 한국어 피부색 글은 그대로
+
+## 2026-11-10 · gpt · 산소 세계컷 선택 및 일상컷 등록
+- 사용자 선택 판타지 3 · 스팀펑크 4 · 메카 4를 기준으로 일본 유화 애니 세계컷 3장과 세계별 일상컷 6장씩 총 21장을 추가했다.
+- 그림 저장소 records/o에 실제 생성 지시문 · 참조 이미지 해시 · 노출 조정 시도 · 구도와 의상 등 검수 차이를 기록했다. 성공한 이미지는 다시 생성하거나 덮어쓰지 않았다.
+- 도감 data/img.json은 공식 등록기로 생성했으며 기존 화풍 그림과 등록 날짜를 보존했다. 이미지 커밋은 20981d64e4ee1232c25a60224ce28d1df28df913이다.
+
+## 2026-11-10 · gpt · 헬륨 세계컷 선택 및 일상컷 등록
+- 사용자 선택 판타지 4 · 스팀펑크 3 · 메카 2를 기준으로 일본 유화 애니 세계컷 3장과 세계별 일상컷 6장씩 총 21장을 추가했다.
+- 생성 지시문 · 참조 해시 · 검수 차이를 그림 저장소 records/he에 남겼으며, 생성 결과를 임의 재생성하거나 기존 그림을 삭제하지 않았다.
+- 그림 저장소의 썸네일 자동화와 도감 등록으로 data/img.json에 연결한다.
+
+## 2026-11-10 · gpt · 수소 일본 유화 애니 세계 그림·일상컷 등록
+- data/img.json — 사용자 선택 F1 · S2 · M1의 세계 그림 셋과 세계마다 일상컷 여섯 장, 총 21장을 jp_paint_anime 화풍으로 추가 등록. 기존 화풍과 그림은 보존.
+- 그림 저장소 records/h/ — 생성기 원문·참고 원본 해시·크기·WebP 해시·검수 차이를 함께 기록. 세 세계 계획 검사와 21장 크기·업로드 해시 검증 통과.
+- 스팀펑크 일상컷 5 — 원래 계획이 과감 두 번·보통·적게에서 출력 필터에 막혀 계획기 씨앗 112702로 해당 자리만 한 번 다시 짰고 정상 생성. 실패 기록과 새 계획 함께 보존.
+
+## 2026-11-10 · claude · 철 표정 — 단호함에서 여유 있는 자신감으로
+- 새 설계로 뽑은 철 판타지 그림이 아직 날카로워(찌푸린 눈썹 · 다문 턱) 사용자 「응」 — data/element-design.json fe look.face.expr determined → confident(고른 눈썹 · 서두르지 않는 시선 · 살짝 든 턱 · 편히 다문 입). 근본 열다섯의 표정은 여전히 서로 다르다.
+
+## 2026-11-10 · claude · 철 · 우라늄 — 얼굴은 부드럽게, 힘은 체형으로
+- 사용자 「철 같은건 얼굴에서 임펙트를 주기보다는 글래머러스한 체형이나 의상 등으로 효과를 주자. 너무 각지고 모나게 나와서 이쁘지가 않네. 다른 비슷한 설계 있어? 근본원소중에?」 → 「철은 근육형, 우라늄은 볼륨형」 — data/element-design.json.
+- 철(fe): 첫인상 rugged → glamorous, 눈 deep_set · small → almond_wide · medium, 눈썹 angled_sharp → soft_round, 입술 thin_long → heart_full, 표시 scar → red_lip, 얼굴형 세계 셋 oval · oval · heart, 체형 broad_strong → curvy_athletic. 구릿빛 피부 · 쇳빛 머리 · 불씨 눈 · 땋은 머리 그대로.
+- 우라늄(u): 첫인상 sharp → cool, 눈 deep_set · small → almond_wide · medium, 눈썹 low_heavy → arched_thin, 코 broad_soft → straight_narrow, 얼굴형 세계 셋 oval · heart · oval, 체형 athletic → voluptuous.
+- 강철 가문주(fe-steel) 체형 curvy_athletic → tall_statuesque — 근본과 같아져서(가문주 체형은 근본과 다르게), 사용자 「강철 가문주를 키 큰 늘씬형으로」.
+
+## 2026-11-10 · claude · GPT 설계 주문 — 머리색은 우리 설계값(다시)
+- 사용자 「원소공방에도 gpt 설계쪽에 머리색은 우리 설계 그대로로 바꾸자」 — 되돌렸던 9667f5b 를 다시 되돌려 9d491bd 를 살렸다: lib/prompt-spec.js WORLD_FREE.hair · free · second, lib/prompt-element.js buildWorldFree 가 설계 silhouette.hair_color 를 Hair colour (fixed — ours) 줄로. 검사 tests/prompt-element.cjs · tools/prompt-pack.cjs · docs/IMAGE_AUTOMATION.md 함께. prompt-spec ?v=19 · prompt-element ?v=23.
+
+## 2026-11-09 · claude · 기본 화풍 일본 유화 애니 · 원소 기호와 번호는 장면 속 글자로만
+- 사용자 「원소쪽 기본화풍 일본 유화 애니로 해주고」 — data/style.json default mmorpg_cg → jp_paint_anime(검사 tests/prompt-element.cjs · IMAGE_RULES 함께).
+- 같은 말 「그 화풍 비교에 보니까 원소숫자랑 기호가 배경에 녹아드는게 아니라, 카드의 번호마냥 떠 있는데 이거 수정 좀 해줘」 — 오가네손 · 철 세계 그림 모서리에 주기율표 칸처럼 떴다. lib/prompt-spec.js 세계 그림 끝 줄(WORLD_SHORT.end) · GPT 설계 끝 줄 · 인물 한 명 줄(RULES · CASUAL figure) · 구조판 글자 줄에 「장면 속 글자로만 — 옷 · 깃발 · 간판 · 기계에 새기거나 빛나게, 떠 있는 라벨 · 모서리 배지 · 주기율표 칸 · 자막 · 덧씌움 아님」. prompt-spec ?v=18.
+
+## 2026-11-09 · claude · 되돌림 — GPT 설계 주문 머리색 고정(원소는 자유)
+- 사용자 「우선은 삼국지만, 원소는 자유롭게 놔둬줘」 · 「원소는 revert」 — 바로 앞 「GPT 설계 주문 — 머리색은 우리 설계값」(9d491bd)을 git revert 로 되돌렸다: WORLD_FREE.free 에 머리색 다시 자유, hair 줄 없음, second 는 「다른 얼굴 · 머리색 · 헤어스타일」, 검사 · 문서 원래대로. ?v= 는 앞으로만 — prompt-spec 17 · prompt-element 22. 삼국지는 고정 그대로.
+
+## 2026-11-09 · claude · GPT 설계 주문 — 머리색은 우리 설계값
+- 사용자 「gpt에 세계컷 맡길때는 머리색까진 고정하는게 좋을거 같네. 마음에 안들면 설계를 바꾸는게 날 거 같아」 — lib/prompt-spec.js WORLD_FREE: free 에서 머리색을 빼고(얼굴 · 눈색 · 헤어스타일 · 화장 · 표정 · 자세 · 장면만 자유) 「머리색도 우리 것」, 새 줄 hair(「Hair colour (fixed — ours): {설계 머리색}. Keep exactly this hair colour; only the hairstyle is yours.」), second 는 「다른 얼굴 · 헤어스타일(머리색은 같게)」.
+- 조립부 buildWorldFree 가 그 세계 설계 머리색(lookOf silhouette.hair_color)을 채운다. 검사 · 문서(지시문 묶음 INDEX 안내 등) 고침. ?v= prompt-spec 16 · prompt-element 21.
+
+## 2026-11-09 · claude · 화풍 비교 — 오가네손 · 철 묶음에 화풍 열여덟
+- 사용자 「다른 화풍들로도 빈 화풍 비교칸 채워줘」 — 묶음 2026-11-09-3(오가네손) · 2026-11-09-4(철)에 일본 유화 애니 말고 열일곱 화풍 × 세계 셋 × (세계 · 근접 · 원거리) 306장, 장면은 일본 유화 애니 묶음과 같다. 2026-11-09-2(수소 두 번째)는 첫 수소 묶음과 겹쳐 채우지 않았다.
+- 필터 — 여덟 번 막혀 일곱은 같은 지시문으로 다시 통과, 철 kr_mmorpg 메카 세계 그림은 두 번 막혀 노출을 보통으로 낮춰 뽑았다(일상은 과감 그대로). 오가네손 semireal 판타지 세계 그림은 하얗게 바래 나왔다 — 칸 소감에 적었다.
+
+## 2026-11-09 · claude · 화풍 비교 — 오가네손 · 철 일본 유화 애니
+- 사용자 「일본 유화 애니로 오가네손이랑 철도 해줘. 느낌이 올랑말랑하네.」 — 카드마다 세계 셋 + 세계마다 일상 근접(계획기 묶음의 가슴 · 허리 위 첫 컷) · 원거리(전신 첫 컷) 아홉 장, 새 묶음 둘( og:2026-11-09-3 fe:2026-11-09-4). 필터 없음.
+
+## 2026-11-09 · claude · 화풍 — 밝은 2D 유화 v3 확정 · 일본 유화 애니 두 번째
+- 사용자 「v3로 해주고 일본 유화애니로 수소 한 번 더 해줘」 — bright_2d_oil 은 v3 가 지금 판(그대로), 화풍 비교 묶음 2026-11-09 의 그 칸 아홉 장을 v3 그림으로 바꿨다.
+- 새 묶음 2026-11-09-2 — 수소 일본 유화 애니 아홉 장을 같은 지시문 · 같은 장면으로 한 번 더(필터 없음). 첫째와 얼굴 · 마감이 거의 같다.
+
+## 2026-11-09 · claude · 화풍 — 일본 유화 애니(jp_paint_anime, 원소 공방만)
+- 사용자 「일본 유화풍에 애니메이션은 어떨까?」 → 「응 원소만 진행해줘」 — data/style.json 에 jp_paint_anime: 일본 애니 키비주얼처럼 인물은 애니 얼굴(크고 표정 있는 눈 · 작은 코 · 입) · 가는 색선 · 셀에서 부드러운 칠로 이어지는 명암 · 머리 · 옷에 칠한 하이라이트, 배경은 겹친 색층 · 은은한 붓 터치 · 공기 원근 · 영화 같은 깊이. 금지는 「한 단짜리 납작한 셀 · 사진 · 반실사 얼굴 · 플라스틱 3D」.
+- 화풍 비교 묶음 2026-11-09(수소)에 아홉 장 — 같은 장면, 필터 없음. 이제 열여덟 화풍.
+
+## 2026-11-09 · claude · 화풍 — 밝은 2D 유화 v3(짧은 판, 2D 쪽 말 앞으로)
+- 사용자 「그러면 구조판 말고 아까 말한 화풍단락만 수정해서는?」 → 「응 진행해줘」 — bright_2d_oil v3: v1 의 「light 2.5D touch」 · 「finished like a luminous oil painting」 을 빼고 mmorpg2d 의 2D 를 붙잡던 말(clearly hand-drawn 2D character art · elegant adult anime facial design · clear shadow shapes · visibly illustrated in 2D)을 앞에, 유화 붓결 · 색층은 머리 · 옷 · 배경에만. 지금 판 v3, v1 · v2(구조판)는 기록 판.
+- 수소 같은 장면 아홉 장(스팀펑크 원거리 필터 한 번, 같은 지시문으로 다시) — 화풍 탭 칸은 사용자가 셋 중 고를 때까지 v2 그림 그대로.
+
+## 2026-11-09 · claude · 화풍 — 밝은 2D 유화 v2(구조판)
+- 사용자 「구조판으로 만들어서 다시 해줘」 — bright_2d_oil v2: mmorpg2d v1 구조판(공통 규칙 · 1절 작화 고정 · 2~4절 칸 · 일상 규칙) 그대로에 1절만 바꿨다 — 계열(밝은 2D + 살짝 2.5D, 유화 마감) · 선화(눈 · 얼굴 · 큰 윤곽에 옅은 색선) · 피부(옅은 유화 글레이즈) · 셰이딩(붓으로 칠한 입체 · 유화 붓결 · 겹친 색층) · 광원(하이키 자연광 · 씻기지 않는 중간색) · 마감(얼굴 · 중심 장식만 또렷, 유화 붓칠 배경) · 금지에 반실사 얼굴 · 글로시 3D 광택. v1(짧은 판)은 기록 판.
+- 화풍 비교 묶음 2026-11-09(수소)의 아홉 장을 v2 로 바꿨다(같은 장면, 필터 없음).
+
+## 2026-11-09 · claude · 화풍 — 밝은 2D 유화(bright_2d_oil, 원소 공방만)
+- 사용자 「원소공방 분위기에는 글로시 반실사는 아닌거 같고. 약간 2d에서 2d 초반느낌에 밝으면서도 유화 질감이 더해지면 괜찮지 않을까」 → 「응 진행해줘」 — data/style.json 에 bright_2d_oil: 2D 에 살짝 2.5D(3D 렌더 음영 아님) · 눈 · 얼굴 · 큰 윤곽에만 옅은 색선 · 밝고 가벼운 자연광 · 맑은 피부 · 씻기지 않는 중간색 · 머리 · 옷 · 배경에 유화 붓결과 겹친 색층 · 애니 영향의 우아한 얼굴(반실사 · 평면 셀 아님). 빛 줄(worldLight · casualLight)도 밝은 자연광.
+- 화풍 비교 묶음 2026-11-09(수소)에 아홉 장 — 같은 장면, 필터 없음. 이제 열일곱 화풍.
+
+## 2026-11-09 · claude · 화풍 — 한국형 글로시 반실사(glossy_kr_semireal)
+- 사용자 「한국형 글로시에 반실사 느낌을 더하면 어떨까?」 → 「응 진행해줘」 — data/style.json 에 glossy_kr_semireal(한국형 글로시 반실사): 글로시의 애니 얼굴을 반실사 얼굴 구조(자연스러운 눈 크기 · 콧대 · 광대 · 입술, 은은한 피부 결 · 피하 온기, 사실적인 빛 감쇠)로, 마감은 글로시 일러스트 그대로(사진 · 3D 렌더 아님). 원래 글로시는 그대로. 삼국지와 같은 글.
+- 화풍 비교 묶음 2026-11-09(수소)에 세계 셋 × (세계 · 근접 · 원거리) 아홉 장 — 같은 장면, 스팀펑크 원거리 필터 한 번(같은 지시문으로 다시). 이제 열여섯 화풍.
+
+## 2026-11-09 · claude · 화풍 — 프로모 하이키 유화 v2(사용자 글)
+- 사용자가 화풍 글을 직접 주고(「한국 MMORPG 프로모션 키아트, 밝고 우아한 하이키 유화 느낌 …」) 「응 v2로 진행해줘」 — kr_promo_hikey_oil v2: 화풍 글(text · casual · casualKit.style — 짧은 판 화풍 단락)을 그 글의 영어로 통째로 바꿨다(v1 의 「3D 인게임 모델 렌더 · 2D 아님 · 촘촘한 장식 · 날카로운 광택」 이 유화를 막았다). 빛은 부드럽고 밝은 자연광 · 은은한 그림자 · 씻기지 않는 중간색(worldLight · casualLight · casualKit.light · worldTail LIGHTING AND COLOUR). v1 은 기록 판. 삼국지와 같은 글.
+- 화풍 비교 묶음 2026-11-09(수소) 의 유화 아홉 장을 v2 로 바꿨다(같은 장면).
+
+## 2026-11-09 · claude · 화풍 — 프로모 하이키 · 프로모 하이키 유화
+- 사용자 「mmorpg프로모 하이키도 등록해서 화풍 비교 이미지 만들어줘」 — data/style.json 에 kr_promo_hikey(삼국지 v2 글 그대로, 무협 세계 몫만 뺐다). 이어 「프로모 하이키에 유화 채색을 더해서도 하나 만들어줘. 이거는 삼국지랑 원소공방 둘 다」 — kr_promo_hikey_oil(하이키 글에 유화 채색 한 문장, 삼국지와 같은 글).
+- 화풍 비교 묶음 2026-11-09(수소)에 두 화풍 × 세계 셋 × (세계 · 근접 · 원거리) 18장 — 앞 열셋과 같은 장면(계획기 묶음), 필터 없음. 이제 열다섯 화풍.
+
+## 2026-11-09 · claude · 화풍 비교 2026-11-09 — 수소 스팀펑크 · 메카 일상
+- 사용자 「스팀펑크랑, 메카도 해줘」 — 같은 묶음에 화풍 열셋 × 스팀펑크 · 메카 일상 근접 · 원거리(그 화풍 그 세계 그림 첨부) 52장을 더했다. 장면은 계획기 묶음에서 — 스팀펑크 2번(사당 · 슬립 원피스 · 등불) · 4번(오아시스 · 하네스 쿠튀르 · 쪼그려 앉기), 메카 2번(군영 · 플리스 + 조거 · 팔짱) · 5번(목장 · 해적 코르셋 · 다리 꼬기). 필터 두 번(kv_kmmo_23d · mmorpg_cg 스팀펑크 원거리 — 같은 지시문으로 다시). 이제 이 묶음은 화풍 × 세계 × 갈래 빈 칸 없음.
+
+## 2026-11-09 · claude · 화풍 비교 2026-11-09 — 수소 화풍 열셋
+- 사용자 「수소 근본으로 테스트해줘」 — 화풍 열셋(style.json 전부) × 세계 셋 + 판타지 일상컷 둘(근접 · 원거리, 그 화풍 판타지 그림 첨부). 생성기 조립부(build · casualRecord)에 화풍만 바꿔 넣고, 일상 장면은 계획기 판타지 묶음의 4번(공항 라운지 · 악마 코스튬 · 바람) · 1번(목장 · 실크 파자마 · 엎드리기)을 모든 화풍에 같게.
+- 그림 65장(필터 한 번 — kv_jp_mobile 스팀펑크, 같은 지시문으로 다시) — 그림 저장소 style-test/compare/2026-11-09, data/style-compare.json 새 묶음(모델 gpt-image-2.6-sunburst). 도감 등록 아님.
+
+## 2026-11-09 · claude · GPT 설계 주문 — 의상은 원소 성격 묶음 안에서 · 메카는 몸 전체 장갑판
+- 사용자 「응 원소쪽도 둘 다 넣어줘」(삼국지와 같이) — GPT 임의 설계 주문의 의상 목록을 그 세계 실루엣 전부에서 그 카드의 원소 성격 태그 묶음으로 좁혔다. 예: 철(무거운 금속) 판타지 5개 · 금(귀한 것) 메카 5개 · 철-강철 가문주 스팀펑크 4개. 주민은 그대로 물건이 의상을 정한다.
+- 메카 세계 주문에 WORLD_FREE.mecha 줄(몸 전체가 두께 있는 단단한 장갑판, 천 드레스 · 긴 치마 금지, 망토 · 치마 · 날개도 장갑판)을 넣었다.
+- 태그(SIL_TAGS)와 묶음(SIL_POOLS)은 lib/prompt-spec.js 한 곳으로 옮겼다 — tools/sil-spread.py 도 여기서 읽는다(옮기기 전과 값이 같은지 대조, 배분은 그대로). lib/prompt-element.js silPool · buildWorldFree. 검사 prompt-element. 문서 IMAGE_AUTOMATION. ?v= prompt-spec 15 · prompt-element 20.
+
+## 2026-11-09 · claude · 임의 설계 주문 — 의상은 우리 실루엣에서 + 원소에서 딴 아이디어 하나 · 일상 옷 자유는 목록 밖으로
+- 사용자 「세계컷 의상과 무기는 우리가 만든 의상들 안에서 선택하게 하자 … 그 외의 얼굴이나 헤어색, 스타일은 자유롭게」 · 「본인만의 생각을 담으면」 → 「응 좋은 아이디어야」 · 「일상컷도 우리쪽 의상자료를 참고하라고해서 여기 없는걸 선택하라고 하자」 — 삼국지 공방과 같이
+- lib/prompt-spec.js WORLD_FREE — free(얼굴 · 머리 · 자세 · 장면만) · costume(그 세계 실루엣에서 하나 + 원소에서 딴 아이디어를 의상 구조에) · citizenCostume(주민은 그 물건이 이끈다 + 아이디어) · palette(원소 · 가문 색) · second, avoid 는 뺐다. OUTFIT_FREE 는 outfit-catalog.md 밖으로. lib/prompt-element.js buildWorldFree
+- tools/prompt-pack.cjs outfit-catalog.md · INDEX 안내. 문서 IMAGE_RULES · IMAGE_AUTOMATION 0-1. 검사 prompt-element. ?v= prompt-spec 14 · prompt-element 19
+
+## 2026-11-09 · claude · 세계 그림 네 장(우리 설계 둘 · 임의 설계 둘) · 일상컷 옷 자유 컷 한 장
+- 사용자 「element, pkm 쪽도 넣어주고」 · 「gpt나 너한테 맡긴다면 지금 우리쪽 갈래나 의상 등 없는거 위주로 … 최대한 없는걸로」 — 삼국지 공방과 같이
+- lib/prompt-spec.js WORLD_FREE(누구 · 원소 성질은 영감으로만 · 세계 · 화풍 · 1024×1536 · 노출 · 얼굴 비율 · 구도 · 기호와 번호만 정하고 나머지는 맡은 쪽이, 그 세계 실루엣 목록에 없는 꼴 먼저) · OUTFIT_FREE(옷 계열 목록에 없는 꼴 먼저). lib/prompt-element.js buildWorldFree, 장면 칸 ofree
+- tools/prompt-pack.cjs 세계 자리마다 <세계>-free.txt · INDEX 「네 장 뽑고 멈춘다」. tools/casual-plan.cjs freeOutfit(여섯 장 중 한 장). 문서 IMAGE_RULES · IMAGE_AUTOMATION 0-1. 검사 casual-plan · prompt-element. ?v= prompt-spec 13 · prompt-element 18
+
+## 2026-11-09 · claude · 세계 그림 실루엣 갈래 — 원소 성격대로 근본 · 가문주에 분배
+- 사용자 「삼국지처럼 세계컷 의상도 다양화 시켜서, 원소 특징에 맞게 분배 시켜줘」 — lib/prompt-spec.js SILHOUETTES(판타지 열넷 · 메카 열여덟 — 삼국지 공방과 같다, 스팀펑크 열넷 새로) · SILHOUETTE_HEAD
+- tools/sil-spread.py(새로) — 카드마다 원소 성격 태그(무거운 금속 · 귀한 것 · 가벼운 기체 · 반응하는 불 · 생명 · 독 · 기술 · 바다), 태그마다 세계별 갈래 묶음, 덜 쓴 갈래부터 · 한 나라 안 겹치지 않게. data/element-design.json 근본 열다섯 · 가문주 스물넷 × 세계 셋 = 117칸 sil.<세계>. 주민은 물건이 옷을 정해 없음
+- lib/prompt-element.js silOf · normShot frame, 세계 글 뒤 OUTFIT / MECHA SILHOUETTE 줄(짧은 판 Outfit silhouette, kv 판 COSTUME, 구조판 상의 칸 앞). lib/studio.js · lib/words.js 생성기 「실루엣」 단계. tools/prompt-pack.cjs shot.frame
+- 검사 prompt-element(실루엣 117 · 고른 값 · free · 주민) · element-design(sil-spread --check) · screen(자세 다음 실루엣). 문서 IMAGE_RULES. ?v= words 14 · prompt-spec 12 · prompt-element 17 · studio 5
+
+## 2026-11-09 · claude · 생성기 구조를 삼국지 공방에 맞춤 — 짧은 판 · 기본 MMORPG CG · 일상컷 여섯 장 · 갈래
+- 사용자 「element 쪽도 생성기 구조 sam 쪽에 맞추자. 간결버전에 일상컷도 간결, 갈래추가」 — 삼국지 공방(2026-11-08 ~ 09)의 짧은 지시문 · 계획기 · 갈래를 원소 꼴로
+- lib/prompt-element.js — buildWorldShort(줄 꼴 긴 지시문에서 CONCEPT · AGE · FACE · SILHOUETTE · ELEMENT/HOUSE TRAITS · WORLD · EXPOSURE · EXPRESSION 을 뽑아 머리말 1024×1536 · 화풍 단락 · 얼굴 비율 · 구도 · 빛 · 끝 줄로) · buildCasualShort(카드 층마다 who · 1024×1536 · 짧은 중안부 · 화풍 단락 · 계획 칸 · 머리 장식 두고 오기 · 원소 · 빛) · worldShortOn · casualShortOn · shortStyle · colorFixed · denierFits · situsFor, Outfit 줄 끝에 옷 색 · 데니어 · 상황
+- lib/prompt-spec.js — WORLD_SHORT(얼굴 비율 줄 포함) · CASUAL colors · deniers · situations · short, 눈꼬리 up 「slightly lifted」. data/style.json — mmorpg_cg(삼국지에서) 기본 · worldShort. 구조판 mmorpg2d · semireal 은 옛 꼴 그대로
+- tools/casual-plan.cjs — 삼국지 계획기를 원소 꼴로(여섯 장 · 필수 셋 노출 · 나라 안 · 상황 노출 · 시대 몫 · 옷 색 · 데니어 · 목욕 덜 · 세계끼리 같은 옷 금지 · 안 쓴 값 무게 12 · --world all · --fresh). tools/prompt-pack.cjs casual color · denier · situ, tools/image-claim.cjs CASUAL_N 6
+- data/casual-tree.json · casual-tree-v2.json — 계열 동탄룩 · 모험가 · 신화 드레이프, 옷 열아홉, 장소 스물여섯(나라 안 아홉 포함 — 나라 안 갈래 장소 열둘), 받침 · 소품 자리는 닮은 장소에서. lib/studio.js · lib/words.js 생성기 「옷 색」 · 「데니어」 · 「상황」 단계
+- 검사 casual-plan(새로) · prompt-element(옛 꼴은 짧은 판 끈 사본, 짧은 세계 그림 검사 더함) · screen(구조판 걷기는 mmorpg2d 를 골라서, 새 단계) · prompt-pack-screen(여섯 장) · casual-tree. 문서 IMAGE_RULES · IMAGE_AUTOMATION · AGENTS. ?v= words 13 · prompt-spec 11 · prompt-element 16 · studio 4
+
+## 2026-11-07 · claude · 오가네손 얼굴 — 덜 길게 · 위를 보지 않게
+- 사용자 「원래도 설계가 긴 얼굴에 위를 쳐다보는 구도라 일상컷에 옮길때 더 길어진거 같아」 — data/element-design.json og look: 판타지 얼굴형 long → oval, 입술 thin_long → small_bow(원소 어휘엔 soft_medium 이 없다), 기본 표정 wistful(살짝 위나 옆을 보는 시선) → nostalgic(카메라 너머 아련한 시선). 쓸쓸함은 인상 melancholic · 홑꺼풀 긴 눈 · 처진 눈꼬리로 남긴다.
+- 시험(판타지 기본 화풍 세계 그림 둘 + 같은 장면 근접 일상컷 — 일상컷 표정도 nostalgic): 얼굴이 덜 길고 고개가 수평. 이미 그린 그림 · 비교 묶음은 그대로.
+
+## 2026-11-07 · claude · 일상컷 얼굴 길이 — 모든 화풍
+- 사용자 「원소공방에는 일상컷 근거리때 얼굴길이 줄이는게 없나?」 → 「응 적용해줘」 — 구조판(mmorpg2d · semireal)만 STRUCT.casual.faceLock 이 있었고, 영어 틀 · kv 판 일상컷의 FACE 줄(REF_FACE)엔 길이 말이 없었다.
+- lib/prompt-element.js REF_FACE 끝에 한 문장 — 같은 짧은 중안부 · 하관 길이 · 얼굴 가로세로 비율, 카메라 각도 · 자세 · 앞머리 · 머리 장식이 얼굴이나 하관을 길게 · 턱을 무겁게 만들지 않게(삼국지 공방의 두 문장을 겹침 없이 줄임). 구조판 일상컷은 그대로.
+- 검사 prompt-element.cjs — 화풍마다 일상컷에 길이 문장, 일상컷 길이 상한 1200 → 1250 낱말(가장 긴 것 1212). prompt-element.js v15.
+
+## 2026-11-07 · claude · 화풍 비교 둘째 묶음 — 오가네손
+- 사용자 「오가네손으로도 만들어줘. 일상구도는 다르게해서」 — 묶음 2026-11-07-2: 오가네손(og)을 화풍 여덟으로 세계 셋 × 세계 그림 · 근접 · 원거리, 72장(그림 저장소 style-test/compare/2026-11-07-2/).
+- 일상컷 장면은 수소 묶음과 장소 · 자세가 겹치지 않게(계획기 og --slots 6~10, seed 5 · 13 · 29 에서 뒷모습 · 수소에 쓴 장소 · 자세 · 노출 큰 의상 빼고 세계마다 근접 · 원거리 하나). 필터 거절 없음.
+
+## 2026-11-07 · claude · 화풍 비교 첫 묶음 — 수소
+- 사용자 「수소로 해줘」 — 묶음 2026-11-07: 수소(h)를 화풍 여덟(기본 mmorpg2d + 삼국지에서 옮긴 일곱)으로 세계 셋 × 세계 그림 · 근접 일상컷 · 원거리 일상컷, 72장(그림 저장소 style-test/compare/2026-11-07/, 등록 아님).
+- 일상컷 장면은 화풍끼리 같게(계획기 h --slots 6~10 에서 세계마다 근접 · 원거리 하나 — 판타지 원거리는 seed 11). 애니 광택 판타지 원거리는 필터 거절 둘 뒤 노출 low 로.
+
+## 2026-11-07 · claude · 삼국지 공방 화풍 일곱 · 생성기 화풍 고르개 · 화풍 비교 탭
+- 사용자 「원소공방에도 지금 삼국지 공방에 있는 화풍들추가랑 화풍탭 추가해줘」.
+- data/style.json — 영어 틀 kr_mmorpg · glossy_kr_game(삼국지 글 그대로), kv 판 kv_kmmo_lock · kv_kmmo_23d · kv_jp_mobile · kv_jp_paint · kv_anime_gloss(머리말 · STYLE · 장르 이름 · 끝 줄, GENRE LOCK 은 판타지 · 스팀펑크 · 메카로, 일본 판 끝 줄의 「글자 없음」 은 원소 기호 · 번호를 허락하게). 기본 화풍은 그대로 mmorpg2d.
+- lib/prompt-element.js — build 의 영어 틀을 worldLines(칸 붙은 줄)로 떼고 build 는 그대로 이음(옛 판 1425 지시문 글자 하나 안 바뀜 확인), buildKv 가 그 줄을 CHARACTER · COSTUME AND EQUIPMENT — 장르 · POSE AND SETTING 으로 묶는다. 일상컷은 판의 casualSkin(23d · lock · 애니 광택)을 싣는다.
+- 생성기 — 화풍 고르개(맨 위 기본, 주소 ?style=, 기기에 stylePick). 화풍 탭 — styles.html · data/style-compare.json(빈 묶음 — 아직 그림 없음) · tools/style-compare.py(next · put · sync · check, 세계 fantasy · steampunk · mecha), 항해 PAGES 에 styles. IMAGE_RULES 끝 절.
+- 검사 — prompt-element.cjs(옮긴 화풍 1200 + 영어 틀), screen.cjs(화풍 탭 · 생성기 고르개), tests/style-compare.py. 판 번호 words v12 · workspace-ui v4 · prompt-element v14 · studio v3.
+
+## 2026-11-06 · claude · 세계 그림 카메라 기본 — 수평 3/4
+- lib/prompt-spec.js — 구조판 4절 카메라 기본 글: 낮은 시점(low angle) → 얼굴 높이 수평(eye-level) · 턱 수평 · 얼굴에 올려다보는 원근 없음 · 완만한 3/4. 올려다본 기본 그림을 일상컷이 붙이면 하관이 길고 턱이 무겁게 따라갔고, 정면 기본 그림은 일상컷 고개 각도를 굳혔다(포켓몬 갸라도스 시험 — 옛 · 수평 정면 · 수평 3/4 비교). 사용자 「수평 정면 3/4 구도를 기본으로 하자」
+- data/element-design.json — 헬륨 · 규소 세 세계 손글 칸 「카메라」 도 같은 글로
+
+## 2026-11-06 · claude · 원소 기호 · 번호는 여러 곳에 나와도 된다
+- lib/prompt-spec.js — 구조판 액세서리 기본 글에서 「한 번씩만」 을 뺐다. 본인 원소 기호 · 번호 말고 다른 글자만 금지(배경 끝 문장 그대로). 헬륨 메카(mmorpg2d)에서 탱크에 "He" "2" 가 여러 번 찍힌 것을 보고 사용자 「이름을 알 수 있어서 더 좋은거 같아」 · 「본인 원소 기호 외 금지가 날거 같은데」
+
+## 2026-11-06 · claude · 기본 화풍 mmorpg2d(2D 한국 MMORPG 구조판) · 일상컷 얼굴 고정
+- data/style.json — 화풍 `mmorpg2d` v1 을 더하고 기본으로. `semireal` 과 같은 구조판(공통 적용 규칙 · 일상컷 규칙 · 2~4절 칸 · 카드 손글 칸)이고 1절 작화 고정만 2D 한국 MMORPG 공식 캐릭터 일러스트(색 선화 · 여러 겹 칠 명암 · 3D 렌더 · 실사 · 반실사 피부 결 금지)로. 사용자 「원소공방도 이그림체로 하자」. 옛 화풍 그림은 그 열쇠로 도감 고르개에 남는다
+- lib/prompt-spec.js · lib/prompt-element.js — 일상컷 구조판에 얼굴 고정: 일상컷 규칙 끝에 「카메라 · 자세가 아래 얼굴을 길게 · 턱을 무겁게 만들지 않는다」 영어 문장, 1절 NEGATIVE 줄 끝에 「face lengthened by the camera angle, heavy jaw」(세계 그림 1절은 그대로). 사용자 문장 그대로
+- tests/prompt-element.cjs — 파일 이름 검사가 기본 화풍 열쇠를 따르고, 일상컷 머리에 얼굴 고정 · 세계 그림엔 안 실림
+- AGENTS.md · IMAGE_RULES.md · docs/IMAGE_AUTOMATION.md — 기본 화풍 mmorpg2d
+
+## 2026-11-04 · claude · 근본 열세 나라 손글 칸(구조판 3 · 4절)
+- data/element-design.json — 철 · 수소 · 산소 · 탄소 · 나트륨 · 금 · 오가네손 · 황 · 염소 · 칼슘 · 구리 · 은 · 우라늄 근본의 `struct`(세 세계마다 3절 아홉 칸 · 4절 액션 · 손동작 · 움직임 · 광원 · 팔레트 · 배경 · 효과). 헬륨 · 규소를 본보기로, 판타지 몸통은 불투명 비단(판갑 · 코르셋 없음), 스팀펑크는 광택 · 파스텔 · 보조광(승마 바지 · 망토 · 갑옷 없음), 메카는 설계 문장을 풀어 복부를 덮는다, 배경 끝은 글자 · 두 번째 인물 문장. 2절은 설계표 외형 그대로(자동 한글). 사용자 「근본 원소부터 채워줘」
+- lib/prompt-spec.js · lib/prompt-element.js — 스팀펑크 머리 꼬리: 원래 묶는 머리(포니테일 · 땋은 머리 · 반묶음 · 번)엔 「모자·고글 속에 넣지 않음」 만(「풀어 둔 그대로」 가 부딪혔다 — 우라늄 · 오가네손)
+- tests/prompt-element.cjs — 받침 검사를 손글 칸 없는 가문주 카드로
+
+## 2026-11-04 · claude · 구조판 2절 · 표정 · 자세 · 시간대를 한글로
+- lib/prompt-spec.js — `STRUCT.ko`: 얼굴형 · 눈 · 눈썹 · 코 · 입술 · 눈 색 29 · 머리색 57 · 헤어 24 · 앞머리 · 인상 · 피부 · 눈 크기 · 눈꼬리 · 표식 · 나이감 · 표정 33 · 세계 그림 자세 · 시간대 · 일상컷 시간대 · 머리. 이름 붙은 스타일 용어만 괄호로 영어. 사용자 「한글로 나오게 한 뒤에 손글칸 채우는게 맞을거 같은데」
+- lib/prompt-element.js — 구조판 2절 · 표정 · 자세 · 시간대가 한글 표를 먼저 쓰고, 3절 성질은 설계표 `traits.ko`. 체형 칸 뒤 영어 괄호를 뺐다
+- tests/prompt-element.cjs — 한글 표 열쇠가 어휘와 같고 괄호 밖은 한글, 2절 칸이 한글 · tests/screen.cjs — 생성기 칸 검사를 한글로
+- AGENTS.md — 1-3 기본 글이 한글 표
+
+## 2026-11-04 · claude · 생성기가 구조판 지시문을 짓는다
+- lib/prompt-element.js — 화풍 판이 `format: structured` 면 `build` · `buildCasual` 이 구조판(공통 적용 규칙 → 일상컷 규칙 → 1절 → 2~4절 칸)을 짓는다. 칸 값은 기본 글 → 카드 손글 칸(설계표 `struct`) → 직접 고른 외형 · 장면 · 덧붙임 차례. 일상컷은 트리 장면 줄을 칸에 나눈다. 사용자 「생성기부터 손봐줘」
+- lib/prompt-spec.js — `STRUCT`: 칸 이름 · 체형 여덟 칸 표(근육 과장 없음) · 세계마다 옷 · 빛 · 효과 기본 글(스팀펑크 광택 · 파스텔 · 승마 바지 없음) · 잇는 말 · 옛 머리말 바꾸기 · 외형 칸 → 2절 칸
+- data/element-design.json — 헬륨 · 규소 `struct`(세 세계 2~4절 — 채팅에서 뽑아 검증한 전체본, 헬륨 스팀펑크는 사용자가 뺀 승마 반바지 없이 · 헬륨 판타지 일상컷 `c2` 얼굴 길이 줄)
+- tools/element-design.py · tests/element-design.py — `struct` 검사(사는 세계 · 절 · 칸 이름 · 빈 글 · 괄호)
+- tests/prompt-element.cjs — 영어 틀 검사는 옛 화풍으로, 구조판 검사(모든 카드 × 세계 · 칸 차례 · 손글 칸 · 설계 외형 · 체형 · 받침 · 고른 것이 이김 · 일상컷 c2 · 검사기 칸 이름) · tests/screen.cjs — 생성기 지시문 검사를 구조판 칸으로
+- data/style.json · AGENTS.md · IMAGE_RULES.md — 생성기가 구조판 전체본을 짓는다
+
+## 2026-11-04 · claude · 화풍 열쇠 semireal(반실사 구조 지시문)을 기본으로, 도감에 화풍 고르개
+- data/style.json — 새 화풍 `semireal` v1(`format: structured` — 공통 적용 규칙 `rules` · 일상컷 규칙 `casual_rule` · 1절 작화 고정 `section1`(그림 용어 영어 병기) · 2~4절 머리 `sections`, 생성기용 한 줄 `text`), `default` game_keyart → semireal. 사용자 「이런구조로 가자」 → 「화풍키를 둬서 도감에 화풍선택 셀렉트 박스를 넣자. 기존 원소공방 이미지들은 거기서 셀렉트하면 보이는걸로하고, 이걸 기본화풍으로 처음부터 만들거야」
+- dex.html — 판 맨 앞에 화풍 고르개(기본 화풍 먼저 · 그 나라 장수). 고른 화풍의 세계 그림 · 일상컷만 보이고 다른 화풍으로 메우지 않는다. 「다른 화풍」 접은 줄은 뺐다. 빈 칸 · 크게 보기의 생성기 링크는 기본 화풍일 때만. 주소 `st=` · 이 기기 저장, 즐겨찾기 link 는 그 그림이 든 화풍으로
+- lib/words.js — 화풍 고르개 낱말, 「다른 화풍」 낱말 뺌 · lib/element.css(v8) — 고르개 · 빈 칸
+- tests/screen.cjs — 처음은 기본 화풍 · 고르개 차례 · 화풍마다 그 그림만 · 기본 아닌 화풍의 빈 칸은 생성기로 안 감 · 주소 · 즐겨찾기 link 의 화풍
+- AGENTS.md · IMAGE_RULES.md · docs/IMAGE_AUTOMATION.md — 기본 화풍 semireal, 도감 고르개
+
+## 2026-11-04 · claude · 원소 화풍 기본을 v2 로 되돌림
+- data/style.json — game_keyart current v4d → v2, v2 에 `readopted`(까닭). 사용자 「v2 로 바꿔줘」 — v3 · v4d 는 GPT 세션 · API 어디서도 v2(11-02 금 · 고목, 11-03 헬륨 · 다이아 드릴 API v2)만큼 맞지 않았다. v3 · v4 · v4c · v4d 는 지우지 않고 기록 판으로
+- tests/prompt-element.cjs — 기본 판 v2 검사(헬륨 기본 지시문이 v2 문장), v4d 검사는 v4d 로 돌린 판에서
+- IMAGE_RULES.md · AGENTS.md — 지금 판 v2, v4d 는 기록 판
+
+## 2026-11-03 · claude · 일상컷 얼굴 · 화풍은 첨부 그림에 맡긴다
+- lib/prompt-element.js — 일상컷 지시문 끝에서 refLock: 화풍 문장 → 「STYLE: keep the attached image's rendering exactly …」, 나이 줄 → 「FACE: exactly the face of the attached image …」(없으면 CHARACTER 밑에), 표정 줄 끝에 「눈썹 · 눈꺼풀 · 입꼬리로만」, FINAL CHECK 줄 뺌. 사용자 「일상컷 저거 너무 이상해」 → 「이제 좀 낫네」 → 「응 다 적용해줘」 — 화풍 · 얼굴 문장을 새로 주면 GPT 세션이 첨부 그림의 얼굴을 다시 그렸다(헬륨 메카 일상)
+- tests — 일상컷 화풍 · 얼굴 · 표정 줄 검사로 바꾸고 일상컷 낱말 상한을 올렸다
+- IMAGE_RULES.md — 일상컷 규칙 한 줄
+## 2026-11-03 · gpt · 헬륨 세계·일상 18장 화풍 v4d 교체
+- 그림 저장소 img/he_* · records/he/ — 기존 외형·장면·일상 계획을 유지하고 생성기 현재 화풍 v4d로 세계 3장·일상 15장을 교체했다. 일상은 새 세계 그림을 첨부했고, 프롬프트·1024×1536·원본/참고 그림 해시를 대조했다.
+- 그림 저장소 records/replacement.json — 이전 WebP·PNG 해시와 새 해시·교체 사유를 보존했다. 의상·크롭·손 좌우·피부 광택 등의 9건은 passed:false로 기록하고 GPT 검수 규칙에 따라 올렸다. 기존 파일·이력을 삭제하지 않았고 썸네일은 변경 원본 --redo 워크플로로 갱신한다.
+- data/img.json — 기존 18개 파일명을 유지하므로 등록 변경은 없다. 등록 도구로 기존 연결을 확인했다.
+
+## 2026-11-03 · claude · 원소 화풍 v4d — 반실사 · 3D 쪽으로 넘친 v3 를 되돌림
+- data/style.json — game_keyart current v3 → v4d. 선은 아주 가늘게 눈 · 눈썹 · 입술에만, 형태는 칠, 무광 손칠 피부(에어브러시 · 3D 렌더 아님), 색 대비, 배경은 윤곽선 없는 붓칠, 평면 2D · 반실사 아님. v3 얼굴 고침은 남기고 「realistically proportioned eyes」 · 「glossy nude lips」 를 바꿔 적는다. 시험 판 v4 · v4c 는 기록으로. 사용자 「지금은 3d 쪽 실사로 많이 치우친 것 같아. 헬륨이 그 예」 → GPT 세션 · API 시험(헬륨 판타지) → 「v4c도 기존보단 선이 좀 굵어」 → v4d 「응 올려줘」
+- tests/prompt-element.cjs — v3 검사는 v3 로 돌린 판에서, v4d 기본 판 · 헬륨 얼굴 낱말 · v3 얼굴 고침 유지
+- IMAGE_RULES.md · AGENTS.md · docs/IMAGE_AUTOMATION.md — v4d 와 시험, 검수에 「반실사 · 에어브러시로 넘치지 않았나」
+## 2026-11-03 · gpt · 헬륨 세계 그림과 일상컷 등록
+- data/img.json — 등록 도구로 헬륨 근본 세계 그림 3장과 일상컷 15장을 추가했다. 다른 카드의 등록은 보존했다.
+- 그림 저장소 records/he/ — 생성기 v3 프롬프트, 세계별 일상 계획, 원본 해시와 AI 검수 기록을 함께 남겼다. 계획과 다른 크롭·의상·손 좌우 등의 11건은 passed:false로 기록하고 GPT 작업 규칙에 따라 올렸다.
+
+## 2026-11-03 · claude · 근본 여덟을 설계표에
+- data/element-design.json — 보관해 둔 나라 여덟(헬륨 · 규소 · 황 · 염소 · 칼슘 · 구리 · 은 · 우라늄)을 nations 끝에. 사용자가 초안 표를 보고 「이미지는 자동으로 그릴게」 — 세계 그림 스물넷은 자동 그리기가 그린다. 가문 · 주민은 아직(근본이 다 선 뒤)
+- docs/held/element-roots-8.json — 걷었다 · docs/ELEMENT_CONCEPT.md 2절 — 설계 중 → 넣음
+
+## 2026-11-03 · gpt · 다이아 드릴 화풍 v3 그림 등록
+- data/img.json — 수정된 생성기 화풍 v3로 새로 만든 다이아 드릴 세계 2장·일상컷 10장을 등록기로 추가. 기존 등록 항목 유지.
+
+## 2026-11-03 · claude · 근본 여덟 설계 초안(보관) · 외형 어휘 늘림
+- docs/held/element-roots-8.json — 헬륨 · 규소 · 황 · 염소 · 칼슘 · 구리 · 은 · 우라늄 나라 여덟(성격 · 성질 · 팔레트 · 손 물건 · 세 세계 장소 · 장면 셋씩 · 메카 설계 · 외형). 사용자 「근본 원소부터 설계해서 채워놓고」 · 「우라늄까지」 · 「헬륨까지」. 확인 받기 전이라 설계표 밖 — 임시로 합쳐 검사기 오류 0(경고는 가문 없음 여덟) · 외형 표 · 지시문 24장 조립을 봤다
+- tools/port-look-spec.cjs · lib/look-spec.js — 머리 윤곽 열넷 · 눈 색 열하나 · 머리색 일곱 더함. 사용자 「머리 스타일이나 눈색이 부족하면 더 추가해도 괜찮아 … 머리스타일은 지금 수가 제한적이라 계속 돌려쓰는 추세」. 기존 카드 87 · 지시문 216 은 그대로(대조)
+- docs/ELEMENT_CONCEPT.md 2절 — 근본 여덟 표(나눌 물질 후보 메모), 늘린 어휘
+
+## 2026-11-02 · claude · 연필 주민 세계 메모(연필촉 머리장식) · v3 「스케치 아님」 뜻 고침
+- data/element-design.json — 연필(c-graphite-pencil) notes 세 세계: 판타지 연필촉 왕관 · 삼나무 결 띠, 스팀펑크 연필촉 모자 · 놋쇠 띠 · 삼나무 결 판, 메카 등의 연필촉 핀 둘 · 머리띠 볏 · 삼나무 색 장갑 테. 사용자 「다시 그리기는 연필만」 → v3 로 세 장을 뽑으니 얼굴은 2.5D 인데 연필촉이 다 빠졌다(예전 v2 그림의 연필촉은 지시문에 없던 모델의 즉흥) → 「1,2 하고 세계 이미지 다시 만들어보자」. 메모를 넣고 뽑으니 셋 다 돌아왔다
+- data/style.json — v3 세계 그림 문장에 잠깐 더했던 「물건 대표 모양을 굵게」 한 마디는 효과가 없어(2차 셋 다 빠짐) 걷었다. 「스케치 · 선그림 아님」 은 「그림 자체가」 로 — 연필 · 흑연처럼 그리는 도구가 주제인 카드의 연필 요소까지 누르지 않게
+- tests/prompt-element.cjs — 길이 상한 5100
+
+## 2026-11-02 · claude · 화풍 v3 에 놀람 표정 낮추기 · FACE 끝 한 마디(v3b)
+- data/style.json — game_keyart v3 에 expr(놀람 → 「입술만 살짝 벌림」)과 face_tail(「치비 · 모에 애니 얼굴 아님」). 사용자 「2번은 넣어주고」(성냥 메카 v3b 시험 — v3 보다 눈이 줄고 입이 작아졌다). v3 로 그린 그림이 아직 없어 같은 판에 더했다
+- lib/prompt-element.js — styleVer · exprText: 세계 그림 기본 표정 · 일상컷 EXPRESSION 이 판의 expr 를 먼저, 설계 얼굴이 있는 FACE 줄 끝에 face_tail
+- tests/prompt-element.cjs — 성냥 v3 놀람 · FACE 끝 · v2 는 그대로, 기본 표정 검사가 판의 expr 를 따른다, 길이 상한 5000(화풍 v3 문장 · FACE 끝)
+
+## 2026-11-02 · claude · 화풍 game_keyart v3 — 평면 2D 로 나오던 것 보정(문장 · 얼굴 낱말)
+- data/style.json — game_keyart v3(current). 사용자 「원소 공방 화풍이 2d 식으로 나오는 경우가 가끔 있어서 … 연필그림도 그렇고 몇몇개가」 · 「나트륨쪽도」 · 「성냥도」 → 시험 → 「추천대로 진행해줘」. 윤곽선은 옅은 색선, 얼굴은 코 · 광대 · 입술 · 턱 입체 명암, 밝은 장면에서도 얼굴 그림자, 「평면 셀 2D 애니 · 스케치 · 실사 아님」. face 칸 — 귀여움 · 큰 눈 · 둥근 큰 눈 · 단추코 · 들창코 · 홍조를 지시문에서만 바꿔 적는다. v2 · v1 은 남는다
+- lib/prompt-element.js — styleFace(현재 판의 face), faceItems 가 그 글을 먼저 쓴다(세계 그림 FACE 줄). 옛 판엔 face 가 없어 옛 지시문 그대로
+- tests/prompt-element.cjs — 얼굴 줄 검사가 판의 face 를 따른다 · v3 문장 · 적혈구 v3 얼굴 낱말 · v2 로 돌리면 옛 지시문 · 나트륨 둥근 눈
+- IMAGE_RULES.md 1절 얼굴 설계 · docs/IMAGE_AUTOMATION.md 4절 검수(화풍이 2.5D 인가) · AGENTS.md 파일 표 — 까닭과 시험(적혈구 · 성냥 메카 여섯 장), 2D 세계 그림의 카드는 세계 그림부터
+
+## 2026-11-02 · gpt · 나뭇잎 이미지 등록
+- 나뭇잎(o-wood-leaf)의 세계 그림 3장과 세계별 일상컷 5장씩 총 18장을 생성하고, WebP·생성 지시문·계획·원본 및 참고 해시·AI 검수 기록을 그림 저장소 4aa64ee에 반영했다.
+- 프레이밍·손 좌우·의상·장식·배경 등 계획과 다른 부분은 개별 qa.passed=false로 보존했다. 메카 일상3의 출력 필터 거절 및 동일 지시문 재시도 성공을 기록했다.
+- 셸 Git push 인증이 없어 연결된 GitHub 앱으로 기존 main의 후속 커밋을 추가했다. 도감은 그림 등록 자동화로 반영한다.
+
+## 2026-11-02 · gpt · 다이아 반지 이미지 등록
+- 다이아 반지(c-diamond-ring)의 세계 그림 3장·세계별 일상컷 5장씩 총 18장을 생성하고 WebP·생성 지시문·계획·참고 및 원본 해시·AI 검수를 그림 저장소 c3ee937에 기록했다.
+- 손 좌우·구도·문자·의상 등 계획과 다른 12컷은 qa.passed=false로 보존했다. 자동화 규칙 0·4절에 따라 임의 재생성 없이 게시했다. 도감은 그림 등록 워크플로로 반영한다.
+
+## 2026-11-02 · gpt · 염전 이미지 등록
+- 염전(na-salt-saltpan)의 세계 그림 3장·일상컷 15장을 추가하고 생성 지시문·계획·원본 해시·AI 검수를 그림 저장소에 기록했다.
+- 판타지 일상2 추가 팔과 의상·좌우 손·구도 등의 계획 불일치를 qa.passed=false로 남겼다. 자동화 규칙 0·4절에 따라 재생성 없이 게시했다.
+
+## 2026-11-02 · gpt · 장신구 가문주 — 세계 그림 셋과 세계별 일상컷 다섯 장
+- data/img.json — au-jewel 의 판타지·스팀펑크·메카 세계 그림 3장과 일상컷 15장을 그림 등록 워크플로로 등록. 그림 저장소 edfd1fd, 썸네일 18장 자동 생성·등록 검사 통과. 원본 PNG 없이 WebP·프롬프트·참고 해시·AI 검수·필터 재시도를 기록했고, 계획과 다른 구도·손 좌우·장식·배경 문자 등 7컷은 검수 실패를 그대로 남김.
+
+## 2026-11-02 · claude · 공용 트리 모듈 복사 — 코스튬 컷의 안 쓰는 프레이밍 칸
+- lib/casual-tree.js · lib/casual-tree-v2.js — 공용 트리 모듈(game 원본)을 그대로 복사. 표에 costume_required.not_frames 가 있으면 그 옷 계열 컷에 그 프레이밍을 안 쓴다(이유 code costume). 이 공방 표엔 그 칸이 없어 동작은 그대로
+
+## 2026-11-02 · claude · 전시관 움직임 — 그림이 날아와 커지고, 가문 이름표가 핵에서 퍼진다
+- Motion 작은 판(lib/vendor/motion-mini.mjs, animate + spring 압축 5KB)과 lib/motion-fx.js 를 sam-atelier 와 같이 두고(사용자 「갤러리 쪽 모션을 더 다듬기」 → 「둘 다 붙여줘」), 뷰 전환 대신 누른 그림 한 장만 움직인다(FLIP).
+- 섬의 카드를 누르면 그 자리에서 궤도 무대가 커지고, 가문 이름표가 핵에서 튀어나와 궤도 자리로 차례로 퍼진다. 이름표 · 가운데를 누르면 미리 보기 그림이 거기서 날아와 커지고, 크게 보기 · 주민 보기는 미리 보기 그림에서 이어진다. 주민 액자는 차례로. 폰 흉내로 세계 바꾸기 0.11초 · 미리 보기 0.13초 그대로.
+- tests/screen.cjs — 시험 서버가 .mjs 를 자바스크립트로 내준다.
+
+## 2026-11-02 · claude · 전시관 폰 — 미리 보기 · 한 장의 그림을 위로
+- 미리 보기 판을 화면 아래에서 위로 붙이고(맨 위 10px), 한 장 보기의 「닫기」를 그림 위 모서리로 올려 그림이 위 막대 바로 아래에서 시작(사용자 「모바일에서 이미지 뜨는 위치를 조금 더 위로」).
+- 층이 바뀔 때의 움직임이 끝난 뒤에도 남아(fill both) 미리 보기 · 닫기의 고정 자리가 그 층에 갇혀 아래로 밀리고 위 막대 밑에 깔리던 것도 함께 — 움직임은 시작 쪽만 채운다(backwards).
+
+## 2026-11-02 · claude · 전시관이 느리던 것 — 뷰 전환을 빼고 가벼운 움직임으로
+- 폰 흉내(CPU 4배 느리게 · 이미지 지연)로 재니 세계 바꾸기 3.7초 · 궤도 화면 4.2초 — 뷰 전환(화면 전체를 찍어 섞기)이 한 번 돌면 끝날 때까지 터치를 붙잡았다(사용자 「여기만 화면 로딩이랑 전환이 느리다」).
+- 뷰 전환을 빼고 층이 바뀌면 살짝 커지며 나타나는 CSS 움직임(투명도 · 크기만), 세계를 바꾸면 새 그림이 깔린 썸네일 위로 스르르. 점선 고리는 통째로 돌리고, 빛 점은 그림자 대신 퍼지는 고리로, 흐림(backdrop-filter)은 다 걷고 궤도 그림의 가장자리 흐림은 그림 층에만. 한 장 보기는 다른 세계 그림을 미리 받는다.
+- 같은 조건에서 첫 화면 1.7초 → 0.43초, 궤도 화면 4.2초 → 0.2초, 세계 바꾸기 3.7초 → 0.11초.
+
+## 2026-11-02 · claude · 전시관 나라 층 — 원소마다 궤도 그림 · 이름표 → 미리 보기 → 크게 보기
+- 폰에선 궤도 선을 숨기고 그림만 쌓아 원자 느낌이 사라졌다(사용자 「모바일에서는 이펙트가 안 보인다 — 궤도 이미지를 원소별로, 텍스트로만, 누르면 큰 이미지, 거기서 크게 보기」).
+- 원소마다 궤도 그림 한 장 생성(일곱, 그림 저장소 backgrounds/orbits/ — 가운데 원소의 핵, 큰 고리 하나). 그 위엔 글자만 — 가운데 원소 이름, 큰 고리 위에 가문 이름표(빛 점이 숨 쉬듯, 점선 고리가 천천히 돈다 · 움직임 줄이기면 멈춤). 고리 반지름은 그림마다 재서 기록 ring 과 gallery.html RING 에.
+- 이름표를 누르면 미리 보기(큰 그림 · 이름 · 설명) — 「크게 보기」는 한 장, 가문주는 「주민 n 보기」로 가문 층. 폰에선 아래에서 올라오는 판. PC 도 같은 구조.
+
+## 2026-11-02 · claude · 화면이 늦게 뜨던 것 — 글꼴을 쓰는 것만 · 그리기를 막지 않게
+- 모든 화면이 제목 글꼴 넷(Song Myung · Hahmlet · Orbit · Black Han Sans)을 한꺼번에 받아 글꼴 목록만 514KB, 그걸 받기 전엔 화면이 안 그려졌다(사용자 「화면 로딩이 엄청 느린데」).
+- 제목 글꼴은 lib/workspace-theme.js 가 지금 공간의 것 하나만 붙이고, 본문 글꼴은 400 · 700 두 굵기만, 글꼴 줄은 전부 그리기를 막지 않게(media=print → onload). 전시관의 큰 그림은 원본이 오는 동안 썸네일을 먼저 깐다. 주기율표 첫 그리기 1.0초 → 0.2초, 받는 글꼴 1.1MB → 0.7MB.
+
+## 2026-11-02 · claude · 전시관 — 감상용 화면(섬 → 나라 궤도 → 가문 → 한 장)
+- gallery.html · lib/gallery.css 새로. 도감은 그림을 채우는 작업 화면(빈 칸 → 생성기 · 장 수)으로 두고, 그려진 카드만 거는 감상 화면을 따로(사용자 「감상용 디지털 아카이브 — 레이어 줌인 · 원형 구조」).
+- 층: 섬(그림 걸린 나라) → 나라(가운데 근본, 둘레 궤도에 가문주 — 원자와 전자, 나라 글 · 이 세계의 나라 글 · 성질) → 가문(가문주 크게 · 주민은 공간의 장식 틀 액자) → 한 장(화면 가득 · ← → 세계 · 밀기 · Esc). 세계 셋은 위 막대에 늘 — 바꾸면 같은 카드가 그 세계 그림으로 이어 바뀐다(뷰 전환, 움직임 줄이기면 끈다).
+- 그림은 세로 2:3 그대로(가로로 자르지 않는다), 사실 칸은 elements 의 것만(지어낸 수치 없음). 그 세계 그림이 없는 카드는 다른 세계 것을 「…의 그림」 표시로. 주소 ?n=&f=&c=&w=&v=1, 층마다 뒤로 가기 · 한 장을 닫으면 뒤로. 머리 메뉴 · 타이틀 메뉴에 「전시관」(타이틀은 강조 단추).
+
+## 2026-11-02 · claude · 공간 다섯의 장식 틀
+- 공간마다 생성한 장식 틀 한 장(실험실 크롬 관 · 유리 플라스크 / 천문대 황동 아스트롤라베 / 연금술 구리 · 리벳 · 호박 전구 / 광산 갱도 목재 · 쇠 꺾쇠 · 광석 / 제어실 금속 베젤 · 초록 LED)을 9칸 틀로 섹션 · 프롬프트 판 · 결과 · 패치 · 공간 고르기 · 나라 카드 · 머리 메뉴에(사용자 「응 장식 틀도 만들어줘」, sam-atelier 와 같은 방식).
+- 그림의 투명 여백을 잘라내야 판 바탕이 틀 밖으로 삐져나오지 않는다 — 잘라낸 틀로 변 두께 · 모서리를 재서 자르기 %. 틀 안 글이 장식에 걸리지 않게 판 안쪽 여백을 28 · 30px(폰 26 · 22px)로. 「배경 끄기」 면 틀도 끈다.
+
+## 2026-11-02 · claude · 전체 화면 점검 반영(frontend-design · ui-ux-pro-max)
+- 주기율표: 폰에서 15px 이던 칸을 44px 로 두고 옆으로 밀기(오른쪽 끝 흐림), 원자 번호 7px → 10px, 칸 글꼴 고정폭 → 본문 글꼴 고른 폭 숫자. 첫 묶음 나라 카드는 카드 전체가 그 나라 도감 길. 머리말 위 작은 「원소의 공방」 표시 뺌.
+- 도감: 폰 단추(보기 · 세계 · 바로 가기 · 나라 · 일상컷 펼치기)를 44px, 붙는 판은 비치는 막, 거르기 줄 오른쪽 끝 흐림, 「나라 설명」 펼침 표시(▸), 원소 기호는 공간의 제목 글꼴, 빈 칸 · 원소 표시 10~11px 고정폭 → 12px 본문 글꼴.
+- 프롬프트: 판 · 결과에 카드 바탕(글이 배경 장면 위에 바로 앉던 것), 폰 붙는 단계 줄은 내려 읽을 때만 막, 「? 설명 보기」, 빈 단계는 「—」 대신 이름, PC 왼쪽 줄 맞춤, 손가락 크기. 공통: 폰 머리 메뉴 12px · 머리 설명 한 줄, 공간 고르기 · 패치 기록 단추 44px, 타이틀 작은 글씨 12px.
+
+## 2026-11-02 · claude · 타이틀 화면 — 배경 장면 가득 · 그림 현판·단추, 옛 첫 화면은 주기율표(hall.html)로
+- index.html 을 게임 첫 진입 화면처럼 — 공간 배경 장면을 화면 가득, 공간 다섯마다 생성한 투명 그림 한 벌(현판 · 주 단추 · 보통 단추 · 둥근 단추, 그림 저장소 backgrounds/ui/)로 메뉴 셋(주기율표 · 도감 · 프롬프트, 머리 메뉴 차례), ◀ ▶ · ← → 공간 넘기기, 빈 곳 누르면 배경만(사용자 「메인화면 구성을 지금 삼국지처럼」 — sam-atelier 의 타이틀을 옮김).
+- 옛 첫 화면(주기율표 118 · 첫 묶음 · 패치 · 공간)은 hall.html(머리 메뉴 「주기율표」)로 내용 그대로. lib/material.css 새로 — 그림 단추 변수와 공간별 제목 글꼴(실험실 · 제어실 Orbit · 천문대 Hahmlet · 연금술 Song Myung · 광산 Black Han Sans).
+- 디자인 점검 skill 셋(frontend-design · ui-ux-pro-max · web-design-guidelines)을 .claude/skills 에 설치(AGENTS 「꾸밈 · 글꼴」).
+
+## 2026-11-02 · gpt · 황토 안료 12장 등록
+- data/img.json — 등록 스크립트로 판타지·스팀펑크 세계 그림과 세계마다 일상컷 다섯 장을 추가했다. 기존 등록·날짜는 보존했다.
+
+## 2026-11-02 · gpt · 잠수 헬멧 6장 등록
+- data/img.json — 등록 스크립트로 스팀펑크 세계 그림과 일상컷 다섯 장을 추가했다. 기존 등록은 보존했다.
+
+## 2026-11-02 · gpt · 바다 18장 등록
+- data/img.json — 등록기로 o-water-sea 판타지·스팀펑크·메카 기본컷 3장과 세계별 일상 5장씩을 추가하고 기존 등록·날짜를 보존했다.
+- 그림 저장소 records/o-water-sea/ — 생성기 원문·일상 계획·원본 및 참조 해시·AI 검수를 기록했다. 일상 6장의 손 좌우·다리·시선·자세 차이는 검수 실패로 남겼다. 18장 모두 1024×1536 WebP이며 양팔 연결을 검수했다.
+
+## 2026-11-02 · gpt · 탄소의 나무 가문주 18장 등록
+- data/img.json — 등록기로 판타지·스팀펑크·메카 세계 그림 3장과 세계별 일상컷 5장씩을 추가했다. 기존 766장의 등록과 날짜는 보존했다.
+- 그림 저장소 records/c-wood/ — 생성기 원문, 세계별 일상 계획, 원본·참조 해시와 AI 검수를 기록했다. 구도·손 좌우·기준 의상 잔류의 차이는 실패 항목으로 남겼으며, 메카 일상1은 같은 지시문 재시도에서 생성됐다.
+
+## 2026-11-02 · gpt · 탄소의 기름 가문주 그림 18장 등록
+- data/img.json — 자동 등록으로 c-oil 판타지·스팀펑크·메카 세계 그림 3장과 세계별 일상컷 5장씩 총 18장을 연결했다.
+- element-atelier-img의 records/c-oil — 생성기 원문·트리 계획·참고 원본 해시·검수를 보존했다. 세계·의상·손 좌우·프레이밍 불일치는 검수 실패로 표시했다.
+- element-atelier-img의 img/c-oil_steampunk_game_keyart_f_casual4.webp — 0바이트 변환 오류를 동일 원본 PNG에서 재변환해 복구했다. 18장 전체 디코딩, 크기·이름·일상 묶음 검사와 자동 썸네일 성공을 확인했다.
+
+## 2026-11-01 · gpt · 탄소의 불 가문주 그림 18장 등록
+- data/img.json — 그림 등록 자동화로 c-fire 판타지·스팀펑크·메카 세계 그림 3장과 각 세계 일상 5장(총 18장)을 등록했다.
+- element-atelier-img의 records/c-fire — 생성기 원문·트리 계획·참고 이미지와 원본 해시·검수를 보존했다. 손 좌우·구도·장식 잔존과 메카 일상5의 추가/분리 팔은 검수 실패로 기록했다.
+- element-atelier-img의 img/c-fire_steampunk_game_keyart_f_casual5.webp — 0바이트 저장 오류를 같은 원본 PNG로 재변환해 복구했다. 새 이미지 생성이나 기존 작업 삭제는 없다.
+
+## 2026-11-01 · claude · 「난간에서 돌아보기」 빼기 — 뒷모습으로 돌아보며 얼굴 · 머리에 손 안 대기
+- data/casual-tree-v2.json — 자세 추천 rail_lookback(뒤 3/4 · 어깨 너머 · 오른손 난간 · 왼손 머리 넘기기)을 뺐다. 좌우 · 팔 줄을 적은 시험 세 장도 사용자가 「아니 지금도 이상해. 그냥 지금 구도는 갈래에서 없애줘」
+- lib/casual-tree-v2.js(공용) — 몸이 뒤쪽(far)이고 머리가 어깨 너머(look_back)면 얼굴 · 머리에 대는 손(zone face)을 못 고른다(why lookback — 화면 · 랜덤 · 계획기가 같이 막는다). backLook 은 팔 줄 없이 왼쪽 어깨 · 손의 화면 쪽만. 예전 기록의 그 손은 다시 검사(repair)가 비운다
+- tools/casual-tree-v2.py — 추천이 그 조합이면 건다
+- lib/words.js — 못 고르는 까닭 낱말 lookback. 생성기 캐시 번호 올림
+
+## 2026-11-01 · claude · 뒷모습 돌아보기 — 돌아보는 어깨 · 손의 화면 쪽 · 얼굴 손의 팔
+- lib/casual-tree-v2.js(공용, game 원본 · book · element · pkm 같은 파일) — backLook: 몸이 뒤쪽(far)이고 머리가 어깨 너머(look_back)면 돌아보는 어깨를 얼굴에 닿는 손(zone face)의 쪽으로(없으면 왼쪽) 정하고, 손 줄에 붙일 화면 쪽 말과 얼굴 손의 팔 줄을 준다. 「어깨 너머」 만 적으니 모델이 아무 쪽으로 돌렸고 뒷모습에서 「her own right hand」 를 자주 뒤집어, 얼굴 쪽과 반대 팔이 귀를 만지려 머리 뒤를 가로질렀다(element 「난간에서 돌아보기」 — 사용자 「지속적으로 뒷태에서 머리 만지는 컷이 팔 구조 해석이 잘못됐는지」). 시험 세 장(o-blood 메카 일상1 두 번 · c 판타지 일상1)에서 팔이 같은 쪽 어깨에서 올라갔다
+- lib/prompt-element.js — COMPOSITION 의 머리 말을 「her own left shoulder — the shoulder on the image's left side」 로, 손 줄 끝에 「on the image's … side, since her back is to the camera」, 얼굴 손이면 ARM 줄(같은 쪽 어깨에서 · 팔꿈치는 옆으로 · 머리 · 목 뒤를 가로지르지 않는다). 앞모습은 그대로. 생성기 캐시 번호 올림
+
+## 2026-11-01 · claude · AGE 줄을 game 표와 다시 맞춤
+- lib/look-spec.js — `node tools/port-look-spec.cjs` 로 다시 옮겼다. game 의 폼 표정 작업에서 AGE 줄(20대 · 젊은 성인)의 「soft full cheeks · soft smile」 을 뺀 것이 아직 안 들어와 tests/look-spec.cjs 가 걸렸다. 다른 표는 그대로
+
+## 2026-11-01 · claude · 일상컷 의상 계열 「할로윈 코스튬」
+- data/casual-tree.json · data/casual-tree-v2.json — 의상 계열 할로윈 코스튬(halloween) 열여섯 벌: 마녀 · 뱀파이어 · 검은 고양이 · 악마 · 서큐버스 · 미라 · 유령 신부 · 해골 · 호박 · 늑대 · 해적 · 거미 여왕 · 타락 천사 · 박쥐 · 시스루 유령 · 메두사(수위 있게 — 코르셋 · 하이 슬릿 · 바디수트 · 사이하이). 시대는 지금 · 무대·환상(옛 시대 줄 「그 시대 평상복만」 과 부딪혀 뺐다), 장소는 무대 의상을 받는 곳 + 거실 · 바 · 옥상 파티 · 축제 거리, 무대 의상을 받는 하는 일. 필수 갈래는 아니다. 버전2 어색한 조합에 목욕 · 운동 · 물가. 사용자 「각 공방에 일상컷 의상중에 할로윈 코스튬 의상 등 좀 더 추가해줘. 수위가 좀 있는걸로」
+
+## 2026-11-01 · claude · 일상컷 계획기 — 카드 사이 안 쓴 트리 쪽 먼저
+- tools/casual-plan.cjs — 다른 카드 기록(--usage)에서 소품만 세던 것을 장소 · 옷 · 자세 추천 · 자세 · 표정까지 센다(sceneUsage). 한 번도 안 쓴 값은 무게 4, 쓴 값은 1/(1+횟수)². 묶음 규칙은 그대로. 옛 꼴(소품 → 횟수)도 받는다. 사용자 「element쪽도 pkm 처럼 일상컷 만들때 안 쓴 트리 쪽으로 먼저 쓰게 하는 규칙」 → 「응 그렇게 넣어줘」
+- tests/casual-plan.cjs — 많이 쓴 값으로 채운 횟수를 주면 안 쓴 장소 · 자세 추천 · 표정이 60% 넘게, 횟수 없을 때의 1.5배 넘게 나온다 · 같은 씨앗 같은 답 · 그림 저장소 기록에서 센다
+- IMAGE_RULES.md 2절 · docs/IMAGE_AUTOMATION.md — 규칙과 잰 값(새 카드 여섯 × 씨앗 둘 60컷: 안 쓴 장소 7 → 13, 선 자세 33 → 16)
+
+## 2026-11-01 · claude · 안전 필터에 막히면 — 다시 · 노출 낮추기 · 계획 바꾸기
+- IMAGE_RULES.md 1절 — 같은 지시문으로 한 번 더 → 노출을 한 단계씩 낮춰(과감 → 보통 → 적게) 단계마다 한 번 → 그래도 막히면 계획을 바꾼다(한 번, 새 계획도 같은 순서). 노출 칸 말고 다른 말은 바꾸지 않는다. 시도는 generation.retries 에. 사용자 「생성룰에 필터 문제로 막히면 재시도 후, 노출 수위를 낮춰가며 재시도로 바꿔줘. 그래도 안될 땐 계획 변경으로」
+- docs/IMAGE_AUTOMATION.md — GPT 세션의 멈춤 조건과 일상 한 칸 다시 정하기를 같은 순서로
+- tools/prompt-pack.cjs — 노출 낮추기 칸 `casual.<자리>.exposure`(세계 그림은 이미 있던 `worlds.<세계>.look.exposure`): moderate · low 만, 까닭(why) 필수
+- tests/prompt-pack-screen.cjs — 일상 한 칸 노출 low · 세계 노출 moderate 로 고친 설정도 화면과 같은 지시문
+
+## 2026-11-01 · claude · 여러 나라에 걸친 가문 — 짝 채우기 · 새 공통 가문 · 산소 물 주민 재편
+- data/element-design.json — ① 이미 elements 에 적어 둔 짝: 산소나라 녹(황토 안료 · 화성 · 녹슨 닻) · 피(심장 · 적혈구), 탄소나라 강철(숯 · 무쇠솥 · 물결무늬 단검). 산소나라 물 주민에서 우물(수소나라에 있다)을 빼고 샘 · 빙하 · 연꽃 연못을 더했다(아직 안 그린 자리). ② 새 공통 가문: 불 C·O(탄소 — 모닥불 · 석탄 / 산소 — 풀무 · 횃불 · 성냥), 기름 C·H(탄소 — 석유등 · 석유 드럼통 / 수소 — 양초 · 가스등), 나무 C·H·O(탄소 나무 — 종이 두루마리 · 나무통 / 산소 숲 — 나뭇잎 · 고목). 가문주 아홉 · 주민 스물넷이 늘어 카드 87. 모두 그 원소가 그 물질에서 맡는 몫에서 관점 · 외형(얼굴 설계 칸까지)을 잡았다. 사용자 「H2O 같이 여러 나라에 공통으로 걸칠 수 있는 가문주가 더 있음 좋겠어 … 산소쪽은 다른 주민을 편성하는 구조로」 → 「둘 다 해줘」
 - tools/element-design.py — 같은 열쇠의 가문이 나라마다 같은 주민 열쇠를 두면 오류
 - docs/ELEMENT_CONCEPT.md 2절 — 몫 규칙과 나눈 물질 표, 나라를 늘리면 생길 짝
 
