@@ -107,7 +107,7 @@
   },
   "o": {
    "root": {
-    "ko": "숨",
+    "ko": "숨 — 그리고 공기, 「에어」",
     "from": "trait"
    },
    "mode": "per_world",
@@ -139,15 +139,17 @@
      }
     },
     "mecha": {
-     "job_ko": "호흡 · 요가 강사",
-     "base": "nation_temple",
-     "place": "a breathing studio of her element's kingdom — a pale mat floor, a wall of green plants and soft daylight panels",
-     "activity": "she is a breathing and yoga instructor opening a class",
-     "preset": "kneel_clasp",
+     "job_ko": "농구 선수(에어)",
+     "base": "nation_workshop",
+     "place": "a basketball arena of her element's kingdom — a gleaming court, a hoop and backboard high above and banks of light",
+     "activity": "she is a basketball star famous for hanging in the air, walking out for the last shot",
+     "preset": "stride_prop",
+     "use": "sig_low",
+     "prop": "a basketball",
      "outfit": {
-      "bold": "a yoga instructor look fitted to her body — a strappy sports bra and low-rise yoga shorts, bare feet",
-      "moderate": "a yoga instructor look — a fitted cropped tank and high-waisted yoga leggings, bare feet",
-      "low": "a yoga instructor look — a long-sleeved fitted top and yoga leggings, bare feet"
+      "bold": "a basketball player look fitted to her body — a cropped sleeveless jersey and short basketball shorts worn low, a wristband and high-top sneakers",
+      "moderate": "a basketball player look — a sleeveless jersey and knee-length basketball shorts, a wristband and high-top sneakers",
+      "low": "a basketball player look — a warm-up jacket over the jersey, long warm-up trousers and high-top sneakers"
      }
     }
    }
