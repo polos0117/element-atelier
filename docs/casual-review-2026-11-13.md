@@ -855,3 +855,130 @@ pkm 에는 `workwear` 를 안 넣었다 — 「일하는 차림」(`work`, 15벌
 6. 삼국지 새 세계 안 자리(마구 창고 · 조종석 · 격납고)는 세계별 글(`worlds`) 없이 한 글이다.
 7. pkm 계획기는 의상 조건을 장소 고를 때 본다(`famsAt`). pkm 「피할 값」 시험은 프레이밍을 한 컷에서만 피하게 고쳤다 — 열 장에서 프레이밍 하나를 통째로 피하는 계획은 조건이 늘어난 뒤로 거의 못 맞춘다(보통 계획은 40번 중 40번 성공).
 8. 원소 `tests/casual-plan.cjs` 의 「새 계열」 은 넷 가운데 둘 넘게, 삼국지의 「세계끼리 같은 옷」 은 자유 설계 칸을 빼고 본다. 세 공방 `tests/casual-tree-v2.cjs` 의 「어색한 조합은 표시만」 은 아직 막히지 않은 조합으로 본다.
+
+---
+
+## 11. 캐릭터만의 컷 — 세계마다 한 장 더 (2026-11-13 뒤이어 — 틀 · 계획기 · 예시)
+
+사용자 「초창기 건담 의인화 할 땐 일상컷이 그 건담에 어울리는 직업이였는데 … 이거를 좀 적용해 보면 어떨까?」 → 「의상으로도 같이 줫으면 좋겠는데. 옷에 맞더라도 조금은 보이게. 그래서 직업쪽은 항상 필수로 한장」 · 「세계마다 한장으로 … 한장 씩 추가로 하고, 단계는 처음엔 높음으로 하고 … 두번 더 시도해서 막히면 한단계씩 내리는걸로」. 이번에는 틀과 예시만 — 캐릭터별 내용은 다음 작업.
+
+### 장수 룰
+
+| 공방 | 전 | 후 |
+|---|---|---|
+| 원소 | 세계마다 일상 7 | 세계마다 **일상 7 + 캐릭터만의 컷 1**(사는 세계만) |
+| 삼국지 | 세계마다 일상 7 | 세계마다 **일상 7 + 캐릭터만의 컷 1** |
+| pkm | 일상 10 | **일상 10 + 캐릭터만의 컷 1** |
+
+일상 묶음의 장수 · 묶음 규칙은 그대로다. 표에 내용이 없는 캐릭터는 「아직 없음」 — 계획기가 `90 ◇ 캐릭터만의 컷 — 아직 없음 … 건너뜀` 을 찍고 지나간다. 일상 일곱 장을 다 그린 카드도 이 한 장은 짜진다.
+
+### 구분 열쇠 · 파일 이름
+
+- **번호 90**. 원소 · 삼국지: 파일 `<카드>_<세계>_<화풍>_f_casual90.webp`, 기록 `<세계>-casual90.<화풍>-ui.json`. pkm: `casual90`.
+- 등록 도구(`tools/register-images.py`)의 이름 규칙 `casual(\d+)` 을 그대로 지나가므로 도구 · 등록부 꼴을 안 바꿨다. 등록부에선 `byForm.<세계>.casual.f` 목록의 `…_casual90.webp` 가 이 컷이다.
+- 기록에는 `scene.own`(세계) · `scene.placeText` · `scene.ownProp` 과 맨 위 `own: { job_ko, level, example }` 가 남는다.
+- **화면은 안 바꿨다**: 일상컷 목록에 여덟째 그림으로 같이 보이고, 장수 표시(원소 `lib/walk-data.js` 의 일상컷 수 등)는 이 컷도 일상컷으로 센다. 따로 보이게 하려면 파일 이름의 `casual90` 으로 가르면 된다.
+
+### 표의 꼴 — `data/casual-own.json`
+
+```
+cards.<캐릭터> = {
+  root: { ko: "뿌리 연상 한 줄", from: "use | name | trait | story | flip" },   // 실제 쓰임 · 이름·어원 말장난 · 성질의 비유 · 역사·일화 · 뒤집기
+  mode: "per_world | same_job",     // 연상에서 세계마다 다른 직업(기본) · 연상이 약해 같은 직업을 세계별로 옮김
+  example: true,                    // 틀 확인용 예시(내용 확정 아님)
+  worlds.<세계> = {                 // pkm 은 세계가 없어 all 하나
+    job_ko, base, place, activity, preset, prop, use,
+    outfit: { bold, moderate, low }
+  }
+}
+```
+
+- `base` 는 받침 · 장소 종류를 빌리는 트리 장소(직업의 자리가 트리에 없어도 된다 — Place 줄은 `place` 글이 나간다). `preset` 은 트리의 자세 추천이라 손 · 구도 · 팔 규칙이 그대로 걸린다(뒤쪽 몸의 소품 · 옆모습의 가까운 팔 · 자세가 받는 손). `prop` 은 그 직업의 도구 글, `use` 는 그것을 드는 꼴(`sig_hold` 들기 · `sig_raise` 얼굴 옆 · `sig_both` 두 손 · `sig_low` 옆에 내려 들기) 또는 트리 소품 동작.
+- 바탕 장소에서 그 추천 · 동작이 안 되면 계획기가 「표의 base · preset 을 고친다」 며 멈춘다(조용히 다른 자세로 바꾸지 않는다).
+- 빛 · 화면 자리는 일반 컷처럼 계획기가 고른다.
+
+### 단계 내리기
+
+장면 글은 하나, 의상 줄만 바뀐다. 높음에서 시작 → 막히면 같은 지시문으로 두 번 더 → 그래도 막히면 한 단계 내려 다시 세 번까지(bold → moderate → low) → low 에서도 막히면 비우고 보고. 기록 `generation.own = { level, tries, blocked }`. 절차는 저장소마다 `IMAGE_RULES.md` 의 「캐릭터만의 컷」 단락에 적었다(기존 「안전 필터에 막히면」 규칙 — 같은 지시문 한 번 더 → 한 단계씩 — 과 같은 방식이고, 이 컷만 단계마다 세 번).
+
+### 예시 — 수은(Mercury — 신들의 전령) 세 세계
+
+표의 예시 넷(원소 수은 · 크로뮴, 삼국지 유비 · 제갈량, pkm 잠만보 · 럭키)은 틀이 도는지 보려고 채운 것이다(`example: true`).
+
+```
+### hg fantasy · 노출 bold · 왕실 파발꾼
+Place: a relay post on a road of her element's kingdom — a bench under the eaves, a signal post and a waiting carriage
+Time of day: golden hour — warm low sun, long shadows.
+Light direction: side light — the light falls from one side, the far side of her face in soft shadow.
+Outfit: a courier look fitted to her body — a cropped riding jacket open over a bandeau top, short riding breeches, tall boots and a message satchel on a cross strap, showing her shoulders, collarbones and legs as far as the outfit allows, following her curvy figure — a slim waist and rounded hips; intimate areas covered.
+POSTURE: standing with one foot up on a step, the other leg straight.
+COMPOSITION: a full-body shot, her complete head, hands and feet inside the frame with restrained margins; body turned three-quarters toward the camera; head turned to the side; camera slightly below, looking up at her; a wall or backdrop of the place close behind her.
+RIGHT HAND: her own right hand rests on her hip.
+LEFT HAND: her own left hand rests naturally for the posture, relaxed and empty.
+GAZE: she looks toward the far distance.
+Scene note: she is a royal courier between rides, a sealed message tube slung at her hip
+
+### hg fantasy · 노출 moderate · 왕실 파발꾼
+Outfit: a courier look — a cropped riding jacket over a sleeveless fitted top, riding breeches, tall boots and a message satchel on a cross strap, open at the collarbone and showing her arms or lower legs, following her curvy figure — a slim waist and rounded hips; intimate areas covered.
+
+### hg fantasy · 노출 low · 왕실 파발꾼
+Outfit: a courier look — a fitted riding jacket buttoned up, riding breeches, tall boots and a message satchel on a cross strap, mostly covered, following her curvy figure — a slim waist and rounded hips; intimate areas covered.
+
+### hg steampunk · 노출 bold · 전보 배달원
+Place: a telegraph office counter in her element's kingdom — brass telegraph keys, pigeonholes of sealed envelopes and a tall window
+Time of day: golden hour — warm low sun, long shadows.
+Light direction: a pool of light from above, the surroundings dimmer.
+Outfit: a messenger uniform fitted to her body — a short open waistcoat over a strapless corset top, a pleated mini skirt, a pillbox cap and ankle boots, showing her shoulders, collarbones and legs as far as the outfit allows, following her curvy figure — a slim waist and rounded hips; intimate areas covered.
+POSTURE: standing.
+COMPOSITION: a chest-up shot of her face, shoulders and expression; body in side profile, facing the right of the frame, so her own right side is toward the camera; head tilted slightly; camera slightly below, looking up at her; a wall or backdrop of the place close behind her.
+RIGHT HAND: her own right hand is in PROP — her near arm, on the camera side.
+LEFT HAND: her own left hand stays outside the frame — her far arm, on the side away from the camera.
+PROP: with her own right hand she holds a sealed telegram envelope up beside her face; it is all she holds.
+GAZE: her eyes rest on what she holds.
+Scene note: she is a telegram messenger sorting the next delivery
+
+### hg mecha · 노출 bold · 드론 택배 관제사
+Place: a parcel-drone control station of her element's kingdom — a pilot seat, a control yoke in front of her and a wide canopy over a city of landing pads
+Time of day: golden hour — warm low sun, long shadows.
+Light direction: a pool of light from above, the surroundings dimmer.
+Outfit: a flight controller suit fitted to her body — a cropped zip jacket open over a sports-bra top, high-waisted flight shorts and a slim headset, showing her shoulders, collarbones and legs as far as the outfit allows, following her curvy figure — a slim waist and rounded hips; intimate areas covered.
+POSTURE: seated on a chair.
+SUPPORT: her back rests against the seat back.
+COMPOSITION: a waist-up shot of her head, torso and hands; body turned three-quarters toward the camera; camera at her eye level; the space runs far back behind her, its lines receding into the distance.
+BOTH HANDS: both hands rest on the wheel in front of her.
+GAZE: she looks toward the far distance.
+Scene note: she is a delivery-drone controller guiding a flight in
+```
+
+삼국지 제갈량(동남풍 — 날씨를 읽는 사람) 삼국시대:
+
+```
+### 제갈량 samguk · 노출 bold · 천문 · 기상 관측관
+Place: an observation terrace on a Han-era rooftop — a bronze wind vane, star charts weighted with stones and a railing over the river
+Time of day: golden hour — warm low sun, long shadows.
+Light direction: side light — the light falls from one side, the far side of her face in soft shadow.
+Outfit: a scholar look fitted to her body — a sleeveless cross-collared robe opened into a deep neckline, a high side slit and a silk sash
+POSTURE: standing.
+COMPOSITION: a chest-up shot of her face, shoulders and expression; body in side profile, facing the right of the frame, so her own right side is toward the camera; head tilted slightly; camera slightly below, looking up at her.
+RIGHT HAND: her own right hand is in PROP — her near arm, on the camera side.
+LEFT HAND: her own left hand stays outside the frame — her far arm, on the side away from the camera.
+PROP: with her own right hand she holds a small bronze wind vane up beside her face; it is all she holds.
+GAZE: her eyes rest on what she holds.
+Scene note: she is a court weather-reader watching the wind turn
+```
+
+### 내용을 채울 때의 기준(다음 작업)
+
+- **재료는 공방마다**: 원소 = 실제 쓰임과 이름 · 어원 말장난에서 온 본업, 삼국지 = 일화의 현대판(이름 있는 장수는 일화, 나머지는 역할별 기본값), pkm = 도감 습성과 원작 세계에서 하는 일(진화 계열 단위로 주제 하나 — 채워 두고 예외만 고친다, 약하면 타입).
+- **꼴**: 뿌리 연상 한 줄 → 세계마다 그 연상에서 나온 **다른 직업**(아르곤 「게으른 자」 — 나무 그늘의 양치기 / 느긋한 등대지기 / 동면 캡슐 관리인). 연상이 약할 때만 같은 직업을 세계별로 옮긴다.
+- **고르는 법**: 캐릭터마다 후보를 여러 개 내지 않고 하나씩 정해 채운다 — 사용자는 표(캐릭터당 한 줄: 연상 + 세계별 직업)를 훑고 마음에 안 드는 줄만 짚는다. 첫 번째로 떠오르는 뻔한 직업은 피하고, 공방 안에서 직업 계열(가게 · 무대 · 몸 쓰는 일 · 탈것 · 연구 · 돌봄 …)이 고르게 퍼지게, 한 장으로 알아볼 소품 · 옷이 있는 직업으로. 어원 · 일화는 확인된 것만.
+- **의상**: 그 직업의 옷이 몸에 맞고, 단계가 오를수록 조금 더 보인다(정비사 — 맞는 정비복 / 윗도리를 허리에 묶고 민소매 / 짧은 민소매에 허리 · 어깨). 세 단계 글을 다 쓴다.
+- 실제 상표 · 작품 · 회사 이름은 쓰지 않는다(「프로게이머」 · 「스타트업 개발자」 같은 일반 말).
+
+### 같이 한 것 · 안 한 것
+
+- 상황 노출에 「일하다 풀어지는 순간」 둘을 더했다(아홉 → 열하나): `sleeves_up` 소매를 걷고 단추 하나를 풂(「mid-task she has pushed her sleeves up above the elbows and opened one more button at the collar …」 — 셔츠 · 재킷 · 유니폼 · 작업복), `tie_loose` 넥타이 · 스카프를 풀어 내림(「she has pulled her tie or neck scarf loose …」 — 넥타이 · 스카프 · 유니폼 · 정장). 머리 풀기는 머리 매무새 칸(풀어 내림)에 이미 있다.
+- 일반 갈래의 「하는 일」 은 원래 장면 하나 + 노출 축(`skin_exposure`)이라 그대로다 — 단계별 의상 글은 캐릭터만의 컷에만 있다.
+- **pkm 은 반만**: `lib/casual-plan.js` `ownCutV2` 가 장면 칸을 짓고 조립기가 그 글을 싣는 데까지. 묶음 도구 · 장부 · 예약에는 안 이었다.
+- 화면 · 등록 도구 · 등록부는 안 건드렸다. 그림은 새로 뽑지 않았다.
+- 예시의 메카 세계에 「해 질 녘」 같은 시간대가 붙을 수 있다(바탕 장소의 특징으로 고른다) — 내용 채울 때 바탕 장소를 맞게 고르면 된다.

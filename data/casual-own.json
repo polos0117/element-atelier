@@ -1,0 +1,110 @@
+{
+ "version": 1,
+ "note": "「캐릭터만의 컷」(2026-11-13 사용자 「직업쪽은 항상 필수로 한장 만들어 지게」 · 「세계마다 한장으로 … 한장 씩 추가로 하고, 단계는 처음엔 높음으로」). 캐릭터마다 뿌리 연상 한 줄(root — from: 실제 쓰임 use · 이름 · 어원 말장난 name · 성질의 비유 trait · 역사 · 일화 story · 뒤집기 flip), 세계마다 그 연상에서 나온 직업(mode: per_world — 세계마다 다른 직업 · same_job — 같은 직업을 세계별로 옮김). 세계 씬: job_ko · base(받침 · 장소 종류를 빌리는 트리 장소) · place(Place 줄 글) · activity(Scene note 줄 글) · preset(자세 추천 — 손 · 구도는 트리 규칙 그대로) · prop(그 직업의 도구 글) · use(그 도구를 드는 꼴 sig_hold · sig_raise · sig_both · sig_low, 또는 트리 소품 동작 — 없어도 됨) · outfit(노출 단계별 의상 글 bold · moderate · low — 옷은 몸에 맞고 단계가 오를수록 조금 더 보인다). 실제 상표 · 작품 · 회사 이름은 쓰지 않는다(「프로게이머」 · 「스타트업 개발자」 같은 일반 말). example: true 는 틀이 도는지 보려고 채운 예시 — 내용 확정이 아니다. 비어 있는 캐릭터는 계획기가 건너뛴다. 번호는 일상컷 90번(<세계>-casual90) — 일상 묶음 장수에는 안 센다",
+ "number": 90,
+ "levels": [
+  "bold",
+  "moderate",
+  "low"
+ ],
+ "tries_per_level": 3,
+ "cards": {
+  "hg": {
+   "root": {
+    "ko": "수은 Mercury — 신들의 전령",
+    "from": "name"
+   },
+   "mode": "per_world",
+   "example": true,
+   "worlds": {
+    "fantasy": {
+     "job_ko": "왕실 파발꾼",
+     "base": "nation_platform",
+     "place": "a relay post on a road of her element's kingdom — a bench under the eaves, a signal post and a waiting carriage",
+     "activity": "she is a royal courier between rides, a sealed message tube slung at her hip",
+     "preset": "step_pause",
+     "outfit": {
+      "bold": "a courier look fitted to her body — a cropped riding jacket open over a bandeau top, short riding breeches, tall boots and a message satchel on a cross strap",
+      "moderate": "a courier look — a cropped riding jacket over a sleeveless fitted top, riding breeches, tall boots and a message satchel on a cross strap",
+      "low": "a courier look — a fitted riding jacket buttoned up, riding breeches, tall boots and a message satchel on a cross strap"
+     }
+    },
+    "steampunk": {
+     "job_ko": "전보 배달원",
+     "base": "nation_steam_carriage",
+     "place": "a telegraph office counter in her element's kingdom — brass telegraph keys, pigeonholes of sealed envelopes and a tall window",
+     "activity": "she is a telegram messenger sorting the next delivery",
+     "preset": "light_check",
+     "use": "sig_raise",
+     "outfit": {
+      "bold": "a messenger uniform fitted to her body — a short open waistcoat over a strapless corset top, a pleated mini skirt, a pillbox cap and ankle boots",
+      "moderate": "a messenger uniform — a fitted waistcoat over a sleeveless blouse, a pleated knee-length skirt, a pillbox cap and ankle boots",
+      "low": "a messenger uniform — a buttoned jacket, a pleated knee-length skirt, a pillbox cap and ankle boots"
+     },
+     "prop": "a sealed telegram envelope"
+    },
+    "mecha": {
+     "job_ko": "드론 택배 관제사",
+     "base": "nation_cockpit",
+     "place": "a parcel-drone control station of her element's kingdom — a pilot seat, a control yoke in front of her and a wide canopy over a city of landing pads",
+     "activity": "she is a delivery-drone controller guiding a flight in",
+     "preset": "drive_seat",
+     "outfit": {
+      "bold": "a flight controller suit fitted to her body — a cropped zip jacket open over a sports-bra top, high-waisted flight shorts and a slim headset",
+      "moderate": "a flight controller suit — a zip jacket half open over a fitted tank top, slim flight trousers and a slim headset",
+      "low": "a flight controller suit — a zipped jacket, slim flight trousers and a slim headset"
+     }
+    }
+   }
+  },
+  "cr": {
+   "root": {
+    "ko": "크로뮴 — 그리스어 「색」",
+    "from": "name"
+   },
+   "mode": "per_world",
+   "example": true,
+   "worlds": {
+    "fantasy": {
+     "job_ko": "스테인드글라스 장인",
+     "base": "nation_workshop",
+     "place": "a stained-glass workshop of her element's kingdom — panes of coloured glass leaning in the window light, a heavy workbench and hanging tools",
+     "activity": "she is a stained-glass artisan fitting a small piece of coloured glass",
+     "preset": "bench_fix",
+     "use": "tool_fix",
+     "outfit": {
+      "bold": "a glass artisan look fitted to her body — a leather work apron over a bandeau top and short work shorts, sleeves of a shirt tied at her waist",
+      "moderate": "a glass artisan look — a leather work apron over a sleeveless fitted top and rolled work trousers",
+      "low": "a glass artisan look — a leather work apron over a long-sleeved shirt and work trousers"
+     }
+    },
+    "steampunk": {
+     "job_ko": "자동차 도색공",
+     "base": "nation_clockwork_shop",
+     "place": "a paint shop for steam motorcars in her element's kingdom — a half-masked car panel on the workbench, tins of bright enamel and a tall window",
+     "activity": "she is a motorcar painter checking a freshly lacquered panel against the light",
+     "preset": "counter_work",
+     "use": "sig_both",
+     "outfit": {
+      "bold": "a painter look fitted to her body — paint-flecked dungarees with one strap down over a cropped tee, sleeves rolled",
+      "moderate": "a painter look — paint-flecked dungarees over a short-sleeved fitted tee",
+      "low": "a painter look — paint-flecked coveralls zipped up, sleeves rolled once"
+     },
+     "prop": "a small freshly lacquered car panel"
+    },
+    "mecha": {
+     "job_ko": "기체 도장 정비사",
+     "base": "nation_hangar",
+     "place": "a hangar paint bay of her element's kingdom — a parked craft with fresh colour bands, a steel workbench, a rolling stool and a gantry stair",
+     "activity": "she is a hull-paint technician taking a short break on the gantry step",
+     "preset": "step_pause",
+     "outfit": {
+      "bold": "a paint technician suit fitted to her body — the top half of a jumpsuit peeled down and tied at her waist over a cropped tank top, work boots",
+      "moderate": "a paint technician suit — a jumpsuit unzipped to the chest over a fitted tank top, work boots",
+      "low": "a paint technician suit — a zipped jumpsuit and work boots"
+     }
+    }
+   }
+  }
+ }
+}
