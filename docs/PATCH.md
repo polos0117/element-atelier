@@ -7,6 +7,14 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-14 · claude · 근본 스물넷 더(2) — 나라 일흔하나
+- 사용자 「원소공방 근본 원소 추가 작업해줘」 → 후보 스물넷(지금 나라와 물질 짝이 생기는 원소, 세 묶음) → 「응」
+- data/element-design.json — nations 끝에 A(ga · ge · v · mo · os · pd · ta · nb) · B(cs · rb · sr · ba · kr · rn · te · sb) · C(ce · eu · gd · th · tc · po · cm · am), 근본만(가문 · 주민 · 그림은 아직). 세 묶음을 따로 설계해 묶음끼리 장소 · 장면 · 직업 · 머리색이 겹치지 않게 견줬다. sil 은 구조판 3절 · 메카 설계 글을 쓴 실루엣 그대로. 가돌리늄 · 테크네튬 메카 eye_size 를 medium 으로 덮음(큰 눈 · 가는 눈 모양 부딪침). 체형 lean_toned 셋 · petite_voluptuous 셋
+- data/casual-own.json — 스물넷의 캐릭터만의 컷(90번): 뿌리 연상 + 세계마다 다른 직업 · 장소 · 하는 일 · 자세 · 노출 단계별 의상. 216가지(24 × 세계 셋 × 단계 셋)가 다 짜진다
+- lib/prompt-spec.js SIL_TAGS 스물넷 · 머리색 스물넷 · 눈 색 일곱 한국어 이름. tools/port-look-spec.cjs EXTRA · lib/look-spec.js VOCAB_EN 같은 어휘. index.html · prompt.html prompt-spec ?v=37 · look-spec ?v=12
+- tests/prompt-sections.cjs 칸 꼴 세계 그림 낱말 상한 900 → 1000(갈륨 스팀펑크 902 — 글은 줄이지 않는다). docs/ELEMENT_CONCEPT.md 「근본 스물넷 더(2)」 절
+- 검사: element-design check 오류 0 · look-spec · prompt-sections · prompt-short-look · sil-spread --check · walk-core · walk-orbit · walk-table · walk-world · alchemy 통과. 원래 실패하던 것(깨끗한 사본에서도 같다): prompt-element 일상컷 fe-steel-sword 랜덤 줄 · walk-list 조작 줄 344 · walk-card. casual-plan 검사는 그림 저장소 최근 장면 하나가 200자를 넘어 걸린다(설계와 무관)
+
 ## 2026-11-14 · gpt · 제논 27장 도감 등록
 - data/img.json — 선택한 세계컷 판타지 4·스팀펑크 3·메카 4와 세계별 일상 7장·직업컷 1장씩 총 27장을 둘째 그림 저장소에 등록. 실제 프롬프트·참고 원본 해시·자유 설계·검수 차이는 그림 저장소 기록에 보존.
 

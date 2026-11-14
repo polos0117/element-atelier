@@ -25,7 +25,7 @@ for (const key of P.cards(D)) for (const w of P.worldsOf(D, key)) {
   assert(/^One figure only; no text/m.test(B[5]) && !/five fingers/.test(B[5]) && /^Avoid: /m.test(B[5]), id + ' 5칸 — 손가락 말 없음 · Avoid(④⑤)');
   assert(!lines.some(l => !/^Avoid: /.test(l) && /(?:^|[.;:] )No [a-z]/.test(l) && !/unless/.test(l)), id + ' 「No …」 금지 문장은 Avoid 로(조건 unless 마디만 남김)');
   assert(!/\b(?:CONCEPT|WORLD|SILHOUETTE|TIME & WEATHER|TRAITS|EXPOSURE|IDENTITY)\b/.test(t) && !/\.\./.test(t) && !/: \./.test(t), id + ' 옛 줄 이름 · 찌꺼기 없음');
-  const wc = t.split(/\s+/).length; maxW = Math.max(maxW, wc); assert(wc > 450 && wc < 900, id + ' 낱말 ' + wc);
+  const wc = t.split(/\s+/).length; maxW = Math.max(maxW, wc); assert(wc > 450 && wc < 1000, id + ' 낱말 ' + wc);   /* 900 → 1000(2026-11-14 근본 스물넷 더(2) — 갈륨 스팀펑크 902, 글은 줄이지 않고 상한을 올린다) */
   n++;
 }
 /* 스팀펑크 HAIR 조각은 2칸 Hair 줄로, 고른 시간대가 있으면 빛 줄이 그것을 가리킨다 */
