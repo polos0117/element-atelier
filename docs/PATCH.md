@@ -7,6 +7,13 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-15 · claude · 도감 신규 생성 — 최근 1일 그림을 시간순으로
+- 사용자 「원소공방 도감에 최신생성 이미지를 시간순으로 보여지게 해줘. 주기율표에 색상표시랑, 하단에 알칼리금속 항목 위에 신규생성 항목 만들어서 해당 도감의 같은 양식으로 표시해주고 각 근본원소 탭에도 N 같은 글자나 색상 테두리로 표시해줘. 주민들은 표시가 안보일 수 있으니 주민들 표시 방법도」 → 「'가' 로 1일 기준」
+- tools/register-images.py — 등록한 때를 한국 시각까지(YYYY-MM-DDTHH:MM+09:00) — 하루 수백 장이라 날짜만으로는 차례가 없다. 옛 날짜만 적힌 것은 그대로(그날 23:59 로 본다). lib/img.js setAdded 가 두 꼴을 받는다
+- lib/walk-data.js isFresh · freshOf — 지금부터 24시간 안에 등록된 기본 화풍 그림(누구에게나 같다). lib/walk-table.js — 표 칸 흰 테두리 · 점, 범례 맨 앞 「신규 생성」, 나라 판 알칼리 금속 위 「신규 생성」 묶음(가장 늦게 등록된 나라부터, 타일에 새 그림 수 · 근본 · 가문주 · 주민 수), 갈래 묶음 타일에 N 배지 · 흰 테두리, 나라 카드에 새 그림 카드 이름. 한 나라가 두 묶음에 나와 고른 나라는 (나라, 묶음)으로
+- lib/walk-list.js — 주민 · 가문주는 표에 칸이 없어 나라 목록에서: 바로 가기 띠 단추의 점, 카드 머리 N 수, 그림 칸 구석 N. lib/walk.css · lib/words.js. ?v= walk-data 6 · walk-table 8 · walk-list 6 · walk.js 17 · walk.css 16 · img.js 11 · words 29
+- 검사: tests/register-images.py(시각 도장) · tests/walk-table.cjs(범례 11 · 시계를 옮겨 신규 생성 묶음 = 새 그림 나라 · 시간순 · 갈래 타일 N · 카드 하나, 나머지 판 검사는 먼 뒤 시계로) 통과 · tests/lib/harness.cjs open 에 now(시계 옮기기). walk-list · walk-card 는 원래 실패하던 자리에서 그대로
+
 ## 2026-11-15 · claude · 일상컷 체형 줄 — 삼국지에서 옮김(GPT 설계 그림이면 그림의 몸만)
 - 사용자 「그럼 삼국지공방처럼 체형 문구 일상컷에 나오도록 옮겨줘. 세계컷중에 gpt 설계 맡기는 것도, gpt가 본인거 선택받으면 일상컷때 옮길 수 있는지도 확인해줘」 → GPT 설계 주문에 체형 칸은 두지 않는다(「1번은 안돼. 다양성이 떨어져서」) → 「응 그렇게 진행해줘」
 - lib/prompt-spec.js CASUAL.bodyKeep · bodyKeepFree · lib/prompt-element.js figureLine — 짧은 꼴(기본 jp_paint_anime)은 끝 빛 줄 앞 Figure:, 긴 꼴은 ANATOMY 다음 FIGURE:. 우리 설계 그림이면 설계표 체형 글, opts.refFree(고른 세계 그림이 GPT 임의 설계)면 체형 글 없이 그림의 몸만, 기록에 refDesign: gpt_free. 구조판(내린 화풍)은 그대로

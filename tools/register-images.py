@@ -23,7 +23,7 @@
     python3 tools/register-images.py --prune    # 파일이 사라진 항목도 지운다
     python3 tools/register-images.py --backfill-added ../element-atelier-img   # 날짜 없는 그림에 그림 저장소 git 이력의 날짜를(한 번)
 
-등록한 날(added): img.json 의 "added" 에 {파일: "YYYY-MM-DD"} 로 적는다. 도감의 "최근 추가"·"새" 표가 읽는다.
+등록한 날(added): img.json 의 "added" 에 {파일: "YYYY-MM-DD"} 로 적는다(2026-11-15 부터 새로 적는 것은 한국 시각까지 "YYYY-MM-DDTHH:MM+09:00"). 도감의 "최근 추가"·"새" 표가 읽는다.
 이번에 새로 적힌 파일만 오늘 날짜를 받고, 이미 있는 날짜는 그대로 둔다. 날짜를 지어내지 않는다 — 처음부터 있던
 그림은 --backfill-added 가 그림 저장소의 git 이력(그 파일이 처음 더해진 커밋 날짜)에서만 채우고, 이력에서 못 찾으면
 날짜 없이 둔다(도감에 "최근" 으로 안 뜬다). 워크플로의 그림 저장소 체크아웃은 얕아서(이력 한 칸) 거기서는 채우지 않는다.
@@ -52,14 +52,16 @@ EXTRA_DIRS = ["img-2"]
 PAT = re.compile(r"^(.+?)_(m|f|casual(\d+)|extra(\d+))\.webp$", re.I)
 # 화풍 견본. 카드 그림이 아니다
 SKIP = re.compile(r"^style-")
-DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+DATE = re.compile(r"^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}\+09:00)?$")   # 날짜만(옛 등록) 또는 한국 시각까지(2026-11-15 — 도감 「신규 생성」 이 시간순으로)
 # 얕은 그림 저장소에서 이력을 더 받을 때 한 번에 받는 칸 수와 그 끝. 끝까지 받아도 얕으면 경계 커밋의 날짜는 버린다
 DEEPEN, DEEPEN_MAX = 200, 5000
 
 
 def today():
-    """오늘 날짜(YYYY-MM-DD). 검사가 갈아 끼운다."""
-    return datetime.date.today().isoformat()
+    """등록 시각 — 한국 시각 YYYY-MM-DDTHH:MM+09:00(2026-11-15 사용자 「도감에 최신생성 이미지를 시간순으로」 — 하루에 수백 장이라 날짜만으로는 차례가 없다).
+    검사가 갈아 끼운다(날짜만 주어도 된다)."""
+    kst = datetime.timezone(datetime.timedelta(hours=9))
+    return datetime.datetime.now(kst).strftime("%Y-%m-%dT%H:%M+09:00")
 
 
 def git(repo, *args):

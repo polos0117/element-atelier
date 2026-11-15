@@ -108,6 +108,14 @@ with tempfile.TemporaryDirectory() as d:
     bad = copy.deepcopy(s3); bad['added'][a1] = 'yesterday'
     code, s4, out = run(bad, d)
     assert code == 0 and a1 not in s4['added'] and s4['added'][a2] == '2026-10-12', out
+    # 시각까지 적힌 날(2026-11-15 — 도감 「신규 생성」 시간순)도 받고, 다시 돌려도 그대로
+    (Path(d) / a3).touch()
+    code, s6, out = run(s3, d, day='2026-11-15T14:32+09:00')
+    assert code == 0 and s6['added'][a3] == '2026-11-15T14:32+09:00' and s6['added'][a2] == '2026-10-12', out
+    code, s7, out = run(s6, d, day='2026-11-16T09:00+09:00')
+    assert code == 0 and s7['added'][a3] == '2026-11-15T14:32+09:00', ('시각도 다시 돌려도 그대로', out)
+    assert reg.DATE.match(reg.today()), ('오늘 도장 꼴', reg.today())
+    (Path(d) / a3).unlink()
     code, s5, out = run(s1, d, ['--check'])
     assert code == 0 and s5 is None and '등록한 날' in out and '[대조]' in out, out
     # 파일이 사라지면 --prune 때 날짜도 빠진다. --prune 이 아니면 자리와 날짜를 남긴다
