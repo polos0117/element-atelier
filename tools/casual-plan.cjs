@@ -79,7 +79,7 @@ const cosCutOk = (cut, place) => !isWater(place) || COS_SWIM.includes(cut);
 /* 코스프레 장소는 표에 그 계열을 적은 곳만(코스프레 행사 · 테마 행사장 · 오락실 · 거실 · 침실 · 화보 스튜디오 · 무대 · 물가) — 버전2 표의 새 장소(extra_places)는 계열 목록이 없어 다 열려 있다 */
 const cosPlace = place => ((C2.place(T2, place) || {}).outfits || []).includes(COS_FAM);
 /* 쓴 기록을 읽는 그림 저장소 — 옆에 받아 둔 것만(세 공방) */
-const COSPLAY_ROOTS = ['sam-atelier-img', 'sam-atelier-img-2', 'element-atelier-img', 'pkm-atelier-img', 'pkm-atelier-img-2', 'pkm-atelier-img-3', 'pkm-atelier-img-4'].map(d => path.join(ROOT, '..', d));
+const COSPLAY_ROOTS = ['sam-atelier-img', 'sam-atelier-img-2', 'element-atelier-img', 'pkm-atelier-img', 'pkm-atelier-img-2', 'pkm-atelier-img-3', 'pkm-atelier-img-4', 'pkm-atelier-img-5'].map(d => path.join(ROOT, '..', d));   /* -5 — pkm 이 연 저장소(2026-11-15, pkm · 삼국지와 같게), 없는 것은 건너뛴다 */
 /* 한 기록의 코스프레 — generation.cosplay(그린 것), 없으면 scene.cosplay 의 character 가 찬 것 */
 function cosplayRow(r) {
   const g = ((r || {}).generation || {}).cosplay, s = ((r || {}).scene || {}).cosplay, filled = x => x && x.game && String(x.character || '').trim();
