@@ -21,3 +21,16 @@ for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.
   n++;
 }
 console.log('PASS 짧은 판 외형 칸: ' + n + '장 — 고른 외형 줄 · 얼굴 끈 Her 줄');
+/* 일상컷 체형 줄(2026-11-15, 삼국지와 같이) — 우리 설계 그림이면 설계표 체형 글, GPT 임의 설계 그림(refFree)이면 체형 글 없이 그림의 몸만. 짧은 꼴(기본) · 긴 꼴 */
+{ const C = require('../tools/casual-plan.cjs'), T = ctx.window.AtelierSpec, tree = JSON.parse(fs.readFileSync('data/casual-tree.json', 'utf8')), tree2 = JSON.parse(fs.readFileSync('data/casual-tree-v2.json', 'utf8'));
+  const card = C.cardOf('fe'); card.world = 'fantasy'; const { n: _n, ...sc } = C.plan(card, [1], [], { seed: 5 }).cuts[0];
+  const body = T.VOCAB_EN.body[D.nations.find(x => x.key === 'fe').look.silhouette.body];
+  const LONG = JSON.parse(JSON.stringify(S)); for (const st of Object.values(LONG.styles)) for (const v of st.versions) v.casualShort = false;
+  for (const [nm, SS] of [['짧은 꼴', S], ['긴 꼴', LONG]]) {
+    const fig = rf => { const r = P.casualRecord(D, SS, 'fe', sc, { world: 'fantasy', tree, tree2, refFree: rf }, 1); return [(r.prompt.match(/^(?:FIGURE|Figure): .*$/m) || [''])[0], r.refDesign]; };
+    const [ours, d0] = fig(false), [free, d1] = fig(true);
+    assert(ours.includes(body) && /neither slimmer nor fuller/.test(ours) && !d0, nm + ' 우리 설계 — 체형 글: ' + ours);
+    assert(!free.includes(body) && /^(?:FIGURE|Figure): keep her exact build from the attached image/.test(free) && d1 === 'gpt_free', nm + ' GPT 설계 — 그림의 몸만: ' + free);
+  }
+  console.log('PASS 일상컷 체형 줄: 우리 설계 = 체형 글 · GPT 설계 = 그림의 몸만(짧은 꼴 · 긴 꼴)');
+}

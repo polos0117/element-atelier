@@ -238,7 +238,7 @@ const checkCasual = (key, sc, txt, label, world) => {
   assert(!/[가-힣]/.test(txt.replace(/\([^)]*\)/g, '')), label + ' 한국어(괄호 밖)');
   const noStyle = txt.split('\n\n').filter(l => !l.startsWith('STYLE: ')).join('\n\n');
   if (ownTables || !sc.random) assert(!GAME_WORDS.test(noStyle), label + ' 게임 말 — ' + (noStyle.match(GAME_WORDS) || [])[0]);
-  assert(words(txt) <= 1250, label + ' 길이 ' + words(txt) + ' 낱말');   /* 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) */
+  assert(words(txt) <= 1300, label + ' 길이 ' + words(txt) + ' 낱말');   /* 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) → 1300(2026-11-15 체형 FIGURE 줄 — 글은 줄이지 않고 상한을 올린다) */
   const close = T.CLOSE_FRAMES.includes(sc.frame);
   assert.equal(txt.includes('CROP: '), close, label + ' 가까운 컷만 CROP');
   assert.equal(txt.includes(CL.anatomyClose), close, label + ' 가까운 컷 몸 줄');

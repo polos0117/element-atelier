@@ -7,6 +7,12 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-15 · claude · 일상컷 체형 줄 — 삼국지에서 옮김(GPT 설계 그림이면 그림의 몸만)
+- 사용자 「그럼 삼국지공방처럼 체형 문구 일상컷에 나오도록 옮겨줘. 세계컷중에 gpt 설계 맡기는 것도, gpt가 본인거 선택받으면 일상컷때 옮길 수 있는지도 확인해줘」 → GPT 설계 주문에 체형 칸은 두지 않는다(「1번은 안돼. 다양성이 떨어져서」) → 「응 그렇게 진행해줘」
+- lib/prompt-spec.js CASUAL.bodyKeep · bodyKeepFree · lib/prompt-element.js figureLine — 짧은 꼴(기본 jp_paint_anime)은 끝 빛 줄 앞 Figure:, 긴 꼴은 ANATOMY 다음 FIGURE:. 우리 설계 그림이면 설계표 체형 글, opts.refFree(고른 세계 그림이 GPT 임의 설계)면 체형 글 없이 그림의 몸만, 기록에 refDesign: gpt_free. 구조판(내린 화풍)은 그대로
+- tools/casual-plan.cjs refFree — element-atelier-img 의 그 세계 기록 generation.design(GPT 설계로 고른 세계 72). tools/prompt-pack.cjs 안내 — GPT 설계 장을 고른 세계는 일상컷 체형 줄 하나만 바꿔 넘긴다. IMAGE_RULES.md 일상컷 첨부 그림 규칙에 체형 문단
+- tests/prompt-short-look.cjs 일상컷 체형 줄(우리 설계 · GPT 설계, 짧은 꼴 · 긴 꼴). tests/prompt-element.cjs 일상컷 낱말 상한 1250 → 1300(og site 1261 — 글은 줄이지 않는다), 원래 실패하던 fe-steel-sword 줄에서 그대로 멈춘다. index.html · prompt.html prompt-spec ?v=38 · prompt-element ?v=34
+
 ## 2026-11-14 · claude · 근본 스물넷 더(2) — 나라 일흔하나
 - 사용자 「원소공방 근본 원소 추가 작업해줘」 → 후보 스물넷(지금 나라와 물질 짝이 생기는 원소, 세 묶음) → 「응」
 - data/element-design.json — nations 끝에 A(ga · ge · v · mo · os · pd · ta · nb) · B(cs · rb · sr · ba · kr · rn · te · sb) · C(ce · eu · gd · th · tc · po · cm · am), 근본만(가문 · 주민 · 그림은 아직). 세 묶음을 따로 설계해 묶음끼리 장소 · 장면 · 직업 · 머리색이 겹치지 않게 견줬다. sil 은 구조판 3절 · 메카 설계 글을 쓴 실루엣 그대로. 가돌리늄 · 테크네튬 메카 eye_size 를 medium 으로 덮음(큰 눈 · 가는 눈 모양 부딪침). 체형 lean_toned 셋 · petite_voluptuous 셋

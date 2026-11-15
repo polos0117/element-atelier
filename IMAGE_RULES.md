@@ -86,6 +86,7 @@ game-atelier 의 `IMAGE_RULES.md` 에서 왔다. 등록은 올리면 자동이�
 
 - **일상컷 지시문은 얼굴 · 화풍을 첨부 그림에 맡긴다(2026-11-03).** 공방 화풍 문장 대신 「STYLE: keep the attached image's rendering exactly …」, 나이 줄 대신(없으면 CHARACTER 줄 바로 밑에) 「FACE: exactly the face of the attached image …」, 표정 줄 끝에 「눈썹 · 눈꺼풀 · 입꼬리로만, 얼굴은 첨부 그림 그대로」. 화풍 점검(FINAL CHECK) 줄도 일상컷엔 없다.
   화풍 · 얼굴 문장을 새로 주면 GPT 세션이 첨부 그림의 얼굴을 그 말대로 다시 그렸다(헬륨 메카 일상 — 사용자 「일상컷 저거 너무 이상해」 → 이 세 줄로 「이제 좀 낫네」). 세계 그림 · 폼 · 개방은 그대로 화풍 문장을 싣는다.
+  **체형은 글로 넘긴다(2026-11-15, 삼국지에서 옮김 — 사용자 「삼국지공방처럼 체형 문구 일상컷에 나오도록 옮겨줘」).** 첨부 그림만으로는 일상복에서 풍만한 체형이 마르게 돌아갔다. 모든 체형에 설계표 체형 글을 「FIGURE: {체형 글} — keep this exact build from the attached image, neither slimmer nor fuller.」 로 싣는다(`T.CASUAL.bodyKeep` — 긴 꼴은 ANATOMY 다음, 짧은 꼴은 끝 빛 줄 앞 `Figure:`). 고른 세계 그림이 GPT 임의 설계면(기록 `generation.design: gpt_free`) 몸은 GPT 가 정한 것이라 체형 글 없이 「keep her exact build from the attached image, neither slimmer nor fuller.」(`bodyKeepFree`) — 설계 주문에 체형 칸은 두지 않는다(「1번은 안돼. 다양성이 떨어져서」). 묶음 도구는 그 세계 기록을 보고 고르고(`casual-plan` refFree), GPT 세션은 묶음 안내대로 이 줄 하나만 바꿔 넘기고 기록에 `refDesign: "gpt_free"`.
 
 game·pkm 이 쓰는 일상컷 트리 버전2(`lib/casual-tree-v2.js`, 설계는 game 의 `docs/CASUAL_TREE_V2.md`)로 고른다. 생성기가 한 칸씩 연다 — 앞 칸이 뒤 칸을 거르고, 앞을 바꾸면 맞지 않게 된 뒤 칸만 비운다.
 
