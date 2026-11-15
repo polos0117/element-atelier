@@ -65,6 +65,10 @@ node tests/casual-tree-v2.cjs           # 추천×장소 · 랜덤 · 바꾸기 
 
 `lib/casual-tree-v2.js` · `tools/casual-tree-v2.py` 에 규칙을 더했다(시선의 장소 특징 · 뒤쪽 몸 방향의 소품 자리 · 자세가 받는 손 · 손 쪽 · 받침의 손별 목록 · 카메라의 자세 계열 · sideLook · aux · extras · ambience — `docs/casual-review-2026-11-13.md` 8절). 원소 · 삼국지는 같은 파일, pkm 은 거기에 raised 규칙이 더 있는 판. **game · book · myth 의 같은 파일은 안 고쳤다** — 위 표의 「byte-identical」 은 이제 원소 ↔ 삼국지 사이에서만 맞다. 그쪽에 옮길 때는 표에 장소 특징(has 의 indoor · window · sky …)부터 붙여야 한다(없으면 시선 「창밖」 · 「위」, 까치발이 어디서도 안 골라진다).
 
+## 2026-11-15 게임 코스프레 — 표만 더했다(모듈은 그대로)
+
+의상 계열 `game_cosplay`(`cosplay: true`, 옷 = 재단 열하나 `gc_<재단>` — 글의 원본은 `data/game-cosplay.json`) · 시대 지금 현실 · 무대·환상에만 · 장소 코스프레 행사 · 테마 행사장 · 댄스 무대 · 거실 · 침실 · 화보 스튜디오 · 별빛 무대 · 수영장 · 해변에 그 계열 · 새 장소 오락실(`arcade_hall`, 묶음 밤 문화 — 게임공방 글, 받침 의자 · 벽 · 허리 높이 · 실내 · 공공 실내, 하는 일 앉아 쉬기 · 거닐기 · 포토존 포즈) · `costume_required`(그 계열에 얼굴 클로즈업 안 씀 — 모듈 costumeNo 가 읽는다) · 버전2 `outfit_features.defaults.game_cosplay`. 버전2 표의 새 장소(extra_places)는 계열 목록이 없어 다 열려 있으니, 코스프레 장소를 「표에 그 계열을 적은 곳」 으로 좁히는 것과 물가는 수영복 재단만인 것은 계획기(`tools/casual-plan.cjs` cosPlace · cosCutOk) · 생성기(`lib/studio.js`)가 쥔다.
+
 ## 아직
 
 - 생성기(`prompt.html`·`lib/prompt-element.js`)에 일상 갈래를 붙이는 일 — 이 문서 밖. 시대 `nation` 의 지시문은 카드의 세계 글(`worlds.<세계>.en`)을 장소 문장 뒤에 이어야 한다(game 의 `casualWorld` 자리).

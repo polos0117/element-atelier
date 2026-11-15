@@ -25,7 +25,8 @@
     "adventure",
     "drape",
     "resort",
-    "workwear"
+    "workwear",
+    "game_cosplay"
    ]
   },
   {
@@ -85,7 +86,8 @@
     "halloween",
     "adventure",
     "drape",
-    "resort"
+    "resort",
+    "game_cosplay"
    ]
   }
  ],
@@ -157,7 +159,8 @@
     "lingerie",
     "everyday",
     "evening",
-    "dongtan"
+    "dongtan",
+    "game_cosplay"
    ]
   },
   {
@@ -202,7 +205,8 @@
     "everyday",
     "active",
     "halloween",
-    "dongtan"
+    "dongtan",
+    "game_cosplay"
    ]
   },
   {
@@ -595,7 +599,8 @@
    "outfits": [
     "swimwear",
     "active",
-    "retro"
+    "retro",
+    "game_cosplay"
    ]
   },
   {
@@ -612,7 +617,8 @@
     "everyday",
     "retro",
     "bridal",
-    "dongtan"
+    "dongtan",
+    "game_cosplay"
    ]
   },
   {
@@ -905,6 +911,21 @@
    ]
   },
   {
+   "key": "arcade_hall",
+   "group": "night",
+   "ko": "오락실",
+   "en": "an arcade hall of upright cabinets whose screens show only coloured glow",
+   "eras": [
+    "now"
+   ],
+   "outfits": [
+    "everyday",
+    "subculture",
+    "retro",
+    "game_cosplay"
+   ]
+  },
+  {
    "key": "night_jazz",
    "group": "night",
    "ko": "재즈바",
@@ -1008,7 +1029,8 @@
     "evening",
     "traditional",
     "costume",
-    "halloween"
+    "halloween",
+    "game_cosplay"
    ]
   },
   {
@@ -1047,7 +1069,8 @@
    "outfits": [
     "roleplay",
     "costume",
-    "halloween"
+    "halloween",
+    "game_cosplay"
    ]
   },
   {
@@ -1062,7 +1085,8 @@
     "roleplay",
     "subculture",
     "costume",
-    "halloween"
+    "halloween",
+    "game_cosplay"
    ]
   },
   {
@@ -1556,7 +1580,8 @@
     "evening",
     "halloween",
     "drape",
-    "adventure"
+    "adventure",
+    "game_cosplay"
    ]
   },
   {
@@ -1615,7 +1640,8 @@
    "outfits": [
     "costume",
     "editorial",
-    "halloween"
+    "halloween",
+    "game_cosplay"
    ]
   },
   {
@@ -2417,7 +2443,8 @@
     "nation_bridge",
     "nation_temple",
     "nation_camp",
-    "nation_training"
+    "nation_training",
+    "arcade_hall"
    ],
    "en": "resting on a seat for a moment, catching her breath",
    "seat": [
@@ -2496,7 +2523,8 @@
     "nation_bridge",
     "nation_temple",
     "nation_camp",
-    "nation_training"
+    "nation_training",
+    "arcade_hall"
    ],
    "en": "strolling through the place at an easy pace",
    "hands": "free"
@@ -3627,7 +3655,8 @@
     "stage_convention",
     "stage_event",
     "fx_studio",
-    "stage_redcarpet"
+    "stage_redcarpet",
+    "arcade_hall"
    ],
    "en": "striking a pose for the cameras at a photo zone",
    "hands": "free"
@@ -6604,6 +6633,80 @@
      "key": "painter_dungaree",
      "ko": "페인트 묻은 멜빵바지",
      "en": "paint-flecked white painter's dungarees with one strap down over a cropped tee"
+    }
+   ]
+  },
+  {
+   "key": "game_cosplay",
+   "ko": "게임 코스프레",
+   "cosplay": true,
+   "en": "a daring adult cosplay of a game character",
+   "items": [
+    {
+     "key": "gc_mini_dress",
+     "ko": "미니 드레스",
+     "en": "a daring adult cosplay of a game character, cut as a fitted strapless mini dress",
+     "cut": "mini_dress"
+    },
+    {
+     "key": "gc_bodysuit",
+     "ko": "바디수트",
+     "en": "a daring adult cosplay of a game character, cut as a high-cut bodysuit with sheer thigh-high stockings",
+     "cut": "bodysuit"
+    },
+    {
+     "key": "gc_crop_set",
+     "ko": "크롭 투피스",
+     "en": "a daring adult cosplay of a game character, cut as a cropped top and a micro skirt or hot pants that bare the midriff",
+     "cut": "crop_set"
+    },
+    {
+     "key": "gc_corset",
+     "ko": "코르셋",
+     "en": "a daring adult cosplay of a game character, cut as a laced corset bustier with a short flared skirt",
+     "cut": "corset"
+    },
+    {
+     "key": "gc_bikini",
+     "ko": "비키니",
+     "en": "a daring adult cosplay of a game character, cut as a bikini with a sheer sarong in the costume's colours",
+     "cut": "bikini"
+    },
+    {
+     "key": "gc_one_piece",
+     "ko": "원피스 수영복",
+     "en": "a daring adult cosplay of a game character, cut as a high-cut one-piece swimsuit",
+     "cut": "one_piece"
+    },
+    {
+     "key": "gc_lingerie",
+     "ko": "란제리",
+     "en": "a daring adult cosplay of a game character, cut as a lace bralette and high-waisted briefs with garter straps",
+     "cut": "lingerie"
+    },
+    {
+     "key": "gc_leotard",
+     "ko": "레오타드",
+     "en": "a daring adult cosplay of a game character, cut as a gymnastic leotard with sheer tights",
+     "cut": "leotard"
+    },
+    {
+     "key": "gc_slit_gown",
+     "ko": "트임 롱드레스",
+     "en": "a daring adult cosplay of a game character, cut as a floor-length gown with a thigh-high slit",
+     "cut": "slit_gown"
+    },
+    {
+     "key": "gc_idol",
+     "ko": "아이돌 무대",
+     "en": "a daring adult cosplay of a game character, cut as a stage idol outfit — a cropped jacket and a pleated mini skirt",
+     "cut": "idol"
+    },
+    {
+     "key": "gc_knit",
+     "ko": "니트 원피스",
+     "en": "a daring adult cosplay of a game character, cut as a cozy off-shoulder knit mini dress",
+     "cut": "knit"
     }
    ]
   }
@@ -10768,5 +10871,12 @@
    "key": "wildcard",
    "ko": "와일드카드"
   }
- ]
+ ],
+ "costume_required": {
+  "outfit": "game_cosplay",
+  "not_frames": [
+   "face_close"
+  ],
+  "note": "게임 코스프레(2026-11-15 사용자 — 세 공방 일상컷 필수 갈래, 게임공방의 주인공·마스코트 코스튬을 옮김). 묶음마다 한 장(필수 셋의 셋째 — 전엔 상황 노출). 시대는 지금 현실 · 무대·환상만(나라 안 · 쓰임의 현장은 세계 시대와 부딪친다 — 게임공방도 지금 · 무대·환상에만), 장소는 코스프레 행사 · 테마 행사장 · 오락실 · 거실 · 침실 · 화보 스튜디오 · 무대(댄스 · 별빛), 물가(수영장 · 해변)는 비키니 · 원피스 수영복 재단만(tools/casual-plan.cjs · lib/studio.js). not_frames — 얼굴 클로즈업은 코스튬이 안 보인다(게임공방 · pkm 과 같다). 게임 · 캐릭터 · 재단 글은 data/game-cosplay.json"
+ }
 }

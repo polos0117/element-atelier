@@ -7,7 +7,9 @@
    갈래 자유 칸(gfree — 필수 노출 갈래 하나(큰 범위만, 노출 갈래 컷과 다른 것) + 상황은 열기 gsitu 'free' — GPT 가 짓되 우리 넷이 아닌 것 먼저, 2026-11-11 「상황도 열어주자」). 두 칸엔 최근 장면(recent — 그림 저장소 기록의 최근 여덟 + 같은 묶음의 장면 컷)을 적는다. 생성기(lib/studio.js)와 같은 lib/casual-tree-v2.js · lib/prompt-element.js 로 칸마다 장면을 고르고,
    생성기 「기록 내보내기」 와 같은 꼴의 기록(<세계>-casualN.<화풍>-ui.json)과 지시문을 쓴다. 지키는 묶음 규칙(한 세계 묶음 안, 장면 컷끼리 — IMAGE_RULES 2절):
      - 세 장은 정해 둔 갈래 — 노출 갈래 한 장(란제리풍 · 수영복 · 역할극 의상 — 카드마다 돌려 가며) + 나라 안 갈래 한 장(나라의 방 · 목욕탕 · 지붕 · 여관 · 서재 · 부엌 · 야영지 · 정원 · 다리 · 사원 · 숲길 · 나루에서
-       홈웨어 · 란제리 · 목욕 차림 · 수영복) + 상황 노출 한 장(젖은 옷 · 바람 · 반쯤 푼 차림 · 흘러내린 어깨끈 — 위 두 갈래가 아닌 컷, 얼굴 클로즈업 아님), 서로 다른 컷
+       홈웨어 · 란제리 · 목욕 차림 · 수영복) + 게임 코스프레 한 장(2026-11-15 — 전엔 상황 노출. 의상 자체가 그 게임 캐릭터를 드러내는 코스튬 컷, 목록 data/game-cosplay.json,
+       게임 · 캐릭터 · 재단은 세 공방(pkm · 원소 · 삼국지) 그림 저장소의 쓴 기록을 합쳐 덜 쓴 쪽부터 — pickCosplay. 지금 현실 · 무대·환상의 코스프레 행사 · 오락실 · 거실 · 침실 · 화보 스튜디오 · 무대,
+       수영복 재단이면 물가도, 얼굴 클로즈업 아님), 서로 다른 컷. 상황 노출은 필수에서만 빠지고 장면 컷 한 장에 반쯤(SITU_RATE) · 갈래 자유 칸엔 그대로. 옛 묶음(상황 노출 필수 시절)은 그대로 통과
      - 장소는 서로 다르게, 장소 묶음은 두 번까지 · 의상 계열은 겹치지 않게(평상복만 두 번 · 동탄룩 한 장) · 시대는 한 가지 두 번까지, 네 시대(지금 현실 · 쓰임의 현장 · 나라 안 · 무대·환상) 다
      - 자세 추천은 서로 다르게 · 프레이밍은 서로 다르게(먼 컷 · 가까운 컷 하나씩은 꼭) · 몸 방향 한 가지는 두 번까지 · 머리 「어깨 너머」 는 한 장까지
      - 소품은 칸마다 다르게 · 그 원소의 물건(설계표 hold, 주민은 object)을 든 컷은 한두 장 · 마실 것은 한 장까지 · ⚠ 어색한 조합은 한 장까지
@@ -15,9 +17,9 @@
      - 카드 사이에서도 안 쓴 트리 쪽 먼저(--usage, 기본 옆의 element-atelier-img/records) — 한 번도 안 쓴 값은 무게 12, 쓴 값은 1/(1+횟수)³
      - 세계끼리 · 묶음끼리 같은 장소 · 같은 자세 추천 · 같은 옷은 안 된다
    이미 그림이 있는 번호는 짜지 않고, 그 세계의 기록(--records)은 겹침 검사에만 쓴다 — 여섯 장을 다 그린 옛 묶음은 그대로 통과하고 다음 계획 때 일곱째(갈래 자유) 칸만 짜진다.
-   --check 는 자유 설계 칸 기록에 채운 설계(generation.free_prompt)가 있는지도 본다.
+   --check 는 자유 설계 칸 기록에 채운 설계(generation.free_prompt)가, 게임 코스프레 칸 기록에 그린 코스프레(generation.cosplay)가 있는지도 본다.
 
-     node tools/casual-plan.cjs <카드> --world <세계>|all [--fresh] [--slots 1,2,3] [--records <그림 저장소>/records/<카드>] [--seed N] [--out <폴더>] [--usage <폴더>|none]
+     node tools/casual-plan.cjs <카드> --world <세계>|all [--fresh] [--slots 1,2,3] [--records <그림 저장소>/records/<카드>] [--seed N] [--out <폴더>] [--usage <폴더>|none] [--cosplay-usage <저장소,…>|none]
      node tools/casual-plan.cjs <카드> --world <세계> --check <기록 폴더> [--from N]   # 올리기 전 */
 'use strict';
 const fs = require('node:fs'), path = require('node:path'), vm = require('node:vm');
@@ -55,6 +57,108 @@ const DRINKS = ['cup', 'drink_glass', 'water_bottle', 'teapot'];
    젖은 옷 · 바람 · 반쯤 푼 차림 · 흘러내린 어깨끈 중 그 옷에 맞는 것 하나(T.CASUAL.situations). 다른 세계 묶음이 쓴 상황은 뒤로 */
 const SITUS = (T.CASUAL.situations || []).map(x => x.key);
 const SITU_NO_FRAME = ['face_close'];   /* 얼굴 클로즈업엔 옷이 안 보여 상황이 안 산다(손상향 시험 계획 — 젖은 옷이 클로즈업에) */
+/* 상황 노출은 2026-11-15 부터 필수가 아니다(셋째 필수는 게임 코스프레) — 장면 컷 한 장에 이 비율로 얹는다(일반 컷에선 그대로 나올 수 있다 — 사용자 결정) */
+const SITU_RATE = 0.5;
+
+/* ══ 게임 코스프레(2026-11-15 사용자 — 세 공방(pkm · 원소 · 삼국지) 일상컷 필수 갈래, 게임공방의 「주인공 · 마스코트 코스튬」 을 옮김. 필수에서 상황 노출을 내리고 이것을 올린다).
+   목록 data/game-cosplay.json(원본 game-atelier — 고치지 않는다): 게임 열아홉(주인공 하나 many: false — character · outfit 정해짐 / 등장인물 많음 many: true — roster) · 재단 열하나(cuts) · 글 셋(text).
+   고르는 규칙 — 「캐릭터 + 재단」 묶음이 한 단위, 쓴 기록은 세 공방을 합쳐 센다(cosplayUsage):
+     1. 덜 쓴 게임 먼저(다 찬 게임은 빠진다) 2. 주인공 하나 게임 — 그 주인공이 아직 안 입은 재단 → text.fixed
+     3. 등장인물 많은 게임 1회차(쓴 캐릭터 수 < roster) — 재단은 그 게임에서 덜 쓴 것, 캐릭터는 그리는 쪽이 고른다 → text.pick(맨 앞 「…」 — 채우는 자리, {used} 는 쓴 캐릭터)
+     4. 2회차(쓴 캐릭터 수 ≥ roster) — 쓴 캐릭터 중 덜 입은 하나와 그 캐릭터가 아직 안 입은 재단 → text.again. 1회차 칸엔 그리는 쪽이 더 고를 캐릭터가 없을 때 쓸 2회차 몫(again)을 같이 적는다.
+   장면 칸 cosplay = { game, character, cut, round, used?, again? }(pick 이면 character 빈 칸), 그린 뒤 기록 generation.cosplay = { game, character, cut }.
+   세 공방이 같은 꼴 — 함수 이름 cosplayUsage · pickCosplay · cosplayAgain, 칸 이름 scene.cosplay · generation.cosplay */
+const COSPLAY = fs.existsSync(path.join(ROOT, 'data', 'game-cosplay.json')) ? JSON.parse(read('data/game-cosplay.json')) : { games: [], cuts: [], text: {} };
+const COS_FAM = (tree.costume_required || {}).outfit || 'game_cosplay', COS_NO_FRAME = (tree.costume_required || {}).not_frames || ['face_close'];
+const COS_CUTS = (COSPLAY.cuts || []).map(c => c.key), COS_ERAS = tree.eras.filter(e => (e.outfits || []).includes(COS_FAM)).map(e => e.key);
+const COS_SWIM = (COSPLAY.cuts || []).filter(c => /\b(?:bikini|swimsuit)\b/i.test(c.en)).map(c => c.key);   /* 비키니 · 원피스 수영복 — 물가(수영장 · 해변)도 된다 */
+const isCosplay = c => !!c && c.ofam === COS_FAM;
+const cosItem = cut => 'gc_' + cut, cutOfItem = item => ((CT.item(tree, COS_FAM, item) || {}).cut) || '';
+const isWater = place => ((C2.place(T2, place) || {}).group) === 'water';
+const cosCutOk = (cut, place) => !isWater(place) || COS_SWIM.includes(cut);
+/* 코스프레 장소는 표에 그 계열을 적은 곳만(코스프레 행사 · 테마 행사장 · 오락실 · 거실 · 침실 · 화보 스튜디오 · 무대 · 물가) — 버전2 표의 새 장소(extra_places)는 계열 목록이 없어 다 열려 있다 */
+const cosPlace = place => ((C2.place(T2, place) || {}).outfits || []).includes(COS_FAM);
+/* 쓴 기록을 읽는 그림 저장소 — 옆에 받아 둔 것만(세 공방) */
+const COSPLAY_ROOTS = ['sam-atelier-img', 'sam-atelier-img-2', 'element-atelier-img', 'pkm-atelier-img', 'pkm-atelier-img-2', 'pkm-atelier-img-3', 'pkm-atelier-img-4'].map(d => path.join(ROOT, '..', d));
+/* 한 기록의 코스프레 — generation.cosplay(그린 것), 없으면 scene.cosplay 의 character 가 찬 것 */
+function cosplayRow(r) {
+  const g = ((r || {}).generation || {}).cosplay, s = ((r || {}).scene || {}).cosplay, filled = x => x && x.game && String(x.character || '').trim();
+  const x = filled(g) ? g : filled(s) ? s : null;
+  return x ? { game: x.game, character: String(x.character).trim(), cut: x.cut || '' } : null;
+}
+function cosplayUsage(roots = COSPLAY_ROOTS) {
+  const out = [];
+  const walk = (dir, depth) => {
+    let ents; try { ents = fs.readdirSync(dir, { withFileTypes: true }); } catch (e) { return; }
+    for (const e of ents) {
+      const f = path.join(dir, e.name);
+      if (e.isDirectory()) { if (depth < 3) walk(f, depth + 1); continue; }
+      if (!/casual.*\.json$/.test(e.name)) continue;
+      let txt; try { txt = fs.readFileSync(f, 'utf8'); } catch (er) { continue; }
+      if (!txt.includes('"cosplay"')) continue;   /* 먼저 글로 거른다 — 세 공방 기록이 만 장이 넘는다 */
+      let r; try { r = JSON.parse(txt); } catch (er) { continue; }
+      const row = cosplayRow(r); if (row) out.push({ ...row, at: path.relative(path.join(ROOT, '..'), f) });
+    }
+  };
+  for (const r of [].concat(roots || [])) walk(fs.existsSync(path.join(r, 'records')) ? path.join(r, 'records') : r, 0);
+  return out;
+}
+const normName = s => String(s || '').trim().toLowerCase().replace(/\s+/g, ' ');
+/* 게임마다 쓴 수 · 재단마다 쓴 수 · 캐릭터마다 입은 재단(이름은 글자 크기 · 빈칸을 무시하고 하나로) */
+function cosplayTally(used) {
+  const out = {};
+  for (const u of used || []) {
+    if (!u || !u.game) continue;
+    const g = out[u.game] = out[u.game] || { n: 0, cuts: {}, chars: {} }; g.n++;
+    if (u.cut) g.cuts[u.cut] = (g.cuts[u.cut] || 0) + 1;
+    const nm = normName(u.character);
+    if (nm) { const ch = g.chars[nm] = g.chars[nm] || { name: String(u.character).trim(), cuts: new Set() }; if (u.cut) ch.cuts.add(u.cut); }
+  }
+  return out;
+}
+const EMPTY_TALLY = () => ({ n: 0, cuts: {}, chars: {} });
+function cosplayFull(g, tg = EMPTY_TALLY()) {
+  if (!g.many) { const ch = tg.chars[normName(g.character)]; return !!ch && COS_CUTS.every(k => ch.cuts.has(k)); }
+  const chars = Object.values(tg.chars);
+  return chars.length >= g.roster && chars.every(ch => COS_CUTS.every(k => ch.cuts.has(k)));
+}
+/* 2회차 — 쓴 캐릭터 중 덜 입은 하나 + 그 캐릭터가 아직 안 입은 재단(cutOk 를 지키는 것 — 물가면 수영복 재단, prefer 가 되면 그것) */
+function cosplayAgain(tg, r = Math.random, cutOk = () => true, prefer = '') {
+  const open = Object.values((tg || EMPTY_TALLY()).chars).map(ch => ({ ch, cuts: COS_CUTS.filter(k => !ch.cuts.has(k) && cutOk(k)) })).filter(x => x.cuts.length)
+    .sort((a, b) => a.ch.name.localeCompare(b.ch.name));
+  if (!open.length) return null;
+  const lo = Math.min(...open.map(x => x.ch.cuts.size)), pool = open.filter(x => x.ch.cuts.size === lo), x = pool[Math.floor(r() * pool.length)];
+  return { character: x.ch.name, cut: x.cuts.includes(prefer) ? prefer : x.cuts[Math.floor(r() * x.cuts.length)] };
+}
+/* 한 칸의 코스프레 — 덜 쓴 게임(다 찬 게임은 빠짐) → 그 게임의 회차대로. 다 찼으면 null */
+function pickCosplay(used, r = Math.random) {
+  const TL = cosplayTally(used), games = (COSPLAY.games || []).filter(g => !cosplayFull(g, TL[g.key]));
+  if (!games.length) return null;
+  const n = g => (TL[g.key] || {}).n || 0, lo = Math.min(...games.map(n)), pool = games.filter(g => n(g) === lo);
+  const g = pool[Math.floor(r() * pool.length)], tg = TL[g.key] || EMPTY_TALLY(), any = list => list[Math.floor(r() * list.length)];
+  if (!g.many) { const ch = tg.chars[normName(g.character)]; return { game: g.key, character: g.character, cut: any(COS_CUTS.filter(k => !(ch && ch.cuts.has(k)))), round: 1 }; }
+  const chars = Object.values(tg.chars).map(ch => ch.name).sort((a, b) => a.localeCompare(b));
+  if (chars.length < g.roster) {
+    const cn = k => tg.cuts[k] || 0, m = Math.min(...COS_CUTS.map(cn));
+    return { game: g.key, character: '', cut: any(COS_CUTS.filter(k => cn(k) === m)), round: 1, used: chars };
+  }
+  const a = cosplayAgain(tg, r);
+  return { game: g.key, character: a.character, cut: a.cut, round: 2 };
+}
+/* 장소가 정해진 뒤 — 1회차(pick) 칸에 2회차 몫(again)을 단다(쓴 캐릭터가 있을 때만). 그리는 쪽이 더 고를 캐릭터가 없다고 하면 이것을 그린다 */
+function withAgain(cos, used, place, r = Math.random) {
+  if (!cos || cos.character || !(cos.used || []).length) return cos;
+  const a = cosplayAgain(cosplayTally(used)[cos.game], r, k => cosCutOk(k, place), cos.cut);
+  return a ? { ...cos, again: a } : cos;
+}
+/* 2회차 몫의 장면 — 지시문 again 글(파일 <세계>-casualN-again-prompt.txt) */
+function againScene(sc) {
+  const a = sc && isCosplay(sc) && sc.cosplay && sc.cosplay.again;
+  if (!a) return null;
+  return { ...sc, item: cosItem(a.cut), cosplay: { game: sc.cosplay.game, character: a.character, cut: a.cut, round: 2 } };
+}
+const cosplayKo = cs => { const g = (COSPLAY.games || []).find(x => x.key === (cs || {}).game) || {}, c = (COSPLAY.cuts || []).find(x => x.key === (cs || {}).cut) || {};
+  return `${g.ko || (cs || {}).game} — ${(cs || {}).character ? (g.many ? (cs.character + '(2회차)') : (g.character_ko || cs.character)) : '캐릭터는 그리는 쪽이(1회차)'} · ${c.ko || (cs || {}).cut}`; };
 
 function rng(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
 const pick = (r, list) => list[Math.floor(r() * list.length)];
@@ -131,14 +235,28 @@ const pathKey = (preset, place) => preset + '@' + place;
 /* 한 칸 — 시대 · 장소 · 의상 · 옷, 그 장소에서 쓸 수 있는 자세 추천 하나(frame 을 주면 그 프레이밍의 추천만).
    wantSig 면 소품 동작을 그 원소의 물건으로. 소품 동작은 덜 쓴 소품 쪽으로(무게 1/(1+횟수)², 따로 된 난수 흐름 — game 과 같다).
    장소 · 옷 · 자세 추천(그 자세) · 표정은 다른 카드에서 안 쓴 · 덜 쓴 쪽으로(lean — 2026-11-01) */
-function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = '', usage = {}, rUse = r } = {}) {
+/* 게임 코스프레 칸의 길 — 그 계열이 열린 시대(지금 현실 · 무대·환상)의 장소, 물가는 수영복 재단만 */
+const COS_PATHS = new Map();
+function cosplayPaths(cut) {
+  const swim = COS_SWIM.includes(cut);
+  if (COS_PATHS.has(swim)) return COS_PATHS.get(swim);
+  const out = [];
+  for (const era of COS_ERAS) for (const place of C2.choices(T2, { era }, 'place', null))
+    if (cosPlace(place) && C2.choices(T2, { era, place }, 'ofam', null).includes(COS_FAM) && (swim || !isWater(place))) out.push({ era, place, ofam: COS_FAM });
+  COS_PATHS.set(swim, out);
+  return out;
+}
+function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = '', usage = {}, rUse = r, cut = '' } = {}) {
   const g = card.g, U = usageOf(usage);
   let sc;
-  if (reqType) { const paths = requiredPaths(reqType).filter(x => !wantEra || x.era === wantEra); if (!paths.length) return null; sc = { ...lean(r, paths, U.place, x => x.place, famW) }; }
+  if (reqType === 'cosplay') { const paths = cosplayPaths(cut).filter(x => !wantEra || x.era === wantEra); if (!paths.length) return null; sc = { ...lean(r, paths, U.place, x => x.place) }; }
+  else if (reqType) { const paths = requiredPaths(reqType).filter(x => !wantEra || x.era === wantEra); if (!paths.length) return null; sc = { ...lean(r, paths, U.place, x => x.place, famW) }; }
   else {
     const era = wantEra || weighted(r, ERA_WEIGHT), place = lean(r, C2.choices(T2, { era }, 'place', g), U.place);
     if (!place) return null;
-    sc = { era, place, ofam: lean(r, C2.choices(T2, { era, place }, 'ofam', null), U.ofam, x => x, f => famW(f) * (C2.awkward(T2, f, place).length ? AWKWARD_WEIGHT : 1)) };
+    /* 게임 코스프레는 그 칸에서만(2026-11-15) — 다른 칸은 그 계열을 고르지 않는다 */
+    sc = { era, place, ofam: lean(r, C2.choices(T2, { era, place }, 'ofam', null).filter(f => f !== COS_FAM), U.ofam, x => x, f => famW(f) * (C2.awkward(T2, f, place).length ? AWKWARD_WEIGHT : 1)) };
+    if (!sc.ofam) return null;
   }
   sc.treeV = 2; sc.prop = wantSig ? '0' : '';
   const presets = presetsAt(sc, g).filter(p => (!frame || p.frame === frame) && (!wantSig || p.prop_kind));
@@ -155,7 +273,8 @@ function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = ''
     sc = { ...sc, use: pick(r, sig) };
   }
   const items = C2.choices(T2, sc, 'item', g);
-  sc.item = items.length ? lean(r, items, U.item) : '';
+  if (reqType === 'cosplay') { if (!items.includes(cosItem(cut))) return null; sc.item = cosItem(cut); }   /* 재단은 pickCosplay 가 정했다 */
+  else sc.item = items.length ? lean(r, items, U.item) : '';
   sc = C2.repair(T2, sc, g, rp);
   if (!wantSig && sc.use && !sigProp(sc)) {
     const alt = C2.choices(T2, sc, 'use', g).filter(k => C2.use(T2, k).prop !== 'signature');
@@ -203,12 +322,24 @@ function check(cuts, card, base = [], others = []) {
   over('그 원소의 물건', c => sigProp(c) && 'signature', 2);
   over('어색한 조합', c => C2.awkward(T2, c.ofam, c.place).length && 'awkward', 1);
   over('동탄룩', c => c.ofam === 'dongtan' && 'dongtan', 1);
-  /* 셋째 필수 — 상황 노출 한 장(여섯 장 묶음부터 — 옛 다섯 장 묶음은 이 갈래 전), 노출 · 세계 안 갈래 컷과 다른 컷 */
+  /* 셋째 필수 — 게임 코스프레 한 장(2026-11-15, 여섯 장 묶음부터). 옛 묶음(상황 노출 필수 시절)은 노출 · 세계 안 갈래와 다른 상황 노출 컷이 셋째로 통과한다 */
   over('상황 노출', c => c.situ && 'situ', 1);
+  over('게임 코스프레', c => isCosplay(c) && 'cosplay', 1);
   over('옷 자유', c => c.ofree && 'ofree', 1, all, base);
   for (const c of cuts) if (c.situ && !P.situFits(c.situ, outfitEn(c))) errs.push(`칸 ${c.n || '?'}: 상황 ${c.situ} 는 이 옷에 안 맞는다`);
   for (const c of cuts) if (c.situ && SITU_NO_FRAME.includes(c.frame)) errs.push(`칸 ${c.n || '?'}: 상황 노출은 얼굴 클로즈업에 두지 않는다`);
-  if (all.length >= SITU_FROM && !sAll.some(c => c.situ && !requiredType(c))) errs.push('상황 노출 컷이 없다 — 노출 · 세계 안 갈래와 다른 컷 한 장');   /* 2026-11-03 더한 계열 — 안 쓴 계열이라 무게가 커서 묶음마다 한 장까지 */
+  if (all.length >= SITU_FROM && !sAll.some(c => isCosplay(c) || (c.situ && !requiredType(c)))) errs.push('게임 코스프레 컷이 없다 — 필수 셋째(옛 묶음은 노출 · 세계 안 갈래와 다른 상황 노출 컷)');
+  for (const c of cuts) {
+    if (!isCosplay(c)) continue;
+    const cs = c.cosplay || {}, gm = (COSPLAY.games || []).find(x => x.key === cs.game), cut = cutOfItem(c.item);
+    if (COS_NO_FRAME.includes(c.frame)) errs.push(`칸 ${c.n || '?'}: 게임 코스프레 컷의 프레이밍 ${c.frame} — 코스튬이 안 보인다`);
+    if (c.situ || c.color || c.denier) errs.push(`칸 ${c.n || '?'}: 게임 코스프레 컷엔 옷 색 · 데니어 · 상황을 얹지 않는다`);
+    if (!gm) errs.push(`칸 ${c.n || '?'}: 게임 코스프레의 게임 ${cs.game || '없음'} 이 목록에 없다`);
+    else if (!gm.many && cs.character !== gm.character) errs.push(`칸 ${c.n || '?'}: ${gm.key} 의 캐릭터는 ${gm.character}`);
+    if (!cs.cut || cs.cut !== cut) errs.push(`칸 ${c.n || '?'}: 게임 코스프레의 재단 ${cs.cut || '없음'} 이 옷 ${c.item || '없음'} 과 다르다`);
+    if (c.place && !cosPlace(c.place)) errs.push(`칸 ${c.n || '?'}: 게임 코스프레 장소 ${c.place} 는 표에 그 계열이 없다`);
+    if (cut && !cosCutOk(cut, c.place)) errs.push(`칸 ${c.n || '?'}: 물가 ${c.place} 엔 수영복 재단(${COS_SWIM.join(' · ')})만`);
+  }
   /* 일곱째 — 갈래 자유 칸 한 장(2026-11-11): 자유 설계 · 필수 노출 갈래 하나(노출 갈래 컷과 다른 것) · 상황 하나(상황 노출 컷과 다른 것), 옷 자유 · 상황 노출 칸과 다른 칸 */
   over('갈래 자유', c => c.gfree && 'gfree', 1, all, base);
   if (all.length >= GFREE_FROM && !all.some(c => c.gfree)) errs.push('갈래 자유 컷이 없다 — 일곱 장 묶음에 한 장(필수 노출 갈래 + 상황 노출을 묶은 자유 설계)');
@@ -237,7 +368,8 @@ function check(cuts, card, base = [], others = []) {
      장소 · 옷과 상관없이 같은 자세 추천(= 같은 구도)도 안 된다(사용자 「같은 구도의 장면」) */
   const inWorld = c => (C2.place(T2, c.place) || {}).eras && /^nation_/.test(c.place);
   /* 같은 옷도 세계끼리 · 묶음끼리 돌려입지 않는다(사용자 2026-11-08 「무협에서 니트 상의했으면 메카에서도 …」 → 「응 막아줘」) — 옷(item)이 같으면, 옷 없이 계열만이면 그 계열(평상복 계열 자체는 빼고) */
-  const outfitKey = c => c.item ? c.ofam + '/' + c.item : (c.ofam && c.ofam !== 'everyday' ? c.ofam : '');
+  const outfitKey = c => isCosplay(c) ? 'cosplay/' + ((c.cosplay || {}).game || '') + '/' + normName((c.cosplay || {}).character) + '/' + ((c.cosplay || {}).cut || '')   /* 코스프레는 게임 · 캐릭터 · 재단이 같을 때만 같은 옷 */
+    : c.item ? c.ofam + '/' + c.item : (c.ofam && c.ofam !== 'everyday' ? c.ofam : '');
   for (const c of sCuts) {
     const same = others.filter(o => o.place && o.place === c.place);
     if (same.length && (!inWorld(c) || same.some(o => o.ofam === c.ofam))) errs.push(`칸 ${c.n || '?'}: 장소 ${c.place} 는 다른 세계 · 다른 묶음이 쓴 곳`);
@@ -254,7 +386,7 @@ function outfitEn(c) { const it = C2.item(T2, c.ofam, c.item), fm = C2.family(T2
 function colorize(cuts, old = [], others = [], rc = Math.random) {
   const used = new Set([...old, ...others].map(c => c.color).filter(Boolean)), mine = new Set();
   for (const c of cuts) {
-    if (P.colorFixed(outfitEn(c))) { delete c.color; continue; }
+    if (isCosplay(c) || P.colorFixed(outfitEn(c))) { delete c.color; continue; }   /* 게임 코스프레는 그 캐릭터 색(2026-11-15) */
     let pool = COLORS.filter(k => !used.has(k) && !mine.has(k));
     if (!pool.length) pool = COLORS.filter(k => !mine.has(k));
     if (!pool.length) pool = COLORS.slice();
@@ -268,7 +400,7 @@ const DENIERS = (T.CASUAL.deniers || []).map(d => d.key), DENIER_RATE = 0.6;
 function denierize(cuts, rd = Math.random) {
   const mine = [];
   for (const c of cuts) {
-    if (!P.denierFits(outfitEn(c)) || rd() >= DENIER_RATE) { delete c.denier; continue; }
+    if (isCosplay(c) || !P.denierFits(outfitEn(c)) || rd() >= DENIER_RATE) { delete c.denier; continue; }
     let pool = DENIERS.filter(k => !mine.includes(k)); if (!pool.length) pool = DENIERS.slice();
     c.denier = pool[Math.floor(rd() * pool.length)]; mine.push(c.denier);
   }
@@ -287,6 +419,7 @@ function ambient(cuts, old = [], ra = Math.random) {
   for (const c of cuts) {
     if (c.sfree) continue;
     Object.assign(c, C2.ambience(T2, c, ra, opts));
+    if (isCosplay(c)) delete c.hair;   /* 코스튬엔 제 머리 장식이 있다 — 머리 매무새 줄을 얹지 않는다(2026-11-15) */
     /* 역광 실루엣 상황은 빛이 뒤에서 — 밤 시간대는 뗀다 */
     if (c.situ === 'sheer_light') { c.light = 'back'; if (['night', 'neon', 'lamplight'].includes(c.time)) c.time = ''; if (c.weather === 'night_snow') c.weather = ''; }
     for (const k of AMBIENT) if (!c[k]) delete c[k];
@@ -385,19 +518,21 @@ function ownCut(card, world, level = OWN_LEVELS[0], rr = Math.random) {
   return { ...sc, n: OWN_N, own: world, ...(row.prop ? { prop: '0', ownProp: row.prop } : {}), placeText: row.place, scene: row.activity, outfit: row.outfit[level] || row.outfit[OWN_LEVELS[0]], preset: row.preset,
     expr: body && body.face_hidden && !(head && head.look_back) ? '' : EXPRS[Math.floor(rr() * EXPRS.length)], axes: { ...FIXED_AXES, skin_exposure: level }, aspect: '2:3', unlocked: [] };
 }
-const MUST = /^(필수 갈래가 없다|먼 컷|가까운 컷|그 원소의 물건을 든 컷이 없다|시대가 |상황 노출 컷이 없다|갈래 자유 컷이 없다)/;
-function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, others = [], recent = [] } = {}) {
+const MUST = /^(필수 갈래가 없다|먼 컷|가까운 컷|그 원소의 물건을 든 컷이 없다|시대가 |게임 코스프레 컷이 없다|갈래 자유 컷이 없다)/;
+/* cosplayUsed — 세 공방의 쓴 코스프레(cosplayUsage)에 이번에 짠 다른 세계의 것을 더한 목록. 비우면 아무도 안 쓴 것으로 본다(검사는 그렇게 돈다) */
+function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, others = [], recent = [], cosplayUsed = [] } = {}) {
   /* 씨앗에 카드 · 세계를 섞는다 — 같은 씨앗이면 카드마다 같은 묶음이 나왔다 */
   card.g.world = card.world || '';   /* 그 세계에만 있는 자리(worlds_only) */
   const mix = [...(card.key + '|' + (card.world || ''))].reduce((h, ch) => Math.imul(h ^ ch.charCodeAt(0), 16777619) >>> 0, 2166136261);
   const rUse = rng((seed ^ mix ^ 0x5bd1e995) >>> 0), r = rng((seed ^ mix) >>> 0);
   const ci = P.cards(D).indexOf(card.key), oldEx = old.some(c => EXPOSE_TYPES.includes(requiredType(c))), oldIn = old.some(c => requiredType(c) === 'nation');
   /* 정해 둔 두 갈래 중 아직 없는 것을 앞 칸부터 — 노출 갈래는 카드마다 란제리풍 · 수영복 · 역할극을 돌려 가며 */
-  const wants = [oldEx ? '' : (required || EXPOSE_TYPES[Math.max(0, ci) % EXPOSE_TYPES.length]), oldIn ? '' : 'nation'].filter(Boolean);
   const total = slots.length + old.length, oldScene = old.filter(c => !c.sfree);
-  const needSitu = total >= SITU_FROM && !old.some(c => c.situ && !requiredType(c));
-  /* 자유 설계 칸 — 옷 자유(여섯 장 묶음부터) · 갈래 자유(일곱 장 묶음부터) 중 아직 없는 것을 맨 뒤 번호에. 칸이 모자라면 정해 둔 갈래 · 상황 노출이 먼저 */
-  let room = slots.length - wants.length - (needSitu ? 1 : 0);
+  /* 셋째 필수 — 게임 코스프레(2026-11-15, 여섯 장 묶음부터). 옛 묶음에 상황 노출 필수 컷이 있으면 그것이 셋째(그대로 통과) */
+  const cos = total >= SITU_FROM && !old.some(isCosplay) && !old.some(c => c.situ && !requiredType(c)) ? pickCosplay(cosplayUsed, rng((seed ^ mix ^ 0x2545f491) >>> 0)) : null;
+  const wants = [oldEx ? '' : (required || EXPOSE_TYPES[Math.max(0, ci) % EXPOSE_TYPES.length]), oldIn ? '' : 'nation', cos ? 'cosplay' : ''].filter(Boolean);
+  /* 자유 설계 칸 — 옷 자유(여섯 장 묶음부터) · 갈래 자유(일곱 장 묶음부터) 중 아직 없는 것을 맨 뒤 번호에. 칸이 모자라면 정해 둔 갈래(코스프레까지)가 먼저 */
+  let room = slots.length - wants.length;
   const freeKinds = [];
   if (total >= OFREE_FROM && !old.some(c => c.ofree) && room > 0) { freeKinds.push('ofree'); room--; }
   if (total >= GFREE_FROM && !old.some(c => c.gfree) && room > 0) { freeKinds.push('gfree'); room--; }
@@ -409,6 +544,13 @@ function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, 
     let frames = FRAMES.filter(f => !oldFrames.has(f)).sort(() => r() - 0.5);
     if (frames.length < slots.length) frames = frames.concat(FRAMES.slice().sort(() => r() - 0.5)).slice(0, slots.length);
     frames = frames.slice(0, slots.length);
+    /* 코스프레 칸엔 얼굴 클로즈업을 두지 않는다 — 걸리면 다른 칸(정해 둔 칸 뒤 먼저)과 바꾼다 */
+    const ci2 = wants.indexOf('cosplay');
+    if (ci2 >= 0 && COS_NO_FRAME.includes(frames[ci2])) {
+      const order = [...frames.keys()].filter(j => j >= wants.length).concat([...frames.keys()].filter(j => j < wants.length && j !== ci2));
+      const j = order.find(k => !COS_NO_FRAME.includes(frames[k]));
+      if (j === undefined) continue; [frames[ci2], frames[j]] = [frames[j], frames[ci2]];
+    }
     const seen = [...oldScene, ...frames.map(frame => ({ frame }))];
     if (slots.length + oldScene.length >= 3 && (!seen.some(c => FAR.includes(c.frame)) || !seen.some(c => NEAR.includes(c.frame)))) continue;
     /* 시대 — 칸마다 먼저 나눠 준다. 이미 있는 컷까지 세어 몫(ERA_QUOTA)에 비해 가장 덜 쓴 시대부터(같으면 무게대로) */
@@ -419,33 +561,33 @@ function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, 
     const eras = [];
     for (let i = 0; i < slots.length; i++) {
       if (wants[i] === 'nation') { eras.push('nation'); continue; }
-      const ratio = x => cnt[x] / (ERA_QUOTA[x] || 1), lo = Math.min(...ERAS.map(ratio)), e = weighted(r, Object.fromEntries(ERAS.filter(x => ratio(x) === lo).map(x => [x, ERA_WEIGHT[x] || 1])));
+      const can = wants[i] === 'cosplay' ? COS_ERAS : ERAS;   /* 코스프레는 지금 현실 · 무대·환상만(나라 안 · 현장은 세계 시대와 부딪친다) */
+      const ratio = x => cnt[x] / (ERA_QUOTA[x] || 1), lo = Math.min(...can.map(ratio)), e = weighted(r, Object.fromEntries(can.filter(x => ratio(x) === lo).map(x => [x, ERA_WEIGHT[x] || 1])));
       eras.push(e); cnt[e]++;
     }
     const tail = eras.slice(wants.length).sort(() => r() - 0.5); eras.splice(wants.length, tail.length, ...tail);
     const free = slots.length - wants.length, sigAt = needSig && free > 0 ? wants.length + Math.floor(r() * free) : -1, cuts = [];
-    /* 상황 칸 — 정해 둔 칸 뒤, 그 원소의 물건 칸과 다른 칸(빈 칸이 하나뿐이면 같은 칸) */
-    let situAt = -1;
-    if (needSitu && free > 0) { const pool = []; for (let i = wants.length; i < slots.length; i++) if ((i !== sigAt || free === 1) && !SITU_NO_FRAME.includes(frames[i])) pool.push(i); if (!pool.length) continue; situAt = pool[Math.floor(r() * pool.length)]; }
     for (let i = 0; i < slots.length; i++) {
       let got = null;
       for (let k = 0; k < 60 && !got; k++) {
         const U0 = usageOf(usage), here = { ...U0, prop: { ...U0.prop }, ofam: { ...U0.ofam } }; cuts.forEach(c => { const u = C2.use(T2, c.use); if (u) here.prop[u.prop] = (here.prop[u.prop] || 0) + 10; here.ofam[c.ofam] = (here.ofam[c.ofam] || 0) + 10; });   /* 묶음 안에서 이미 고른 옷 계열은 다시 덜 고른다(동탄룩 한 장까지) */
-        const want = wants[i] || '', sc = slot(r, card, want, { frame: frames[i], wantSig: i === sigAt && !want, era: eras[i], usage: here, rUse });
+        const want = wants[i] || '', sc = slot(r, card, want, { frame: frames[i], wantSig: i === sigAt && !want, era: eras[i], usage: here, rUse, cut: cos ? cos.cut : '' });
         if (!sc) continue;
         const cand = { n: slots[i], ...sc };
-        if (i === situAt && !P.situsFor(outfitEn(cand)).length) continue;   /* 상황 칸엔 상황이 붙는 옷만 */
-        if (i === situAt) cand.situ = P.situsFor(outfitEn(cand))[0];   /* 자리 표시 — 묶음이 다 차면 situate 가 고른다 */
+        if (want === 'cosplay') cand.cosplay = withAgain(cos, cosplayUsed, cand.place, rng((seed ^ mix ^ 0x68e31da4) >>> 0));
         if (!check([...cuts, cand], card, old, others).filter(e => !MUST.test(e)).length) got = cand;
       }
       if (!got) break;
       cuts.push(got);
     }
-    if (cuts.length === slots.length && !check(cuts, card, old, others).filter(e => !/^갈래 자유 컷이 없다/.test(e)).length) { colorize(cuts, old, others, rng((seed ^ mix ^ 0x27d4eb2f) >>> 0)); denierize(cuts, rng((seed ^ mix ^ 0x165667b1) >>> 0)); situate(cuts, situAt, old, others, rng((seed ^ mix ^ 0x3c6ef372) >>> 0)); ambient(cuts, old, rng((seed ^ mix ^ 0x7f4a7c15) >>> 0));
+    if (cuts.length === slots.length && !check(cuts, card, old, others).filter(e => !/^갈래 자유 컷이 없다/.test(e)).length) { colorize(cuts, old, others, rng((seed ^ mix ^ 0x27d4eb2f) >>> 0)); denierize(cuts, rng((seed ^ mix ^ 0x165667b1) >>> 0));
+      /* 상황 노출 — 필수가 아니다(2026-11-15). 이미 없으면 장면 컷 한 장(정해 둔 칸 · 코스프레 · 얼굴 클로즈업이 아닌, 맞는 상황이 있는 컷)에 SITU_RATE 로 */
+      const rs = rng((seed ^ mix ^ 0x3c6ef372) >>> 0), sPool = old.some(c => c.situ) ? [] : cuts.map((c, i) => i).filter(i => i >= wants.length && !requiredType(cuts[i]) && !isCosplay(cuts[i]) && !SITU_NO_FRAME.includes(cuts[i].frame) && P.situsFor(outfitEn(cuts[i])).some(k => situAtPlace(k, cuts[i])));
+      situate(cuts, sPool.length && rs() < SITU_RATE ? sPool[Math.floor(rs() * sPool.length)] : -1, old, others, rs); ambient(cuts, old, rng((seed ^ mix ^ 0x7f4a7c15) >>> 0));
       const free = makeFree(card.key, freeNums, freeKinds, cuts, old, others, recent, rng((seed ^ mix ^ 0x1b873593) >>> 0));
       if (!free || check([...cuts, ...free], card, old, others).length) continue;   /* 갈래 자유 칸에 남은 갈래가 없으면(노출 갈래가 장면 컷에 다 들었으면) 다시 */
       const all = [...old, ...cuts, ...free];
-      return { cuts: [...cuts, ...free], attempt, required: [...all.map(requiredType).filter(Boolean), ...all.filter(c => c.situ).map(c => 'situ:' + c.situ), ...all.filter(c => c.ofree && c.sfree).map(() => 'ofree'), ...all.filter(c => c.gfree).map(c => 'gfree:' + c.gfree + '+' + c.gsitu)].join(' · ') }; }
+      return { cuts: [...cuts, ...free], attempt, required: [...all.map(requiredType).filter(Boolean), ...all.filter(isCosplay).map(c => 'cosplay:' + (c.cosplay || {}).game + '/' + (c.cosplay || {}).cut), ...all.filter(c => c.situ).map(c => 'situ:' + c.situ), ...all.filter(c => c.ofree && c.sfree).map(() => 'ofree'), ...all.filter(c => c.gfree).map(c => 'gfree:' + c.gfree + '+' + c.gsitu)].join(' · ') }; }
   }
   throw new Error('규칙을 다 지키는 묶음을 못 찾았다 — 이미 있는 컷이 칸을 너무 많이 차지했는지 본다');
 }
@@ -460,8 +602,10 @@ function refFree(key, world, style = STYLE, dir) {
 }
 function record(card, world, cut) {
   const { n, ...scene } = cut;
-  return { ...P.casualRecord(D, S, card.key, scene, { world, style: STYLE, tree, tree2, refFree: refFree(card.key, world) }, n), record: recordRel(card.key, world, n) };
+  return { ...P.casualRecord(D, S, card.key, scene, { world, style: STYLE, tree, tree2, refFree: refFree(card.key, world), cosplay: COSPLAY }, n), record: recordRel(card.key, world, n) };
 }
+/* 게임 코스프레 1회차 칸의 2회차 몫 지시문(그리는 쪽이 더 고를 캐릭터가 없을 때) — 없으면 '' */
+function againPrompt(card, world, cut) { const a = againScene(cut); return a ? record(card, world, a).prompt : ''; }
 /* 이미 있는 컷 — 그 세계의 기록(<세계>-casualN.<화풍>-ui.json) */
 function oldCuts(dir, card, world) {
   if (!dir || !fs.existsSync(dir)) return [];
@@ -527,8 +671,8 @@ function line(c) {
   }
   const p = C2.place(T2, c.place) || {}, f = CT.family(tree, c.ofam) || {}, it = CT.item(tree, c.ofam, c.item), u = C2.use(T2, c.use), pr = by(tree2.presets, c.preset);
   const ko = (list, k) => (by(list, k) || {}).ko || k || '—', hand = k => k === 'prop' ? '소품' : ko(tree2.hands, k);
-  return `${c.old ? '  (있음)' : '  '} ${c.n} ${requiredType(c) ? '★' : ' '}${C2.awkward(T2, c.ofam, c.place).length ? '⚠' : ' '} ${(CT.era(tree, c.era) || {}).ko} · ${p.ko} · ${f.ko}${it ? '(' + it.ko + ')' : ''} │ ${pr ? pr.ko : '—'} │ ` +
-    `${ko(tree2.postures, c.posture)} · ${c.frame} · ${ko(tree2.body, c.body)} · ${ko(tree2.head, c.head)} · 오른손 ${hand(c.right)} · 왼손 ${hand(c.left)}${u ? ' · ' + ko(tree2.props, u.prop) + ' ' + u.ko : ''}${c.legs ? ' · ' + ko(tree2.legs, c.legs) : ''}${c.gaze ? ' · 시선 ' + ko(tree2.gaze, c.gaze) : ''}${c.situ ? ' · 상황 ' + ko(T.CASUAL.situations, c.situ) : ''}${c.ofree ? ' · 옷 자유(노출 의상을 GPT · Claude 가)' : ''}`;
+  return `${c.old ? '  (있음)' : '  '} ${c.n} ${requiredType(c) || isCosplay(c) ? '★' : ' '}${C2.awkward(T2, c.ofam, c.place).length ? '⚠' : ' '} ${(CT.era(tree, c.era) || {}).ko} · ${p.ko} · ${f.ko}${it ? '(' + it.ko + ')' : ''} │ ${pr ? pr.ko : '—'} │ ` +
+    `${ko(tree2.postures, c.posture)} · ${c.frame} · ${ko(tree2.body, c.body)} · ${ko(tree2.head, c.head)} · 오른손 ${hand(c.right)} · 왼손 ${hand(c.left)}${u ? ' · ' + ko(tree2.props, u.prop) + ' ' + u.ko : ''}${c.legs ? ' · ' + ko(tree2.legs, c.legs) : ''}${c.gaze ? ' · 시선 ' + ko(tree2.gaze, c.gaze) : ''}${c.situ ? ' · 상황 ' + ko(T.CASUAL.situations, c.situ) : ''}${c.ofree ? ' · 옷 자유(노출 의상을 GPT · Claude 가)' : ''}${isCosplay(c) ? ' · 코스프레 ' + cosplayKo(c.cosplay) + (c.cosplay && c.cosplay.again ? ' · 더 없으면 ' + c.cosplay.again.character + '(2회차)' : '') : ''}`;
 }
 
 const FLAGS = new Set(['fresh']);
@@ -553,6 +697,16 @@ function main(argv) {
       const g = JSON.parse(fs.readFileSync(path.join(opt.check, `${world}-casual${c.n}.${STYLE}-ui.json`), 'utf8')).generation || {}, t = String(g.free_prompt || '');
       if (!/^FREE DESIGN: /m.test(t) || /^(?:Place|Activity|Pose|Framing|Outfit): …/m.test(t)) errs.push(`칸 ${c.n}: 자유 설계 칸인데 채운 설계가 기록에 없다 — generation.free_prompt(실제로 넘긴 지시문 통째, 「…」 를 채운 것) · free_design(채운 덩어리)`);
     }
+    /* 게임 코스프레 칸은 그린 코스프레가 기록에 남아야 한다(2026-11-15) — generation.cosplay = { game, character, cut }. 1회차(pick)는 그리는 쪽이 채운 캐릭터(이미 쓴 캐릭터가 아닌 것),
+       더 없어서 2회차 몫(again)을 그렸으면 그 캐릭터 · 재단 */
+    for (const c of cuts.filter(isCosplay)) {
+      const g = (JSON.parse(fs.readFileSync(path.join(opt.check, `${world}-casual${c.n}.${STYLE}-ui.json`), 'utf8')).generation || {}).cosplay || {}, cs = c.cosplay || {}, a = cs.again || null;
+      const name = String(g.character || '').trim(), usedNames = (cs.used || []).map(normName);
+      if (g.game !== cs.game || !name || !COS_CUTS.includes(g.cut)) errs.push(`칸 ${c.n}: 게임 코스프레 칸인데 그린 코스프레가 기록에 없다 — generation.cosplay = { game: "${cs.game}", character: "<그린 캐릭터>", cut: "<재단>" }`);
+      else if (cs.character && (normName(name) !== normName(cs.character) || g.cut !== cs.cut)) errs.push(`칸 ${c.n}: 정해 둔 코스프레는 ${cs.character} · ${cs.cut} — 기록은 ${name} · ${g.cut}`);
+      else if (!cs.character && a && normName(name) === normName(a.character)) { if (g.cut !== a.cut) errs.push(`칸 ${c.n}: 2회차 몫 ${a.character} 의 재단은 ${a.cut}`); }
+      else if (!cs.character && (usedNames.includes(normName(name)) || g.cut !== cs.cut)) errs.push(`칸 ${c.n}: 1회차 칸 — 이미 쓴 캐릭터(${(cs.used || []).join(', ')})가 아닌 새 캐릭터를 재단 ${cs.cut} 로(더 없으면 2회차 몫 ${a ? a.character + ' · ' + a.cut : '없음'})`);
+    }
     for (const e of errs) console.log('  X ' + e);
     console.log(errs.length ? `일상컷 묶음 ${errs.length} 가지 걸림` : `일상컷 묶음 통과 — ${cuts.length} 장`);
     return errs.length ? 1 : 0;
@@ -562,6 +716,8 @@ function main(argv) {
   const fresh = 'fresh' in opt, seed0 = Number(opt.seed || Date.now() % 1e9);
   const usageDir = opt.usage === 'none' ? '' : (opt.usage || path.join(ROOT, '..', 'element-atelier-img', 'records'));
   const extra = (opt.others || '').split(',').filter(Boolean).flatMap(f => JSON.parse(fs.readFileSync(f, 'utf8')).cuts || []);
+  /* 게임 코스프레의 쓴 기록 — 세 공방 그림 저장소(있는 것만), --cosplay-usage none 이면 비운다 */
+  const cosUsed = opt['cosplay-usage'] === 'none' ? [] : cosplayUsage(opt['cosplay-usage'] ? opt['cosplay-usage'].split(',') : COSPLAY_ROOTS);
   const planned = [];
   for (const world of worlds) {
     card.world = world;
@@ -572,7 +728,8 @@ function main(argv) {
     const old = fresh ? [] : mine.filter(c => !slots.includes(c.n));
     const others = [...card.worlds.filter(w => w !== world).flatMap(allOld), ...(fresh ? mine : []), ...extra, ...planned];
     const seed = seed0 + worlds.indexOf(world);
-    const res = plan(card, slots, old, { seed, required: opt.required || '', usage: sceneUsage(usageDir, key), others, recent: recentScenes(usageDir) });
+    const res = plan(card, slots, old, { seed, required: opt.required || '', usage: sceneUsage(usageDir, key), others, recent: recentScenes(usageDir),
+      cosplayUsed: [...cosUsed, ...[...extra, ...planned].filter(c => isCosplay(c) && c.cosplay).map(c => ({ game: c.cosplay.game, character: c.cosplay.character || '', cut: c.cosplay.cut }))] });   /* 이번에 짠 다른 세계 것도 센다(1회차는 게임 · 재단만) */
     planned.push(...res.cuts);
     console.log(`${key} ${world} 일상컷 묶음 — 칸 ${slots.join(',')} · 정해 둔 갈래 ${res.required} · 시도 ${res.attempt} · seed ${seed}${fresh ? ' · 새 묶음(옛 묶음과 겹치지 않게)' : ''}`);
     for (const c of [...old, ...res.cuts].sort((a, b) => a.n - b.n)) console.log(line(c));
@@ -583,6 +740,7 @@ function main(argv) {
         const rec = record(card, world, c);
         fs.writeFileSync(path.join(out, `${world}-casual${c.n}.${STYLE}-ui.json`), JSON.stringify(rec, null, 1) + '\n');
         fs.writeFileSync(path.join(out, `${world}-casual${c.n}-prompt.txt`), rec.prompt);
+        const ap = againPrompt(card, world, c); if (ap) fs.writeFileSync(path.join(out, `${world}-casual${c.n}-again-prompt.txt`), ap);   /* 코스프레 1회차의 2회차 몫 */
       }
       fs.writeFileSync(path.join(out, 'plan.json'), JSON.stringify({ card: key, world, seed, tree: 2, style: STYLE, required: res.required, slots, fresh, cuts: res.cuts }, null, 1) + '\n');
       console.log('→ ' + out);
@@ -591,5 +749,5 @@ function main(argv) {
   }
   return 0;
 }
-module.exports = { refFree, ownCut, ownRow, OWN_N, OWN_LEVELS, ambient, POSE_WEIGHT, cardOf, plan, colorize, denierize, situate, makeFree, sceneText, freeText, recentScenes, SITUS, DENIERS, outfitEn, COLORS, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, sceneUsage, CASUAL_N, STYLE, WEIGHT_UNUSED, EXPOSE_TYPES };
+module.exports = { COSPLAY, COS_FAM, cosPlace, cosplayPaths, COS_SWIM, COSPLAY_ROOTS, isCosplay, cosItem, cutOfItem, cosplayRow, cosplayUsage, cosplayTally, cosplayFull, pickCosplay, cosplayAgain, withAgain, againScene, againPrompt, SITU_RATE, refFree, ownCut, ownRow, OWN_N, OWN_LEVELS, ambient, POSE_WEIGHT, cardOf, plan, colorize, denierize, situate, makeFree, sceneText, freeText, recentScenes, SITUS, DENIERS, outfitEn, COLORS, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, sceneUsage, CASUAL_N, STYLE, WEIGHT_UNUSED, EXPOSE_TYPES };
 if (require.main === module) process.exit(main(process.argv.slice(2)));

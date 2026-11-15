@@ -3176,6 +3176,13 @@
    "indoor",
    "timed",
    "k_work"
+  ],
+  "arcade_hall": [
+   "chair",
+   "wall",
+   "rail_waist",
+   "indoor",
+   "k_public"
   ]
  },
  "props": [
@@ -6918,7 +6925,8 @@
    "resort": [],
    "workwear": [
     "pocket"
-   ]
+   ],
+   "game_cosplay": []
   },
   "add": {
    "overalls": [

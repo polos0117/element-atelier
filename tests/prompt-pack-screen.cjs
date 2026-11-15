@@ -40,6 +40,7 @@ const server = http.createServer((q, s) => {
       const list = K.slots(card, plans.map(f => JSON.parse(fs.readFileSync(f, 'utf8'))));
       assert.equal(list.length, card.worlds.length * 8, '세계마다 세계 그림 + 일상 일곱(2026-11-11)');
       assert.equal(list.filter(s => s.cut && s.cut.sfree).length, card.worlds.length * 2, '세계마다 자유 설계 칸 둘(옷 자유 · 갈래 자유)');
+      assert.equal(list.filter(s => s.cut && C.isCosplay(s.cut)).length, card.worlds.length, '세계마다 게임 코스프레 한 장(2026-11-15) — 화면도 같은 코스프레 지시문');
       for (const s of list) {
         const rec = JSON.parse(fs.readFileSync(path.join(dir, s.slot + '-ui.json'), 'utf8'));
         assert.equal(fs.readFileSync(path.join(dir, s.slot + '-prompt.txt'), 'utf8'), rec.prompt);

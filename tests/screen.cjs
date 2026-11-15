@@ -196,6 +196,25 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     assert.equal(await p.locator((mob ? '.hres' : '#ref') + ' .ref img').count(), refHave ? 1 : 0, '등록된 참고 그림은 작은 그림으로');
     assert.match(p.url(), /card=fe-steel-sword&o=casual&world=mecha/, '일상컷도 주소에 세계');
     checks += 28;
+    /* 게임 코스프레(2026-11-15) — 코스프레 장소(거실)에서 계열을 고르면 옷 = 재단 열하나 → 게임 칸(열아홉) · 옷 색 · 데니어 · 상황 칸은 없다 · Outfit 줄에 게임 · 캐릭터, 등장인물 많은 게임은 「…」 자리 */
+    await p.click('[data-open="place"]');
+    if (!(await p.locator('#panel .opt[data-pick="home_living"]').count()) && mob) await p.click('#panel [data-gtab=""]');
+    await p.click('#panel .opt[data-pick="home_living"]');
+    await p.click('[data-open="ofam"]'); await p.click('#panel .opt[data-pick="game_cosplay"]'); assert.equal(await openOf(p), 'item', '코스프레 계열 다음 옷(재단)');
+    assert.equal(await p.locator('#panel .opt[data-pick^="gc_"]').count(), 11, '재단 열하나');
+    await p.click('#panel .opt[data-pick="gc_bikini"]'); assert.equal(await openOf(p), 'cosplay', '옷 다음 게임');
+    assert.equal(await p.locator('#panel .opt[data-pick]').count(), 20, '게임 열아홉 + 안 고름');
+    await p.click('#panel .opt[data-pick="legend_of_zelda"]'); assert.equal(await openOf(p), 'hair', '게임 다음은 머리 — 옷 색 · 데니어 · 상황 칸이 없다');
+    assert.equal(await p.locator('.hchip[data-open="color"], .hchip[data-open="denier"], .hchip[data-open="situ"]').count(), 0, '코스프레엔 옷 색 · 데니어 · 상황 칩이 없다');
+    await randAll(p, 'hair'); await toDone(p);   /* 장소 · 계열이 바뀌어 몸 쪽이 비었다 — 머리부터 랜덤(앞 칸 · 게임은 잠긴다) */
+    assert.equal((await state(p)).scene.cosplay.game, 'legend_of_zelda', '랜덤이 고른 게임을 지킨다');
+    assert((await state(p)).scene.frame !== 'face_close', '코스프레엔 얼굴 클로즈업이 없다');
+    const tc = await promptOf(p);
+    assert(lineOf(tc, 'Outfit: ').startsWith('Outfit: a daring adult cosplay of Link from The Legend of Zelda — ') && tc.includes('\n\n' + T.CASUAL.cosplay.short + '\n\n') && !tc.includes(CS.headwear), '코스프레 지시문 ' + lineOf(tc, 'Outfit: ').slice(0, 100));
+    await p.click('[data-open="cosplay"]'); await p.click('#panel .opt[data-pick="overwatch"]'); await toDone(p);
+    assert(lineOf(await promptOf(p), 'Outfit: ').startsWith('Outfit: … (a daring adult cosplay of one character of your choice from Overwatch'), '등장인물 많은 게임은 「…」 자리');
+    assert.equal((await state(p)).scene.cosplay.cut, 'bikini', '장면의 코스프레 재단 = 옷');
+    checks += 11;
     /* 랜덤 처음부터 — 다 찬다. 여기부터 다시 — 장소를 열면 뒤가 빈다 */
     await randAll(p, 'world');
     assert.equal(await openOf(p), 'done', '랜덤 뒤 다 골랐다');

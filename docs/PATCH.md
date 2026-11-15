@@ -7,6 +7,16 @@
 날짜는 `2026-10-30` 꼴, 누가는 `claude` 또는 `gpt`, 새 칸이 위로 간다.
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
+## 2026-11-15 · claude · 일상컷 필수 셋째를 게임 코스프레로 — 상황 노출은 필수에서만 내림
+- data/casual-tree.json · data/casual-tree-v2.json — 의상 계열 game_cosplay(재단 열하나 gc_<재단>) · 시대 지금 현실 · 무대·환상에만(나라 안 · 현장은 세 세계 시대와 부딪친다) · 장소 코스프레 행사 · 테마 행사장 · 무대 · 거실 · 침실 · 화보 스튜디오 · 물가 · 새 장소 오락실 · costume_required(얼굴 클로즈업 안 씀)
+- data/game-cosplay.json — 게임 코스프레 목록 사본(원본 game-atelier tools/game-cosplay.cjs sync, 여기서 고치지 않는다)
+- tools/casual-plan.cjs — 필수 셋째 = 게임 코스프레(pickCosplay — 세 공방 그림 저장소 기록을 합쳐(cosplayUsage) 덜 쓴 게임 · 주인공 하나는 안 입은 재단 · 등장인물 많은 게임 1회차 pick / 2회차 again · 다 찬 게임 빠짐, 1회차 칸엔 2회차 몫 again + <자리>-again-prompt.txt), 물가는 수영복 재단만 · 옷 색 · 데니어 · 상황 · 머리 없음, 상황 노출은 장면 컷 한 장에 반쯤(SITU_RATE), 옛 묶음(상황 노출 필수 시절) 통과 · --check 가 generation.cosplay 를 본다 · --cosplay-usage
+- lib/prompt-element.js · lib/prompt-spec.js — 코스프레 Outfit 줄(목록 글 fixed · pick 「…」 · again, 게임 · 캐릭터 이름을 넣는다 — 이름 규칙의 이 갈래만 예외), 짧은 판은 머리 장식 줄 대신 코스튬 줄 · 원소 옷 줄 뺌(긴 꼴 OUTPUT · WARDROBE · DESIGN · CHARACTER 끝, 구조판 장신구 칸), 체형 줄 그대로
+- tools/prompt-pack.cjs — 코스프레 목록을 넘기고 1회차 칸의 2회차 몫 지시문(<자리>-again-prompt.txt) · INDEX 안내(1회차 채우는 법 · 2회차로 넘길 때 · 기록 generation.cosplay)
+- lib/studio.js · lib/words.js · prompt.html 등 ?v= — 생성기에 「게임」 단계(옷 = 재단 다음, 게임 열아홉 — 등장인물 많은 게임은 「…」 자리 그대로), 코스프레엔 옷 색 · 데니어 · 상황 단계 없음, 표에 없는 장소 · 물가의 수영복 아닌 재단은 트리 밖
+- IMAGE_RULES.md · docs/IMAGE_AUTOMATION.md · AGENTS.md · docs/CASUAL_TREE_PORT.md — 필수 셋 바뀜 · 게임 코스프레 절 · 이름 규칙 예외 · GPT 세션 0-2절 · 기록 칸
+- tests/casual-plan.cjs · tests/prompt-element.cjs · tests/screen.cjs · tests/prompt-pack-screen.cjs — 필수에 코스프레 · 1회차 pick · 2회차 again · 재단 겹침 없음 · 다 찬 게임 빠짐 · 옛 묶음 통과 · 세 공방 기록 · --check · 지시문 셋 꼴 · 생성기 게임 단계
+
 ## 2026-11-15 · gpt · 테크네튬 1·1·1 세계컷과 일상컷 등록
 - data/img.json — 선택한 세 세계컷과 세계별 일상컷 7장·직업컷 1장, 총 27장을 등록기로 추가했다. 기존 항목은 보존했다.
 
