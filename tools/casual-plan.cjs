@@ -63,7 +63,7 @@ const SITU_RATE = 0.5;
 /* ══ 게임 코스프레(2026-11-15 사용자 — 세 공방(pkm · 원소 · 삼국지) 일상컷 필수 갈래, 게임공방의 「주인공 · 마스코트 코스튬」 을 옮김. 필수에서 상황 노출을 내리고 이것을 올린다).
    목록 data/game-cosplay.json(원본 game-atelier — 고치지 않는다): 게임 열아홉(주인공 하나 many: false — character · outfit 정해짐 / 등장인물 많음 many: true — roster) · 재단 열하나(cuts) · 글 셋(text).
    고르는 규칙 — 「캐릭터 + 재단」 묶음이 한 단위, 쓴 기록은 세 공방을 합쳐 센다(cosplayUsage):
-     1. 덜 쓴 게임 먼저(다 찬 게임은 빠진다) 2. 주인공 하나 게임 — 그 주인공이 아직 안 입은 재단 → text.fixed
+     1. 게임은 남은 인원의 제곱근 무게로 무작위(2026-11-15 「케릭터 수 많은 게임일수록 더 많이 선택되게」 → B — 처음엔 LoL 약 19% · 주인공 하나 게임 각 약 1.5%)(다 찬 게임은 빠진다) 2. 주인공 하나 게임 — 그 주인공이 아직 안 입은 재단 → text.fixed
      3. 등장인물 많은 게임 1회차(쓴 캐릭터 수 < roster) — 재단은 그 게임에서 덜 쓴 것, 캐릭터는 그리는 쪽이 고른다 → text.pick(맨 앞 「…」 — 채우는 자리, {used} 는 쓴 캐릭터)
      4. 2회차(쓴 캐릭터 수 ≥ roster) — 쓴 캐릭터 중 덜 입은 하나와 그 캐릭터가 아직 안 입은 재단 → text.again. 1회차 칸엔 그리는 쪽이 더 고를 캐릭터가 없을 때 쓸 2회차 몫(again)을 같이 적는다.
    장면 칸 cosplay = { game, character, cut, round, used?, again? }(pick 이면 character 빈 칸), 그린 뒤 기록 generation.cosplay = { game, character, cut }.
@@ -130,12 +130,20 @@ function cosplayAgain(tg, r = Math.random, cutOk = () => true, prefer = '') {
   const lo = Math.min(...open.map(x => x.ch.cuts.size)), pool = open.filter(x => x.ch.cuts.size === lo), x = pool[Math.floor(r() * pool.length)];
   return { character: x.ch.name, cut: x.cuts.includes(prefer) ? prefer : x.cuts[Math.floor(r() * x.cuts.length)] };
 }
-/* 한 칸의 코스프레 — 덜 쓴 게임(다 찬 게임은 빠짐) → 그 게임의 회차대로. 다 찼으면 null */
+/* 한 칸의 코스프레 — 남은 인원의 제곱근 무게로 고른 게임(다 찬 게임은 빠짐) → 그 게임의 회차대로. 다 찼으면 null */
+/* 게임 고르기 무게(2026-11-15 사용자 「케릭터 수 많은 게임일수록 더 많이 선택되게 해줘」 → 「B로해줘」) — 남은 인원의 제곱근으로 무게를 둔 무작위.
+   주인공 하나 게임은 1(남은 재단 비율), 등장인물 많은 게임은 1회차 √(roster − 쓴 캐릭터 수), 2회차 √(남은 「캐릭터 + 재단」 / 재단 수). 처음엔 LoL 약 19% · 주인공 하나 게임 각 약 1.5% */
+function cosplayWeight(g, tg = EMPTY_TALLY()) {
+  const chars = Object.values(tg.chars), N = COS_CUTS.length;
+  if (!g.many) { const ch = tg.chars[normName(g.character)]; return Math.sqrt(COS_CUTS.filter(k => !(ch && ch.cuts.has(k))).length / N); }
+  if (chars.length < g.roster) return Math.sqrt(g.roster - chars.length);
+  return Math.sqrt(chars.reduce((s, ch) => s + COS_CUTS.filter(k => !ch.cuts.has(k)).length, 0) / N);
+}
+const pickWeighted = (list, w, r) => { const ws = list.map(w), sum = ws.reduce((a, b) => a + b, 0); let x = r() * sum; for (let i = 0; i < list.length; i++) { x -= ws[i]; if (x < 0) return list[i]; } return list[list.length - 1]; };
 function pickCosplay(used, r = Math.random) {
   const TL = cosplayTally(used), games = (COSPLAY.games || []).filter(g => !cosplayFull(g, TL[g.key]));
   if (!games.length) return null;
-  const n = g => (TL[g.key] || {}).n || 0, lo = Math.min(...games.map(n)), pool = games.filter(g => n(g) === lo);
-  const g = pool[Math.floor(r() * pool.length)], tg = TL[g.key] || EMPTY_TALLY(), any = list => list[Math.floor(r() * list.length)];
+  const g = pickWeighted(games, x => cosplayWeight(x, TL[x.key]), r), tg = TL[g.key] || EMPTY_TALLY(), any = list => list[Math.floor(r() * list.length)];   /* 남은 인원이 많은 게임일수록 자주 */
   if (!g.many) { const ch = tg.chars[normName(g.character)]; return { game: g.key, character: g.character, cut: any(COS_CUTS.filter(k => !(ch && ch.cuts.has(k)))), round: 1 }; }
   const chars = Object.values(tg.chars).map(ch => ch.name).sort((a, b) => a.localeCompare(b));
   if (chars.length < g.roster) {

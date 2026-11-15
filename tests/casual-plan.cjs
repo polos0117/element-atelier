@@ -107,18 +107,22 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
   assert(errs({ cosplay: { ...cc.cosplay, cut: cc.cosplay.cut === 'knit' ? 'idol' : 'knit' } }).some(e => /재단/.test(e)), '재단과 옷이 다르면 잡는다');
   assert(C.check([cc, { ...cc, n: 9 }], cd, rest).some(e => /게임 코스프레 cosplay 가 2 번/.test(e)), '코스프레는 묶음에 한 장'); }
 /* 게임 코스프레 고르기 — 세 공방 기록을 합쳐 센다(pickCosplay · cosplayAgain · cosplayUsage) */
-{ const G = C.COSPLAY.games, CUTS = C.COSPLAY.cuts.map(c => c.key), fill = (keep, n = 30) => G.filter(g => g.key !== keep).flatMap(g => Array.from({ length: n }, () => ({ game: g.key, character: '', cut: CUTS[0] })));
+{ const G = C.COSPLAY.games, CUTS = C.COSPLAY.cuts.map(c => c.key);
+  /* 다른 게임을 다 채운 기록 — 남은 게임 하나만 고를 수 있게(2026-11-15 무게 고르기 뒤 — 예전엔 「덜 쓴 게임 먼저」 를 30번씩 채워 몰았다) */
+  const fill = keep => G.filter(g => g.key !== keep).flatMap(g => g.many ? Array.from({ length: g.roster }, (_, i) => CUTS.map(cut => ({ game: g.key, character: g.key + ' ' + i, cut }))).flat() : CUTS.map(cut => ({ game: g.key, character: g.character, cut })));
   const r0 = () => 0.42, zelda = G.find(g => g.key === 'legend_of_zelda'), sf = G.find(g => g.key === 'street_fighter_2');
-  /* 1. 덜 쓴 게임 먼저 */
-  assert.equal(C.pickCosplay(fill('legend_of_zelda'), r0).game, 'legend_of_zelda', '덜 쓴 게임 먼저');
+  /* 1. 무게 고르기(2026-11-15 「케릭터 수 많은 게임일수록 더 많이」 → B) — 남은 인원의 제곱근. 빈 기록에서 LoL 이 주인공 하나 게임보다 훨씬 자주, 그래도 주인공 하나 게임도 나온다 */
+  { let x = 123; const rnd = () => (x = (x * 9301 + 49297) % 233280) / 233280, cnt = {}; for (let i = 0; i < 4000; i++) { const k = C.pickCosplay([], rnd).game; cnt[k] = (cnt[k] || 0) + 1; }
+    assert((cnt.league_of_legends || 0) > 5 * (cnt.legend_of_zelda || 0) && (cnt.legend_of_zelda || 0) > 0 && (cnt.league_of_legends || 0) > (cnt.street_fighter_2 || 0), '무게 고르기 ' + JSON.stringify(cnt)); }
+  assert.equal(C.pickCosplay(fill('legend_of_zelda'), r0).game, 'legend_of_zelda', '다른 게임이 다 차면 남은 게임');
   /* 2. 주인공 하나 — 안 입은 재단만(열 개를 입었으면 남은 하나) · 열하나를 다 입으면 빠진다 */
   const ten = CUTS.slice(0, 10).map(cut => ({ game: 'legend_of_zelda', character: 'link', cut }));
-  for (let i = 0; i < 5; i++) { const p = C.pickCosplay([...fill('legend_of_zelda', 30), ...ten], () => (i + 0.5) / 5); assert(p.game === 'legend_of_zelda' && p.character === zelda.character && p.cut === CUTS[10] && p.round === 1, '주인공 하나 재단 겹침 없음 ' + JSON.stringify(p)); }
+  for (let i = 0; i < 5; i++) { const p = C.pickCosplay([...fill('legend_of_zelda'), ...ten], () => (i + 0.5) / 5); assert(p.game === 'legend_of_zelda' && p.character === zelda.character && p.cut === CUTS[10] && p.round === 1, '주인공 하나 재단 겹침 없음 ' + JSON.stringify(p)); }
   const eleven = CUTS.map(cut => ({ game: 'legend_of_zelda', character: 'Link', cut }));
-  assert(C.cosplayFull(zelda, C.cosplayTally(eleven).legend_of_zelda) && C.pickCosplay([...fill('legend_of_zelda', 30), ...eleven], r0).game !== 'legend_of_zelda', '다 찬 게임은 빠진다');
+  assert(C.cosplayFull(zelda, C.cosplayTally(eleven).legend_of_zelda) && C.pickCosplay([...fill('street_fighter_2'), ...eleven], r0).game !== 'legend_of_zelda', '다 찬 게임은 빠진다');
   /* 3. 등장인물 많은 게임 1회차 — 캐릭터 빈 칸 · 쓴 캐릭터 목록 · 재단은 그 게임에서 덜 쓴 것 */
   const sfUsed = [{ game: 'street_fighter_2', character: 'Chun-Li', cut: CUTS[0] }, { game: 'street_fighter_2', character: 'Cammy', cut: CUTS[1] }];
-  const p1 = C.pickCosplay([...fill('street_fighter_2', 30), ...sfUsed], r0);
+  const p1 = C.pickCosplay([...fill('street_fighter_2'), ...sfUsed], r0);
   assert(p1.game === 'street_fighter_2' && p1.character === '' && p1.round === 1 && JSON.stringify(p1.used) === '["Cammy","Chun-Li"]' && !CUTS.slice(0, 2).includes(p1.cut), '1회차 pick ' + JSON.stringify(p1));
   const a1 = C.withAgain(p1, sfUsed, 'stage_convention', r0);
   assert(a1.again && ['Chun-Li', 'Cammy'].includes(a1.again.character) && a1.again.cut === p1.cut, '1회차 칸의 2회차 몫 — 같은 재단 먼저');
@@ -127,7 +131,7 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
   assert(!C.withAgain({ ...p1, used: [] }, [], 'stage_convention', r0).again, '쓴 캐릭터가 없으면 2회차 몫 없음');
   /* 4. 2회차 — 쓴 캐릭터 ≥ roster: 덜 입은 캐릭터 · 안 입은 재단 → again(캐릭터가 찬다) */
   const roster = Array.from({ length: sf.roster }, (_, i) => ({ game: 'street_fighter_2', character: 'Fighter ' + i, cut: CUTS[i % 3] })).concat([{ game: 'street_fighter_2', character: 'fighter 0', cut: CUTS[5] }]);
-  const p2 = C.pickCosplay([...fill('street_fighter_2', 40), ...roster], r0);
+  const p2 = C.pickCosplay([...fill('street_fighter_2'), ...roster], r0);
   assert(p2.game === 'street_fighter_2' && p2.round === 2 && /^Fighter \d+$/.test(p2.character) && p2.character !== 'Fighter 0' && p2.cut !== CUTS[Number(p2.character.split(' ')[1]) % 3], '2회차 again ' + JSON.stringify(p2));
   /* 지시문 — 2회차 몫 */
   const cd = C.cardOf('fe'); cd.world = 'fantasy';
@@ -156,7 +160,7 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
     put({ cosplay: { game: 'street_fighter_2', character: 'Ryu', cut: cut.cosplay.cut } }); o = run(); assert.equal(o.status, 0, '--check 통과(새 캐릭터) ' + o.stdout);
     put({ cosplay: { game: 'street_fighter_2', character: cut.cosplay.again.character, cut: cut.cosplay.again.cut } }); o = run(); assert.equal(o.status, 0, '--check 통과(2회차 몫) ' + o.stdout);
   } finally { fs.rmSync(tmpC, { recursive: true, force: true }); }
-  console.log('PASS 게임 코스프레 고르기: 덜 쓴 게임 · 주인공 하나 재단 겹침 없음 · 다 찬 게임 빠짐 · 1회차 pick · 2회차 몫(물가 수영복) · 2회차 again · 세 공방 기록 읽기 · --check');
+  console.log('PASS 게임 코스프레 고르기: 무게 고르기(남은 인원의 제곱근) · 주인공 하나 재단 겹침 없음 · 다 찬 게임 빠짐 · 1회차 pick · 2회차 몫(물가 수영복) · 2회차 again · 세 공방 기록 읽기 · --check');
 }
 /* 옛 여섯 장 묶음(갈래 자유 없이)은 그대로 통과하고, 다음 계획 때 일곱째 칸만 짜진다 · 새 규칙을 잡는다 */
 { const cd = C.cardOf('au'); cd.world = 'fantasy'; const all = C.plan(cd, SEVEN, [], { seed: 8 }).cuts, six = all.filter(c => !c.gfree);
