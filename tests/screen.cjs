@@ -196,7 +196,7 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     assert.equal(await p.locator((mob ? '.hres' : '#ref') + ' .ref img').count(), refHave ? 1 : 0, '등록된 참고 그림은 작은 그림으로');
     assert.match(p.url(), /card=fe-steel-sword&o=casual&world=mecha/, '일상컷도 주소에 세계');
     checks += 28;
-    /* 게임 코스프레(2026-11-15) — 코스프레 장소(거실)에서 계열을 고르면 옷 = 재단 열하나 → 게임 칸(열아홉) · 옷 색 · 데니어 · 상황 칸은 없다 · Outfit 줄에 게임 · 캐릭터, 등장인물 많은 게임은 「…」 자리 */
+    /* 게임 코스프레(2026-11-15) — 코스프레 장소(거실)에서 계열을 고르면 옷 = 재단 열하나 → 게임 칸(열아홉) · 옷 색 · 데니어 · 상황 칸은 없다 · Outfit 줄에 게임 · 캐릭터, 등장인물 많은 게임은 목록에서 고른 캐릭터(2026-11-16 — 전엔 「…」 자리) */
     await p.click('[data-open="place"]');
     if (!(await p.locator('#panel .opt[data-pick="home_living"]').count()) && mob) await p.click('#panel [data-gtab=""]');
     await p.click('#panel .opt[data-pick="home_living"]');
@@ -212,7 +212,8 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     const tc = await promptOf(p);
     assert(lineOf(tc, 'Outfit: ').startsWith('Outfit: a daring adult cosplay of Link from The Legend of Zelda — ') && tc.includes('\n\n' + T.CASUAL.cosplay.short + '\n\n') && !tc.includes(CS.headwear), '코스프레 지시문 ' + lineOf(tc, 'Outfit: ').slice(0, 100));
     await p.click('[data-open="cosplay"]'); await p.click('#panel .opt[data-pick="overwatch"]'); await toDone(p);
-    assert(lineOf(await promptOf(p), 'Outfit: ').startsWith('Outfit: … (a daring adult cosplay of one character of your choice from Overwatch'), '등장인물 많은 게임은 「…」 자리');
+    { const ow = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/game-cosplay.json'), 'utf8')).games.find(g => g.key === 'overwatch'), ch = (await state(p)).scene.cosplay.character;   /* 등장인물 많은 게임도 캐릭터를 정한다(2026-11-16) */
+      assert(ow.characters.some(x => x.name === ch) && lineOf(await promptOf(p), 'Outfit: ').startsWith('Outfit: a daring adult cosplay of ' + ch + ' from Overwatch — '), '등장인물 많은 게임은 목록의 캐릭터 ' + ch); }
     assert.equal((await state(p)).scene.cosplay.cut, 'bikini', '장면의 코스프레 재단 = 옷');
     checks += 11;
     /* 랜덤 처음부터 — 다 찬다. 여기부터 다시 — 장소를 열면 뒤가 빈다 */

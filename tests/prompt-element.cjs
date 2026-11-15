@@ -288,7 +288,7 @@ if (ownTables) {
   assert(th.includes("her hair may be worn differently only as SCENE's Hair line says"), 'CHARACTER 가 머리 변화를 허락한다');
   assert(fe('fantasy').includes(CL.era.fantasy), '무대·환상');
 }
-/* 게임 코스프레 컷(2026-11-15 — 일상컷 필수 셋째) — 짧은 판 · 긴 꼴 · 구조판. Outfit 줄은 목록 글(주인공 하나 fixed · 1회차 pick 「…」 · 2회차 again), 게임 · 캐릭터 이름이 들어가고(이 갈래만의 예외),
+/* 게임 코스프레 컷(2026-11-15 — 일상컷 필수 셋째) — 짧은 판 · 긴 꼴 · 구조판. Outfit 줄은 목록 글(주인공 하나 fixed · 1회차 assigned · 옛 계획의 1회차 pick 「…」 · 2회차 again), 게임 · 캐릭터 이름이 들어가고(이 갈래만의 예외),
    옷 색 · 데니어 · 상황은 얹지 않으며, 「원소가 옷에」 줄 대신 코스튬 줄, 체형 줄은 그대로. 원래 실패하던 랜덤 검사(fe-steel-sword) 앞에 둔다 */
 if (ownTables) {
   const COSD = JSON.parse(fs.readFileSync('data/game-cosplay.json', 'utf8')), CP = CL.cosplay, fam = tree.outfits.find(o => o.cosplay);
@@ -303,12 +303,14 @@ if (ownTables) {
   const pick = P.buildCasual(D, SN, 'fe', { ...cs, cosplay: { game: 'league_of_legends', character: '', cut: 'bikini', round: 1, used: ['Ahri', 'Jinx'] } }, oc);
   const pick0 = P.buildCasual(D, SN, 'fe', { ...cs, cosplay: { game: 'league_of_legends', character: '', cut: 'bikini', round: 1, used: [] } }, oc);
   const again = P.buildCasual(D, SN, 'fe', { ...cs, cosplay: { game: 'league_of_legends', character: 'Ahri', cut: 'bikini', round: 2 } }, oc);
+  const assigned = P.buildCasual(D, SN, 'fe', { ...cs, cosplay: { game: 'league_of_legends', character: 'Jinx', cut: 'bikini', round: 1 } }, oc);   /* 계획기가 정한 1회차(2026-11-16) */
   const ol = t => (t.match(/^Outfit: .*$/m) || [''])[0];
   assert(ol(fixed).startsWith('Outfit: ' + COSD.text.fixed.replace('{character}', 'Link').replace('{game}', zelda.en).replace('{outfit}', zelda.outfit).replace('{cut}', bik.en) + ', '), '주인공 하나 — fixed ' + ol(fixed));
   assert(ol(pick).startsWith('Outfit: … (a daring adult cosplay of one character of your choice from League of Legends — not any of these already used: Ahri, Jinx;') && ol(pick).includes(bik.en), '1회차 — pick 「…」 · 쓴 캐릭터');
   assert(ol(pick0).includes('already used: ' + COSD.text.none + ';'), '1회차 — 쓴 캐릭터가 없으면 none');
+  assert(ol(assigned).startsWith('Outfit: ' + COSD.text.assigned.replace('{character}', 'Jinx').replace('{game}', lol.en).replace('{cut}', bik.en) + ', ') && !assigned.includes('of your choice'), '1회차 — 계획기가 정한 캐릭터(assigned) ' + ol(assigned));
   assert(ol(again).startsWith('Outfit: a daring adult cosplay of Ahri from League of Legends — the costume\'s recognisable colours and parts, ' + bik.en + ', '), '2회차 — again');
-  for (const [lb, t] of [['fixed', fixed], ['pick', pick], ['again', again]]) {
+  for (const [lb, t] of [['fixed', fixed], ['pick', pick], ['assigned', assigned], ['again', again]]) {
     assert(!/reads clearly at first glance|-denier yarn|; right now — /.test(ol(t)), lb + ' 옷 색 · 데니어 · 상황 없음');
     assert(t.includes('\n\n' + CP.short + '\n\n') && !t.includes(CL.short.headwear) && !t.includes("may show in the outfit's details"), lb + ' 코스튬 줄 · 원소 옷 줄 없음');
     assert(/\n\nFigure: /.test(t) && ol(t).includes(CL.short.body), lb + ' 체형 · 몸 줄 그대로');
@@ -328,8 +330,8 @@ if (ownTables) {
   /* 기록 — 장면에 cosplay 가 남는다 */
   const rec = P.casualRecord(D, SN, 'fe', { ...cs, cosplay: { game: 'league_of_legends', character: '', cut: 'bikini', round: 1, used: [] } }, { ...oc, style: SN.default, tree, tree2 }, 3);
   assert(rec.scene.cosplay && rec.scene.cosplay.game === 'league_of_legends' && rec.scene.item === 'gc_bikini' && rec.prompt.includes('League of Legends'), '기록 장면의 cosplay');
-  nc += 7;
-  console.log('PASS 게임 코스프레 지시문: fixed · 1회차 pick(쓴 캐릭터 · none) · 2회차 again · 옷 색 · 데니어 · 상황 없음 · 코스튬 줄 · 체형 줄 · 긴 꼴 · 구조판 · 기록');
+  nc += 8;
+  console.log('PASS 게임 코스프레 지시문: fixed · 1회차 assigned · 옛 1회차 pick(쓴 캐릭터 · none) · 2회차 again · 옷 색 · 데니어 · 상황 없음 · 코스튬 줄 · 체형 줄 · 긴 꼴 · 구조판 · 기록');
 }
 /* 2. 트리의 랜덤 장면 — 카드마다 몇 번(정해진 난수) */
 let seed = 7; const rnd = () => { seed = (seed * 48271) % 2147483647; return (seed - 1) / 2147483646; };

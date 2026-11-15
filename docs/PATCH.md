@@ -11,6 +11,14 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-16 · claude · 게임 코스프레 2차 — 캐릭터를 계획기가 정하고, 예약도 「쓴 것」 으로 센다
+- 사용자 「삼국지 공방에서만 벌써 오버워치 메르시가 4케릭터안에서 2번이나 나왔어」 → 「응 그래」 — 등장인물 많은 게임 1회차를 그리는 쪽이 골라(pick 「…」) 미리 짠 계획끼리 서로 못 보고 유명한 캐릭터를 되풀이했다
+- tools/casual-plan.cjs — 등장인물 많은 게임도 목록(data/game-cosplay.json characters — 사본 갱신분 그대로 올림)에서 안 쓰고 예약 안 된 캐릭터를 정한다(여자 2 · 남자 1, 재단은 그 게임에서 덜 쓴 것 → text.assigned), 다 쓰면 2회차 again · 다 차면 빠짐. cosplayUsage 가 그린 기록에 더해 계획 파일(<세계>-casual-plan · -replan · .replanned)과 pkm 예약(casual-reservations · 장부 reserved, 24시간 안)의 character 찬 cosplay 도 센다(그린 번호 · 지금 다시 짜는 카드 · 세계는 빼고, 같은 번호는 replan 하나)
+- tools/casual-plan.cjs — --recosplay(계획 파일의 안 그린 코스프레 칸만 새 규칙으로, 장소가 받는 재단 · 다른 칸 그대로 · 전 값은 recosplay 칸) · --recosplay-list(계획은 있는데 안 그린 pick 칸 — 지금 원소 그림 저장소엔 없음)
+- lib/prompt-element.js — 캐릭터가 찬 1회차는 assigned 글, 2회차는 again, 옛 pick 칸은 그대로 · lib/studio.js — 생성기도 등장인물 많은 게임이면 목록에서 같은 무게로 캐릭터를 정한다(칩에 캐릭터) · lib/words.js · lib/prompt-spec.js 주석 · ?v= 올림
+- tools/prompt-pack.cjs · IMAGE_RULES.md · docs/IMAGE_AUTOMATION.md · AGENTS.md — 새 계획은 캐릭터가 정해져 있다, 「1회차 채우기」 절은 옛 계획에만(먼저 --recosplay)
+- tests/casual-plan.cjs · prompt-element.cjs · screen.cjs — assigned(목록 안 · 쓴/예약 아님) · 여자 무게(4000번) · 오버워치 20번 겹침 없음 · 예약이 빠짐 · 2회차 · 다 차면 빠짐 · 옛 pick 지시문 그대로 · --recosplay 는 안 그린 칸만
+
 ## 2026-11-16 · gpt · 크립톤 27컷 등록
 - data/img.json — 사용자 선택 판타지 2 · 스팀펑크 1 · 메카 1과 세계별 일상 7장·전용컷 1장을 공식 등록기로 추가했다. 기존 카드·등록일·저장소 위치를 보존했다.
 - 생성 프롬프트·참조 해시·검수 결과는 그림 저장소 records/kr에 남겼고, 이미 생성된 그림은 다시 만들지 않았다.
