@@ -11,6 +11,9 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-16 · claude · 게임 코스프레 — pkm · 삼국지와 쓴 것 세는 법 맞추기
+- tools/casual-plan.cjs — 주인공 하나 게임은 기록 이름(Geralt · Geralt of Rivia)과 상관없이 그 주인공으로 센다(같은 재단 되풀이 막기, pkm 91e78ea 와 같게) · pkm 예약은 24시간 안만 세던 것을 나이와 상관없이(pkm 과 같게 — 버려진 계획이라도 겹치지 않는 쪽). tests/casual-plan.cjs 기대값 · 이름 단언
+
 ## 2026-11-16 · claude · 게임 코스프레 2차 — 캐릭터를 계획기가 정하고, 예약도 「쓴 것」 으로 센다
 - 사용자 「삼국지 공방에서만 벌써 오버워치 메르시가 4케릭터안에서 2번이나 나왔어」 → 「응 그래」 — 등장인물 많은 게임 1회차를 그리는 쪽이 골라(pick 「…」) 미리 짠 계획끼리 서로 못 보고 유명한 캐릭터를 되풀이했다
 - tools/casual-plan.cjs — 등장인물 많은 게임도 목록(data/game-cosplay.json characters — 사본 갱신분 그대로 올림)에서 안 쓰고 예약 안 된 캐릭터를 정한다(여자 2 · 남자 1, 재단은 그 게임에서 덜 쓴 것 → text.assigned), 다 쓰면 2회차 again · 다 차면 빠짐. cosplayUsage 가 그린 기록에 더해 계획 파일(<세계>-casual-plan · -replan · .replanned)과 pkm 예약(casual-reservations · 장부 reserved, 24시간 안)의 character 찬 cosplay 도 센다(그린 번호 · 지금 다시 짜는 카드 · 세계는 빼고, 같은 번호는 replan 하나)

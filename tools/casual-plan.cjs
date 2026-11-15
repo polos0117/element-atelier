@@ -97,8 +97,8 @@ const PLAN_FILE = /casual\d*[-.](?:re)?plan(?:ned)?\b[^/]*\.json$/, PLAN_OLD = /
 /* 그림 기록 파일 이름 → 세계 · 번호(원소 · 삼국지 <세계>-casualN.<화풍>-ui.json, pkm casualN-ui.json) */
 const REC_FILE = /^(?:(.+?)-)?casual(\d+)(?:\.[a-z0-9_]+)?-ui\.json$/;
 /* pkm 예약 — 그림 저장소 records/casual-reservations/<세션>.json(characters[].cuts[].cosplay) · 장부 records/casual-ledger.json 의 reserved 칸.
-   pkm 장부처럼 24시간 안의 예약만, 등록된(done) 캐릭터의 예약은 뺀다 */
-const PKM_RESERVE_HOURS = 24;
+   예약은 나이와 상관없이 센다(2026-11-16 — pkm · 삼국지와 같게, 버려진 계획이라도 겹치지 않는 쪽), 등록된(done) 캐릭터의 예약은 뺀다 */
+const PKM_RESERVE_HOURS = Infinity;
 const cutNo = c => Number(c && (c.n != null ? c.n : c.cut));
 /* 쓴 코스프레 — 세 공방 그림 저장소의 그린 기록 + 아직 안 그린 계획의 예약(2026-11-16 사용자 「응 그래」).
    기록: casual*.json 의 generation.cosplay(없으면 scene.cosplay 의 character 가 찬 것). 예약: 계획 파일 · pkm 예약 파일의 cosplay(character 가 찬 것, 옛 pick 빈 칸은 안 센다).
@@ -158,7 +158,7 @@ function cosplayTally(used) {
     if (!u || !u.game) continue;
     const g = out[u.game] = out[u.game] || { n: 0, cuts: {}, chars: {} }; g.n++;
     if (u.cut) g.cuts[u.cut] = (g.cuts[u.cut] || 0) + 1;
-    const nm = normName(u.character);
+    const gm = (COSPLAY.games || []).find(g => g.key === u.game), nm = gm && !gm.many ? normName(gm.character) : normName(u.character);   /* 주인공 하나 게임은 기록 이름(Geralt · Geralt of Rivia)과 상관없이 그 주인공으로 센다(2026-11-16 pkm 과 같게) */
     if (nm) { const ch = g.chars[nm] = g.chars[nm] || { name: String(u.character).trim(), cuts: new Set() }; if (u.cut) ch.cuts.add(u.cut); }
   }
   return out;

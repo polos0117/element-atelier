@@ -151,7 +151,7 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
   const a1 = { ...oldPick, cosplay: C.withAgain(oldPick.cosplay, sfUsed, cut.place, r0) };
   assert(a1.cosplay.again && ['chun-li', 'Cammy'].includes(a1.cosplay.again.character), '옛 pick 칸의 2회차 몫');
   assert(C.record(cd, 'fantasy', oldPick).prompt.includes('Outfit: … (a daring adult cosplay of one character of your choice from Street Fighter II — not any of these already used: Cammy, Chun-Li;') && C.againPrompt(cd, 'fantasy', a1).includes('a daring adult cosplay of ' + a1.cosplay.again.character + ' from Street Fighter II'), '옛 pick 칸 지시문 그대로 · 2회차 몫 지시문');
-  /* 세 공방 기록 + 예약 읽기 — generation.cosplay 먼저, 없으면 scene.cosplay 의 character 가 찬 것 · 계획 파일의 cosplay(그린 번호는 빼고, replan 이 이긴다) · pkm 예약(24시간 안, 등록된 캐릭터는 빼고) */
+  /* 세 공방 기록 + 예약 읽기 — generation.cosplay 먼저, 없으면 scene.cosplay 의 character 가 찬 것 · 계획 파일의 cosplay(그린 번호는 빼고, replan 이 이긴다) · pkm 예약(나이와 상관없이 — 2026-11-16, 등록된 캐릭터는 빼고) */
   const tmpR = fs.mkdtempSync(path.join(os.tmpdir(), 'cosplay-use-'));
   try {
     const put = (f, x) => { fs.mkdirSync(path.dirname(path.join(tmpR, f)), { recursive: true }); fs.writeFileSync(path.join(tmpR, f), JSON.stringify(x)); };
@@ -171,7 +171,7 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
       { card: '옛예약', at: '2026-11-14T09:00:00Z', cuts: [{ cut: 2, cosplay: { game: 'overwatch', character: 'Echo', cut: 'bikini' } }] }] });
     const roots = [path.join(tmpR, 'a-img'), path.join(tmpR, 'b-img'), path.join(tmpR, 'none')], row = x => x.game + '/' + x.character + '/' + x.cut + (x.plan ? '*' : '');
     const u = C.cosplayUsage(roots, { now });
-    assert.deepEqual(u.map(row).sort(), ['overwatch/D.Va/bikini*', 'overwatch/Sombra/lingerie*', 'overwatch/Tracer/idol', 'street_fighter_2/Ryu/bikini*', 'tomb_raider/Lara Croft/corset'], '기록 + 예약 읽기 ' + JSON.stringify(u.map(row)));
+    assert.deepEqual(u.map(row).sort(), ['overwatch/D.Va/bikini*', 'overwatch/Echo/bikini*', 'overwatch/Sombra/lingerie*', 'overwatch/Tracer/idol', 'street_fighter_2/Ryu/bikini*', 'tomb_raider/Lara Croft/corset'], '기록 + 예약 읽기(오래된 pkm 예약 Echo 도 센다 — 2026-11-16 pkm · 삼국지와 같게) ' + JSON.stringify(u.map(row)));
     assert.deepEqual(C.cosplayUsage(roots, { now, plans: false }).map(row).sort(), ['overwatch/Tracer/idol', 'tomb_raider/Lara Croft/corset'], '기록만');
     assert(!C.cosplayUsage(roots, { now, skip: ['z|mecha'] }).some(x => x.character === 'Sombra'), '지금 다시 짜는 카드 · 세계의 옛 계획은 안 센다');
     /* 예약 — 계획 파일에만 있는 캐릭터가 빠진다: 스트리트 파이터의 남은 둘(Ryu · Guile) 가운데 Ryu 는 예약 → 늘 Guile */
@@ -179,6 +179,9 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
     for (let i = 0; i < 6; i++) assert.equal(C.pickCosplay([...fill('street_fighter_2'), ...sfRest, ...u], () => (i + 0.5) / 6).character, 'Guile', '예약한 캐릭터는 빠진다');
     { const recOnly = C.cosplayUsage(roots, { now, plans: false }), got = new Set(); for (let i = 0; i < 12; i++) got.add(C.pickCosplay([...fill('street_fighter_2'), ...sfRest, ...recOnly], () => (i + 0.5) / 12).character);
       assert.deepEqual([...got].sort(), ['Guile', 'Ryu'], '예약을 빼면 Ryu 도 후보'); }
+    /* 주인공 하나 게임은 기록 이름이 달라도(Geralt · Geralt of Rivia) 그 주인공으로 센다 — 같은 재단이 다시 안 나온다 */
+    { const T = C.cosplayTally([{ game: 'witcher_3', character: 'Geralt', cut: 'one_piece' }, { game: 'witcher_3', character: 'Geralt of Rivia', cut: 'bikini' }]).witcher_3;
+      assert.equal(Object.keys(T.chars).length, 1, '주인공 이름 하나로 ' + JSON.stringify(Object.keys(T.chars))); }
   } finally { fs.rmSync(tmpR, { recursive: true, force: true }); }
   /* --check — 코스프레 칸은 그린 코스프레(generation.cosplay)가 기록에 있어야 한다 */
   const tmpC = fs.mkdtempSync(path.join(os.tmpdir(), 'cosplay-check-'));
