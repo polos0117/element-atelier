@@ -28,6 +28,15 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-16 · claude · 일상컷 옷 색 — 갈래 대신 구체 색 하나(shade)
+- 사용자 「수영복 중에 색이 분홍색으로 지정되어 있는게 있어?」 → 「응 너무 많아」 → 분홍 빼기는 거절 → 「응 그렇게 진행해줘」 — 갈래 글의 「such as」 맨 앞 예시(파스텔 → 분홍)로 쏠렸다
+- lib/prompt-spec.js — CASUAL.colors 여덟 갈래마다 shades(key · ko · en · hue, 마흔여섯) · hues 열둘 · hairHue(머리색 영어 글 → hue 정규식)
+- lib/prompt-element.js — hairHue · shadesOf · autoShade · shadeFor. Outfit 줄 색 글이 shade 의 en 하나(짧은 판 · 긴 꼴 · 구조판). shade 없는 장면은 카드 | 세계 | 번호로 늘 같은 하나(머리 hue 피함), casualRecord 가 번호를 넘긴다. SCENE_V2 에 shade(기록에 남는다)
+- tools/casual-plan.cjs — shadeUsage(그린 기록 scene.shade + 안 그린 계획 파일 — 코스프레 「쓴 것」 과 같은 곳 · 거름, --shade-usage) · shadeize(덜 쓴 것 먼저 · 머리 hue 피함 · 묶음 안 겹침 없음 · 같은 hue 되도록) · check(그 갈래 안 · 겹침 · 코스프레 · 색 고정 옷 · 머리 갈래) · plan.json shadeRead
+- tools/prompt-pack.cjs — settings 로 갈래를 바꾸면 계획 shade 를 버리고 조립부가 정한다. lib/studio.js · lib/words.js — 옷 색 아래 「색」 단계(자동 · 그 갈래 shade, 머리색 갈래 표시), 생성기 지시문도 번호를 넘긴다. prompt.html · index.html · alchemy.html · styles.html ?v= words 32 · prompt-spec 43 · prompt-element 38 · studio 10
+- tests/casual-shade.cjs 새로 · tests/casual-plan.cjs(shade 줄 · 겹침) · tests/screen.cjs(색 단계). IMAGE_RULES.md 옷 색 절 · AGENTS.md 검사 목록
+- 검사: casual-shade · screen · prompt-pack-screen · prompt-short-look · prompt-sections · words 통과. casual-plan(그림 저장소 최근 장면 200자) · prompt-element(fe-steel-sword 랜덤)는 원래 자리에서만 실패
+
 ## 2026-11-16 · claude · 근본 스물넷 더(3) — 나라 아흔다섯
 - 사용자 「원소공방 근본원소 추가해줘」 → 후보 스물넷(남은 자연 원소 전부, 세 묶음 — 합성 스물셋은 다음 판) → 「응 진행해줘」
 - data/element-design.json — nations 끝에 A(sc · y · zr · hf · ru · rh · cd · re) · B(la · pr · sm · tb · dy · ho · er · tm) · C(yb · lu · in · tl · at · fr · ac · pa), 근본만(가문 · 주민 · 그림은 아직). 헤어스타일은 늘린 마흔일곱을 세 묶음에 갈라 일흔두 자리에 다 쓰임, 스팀펑크 올림머리 없음

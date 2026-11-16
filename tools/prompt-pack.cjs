@@ -14,7 +14,7 @@
    자리 — <세계>(세계 그림 — 첨부 없이 한 장씩) · <세계>-casualN(일상컷 — 그 세계 그림 첨부). 화풍은 늘 기본(data/style.json default). 고칠 수 있는 칸:
      worlds.<세계>   notes(scene · outfit · custom — 직접 입력, why) · look(params · faceDesignOn · silhouetteOn · exposure — 표에 없는 외형은 직접 입력이라 why) ·
                      shot(scene — 설계표 장면 변주 열쇠 · time · pose · expr · frame(실루엣 — 세계마다 제 갈래 · free · 비우면 카드 설계값 sil.<세계>) — 표의 값)
-     casual.<자리>   scene · outfit · custom(직접 입력 — why) · exposure(moderate · low — 그 컷만 피부 노출 축을 낮춘다, why 필요) · color(옷 색 갈래 — 비우면 계획) · denier(d40 · d60 · d80 · none) ·
+     casual.<자리>   scene · outfit · custom(직접 입력 — why) · exposure(moderate · low — 그 컷만 피부 노출 축을 낮춘다, why 필요) · color(옷 색 갈래 — 비우면 계획. 계획과 다른 갈래면 그 안 구체 색은 조립부가 정한다) · denier(d40 · d60 · d80 · none) ·
                      situ(none — 상황 노출 컷 · 갈래 자유 컷이 노출을 낮춰도 막혔을 때만 상황을 뺀다, why 필요) · 나머지는 계획 그대로
                      자유 설계 칸(계획의 sfree — 옷 자유 · 갈래 자유)은 지시문의 FREE DESIGN 덩어리를 맡은 쪽이 채워 그린다(채운 글은 기록 generation.free_prompt · free_design)
                      게임 코스프레 칸(2026-11-15)은 옷 색 · 데니어 · 상황이 없다 — 캐릭터는 계획기가 정한다(2026-11-16 — 등장인물 많은 게임도). 옛 계획의 1회차 pick 칸만
@@ -136,7 +136,7 @@ function recordOf(card, set, s) {
   const scene = { ...cut, axes: { ...FIXED, ...(cut.axes || {}) }, aspect: '2:3', unlocked: cut.unlocked || [] };
   for (const k of TEXT) if ((x[k] || '').trim()) scene[k] = x[k]; else delete scene[k];
   if (x.exposure) scene.axes.skin_exposure = x.exposure;
-  if (x.color) scene.color = x.color;   /* 옷 색 · 데니어 · 상황(2026-11-09 삼국지에서) */
+  if (x.color) { if (x.color !== scene.color) delete scene.shade; scene.color = x.color; }   /* 옷 색 · 데니어 · 상황(2026-11-09 삼국지에서). 묶음을 바꾸면 계획의 shade 는 버린다 — 조립부가 카드 · 세계 · 번호로 그 묶음 안 하나(2026-11-16) */
   if (x.denier === 'none') delete scene.denier; else if (x.denier) scene.denier = x.denier;
   if (x.situ === 'none') { delete scene.situ; delete scene.gsitu; }
   return { ...P.casualRecord(D, S, card.key, scene, { world: s.world, style: STYLE, tree, tree2, cosplay: PLAN.COSPLAY }, n), record: PLAN.recordRel(card.key, s.world, n), storage: storageOf(card, s, x, scene) };

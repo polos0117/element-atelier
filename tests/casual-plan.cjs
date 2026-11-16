@@ -46,7 +46,8 @@ for (const key of pickKeys) {
       assert.deepEqual(res.cuts.filter(c => c.sfree).map(c => c.n), [6, 7], '자유 설계 칸은 맨 뒤 번호');
       assert(g.recent.includes('a test place — standing') && g.recent.length === 6, key + ' 최근 장면 + 같은 묶음 장면 다섯'); }
     assert.equal(new Set(res.cuts.filter(c => !c.sfree).map(c => c.era)).size, 4, key + ' ' + w + ' 네 시대 다');
-    { const cs = res.cuts.map(c => c.color).filter(Boolean); assert.equal(new Set(cs).size, cs.length, key + ' ' + w + ' 옷 색 갈래가 겹치지 않는다'); }
+    { const cs = res.cuts.map(c => c.color).filter(Boolean); assert.equal(new Set(cs).size, cs.length, key + ' ' + w + ' 옷 색 갈래가 겹치지 않는다');
+      const sh = res.cuts.map(c => c.shade).filter(Boolean); assert.equal(sh.length, cs.length, key + ' ' + w + ' 색 묶음마다 shade'); assert.equal(new Set(sh).size, sh.length, key + ' ' + w + ' shade 가 겹치지 않는다'); }
     dn.fit += res.cuts.filter(c => P.denierFits(C.outfitEn(c))).length; dn.set += res.cuts.filter(c => c.denier).length;
     for (const c of res.cuts) {
       const rec = C.record(card, w, c);
@@ -74,7 +75,9 @@ for (const key of pickKeys) {
         assert(!/-denier yarn|reads clearly at first glance/.test(ol), key + ' 자유 칸엔 옷 색 · 데니어 없음');
         continue;
       }
-      if (P.colorFixed(C.outfitEn(c))) assert(!c.color, key + ' 색이 박힌 옷엔 색 없음'); else assert(CL && ol.includes(CL.en), key + ' 옷 색 줄');
+      if (P.colorFixed(C.outfitEn(c))) assert(!c.color && !c.shade, key + ' 색이 박힌 옷엔 색 없음');
+      else { const SH = CL && CL.shades.find(x => x.key === c.shade);   /* 옷 색은 묶음 안 shade 하나 — 「such as」 예시 나열 없이(2026-11-16) */
+        assert(SH && ol.includes(' — in ' + SH.en + '; ') && !ol.includes(CL.en) && !/such as/.test(ol) && rec.scene.shade === c.shade, key + ' 옷 색 줄 — shade ' + c.shade + ' ' + ol.slice(0, 160)); }
       if (c.denier) assert(ol.includes(TS.CASUAL.deniers.find(x => x.key === c.denier).top + '-denier yarn'), key + ' 데니어 줄'); else assert(!/-denier yarn/.test(ol));
       if (c.situ) { const SI = TS.CASUAL.situations.find(x => x.key === c.situ); assert(ol.includes('; right now — ' + SI.en) || (!!SI.enIn && ol.includes('; right now — ' + SI.enIn)), key + ' 상황 줄(실내면 물 튐 글 enIn — 2026-11-13)'); } else assert(!/; right now — /.test(ol));
     }

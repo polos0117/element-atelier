@@ -121,6 +121,7 @@ python3 tools/casual-tree.py check      # 일상컷 트리 표(버전1 몫 — �
 python3 tools/casual-tree-v2.py check   # 일상컷 트리 버전2 표 — 없는 열쇠·두 손 칸·보이는 손 자리·다리 칸·다 되는 장소 없는 자세 추천
 python3 tests/casual-tree-v2.py · node tests/casual-tree-v2.cjs   # 검사기·거르기 모듈이 규칙마다 거는지
 node tests/casual-plan.cjs              # 일상컷 묶음 계획기 — 카드 × 사는 세계 × 씨앗이 일곱 장(2026-11-11) · 자유 설계 칸 둘(옷 자유 · 갈래 자유) · 옛 여섯 장 + 일곱째 · 정해 둔 세 갈래(노출 · 나라 안 · 게임 코스프레 — 옛 묶음은 상황 노출) · 코스프레 고르기(1회차 assigned — 계획기가 캐릭터를 정한다 · 여자 무게 · 예약도 쓴 것 · 2회차 again · 재단 겹침 없음 · 다 찬 게임 빠짐 · 세 공방 기록 + 예약 · 옛 pick 칸 · --check · --recosplay) · 옷 색 · 데니어 · 상황 · 짧은 일상컷 · 묶음 규칙 · 네 시대 · 기록 꼴, 있는 컷 위에 모자란 만큼
+node tests/casual-shade.cjs             # 일상컷 옷 색 shade(2026-11-16) — 갈래 안 구체 색 · 덜 쓴 것 먼저 · 머리색 갈래 피함 · 묶음 안 겹침 없음 · 지시문에 such as 없음 · shade 없는 옛 장면은 카드 | 세계 | 번호로 결정적 · 쓴 수 읽기 · 지시문 묶음
 node tests/image-claim.cjs              # 이미지 작업 잠금 — bare 저장소로 잡기 · 겹침 · 몫 없음(원소) · push 경합 되돌림
 node tests/words.cjs                    # 낱말 표
 node tests/patch.cjs                    # 패치 기록 모양

@@ -151,7 +151,16 @@ const lineOf = (txt, head) => (String(txt).split('\n').find(l => l.startsWith(he
     await p.click('#panel .opt[data-pick="neon"]'); assert.equal(await openOf(p), 'ofam');
     await p.click('#panel .opt[data-pick="everyday"]'); assert.equal(await openOf(p), 'item');
     await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'color', '옷 다음 옷 색(2026-11-09)');
-    await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'denier', '옷 색 다음 데니어');
+    /* 옷 색 묶음을 고르면 그 아래 「색」(shade — 2026-11-16): 자동 + 그 묶음의 구체 색. 자동이면 장면에 shade 가 없다(조립부가 카드 · 세계 · 번호로) */
+    await p.click('#panel .opt[data-pick="pastel"]'); assert.equal(await openOf(p), 'shade', '옷 색 다음 색(shade)');
+    assert.equal(await p.locator('#panel .opt[data-pick]').count(), 7, '자동 + 파스텔 여섯');
+    assert.match(await p.locator('#panel .opt[data-pick=""]').textContent(), /자동/, '자동이 첫 선택지');
+    await p.click('#panel .opt[data-pick="mint"]'); assert.equal(await openOf(p), 'denier', '색 다음 데니어');
+    assert.equal((await state(p)).scene.shade, 'mint', '고른 shade');
+    await p.click('[data-open="color"]'); await p.click('#panel .opt[data-pick=""]');
+    assert(!(await state(p)).scene.shade && await p.locator('.hchip[data-open="shade"]').count() === 0, '옷 색을 비우면 shade 칸도 없다');
+    if (await openOf(p) !== 'denier') await p.click('[data-open="denier"]');
+    assert.equal(await openOf(p), 'denier', '옷 색 다음 데니어');
     await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'situ', '데니어 다음 상황');
     await p.click('#panel .opt[data-pick=""]'); assert.equal(await openOf(p), 'hair', '상황 다음 머리 변화');
     assert.match(await p.locator('#panel .opt[data-pick=""]').textContent(), /그대로/, '머리 그대로가 첫 선택지');
