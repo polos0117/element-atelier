@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-16 · claude · 게임 코스프레 — 쓴 것은 이 공방 그림 저장소에서만
+- 사용자 「각 공방마다 게임 코스튬을 서로 읽고 관리한다고 했잖아? 그게 안되면 어떻게 작동해?」(없는 저장소는 조용히 건너뛰어 다른 세션에선 못 막았다) → 「공방별로 따로 두는건?」 → 「응 그렇게 진행해줘」
+- 계획기의 쓴 것 읽기(그린 기록 + 계획 예약)를 이 공방 그림 저장소만으로(삼국지 sam-atelier-img · -2, 원소 element-atelier-img, pkm pkm-atelier-img ~ -5). 다른 공방과는 같은 캐릭터가 나올 수 있다 · 공방마다 목록을 통째로 쓴다
+- 이 공방 그림 저장소가 없으면 계획기가 멈춘다(삼국지 · 원소 cosplayReposOk — 하나라도 없으면, pkm — 하나도 없으면 멈추고 일부 없으면 알림). 일부러 비우려면 --cosplay-usage none(pkm --cosplay-repos). 계획 파일에 읽은 저장소(cosplayRead, 삼국지 · 원소). 문서 · 검사 같이
+
 ## 2026-11-16 · claude · 게임 코스프레 — pkm · 삼국지와 쓴 것 세는 법 맞추기
 - tools/casual-plan.cjs — 주인공 하나 게임은 기록 이름(Geralt · Geralt of Rivia)과 상관없이 그 주인공으로 센다(같은 재단 되풀이 막기, pkm 91e78ea 와 같게) · pkm 예약은 24시간 안만 세던 것을 나이와 상관없이(pkm 과 같게 — 버려진 계획이라도 겹치지 않는 쪽). tests/casual-plan.cjs 기대값 · 이름 단언
 

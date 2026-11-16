@@ -107,7 +107,7 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
   assert(errs({ place: 'car_seat' }).some(e => /표에 그 계열이 없다/.test(e)), '표에 없는 장소를 잡는다');
   assert(errs({ cosplay: { ...cc.cosplay, cut: cc.cosplay.cut === 'knit' ? 'idol' : 'knit' } }).some(e => /재단/.test(e)), '재단과 옷이 다르면 잡는다');
   assert(C.check([cc, { ...cc, n: 9 }], cd, rest).some(e => /게임 코스프레 cosplay 가 2 번/.test(e)), '코스프레는 묶음에 한 장'); }
-/* 게임 코스프레 고르기 — 세 공방 기록 + 계획 예약을 합쳐 센다(pickCosplay · cosplayAgain · cosplayUsage) */
+/* 게임 코스프레 고르기 — 이 공방 그림 저장소의 기록 + 계획 예약(2026-11-16 「공방별로 따로」 — 읽는 함수는 저장소 목록을 받으니 아래 표본은 여럿 그대로)(pickCosplay · cosplayAgain · cosplayUsage) */
 { const G = C.COSPLAY.games, CUTS = C.COSPLAY.cuts.map(c => c.key);
   /* 다른 게임을 다 채운 기록 — 남은 게임 하나만 고를 수 있게 */
   const full = g => (g.many ? g.characters.map(x => x.name) : [g.character]).flatMap(name => CUTS.map(cut => ({ game: g.key, character: name, cut })));
@@ -179,6 +179,8 @@ assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 
     for (let i = 0; i < 6; i++) assert.equal(C.pickCosplay([...fill('street_fighter_2'), ...sfRest, ...u], () => (i + 0.5) / 6).character, 'Guile', '예약한 캐릭터는 빠진다');
     { const recOnly = C.cosplayUsage(roots, { now, plans: false }), got = new Set(); for (let i = 0; i < 12; i++) got.add(C.pickCosplay([...fill('street_fighter_2'), ...sfRest, ...recOnly], () => (i + 0.5) / 12).character);
       assert.deepEqual([...got].sort(), ['Guile', 'Ryu'], '예약을 빼면 Ryu 도 후보'); }
+    assert.deepEqual(C.COSPLAY_ROOTS.map(d => path.basename(d)), ['element-atelier-img'], '이 공방 그림 저장소만');
+    assert(C.cosplayReposOk({ 'cosplay-usage': 'none' }), '--cosplay-usage 를 주면 저장소 확인을 건너뛴다');
     /* 주인공 하나 게임은 기록 이름이 달라도(Geralt · Geralt of Rivia) 그 주인공으로 센다 — 같은 재단이 다시 안 나온다 */
     { const T = C.cosplayTally([{ game: 'witcher_3', character: 'Geralt', cut: 'one_piece' }, { game: 'witcher_3', character: 'Geralt of Rivia', cut: 'bikini' }]).witcher_3;
       assert.equal(Object.keys(T.chars).length, 1, '주인공 이름 하나로 ' + JSON.stringify(Object.keys(T.chars))); }

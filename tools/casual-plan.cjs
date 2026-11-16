@@ -83,8 +83,15 @@ const isWater = place => ((C2.place(T2, place) || {}).group) === 'water';
 const cosCutOk = (cut, place) => !isWater(place) || COS_SWIM.includes(cut);
 /* 코스프레 장소는 표에 그 계열을 적은 곳만(코스프레 행사 · 테마 행사장 · 오락실 · 거실 · 침실 · 화보 스튜디오 · 무대 · 물가) — 버전2 표의 새 장소(extra_places)는 계열 목록이 없어 다 열려 있다 */
 const cosPlace = place => ((C2.place(T2, place) || {}).outfits || []).includes(COS_FAM);
-/* 쓴 기록을 읽는 그림 저장소 — 옆에 받아 둔 것만(세 공방) */
-const COSPLAY_ROOTS = ['sam-atelier-img', 'sam-atelier-img-2', 'element-atelier-img', 'pkm-atelier-img', 'pkm-atelier-img-2', 'pkm-atelier-img-3', 'pkm-atelier-img-4', 'pkm-atelier-img-5'].map(d => path.join(ROOT, '..', d));   /* -5 — pkm 이 연 저장소(2026-11-15, pkm · 삼국지와 같게), 없는 것은 건너뛴다 */
+/* 쓴 기록을 읽는 그림 저장소 — 이 공방 것만(2026-11-16 사용자 「공방별로 따로 두는건?」 → 「응 그렇게 진행해줘」 — 전엔 세 공방 합쳐 읽었는데 없는 저장소를 조용히 건너뛰었다.
+   다른 공방과는 같은 캐릭터가 나올 수 있다). 없으면 계획기가 멈춘다 — cosplayReposOk */
+const COSPLAY_ROOTS = ['element-atelier-img'].map(d => path.join(ROOT, '..', d));
+function cosplayReposOk(opt = {}) {
+  if (opt['cosplay-usage']) return true;
+  const miss = COSPLAY_ROOTS.filter(d => !fs.existsSync(path.join(d, 'records')));
+  if (miss.length) throw new Error('게임 코스프레 — 이 공방 그림 저장소가 없다: ' + miss.map(d => path.basename(d)).join(' · ') + ' — 옆 폴더에 받은 뒤 다시(쓴 캐릭터를 몰라 겹친다). 일부러 비우려면 --cosplay-usage none');
+  return true;
+}
 /* 한 기록의 코스프레 — generation.cosplay(그린 것), 없으면 scene.cosplay 의 character 가 찬 것 */
 function cosplayRow(r) {
   const g = ((r || {}).generation || {}).cosplay, s = ((r || {}).scene || {}).cosplay, filled = x => x && x.game && String(x.character || '').trim();
@@ -866,7 +873,7 @@ function main(argv) {
   if (!worlds.every(w => card.worlds.includes(w))) { console.error(`${key} 는 ${card.worlds.join(' · ')} 에 산다 — --world 로 하나 또는 all`); return 2; }
   /* --recosplay: 계획 파일의 아직 안 그린 게임 코스프레 칸만 새 규칙으로 다시 정한다(2026-11-16) — 계획 파일을 고쳐 쓰고, --out 이면 그 칸의 기록 · 지시문도 */
   if (opt.recosplay) {
-    const used = opt['cosplay-usage'] === 'none' ? [] : cosplayUsage(opt['cosplay-usage'] ? opt['cosplay-usage'].split(',') : COSPLAY_ROOTS, { skip: worlds.map(w => key + '|' + w) });
+    cosplayReposOk(opt); const used = opt['cosplay-usage'] === 'none' ? [] : cosplayUsage(opt['cosplay-usage'] ? opt['cosplay-usage'].split(',') : COSPLAY_ROOTS, { skip: worlds.map(w => key + '|' + w) });
     const seed = Number(opt.seed || Date.now() % 1e9);
     for (const w of worlds) { card.world = w; recosplay(card, w, opt, recDir, used, seed + worlds.indexOf(w)); }
     return 0;
@@ -875,7 +882,7 @@ function main(argv) {
   const usageDir = opt.usage === 'none' ? '' : (opt.usage || path.join(ROOT, '..', 'element-atelier-img', 'records'));
   const extra = (opt.others || '').split(',').filter(Boolean).flatMap(f => JSON.parse(fs.readFileSync(f, 'utf8')).cuts || []);
   /* 게임 코스프레의 쓴 것 — 세 공방 그림 저장소(있는 것만)의 그린 기록 + 아직 안 그린 계획의 예약(2026-11-16). 지금 짜는 카드 · 세계의 옛 계획은 빼고, --cosplay-usage none 이면 비운다 */
-  const cosUsed = opt['cosplay-usage'] === 'none' ? [] : cosplayUsage(opt['cosplay-usage'] ? opt['cosplay-usage'].split(',') : COSPLAY_ROOTS, { skip: worlds.map(w => key + '|' + w) });
+  cosplayReposOk(opt); const cosUsed = opt['cosplay-usage'] === 'none' ? [] : cosplayUsage(opt['cosplay-usage'] ? opt['cosplay-usage'].split(',') : COSPLAY_ROOTS, { skip: worlds.map(w => key + '|' + w) });
   const planned = [];
   for (const world of worlds) {
     card.world = world;
@@ -900,12 +907,12 @@ function main(argv) {
         fs.writeFileSync(path.join(out, `${world}-casual${c.n}-prompt.txt`), rec.prompt);
         const ap = againPrompt(card, world, c); if (ap) fs.writeFileSync(path.join(out, `${world}-casual${c.n}-again-prompt.txt`), ap);   /* 코스프레 1회차의 2회차 몫 */
       }
-      fs.writeFileSync(path.join(out, 'plan.json'), JSON.stringify({ card: key, world, seed, tree: 2, style: STYLE, required: res.required, slots, fresh, cuts: res.cuts }, null, 1) + '\n');
+      fs.writeFileSync(path.join(out, 'plan.json'), JSON.stringify({ card: key, world, seed, tree: 2, style: STYLE, required: res.required, slots, fresh, cosplayRead: opt['cosplay-usage'] || COSPLAY_ROOTS.map(d => path.basename(d)).join(','), cuts: res.cuts }, null, 1) + '\n');
       console.log('→ ' + out);
     }
     ownStep(card, world, seed, opt, recDir, worlds);
   }
   return 0;
 }
-module.exports = { cosplayOpen, recosplayList, pendingCosplay, recosplayCut, planFilesOf, COSPLAY, COS_FAM, cosPlace, cosplayPaths, COS_SWIM, COSPLAY_ROOTS, isCosplay, cosItem, cutOfItem, cosplayRow, cosplayUsage, cosplayTally, cosplayFull, pickCosplay, cosplayAgain, withAgain, againScene, againPrompt, SITU_RATE, refFree, ownCut, ownRow, OWN_N, OWN_LEVELS, ambient, POSE_WEIGHT, cardOf, plan, colorize, denierize, situate, makeFree, sceneText, freeText, recentScenes, SITUS, DENIERS, outfitEn, COLORS, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, sceneUsage, CASUAL_N, STYLE, WEIGHT_UNUSED, EXPOSE_TYPES };
+module.exports = { cosplayReposOk, cosplayOpen, recosplayList, pendingCosplay, recosplayCut, planFilesOf, COSPLAY, COS_FAM, cosPlace, cosplayPaths, COS_SWIM, COSPLAY_ROOTS, isCosplay, cosItem, cutOfItem, cosplayRow, cosplayUsage, cosplayTally, cosplayFull, pickCosplay, cosplayAgain, withAgain, againScene, againPrompt, SITU_RATE, refFree, ownCut, ownRow, OWN_N, OWN_LEVELS, ambient, POSE_WEIGHT, cardOf, plan, colorize, denierize, situate, makeFree, sceneText, freeText, recentScenes, SITUS, DENIERS, outfitEn, COLORS, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, sceneUsage, CASUAL_N, STYLE, WEIGHT_UNUSED, EXPOSE_TYPES };
 if (require.main === module) process.exit(main(process.argv.slice(2)));
