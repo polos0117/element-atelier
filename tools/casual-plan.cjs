@@ -9,7 +9,7 @@
      - 세 장은 정해 둔 갈래 — 노출 갈래 한 장(란제리풍 · 수영복 · 역할극 의상 — 카드마다 돌려 가며) + 나라 안 갈래 한 장(나라의 방 · 목욕탕 · 지붕 · 여관 · 서재 · 부엌 · 야영지 · 정원 · 다리 · 사원 · 숲길 · 나루에서
        홈웨어 · 란제리 · 목욕 차림 · 수영복) + 게임 코스프레 한 장(2026-11-15 — 전엔 상황 노출. 의상 자체가 그 게임 캐릭터를 드러내는 코스튬 컷, 목록 data/game-cosplay.json,
        게임 · 캐릭터 · 재단은 세 공방(pkm · 원소 · 삼국지) 그림 저장소의 쓴 기록을 합쳐 덜 쓴 쪽부터 — pickCosplay. 지금 현실 · 무대·환상의 코스프레 행사 · 오락실 · 거실 · 침실 · 화보 스튜디오 · 무대,
-       수영복 재단이면 물가도, 얼굴 클로즈업 아님), 서로 다른 컷. 상황 노출은 필수에서만 빠지고 장면 컷 한 장에 반쯤(SITU_RATE) · 갈래 자유 칸엔 그대로. 옛 묶음(상황 노출 필수 시절)은 그대로 통과
+       수영복 재단이면 물가도, 얼굴 클로즈업 아님), 서로 다른 컷. 상황 노출은 필수에서만 빠지고 장면 컷 한 장에 늘(SITU_RATE — 2026-11-16, 전엔 반쯤) · 갈래 자유 칸엔 그대로. 옛 묶음(상황 노출 필수 시절)은 그대로 통과
      - 장소는 서로 다르게, 장소 묶음은 두 번까지 · 의상 계열은 겹치지 않게(평상복만 두 번 · 동탄룩 한 장) · 시대는 한 가지 두 번까지, 네 시대(지금 현실 · 쓰임의 현장 · 나라 안 · 무대·환상) 다
      - 자세 추천은 서로 다르게 · 프레이밍은 서로 다르게(먼 컷 · 가까운 컷 하나씩은 꼭) · 몸 방향 한 가지는 두 번까지 · 머리 「어깨 너머」 는 한 장까지
      - 소품은 칸마다 다르게 · 그 원소의 물건(설계표 hold, 주민은 object)을 든 컷은 한두 장 · 마실 것은 한 장까지 · ⚠ 어색한 조합은 한 장까지
@@ -60,7 +60,7 @@ const DRINKS = ['cup', 'drink_glass', 'water_bottle', 'teapot'];
 const SITUS = (T.CASUAL.situations || []).map(x => x.key);
 const SITU_NO_FRAME = ['face_close'];   /* 얼굴 클로즈업엔 옷이 안 보여 상황이 안 산다(손상향 시험 계획 — 젖은 옷이 클로즈업에) */
 /* 상황 노출은 2026-11-15 부터 필수가 아니다(셋째 필수는 게임 코스프레) — 장면 컷 한 장에 이 비율로 얹는다(일반 컷에선 그대로 나올 수 있다 — 사용자 결정) */
-const SITU_RATE = 0.5;
+const SITU_RATE = 1;   /* 2026-11-16 사용자 「늘 1장은 나오게 맞춰줘」 — 반쯤(0.5)에서 늘. 맞는 옷의 일반 컷이 없으면 건너뛴다 */
 
 /* ══ 게임 코스프레(2026-11-15 사용자 — 세 공방(pkm · 원소 · 삼국지) 일상컷 필수 갈래, 게임공방의 「주인공 · 마스코트 코스튬」 을 옮김. 필수에서 상황 노출을 내리고 이것을 올린다).
    목록 data/game-cosplay.json(원본 game-atelier — 고치지 않는다): 게임 열아홉(주인공 하나 many: false — character · outfit 정해짐 / 등장인물 많음 many: true — roster) · 재단 열하나(cuts) · 글 셋(text).
@@ -658,6 +658,8 @@ function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, 
       /* 상황 노출 — 필수가 아니다(2026-11-15). 이미 없으면 장면 컷 한 장(정해 둔 칸 · 코스프레 · 얼굴 클로즈업이 아닌, 맞는 상황이 있는 컷)에 SITU_RATE 로 */
       const rs = rng((seed ^ mix ^ 0x3c6ef372) >>> 0), sPool = old.some(c => c.situ) ? [] : cuts.map((c, i) => i).filter(i => i >= wants.length && !requiredType(cuts[i]) && !isCosplay(cuts[i]) && !SITU_NO_FRAME.includes(cuts[i].frame) && P.situsFor(outfitEn(cuts[i])).some(k => situAtPlace(k, cuts[i])));
       situate(cuts, sPool.length && rs() < SITU_RATE ? sPool[Math.floor(rs() * sPool.length)] : -1, old, others, rs); ambient(cuts, old, rng((seed ^ mix ^ 0x7f4a7c15) >>> 0));
+      /* 상황 노출 늘 한 장(2026-11-16 「늘 1장은 나오게」) — 장면 컷이 있는데 맞는 옷이 없어 못 얹었으면 다른 묶음으로(그 세계에 이미 상황 컷이 있으면 그대로) */
+      if (SITU_RATE >= 1 && !old.some(c => c.situ) && cuts.some((c, i) => i >= wants.length && !requiredType(c) && !isCosplay(c)) && !cuts.some(c => c.situ)) continue;
       const free = makeFree(card.key, freeNums, freeKinds, cuts, old, others, recent, rng((seed ^ mix ^ 0x1b873593) >>> 0));
       if (!free || check([...cuts, ...free], card, old, others).length) continue;   /* 갈래 자유 칸에 남은 갈래가 없으면(노출 갈래가 장면 컷에 다 들었으면) 다시 */
       const all = [...old, ...cuts, ...free];

@@ -81,7 +81,7 @@ for (const key of pickKeys) {
     n++;
   }
 }
-assert(situSeen.size >= 2, '상황 둘 넘게(2026-11-15 상황 노출이 필수에서 빠져 묶음의 반쯤에만) — ' + [...situSeen]);
+assert(situSeen.size >= 2, '상황 둘 넘게(2026-11-15 필수에서 빠짐 · 2026-11-16 일반 컷 한 장에 늘) — ' + [...situSeen]);
 assert(cosSeen.size >= 3, '코스프레 게임이 여럿 — ' + [...cosSeen]);
 assert(['adventure', 'drape', 'resort', 'workwear'].filter(f => famSeen.has(f)).length >= 1, '새 계열 넷 가운데 하나 넘게(2026-11-13 — 계열이 늘고 장소 종류 조건이 생겨 표본 묶음에 넷이 다 들지는 않는다 · 2026-11-15 장면 컷 한 장이 코스프레로 정해져 둘 → 하나) — ' + [...famSeen]);
 assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 비율 ' + dn.set + '/' + dn.fit);
