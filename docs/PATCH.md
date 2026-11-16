@@ -1,3 +1,6 @@
+## 2026-11-17 · gpt · 프랑슘 직업컷 구도 중복 수정
+- data/casual-own.json — 프랑슘 메카 직업컷을 소품 근접 구도로 바꿔 판타지의 걷는 구도와 구별하고, 세 세계 모두 90번을 생성할 수 있게 함.
+
 Warning: truncated output (original token count: 55755)
 Total output lines: 1252
 

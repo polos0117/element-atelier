@@ -7914,7 +7914,7 @@
      "base": "nation_training",
      "place": "a racing paddock of her element's kingdom — a sleek racing motorcycle on its stand, tyre stacks and a bright start gantry",
      "activity": "she is the motorcycle racer pulling on her gloves just before the start",
-     "preset": "stride_prop",
+     "preset": "prop_detail",
      "use": "sig_hold",
      "prop": "a racing helmet",
      "outfit": {
