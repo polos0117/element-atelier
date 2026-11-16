@@ -11,6 +11,14 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-16 · claude · 근본 스물넷 더(3) — 나라 아흔다섯
+- 사용자 「원소공방 근본원소 추가해줘」 → 후보 스물넷(남은 자연 원소 전부, 세 묶음 — 합성 스물셋은 다음 판) → 「응 진행해줘」
+- data/element-design.json — nations 끝에 A(sc · y · zr · hf · ru · rh · cd · re) · B(la · pr · sm · tb · dy · ho · er · tm) · C(yb · lu · in · tl · at · fr · ac · pa), 근본만(가문 · 주민 · 그림은 아직). 헤어스타일은 늘린 마흔일곱을 세 묶음에 갈라 일흔두 자리에 다 쓰임, 스팀펑크 올림머리 없음
+- data/casual-own.json — 스물넷의 캐릭터만의 컷(90번). 겹침 고침: 루테늄 스팀펑크 「연애편지 대필가」(산소 주민과 같다) → 「만년필 가게 점원」, 이트륨 판타지 「왕실 아이들의 보모」 → 「공주들의 시녀장」. C 열한 줄 자세 추천 · 소품 동작을 계획기가 짜지는 짝으로
+- lib/look-spec.js VOCAB_EN · tools/port-look-spec.cjs EXTRA — 머리색 스물넷 · 눈 색 아홉, lib/prompt-spec.js 한글 표 · SIL_TAGS 스물넷. index.html · prompt.html ?v= prompt-spec 42 · look-spec 14. docs/ELEMENT_CONCEPT.md 「근본 스물넷 더(3)」 절
+- tests/prompt-element.cjs 세계 그림 글자 상한 5100 → 5400(이트륨 스팀펑크 5177 — 글은 줄이지 않는다). tests/walk-table.cjs 흐린 칸 시험을 철 아래 루테늄(이제 나라) → 오스뮴 아래 하슘
+- 검사: element-design check 오류 0 · sil-spread --check · look-spec · prompt-short-look · prompt-sections · words · walk-core · walk-orbit · walk-table · walk-world · alchemy 통과, 스물넷 casual-plan --world all 짜짐. prompt-element 는 원래 자리(fe-steel-sword 랜덤)에서만 실패 — 그 줄을 빼면 끝까지 통과
+
 ## 2026-11-16 · claude · 외형 낱말 삼국지에서 옮김 · 그림 없는 세계 머리 다시 나눔
 - 사용자 「원소공방은 외형정보나 실루엣이 삼국지나 pkm에 비해 적은거 같은데 맞아?」 → 「응 다 옮겨주고」
 - lib/look-spec.js VOCAB_EN — 삼국지에만 있던 열쇠: 체형 +5(tall_curvy · strong_curvy · petite_curvy · pear_curvy · willowy_curvy) · 헤어 +24 · 머리색 +24 · 눈 색 +7 · 얼굴형 +3 · 눈 +4 · 눈썹 +3 · 코 +2 · 입 +3. 영어 글은 삼국지 그대로(core 열쇠는 core 블록이 덮는다)
