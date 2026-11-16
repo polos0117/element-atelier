@@ -3,6 +3,7 @@
 """원소 설계표 검사. game-atelier 의 tools/game-design.py 의 자리에 해당한다 — 세 층 구조에 맞춰 새로 썼다.
 
     python3 tools/element-design.py check     # 빈칸·열쇠 꼴·세계·가문의 원소·겹치는 가문·사실 칸
+    python3 tools/element-design.py rehair    # 기본 화풍 세계 그림이 없는 세계의 머리를 마흔일곱 가지에서 고르게 다시 고른다(2026-11-16)
 
 규칙(docs/ELEMENT_CONCEPT.md):
 - 나라 열쇠는 elements 의 key(기호 소문자)와 같다. 가문·주민 열쇠는 소문자·숫자만(하이픈·밑줄 없음 — 카드 열쇠를 하이픈으로 잇는다).
@@ -64,6 +65,8 @@ def check_struct(where, st, lives, errs):
                     errs.append("%s struct.%s.%s.%s 에 [ ] 를 넣지 않는다(칸 괄호는 조립부가 친다)" % (where, w, s, k))
 
 
+# 위로 올려 묶는 머리 — 스팀펑크엔 두지 않는다(2026-11-16 삼국지에서 옮긴 올림머리 일곱도. lib/prompt-element.js UPDO 와 같다)
+UPDO = ("updo_bun", "double_buns", "chignon", "messy_bun", "topknot_tails", "twin_loops", "cloud_updo", "tilted_bun")
 FACE_DESIGN = {"face": ("age", "impression", "skin_tone", "eye_size", "eye_tilt", "mark", "expr"), "silhouette": ("bangs",)}
 
 
@@ -160,8 +163,8 @@ def check_designed(where, look, lived, eye, errs):
         hair, fs, ey = (sub.get("silhouette") or {}).get("hair"), (sub.get("face") or {}).get("face_shape"), (sub.get("face") or {}).get("eyes")
         if not (hair and fs and ey):
             errs.append("%s look.worlds.%s 에 머리·얼굴형·눈이 다 있어야 한다" % (where, w))
-        if w == "steampunk" and hair == "updo_bun":
-            errs.append(where + " look.worlds.steampunk 는 올림머리로 두지 않는다(사용자 2026-10-31 「스팀펑크 쪽은 위로 묶은 머리가 너무 많아」)")
+        if w == "steampunk" and hair in UPDO:
+            errs.append(where + " look.worlds.steampunk 는 올림머리로 두지 않는다(사용자 2026-10-31 「스팀펑크 쪽은 위로 묶은 머리가 너무 많아」) — %s" % hair)
         sig.append("%s/%s/%s" % (hair, fs, ey))
     if len(set(sig)) < len(sig):
         errs.append(where + " look.worlds — 두 세계가 같은 사람(머리·얼굴형·눈): %s" % sig)
@@ -309,7 +312,104 @@ def check(doc):
     return errs, warns
 
 
+# ── 머리 다시 나누기(2026-11-16 사용자 「원소공방은 외형정보나 실루엣이 삼국지나 pkm에 비해 적은거 같은데」 → 「응 다 옮겨주고」) ──
+# 삼국지 공방 tools/sam-design.py 의 rehair 를 옮겼다: 기본 화풍 세계 그림이 있는 자리 · 손글 칸(struct 2 · c2 의 헤어스타일)이 있는 자리는 그대로 두고,
+# 나머지 자리만 전체 고르게 + 세계 안에서도 고르게 + 그 세계에 어울리는 머리 조금 더(FAVOR) + 흔들기로 고른다. 한 카드의 세계끼리는 겹치지 않는다.
+# pixie 는 pixie_cut 과 같은 머리라 돌림에서 뺀다(어휘엔 남는다). 스팀펑크엔 올림머리(UPDO)를 두지 않는다.
+HAIR_POOL = ("short_crop", "bob", "ponytail", "long_straight", "long_wavy", "updo_bun", "braids", "voluminous", "twin_tails", "side_swept",
+             "pixie_cut", "wolf_cut", "hime_cut", "long_curly", "half_up", "side_braid", "finger_waves", "asymmetric_bob", "undercut_sweep", "slicked_back",
+             "mermaid_waves", "flipped_shoulder", "low_ponytail", "shag_layers",
+             "side_ponytail", "braided_crown", "double_buns", "chignon", "long_layered", "lob", "messy_bun",
+             "topknot_tails", "twin_loops", "cloud_updo", "tilted_bun", "ribbon_low_tail", "segmented_tail",
+             "drill_curls", "giant_twin_tails", "giant_braid", "floor_length", "spiky_wild", "lion_mane", "jellyfish_cut", "windswept_long", "triple_tails", "horn_locks")
+HAIR_WORLD = {
+    "fantasy": ("braids", "giant_braid", "braided_crown", "mermaid_waves", "long_curly", "drill_curls", "long_wavy", "floor_length", "lion_mane", "cloud_updo"),
+    "steampunk": ("finger_waves", "slicked_back", "asymmetric_bob", "lob", "ribbon_low_tail", "side_braid", "flipped_shoulder", "low_ponytail", "drill_curls", "shag_layers"),
+    "mecha": ("long_straight", "hime_cut", "jellyfish_cut", "asymmetric_bob", "twin_tails", "giant_twin_tails", "triple_tails", "segmented_tail",
+              "windswept_long", "undercut_sweep", "spiky_wild", "horn_locks", "twin_loops"),
+}
+FAVOR = 1.8
+HAIR_BAL, HAIR_BAL_W, HAIR_NOISE = 1.0, 0.6, 1.2   # 전체 고르게 · 세계 안에서도 고르게 · 흔들기(삼국지와 같은 값)
+DEFAULT_STYLE = "jp_paint_anime"
+WORLDS = ("fantasy", "steampunk", "mecha")
+
+
+def hkey(s):
+    x = 0
+    for ch in s:
+        x = (x * 31 + ord(ch)) % 1000003
+    return x
+
+
+def rehair(dry=False):
+    import json, math
+    d = roster.design()
+    img = roster.read("img").get("img", {})
+    slots = []   # (카드 열쇠, 세계, look, struct)
+    for n in d["nations"]:
+        slots += [(n["key"], w, n["look"], n.get("struct")) for w in WORLDS]
+        for f in n.get("families") or []:
+            fk = n["key"] + roster.SEP + f["key"]
+            slots += [(fk, w, f["look"], f.get("struct")) for w in WORLDS]
+            for c in f.get("citizens") or []:
+                slots += [(fk + roster.SEP + c["key"], w, c["look"], c.get("struct")) for w in WORLDS if w in (c.get("worlds") or [])]
+
+    def hair_of(look, w):
+        return (((look.get("worlds") or {}).get(w) or {}).get("silhouette") or {}).get("hair") or (look.get("silhouette") or {}).get("hair")
+
+    def keep(key, w, st):
+        drawn = ((((img.get(key) or {}).get("byStyle") or {}).get(DEFAULT_STYLE) or {}).get("byForm") or {}).get(w) or {}
+        hand = any("헤어스타일" in (((st or {}).get(w) or {}).get(sec) or {}) for sec in ("2", "c2"))
+        return bool(drawn.get("f")) or hand
+    cnt, cw = {h: 0 for h in HAIR_POOL}, {w: {} for w in WORLDS}
+    todo, used = [], {}
+    for key, w, look, st in slots:
+        if keep(key, w, st):
+            h = hair_of(look, w)
+            cnt[h] = cnt.get(h, 0) + 1; cw[w][h] = cw[w].get(h, 0) + 1
+            used.setdefault(key, set()).add(h)
+        else:
+            todo.append((key, w, look))
+    target = len(slots) / len(HAIR_POOL)
+    target_w = {w: sum(1 for s in slots if s[1] == w) / len(HAIR_POOL) for w in WORLDS}
+    changed, touched = 0, set()
+    for key, w, look in sorted(todo, key=lambda t: hkey(t[0] + "|" + t[1] + "|hair")):
+        best = None
+        for h in HAIR_POOL:
+            if h in used.get(key, ()) or (w == "steampunk" and h in UPDO):
+                continue
+            wt = FAVOR if h in HAIR_WORLD[w] else 1.0
+            noise = (hkey("%s|%s|%s" % (key, w, h)) % 1000) / 1000.0
+            v = math.log(wt) + HAIR_NOISE * noise - HAIR_BAL * cnt.get(h, 0) / target - HAIR_BAL_W * cw[w].get(h, 0) / target_w[w]
+            if best is None or v > best[0]:
+                best = (v, h)
+        h = best[1]
+        used.setdefault(key, set()).add(h); cnt[h] = cnt.get(h, 0) + 1; cw[w][h] = cw[w].get(h, 0) + 1
+        sil = look.setdefault("worlds", {}).setdefault(w, {}).setdefault("silhouette", {})
+        if sil.get("hair") != h:
+            changed += 1; touched.add(key)
+            if h == "slicked_back":
+                sil["bangs"] = "swept_back"
+        sil["hair"] = h
+    NOTE = " · 2026-11-16 기본 화풍 그림이 없는 세계의 머리를 마흔일곱 가지에서 다시 나눔(tools/element-design.py rehair — 사용자 「응 다 옮겨주고」)"
+    for key, w, look, st in slots:
+        if key in touched and NOTE not in (look.get("why") or ""):
+            look["why"] = (look.get("why") or "").rstrip() + NOTE
+            touched.discard(key)
+    if not dry:
+        with open(roster.path("element-design"), "w", encoding="utf-8") as f:
+            f.write(json.dumps(d, ensure_ascii=False, indent=1) + "\n")
+    new = set(HAIR_POOL[24:])
+    newn = sum(1 for key, w, look in todo if hair_of(look, w) in new)
+    print("머리 다시 나눔%s — 자리 %d · 그대로 %d(기본 화풍 그림 · 손글 칸) · 다시 고른 %d · 바뀐 %d · 새 머리 %d(%.0f%%) · 많은 순 %s · 적은 순 %s" % (
+        " (보기만)" if dry else "", len(slots), len(slots) - len(todo), len(todo), changed, newn, 100.0 * newn / max(1, len(todo)),
+        " ".join("%s %d" % x for x in sorted(cnt.items(), key=lambda x: -x[1])[:5]),
+        " ".join("%s %d" % x for x in sorted(cnt.items(), key=lambda x: x[1])[:5])))
+
+
 def main(argv):
+    if len(argv) >= 2 and argv[1] == "rehair":
+        rehair(dry="--dry" in argv); return 0
     if len(argv) < 2 or argv[1] != "check":
         print(__doc__); return 2
     doc = roster.design()

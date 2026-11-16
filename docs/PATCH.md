@@ -11,6 +11,15 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-16 · claude · 외형 낱말 삼국지에서 옮김 · 그림 없는 세계 머리 다시 나눔
+- 사용자 「원소공방은 외형정보나 실루엣이 삼국지나 pkm에 비해 적은거 같은데 맞아?」 → 「응 다 옮겨주고」
+- lib/look-spec.js VOCAB_EN — 삼국지에만 있던 열쇠: 체형 +5(tall_curvy · strong_curvy · petite_curvy · pear_curvy · willowy_curvy) · 헤어 +24 · 머리색 +24 · 눈 색 +7 · 얼굴형 +3 · 눈 +4 · 눈썹 +3 · 코 +2 · 입 +3. 영어 글은 삼국지 그대로(core 열쇠는 core 블록이 덮는다)
+- lib/prompt-spec.js — FACE_DESIGN 앞머리 +5 · 피부 honey_tan · 나이 late_30s, STRUCT.ko 한글 표 · STRUCT.body 체형 여덟 칸 다섯 · STRUCT.age late_30s, 스팀펑크 tiedHair 에 묶은 새 머리 열넷. gallium_led 한글 「LED」 를 괄호 안으로(괄호 밖은 한글 — 원래 걸리던 것이 앞 실패에 가려져 있었다)
+- tools/port-look-spec.cjs EXTRA — 같은 열쇠를 더하고, 머리 칸에 잘못 들어가 있던 눈 색 일곱(gallium_led …)을 눈 색 칸으로
+- lib/prompt-element.js · tools/element-design.py — UPDO(올림머리 여덟)를 스팀펑크에서 뺀다(돌림 · 검사). element-design.py rehair — 기본 화풍 세계 그림 · 손글 칸이 없는 자리 195/408 의 머리를 47가지에서 고르게 다시 고름(삼국지 rehair 옮김), 바뀐 카드 why 에 날짜
+- data/element-design.json — rehair 결과(머리 195 · 앞머리 1 · why 80). IMAGE_RULES.md 「외형 낱말 늘림 · 머리 다시 나눔」. ?v= prompt-spec 41 · look-spec 13 · prompt-element 37
+- 검사: look-spec · prompt-short-look · words · element-design check 통과, prompt-element 는 원래 자리(fe-steel-sword 랜덤)에서 실패 — 그 줄을 건너뛰고 돌리면 끝까지 통과, 화풍공방 core 통과
+
 ## 2026-11-16 · claude · 상황 노출 — 일반 컷 하나에 늘 한 장
 - 사용자 「게임 코스튬 하기 전 필수였던 상황 노출엔 어떤 장면들이 있었지?」 → 「지금 필수가 아닌 일상컷 장면 하나를 이걸로 써도 상관은 없겠네」 → 「응 늘 1장은 나오게 맞춰줘」
 - 게임 코스프레 구성에서 상황 노출을 일반 컷(필수 · 코스튬 · 자유 설계 칸이 아닌 컷) 하나에 늘 얹는다. 삼국지 · 원소 — SITU_RATE 0.5 → 1, 맞는 옷의 일반 컷이 없어 못 얹은 묶음은 계획기가 다시 짠다(그 세계에 이미 상황 컷이 있으면 그대로). pkm — 게임 코스프레 구성에서도 chooseSitu(상황 컷을 먼저, 안 되면 자유 설계 칸을 먼저 정한 뒤), 상황 컷엔 얼굴 클로즈업을 안 주고 이 구성의 얼굴 클로즈업은 한 장까지(일반 컷이 적어 자리가 모자랐다), 안 되면 다른 씨앗으로(옛 v1 은 건너뜀)
