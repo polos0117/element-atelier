@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-17 · gpt · 레늄 선택 4·2·1과 전체 27장 등록
+- data/img.json — 등록기로 세계컷 3장, 일상 21장과 직업 컷 3장을 추가했다.
+- data/casual-index.json — 생성한 레늄 색인 24줄을 기존 항목을 보존하며 합쳤다.
+- 그림과 생성·검수 기록은 두 그림 저장소에 각각 커밋했다.
+
 ## 2026-11-17 · claude · 코스프레 캐릭터 다른 표기(aka) · PATCH 차례 바로잡음
 - 사용자 「응 둘 다 고쳐줘」(코스프레 캐릭터 이름이 명단과 달라 한글이 안 붙던 넷 · 원소 PATCH 차례)
 - tools/casual-plan.cjs · tools/casual-index.cjs — characters[].aka 를 그 캐릭터로(기록의 Cherie → Sherry), 색인은 retired_ko 도. data/game-cosplay.json sync · data/casual-index.json 다시 씀(코스프레 캐릭터 한글 60/60)
