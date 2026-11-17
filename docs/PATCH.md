@@ -5,6 +5,11 @@
 - IMAGE_RULES.md · tools/casual-plan.cjs(주석) — 게임 열아홉 → 스물넷(주인공 하나 열둘 · 등장인물 많음 열둘)
 - 검사: tests/casual-plan.cjs — 게임 코스프레 고르기 통과, 원래 걸리던 「최근 장면 여덟(200자)」 자리에서 그대로 멈춤(그림 저장소 기록 몫)
 
+## 2026-11-17 · claude · 게임 코스프레 목록 사본 — 캐릭터 한글 이름 · 어린 캐릭터 young
+- 사용자 2026-11-17 「응 캐릭터 한글 이름도 채워줘」 · 「코스튬의상이라 나이는 상관없는데」 → 「응 그렇게 해줘」
+- data/game-cosplay.json — 원본(game-atelier tools/game-cosplay.cjs sync) 사본: 등장인물 많은 게임 열 곳의 characters 마다 ko, 어린 캐릭터 열둘 다시 넣음(테일즈위버 14 · 원신 124) · young: true(유피 포함 열셋) · young_cuts [knit, idol, mini_dress]. young 재단 고르기는 계획기 작업이 따로 한다
+- data/casual-index.json — node tools/casual-index.cjs 로 다시 씀 — 바뀐 것은 cosplay.characterKo 뿐(+ built)
+
 ## 2026-11-17 · claude · 일상컷 색인 — 허브 「일상컷 목록」 자료
 - 사용자 「저거를 목록을 두고 확인할 수 있는 방법은 없을까? 위치는 허브가 좋을거 같은데 … 필수컷 만들 때 뜬 갈래랑 의상이랑, 게임코스튬 때 쓴 게임, 케릭터, 의상갈래 정도만」 → 「응 그렇게 진행해줘. 우리쪽에서 고르는건 한글로 표시되게 해줘. gpt 쪽은 영어로 설계하니까 그건 어쩔 수 없이 놔두고」
 - tools/casual-index.cjs — 새 도구. 그림 저장소 records 의 일상컷 기록(<세계>-casualN.<화풍>-ui.json, 꼬리 붙은 곁가지는 한 컷으로)과 그 카드 · 세계의 계획 파일(required — 노출 갈래 · 나라 안 · 게임 코스프레 · 옛 묶음의 상황 노출, 90번은 캐릭터만의 컷)을 읽어 data/casual-index.json 을 쓴다(세 공방 같은 꼴, 그림은 안 읽음). 우리 값(갈래 · 옷 · shade · 게임 · 재단 · 세계 · 카드 이름)은 표의 한글, 캐릭터는 목록 characters[].ko → 주인공 하나 character_ko → null, GPT 가 지은 자유 설계 Outfit 줄 · 옛 pick 캐릭터는 영어 그대로. 내용이 같으면 다시 쓰지 않는다
