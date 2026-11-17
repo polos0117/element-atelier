@@ -7,12 +7,41 @@ const D = require('../data/element-design.json'), IMGJ = require('../data/img.js
 const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b => Object.values(b.byForm || {}).some(f => f.f));
 const stylePic = (k, st) => Object.values((((IMGJ.img[k] || {}).byStyle || {})[st] || {}).byForm || {}).some(f => f.f);
 /* 한 화풍에 세 세계 그림이 다 있는 첫 카드와 그 화풍 */
+/* 일상컷 한 줄 fixture(2026-11-17) — 한 화풍 · 한 세계에 일상컷이 넷 넘는 카드(세계 그림도 있는), 앞 셋만 색인에(필수 · 코스프레 GPT · 옷 자유), 넷째는 없음 */
+const CN = (() => { for (const [k, e] of Object.entries(IMGJ.img)) for (const [st, b] of Object.entries(e.byStyle || {})) for (const w of D.vocab.worlds) {
+  const fm = (b.byForm || {})[w] || {}, fl = (fm.casual || {}).f || []; if (!fm.f || fl.length < 4) continue;
+  const files = fl.slice(0, 4), base = f => ({ card: k, name: k, world: w, worldKo: '', n: +f.match(/_casual(\d+)\.webp$/)[1], date: '2026-11-17', style: st, path: '', required: null, requiredKo: null, family: null, familyKo: null, item: null, itemKo: null, shade: null, shadeKo: null, cosplay: null, free: null });
+  const outfit = 'an asymmetric apricot wrap top with a single broad shoulder band and an opaque cropped front, high-waisted tailored shorts with overlapping rounded side panels';
+  const rows = [Object.assign(base(files[0]), { required: 'nation', requiredKo: '나라 안', family: 'homewear', familyKo: '홈웨어', item: 'backless_lounge', itemKo: '백리스 라운지', shade: 'stone', shadeKo: '스톤 베이지' }),
+    Object.assign(base(files[1]), { required: 'cosplay', requiredKo: '게임 코스프레', family: 'game_cosplay', familyKo: '게임 코스프레', item: 'gc_lingerie', itemKo: '란제리', cosplay: { game: 'street_fighter_2', gameKo: '스트리트 파이터 II', character: 'E. Honda', characterKo: null, cut: 'lingerie', cutKo: '란제리', by: 'gpt', round: 1 } }),
+    Object.assign(base(files[2]), { free: { kind: 'ofree', kindKo: '옷 자유', outfit } })];
+  return { key: k, n: k.split('-')[0], st, w, files, outfit, doc: { version: 1, atelier: 'element', built: '', source: [], rows } };
+} return null; })();
 const threeWorlds = (() => { for (const [k, e] of Object.entries(IMGJ.img)) for (const [st, b] of Object.entries(e.byStyle || {}))
   if (D.vocab.worlds.every(w => ((b.byForm || {})[w] || {}).f)) return [k, st]; return null; })();
 
 (async () => {
   const { base, close } = await serve(), br = await launch();
   try {
+    // 일상컷 한 줄(2026-11-17 「상세보기나 크게보기 일 때만 보이도록」) — 목록 칸엔 없음(색인도 안 받는다) · 한 장에서만 · 필수 · 코스프레(GPT 고름) · 자유 설계(영어, 줄였다 펼침) · 색인에 없는 컷은 없음 · 색인은 한 번만
+    if (CN) for (const viewport of [COVER, WIDE]) {
+      const { page: p, errors, ctx } = await open(br, base, '/index.html?n=' + CN.n + '&mode=list&view=casual&st=' + CN.st, { viewport }); let fetched = 0;
+      await ctx.route(/\/data\/casual-index\.json/, r => { fetched++; return r.fulfill({ contentType: 'application/json', body: JSON.stringify(CN.doc) }); });
+      await p.reload(); const slot = f => p.locator('#c-' + CN.key + ' .worlds.casuals button.slot:has(img[src$="' + encodeURIComponent(f) + '"])');
+      await slot(CN.files[0]).waitFor();
+      assert.equal(await p.locator('.cnote').count(), 0, '목록 칸엔 한 줄이 없다'); assert.equal(fetched, 0, '목록을 그릴 때 색인을 안 받는다');
+      await slot(CN.files[0]).click(); const note = p.locator('.w-card .lb-cnote'); await note.waitFor();
+      assert.equal(fetched, 1, '처음 열 때 색인 한 번'); assert.equal((await note.textContent()).trim(), '필수 · 나라 안 — 백리스 라운지 · 스톤 베이지', '필수 한 줄');
+      await p.keyboard.press('ArrowRight'); await p.waitForFunction(() => /코스프레/.test((document.querySelector('.lb-cnote') || {}).textContent || ''));
+      assert.equal(await note.locator('b').textContent(), '필수 · 게임 코스프레'); assert.match(await note.textContent(), /— 스트리트 파이터 II · E\. Honda · 란제리GPT 고름$/, '코스프레 — 캐릭터는 영어 그대로 · GPT 고름');
+      await p.keyboard.press('ArrowRight'); await p.waitForSelector('.lb-cnote .cnote-more');
+      const more = note.locator('.cnote-more'); assert.equal(await note.locator('b').textContent(), '옷 자유'); assert.equal(await more.getAttribute('aria-expanded'), 'false'); assert((await more.textContent()).endsWith('…'), '긴 Outfit 은 줄여 보인다');
+      await more.click(); assert.equal(await more.getAttribute('aria-expanded'), 'true'); assert.equal(await more.textContent(), CN.outfit, '누르면 펼침(영어 그대로)');
+      assert.equal(await p.evaluate(() => document.documentElement.dataset.layer), 'card', '펼쳐도 한 장 그대로');
+      await p.keyboard.press('ArrowRight'); await p.waitForFunction(f => ((document.querySelector('.w-card .lb-stage img') || {}).getAttribute('src') || '').endsWith(encodeURIComponent(f)), CN.files[3]);
+      assert.equal(await p.locator('.lb-cnote').count(), 0, '색인에 없는 컷은 아무것도 안 보인다'); assert.equal(fetched, 1, '색인은 한 번만');
+      { const nb = await p.locator('.w-card .lb-top').boundingBox(); assert(nb.x >= 0 && nb.x + nb.width <= viewport.width + 1, '일상컷 한 줄 옆 넘침 ' + JSON.stringify(nb)); }   /* 쪽 전체 넘침은 아래 목록 층 것(344 조작 줄 — 원래 실패)이라 한 장의 위 줄만 잰다 */ assert.deepEqual(errors, []); await ctx.close();
+    }
     // 어디서 눌러도 같은 한 장
     for (const [from, sel] of [['/index.html?n=fe&mode=orbit', '.w-nucleus'], ['/index.html?n=fe&mode=list&st=game_keyart', '#c-fe .worlds.main button.slot >> nth=0']]) {
       const { page: p, errors, ctx } = await open(br, base, from); await p.click(sel);
