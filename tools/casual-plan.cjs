@@ -63,7 +63,7 @@ const SITU_NO_FRAME = ['face_close'];   /* 얼굴 클로즈업엔 옷이 안 보
 const SITU_RATE = 1;   /* 2026-11-16 사용자 「늘 1장은 나오게 맞춰줘」 — 반쯤(0.5)에서 늘. 맞는 옷의 일반 컷이 없으면 건너뛴다 */
 
 /* ══ 게임 코스프레(2026-11-15 사용자 — 세 공방(pkm · 원소 · 삼국지) 일상컷 필수 갈래, 게임공방의 「주인공 · 마스코트 코스튬」 을 옮김. 필수에서 상황 노출을 내리고 이것을 올린다).
-   목록 data/game-cosplay.json(원본 game-atelier — 고치지 않는다): 게임 열아홉(주인공 하나 many: false — character · outfit 정해짐 / 등장인물 많음 many: true — roster) · 재단 열하나(cuts) · 글 셋(text).
+   목록 data/game-cosplay.json(원본 game-atelier — 고치지 않는다): 게임 스물넷(주인공 하나 many: false — character · outfit 정해짐 / 등장인물 많음 many: true — roster) · 재단 열하나(cuts) · 글 셋(text).
    고르는 규칙 — 「캐릭터 + 재단」 묶음이 한 단위, 쓴 기록은 세 공방을 합쳐 센다(cosplayUsage):
      1. 게임은 남은 인원의 제곱근 무게로 무작위(2026-11-15 「케릭터 수 많은 게임일수록 더 많이 선택되게」 → B — 처음엔 LoL 약 19% · 주인공 하나 게임 각 약 1.5%)(다 찬 게임은 빠진다) 2. 주인공 하나 게임 — 그 주인공이 아직 안 입은 재단 → text.fixed
      3. 등장인물 많은 게임 1회차(목록 characters 가운데 아직 안 쓰고 예약도 안 된 캐릭터가 있을 때) — 계획기가 그 가운데 무작위로 정한다(여자 캐릭터 무게 2 · 남자 1 — 남자는 크로스플레이),
