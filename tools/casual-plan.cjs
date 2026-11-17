@@ -199,8 +199,8 @@ function cosplayTally(used) {
     if (!u || !u.game) continue;
     const g = out[u.game] = out[u.game] || { n: 0, cuts: {}, chars: {} }; g.n++;
     if (u.cut) g.cuts[u.cut] = (g.cuts[u.cut] || 0) + 1;
-    const gm = (COSPLAY.games || []).find(g => g.key === u.game), nm = gm && !gm.many ? normName(gm.character) : normName(u.character);   /* 주인공 하나 게임은 기록 이름(Geralt · Geralt of Rivia)과 상관없이 그 주인공으로 센다(2026-11-16 pkm 과 같게) */
-    if (nm) { const ch = g.chars[nm] = g.chars[nm] || { name: String(u.character).trim(), cuts: new Set() }; if (u.cut) ch.cuts.add(u.cut); }
+    const gm = (COSPLAY.games || []).find(g => g.key === u.game), ak = gm && gm.many ? (gm.characters || []).find(c => (c.aka || []).some(a => normName(a) === normName(u.character))) : null, nm = gm && !gm.many ? normName(gm.character) : normName(ak ? ak.name : u.character);   /* 다른 표기(aka — 2026-11-17)는 그 캐릭터 이름으로 */   /* 주인공 하나 게임은 기록 이름(Geralt · Geralt of Rivia)과 상관없이 그 주인공으로 센다(2026-11-16 pkm 과 같게) */
+    if (nm) { const ch = g.chars[nm] = g.chars[nm] || { name: ak ? ak.name : String(u.character).trim(), cuts: new Set() }; if (u.cut) ch.cuts.add(u.cut); }
   }
   return out;
 }

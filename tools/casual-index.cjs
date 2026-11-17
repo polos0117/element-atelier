@@ -54,10 +54,11 @@ const cutKo = k => ((COSPLAY.cuts || []).find(c => c.key === k) || {}).ko || nul
 /* 캐릭터 한글 — (1) 그 게임 목록 characters[].ko (2) 주인공 하나 게임이면 character_ko (3) null */
 function characterKo(game, name) {
   const g = gameOf(game); if (!g || !trim(name)) return null;
-  const ch = (g.characters || []).find(c => normName(c.name) === normName(name));
+  const ch = (g.characters || []).find(c => [c.name].concat(c.aka || []).some(n => normName(n) === normName(name)));   /* 다른 표기(aka — 2026-11-17)는 그 캐릭터 이름으로 */
   if (ch && trim(ch.ko)) return trim(ch.ko);
   if (!g.many && trim(g.character_ko)) return trim(g.character_ko);
-  return null;
+  const rk = ((COSPLAY.retired_ko || {})[game] || {}), rn = Object.keys(rk).find(n => normName(n) === normName(name));   /* 명단에서 뺀 캐릭터(2026-11-17) */
+  return rn ? rk[rn] : null;
 }
 
 /* 자유 설계 칸 Outfit 줄 — free_design(덩어리 글 · 칸 묶음) → free_outfit → free_prompt. 「…」 그대로면 없음 */
