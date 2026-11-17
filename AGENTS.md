@@ -94,6 +94,7 @@
 
 새 그림은 `element-atelier-img-2` 에 올린다(2026-11-13 — 첫 저장소 `element-atelier-img` 는 차서 닫힘: 교체만 · 기록 · 잠금 · 배경 · 화풍 비교는 계속 거기, IMAGE_RULES 3절 표). `img/` · `img-2/` 는 `.gitignore` 에 있다. 원본 PNG 는 올리지 않는다.
 그림 규칙은 `IMAGE_RULES.md`. 그림 저장소에 올리면 썸네일(`element-atelier-img` 워크플로)과 등록(`그림 등록` 워크플로 · `tools/register-images.py`)이 알아서 된다 — `data/img.json` 은 손으로 고치지 않는다.
+일상컷 색인 `data/casual-index.json`(허브 「일상컷 목록」 이 읽는다 — 컷마다 필수 갈래 · 의상 갈래 · 옷 · 색 · 게임 코스프레 · 자유 설계 Outfit 줄, 우리 값은 한글)은 `tools/casual-index.cjs` 가 그림 저장소 records 의 일상컷 기록 · 계획에서 쓰고 `그림 등록` 워크플로가 같은 자리에서 다시 써 같이 커밋한다(2026-11-17) — 손으로 고치지 않는다, 자리에서는 `node tools/casual-index.cjs`.
 
 ### 6. 고쳤으면 적는다
 
@@ -122,6 +123,7 @@ python3 tools/casual-tree-v2.py check   # 일상컷 트리 버전2 표 — 없�
 python3 tests/casual-tree-v2.py · node tests/casual-tree-v2.cjs   # 검사기·거르기 모듈이 규칙마다 거는지
 node tests/casual-plan.cjs              # 일상컷 묶음 계획기 — 카드 × 사는 세계 × 씨앗이 일곱 장(2026-11-11) · 자유 설계 칸 둘(옷 자유 · 갈래 자유) · 옛 여섯 장 + 일곱째 · 정해 둔 세 갈래(노출 · 나라 안 · 게임 코스프레 — 옛 묶음은 상황 노출) · 코스프레 고르기(1회차 assigned — 계획기가 캐릭터를 정한다 · 여자 무게 · 예약도 쓴 것 · 2회차 again · 재단 겹침 없음 · 다 찬 게임 빠짐 · 세 공방 기록 + 예약 · 옛 pick 칸 · --check · --recosplay) · 옷 색 · 데니어 · 상황 · 짧은 일상컷 · 묶음 규칙 · 네 시대 · 기록 꼴, 있는 컷 위에 모자란 만큼
 node tests/casual-shade.cjs             # 일상컷 옷 색 shade(2026-11-16) — 갈래 안 구체 색 · 덜 쓴 것 먼저 · 머리색 갈래 피함 · 묶음 안 겹침 없음 · 지시문에 such as 없음 · shade 없는 옛 장면은 카드 | 세계 | 번호로 결정적 · 쓴 수 읽기 · 지시문 묶음
+node tests/casual-index.cjs             # 일상컷 색인(2026-11-17) — 꼴 · 우리 값 한글 · 곁가지 기록 합치기 · 계획 파일의 필수 표시 · 코스프레 by(planner · gpt) · 캐릭터 한글 · 자유 설계 Outfit 줄 · 같으면 안 씀
 node tests/image-claim.cjs              # 이미지 작업 잠금 — bare 저장소로 잡기 · 겹침 · 몫 없음(원소) · push 경합 되돌림
 node tests/words.cjs                    # 낱말 표
 node tests/patch.cjs                    # 패치 기록 모양

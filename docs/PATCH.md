@@ -1,3 +1,10 @@
+## 2026-11-17 · claude · 일상컷 색인 — 허브 「일상컷 목록」 자료
+- 사용자 「저거를 목록을 두고 확인할 수 있는 방법은 없을까? 위치는 허브가 좋을거 같은데 … 필수컷 만들 때 뜬 갈래랑 의상이랑, 게임코스튬 때 쓴 게임, 케릭터, 의상갈래 정도만」 → 「응 그렇게 진행해줘. 우리쪽에서 고르는건 한글로 표시되게 해줘. gpt 쪽은 영어로 설계하니까 그건 어쩔 수 없이 놔두고」
+- tools/casual-index.cjs — 새 도구. 그림 저장소 records 의 일상컷 기록(<세계>-casualN.<화풍>-ui.json, 꼬리 붙은 곁가지는 한 컷으로)과 그 카드 · 세계의 계획 파일(required — 노출 갈래 · 나라 안 · 게임 코스프레 · 옛 묶음의 상황 노출, 90번은 캐릭터만의 컷)을 읽어 data/casual-index.json 을 쓴다(세 공방 같은 꼴, 그림은 안 읽음). 우리 값(갈래 · 옷 · shade · 게임 · 재단 · 세계 · 카드 이름)은 표의 한글, 캐릭터는 목록 characters[].ko → 주인공 하나 character_ko → null, GPT 가 지은 자유 설계 Outfit 줄 · 옛 pick 캐릭터는 영어 그대로. 내용이 같으면 다시 쓰지 않는다
+- data/casual-index.json — 첫 색인(2810줄 · 필수 933 · 캐릭터만의 컷 237 · 코스프레 60(planner 51 · gpt 9) · 자유 설계 456(Outfit 줄 453))
+- .github/workflows/register-images.yml — 그림 등록 뒤 「일상컷 색인」 단계(검사 tests/casual-index.cjs → 도구, 깨져도 등록은 막지 않음), 되커밋에 data/casual-index.json 도
+- tests/casual-index.cjs — 새 검사(fixture — 꼴 · 한글 · 곁가지 합치기 · 필수 표시 · 코스프레 by · 캐릭터 한글 · Outfit 줄 · 차례 · 같으면 안 씀). AGENTS.md — 도구 · 검사 한 줄씩
+
 ## 2026-11-16 · gpt · 하프늄 2·3·2 선택 및 27장 등록
 - data/img.json — 판타지 2번·스팀펑크 3번·메카 2번과 세계별 일상 7장·전용컷 90번, 총 27장을 등록기로 추가했다. 기존 등록은 보존했다.
 - 이미지 원본은 1024×1536, 등록본은 WebP 품질 90·method 6이다. 실제 프롬프트·참조 SHA·자유 설계·코스프레·검수와 계획을 records/hf에 기록했다.

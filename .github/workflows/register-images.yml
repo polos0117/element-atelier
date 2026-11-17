@@ -1,6 +1,7 @@
 name: 그림 등록
 
 # 그림 저장소(element-atelier-img · element-atelier-img-2)의 img/ 를 읽어 data/img.json 에 적고 되커밋한다.
+# 같은 자리에서 첫 저장소의 records/ 로 일상컷 색인(data/casual-index.json)도 다시 쓴다(2026-11-17).
 # 깨우는 길은 셋이다.
 #   repository_dispatch — 그림 저장소의 썸네일 워크플로가 끝나면서 보낸다(토큰이 있을 때).
 #   schedule            — 뒤받침. GitHub 시간표는 자주 밀리고 빠진다(8시간에 1번 돈 적이 있다).
@@ -77,16 +78,24 @@ jobs:
           node tests/img-shards.cjs
           python3 tests/register-images.py
 
+      # 일상컷 색인(2026-11-17) — 그림 저장소 records 의 일상컷 기록 · 계획에서 data/casual-index.json(허브 「일상컷 목록」 이 읽는다).
+      # 그림은 안 읽는다. 내용이 같으면 쓰지 않는다. 깨져도 그림 등록은 막지 않는다(검사가 깨지면 색인은 옛것 그대로)
+      - name: 일상컷 색인
+        continue-on-error: true
+        run: |
+          node tests/casual-index.cjs
+          node tools/casual-index.cjs --img img-repo
+
       - name: 되커밋
         run: |
-          if git diff --quiet -- data/img.json; then
+          if git diff --quiet -- data/img.json data/casual-index.json; then
             echo "달라진 것 없음 — 커밋하지 않는다"
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/img.json
-          git commit -m "자동 등록: 그림 저장소의 새 그림을 data/img.json 에 [skip actions]"
+          git add data/img.json data/casual-index.json
+          git commit -m "자동 등록: 그림 저장소의 새 그림을 data/img.json 에 · 일상컷 색인 [skip actions]"
           for i in 1 2 3; do
             git push && exit 0
             git pull --rebase origin main || exit 1
