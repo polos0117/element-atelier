@@ -74,6 +74,9 @@ const SITU_RATE = 1;   /* 2026-11-16 사용자 「늘 1장은 나오게 맞춰�
    장면 칸 cosplay = { game, character, cut, round, used?, again? }(옛 pick 이면 character 빈 칸), 그린 뒤 기록 generation.cosplay = { game, character, cut }.
    세 공방이 같은 꼴 — 함수 이름 cosplayUsage · pickCosplay · cosplayAgain, 칸 이름 scene.cosplay · generation.cosplay */
 const COSPLAY = fs.existsSync(path.join(ROOT, 'data', 'game-cosplay.json')) ? JSON.parse(read('data/game-cosplay.json')) : { games: [], cuts: [], text: {} };
+/* 게임 코스프레 사본이 원본(옆 game-atelier)과 다르면 알린다 — 게임을 더하고 sync 를 깜빡한 때(2026-11-16 사용자 「게임공방에 게임 자료를 늘리면 … 게임코스튬 갈래도 더 추가되게」) */
+if (require.main === module) { try { const gcSrc = path.join(ROOT, '..', 'game-atelier', 'data', 'game-cosplay.json'), gcMine = path.join(ROOT, 'data', 'game-cosplay.json');
+  if (fs.existsSync(gcSrc) && fs.existsSync(gcMine) && fs.readFileSync(gcSrc, 'utf8') !== fs.readFileSync(gcMine, 'utf8')) console.warn('경고: data/game-cosplay.json 이 게임공방 원본과 다르다(사본이 옛것) — 게임공방에서 node tools/game-cosplay.cjs sync 하고 이 저장소에서 커밋한다'); } catch (e) { /* 읽기 실패는 계획을 막지 않는다 */ } }
 const COS_FAM = (tree.costume_required || {}).outfit || 'game_cosplay', COS_NO_FRAME = (tree.costume_required || {}).not_frames || ['face_close'];
 const COS_CUTS = (COSPLAY.cuts || []).map(c => c.key), COS_ERAS = tree.eras.filter(e => (e.outfits || []).includes(COS_FAM)).map(e => e.key);
 const COS_SWIM = (COSPLAY.cuts || []).filter(c => /\b(?:bikini|swimsuit)\b/i.test(c.en)).map(c => c.key);   /* 비키니 · 원피스 수영복 — 물가(수영장 · 해변)도 된다 */
