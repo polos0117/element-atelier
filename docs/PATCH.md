@@ -5,6 +5,19 @@
 - IMAGE_RULES.md · tools/casual-plan.cjs(주석) — 게임 열아홉 → 스물넷(주인공 하나 열둘 · 등장인물 많음 열둘)
 - 검사: tests/casual-plan.cjs — 게임 코스프레 고르기 통과, 원래 걸리던 「최근 장면 여덟(200자)」 자리에서 그대로 멈춤(그림 저장소 기록 몫)
 
+## 2026-11-17 · claude · 게임 코스프레 사본 — 어린 캐릭터 뺌
+- 사용자 「그러면 어린케릭터는 빼자. 어차피 원신쪽은 잘 알지도 못하는 케릭터들인데」
+- data/game-cosplay.json — 게임공방 원본 sync: 어린 캐릭터 열셋(유피 포함)과 young 칸들이 빠짐. 이미 그린 그림은 그대로
+
+## 2026-11-17 · claude · 한 장 층 — 일상컷 한 줄(무엇으로 그렸나)
+- 사용자 「전체 목록리스트에서 보는건 지저분하니까, 상세보기나 크게보기 일 때만 보이도록」 · 「우리쪽에서 고르는건 한글로 표시되게 해줘. gpt 쪽은 영어로 설계하니까 그건 어쩔 수 없이 놔두고」
+- lib/casual-note.js — 새 모듈(삼국지 · pkm 과 글자 하나 다르지 않게): data/casual-index.json 을 한 장을 처음 열 때 한 번만 받아 파일 이름(<카드>_<세계>_<화풍>_f_casualN.webp)으로 줄을 찾고 「필수 · <갈래> — <옷> · <색>」 · 「필수 · 게임 코스프레 — <게임> · <캐릭터> · <재단>」(+GPT 고름) · 「<자유 설계 갈래> — <Outfit 영어, 길면 줄였다 누르면 펼침>」 · 「캐릭터만의 컷 — <직업>」 한 줄. 받기 실패 · 없는 줄이면 안 보인다
+- lib/walk-card.js — 한 장(크게 보기) 위 줄 아래에 일상컷이면 한 줄. 목록 층(walk-list) 칸은 그대로. walk.js ?v=18 · walk-card ?v=6 · index.html words ?v=33 · walk.css ?v=17
+- lib/words.js — dex.cnote.req · gpt · more · less
+- lib/walk.css — .w-card .lb-cnote 작은 글 한 줄(흐린 글색 · 갈래만 본문색)
+- tests/walk-card.cjs — 맨 앞에 fixture 색인 묶음: 목록엔 없음(색인도 안 받음) · 한 장 필수 · 코스프레 GPT · 자유 설계 줄였다 펼침 · 없는 컷 · 색인 한 번, 덮개 · PC
+- 검사: tests/walk-card.cjs — 새 묶음 통과, 원래 걸리던 「어디서 눌러도 같은 한 장」 넘침(아래 목록 층 344 조작 줄) 자리에서 그대로 멈춤
+
 ## 2026-11-17 · claude · 게임 코스프레 목록 사본 — 캐릭터 한글 이름 · 어린 캐릭터 young
 - 사용자 2026-11-17 「응 캐릭터 한글 이름도 채워줘」 · 「코스튬의상이라 나이는 상관없는데」 → 「응 그렇게 해줘」
 - data/game-cosplay.json — 원본(game-atelier tools/game-cosplay.cjs sync) 사본: 등장인물 많은 게임 열 곳의 characters 마다 ko, 어린 캐릭터 열둘 다시 넣음(테일즈위버 14 · 원신 124) · young: true(유피 포함 열셋) · young_cuts [knit, idol, mini_dress]. young 재단 고르기는 계획기 작업이 따로 한다
