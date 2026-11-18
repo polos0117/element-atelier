@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-18 · claude · 세계컷 GPT 설계 1단계 — A안 문구 · 우리 설계와 얼굴 · 외곽 대조
+- 사용자 2026-11-18 「응 허용하고 이순서대로 진행해줘」 — 세계컷 GPT 설계안(A: 지정 실루엣에서 소재 · 상징을 의상 구조로, B: 역할 · 기능에서 출발해 목록 밖 외곽도) 1단계.
+- lib/prompt-spec.js WORLD_FREE.costume — 「Design A, your first design」: 원소의 물성 · 상징의 시각 특징 하나를 겹침 · 단면 · 절개 · 여밈 · 장갑판 배열에, 전신에서 먼저 읽히는 윤곽을 지시문에 적는다.
+- WORLD_FREE.ours · check — 우리 설계 두 장의 얼굴 · 머리(lib/prompt-element.js oursLook)와 다른 얼굴 인상 · 머리 외곽, 마지막에 대조.
+
 ## 2026-11-18 · claude · 단계 동작 문장 관사 겹침 고침
 - 단계 동작 영어 문장의 관사 겹침 고침 — 「the open {prop}」 꼴이 소품 이름의 a · an 과 겹쳐 「rests the open a red oil-paper umbrella」 가 됐다(잔 · 우산 · 부채 · 매니큐어 · 기름종이 우산).
 
