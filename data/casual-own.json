@@ -7631,7 +7631,7 @@
      "base": "nation_training",
      "place": "a mirrored dance hall in the palace of her element's kingdom — a polished parquet floor, tall bright windows and a small silver bell on a stand",
      "activity": "she is the court dance master counting the beat aloud as she shows the turn",
-     "preset": "raise_chest",
+     "preset": "lookback_raise",
      "use": "sig_raise",
      "prop": "a slim silver baton for keeping time",
      "outfit": {
