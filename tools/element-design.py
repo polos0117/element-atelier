@@ -133,6 +133,10 @@ def check_look(where, look, full, errs):
             errs.append(where + " look.worlds — 두 세계가 같은 사람(머리·얼굴형·눈): %s" % sig)
 
 
+NO_LAUGH_EXPR = ("laughing", "laughing_open")
+NO_LAUGH_LIPS = ("wide_smile",)
+
+
 def check_face_design(where, look, lived, errs):
     """얼굴 설계 칸이 다 찼는지(2026-11-01 — 얼굴 느낌이 비슷하게 나왔다): 나이감 · 인상 · 피부 · 눈 크기 · 눈꼬리 · 표식 · 표정, 사는 세계마다 앞머리"""
     if not isinstance(look, dict):
@@ -140,6 +144,11 @@ def check_face_design(where, look, lived, errs):
     for k in FACE_DESIGN["face"]:
         if not (look.get("face") or {}).get(k):
             errs.append("%s look.face.%s 가 비었다(얼굴 설계)" % (where, k))
+    face = look.get("face") or {}
+    if face.get("expr") in NO_LAUGH_EXPR:   # 2026-11-18 사용자 「원소 세계컷 설계에 러더포듐같이 웃는 표정 좀 없애줘」 — 세계컷 설계엔 크게 웃는 표정 · 웃는 입을 두지 않는다(일상컷 표정은 따로)
+        errs.append("%s look.face.expr 이 크게 웃는 표정(%s)이다 — 세계컷 설계엔 두지 않는다" % (where, face.get("expr")))
+    if face.get("lips") in NO_LAUGH_LIPS:
+        errs.append("%s look.face.lips 가 웃는 입(%s)이다 — 세계컷 설계엔 두지 않는다" % (where, face.get("lips")))
     for w in lived:
         if not (((look.get("worlds") or {}).get(w) or {}).get("silhouette") or {}).get("bangs"):
             errs.append("%s look.worlds.%s.silhouette.bangs 가 비었다(앞머리)" % (where, w))

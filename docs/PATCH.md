@@ -11,6 +11,12 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-19 · claude · 세계컷 설계 — 크게 웃는 표정 · 웃는 입 없앰
+- 사용자 「원소 세계컷 설계에 러더포듐같이 웃는 표정 좀 없애줘」 → 「응 이대로해줘」
+- data/element-design.json — 표정 laughing · laughing_open 열 곳(근본 알루미늄 · 플루오린 · 토륨 · 프랑슘 · 러더포듐 · 칼륨 · 프라세오디뮴, 산소 가문 피, 주민 모닥불 · 술통)을 confident · determined · proud · calm · focused · curious 로, 입 wide_smile 스물여덟 곳(근본 열여섯 · 수소 가문 풍선 · 주민 열하나)을 soft_medium · plush_pout · thin_bow 로. look.why 에 바꾼 까닭, 「활짝 웃는 입」 말은 「다문 입」
+- tools/element-design.py check — 세계컷 설계에 크게 웃는 표정 · 웃는 입이면 오류(옅은 미소는 됨, 일상컷 표정은 따로). AGENTS.md 1-2 절 한 줄
+- 이미 기본 화풍 세계 그림이 있는 여섯(알루미늄 · 플루오린 · 토륨 · 프랑슘 · 칼륨 · 프라세오디뮴)은 그림 그대로 — 바뀐 설계는 다음 그림부터
+
 ## 2026-11-19 · claude · 근본 합성 스물셋 C — rg · cn · nh · fl · mc · lv · ts
 - 사용자 「원소공방 근본원소 추가해줘」 → 남은 합성 원소 스물셋을 세 묶음으로 → 「응 넣어줘」
 - data/element-design.json nations 끝에 rg · cn · nh · fl · mc · lv · ts — 근본만(가문 · 주민 · 그림은 아직). 실루엣은 tools/sil-spread.py 로 미리 고른 값, 헤어 · 체형은 덜 쓴 것부터 미리 나눈 값(스팀펑크 올림머리 없음)
