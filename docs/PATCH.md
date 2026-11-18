@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-18 · claude · 일상컷 행동 단계(F) — 소품 동작에 준비 · 하는 중 · 마무리
+- data/casual-tree-v2.json prop_uses 에 단계 동작 64(stage · stage_ko — 소품마다 준비 · 하는 중 · 마무리, 단계마다 손 수 · 손 자리 · 받는 자세가 다르다). 사용자 2026-11-18 「F부터 진행해줘」 — 소품이 달라도 늘 들고 서 있어 비슷해 보였다.
+- tools/casual-plan.cjs — 소품 동작 무게에 동작 횟수(sceneUsage use)를 더하고, 단계 동작은 1.3 배 · 단계 없는 hold 는 0.8 배(useWeight).
+- tests/casual-plan.cjs — 최근 장면 글 상한 200 → 300(GPT 자유 설계 장면 글이 265 · 226 자).
+
 ## 2026-11-18 · claude · casual-own.json 복원 — 잘린 도구 출력이 저장됐던 것
 - 9638169(어븀 통역사 직업컷 자세)가 파일 대신 잘린 도구 출력(맨 앞 「Warning: truncated output …」 두 줄 + 가운데 약 4,300 토큰 빠짐)을 저장해 JSON 이 깨졌다 — 계획기가 읽지 못했다. 8ce6bbb 로 되돌리고 그 커밋이 하려던 바뀜(어븀 메카 동시통역사 preset table_lean_use → counter_work) 하나만 다시 적용했다(잘린 파일의 앞 · 뒤 조각이 고친 파일과 글자 그대로 같다).
 

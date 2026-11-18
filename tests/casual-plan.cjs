@@ -265,5 +265,5 @@ try {
   assert.deepEqual(C.plan(card, [1, 2, 3], [], { seed: 7 }).cuts, C.plan(card, [1, 2, 3], [], { seed: 7 }).cuts, '같은 답');
   const img = path.join(R, '../element-atelier-img/records');
   if (fs.existsSync(img)) { const u = C.sceneUsage(img, 'fe'); assert(Object.keys(u.place).length > 10 && Object.keys(u.preset).length > 10, '그림 저장소 기록에서 센다');
-    const rc = C.recentScenes(img); assert(rc.length === 8 && rc.every(x => typeof x === 'string' && x.length < 200), '최근 장면 여덟 — ' + rc.join(' | ')); } }
+    const rc = C.recentScenes(img); assert(rc.length === 8 && rc.every(x => typeof x === 'string' && x.length < 300), '최근 장면 여덟 — ' + rc.join(' | ')); } }
 console.log(`PASS 일상컷 묶음 계획기: ${n} 묶음(카드 ${pickKeys.length} × 세계 × 씨앗 하나)이 일곱 장 · 묶음 규칙 · 정해 둔 세 갈래(노출 · 나라 안 · 게임 코스프레 — 옛 묶음은 상황 노출) · 자유 설계 칸 둘(옷 자유 · 갈래 자유) · 옛 여섯 장 + 일곱째 · 새 계열 · 네 시대 · 옷 색 · 데니어 · 상황 줄 · 짧은 일상컷 · 기록 꼴, 있는 두 장 위에 세 장 · 같은 씨앗 같은 답`);
