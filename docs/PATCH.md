@@ -11,6 +11,13 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-18 · claude · 일상컷 시간대 · 빛(A · B · G) — 늘 고르기 · 전체 기록 비율 · 빛 모습
+- 시간대 다섯 더 — 새벽 · 오전 · 흐린 낮(하늘 · 창) · 낮 실내 · 형광등(창 없는 실내도 등불 말고 고를 것이 있다). 날씨와 짝(weather_times)도 더했다.
+- lib/casual-tree-v2.js ambience — 시간대는 늘 고른다(전엔 0.7 · 창 없는 실내 0.3 이라 절반이 비었다). 덜 쓴 값은 같은 묶음 횟수 + 전체 기록 비율(opts.global, 0 ~ 1)로(묶음 안만 봐서 전체로는 등불 · 밤이 72% 였다).
+- 빛 모습(G) — 표 ambience.looks(시간대 × 장소 특징 · 날씨, 첫 맞는 줄)를 extras().look 으로, 지시문의 「Time of day: …; <빛 모습>.」(예: 아침 창빛 · 비에 젖은 바닥 반사 · 물에서 튀는 빛 · 땅거미 첫 불빛).
+- 자유 설계 칸에도 계획기가 고른 시간대 한 줄 「Time of day (fixed): … — set your scene at this time.」(사용자 2026-11-18 A · B · G).
+- tools/casual-plan.cjs — sceneUsage 가 시간대 · 빛 · 날씨를 세고 ambient 가 비율을 global 로 넘긴다. tests/prompt-element.cjs — 랜덤 장면에 그 카드의 현장(casualCard, 이제 내보낸다)을 넘기고 게임 코스프레 옷은 다시 뽑는다(카드 없이 뽑으면 일반 현장 자세가 그 카드 현장엔 안 맞았다).
+
 ## 2026-11-18 · claude · 일상컷 행동 단계(F) — 소품 동작에 준비 · 하는 중 · 마무리
 - data/casual-tree-v2.json prop_uses 에 단계 동작 64(stage · stage_ko — 소품마다 준비 · 하는 중 · 마무리, 단계마다 손 수 · 손 자리 · 받는 자세가 다르다). 사용자 2026-11-18 「F부터 진행해줘」 — 소품이 달라도 늘 들고 서 있어 비슷해 보였다.
 - tools/casual-plan.cjs — 소품 동작 무게에 동작 횟수(sceneUsage use)를 더하고, 단계 동작은 1.3 배 · 단계 없는 hold 는 0.8 배(useWeight).

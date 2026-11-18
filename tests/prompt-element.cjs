@@ -336,7 +336,10 @@ if (ownTables) {
 /* 2. 트리의 랜덤 장면 — 카드마다 몇 번(정해진 난수) */
 let seed = 7; const rnd = () => { seed = (seed * 48271) % 2147483647; return (seed - 1) / 2147483646; };
 for (const key of CARDS) for (let i = 0; i < 6; i++) {
-  const sc = C2.random(t2, { treeV: 2 }, null, rnd), txt = P.buildCasual(D, S, key, sc, optsFor(key));
+  /* 그 카드의 현장(land) · 들 것을 넘긴다 — 계획기와 같다(2026-11-18 — 카드 없이 뽑으면 일반 현장에 맞는 자세가 그 카드 현장엔 안 맞아 조립이 「서기 · 손 없음」 으로 고쳤다) */
+  const gc = P.casualCard(P.card(D, key), tree2, P.casualWorld(D, key, optsFor(key).world));
+  let sc; do sc = C2.random(t2, { treeV: 2 }, gc, rnd); while (sc.ofam === 'game_cosplay');   /* 게임 코스프레 컷은 위 1절의 코스프레 검사가 본다 */
+  const txt = P.buildCasual(D, S, key, sc, optsFor(key));
   checkCasual(key, { ...sc, random: true }, txt, key + ' 랜덤 ' + i + ' ' + JSON.stringify([sc.era, sc.place, sc.frame]));
   if (sc.gaze) assert(txt.includes('GAZE: '), key + ' 랜덤 시선');
   nc++;
