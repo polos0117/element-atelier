@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-19 · claude · 근본 합성 스물셋 C — rg · cn · nh · fl · mc · lv · ts
+- 사용자 「원소공방 근본원소 추가해줘」 → 남은 합성 원소 스물셋을 세 묶음으로 → 「응 넣어줘」
+- data/element-design.json nations 끝에 rg · cn · nh · fl · mc · lv · ts — 근본만(가문 · 주민 · 그림은 아직). 실루엣은 tools/sil-spread.py 로 미리 고른 값, 헤어 · 체형은 덜 쓴 것부터 미리 나눈 값(스팀펑크 올림머리 없음)
+- data/casual-own.json — 캐릭터만의 컷(90번) 세계마다 다른 직업, 다른 카드와 겹치는 직업 없음. 머리색 roentgenium_film · copernicium_orbit · nihonium_dawn · flerovium_atoll · moscovium_frost · livermorium_vine · tennessine_ridge — lib/look-spec.js VOCAB_EN · tools/port-look-spec.cjs EXTRA · lib/prompt-spec.js 한글 표 · SIL_TAGS. docs/ELEMENT_CONCEPT.md 묶음 절
+
 ## 2026-11-19 · claude · 근본 합성 스물셋 B — lr · rf · db · sg · bh · hs · mt · ds
 - 사용자 「원소공방 근본원소 추가해줘」 → 남은 합성 원소 스물셋을 세 묶음으로 → 「응 넣어줘」
 - data/element-design.json nations 끝에 lr · rf · db · sg · bh · hs · mt · ds — 근본만(가문 · 주민 · 그림은 아직). 실루엣은 tools/sil-spread.py 로 미리 고른 값, 헤어 · 체형은 덜 쓴 것부터 미리 나눈 값(스팀펑크 올림머리 없음)
