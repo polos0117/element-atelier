@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-18 · claude · 세계컷 GPT 설계 3단계 — 설계 요약 기록 · 비슷한 등록작 피하기
+- 사용자 2026-11-18 「응 허용하고 이순서대로 진행해줘」 — 세계컷 GPT 설계안 3단계: 설계 요약 기록 · 비슷한 등록작 피하기.
+- 주문(WORLD_FREE / FREE_DESIGN .summary)에 「지시문 첫 줄 SUMMARY: 얼굴 윤곽 · 눈매와 눈썹 · 표정 · 머리 외곽 · 의상(장갑) 큰 형태」, 기록 generation.summary(묶음 안내).
+- tools/design-near.cjs — 삼국지와 같은 꼴(lib/prompt-element.js designKeys · designSummary, 기록은 옆 element-atelier-img/records). prompt-pack.cjs 가 넣는다. tests/design-near.cjs.
+
 ## 2026-11-18 · claude · 세계컷 GPT 설계 2단계 — B안(역할 · 기능 출발, 목록 밖 외곽 허용)
 - 사용자 2026-11-18 「응 허용하고 이순서대로 진행해줘」 — 세계컷 GPT 설계안 2단계: 둘째 GPT 설계(-gpt2)는 B안 — 목록 밖 외곽 허용.
 - lib/prompt-spec.js WORLD_FREE.second → 「Costume — Design B」: 원소의 쓰임(주민은 그 물건의 쓰임)에서 나온 직책 · 역할을 먼저, 그에 맞는 외곽(목록 밖도), 어깨 · 허리 · 하체 외곽 하나는 A안과 다르게, 장비 배치 · 배경 단서 하나, 메카는 단단한 전신 장갑 안에서 새 외곽.
