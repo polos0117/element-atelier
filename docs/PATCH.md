@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-19 · claude · 근본 합성 스물셋 A — pm · np · bk · cf · es · fm · md · no
+- 사용자 「원소공방 근본원소 추가해줘」 → 남은 합성 원소 스물셋을 세 묶음으로 → 「응 넣어줘」
+- data/element-design.json nations 끝에 pm · np · bk · cf · es · fm · md · no — 근본만(가문 · 주민 · 그림은 아직). 실루엣은 tools/sil-spread.py 로 미리 고른 값, 헤어 · 체형은 덜 쓴 것부터 미리 나눈 값(스팀펑크 올림머리 없음)
+- data/casual-own.json — 캐릭터만의 컷(90번) 세계마다 다른 직업, 다른 카드와 겹치는 직업 없음. 머리색 promethium_lantern · neptunium_deepsea · berkelium_tassel · californium_sunstreak · einsteinium_ash · fermium_graphite · mendelevium_ledger · nobelium_laurel — lib/look-spec.js VOCAB_EN · tools/port-look-spec.cjs EXTRA · lib/prompt-spec.js 한글 표 · SIL_TAGS. docs/ELEMENT_CONCEPT.md 묶음 절
+
 ## 2026-11-19 · claude · 칸 채우기 검사 말을 낱말 표로 — tests/words.cjs 통과
 - 같은 날 넣은 칸 채우기 검사(worldFillErrors · freeFillErrors)의 한글 오류 말이 조립부 코드에 박혀 tests/words.cjs 가 깨져 있었다(원소 근본 B 묶음 검사에서 드러남)
 - 말은 lib/prompt-spec.js 의 GPT 설계 주문 표(msg)로 옮기고 조립부는 FM(열쇠)로 읽는다 — 글은 그대로라 검사 · 도구 출력은 같다. ?v= 올림

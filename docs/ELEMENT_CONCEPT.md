@@ -177,6 +177,26 @@ game-atelier(게임이 사람이 된 세계)의 껍데기를 바탕으로 만든
 - **캐릭터만의 컷 짝** — C 묶음 열한 줄의 자세 추천 · 소품 동작이 바탕 장소에서 안 짜져(계획기 오류) 같은 뜻의 짝으로 바꿨다(하프 연주자 → 의자에 앉아 두 손, 산파 → 탁자에서 두 손 작업 …). 스물넷 모두 `casual-plan.cjs --world all` 이 짜진다.
 - **외형 어휘 더** — 머리색 스물넷(`scandium_floodlight` · `yttrium_garnet` · `zirconium_hyacinth` · `hafnium_shadow` · `ruthenium_nib` · `rhodium_rose` · `cadmium_yellow` · `rhenium_turbine` · `lanthanum_veil` · `praseodymium_leek` · `samarium_topaz` · `terbium_phosphor` · `dysprosium_haze` · `holmium_shift` · `erbium_rose` · `thulium_frost` · `ytterbium_lattice` · `lutetium_crystal` · `indium_indigo` · `thallium_sprout` · `astatine_scatter` · `francium_fuse` · `actinium_beam` · `protactinium_ore`), 눈 색 아홉(`phosphor_amber` · `zircon_fire` · `cadmium_red` · `lanthanum_lens` · `dysprosium_mirage` · `ytterbium_tick` · `lutetium_scint` · `thallium_shoot` · `actinium_ray`) — `lib/look-spec.js` VOCAB_EN · `tools/port-look-spec.cjs` EXTRA · `lib/prompt-spec.js` 한글 표. `SIL_TAGS` 스물넷 줄, 실루엣은 구조판 3절 · 메카 설계 글에 맞춰 적은 값 그대로(`tools/sil-spread.py --check` 통과).
 
+**근본 합성 스물셋 — A 묶음**(2026-11-18, 사용자 「원소공방 근본원소 추가해줘」 → 남은 합성 원소 스물셋을 세 묶음으로). A(pm · np · bk · cf · es · fm · md · no)를 따로 설계해 설계표 `nations` 끝에 넣었다. 근본만 — 가문 · 주민 · 그림은 아직. 캐릭터만의 컷(90번)은 `data/casual-own.json`.
+
+| 근본 | 성격 한 줄 | 세계별 직업(판타지 · 스팀펑크 · 메카) |
+|---|---|---|
+| 프로메튬 Pm | 신들의 불을 훔쳐 작은 등불에 담아 사람 곁에 두는 대담한 불 도둑(오래 빈칸이던 61번 · 야광 도료 · 심장 박동기의 원자 전지) | 불씨 행상 · 도자기 인형 장인 · 라이트 페인팅 사진작가 |
+| 넵투늄 Np | 천왕성(우라늄) 너머 바다의 신의 별 · 망원경보다 계산이 먼저 그린 먼바다의 서늘한 전사 | 뱃머리 측심수 · 천문대 계산수 · 심해 잠수정 조종사 |
+| 버클륨 Bk | 대학 도시에서 태어나 다른 학원으로 지식을 건네는(117번의 표적) 당찬 수석 학생 | 학생 하숙집 안주인 · 학위복 재단사 · 캠퍼스 투어 가이드 |
+| 캘리포늄 Cf | 서쪽 끝 황금 섬의 여전사 여왕 · 중성자를 뿜어 땅속 금맥을 찾는 뜨거운 힘 | 건포도 말리는 농부 · 광석 시금사 · 서핑 강사 |
+| 아인슈타이늄 Es | 첫 수소폭탄의 재 속에서 푸르게 빛나며 태어나 제 결정을 깨뜨리는 호기심 많은 천재 소녀 | 모래시계 장인 · 거리 바이올린 악사 · 과학관 실험 쇼 진행자 |
+| 페르뮴 Fm | 첫 원자로를 지핀 이의 이름 · 불을 이어 받는 길의 끝(중성자로 갈 수 있는 마지막)에서 불씨를 지키는 듬직한 문지기 | 마을 공동 화덕지기 · 스쿼시 코트 관리인 · 외계 신호 탐색 연구원 |
+| 멘델레븀 Md | 원자를 하나씩 세어 만든 원소 · 빈칸까지 기록해 두고 올 이를 기다리는 표의 수호자 | 여행 궤짝 장인 · 도서관 목록 카드 정리원 · 정리 수납 컨설턴트 |
+| 노벨륨 No | 폭약의 불꽃과 월계관의 금빛 · 세 번 찾았다고 불린 화려하고 위험한 시상식의 여주인 | 월계관 엮는 장인 · 채석장 발파 기술자 · 레드카펫 스타일리스트 |
+
+- **체형** — `strong_curvy`(pm · cf) · `tall_curvy`(np · md) · `willowy_curvy`(bk · no) · `petite_curvy`(es) · `broad_strong`(fm). 아인슈타이늄 · 페르뮴은 같은 낙진에서 찾은 쌍둥이라 같은 나이(early_20s) · 코(small_button) · 입(heart_full).
+- **실루엣 · 머리** — `SIL_TAGS` 여덟 줄과 `sil` 은 `tools/sil-spread.py` 로 미리 나눈 값 그대로, 구조판 3절 · 메카 설계 글을 그 실루엣에 맞춰 적었다(`--check` 통과). 헤어스타일도 나눠 준 값 그대로(스팀펑크 올림머리 없음).
+- **판타지** — 넵투늄부터(93번 이후)는 「예언된 나라」, 프로메튬(61)은 신들의 산 아래 등불 마을 왕국.
+- **겹침 피함** — 스팀펑크 비행선 조종사 셋은 무대를 갈랐다(넵투늄 1912 지도 끝 산호섬 해양 비행선 · 캘리포늄 1910 해안 평원 첫 대비행 대회 · 노벨륨 1897 북극해 섬 열기구 기지). 프로메튬 화부는 가스 공장 레토르트(디스프로슘 발전소 · 토륨 맨틀 공장과 다름), 멘델레븀 스팀펑크는 오가네손의 1869 화학자 서재 대신 1895 도서관 카드 서랍장 무도회, 넵투늄 메카는 해구 · 굴착(오스뮴 · 바륨) 대신 얼음 거인 행성으로 내려가는 잠수 기지. 영어 글엔 사람 · 도시 이름을 넣지 않았다(「대학 도시」 · 「시계탑 도시」 · 「북쪽의 수도」).
+- **캐릭터만의 컷 짝** — 아인슈타이늄(판타지 · 메카 둘 다 raise_chest) · 노벨륨(판타지 · 메카 둘 다 counter_work)을 계획기가 「같은 구도」로 건너뛰어, 아인슈타이늄 판타지를 `light_check`, 노벨륨 메카를 `lookback_raise` 로 바꿨다. 여덟 모두 `casual-plan.cjs --world all` 이 90번을 짠다(받침 · 자세 · 손 조합은 표에 이미 있는 것만).
+- **외형 어휘 더** — 머리색 여덟(`promethium_lantern` · `neptunium_deepsea` · `berkelium_tassel` · `californium_sunstreak` · `einsteinium_ash` · `fermium_graphite` · `mendelevium_ledger` · `nobelium_laurel`) — `tools/port-look-spec.cjs` EXTRA · `lib/look-spec.js` VOCAB_EN · `lib/prompt-spec.js` 한글. 눈 색은 새로 더하지 않았다(ember · teal · steel_blue · amber · ice_blue · honey · indigo · gold).
+
 ## 3. 설계표 `data/element-design.json`
 
 | 칸 | 누가 | 무엇 |
