@@ -533,8 +533,10 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
     assert(t.startsWith('Design brief — fill-in design for ') && t.endsWith(tpl) && /^Must differ — hairstyle: /m.test(t) && /^Required — design idea: /m.test(t) && tpl.includes('[HAIRSTYLE: …]') && /^Design idea: …$/m.test(tpl), key + ' ' + w + ' 칸 채우기 주문 꼴');
     assert(cit ? /^Costume variation: …$/m.test(tpl) && !tpl.includes('[COSTUME SILHOUETTE: …]') : tpl.includes('[COSTUME SILHOUETTE: …]') && /^Must differ — costume silhouette: /m.test(t), key + ' ' + w + ' 실루엣 칸(주민은 Costume variation)');
     const pick = cit ? '' : t.match(/word for word \(ours is not on this list\): 1\) ([^;]+?)(?:; 2\)|\.\n)/)[1];
-    const good = 'SUMMARY: x\n' + tpl.replace('[HAIRSTYLE: …]', 'a sleek low chignon').replace('[COSTUME SILHOUETTE: …]', pick).replace('Costume variation: …', 'Costume variation: a shorter layered build of the same object').replace('Design idea: …', 'Design idea: plates layered like crystals').replace('Stance and hands: …\n', '').replace('Setting detail: …', 'Setting detail: a forge glow behind her.');
+    const good = 'SUMMARY: x\n' + tpl.replace('[HAIRSTYLE: …]', 'a sleek low chignon').replace('[COSTUME SILHOUETTE: …]', pick).replace('Costume variation: …', 'Costume variation: a shorter layered build of the same object').replace('Design idea: …', 'Design idea: plates layered like crystals').replace('Stance and hands: …\n', '').replace('Setting detail: …', 'Setting detail: a forge glow behind her.').replace('[BUILD: …]', 'slender build');
+    assert(tpl.includes('[BUILD: …]') && /^May keep or change — build: /m.test(t), key + ' ' + w + ' 체형 칸(우리 체형 목록에서, 2026-11-18)');
     assert.equal(JSON.stringify(P.worldFillErrors(D, SN, key, w, good, { style: SN.default })), '[]', key + ' ' + w + ' 채운 글 통과');
+    assert(P.worldFillErrors(D, SN, key, w, good.replace('slender build', 'a giant muscular build'), { style: SN.default }).some(e => /체형이 우리 체형 목록의 글이 아니다/.test(e)), key + ' ' + w + ' 목록 밖 체형은 걸린다');
     assert(P.worldFillErrors(D, SN, key, w, good.replace(/^(Light: )/m, '$1bright daylight; '), { style: SN.default }).some(e => /줄이 바뀌었다/.test(e)), key + ' ' + w + ' 칸 밖이 바뀌면 걸린다');
   }
   console.log('PASS 임의 설계 주문');

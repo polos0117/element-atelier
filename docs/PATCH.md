@@ -11,6 +11,12 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-18 · claude · 세계컷 GPT 설계 — 체형 칸 · 피부색 허용
+- 사용자 「피부랑 체형까지는 바꿈 허용해줘」 → 「응 A로 진행해줘」(우리 체형 목록 안에서만)
+- 칸 채우기 틀의 우리 체형 글(Body and hair 줄 「… build」)을 [BUILD: …] 칸으로 — 주문에 우리 체형 목록(VOCAB_EN.body 전부 + build)을 싣고 하나를 글 그대로, 우리 것 그대로도 된다
+- Face 줄의 피부색은 바꿔도 된다고 주문에 적었다(피부 마감 · 빛 · Avoid 줄은 화풍이라 그대로)
+- 검사 worldFillErrors · tools/world-fill-check.cjs — 목록 밖 · 고친 체형 글은 걸린다. 안내 글 · 검사 글 함께
+
 ## 2026-11-18 · claude · 세계컷 GPT 설계 — 칸 채우기(우리 설계 지시문 + 헤어스타일 · 실루엣 칸)
 - 사용자 2026-11-18 「세계컷은 gpt한테 너무 위임하면 안되겠다」 → 「크게는 우리거를 따르는데, 헤어스타일, 의상은 무조건 다르게. 나머지는 같아도되고, 달라도되고 … 의상만 우리 실루엣 안에서만 고르게하고」 → 「응 이대로 진행해줘」(삼국지 공방과 같은 꼴).
 - lib/prompt-element.js buildWorldFree — 머리말(WORLD_FREE.fill) + 우리 설계 지시문의 헤어스타일 글 → [HAIRSTYLE: …], 실루엣 글 → [COSTUME SILHOUETTE: …](원소 성격 묶음에서 우리 것 뺀 글 그대로 — 지시문에서 조금 바뀐 실루엣 글은 앞 구절로 찾는다), 주민은 대신 Costume variation 줄. Design idea · Stance and hands · Setting detail 줄. 카드 × 세계 480 틀 모두 칸이 제자리.
