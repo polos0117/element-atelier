@@ -15,11 +15,18 @@ const D = require('../data/element-design.json');
     assert.equal(await p.locator('.w-legend [data-cat]').count(), 11); assert.equal(await p.locator('.w-legend [data-cat] >> nth=0').getAttribute('data-cat'), 'new', '범례 맨 앞 신규 생성(2026-11-15)');
     assert(await p.evaluate(() => { const t = document.querySelector('.w-table'); return t.scrollWidth <= t.clientWidth + 1; }), '표 안 가로 스크롤 없음');
     assert.equal(await p.locator('.pcell.on >> nth=0').evaluate(e => getComputedStyle(e).animationName), 'w-breathe');
-    // 흐린 칸(하슘 — 오스뮴 바로 아래) 쪽을 눌러도 오스뮴이 잡힌다. 그 전엔 철 아래 루테늄이었는데 2026-11-16 루테늄이 나라가 됐다(근본 스물넷 더(3))
-    const os = await p.locator('.pcell.on[data-n="os"]').boundingBox();
-    await p.mouse.click(os.x + os.width / 2, os.y + os.height * 1.4);
-    await p.waitForSelector('.w-ncard[data-n="os"]');
-    await p.keyboard.press('Escape'); await p.waitForSelector('.w-ncard', { state: 'detached' });
+    // 흐린 칸 쪽을 눌러도 바로 위 나라가 잡힌다. 칸은 설계표에서 고른다 — 본표(주기 × 족)에서 나라가 아닌 원소 가운데 바로 위 칸이 나라인 첫 자리.
+    // 그 전엔 칸을 박아 두었다(철 아래 루테늄 → 2026-11-16 루테늄이 나라가 돼 오스뮴 아래 하슘 → 2026-11-18 합성 스물셋으로 하슘도 나라가 됐다).
+    // 118 원소가 다 나라면 흐린 칸이 없어 이 확인은 건너뛴다(나라 칸 수 = 118 은 위 줄이 본다).
+    { const NK = new Set(D.nations.map(n => n.key)), at = new Map(D.elements.filter(e => e.group).map(e => [e.period + '|' + e.group, e]));
+      const dim = D.elements.find(e => e.group && !NK.has(e.key) && NK.has((at.get((e.period - 1) + '|' + e.group) || {}).key));
+      if (dim) {
+        const up = at.get((dim.period - 1) + '|' + dim.group).key, bx = await p.locator('.pcell.on[data-n="' + up + '"]').boundingBox();
+        await p.mouse.click(bx.x + bx.width / 2, bx.y + bx.height * 1.4);
+        await p.waitForSelector('.w-ncard[data-n="' + up + '"]');
+        await p.keyboard.press('Escape'); await p.waitForSelector('.w-ncard', { state: 'detached' });
+      } else assert.equal(D.nations.length, 118, '흐린 칸이 없으면 118 원소가 다 나라다');
+    }
     await p.locator('.pcell.on[data-n="fe"]').click(); await p.waitForSelector('.w-ncard[data-n="fe"]');
     assert(await p.locator('.w-spark').count() >= 1, '④ 불꽃');
     await shot(p, 'table-ncard');

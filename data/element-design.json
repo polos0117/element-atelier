@@ -28783,6 +28783,1718 @@
     "steampunk": "aeronaut",
     "mecha": "power_limbs"
    }
+  },
+  {
+   "key": "lr",
+   "persona": "고리의 나라. 1961년 2월 만 위 언덕의 버클리 연구소에서 기오르소와 동료들이 캘리포늄에 붕소 이온을 쏘아 처음 만들었고(두브나도 뒤이어 다른 길로 만들어, 1992년 두 쪽이 공을 나눴다), 사이클로트론을 만든 어니스트 로런스의 이름을 받았다. 1930년 그의 첫 고리는 유리와 청동을 봉랍으로 붙인 손바닥만 한 것이었다 — 커다란 자석의 두 극 사이 납작한 통 속에서 입자가 빙빙 돌며 한 바퀴마다 조금씩 떠밀려 나선을 그리며 빨라진다. 그 고리는 해마다 커져 건물만 해졌고, 그 고리들에서 수많은 새 원소가 태어났다. 처음 기호는 Lw였다가 1963년 Lr이 되었고, 악티늄족 열다섯의 맨 끝, 원소표 아래 두 줄의 마지막 자리에 앉는다. 가장 오래 사는 것도 반나절 남짓이고, 2015년엔 바깥 전자 하나를 악티늄족 가운데 가장 쉽게 내놓는다는 것이 재어졌다 — 손바닥만 한 고리를 산만 한 고리로 키운, 빙빙 돌수록 신이 나는 막내 기술자.",
+   "traits": {
+    "ko": [
+     "「로런스의 원소」 — 자석 사이에서 입자를 빙빙 돌려 가속하는 원형 장치(사이클로트론)를 만든 이의 이름 · 1961 버클리(두브나와 공을 나눔)",
+     "손바닥만 한 첫 고리(1930, 유리 · 청동 · 봉랍)에서 건물만 한 고리로 — 한 바퀴마다 조금씩 빨라지는 나선",
+     "악티늄족 열다섯의 마지막 자리 · 처음 기호 Lw에서 1963 Lr로",
+     "가장 오래 사는 것도 반나절 남짓 · 바깥 전자 하나를 악티늄족 가운데 가장 쉽게 내놓는다(2015)"
+    ],
+    "en": "lawrencium: a synthetic metal first made in 1961 in a hillside laboratory by striking californium with boron ions, and named for the inventor of the cyclotron, a round machine in which particles spiral between the poles of a great magnet, kicked a little faster on every turn, grown from a first ring of glass and bronze small enough to sit in a palm to rings the size of a building; the last of the fifteen actinides at the very end of the bottom row of the table, its first symbol later rewritten, its longest-lived form lasting about half a day, and the one of its row that gives up its outermost electron most easily"
+   },
+   "palette": {
+    "en": "cyclotron blue-violet glow, burnished copper coil, dark magnet iron, pale bronze"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 옛 별지도 맨 아래 줄의 마지막 빈칸, 산을 통째로 감은 거대한 짙은 돌 고리 성벽 안을 따라 푸른 보랏빛 불빛이 나선을 그리며 점점 빨라지는 성채, 고리 한가운데 손바닥만 한 청동 고리를 모신 작은 제단",
+     "en": "a prophesied kingdom that does not yet exist: the last blank at the very end of the bottom row of an ancient star-chart, a citadel encircled by a colossal ring of dark stone wound round a whole mountain, inside which a blue-violet light spirals outward faster and faster, and at the ring's heart a small altar keeping a bronze ring no bigger than a palm",
+     "scenes": [
+      {
+       "key": "ringwall",
+       "ko": "산을 감은 돌 고리 성벽 위",
+       "en": "on top of a colossal dark stone ring-wall wound round a mountain"
+      },
+      {
+       "key": "spiral",
+       "ko": "나선 불빛의 안뜰",
+       "en": "in an inner court where blue-violet light spirals faster and faster"
+      },
+      {
+       "key": "altar",
+       "ko": "손바닥 청동 고리의 제단",
+       "en": "before a small altar keeping a palm-sized bronze ring"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1915 무렵 바람 부는 초원의 어린 발명가 공방 — 창밖에 줄지어 도는 키 큰 풍차, 광석 라디오와 손으로 감은 전자석이 놓인 작업대, 그 두 극 사이에 끼운 손바닥만 한 청동 · 유리 고리 속에서 나선을 그리며 빨라지는 푸른 보랏빛 불꽃",
+     "en": "around 1915, a young inventor's wireless workshop on a windy prairie: rows of tall windmills turning outside the windows, crystal radio sets and a hand-wound electromagnet on the workbench, and between its poles a palm-sized ring of bronze and glass where a blue-violet spark spirals faster on every turn",
+     "scenes": [
+      {
+       "key": "windmills",
+       "ko": "풍차가 도는 공방 마당",
+       "en": "in a workshop yard among tall turning prairie windmills"
+      },
+      {
+       "key": "bench",
+       "ko": "손으로 감은 전자석 작업대",
+       "en": "at a workbench with a hand-wound electromagnet and a palm-sized bronze ring"
+      },
+      {
+       "key": "radio",
+       "ko": "광석 라디오 선반 앞",
+       "en": "beside shelves of crystal radio sets and coiled copper wire"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 줄의 끝 마지막 정거장 — 깊은 우주에서 천천히 돌며 제 중력을 만드는 거대한 고리 거주지, 고리 안쪽 바닥을 따라 하늘로 휘어 올라가는 하얀 거리, 바깥으로 나선을 그리며 점점 빨라지는 도킹 불빛",
+     "en": "year 2200, the last station at the very end of the line: a vast ring-shaped habitat turning slowly in deep space to make its own gravity, white streets curving up into the sky along the inside of the ring, and a spiral of docking lights winding outward faster and faster",
+     "scenes": [
+      {
+       "key": "street",
+       "ko": "하늘로 휘어 오르는 고리 안쪽 거리",
+       "en": "on a white street curving up along the inside of a turning ring habitat"
+      },
+      {
+       "key": "hub",
+       "ko": "고리 한가운데 축 갑판",
+       "en": "on the hub deck at the centre of a slowly turning ring"
+      },
+      {
+       "key": "dock",
+       "ko": "나선 도킹 불빛의 끝",
+       "en": "at the outermost end of a spiral of docking lights"
+      }
+     ],
+     "design": "burnished copper and dark magnet-iron knight plate with big rounded pauldrons shaped like flat magnet poles and layered plates below the waist, every plate edged with a thin blue-violet spiral light line, a small ring of light orbiting the chest core, a thin bronze ring hovering and turning behind her back, a slender crown-like head ornament instead of a helmet; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a palm-sized ring of bronze and glass with a faint blue-violet light circling inside it"
+   },
+   "look": {
+    "face": {
+     "face_shape": "round",
+     "eyes": "round_large",
+     "brows": "straight_thick",
+     "nose": "upturned",
+     "lips": "wide_smile",
+     "eye_color": "anodized_violet",
+     "age": "early_20s",
+     "impression": "cheerful",
+     "skin_tone": "warm_beige",
+     "eye_size": "large",
+     "eye_tilt": "up",
+     "mark": "freckles",
+     "expr": "playful"
+    },
+    "silhouette": {
+     "body": "petite_curvy",
+     "hair": "floor_length",
+     "hair_color": "lawrencium_spiral"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "round",
+       "eyes": "round_large"
+      },
+      "silhouette": {
+       "hair": "floor_length",
+       "bangs": "curtain"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "cat"
+      },
+      "silhouette": {
+       "hair": "pixie",
+       "bangs": "baby"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "jellyfish_cut",
+       "bangs": "straight"
+      }
+     }
+    },
+    "why": "정수리에서 바깥으로 푸른 보랏빛 빛줄기가 나선을 그리는 짙은 구릿빛 머리, 금테 두른 보랏빛 청색 눈 — 자석 사이를 도는 불꽃. 손바닥만 한 고리를 건물만 한 고리로 키운 악티늄족의 막내 → 아담하고 풍만한 몸, 밝은 인상 · 둥근 얼굴 · 큰 눈 · 들린 코 · 주근깨 · 장난스러운 얼굴, 스물 초반. 짝 아스타틴(그 고리에서 태어나 들끓다 사라지는 공주)과 같은 고리의 자식이지만 흩어지지 않고 돌고, 악티늄(무리에 이름을 준 맏이)의 맨 끝 막내 — 바닥 길이 머리 / 픽시컷 / 해파리컷"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 산을 감은 거대한 돌 고리 성채의 막내 용기사 예복 — 한 바퀴마다 조금씩 빨라지는 나선, 손바닥만 한 첫 청동 고리, 별지도 맨 아래 줄의 마지막 자리를 담은 온몸을 덮는 용비늘 갑옷과 뿔 모양 어깨 · 머리 장식의 짐승 같은 위용의 실루엣. 노출: 맨어깨와 맨팔, 깊게 열린 목선, 허벅지까지 드러난 다리",
+      "주요 색상": "윤낸 구릿빛, 짙은 자석 철색, 푸른 보랏빛 발광, 옅은 청동색",
+      "주요 소재": "가슴 가운데에서 바깥으로 나선을 그리며 겹친 구릿빛 용비늘 판갑, 짙은 철색 비늘 테두리, 옅은 청동 고리 장식, 푸른 보랏빛 비단",
+      "상의": "가장자리가 뿔처럼 솟은 짙은 철색 용비늘 목가리개, 목가리개 아래로 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 몸에 맞는 구릿빛 용비늘 흉갑 — 비늘이 가슴 가운데에서 바깥으로 나선을 그리며 겹침 — 과 그 안의 불투명한 푸른 보랏빛 비단이 덮음, 양쪽 어깨에 대칭으로 솟은 뿔 모양 철색 비늘 견갑, 견갑 아래로 드러난 맨어깨와 맨팔, 팔뚝을 고리처럼 감은 청동 비늘 팔 보호대",
+      "하의": "흉갑과 이어진 짧은 비늘 허리갑과 그 아래 겹친 짧은 푸른 보랏빛 비단 자락, 허벅지까지 드러난 다리, 무릎을 덮는 구릿빛 비늘 무릎갑",
+      "신발": "정강이를 덮는 구릿빛 비늘 장화와 발목을 감은 옅은 청동 고리",
+      "액세서리": "바닥까지 끌리는 긴 머리 위에 얹은 작은 뿔 모양 청동 머리 장식, 목에 건 작은 청동 고리 펜던트, 흉갑 가운데 새긴 \"Lr\"와 \"103\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "몸 둘레를 나선으로 돌며 점점 빨라지는 푸른 보랏빛 빛 알갱이 한 줄기, 등 뒤로 늘어진 짙은 철색 짧은 망토"
+     },
+     "4": {
+      "액션": "산을 감은 거대한 돌 고리 성벽 위의 돌길에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 한 바퀴 돌 때마다 신이 나는 듯 가볍게 들뜬 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "뒤로 끌리는 바닥 길이의 풀어 내린 머리와 가운데에서 갈라진 커튼 앞머리, 긴 머리끝이 나선을 그리며 바람에 휘감김",
+      "광원": "높은 하늘의 밝고 따뜻한 한낮 햇빛, 구릿빛 비늘과 돌 성벽에 되비치는 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 몸 둘레를 도는 푸른 보랏빛 빛줄기의 보조광",
+      "장면 팔레트": "맑은 하늘색, 구릿빛, 짙은 철색 돌, 푸른 보랏빛 한 줄, 옅은 청동 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 옛 별지도 맨 아래 줄의 마지막 빈칸, 산을 통째로 감은 거대한 짙은 돌 고리 성벽 안을 따라 푸른 보랏빛 불빛이 나선을 그리며 점점 빨라지는 성채, 고리 한가운데 손바닥만 한 청동 고리를 모신 작은 제단. 글자는 \"Lr\"와 \"103\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 나선으로 흩날리는 작은 푸른 보랏빛 빛 알갱이, 고리 성벽을 따라 길게 그어진 빛의 궤적, 인물과 햇빛이 비치는 반질한 돌길"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1915년 바람 부는 초원의 무선 공방에서 손바닥만 한 고리를 만든 어린 발명가 — 자석 사이에서 빙빙 돌며 한 바퀴마다 빨라지는 불꽃, 초원의 풍차처럼 쉬지 않고 도는 고리, 원소표 맨 아래 줄의 마지막 자리를 담은 밝고 화사한 빅토리아풍 리벳 철갑 의상. 노출: 걷어 올린 소매의 맨팔, 흉갑 위로 쇄골과 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "크림빛 백색, 짙은 자석 철색, 윤낸 구릿빛, 푸른 보랏빛 불꽃, 옅은 청동",
+      "주요 소재": "크림빛 실크 블라우스, 리벳 박힌 짙은 철판 흉갑, 구리선을 촘촘히 감은 어깨판 테두리, 옅은 청동 리벳과 고리 장식",
+      "상의": "흉골까지 단추를 풀어 쇄골과 자연스러운 가슴골이 보이는 크림빛 실크 블라우스와 팔꿈치 위로 걷어 올린 소매, 그 위에 가슴과 몸통을 빈틈없이 덮는 리벳 박힌 짙은 철판 흉갑과 가슴 가운데의 납작하고 둥근 청동 고리 장식, 양쪽 어깨에 대칭으로 얹힌 넓은 철 어깨판 — 가장자리를 따라 구리선이 촘촘히 감김",
+      "하의": "앞은 무릎 위로 짧고 뒤가 크게 부푼 크림빛 · 짙은 철색 버슬 스커트, 스커트 단을 두른 구리선 띠와 리벳, 허리의 갈색 가죽 벨트와 청동 버클",
+      "신발": "끈으로 묶는 무거운 짙은 갈색 가죽 장화와 발목의 구리 고리",
+      "액세서리": "짧은 픽시컷 옆에 꽂은 작은 청동 고리 핀, 목에 건 작은 광석 라디오 모양 놋쇠 펜던트, 흉갑 가운데 청동판에 새긴 \"Lr\"와 \"103\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "흉갑의 청동 고리 안에서 나선을 그리며 도는 작은 푸른 보랏빛 불꽃, 어깨판 구리선에 이따금 튀는 작은 불티"
+     },
+     "4": {
+      "액션": "풍차가 도는 초원 공방의 반질한 나무 바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 새 장치를 자랑하고 싶어 들썩이는 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "짧은 픽시컷과 짧은 베이비 뱅, 버슬 스커트가 걸음에 맞춰 가볍게 흔들림",
+      "광원": "넓은 창으로 쏟아지는 밝고 따뜻한 오후 햇빛, 철판 흉갑과 놋쇠 장치에 반사된 따뜻한 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 작업대 위 청동 고리의 옅은 푸른 보랏빛",
+      "장면 팔레트": "밝은 하늘색, 크림빛 벽, 짙은 철색, 구릿빛, 푸른 보랏빛 한 점 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1915년 바람 부는 초원의 어린 발명가 공방 — 창밖에 줄지어 도는 키 큰 풍차, 광석 라디오와 손으로 감은 전자석이 놓인 작업대, 그 두 극 사이에 끼운 손바닥만 한 청동 · 유리 고리 속에서 나선을 그리는 푸른 보랏빛 불꽃. 글자는 \"Lr\"와 \"103\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛 속에 떠도는 고운 초원 먼지, 창밖 풍차 날개가 바닥에 드리운 도는 그림자, 인물과 햇빛이 비치는 반질한 나무 바닥"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "중세 기사 판금을 닮은 미래형 메카 갑주 — 한 바퀴마다 빨라지는 나선, 쉬지 않고 도는 거대한 고리, 원소표 맨 아래 줄 마지막 자리의 막내를 담은 장갑",
+      "주요 색상": "윤낸 구릿빛 장갑, 짙은 자석 철색, 푸른 보랏빛 나선 발광, 옅은 청동 포인트",
+      "주요 소재": "윤낸 구릿빛 판금 장갑(burnished copper knight plate), 납작한 자석 극 모양의 짙은 철색 어깨판, 판 가장자리의 가는 푸른 보랏빛 나선 발광선, 청동 내부 프레임",
+      "상의": "구릿빛 기계식 칼라와 중앙의 둥근 코어 — 코어 둘레를 작은 빛 고리가 돌고 있음, 쇄골과 가슴 윗부분이 드러나는 둥근 기사형 흉부 장갑, 복부까지 빈틈없이 덮는 몸에 붙는 짙은 철색 슈트, 납작한 자석 극 모양의 둥글고 큰 판금 어깨판(pauldrons), 분절된 구릿빛 팔 장갑",
+      "하의": "허리 아래로 겹친 짧은 구릿빛 판금 장갑판 — 판마다 가장자리를 따라 푸른 보랏빛 나선 발광선, 하이컷 골반 장갑, 허벅지 일부가 드러나는 구조, 무릎을 감싼 둥근 판금과 정밀한 관절",
+      "신발": "발끝이 둥근 판금 사바톤 모양의 구릿빛 장갑 부츠와 발목을 도는 작은 빛 고리",
+      "액세서리": "해파리컷을 덮지 않는, 투구 대신의 가는 청동 관 모양 머리 장식과 가운데 작은 푸른 보랏빛 고리, 가슴판에 새긴 \"Lr\"와 \"103\"",
+      "장비·소품": "등 뒤에 떠서 천천히 도는 얇은 청동 고리 하나 — 두 손은 비어 있음",
+      "부가 요소": "가슴 코어 둘레를 나선으로 돌며 빨라지는 작은 빛 알갱이, 어깨판 가장자리의 푸른 보랏빛 발광 테두리"
+     },
+     "4": {
+      "액션": "회전 고리 거주지의 하얀 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 도는 고리의 기울기에 몸을 맡긴 가볍고 들뜬 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "짧고 둥근 윗단 아래로 긴 생머리가 내려오는 해파리컷과 일자 앞머리, 긴 머리끝이 도는 고리의 바람에 살짝 휘어짐",
+      "광원": "커다란 창으로 드는 맑고 밝은 낮빛, 구릿빛 장갑과 흰 갑판에 맺힌 또렷한 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 등 뒤 청동 고리의 푸른 보랏빛 보조광",
+      "장면 팔레트": "밝은 흰색, 구릿빛, 짙은 철색, 푸른 보랏빛 한 줄 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 줄의 끝 마지막 정거장 — 깊은 우주에서 천천히 도는 거대한 고리 모양 거주지, 고리 안쪽을 따라 하늘로 휘어 올라가는 하얀 갑판 거리, 바깥으로 나선을 그리며 이어진 도킹 불빛. 글자는 \"Lr\"와 \"103\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 나선으로 떠도는 작은 푸른 보랏빛 빛 알갱이, 휘어 올라간 갑판 위로 길게 늘어선 불빛, 인물과 구릿빛이 비치는 반질한 흰 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "dragon_scale",
+    "steampunk": "ironclad",
+    "mecha": "knight_plate"
+   }
+  },
+  {
+   "key": "rf",
+   "persona": "되돌아온 한 방의 나라. 1964년 강가 연구 도시 두브나에서 플료로프 연구진이 먼저 만들었다며 쿠르차토븀이라 불렀고, 1969년 버클리의 기오르소 연구진이 다른 길로 만들어 러더퍼드의 이름을 붙였다 — 두 이름의 오랜 다툼 끝에 1997년 러더포듐이 되었다. 뉴질랜드 농가에서 자란 러더퍼드는 1909년 맨체스터 대학 지하 실험실에서 가이거와 마스든에게 꽃잎보다 얇은 금박에 알파 입자를 쏘게 했다. 거의 다 그냥 지나갔지만 몇은 크게 꺾였고, 8000개에 하나쯤은 곧장 되튕겨 돌아왔다 — 「휴지에 15인치 포탄을 쐈는데 되돌아와 나를 맞힌 것 같다」. 1911년 그는 원자 한가운데 작고 무거운 핵이 숨어 있다고 밝혔고, 1919년엔 처음으로 한 원소를 다른 원소로 바꿨다. 악티늄족을 지나 처음 오는 원소, 하프늄의 아래에 앉는다 — 우렁찬 목소리로 웃으며 무엇이 날아와도 받아치는, 대담하고 호탕한 장군.",
+   "traits": {
+    "ko": [
+     "「러더퍼드의 원소」 — 1964 두브나 · 1969 버클리, 쿠르차토븀과 다툰 끝에 1997 러더포듐",
+     "1909 맨체스터 지하 실험실 — 꽃잎보다 얇은 금박에 쏜 알파 입자, 8000개에 하나쯤 곧장 되튕겨 돌아왔다",
+     "「휴지에 쏜 포탄이 되돌아와 나를 맞혔다」 — 1911 원자 한가운데 작고 무거운 핵의 발견",
+     "악티늄족을 지나 처음 오는 무거운 원소 · 하프늄의 아래"
+    ],
+    "en": "rutherfordium: the first synthetic element past the actinides, sitting below hafnium, claimed first in 1964 by a riverside research town and again in 1969 by a hillside laboratory, and named after a long dispute for the farm-born physicist whose students fired alpha particles at a sheet of gold foil thinner than a petal: almost all passed straight through, a few swerved, and about one in eight thousand bounced straight back, as astonishing as a shell fired at tissue paper returning to hit the gunner, revealing that every atom hides a tiny, heavy nucleus at its heart"
+   },
+   "palette": {
+    "en": "beaten gold leaf, smoky walnut brown, scintillation green flicker, alpha-particle white"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 신탁의 별지도에서 마지막 줄 너머 첫 빈칸을 지키는 금박의 성, 햇빛도 지나가는 얇디얇은 금박 장막이 겹겹이 드리운 회랑, 그 한가운데 무엇이든 되튕겨 내는 작고 무거운 검은 심장석이 놓인 성소",
+     "en": "a prophesied kingdom that does not yet exist: a gold-leaf citadel guarding the first blank square beyond the last row of an oracle's star-chart, halls hung with layer upon layer of gold-foil veils so thin that sunlight passes through, and at the very centre a sanctum holding a tiny, heavy black heart-stone that throws back anything that strikes it",
+     "scenes": [
+      {
+       "key": "veils",
+       "ko": "금박 장막의 회랑",
+       "en": "in a hall hung with veils of gold foil thin enough to let sunlight through"
+      },
+      {
+       "key": "heartstone",
+       "ko": "작고 무거운 심장석의 성소",
+       "en": "in a sanctum around a tiny, heavy black heart-stone"
+      },
+      {
+       "key": "ramparts",
+       "ko": "금박 성벽 위",
+       "en": "on gold-leafed ramparts high above the clouds"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1909 무렵 연기 낀 산업 도시 대학의 지하 실험실 — 커튼으로 빛을 가린 방, 놋쇠 진공 상자 속에 세운 금박 한 장, 그 둘레를 도는 현미경 달린 형광 스크린에 반짝이는 작은 초록 섬광, 납 상자와 공책이 쌓인 나무 작업대",
+     "en": "around 1909, the basement laboratory of a university in a smoky industrial city: a curtained room, a single gold foil standing inside a brass vacuum box, a swivelling microscope with a fluorescent screen where tiny green flashes flicker, and a wooden bench stacked with a lead-lined box and notebooks",
+     "scenes": [
+      {
+       "key": "screen",
+       "ko": "형광 스크린 관측실",
+       "en": "in a curtained room beside a microscope screen of tiny green flashes"
+      },
+      {
+       "key": "foil",
+       "ko": "금박 진공 상자 작업대",
+       "en": "at a bench beside a brass vacuum box holding a gold foil"
+      },
+      {
+       "key": "stairs",
+       "ko": "연구동 지하 계단",
+       "en": "on the stone stairs down to a university basement laboratory"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 핵을 겨누는 사격장 도시 — 거대한 금빛 박막 과녁이 겹겹이 세워진 끝없는 시험 회랑, 박막을 지나 흩어지는 빛줄기와 드물게 곧장 되돌아오는 한 줄기를 잡아내는 둥근 검출기 벽, 회랑 끝에 작고 무겁게 빛나는 핵 모형",
+     "en": "year 2200, a firing-range city aimed at the nucleus: an endless test gallery of vast golden membrane targets standing in rows, beams of light scattering as they pass through, round detector walls that catch the rare streak that comes flying straight back, and at the far end a small, heavy glowing model of a nucleus",
+     "scenes": [
+      {
+       "key": "gallery",
+       "ko": "금빛 박막 과녁 회랑",
+       "en": "in a gallery of vast golden membrane targets"
+      },
+      {
+       "key": "detector",
+       "ko": "둥근 검출기 벽 앞",
+       "en": "before a curved detector wall lit with scattered streaks"
+      },
+      {
+       "key": "core",
+       "ko": "작고 무거운 핵 모형 홀",
+       "en": "in a hall around a small, heavy glowing model of a nucleus"
+      }
+     ],
+     "design": "complete smoky walnut-brown and beaten-gold armor joined from neck to feet, thin golden membrane panels layered over heavy plates, dense gold seams at every joint, a small heavy black core at the chest ringed with fine white deflection streaks, tiny scintillation-green flashes winking along the seams; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a small square of gold foil pressed between two glass plates in a brass frame"
+   },
+   "look": {
+    "face": {
+     "face_shape": "square_soft",
+     "eyes": "deep_set",
+     "brows": "straight_thick",
+     "nose": "aquiline",
+     "lips": "full_wide",
+     "eye_color": "amber",
+     "age": "late_20s",
+     "impression": "rugged",
+     "skin_tone": "golden_tan",
+     "eye_size": "medium",
+     "eye_tilt": "level",
+     "mark": "scar",
+     "expr": "laughing"
+    },
+    "silhouette": {
+     "body": "pear_curvy",
+     "hair": "braided_crown",
+     "hair_color": "rutherfordium_leaf"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "square_soft",
+       "eyes": "deep_set"
+      },
+      "silhouette": {
+       "hair": "braided_crown",
+       "bangs": "none"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "hooded"
+      },
+      "silhouette": {
+       "hair": "lob",
+       "bangs": "side_swept"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "cat"
+      },
+      "silhouette": {
+       "hair": "double_buns",
+       "bangs": "parted"
+      }
+     }
+    },
+    "why": "얇게 구겨진 금박 같은 하이라이트가 작은 섬광처럼 반짝이는 그을린 호두나무빛 머리, 호박색 눈 — 금박과 그 너머의 작은 섬광. 무엇이 날아와도 웃으며 받아치는 호탕한 장군 → 풍만한 하체의 서양배형 몸, 거친 인상 · 부드럽게 각진 턱 · 깊은 눈 · 매부리코 · 넓은 입 · 흉터 하나 · 크게 웃는 얼굴 · 햇볕에 그을린 피부, 스물 후반. 바로 위 하프늄(언니 지르코늄의 그림자)과 달리 조용히 삼키지 않고 되받아치고, 짝 금(변하지 않는 왕)의 금박을 무대로 삼지만 금 자신이 아니라 금박을 꿰뚫어 핵을 찾아낸 쪽 — 땋은 왕관 머리 / 롱 보브 / 양쪽 번"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 금박 장막의 성을 다스리는 대담한 장군 귀족 — 햇빛도 지나가는 얇은 금박, 그 한가운데 무엇이든 되튕겨 내는 작고 무거운 심장석, 「휴지에 쏜 포탄이 되돌아왔다」는 놀라움을 담은 단정하고 권위 있는 긴 코트 차림. 노출: 맨어깨와 맨팔, 깊게 열린 목선, 허벅지까지 트인 옆트임",
+      "주요 색상": "두드린 금박빛, 그을린 호두나무 갈색, 알파 입자 흰빛, 섬광 초록 한 점",
+      "주요 소재": "무릎 아래까지 내려오는 그을린 호두나무 갈색 벨벳 롱코트, 얇게 두드린 금박 안감과 테두리, 금 견장, 흰 비단, 작고 무거운 검은 돌 단추",
+      "상의": "높게 세운 금박 칼라와 그 아래로 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 이어지는 불투명한 흰 비단 상의가 덮음, 그 위에 어깨를 드러내도록 팔꿈치까지 흘러내리게 걸친 그을린 갈색 벨벳 롱코트와 금 견장, 드러난 맨어깨와 맨팔, 손목의 얇은 금박 팔찌",
+      "하의": "무릎 아래까지 내려오는 갈색 롱코트 자락 — 안감은 햇빛이 비쳐 드는 얇은 금박 — 안에 허벅지까지 높게 트인 옆트임이 있는 흰 비단 긴 치마, 허리의 넓은 금 버클 띠",
+      "신발": "무릎까지 오는 짙은 갈색 가죽 장화와 금 버클",
+      "액세서리": "머리 위를 왕관처럼 두른 땋은 머리에 꽂은 작은 금박 핀들, 목에 건 작은 검은 심장석 펜던트, 코트 깃에 금실로 수놓은 \"Rf\"와 \"104\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "코트 자락 둘레에서 이따금 반짝이며 되튕겨 나가는 작은 흰 빛 알갱이, 금박 안감에 맺힌 아주 작은 초록 섬광"
+     },
+     "4": {
+      "액션": "금박 장막이 겹겹이 드리운 회랑의 반질한 돌바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 호탕하고 당당한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "머리 위를 왕관처럼 두른 땋은 머리와 길게 늘어뜨린 나머지 머리, 이마를 드러낸 얼굴, 롱코트 자락이 걸음에 맞춰 묵직하게 흔들림",
+      "광원": "금박 장막을 지나 들어오는 밝고 따뜻한 한낮 햇빛, 금박과 돌바닥에 되비치는 따뜻한 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 심장석에서 튕겨 나온 작은 흰 빛 점들",
+      "장면 팔레트": "맑은 하늘색, 두드린 금빛, 그을린 갈색, 흰 비단, 섬광 초록 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 신탁의 별지도에서 마지막 줄 너머 첫 빈칸을 지키는 금박의 성, 햇빛도 지나가는 얇디얇은 금박 장막이 겹겹이 드리운 회랑, 그 한가운데 무엇이든 되튕겨 내는 작고 무거운 검은 심장석이 놓인 성소. 글자는 \"Rf\"와 \"104\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 떠도는 아주 얇은 금박 부스러기의 반짝임, 심장석에서 되튕겨 나간 흰 빛줄기 몇 가닥, 인물과 금빛이 비치는 반질한 돌바닥"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1909년 산업 도시 대학 지하 실험실의 대담한 실험 반장 — 얇은 금박을 지나가다 아주 드물게 되튕겨 돌아오는 알갱이, 형광 스크린의 작은 초록 섬광, 원자 한가운데 숨은 작고 무거운 핵을 담은 밝고 화사한 빅토리아풍 작업 차림, 한 팔을 통째로 덮는 커다란 놋쇠 알파선 건틀릿이 날렵한 차림과 대비를 이룸. 노출: 건틀릿을 끼지 않은 쪽의 맨팔, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "크림빛 백색, 그을린 호두나무 갈색, 두드린 금박빛, 연금색 놋쇠, 섬광 초록",
+      "주요 소재": "윤기 있는 크림빛 실크 블라우스, 호두나무 갈색 새틴 조끼, 연금색 놋쇠 기계 건틀릿과 손등의 작은 납 상자 · 가는 놋쇠 총열, 금박 테두리, 초록 유리 확대경",
+      "상의": "흉골까지 단추를 풀어 자연스러운 가슴골이 보이는 크림빛 실크 하이넥 블라우스가 가슴과 몸통을 덮음, 허리에서 놋쇠 단추를 채운 몸에 맞는 호두나무 갈색 새틴 조끼와 가장자리의 얇은 금박 테두리, 왼팔은 소매를 어깨 가까이 걷어 올린 맨팔, 오른팔은 어깨부터 손끝까지 덮는 커다란 연금색 놋쇠 기계 건틀릿(mechanical gauntlet) — 손등에 작은 납 상자와 앞으로 뻗은 가는 놋쇠 총열, 팔뚝을 따라 붙은 작은 형광 스크린과 계수 다이얼",
+      "하의": "다리가 드러나는 짧은 크림빛 · 호두나무 갈색 버슬 스커트와 단의 금박 테두리, 허리의 갈색 가죽 벨트와 놋쇠 고정쇠",
+      "신발": "끈으로 묶는 갈색 가죽 굽 부츠와 발목의 놋쇠 고리",
+      "액세서리": "어깨 길이 롱 보브에 꽂은 작은 금박 핀, 목에 건 둥근 초록 유리 확대경, 건틀릿 손등의 놋쇠판에 새긴 \"Rf\"와 \"104\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "건틀릿 총열 끝에서 이따금 튕겨 돌아오는 작은 흰 빛 알갱이, 팔뚝 형광 스크린에 반짝이는 작은 초록 섬광"
+     },
+     "4": {
+      "액션": "대학 연구동 지하 실험실의 반질한 돌바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 놀라운 결과를 막 본 듯 호탕하게 성큼 내딛는 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "어깨 길이의 롱 보브와 한쪽으로 쓸어 넘긴 옆 앞머리, 버슬 스커트가 걸음에 맞춰 가볍게 흔들림",
+      "광원": "걷어 올린 커튼 사이 높은 반지하 창으로 드는 밝고 따뜻한 햇빛, 놋쇠 건틀릿과 진공 상자에 반사된 따뜻한 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 형광 스크린의 작은 초록 빛",
+      "장면 팔레트": "밝은 하늘색, 크림빛 벽, 호두나무 갈색, 금박빛, 초록 한 점 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1909년 산업 도시 대학의 지하 실험실 — 걷어 올린 검은 커튼과 높은 반지하 창, 놋쇠 진공 상자 속에 세운 금박 한 장, 그 둘레를 도는 현미경 달린 형광 스크린, 납 상자와 공책이 쌓인 나무 작업대. 글자는 \"Rf\"와 \"104\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛 속에 떠도는 고운 먼지, 진공 상자 안 금박의 작은 반짝임, 인물과 햇빛이 비치는 반질한 돌바닥"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "목부터 발끝까지 빈틈없이 이어진 전신 장갑의 미래형 메카 슈트 — 얇은 금빛 막을 지나 흩어지다 드물게 되돌아오는 빛줄기, 원자 한가운데 작고 무거운 검은 핵, 「되돌아와 나를 맞혔다」는 놀라움을 담은 장갑",
+      "주요 색상": "그을린 호두나무 갈색 장갑, 두드린 금박빛, 알파 입자 흰빛, 섬광 초록 포인트",
+      "주요 소재": "단단한 그을린 갈색 전신 장갑판(full-body armor) 위에 겹친 얇은 금빛 박막 패널, 관절마다 촘촘한 금빛 이음매, 가슴의 작고 무거운 검은 코어, 섬광 초록 발광점",
+      "상의": "목을 높게 감싼 금빛 칼라와 중앙의 작고 무거운 검은 코어 — 코어 둘레에 튕겨 나간 자국 같은 가는 흰 빛줄, 쇄골과 가슴 윗부분이 드러나는 입체적인 흉부 장갑, 복부까지 빈틈없이 덮는 그을린 갈색 장갑판과 그 위에 겹친 얇은 금빛 박막 패널, 둥글고 두꺼운 어깨 장갑, 촘촘히 분절된 팔 장갑과 팔꿈치 · 손목의 금빛 이음 고리",
+      "하의": "상의와 빈틈없이 이어진 하이컷 골반 장갑, 허벅지 일부가 드러나는 구조, 무릎부터 발끝까지 이어진 그을린 갈색 · 금빛 장갑판, 정밀한 무릎 관절과 금빛 이음매",
+      "신발": "장갑판과 이어진 묵직한 그을린 갈색 장갑 부츠와 발목의 금빛 고리",
+      "액세서리": "양쪽 번을 덮지 않는 귀 옆의 작은 초록 섬광 센서, 한쪽 어깨 장갑에 새긴 \"Rf\"와 \"104\"",
+      "장비·소품": "없음 — 두 손은 비어 있음",
+      "부가 요소": "장갑 이음매를 따라 깜빡이는 작은 초록 섬광, 가슴 코어에서 튕겨 나가는 아주 가는 흰 빛줄 몇 가닥"
+     },
+     "4": {
+      "액션": "금빛 박막 과녁이 줄지어 선 시험 회랑의 하얀 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 무엇이 날아와도 받아칠 듯 든든한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "머리 위 높이 올린 양쪽 번과 가운데에서 갈라진 앞머리, 번 아래 잔머리가 걸음에 맞춰 가볍게 흔들림",
+      "광원": "유리 천장으로 드는 맑고 밝은 낮빛, 금빛 박막과 흰 갑판에 맺힌 또렷한 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 장갑 이음매의 초록 섬광 보조광",
+      "장면 팔레트": "밝은 흰색, 두드린 금빛, 그을린 갈색, 초록 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 핵을 겨누는 사격장 도시 — 거대한 금빛 박막 과녁이 겹겹이 세워진 끝없는 시험 회랑, 박막을 지나 흩어지는 빛줄기와 드물게 곧장 되돌아오는 한 줄기를 잡아내는 둥근 검출기 벽. 글자는 \"Rf\"와 \"104\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 흩어지는 가는 흰 빛줄기, 박막 과녁에 일렁이는 금빛 물결, 인물과 금빛이 비치는 반질한 흰 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "noble_coat",
+    "steampunk": "mech_gauntlet",
+    "mecha": "full_armor"
+   }
+  },
+  {
+   "key": "db",
+   "persona": "두 강이 만나는 곳의 나라. 1956년 볼가 강과 두브나 강이 만나는 소나무 · 참나무 숲 속에 세운 연구 도시 두브나의 이름을 받았다 — 그 이름 속엔 옛말 「참나무(두프)」가 숨어 있다고들 한다. 1968~70년 두브나의 플료로프 연구진과 버클리의 기오르소 연구진이 거의 함께 105번을 만들었다고 했고, 닐스보륨 · 한슘 · 졸리오튬 같은 이름이 오가며 30년 가까이 다툰 끝(「트랜스페르뮴 전쟁」)에 1997년 두브나의 이름으로 정해졌다. 그 도시엔 1957년 당시 세상에서 가장 큰 가속기 — 철 고리 자석만 3만 6천 톤인 싱크로파소트론 — 가 강가의 홀에 앉아 있었다. 나이오븀 · 탄탈럼의 아래, 하루 남짓을 버티는 무거운 금속 — 오래 다툰 이름을 끝내 지켜 낸, 말수 적고 단단한 강의 딸.",
+   "traits": {
+    "ko": [
+     "「두브나의 원소」 — 1956 볼가 강과 두브나 강이 만나는 숲 속에 세운 연구 도시, 이름 속 옛말 「참나무」",
+     "1968~70 두브나와 버클리가 거의 함께 주장 — 닐스보륨 · 한슘 · 졸리오튬을 거친 30년 가까운 이름 다툼 끝에 1997",
+     "1957 세상에서 가장 큰 가속기(철 고리 자석 3만 6천 톤)를 강가 홀에 둔 도시",
+     "나이오븀 · 탄탈럼의 아래 — 하루 남짓 버티는 무거운 금속"
+    ],
+    "en": "dubnium: a heavy synthetic metal below niobium and tantalum, named for a research town founded in 1956 in pine and oak forest where two great rivers meet, a name said to hide an old word for oak; claimed almost at once by that river town and by a hillside laboratory across the ocean, it passed through several proposed names in a naming quarrel that lasted nearly thirty years before the river town's name was given to it; the town once held the largest particle accelerator on earth, a ring of iron magnets weighing tens of thousands of tonnes in a riverside hall, and its longest-lived form lasts about a day"
+   },
+   "palette": {
+    "en": "wide river steel-blue, oak-bark brown, birch white, pine green"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 신탁의 강 지도에서 두 큰 강이 만나는 곳에 아직 비어 있는 곶, 새김이 지워졌다 다시 새겨진 오래된 참나무 기둥 숲, 강 안개 위로 아치를 그리는 학자들의 돌다리",
+     "en": "a prophesied kingdom that does not yet exist: a blank point of land where two great rivers meet on an oracle's river-chart, a grove of ancient oak pillars whose carvings have been scraped away and carved anew, and scholars' stone bridges arching over the river mist",
+     "scenes": [
+      {
+       "key": "point",
+       "ko": "두 강이 만나는 곶 끝",
+       "en": "on the tip of the point where two great rivers meet"
+      },
+      {
+       "key": "oaks",
+       "ko": "다시 새긴 참나무 기둥 숲",
+       "en": "in a grove of ancient oak pillars carved over and carved anew"
+      },
+      {
+       "key": "bridge",
+       "ko": "강 안개 위 학자들의 돌다리",
+       "en": "on a scholars' stone bridge arching over the river mist"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1912 무렵 두 큰 강이 만나는 숲 속 연구 마을 — 나무 활주대에 매어 둔 나무 뜨개 달린 초기 수상 비행기, 물 위 기둥에 세운 격납고, 강 건너 비계에 싸여 올라가는 거대한 철 고리 자석 홀, 소나무와 참나무 숲",
+     "en": "around 1912, a forest research settlement where two great rivers meet: early flying boats on wooden floats moored at a timber slipway, a hangar raised on stilts over the water, the scaffolded shell of a gigantic iron ring-magnet hall rising across the river, and pine and oak woods all around",
+     "scenes": [
+      {
+       "key": "slipway",
+       "ko": "수상 비행기 나무 활주대",
+       "en": "on a timber slipway where early flying boats are moored"
+      },
+      {
+       "key": "hangar",
+       "ko": "물 위 기둥 격납고",
+       "en": "in a hangar raised on stilts over the river"
+      },
+      {
+       "key": "scaffold",
+       "ko": "강 건너 철 고리 자석 홀의 비계",
+       "en": "on the scaffolding of a gigantic iron ring-magnet hall across the river"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 두 큰 강이 만나는 연구 도시 — 두 물 사이 곶 위로 솟은 하얀 연구탑, 두 강을 스치며 달리는 연구 수중익선, 강둑에 반쯤 묻힌 커다란 둥근 지붕 홀과 그 지붕을 덮은 참나무 숲",
+     "en": "year 2200, a research city where two great rivers meet: white laboratory towers rising on the point between the waters, research hydrofoils skimming both rivers, and a great domed hall half-sunk in the riverbank with oak forest growing on its terraced roof",
+     "scenes": [
+      {
+       "key": "towers",
+       "ko": "두 강 사이 곶의 연구탑",
+       "en": "at the foot of white laboratory towers on the point between two rivers"
+      },
+      {
+       "key": "hydrofoil",
+       "ko": "강 위를 스치는 연구 수중익선 갑판",
+       "en": "on the deck of a research hydrofoil skimming the river"
+      },
+      {
+       "key": "roof",
+       "ko": "참나무 숲 지붕 정원",
+       "en": "in an oak forest roof garden above a domed hall"
+      }
+     ],
+     "design": "river steel-blue and birch-white armor of medium weight with a large river-sonar unit worn on the back, a tall slender sonar mast and two coiled cable drums rising above her head as the main shape, oak-brown accents and thin pine-green light lines along the seams, a small wave-shaped core at the chest; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a small acorn cast in dark grey metal on a short river-blue cord"
+   },
+   "look": {
+    "face": {
+     "face_shape": "long",
+     "eyes": "hooded",
+     "brows": "low_heavy",
+     "nose": "straight_narrow",
+     "lips": "thin_long",
+     "eye_color": "steel_blue",
+     "age": "late_20s",
+     "impression": "stoic",
+     "skin_tone": "fair",
+     "eye_size": "medium",
+     "eye_tilt": "level",
+     "mark": "mole_eye",
+     "expr": "determined"
+    },
+    "silhouette": {
+     "body": "strong_curvy",
+     "hair": "windswept_long",
+     "hair_color": "dubnium_river"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "long",
+       "eyes": "hooded"
+      },
+      "silhouette": {
+       "hair": "windswept_long",
+       "bangs": "side_swept"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "inverted_triangle",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "spiky_wild",
+       "bangs": "choppy"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "cloud_updo",
+       "bangs": "wispy"
+      }
+     }
+    },
+    "why": "두 물줄기가 만나는 자리에 옅은 자작나무빛 흰 줄이 진, 넓은 강물처럼 흐르는 강철빛 파란 머리, 강철빛 청색 눈. 오래 다툰 이름을 끝내 지켜 낸 말수 적은 강의 딸 → 어깨가 단단하고 풍만한 몸, 무던한 인상 · 갸름하게 긴 얼굴 · 덮인 눈 · 낮고 짙은 눈썹 · 곧은 코 · 얇은 입술 · 눈가 점 · 굳은 얼굴, 스물 후반. 위의 탄탈럼(감질나게 하는 차가운 매혹) · 나이오븀(슬픔을 무지개로 바꾸는 딸)과 같은 줄이지만 매혹도 눈물도 없이 버티는 쪽 — 바람에 흩날리는 긴 머리 / 거칠게 뻗친 머리 / 구름 올림머리"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 두 강이 만나는 곶을 지키는 강의 전투 마법사 — 두 물줄기가 하나로 합쳐지는 힘, 지워졌다 다시 새겨진 이름을 끝내 지켜 낸 참나무의 고집, 강 안개 속 학자들의 도시를 담은, 반은 갑옷이고 반은 로브인 차림. 노출: 맨어깨와 맨팔, 깊게 열린 목선, 허벅지까지 트인 옆트임",
+      "주요 색상": "넓은 강의 강철빛 파랑, 참나무 껍질 갈색, 자작나무 흰색, 소나무 초록 한 줄",
+      "주요 소재": "물결 무늬를 새긴 가벼운 강철빛 흉갑, 강물빛 파랑 비단 로브, 참나무 껍질 무늬 가죽 띠, 도토리 모양 회색 금속 장식",
+      "상의": "물결 무늬를 새긴 가는 강철빛 목가리개, 목가리개 아래로 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 이어지는 불투명한 강물빛 파랑 비단 상의가 덮고 그 위에 몸에 맞는 가벼운 강철빛 흉갑 — 가운데에서 두 물줄기가 하나로 합쳐지는 문양, 견갑 없이 드러난 맨어깨와 맨팔, 팔뚝을 감싸는 참나무 껍질 무늬 가죽 팔 보호대와 그 결을 따라 흐르는 옅은 파랑 마법 빛",
+      "하의": "허리에서 앞뒤 두 갈래로 갈라졌다가 끝에서 다시 겹쳐 흐르는 강물빛 파랑 · 자작나무 흰색 비단 로브 자락, 갈라진 자락 사이로 허벅지까지 높게 트인 옆트임, 허리를 두른 참나무 갈색 가죽띠와 작은 도토리 모양 금속 고리",
+      "신발": "무릎까지 오는 참나무 갈색 가죽 장화와 물결 무늬 강철 테두리",
+      "액세서리": "바람에 흩날리는 긴 머리 위의 가는 강철빛 서클릿과 작은 도토리 장식, 귀의 작은 물방울 모양 은 귀걸이, 흉갑 가운데에 새긴 \"Db\"와 \"105\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "발치를 감도는 두 줄기 옅은 강 안개가 하나로 합쳐지는 마법 빛, 등 뒤로 늘어진 소나무 초록 안감의 짧은 강물빛 망토"
+     },
+     "4": {
+      "액션": "두 큰 강이 만나는 곶 끝의 젖은 바위 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 물러서지 않는 단단하고 묵직한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "바람에 옆으로 길게 흩날리는 아주 긴 머리와 한쪽으로 쓸어 넘긴 옆 앞머리, 로브 자락과 짧은 망토가 강바람에 크게 펄럭임",
+      "광원": "넓은 강 위로 쏟아지는 밝고 맑은 한낮 햇빛, 강물과 강철빛 흉갑에 되비치는 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 발치 강 안개의 옅은 파랑 빛",
+      "장면 팔레트": "맑은 하늘색, 강철빛 파랑, 참나무 갈색, 자작나무 흰색, 소나무 초록 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 신탁의 강 지도에서 두 큰 강이 만나는 곳에 아직 비어 있는 곶, 새김이 지워졌다 다시 새겨진 오래된 참나무 기둥 숲, 강 안개 위로 아치를 그리는 학자들의 돌다리. 글자는 \"Db\"와 \"105\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "강 위에 낮게 깔린 옅은 안개, 햇빛에 반짝이는 두 물줄기의 물비늘, 인물과 햇빛이 비치는 젖은 바위"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1912년 두 큰 강이 만나는 숲 속 연구 마을의 수상 비행기 조종사 — 두 강이 하나로 합쳐지는 물길, 강 건너 올라가는 거대한 철 고리, 오래 다툰 끝에 지켜 낸 제 이름을 담은 밝고 화사한 빅토리아풍 의상, 짧은 비행 재킷과 머리의 고글, 몸을 가로지르는 멜빵, 바람에 길게 날리는 스카프의 하늘을 나는 실루엣. 노출: 맨어깨, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "강철빛 파랑 가죽, 크림빛 블라우스, 참나무 갈색, 자작나무 흰 스카프, 연금색 놋쇠",
+      "주요 소재": "짧은 강철빛 파랑 가죽 비행 재킷, 크림빛 실크 블라우스, 자작나무 흰 실크 스카프, 놋쇠 테 고글, 참나무 갈색 가죽 멜빵",
+      "상의": "흉골까지 단추를 풀어 자연스러운 가슴골이 보이는 크림빛 실크 블라우스가 가슴과 몸통을 덮음, 그 위에 어깨를 드러내도록 반쯤 내려 걸친 짧은 강철빛 파랑 가죽 비행 재킷과 깃의 흰 양털, 가슴을 엇갈려 가로지르는 참나무 갈색 가죽 멜빵과 놋쇠 고리, 목에서 바람에 길게 날리는 자작나무 흰 실크 스카프",
+      "하의": "다리가 드러나는 짧은 참나무 갈색 승마풍 스커트와 허리의 넓은 가죽 벨트, 벨트에 매단 놋쇠 나침반과 작은 도토리 모양 회색 금속 장식",
+      "신발": "무릎 아래까지 끈으로 묶은 갈색 가죽 비행 부츠",
+      "액세서리": "크고 거칠게 뻗친 머리 위에 올린 놋쇠 테 고글, 벨트에 꽂은 가죽 비행 장갑 한 켤레, 재킷 가슴의 놋쇠판에 새긴 \"Db\"와 \"105\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "스카프 끝에 맺힌 작은 강물 방울, 재킷과 부츠에 튄 옅은 물보라 자국"
+     },
+     "4": {
+      "액션": "물가 나무 활주대의 젖은 판자 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 이륙 전 엔진 소리를 듣는 듯 단단히 디딘 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "크고 거칠게 뻗친 머리와 들쭉날쭉한 앞머리, 흰 스카프가 강바람에 길게 날림",
+      "광원": "넓은 강 위로 쏟아지는 밝고 따뜻한 아침 햇빛, 놋쇠 고글과 젖은 판자에 반사된 따뜻한 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 강물에 일렁이는 물빛 반사",
+      "장면 팔레트": "밝은 하늘색, 강철빛 파랑, 참나무 갈색, 자작나무 흰색, 소나무 초록 한 점 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1912년 두 큰 강이 만나는 숲 속 연구 마을 — 나무 활주대에 매어 둔 나무 뜨개 달린 초기 수상 비행기, 물 위 기둥에 세운 격납고, 강 건너 비계에 싸여 올라가는 거대한 철 고리 자석 홀, 소나무와 참나무 숲. 글자는 \"Db\"와 \"105\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛에 반짝이는 강물 물비늘, 강바람에 날리는 옅은 물보라, 인물과 햇빛이 비치는 젖은 나무 판자"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "등에 멘 큰 강 관측 유닛이 머리 위로 솟아 실루엣을 만드는 대형 등짐형 미래형 메카 슈트 — 두 강이 만나는 물길, 오래 다툰 끝에 지켜 낸 이름, 참나무처럼 단단히 뿌리내린 연구 도시를 담은 장갑",
+      "주요 색상": "강철빛 파랑 장갑, 자작나무 흰색, 참나무 갈색 포인트, 소나무 초록 발광",
+      "주요 소재": "중간 두께의 매끄러운 강철빛 파랑 장갑(steel-blue armor plates), 자작나무 흰 패널, 등의 높은 수중 음파 돛대와 감긴 케이블 드럼 둘(river-sonar mast and cable drums), 참나무 갈색 손잡이",
+      "상의": "강철빛 파랑 기계식 칼라와 가운데의 작은 물결 모양 코어, 쇄골과 가슴 윗부분이 드러나는 입체적인 흉부 장갑, 복부까지 빈틈없이 덮는 몸에 붙는 짙은 남색 슈트, 둥근 강철빛 어깨 장갑과 그 위를 지나는 등짐 지지 프레임, 분절된 팔 장갑과 소나무 초록 발광선",
+      "하의": "상의와 연결된 하이컷 골반 장갑, 허벅지 일부가 드러나는 구조, 다리 전면의 길쭉한 강철빛 장갑과 자작나무 흰 패널, 정밀한 무릎 관절",
+      "신발": "발목에 초록 발광 고리가 있는 강철빛 장갑 하이힐 부츠",
+      "액세서리": "구름처럼 쓸어 올린 올림머리를 가리지 않는 귀 옆의 작은 물방울 모양 센서, 가슴 장갑에 새긴 \"Db\"와 \"105\"",
+      "장비·소품": "등에 멘 커다란 강 관측 유닛 — 머리 위로 높이 솟은 가는 수중 음파 돛대와 그 옆에 감긴 케이블 드럼 둘(large back-mounted river-sonar unit rising above her head) — 두 손은 비어 있음",
+      "부가 요소": "돛대 끝에서 물결처럼 번지는 옅은 초록 음파 고리, 케이블 드럼 끝에서 떨어지는 작은 강물 방울"
+     },
+     "4": {
+      "액션": "두 강 사이 곶에 선 하얀 연구탑 아래 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 등짐의 무게를 든든히 받친 단단한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "구름처럼 높이 쓸어 올린 올림머리와 이마가 비치는 시스루 앞머리, 잔머리 몇 가닥이 강바람에 흔들림",
+      "광원": "넓은 강 위로 드는 맑고 밝은 낮 햇빛, 강철빛 장갑과 흰 갑판에 비친 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 돛대 끝 초록 음파 고리의 보조광",
+      "장면 팔레트": "맑은 하늘색, 밝은 흰색, 강철빛 파랑, 참나무 갈색 한 점, 소나무 초록 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 두 큰 강이 만나는 연구 도시 — 두 물 사이 곶 위로 솟은 하얀 연구탑, 두 강을 스치며 달리는 연구 수중익선, 강둑에 반쯤 묻힌 커다란 둥근 지붕 홀과 그 지붕을 덮은 참나무 숲. 글자는 \"Db\"와 \"105\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "강 위에 길게 그어진 수중익선의 흰 물보라 자국, 공중에 떠도는 작은 초록 빛 알갱이, 인물과 햇빛이 비치는 반질한 흰 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "battle_mage",
+    "steampunk": "aeronaut",
+    "mecha": "big_backpack"
+   }
+  },
+  {
+   "key": "sg",
+   "persona": "표를 넓힌 이의 나라. 1974년 버클리에서 기오르소 연구진이 캘리포늄에 산소 이온을 쏘아 처음 만들었고, 1997년 글렌 시보그의 이름을 받았다 — 살아 있는 사람의 이름을 받은 첫 원소였다. 미시간 광산 마을의 스웨덴계 집안에서 자란 시보그는 플루토늄에서 이 원소까지 열 개의 원소를 찾는 데 손을 보탰고, 1944년 다들 「과학자로서의 이름을 망친다」고 말리던 생각 — 악티늄족 — 으로 주기율표 아래에 열네 칸의 새 줄을 덧붙여 표를 다시 그렸다. 날마다 일지를 적고 먼 길을 걷기를 좋아했으며, 원소 기호만으로 그에게 편지 주소를 쓸 수 있었다 — 시보귬, 로렌슘(연구소), 버클륨, 캘리포늄, 아메리슘. 크로뮴 · 몰리브데넘 · 텅스텐의 아래 — 지도 가장자리 너머가 늘 궁금한, 작고 부지런한 탐험가.",
+   "traits": {
+    "ko": [
+     "「시보그의 원소」 — 1974 버클리, 1997 살아 있는 사람의 이름을 처음 받은 원소",
+     "열 개의 원소를 찾은 손 — 1944 「악티늄족」으로 주기율표 아래에 열네 칸의 새 줄을 덧붙였다(다들 말렸다)",
+     "원소 기호만으로 쓸 수 있던 주소 — 시보귬 · 로렌슘 · 버클륨 · 캘리포늄 · 아메리슘",
+     "크로뮴 · 몰리브데넘 · 텅스텐의 아래 — 날마다 일지를 쓰고 먼 길을 걸은 탐험가"
+    ],
+    "en": "seaborgium: a heavy synthetic metal below chromium, molybdenum and tungsten, first made in 1974 at a hillside laboratory by striking californium with oxygen ions, and the first element named after a person still living: a chemist from a northern mining town who helped find ten elements and, against warnings that it would ruin his name, redrew the periodic table by adding a whole new row of fourteen elements beneath it; a tireless diarist and long-distance walker, whose mailing address could be written in element symbols alone"
+   },
+   "palette": {
+    "en": "explorer's map-parchment cream, new-row green, compass brass, deep fjord blue"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 신탁의 별지도 아래에 새로 덧붙인 한 줄의 땅, 지평선을 따라 열네 칸의 새 들판이 하나씩 열리는 풍경, 지도 가장자리를 넓혀 가는 탐험가의 돌 탑과 걸어서 낸 긴 순례 길",
+     "en": "a prophesied kingdom that does not yet exist: a whole new strip of land added beneath the bottom edge of an oracle's star-chart, a horizon where fourteen new fields open one after another in a row, a stone explorer's tower that keeps pushing out the edge of the map, and a long pilgrim's trail walked into being step by step",
+     "scenes": [
+      {
+       "key": "tower",
+       "ko": "지도 가장자리의 탐험가 탑",
+       "en": "at an explorer's stone tower at the edge of the map"
+      },
+      {
+       "key": "fields",
+       "ko": "새로 열리는 열네 칸의 들판",
+       "en": "above a row of fourteen new fields opening on the horizon"
+      },
+      {
+       "key": "trail",
+       "ko": "걸어서 낸 순례 길",
+       "en": "on a long pilgrim's trail walked into being"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1912 무렵 북쪽 광산 마을 위 식물원 온실 — 원소표처럼 칸칸이 나뉜 화단, 그 아래 새로 파서 덧붙인 열네 칸의 화단 줄, 표본 서랍장과 놋쇠 측량 기구가 놓인 유리 온실",
+     "en": "around 1912, a botanic glasshouse above a northern mining town: flower beds laid out in a grid like a table of the elements, a whole new row of fourteen beds freshly dug and added beneath it, specimen cabinets and brass surveying instruments under the glass roof",
+     "scenes": [
+      {
+       "key": "grid",
+       "ko": "칸칸이 나뉜 화단",
+       "en": "among flower beds laid out in a grid like a table"
+      },
+      {
+       "key": "newrow",
+       "ko": "새로 판 열네 칸의 화단 줄",
+       "en": "beside a freshly dug new row of fourteen beds"
+      },
+      {
+       "key": "cabinet",
+       "ko": "표본 서랍장 온실",
+       "en": "in a glasshouse lined with specimen cabinets"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 심우주 지도 작성선 — 아무도 가 보지 않은 성간 공간에 새 칸을 그려 넣는 지도 작성선의 관측 갑판, 아래로 계속 새 줄이 늘어나는 빛의 별 목록 판, 창밖에 나란히 떠 있는 열 개의 정박 고리",
+     "en": "year 2200, a deep-space charting ship: the observation deck of a survey vessel drawing new squares onto unvisited interstellar space, a glowing star catalogue that keeps growing new rows beneath itself, and ten docking rings floating in a line outside, each marking a place she was first to reach",
+     "scenes": [
+      {
+       "key": "deck",
+       "ko": "지도 작성선 관측 갑판",
+       "en": "on the observation deck of a deep-space charting ship"
+      },
+      {
+       "key": "catalogue",
+       "ko": "늘어나는 빛의 별 목록 앞",
+       "en": "before a glowing star catalogue growing new rows"
+      },
+      {
+       "key": "rings",
+       "ko": "열 개의 정박 고리",
+       "en": "beside a line of ten docking rings floating in space"
+      }
+     ],
+     "design": "a sleek armored bodysuit of compass-brass and parchment-cream plates, thin and long on the shoulders, arms and legs and following her curves closely, a fine glowing grid of little squares traced across the plates with one new row lit bright green along the hips, a small fjord-blue compass core at the chest; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a small brass pocket compass whose lid is engraved with a tiny grid of squares"
+   },
+   "look": {
+    "face": {
+     "face_shape": "heart",
+     "eyes": "round_large",
+     "brows": "soft_round",
+     "nose": "small_button",
+     "lips": "small_bow",
+     "eye_color": "aqua",
+     "age": "early_20s",
+     "impression": "boyish",
+     "skin_tone": "fair",
+     "eye_size": "large",
+     "eye_tilt": "level",
+     "mark": "bare",
+     "expr": "curious"
+    },
+    "silhouette": {
+     "body": "petite_curvy",
+     "hair": "messy_bun",
+     "hair_color": "seaborgium_row"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "round_large"
+      },
+      "silhouette": {
+       "hair": "messy_bun",
+       "bangs": "wispy"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "long_layered",
+       "bangs": "curtain"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "v_line",
+       "eyes": "peach_blossom"
+      },
+      "silhouette": {
+       "hair": "side_ponytail",
+       "bangs": "side_swept"
+      }
+     }
+    },
+    "why": "지도 아래 덧붙인 새 줄처럼 끝에 선명한 초록 띠가 가로지르는 짙은 피오르 파랑 머리, 맑은 아쿠아빛 눈. 지도 가장자리 너머가 늘 궁금한 작고 부지런한 탐험가 → 아담하고 풍만한 몸, 소년 같은 인상 · 하트형 얼굴 · 큰 눈 · 둥근 눈썹 · 작은 코 · 작은 입 · 맨얼굴 · 호기심 어린 얼굴, 스물 초반. 위의 텅스텐(꺼지지 않는 외로운 늑대) · 몰리브데넘(남의 이름으로 무게를 받치는 뼈)과 같은 줄이지만, 제 이름으로 불리며 남의 자리(새 줄)를 넓혀 준 쪽 — 메시 번 / 층 낸 긴 머리 / 사이드 포니테일"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 지도 가장자리를 넓혀 가는 탐험가 마법사 — 별지도 아래에 새로 덧붙인 한 줄, 열네 칸의 새 들판, 열 개의 새 땅을 처음 밟은 발걸음을 담은, 바닥까지 끌리는 긴 로브와 높은 칼라, 넓은 소매, 어깨 망토의 길고 신비로운 실루엣. 노출: 맨어깨, 깊게 열린 목선, 허벅지까지 트인 로브 앞트임",
+      "주요 색상": "지도 양피지 크림색, 깊은 피오르 파랑, 새 줄의 초록, 나침반 놋쇠빛",
+      "주요 소재": "깊은 피오르 파랑 비단 로브, 양피지 크림빛 안감, 가는 놋쇠 격자 자수, 새 줄을 수놓은 초록 비단 띠",
+      "상의": "높이 선 양피지 크림빛 칼라 아래 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 몸에 맞는 불투명한 피오르 파랑 비단 상의가 덮음, 어깨가 드러나는 짧은 크림빛 어깨 망토와 가장자리의 가는 놋쇠 격자 자수, 손끝까지 넓게 늘어진 파랑 소매와 소매 끝의 놋쇠 수",
+      "하의": "바닥까지 끌리는 피오르 파랑 로브 자락과 허벅지까지 높게 트인 앞트임, 자락 끝을 따라 칸칸이 수놓은 격자 무늬와 그 아래 새로 덧붙인 초록 한 줄, 허리의 가는 놋쇠 띠",
+      "신발": "끈으로 단단히 묶은 크림빛 가죽 여행 장화",
+      "액세서리": "잔머리가 흘러내리는 느슨한 메시 번에 꽂은 나침반 바늘 모양 놋쇠 비녀, 목에 건 작은 놋쇠 나침반, 칼라 가운데 놋쇠판에 새긴 \"Sg\"와 \"106\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "로브 둘레에 떠 있는 작은 양피지 지도 조각들 — 가장자리가 저절로 넓어지며 새 칸이 그려짐, 발치에서 앞으로 이어지는 가는 빛의 길"
+     },
+     "4": {
+      "액션": "지도 가장자리의 탐험가 돌 탑 앞 바위 길 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 아직 아무도 가 보지 않은 쪽을 향한 호기심 어린 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "잔머리가 흘러내리는 느슨한 메시 번과 이마가 비치는 시스루 앞머리, 긴 로브 자락과 어깨 망토가 바람에 흔들림",
+      "광원": "넓은 하늘에서 쏟아지는 밝고 따뜻한 한낮 햇빛, 크림빛 칼라와 바위 길에 되비치는 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 발치 빛의 길의 옅은 초록 빛",
+      "장면 팔레트": "맑은 하늘색, 양피지 크림색, 피오르 파랑, 놋쇠빛, 새 줄의 초록 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 신탁의 별지도 아래에 새로 덧붙인 한 줄의 땅, 지평선을 따라 열네 칸의 새 들판이 하나씩 열리는 풍경, 지도 가장자리를 넓혀 가는 탐험가의 돌 탑과 걸어서 낸 긴 순례 길. 글자는 \"Sg\"와 \"106\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "바람에 날리는 작은 양피지 조각, 들판 위로 새 칸이 열릴 때 번지는 옅은 초록 빛, 인물과 햇빛이 비치는 바위 길"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1912년 북쪽 광산 마을 위 식물원 온실의 젊은 식물 탐험가 — 칸칸이 나뉜 화단 아래 새로 파 덧붙인 열네 칸의 한 줄, 열 개의 새 꽃을 찾아낸 발걸음, 날마다 적는 탐험 일지를 담은 밝고 화사한 빅토리아풍 의상, 겹친 리넨 옷과 넓은 챙 모자, 유리병 허리띠, 덩굴 문양의 부드러운 실루엣. 노출: 걷어 올린 소매의 맨팔, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "생성빛 리넨, 피오르 파랑, 새 줄의 초록, 양피지 크림색, 밝은 연금색 놋쇠",
+      "주요 소재": "겹친 생성빛 리넨 블라우스, 피오르 파랑 리넨 조끼, 넓은 챙 밀짚모자, 표본 유리병 허리띠, 격자 모양 덩굴 자수",
+      "상의": "흉골까지 단추를 풀어 자연스러운 가슴골이 보이는 생성빛 리넨 블라우스가 가슴과 몸통을 덮음, 허리를 잡아 주는 짧은 피오르 파랑 리넨 조끼와 가장자리의 격자 모양 덩굴 자수, 팔꿈치 위로 걷어 올린 소매의 맨팔",
+      "하의": "다리가 드러나는 짧은 생성빛 리넨 스커트 위에 겹친 양피지 크림빛 앞치마 자락 — 단에 새 줄처럼 덧댄 초록 천 한 줄, 허리의 가죽 벨트에 나란히 매단 열 개의 작은 표본 유리병",
+      "신발": "끈으로 묶는 갈색 가죽 굽 부츠",
+      "액세서리": "층을 낸 긴 머리 위 넓은 챙 밀짚모자와 초록 천 띠, 목에 건 작은 놋쇠 나침반, 조끼 가슴의 놋쇠판에 새긴 \"Sg\"와 \"106\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "앞치마 주머니에 꽂힌 덮개 닫힌 가죽 탐험 일지, 모자 띠에 꽂은 처음 보는 작은 꽃 한 송이"
+     },
+     "4": {
+      "액션": "새로 판 열네 칸 화단 줄 옆 온실 자갈길 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 새 칸을 보여 주고 싶어 들뜬 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "층을 낸 긴 머리와 가운데에서 갈라져 얼굴을 감싸는 커튼 앞머리, 앞치마 자락이 걸음에 맞춰 가볍게 흔들림",
+      "광원": "유리 지붕으로 쏟아지는 밝고 따뜻한 햇빛, 유리병과 놋쇠 기구에 반사된 따뜻한 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 화단 잎사귀의 싱그러운 초록 반사",
+      "장면 팔레트": "밝은 하늘색, 생성빛 리넨, 피오르 파랑, 잎 초록, 놋쇠 한 점 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1912년 북쪽 광산 마을 위 식물원 온실 — 원소표처럼 칸칸이 나뉜 화단, 그 아래 새로 파서 덧붙인 열네 칸의 화단 줄, 표본 서랍장과 놋쇠 측량 기구가 놓인 유리 온실. 글자는 \"Sg\"와 \"106\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "유리 지붕 아래 떠도는 따뜻한 꽃가루 반짝임, 화단 잎 위에 맺힌 물방울, 인물과 햇빛이 비치는 자갈길"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "몸에 밀착한 날렵한 장갑, 얇고 긴 어깨 · 팔 · 다리 장갑이 몸의 곡선을 그대로 드러내는 미래형 메카 슈트 — 아무도 가 보지 않은 성간 공간에 새 칸을 그려 넣는 지도 작성, 별 목록 아래로 덧붙는 새 줄, 열 개의 처음 닿은 자리를 담은 장갑",
+      "주요 색상": "나침반 놋쇠빛, 양피지 크림색 장갑, 새 줄의 초록 발광, 피오르 파랑 이너",
+      "주요 소재": "매끈한 놋쇠빛 · 크림색 얇은 장갑(thin brass and cream plates), 판 위를 가로지르는 가는 빛의 격자, 골반을 따라 새로 켜진 초록 한 줄, 몸에 붙는 피오르 파랑 슈트",
+      "상의": "놋쇠빛 기계식 칼라와 가운데 작은 피오르 파랑 나침반 코어, 쇄골과 가슴 윗부분이 드러나는 얇은 흉부 장갑, 복부까지 빈틈없이 덮는 몸에 붙는 피오르 파랑 슈트, 어깨와 팔을 따라 얇고 길게 이어진 크림색 장갑판과 그 위의 가는 빛 격자",
+      "하의": "상의와 연결된 하이컷 골반 장갑과 골반을 따라 새로 켜진 초록 빛 한 줄, 허벅지 일부가 드러나는 구조, 다리를 따라 얇고 길게 붙은 놋쇠빛 · 크림색 장갑판, 정밀한 무릎 관절",
+      "신발": "발목에 작은 초록 발광 고리가 있는 크림색 장갑 하이힐 부츠",
+      "액세서리": "사이드 포니테일을 덮지 않는 귀 옆의 작은 놋쇠 측량 센서, 골반 장갑에 새긴 \"Sg\"와 \"106\"",
+      "장비·소품": "없음 — 두 손은 비어 있음",
+      "부가 요소": "손끝 둘레에 떠서 저절로 넓어지는 작은 빛의 격자 지도, 장갑 격자 위로 하나씩 새로 켜지는 초록 칸"
+     },
+     "4": {
+      "액션": "심우주 지도 작성선 관측 갑판의 하얀 바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 창밖 빈 공간이 궁금해 살짝 앞으로 기운 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "한쪽 어깨 위로 넘긴 사이드 포니테일과 한쪽으로 쓸어 넘긴 옆 앞머리, 포니테일 끝이 걸음에 맞춰 가볍게 흔들림",
+      "광원": "넓은 관측창으로 드는 가까운 별의 맑고 밝은 빛, 크림색 장갑과 흰 갑판에 맺힌 또렷한 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 장갑 격자의 초록 보조광",
+      "장면 팔레트": "밝은 흰색, 양피지 크림색, 놋쇠빛, 새 줄의 초록 한 점, 피오르 파랑 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 심우주 지도 작성선 — 아무도 가 보지 않은 성간 공간에 새 칸을 그려 넣는 지도 작성선의 관측 갑판, 아래로 계속 새 줄이 늘어나는 빛의 별 목록 판, 창밖에 나란히 떠 있는 열 개의 정박 고리. 글자는 \"Sg\"와 \"106\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 떠도는 작은 빛의 격자 조각, 관측창 너머 밝게 빛나는 별 무리, 인물과 놋쇠빛이 비치는 반질한 흰 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "mage_robe",
+    "steampunk": "botanist",
+    "mecha": "slim_suit"
+   }
+  },
+  {
+   "key": "bh",
+   "persona": "층층 궤도의 나라. 1981년 다름슈타트의 연구소(GSI)에서 뮌첸베르크와 아름브루스터의 연구진이 비스무트에 크로뮴 이온을 쏘아 원자 몇 개를 처음 만들었고, 원자 모형을 세운 덴마크의 닐스 보어의 이름을 받았다(처음엔 「닐스보륨」, 1997년 「보륨」으로 줄였다 — 붕소와 헷갈린다는 말도 있었다). 1913년 코펜하겐의 젊은 보어는 원자를 층층이 겹친 궤도로 그렸다 — 전자는 정해진 층에만 설 수 있고, 한 층에서 아래 층으로 건너뛸 때만 정해진 빛깔 한 가지를 낸다. 수소가 내는 빨강 · 청록 · 보라의 선이 그렇게 풀렸다. 「상반된 것은 서로를 채운다」를 좌우명으로 삼았고, 젊은 날엔 축구 골문을 지켰다. 망가니즈 · 테크네튬 · 레늄의 아래 — 층을 건너뛸 때마다 한 가지 빛을 내는, 생각이 깊고 너그러운 기사.",
+   "traits": {
+    "ko": [
+     "「보어의 원소」 — 1981 다름슈타트, 처음 이름 닐스보륨에서 1997 보륨으로",
+     "1913 층층 궤도의 원자 모형 — 전자는 정해진 층에만 서고, 층을 건너뛸 때만 정해진 빛깔 하나를 낸다",
+     "수소의 빨강 · 청록 · 보라 선을 푼 생각 · 「상반된 것은 서로를 채운다」 · 젊은 날 축구 골문을 지킨 사람",
+     "망가니즈 · 테크네튬 · 레늄의 아래 — 몇 초에서 몇 분을 버티는 무거운 원소"
+    ],
+    "en": "bohrium: a heavy synthetic metal below manganese, technetium and rhenium, first made in 1981 in a research city by striking bismuth with chromium ions, and named for the physicist of a harbour city who in 1913 pictured the atom as nested orbits stacked at fixed levels, where an electron may stand only on certain rings and gives off one exact colour of light whenever it leaps from one level down to another, explaining the red, cyan and violet lines of glowing hydrogen; first proposed under his full name, then shortened, though it sounds like boron; its longest-lived forms last only seconds to minutes"
+   },
+   "palette": {
+    "en": "harbour verdigris copper, deep navy, white, spectral red, cyan and violet lines"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 신탁의 별지도에서 층층이 겹친 동심원 궤도로만 그려진 빈 나라, 정해진 높이에만 놓인 일곱 겹의 둥근 성벽이 바깥으로 겹겹이 이어진 성채, 성벽 사이를 건너뛸 때마다 한 가지 빛깔로 번쩍이는 하늘",
+     "en": "a prophesied kingdom that does not yet exist: a blank realm drawn on an oracle's star-chart only as nested concentric orbits, a citadel of seven round walls stacked outward, each set at one fixed height, and a sky that flashes one pure colour each time a light leaps from one wall down to the next",
+     "scenes": [
+      {
+       "key": "walls",
+       "ko": "일곱 겹 둥근 성벽 위",
+       "en": "on top of seven nested round walls set at fixed heights"
+      },
+      {
+       "key": "leap",
+       "ko": "한 빛깔로 번쩍이는 성벽 사이",
+       "en": "between two round walls where a leaping light flashes one pure colour"
+      },
+      {
+       "key": "centre",
+       "ko": "동심원 한가운데의 성소",
+       "en": "in a sanctum at the very centre of nested orbits"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1913 무렵 녹청 구리 지붕의 항구 도시 — 정해진 높이마다 둥근 회랑 일곱 겹을 두른 녹청빛 구리 등대탑, 한 회랑에서 띄운 사람이 타지 않은 작은 글라이더가 아래 회랑에 내려앉을 때마다 꼭대기 등불이 던지는 빨강 · 청록 · 보라 가운데 한 가지 빛, 아래로 펼쳐진 운하와 구리 지붕",
+     "en": "around 1913, a harbour city of green copper roofs: a verdigris copper lighthouse tower ringed by seven round galleries at fixed heights, small unmanned gliders launched from one gallery to land on the next one down, and at each such leap the lamp at the top throwing out one pure colour, red, cyan or violet, over the canals and copper roofs",
+     "scenes": [
+      {
+       "key": "gallery",
+       "ko": "등대탑 둥근 회랑",
+       "en": "on a round gallery of a verdigris copper lighthouse tower"
+      },
+      {
+       "key": "glider",
+       "ko": "글라이더 발진대",
+       "en": "at a glider launch rail on one of seven tower galleries"
+      },
+      {
+       "key": "canal",
+       "ko": "녹청 지붕 아래 운하 부두",
+       "en": "on a canal quay below green copper roofs"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 층층 궤도 정거장 — 행성 둘레 정해진 높이에만 놓인 일곱 겹의 동심 궤도 고리, 고리 사이를 오르내리는 승강 캡슐과 그때마다 번쩍이는 한 가지 빛깔, 고리 너머 아래의 푸른 행성",
+     "en": "year 2200, a stacked-orbit station: seven concentric orbital rings set only at fixed heights around a planet, lift capsules jumping between them with a flash of one pure colour each time, and the blue planet turning below",
+     "scenes": [
+      {
+       "key": "ring",
+       "ko": "가장 안쪽 궤도 고리 갑판",
+       "en": "on the deck of the innermost orbital ring"
+      },
+      {
+       "key": "capsule",
+       "ko": "고리 사이 승강 캡슐 승강장",
+       "en": "at a lift-capsule platform between two orbital rings"
+      },
+      {
+       "key": "window",
+       "ko": "일곱 고리가 보이는 관측창",
+       "en": "at a window looking out on seven nested rings"
+      }
+     ],
+     "design": "a sleek armored bodysuit of white and deep navy plates, thin and long on the shoulders, arms and legs and following her curves closely, thin concentric rings of light circling the shoulders, hips and knees in separate pure colours, red, cyan and violet, like electron shells, a small verdigris core at the chest; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a small brass atom model of nested wire rings with one coloured glass bead on each ring"
+   },
+   "look": {
+    "face": {
+     "face_shape": "diamond",
+     "eyes": "almond_wide",
+     "brows": "feathered",
+     "nose": "straight_narrow",
+     "lips": "soft_medium",
+     "eye_color": "bohrium_level",
+     "age": "mid_20s",
+     "impression": "soft",
+     "skin_tone": "porcelain",
+     "eye_size": "medium",
+     "eye_tilt": "level",
+     "mark": "mole_eye",
+     "expr": "pensive"
+    },
+    "silhouette": {
+     "body": "strong_curvy",
+     "hair": "chignon",
+     "hair_color": "bohrium_shell"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "chignon",
+       "bangs": "parted"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "peach_blossom"
+      },
+      "silhouette": {
+       "hair": "drill_curls",
+       "bangs": "side_locks"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "hooded"
+      },
+      "silhouette": {
+       "hair": "twin_loops",
+       "bangs": "straight"
+      }
+     }
+    },
+    "why": "층층 궤도처럼 빨강 · 청록 · 보라 가는 빛의 고리가 따로따로 두른 짙은 남흑색 머리, 동공 둘레로 빛의 동심원이 겹친 깊은 파란 눈. 상반된 것이 서로를 채운다고 믿은 생각 깊은 기사 → 어깨가 단단하고 풍만한 몸(골문을 지킨 사람), 부드러운 인상 · 다이아몬드형 얼굴 · 결이 살아 있는 눈썹 · 곧은 코 · 눈가 점 · 생각에 잠긴 얼굴 · 맑은 흰 피부, 스물 중반. 위의 레늄(가장 뜨거운 자리를 지키는 수호자) · 테크네튬(사람이 처음 만든 막내)과 같은 줄이지만, 뜨거움도 손재주도 아닌 정해진 층과 그 사이의 빛 — 쪽머리 / 드릴 컬 / 두 고리 머리"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 일곱 겹 둥근 성벽의 성채를 지키는 차분한 기사 — 정해진 높이에만 설 수 있는 층층 궤도, 한 층을 건너뛸 때마다 한 가지 빛깔로 번쩍이는 빛, 「상반된 것은 서로를 채운다」는 너그러움을 담은 목부터 발끝까지 이어진 판금과 둥근 큰 어깨판의 단단한 기사 실루엣. 노출: 큰 견갑 아래로 드러난 맨팔, 흉갑 위로 깊게 열린 목선, 짧은 타바드 옆트임 사이로 보이는 허벅지 일부",
+      "주요 색상": "흰 은빛 판금, 짙은 남색, 녹청 구리빛, 빨강 · 청록 · 보라 빛 줄",
+      "주요 소재": "흰빛으로 윤낸 은빛 판금, 동심원 고리를 새긴 녹청 구리 테두리, 짙은 남색 누빔 비단, 세 가지 빛깔의 가는 유리 줄 장식",
+      "상의": "동심원 고리를 새긴 은빛 판금 목가리개, 목가리개 아래로 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 몸에 맞는 은빛 판금 흉갑과 그 안의 불투명한 짙은 남색 누빔 비단이 덮음 — 흉갑 가운데에서 바깥으로 겹겹이 새긴 동심원 고리, 양쪽 어깨에 대칭으로 얹힌 크고 둥근 판금 견갑과 녹청 구리 테두리, 견갑 아래로 드러난 맨팔과 손목까지 오는 판금 팔 보호대",
+      "하의": "허리 아래 겹친 은빛 판금 허리갑(faulds)과 그 위로 앞뒤에 늘어뜨린 무릎 위 길이의 짧은 짙은 남색 문장 타바드(heraldic tabard) — 겹겹의 동심원 고리 문양, 타바드 옆트임 사이로 보이는 허벅지 일부, 무릎에서 발끝까지 이어지는 판금 다리 갑옷",
+      "신발": "판금 다리 갑옷과 이어진 은빛 판금 장화와 발등의 녹청 구리 고리",
+      "액세서리": "낮게 틀어 올린 쪽머리에 꽂은 작은 동심원 모양 은 핀, 목에 건 빨강 · 청록 · 보라 유리 구슬 세 알 목걸이, 흉갑 가운데에 새긴 \"Bh\"와 \"107\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "몸 둘레에 정해진 높이로 떠 있는 가는 빛의 고리 셋 — 빛 알갱이가 한 고리에서 아래 고리로 건너뛸 때마다 한 가지 빛깔로 번쩍임"
+     },
+     "4": {
+      "액션": "일곱 겹 둥근 성벽 꼭대기의 돌길 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 생각에 잠긴 듯 차분하고 너그러운 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "낮게 틀어 올린 우아한 쪽머리와 가운데에서 갈라진 앞머리, 짧은 타바드 자락이 걸음에 맞춰 가볍게 흔들림",
+      "광원": "높은 하늘의 밝고 따뜻한 한낮 햇빛, 은빛 판금과 돌 성벽에 되비치는 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 몸 둘레 빛의 고리에서 번쩍이는 빨강 · 청록 · 보라 보조광",
+      "장면 팔레트": "맑은 하늘색, 흰 은빛, 짙은 남색, 녹청 구리, 빨강 · 청록 · 보라 한 점씩 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 신탁의 별지도에서 층층이 겹친 동심원 궤도로만 그려진 빈 나라, 정해진 높이에만 놓인 일곱 겹의 둥근 성벽이 바깥으로 겹겹이 이어진 성채, 성벽 사이를 건너뛸 때마다 한 가지 빛깔로 번쩍이는 하늘. 글자는 \"Bh\"와 \"107\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 정해진 높이로 떠 있는 작은 빛 알갱이들, 이따금 터지는 빨강 · 청록 · 보라 빛, 인물과 햇빛이 비치는 반질한 돌길"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1913년 녹청 구리 지붕 항구 도시의 글라이더 조종사 — 정해진 높이의 회랑에만 내려앉는 비행, 한 층을 건너뛸 때마다 터지는 한 가지 빛깔, 서로 다른 것이 서로를 채운다는 생각을 담은 밝고 화사한 빅토리아풍 의상, 짧은 비행 재킷과 머리의 고글, 몸을 가로지르는 멜빵, 바람에 길게 날리는 스카프의 하늘을 나는 실루엣. 노출: 맨어깨, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "녹청 구리빛, 짙은 남색 가죽, 크림빛 블라우스, 빨강 · 청록 · 보라 스카프 줄, 연금색 놋쇠",
+      "주요 소재": "짧은 짙은 남색 가죽 비행 재킷, 크림빛 실크 블라우스, 세 가지 빛깔 줄무늬 실크 스카프, 녹청 구리 테 고글, 가죽 멜빵",
+      "상의": "흉골까지 단추를 풀어 자연스러운 가슴골이 보이는 크림빛 실크 블라우스가 가슴과 몸통을 덮음, 그 위에 어깨를 드러내도록 반쯤 내려 걸친 짧은 짙은 남색 가죽 비행 재킷과 소맷부리의 녹청 구리 단추, 가슴을 엇갈려 가로지르는 가죽 멜빵과 동심원 모양 놋쇠 고리, 목에서 바람에 길게 날리는 빨강 · 청록 · 보라 줄무늬 실크 스카프",
+      "하의": "다리가 드러나는 짧은 녹청빛 승마풍 스커트와 허리의 넓은 가죽 벨트, 벨트에 매단 놋쇠 고도계",
+      "신발": "무릎 아래까지 끈으로 묶은 남색 가죽 비행 부츠",
+      "액세서리": "윤기 있는 나선형 드릴 컬 위에 올린 녹청 구리 테 고글, 벨트에 꽂은 가죽 비행 장갑, 재킷 가슴의 놋쇠판에 새긴 \"Bh\"와 \"107\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "스카프 끝에서 차례로 번쩍이는 작은 빨강 · 청록 · 보라 빛, 재킷 어깨에 얹힌 작은 동심원 모양 놋쇠 견장"
+     },
+     "4": {
+      "액션": "녹청 구리 등대탑의 둥근 회랑 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 다음 높이를 가늠하듯 차분히 디딘 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "윤기 있는 나선형 드릴 컬과 앞머리 없이 얼굴을 감싸는 긴 옆머리, 줄무늬 스카프가 바닷바람에 길게 날림",
+      "광원": "넓은 하늘에서 쏟아지는 밝고 따뜻한 오후 햇빛, 구리 회랑과 놋쇠 고글에 반사된 따뜻한 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 꼭대기 등불의 한 가지 빛깔 보조광",
+      "장면 팔레트": "밝은 하늘색, 녹청 구리, 짙은 남색, 크림색, 빨강 · 청록 · 보라 한 점씩 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1913년 녹청 구리 지붕의 항구 도시 — 정해진 높이마다 둥근 회랑 일곱 겹을 두른 녹청빛 구리 등대탑, 회랑 사이를 건너 내려앉는 사람이 타지 않은 작은 글라이더들, 꼭대기 등불이 던지는 한 가지 빛깔, 아래로 펼쳐진 운하와 구리 지붕. 글자는 \"Bh\"와 \"107\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "바닷바람에 날리는 옅은 물안개, 하늘에 그어진 글라이더의 가는 궤적, 인물과 햇빛이 비치는 반질한 구리 회랑 바닥"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "몸에 밀착한 날렵한 장갑, 얇고 긴 어깨 · 팔 · 다리 장갑이 몸의 곡선을 그대로 드러내는 미래형 메카 슈트 — 정해진 높이에만 놓인 층층 궤도, 층을 건너뛸 때마다 터지는 한 가지 빛깔, 상반된 것이 서로를 채우는 균형을 담은 장갑",
+      "주요 색상": "흰색 장갑, 짙은 남색 이너, 빨강 · 청록 · 보라 궤도 발광, 녹청 포인트",
+      "주요 소재": "매끈한 흰 얇은 장갑(thin white plates), 어깨 · 골반 · 무릎을 도는 가는 동심원 빛 고리, 녹청빛 코어, 몸에 붙는 짙은 남색 슈트",
+      "상의": "흰 기계식 칼라와 가운데 작은 녹청 코어, 쇄골과 가슴 윗부분이 드러나는 얇은 흉부 장갑, 복부까지 빈틈없이 덮는 몸에 붙는 짙은 남색 슈트, 어깨와 팔을 따라 얇고 길게 이어진 흰 장갑판과 어깨를 겹겹이 두른 가는 빨강 · 청록 · 보라 빛 고리",
+      "하의": "상의와 연결된 하이컷 골반 장갑과 골반을 도는 동심원 빛 고리, 허벅지 일부가 드러나는 구조, 다리를 따라 얇고 길게 붙은 흰 장갑판, 정밀한 무릎 관절과 무릎을 두른 작은 빛 고리",
+      "신발": "발목에 작은 보랏빛 발광 고리가 있는 흰 장갑 하이힐 부츠",
+      "액세서리": "정수리의 두 고리 머리를 덮지 않는 귀 옆의 작은 녹청 센서, 골반 장갑에 새긴 \"Bh\"와 \"107\"",
+      "장비·소품": "없음 — 두 손은 비어 있음",
+      "부가 요소": "빛 알갱이가 바깥 고리에서 안쪽 고리로 건너뛸 때마다 한 가지 빛깔로 번쩍이는 작은 섬광, 어깨 고리 둘레의 옅은 빛 번짐"
+     },
+     "4": {
+      "액션": "가장 안쪽 궤도 고리의 하얀 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 생각을 고르는 듯 차분한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "정수리 높이 고정한 두 개의 고리 머리와 일자 앞머리, 고리 아래로 늘어진 머리끝이 걸음에 맞춰 가볍게 흔들림",
+      "광원": "커다란 관측창으로 드는 맑고 밝은 햇빛, 흰 장갑과 흰 갑판에 맺힌 또렷한 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 장갑 빛 고리의 빨강 · 청록 · 보라 보조광",
+      "장면 팔레트": "밝은 흰색, 짙은 남색, 녹청 한 점, 빨강 · 청록 · 보라 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 층층 궤도 정거장 — 행성 둘레 정해진 높이에만 놓인 일곱 겹의 동심 궤도 고리, 고리 사이를 오르내리는 승강 캡슐과 그때마다 번쩍이는 한 가지 빛깔, 고리 너머 아래의 푸른 행성. 글자는 \"Bh\"와 \"107\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "창밖 고리를 따라 줄지은 작은 불빛, 이따금 터지는 한 가지 빛깔의 섬광, 인물과 흰빛이 비치는 반질한 흰 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "full_plate",
+    "steampunk": "aeronaut",
+    "mecha": "slim_suit"
+   }
+  },
+  {
+   "key": "hs",
+   "persona": "숲과 성의 영방의 나라. 1984년 다름슈타트의 연구소(GSI)에서 뮌첸베르크와 아름브루스터의 연구진이 납에 철 이온을 쏘아 처음 만들었고, 연구소가 선 독일 헤센 주의 라틴어 이름 「하시아」에서 이름을 받았다. 헤센은 너도밤나무와 참나무가 깊은 숲, 숲 언덕마다 솟은 붉은 사암 성, 그림 형제가 옛이야기를 모은 동화의 길의 땅이다. 오스뮴의 바로 아래 — 2001년 원자 몇 개로 오스뮴처럼 날아오르는 사산화물 기체를 만들어 「무거운 오스뮴」임을 확인했고, 양성자 108 · 중성자 162의 핵은 찌그러진 모양 속에서 두 겹의 「마법수」가 겹쳐 유독 단단하다 — 깊은 숲 속 잠든 성처럼 고요하고 기품 있는 공녀.",
+   "traits": {
+    "ko": [
+     "「헤센의 원소」 — 1984 다름슈타트, 연구소가 선 숲과 성의 영방(라틴어 하시아)의 이름",
+     "너도밤나무 · 참나무 숲과 붉은 사암 성 · 그림 형제가 옛이야기를 모은 동화의 길",
+     "오스뮴의 아래 — 2001 원자 몇 개로 오스뮴처럼 날아오르는 사산화물 기체를 만들어 「무거운 오스뮴」을 확인",
+     "양성자 108 · 중성자 162 — 찌그러진 핵에 두 겹의 마법수가 겹친 유독 단단한 자리"
+    ],
+    "en": "hassium: a heavy synthetic metal below osmium, first made in 1984 by striking lead with iron ions in a research city, and named in Latin for the forested hill state around it, a land of deep beech and oak woods, red sandstone castles on wooded ridges and old fairy tales gathered there by two brothers; in 2001 a few atoms were turned into a volatile oxide gas just as osmium is, proving it a true heavier osmium, and one of its forms sits on a doubly magic shelf of unusual stability"
+   },
+   "palette": {
+    "en": "deep beech-forest green, red sandstone, osmium blue-grey metal, autumn beech gold"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 신탁의 별지도 가장자리, 아직 그려지지 않은 깊은 너도밤나무 · 참나무 숲의 영방, 숲 위로 솟은 붉은 사암 성의 탑들, 이끼 낀 오솔길 끝마다 잠든 듯 고요한 동화 같은 성문",
+     "en": "a prophesied kingdom that does not yet exist: an unmapped forest state at the edge of an oracle's star-chart, deep beech and oak woods, towers of red sandstone castles rising above the treetops, and mossy paths leading to still, fairy-tale castle gates that seem to be sleeping",
+     "scenes": [
+      {
+       "key": "gate",
+       "ko": "잠든 사암 성문",
+       "en": "before a still, sleeping red sandstone castle gate"
+      },
+      {
+       "key": "path",
+       "ko": "이끼 낀 너도밤나무 오솔길",
+       "en": "on a mossy path through deep beech woods"
+      },
+      {
+       "key": "tower",
+       "ko": "숲 위로 솟은 성탑 발코니",
+       "en": "on a castle tower balcony above the treetops"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1914 무렵 숲의 영방에 새로 생긴 큰 호수 — 막 완성된 거대한 돌 댐, 숲 우거진 언덕 위의 옛 성, 부두에 댄 하얀 호수 증기 유람선, 물 위로 살짝 드러난 잠긴 마을의 교회 첨탑",
+     "en": "around 1914, a great new reservoir lake in a forested hill state: a colossal stone dam just completed, an old castle on the wooded ridge above, a white lake steamer at its pier, and the church spire of a drowned village just breaking the water",
+     "scenes": [
+      {
+       "key": "dam",
+       "ko": "막 완성된 돌 댐 위",
+       "en": "on the crest of a newly completed colossal stone dam"
+      },
+      {
+       "key": "steamer",
+       "ko": "하얀 호수 유람선 갑판",
+       "en": "on the deck of a white lake steamer"
+      },
+      {
+       "key": "pier",
+       "ko": "성 아래 호숫가 부두",
+       "en": "at a lakeside pier below a castle on a wooded ridge"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 떠 있는 숲 성채의 영방 — 천천히 도는 고리 안정기로 공중에 떠받친 숲 덮인 섬 성채들, 성채와 성채를 잇는 빛의 다리, 위쪽 테라스마다 자라는 깊은 너도밤나무 숲",
+     "en": "year 2200, a forest state of floating citadels: forest-covered island castles held aloft by slowly turning ring stabilizers, bridges of light linking one citadel to the next, and deep beech woods growing on their upper terraces",
+     "scenes": [
+      {
+       "key": "terrace",
+       "ko": "숲 덮인 떠 있는 성채 테라스",
+       "en": "on a forested terrace of a floating island citadel"
+      },
+      {
+       "key": "bridge",
+       "ko": "성채를 잇는 빛의 다리",
+       "en": "on a bridge of light between floating citadels"
+      },
+      {
+       "key": "stabilizer",
+       "ko": "성채 밑동의 부유 고리 곁",
+       "en": "beside a slowly turning ring stabilizer beneath a floating citadel"
+      }
+     ],
+     "design": "beech-green and osmium blue-grey light armor with ring-shaped armor bands floating free around her waist and ankles like the turning stabilizer rings of a floating castle, each ring edged with autumn-gold light and engraved inside with a fine beech-leaf pattern, red-sandstone trim on the shoulder plates, a small castle-tower crest core at the chest; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a small red sandstone castle-tower charm hung with one beech leaf of dull blue-grey metal"
+   },
+   "look": {
+    "face": {
+     "face_shape": "oval",
+     "eyes": "phoenix",
+     "brows": "high_arched",
+     "nose": "high_bridge",
+     "lips": "heart_full",
+     "eye_color": "forest_green",
+     "age": "late_20s",
+     "impression": "regal",
+     "skin_tone": "porcelain",
+     "eye_size": "medium",
+     "eye_tilt": "up",
+     "mark": "red_lip",
+     "expr": "calm"
+    },
+    "silhouette": {
+     "body": "tall_curvy",
+     "hair": "tilted_bun",
+     "hair_color": "hassium_beech"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "phoenix"
+      },
+      "silhouette": {
+       "hair": "tilted_bun",
+       "bangs": "side_locks"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "angular",
+       "eyes": "cat"
+      },
+      "silhouette": {
+       "hair": "pixie",
+       "bangs": "side_swept"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "long",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "segmented_tail",
+       "bangs": "none"
+      }
+     }
+    },
+    "why": "붉은 사암빛 그늘과 가을 너도밤나무 잎 같은 금빛 반짝임이 도는 깊은 숲 초록 머리, 깊은 숲 초록 눈. 깊은 숲 속 잠든 성처럼 고요하고 기품 있는 공녀 → 키 크고 풍만한 몸, 위엄 있는 인상 · 갸름한 얼굴 · 꼬리 올라간 봉황눈 · 높고 우아한 눈썹 · 섬세한 코 · 붉은 입술 · 차분한 얼굴 · 흰 피부, 스물 후반. 바로 위 오스뮴(냄새 고약하고 무뚝뚝한 이리듐의 쌍둥이)과 같은 사산화물 기체를 내지만 무뚝뚝하지 않고 고요하며, 짝 다름슈타튬(같은 연구소 도시의 멋쟁이 장인)이 도시라면 이쪽은 그 둘레의 숲과 성 — 기운 번 / 픽시컷 / 마디 묶은 긴 꼬리 머리"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 깊은 너도밤나무 숲과 붉은 사암 성의 영방을 다스리는 공녀 — 잠든 듯 고요한 동화 같은 성문, 오스뮴처럼 날아오르는 무거운 숨, 두 겹의 마법수로 유독 단단한 핵을 담은, 잎사귀 문양의 얇은 갑편과 흐르는 얇은 천 자락, 가는 서클릿의 가늘고 우아한 실루엣. 노출: 맨어깨와 맨팔, 깊게 열린 목선, 허벅지까지 트인 옆트임",
+      "주요 색상": "깊은 너도밤나무 숲 초록, 붉은 사암빛, 오스뮴 청회색 금속, 가을 너도밤나무 금빛",
+      "주요 소재": "너도밤나무 잎 모양으로 두드린 얇은 청회색 금속 갑편, 흐르는 숲 초록 시폰 자락, 가을 금빛 비단 테두리, 붉은 사암 구슬",
+      "상의": "몸에 꼭 맞는 너도밤나무 잎 모양 청회색 금속 갑편의 가슴 갑옷 — 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 갑편과 불투명한 숲 초록 비단 상의가 덮음, 어깨에 얹은 작은 잎 모양 갑편과 가을 금빛 테두리, 드러난 맨어깨와 맨팔, 손목의 붉은 사암 구슬 팔찌",
+      "하의": "허리에서 흐르는 겹겹의 얇은 숲 초록 · 가을 금빛 시폰 자락과 허벅지까지 높게 트인 옆트임, 자락 끝에 수놓은 작은 성탑 실루엣 무늬, 허리의 청회색 금속 잎사귀 띠",
+      "신발": "종아리까지 감아 올린 짙은 갈색 가죽 샌들과 발목의 작은 금속 잎",
+      "액세서리": "이마의 가는 청회색 서클릿과 가운데 작은 붉은 사암 성탑 장식, 한쪽으로 기운 번에 꽂은 금빛 너도밤나무 잎 비녀, 가슴 갑편에 새긴 \"Hs\"와 \"108\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "어깨 둘레에 천천히 떠도는 금빛 너도밤나무 잎 몇 장, 발치에 피어오르는 아주 옅은 청회색 김"
+     },
+     "4": {
+      "액션": "잠든 듯 고요한 붉은 사암 성문 앞 이끼 낀 돌길 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 우아하고 기품 있는 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "잔머리를 늘어뜨린, 한쪽으로 기운 번과 앞머리 없이 얼굴을 감싸는 긴 옆머리, 시폰 자락이 숲바람에 가볍게 흔들림",
+      "광원": "너도밤나무 잎 사이로 쏟아지는 밝고 따뜻한 한낮 햇빛, 청회색 갑편과 사암 성문에 되비치는 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 잎 사이로 내리는 금빛 햇살 줄기",
+      "장면 팔레트": "맑은 하늘색, 너도밤나무 초록, 붉은 사암, 청회색, 가을 금빛 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 신탁의 별지도 가장자리, 아직 그려지지 않은 깊은 너도밤나무 · 참나무 숲의 영방, 숲 위로 솟은 붉은 사암 성의 탑들, 이끼 낀 오솔길 끝마다 잠든 듯 고요한 동화 같은 성문. 글자는 \"Hs\"와 \"108\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇살 속에 천천히 떨어지는 금빛 너도밤나무 잎, 숲 바닥에 낮게 깔린 옅은 안개, 인물과 햇빛이 비치는 이끼 낀 돌길"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1914년 숲의 영방에 새로 생긴 큰 호수의 유람선 선장 — 숲 언덕 위 옛 성, 막 완성된 거대한 돌 댐, 물에 잠긴 마을을 굽어보는 고요한 품위를 담은 밝고 화사한 빅토리아풍 의상, 짧은 해군 프록코트와 금 장식 띠, 바람에 날리는 허리 장식의 항해자 실루엣. 노출: 걷어 올린 소매의 맨팔, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "크림빛 백색, 깊은 숲 초록, 붉은 사암빛, 가을 금빛, 연금색 놋쇠",
+      "주요 소재": "윤기 있는 크림빛 실크 블라우스, 깊은 숲 초록 해군 프록코트, 가을 금실 장식 띠, 붉은 사암빛 비단 허리 장식",
+      "상의": "흉골까지 단추를 풀어 자연스러운 가슴골이 보이는 크림빛 실크 하이넥 블라우스가 가슴과 몸통을 덮음, 그 위에 허리까지 오는 짧은 숲 초록 해군 프록코트와 어깨 · 소맷부리의 가을 금실 장식 띠, 앞섶에 두 줄로 단 청회색 금속 단추, 팔꿈치 위로 걷어 올린 소매의 맨팔",
+      "하의": "다리가 드러나는 짧은 크림빛 · 숲 초록 버슬 스커트, 허리에 비스듬히 둘러 옆으로 길게 늘어뜨린 붉은 사암빛 비단 장식 띠(sash), 가죽 벨트와 놋쇠 고정쇠",
+      "신발": "끈으로 묶는 짙은 갈색 가죽 굽 부츠와 발목의 놋쇠 버클",
+      "액세서리": "짧은 픽시컷 위에 비스듬히 얹은 작은 선장 모자와 금빛 너도밤나무 잎 휘장, 목에 건 작은 성탑 모양 놋쇠 펜던트, 프록코트 가슴의 놋쇠판에 새긴 \"Hs\"와 \"108\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "코트 주머니에 꽂힌 접은 놋쇠 망원경, 허리 장식 띠 끝의 작은 놋쇠 닻 장식"
+     },
+     "4": {
+      "액션": "하얀 호수 유람선의 반질한 나무 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 기품 있고 느긋한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "짧은 픽시컷과 한쪽으로 쓸어 넘긴 옆 앞머리, 붉은 허리 장식 띠가 호수 바람에 길게 날림",
+      "광원": "넓은 호수 위로 쏟아지는 밝고 따뜻한 아침 햇빛, 놋쇠 난간과 물결에 반사된 따뜻한 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 물빛이 갑판에 일렁이는 반사",
+      "장면 팔레트": "밝은 하늘색, 숲 초록, 크림빛, 붉은 사암 한 점, 가을 금빛 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1914년 숲의 영방에 새로 생긴 큰 호수 — 막 완성된 거대한 돌 댐, 숲 우거진 언덕 위의 옛 성, 부두에 댄 하얀 호수 증기 유람선, 물 위로 살짝 드러난 잠긴 마을의 교회 첨탑. 글자는 \"Hs\"와 \"108\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "호수 위로 피어오르는 옅은 아침 물안개, 굴뚝에서 오르는 하얀 증기, 인물과 햇빛이 비치는 반질한 나무 갑판"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "허리와 발목 둘레에 몸에서 떨어져 떠 있는 고리 장갑이 떠 있는 성채의 안정 고리처럼 천천히 도는 미래형 메카 슈트 — 숲과 성의 영방, 오스뮴처럼 날아오르는 무거운 숨, 두 겹의 마법수로 단단한 핵을 담은 장갑",
+      "주요 색상": "너도밤나무 초록 장갑, 오스뮴 청회색, 가을 금빛 발광, 붉은 사암 포인트",
+      "주요 소재": "가벼운 너도밤나무 초록 장갑판(beech-green armor), 몸에서 떨어져 떠 있는 청회색 고리 장갑(floating ring bands), 가을 금빛 발광 테두리와 너도밤나무 잎 무늬, 붉은 사암빛 어깨 장식",
+      "상의": "청회색 기계식 칼라와 중앙의 작은 성탑 문장 코어, 쇄골과 가슴 윗부분이 드러나는 입체적인 흉부 장갑, 복부까지 빈틈없이 덮는 몸에 붙는 짙은 숲 초록 슈트, 얇고 둥근 어깨 장갑과 붉은 사암빛 장식판, 가볍게 분절된 팔 장갑과 금빛 잎 무늬",
+      "하의": "상의와 연결된 하이컷 골반 장갑, 허벅지 일부가 드러나는 구조, 허리 둘레에 몸에서 떨어져 떠 있는 넓은 청회색 고리 장갑 두 겹 — 고리 안쪽에 새긴 가는 너도밤나무 잎 무늬, 다리 전면의 얇은 초록 장갑 패널, 정밀한 무릎 관절",
+      "신발": "발목 둘레에 떠 있는 작은 금빛 고리 장갑과 청회색 장갑 하이힐 부츠",
+      "액세서리": "마디마디 묶은 긴 꼬리 머리를 덮지 않는 귀 옆의 작은 잎 모양 센서, 한쪽 어깨 장갑에 새긴 \"Hs\"와 \"108\"",
+      "장비·소품": "없음 — 두 손은 비어 있음",
+      "부가 요소": "떠 있는 고리 둘레에 천천히 맴도는 금빛 너도밤나무 잎 모양 빛 조각, 고리 아래로 흐르는 옅은 청회색 김"
+     },
+     "4": {
+      "액션": "숲 덮인 떠 있는 성채 테라스의 하얀 돌 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 영방을 둘러보는 듯 기품 있는 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "머리 고리로 마디마디 묶은 아주 긴 꼬리 머리와 이마를 드러낸 얼굴, 긴 꼬리 머리가 걸음에 맞춰 크게 흔들림",
+      "광원": "높은 하늘의 맑고 밝은 낮 햇빛, 초록 장갑과 흰 돌 갑판에 비친 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 떠 있는 고리의 금빛 보조광",
+      "장면 팔레트": "맑은 하늘색, 밝은 흰색, 너도밤나무 초록, 청회색, 가을 금빛 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 떠 있는 숲 성채의 영방 — 천천히 도는 고리 안정기로 공중에 떠받친 숲 덮인 섬 성채들, 성채와 성채를 잇는 빛의 다리, 위쪽 테라스마다 자라는 깊은 너도밤나무 숲. 글자는 \"Hs\"와 \"108\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 천천히 떨어지는 금빛 잎 모양 빛 조각, 성채 아래로 흐르는 하얀 구름, 인물과 햇빛이 비치는 반질한 흰 돌 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "elven_leaf",
+    "steampunk": "naval_officer",
+    "mecha": "hover_rings"
+   }
+  },
+  {
+   "key": "mt",
+   "persona": "쪼개짐의 나라. 1982년 다름슈타트의 연구소(GSI)에서 뮌첸베르크와 아름브루스터의 연구진이 비스무트에 철 이온을 쏘아 단 하나의 원자로 처음 만들었고, 리제 마이트너의 이름을 받았다 — 신화 속 인물이 아닌 여성 한 사람의 이름만 받은 단 하나의 원소다. 빈에서 태어나 베를린의 목공소를 고친 방에서 연구를 시작했고(거기서 프로트악티늄을 찾았다), 1938년 망명한 스웨덴의 겨울 크리스마스에 조카 프리슈와 눈 덮인 숲을 걷다 쓰러진 나무 둥치에 앉아 종잇조각에 계산했다 — 무거운 우라늄 핵은 떨리는 물방울처럼 늘어나 둘로 쪼개지며 큰 힘을 낸다. 그 발견의 노벨상은 함께 일한 한 혼자 받았고, 그녀는 그 힘으로 폭탄을 만드는 일을 끝내 거절했다. 묘비엔 「인간성을 잃지 않은 물리학자」. 이리듐의 아래 — 조용하지만 꺾이지 않는, 겨울 숲의 학자.",
+   "traits": {
+    "ko": [
+     "「마이트너의 원소」 — 1982 다름슈타트, 원자 하나 · 신화 아닌 한 여성의 이름만 받은 원소",
+     "1938 망명지의 겨울, 눈 덮인 숲의 쓰러진 나무 둥치에 앉아 계산한 핵분열 — 떨리는 물방울처럼 늘어나 둘로 쪼개지는 핵",
+     "노벨상은 함께 일한 이 혼자 · 폭탄 일은 끝내 거절한 「인간성을 잃지 않은 물리학자」",
+     "이리듐의 아래 · 프로트악티늄을 찾은 손"
+    ],
+    "en": "meitnerium: a heavy synthetic metal below iridium, first made in 1982 in a research city as a single atom, and the only element named for one real woman alone: an exiled physicist who, on a snowy winter walk in a forest, sat on a fallen tree trunk and worked out on scraps of paper that a heavy nucleus can stretch like a trembling drop of liquid and split cleanly in two, releasing great energy; the prize for that discovery went to her colleague alone, and she refused all work on the weapon it made possible"
+   },
+   "palette": {
+    "en": "winter snow white, iron grey, blue-violet split-light, ember red at the break"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 신탁의 별지도에서 한 줄 금이 그어져 둘로 갈라진 빈칸, 한가운데가 깨끗하게 쪼개져 쌍둥이 봉우리로 선 눈 덮인 산, 갈라진 틈에서 푸른 보랏빛이 솟는 겨울 숲과 그 앞에 쓰러진 나무 둥치",
+     "en": "a prophesied kingdom that does not yet exist: a blank on an oracle's star-chart crossed by a single line that splits it in two, a snow-covered mountain cleanly cleaved down the middle into twin peaks, and a winter forest where blue-violet light wells up from the fresh crack beside a fallen tree trunk",
+     "scenes": [
+      {
+       "key": "cleft",
+       "ko": "둘로 갈라진 산의 틈",
+       "en": "in the clean cleft between two halves of a split snow mountain"
+      },
+      {
+       "key": "trunk",
+       "ko": "겨울 숲의 쓰러진 나무 둥치",
+       "en": "beside a fallen tree trunk in a snowy winter forest"
+      },
+      {
+       "key": "peaks",
+       "ko": "쌍둥이 봉우리 사이 돌다리",
+       "en": "on a narrow stone bridge between twin split peaks"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1910 무렵 눈 덮인 북쪽 바닷가 마을의 겨울 연구소 — 소나무 숲 속 리벳 철판 관측 오두막, 떨리는 은빛 물방울이 허리처럼 잘록해지다 둘로 갈라지는 놋쇠 · 유리 시연 장치, 창밖 눈 위에 쓰러진 나무 둥치와 흩어진 종이 쪽지",
+     "en": "around 1910, a winter research station by a snowbound northern seaside village: a riveted iron-plate observatory hut in a snowy pine forest, a brass-and-glass demonstration apparatus where a trembling silvery drop narrows at the waist and splits cleanly in two, and outside the window a fallen tree trunk in the snow with loose scraps of paper scattered around it",
+     "scenes": [
+      {
+       "key": "hut",
+       "ko": "리벳 철판 관측 오두막 안",
+       "en": "inside a riveted iron-plate observatory hut in the snow"
+      },
+      {
+       "key": "drop",
+       "ko": "물방울이 둘로 갈라지는 시연 장치 앞",
+       "en": "beside a brass-and-glass apparatus where a silvery drop splits in two"
+      },
+      {
+       "key": "trunk",
+       "ko": "눈 위 쓰러진 나무 둥치",
+       "en": "beside a fallen tree trunk in a snowy pine forest"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 쪼개진 위성의 도시 — 깨끗하게 둘로 갈라진 작은 위성의 두 반쪽 사이에 걸린 거대한 다리 도시, 갈라진 단면에서 흘러나오는 푸른 보랏빛 에너지, 공중에 눈처럼 떠도는 하얀 빛 가루",
+     "en": "year 2200, a city on a split moon: a vast bridge-city slung between the two cleanly cloven halves of a small moon, blue-violet energy pouring from the cut faces, and white motes of light drifting like snow",
+     "scenes": [
+      {
+       "key": "span",
+       "ko": "두 반쪽을 잇는 다리 도시",
+       "en": "on a bridge-city spanning the two halves of a split moon"
+      },
+      {
+       "key": "face",
+       "ko": "갈라진 단면의 빛 벽 앞",
+       "en": "before the glowing cut face of a cloven moon"
+      },
+      {
+       "key": "platform",
+       "ko": "빛 가루 내리는 관측대",
+       "en": "on an observation platform under drifting white motes of light"
+      }
+     ],
+     "design": "snow-white and iron-grey armor with a slender torso and oversized mechanical forearms and lower legs, each huge gauntlet and boot cleanly split down its length into two halves with blue-violet light shining from the seam between them, ember-red trim at the break lines, a small core at the chest shaped like a drop pinching in two; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a small glass droplet charm cleanly split into two halves, held together by a thin silver clasp"
+   },
+   "look": {
+    "face": {
+     "face_shape": "long",
+     "eyes": "deep_set",
+     "brows": "straight_thin",
+     "nose": "aquiline",
+     "lips": "thin_bow",
+     "eye_color": "cherenkov_blue",
+     "age": "early_30s",
+     "impression": "elegant",
+     "skin_tone": "fair",
+     "eye_size": "medium",
+     "eye_tilt": "down",
+     "mark": "smoky",
+     "expr": "wistful"
+    },
+    "silhouette": {
+     "body": "lanky",
+     "hair": "windswept_long",
+     "hair_color": "meitnerium_split"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "long",
+       "eyes": "deep_set"
+      },
+      "silhouette": {
+       "hair": "windswept_long",
+       "bangs": "one_eye"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "oval",
+       "eyes": "droopy_soft"
+      },
+      "silhouette": {
+       "hair": "giant_braid",
+       "bangs": "parted"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "inverted_triangle",
+       "eyes": "hooded"
+      },
+      "silhouette": {
+       "hair": "twin_loops",
+       "bangs": "baby"
+      }
+     }
+    },
+    "why": "가운데 한 줄 옅은 푸른 보랏빛 가르마로 깨끗하게 나뉘어 끝에서 서로 반대로 말려 나가는 눈빛 은발, 빛나는 체렌코프 청색 눈 — 둘로 쪼개지는 핵과 그 빛. 망명지에서도 꺾이지 않은 조용한 학자 → 마르고 긴 몸, 우아한 인상 · 길쭉한 얼굴 · 깊은 눈 · 가늘고 곧은 눈썹 · 매부리코 · 얇은 입술 · 스모키 눈매 · 그리운 듯한 얼굴, 서른 초반. 그녀가 찾은 프로트악티늄(너그러운 어미)보다 날카롭고, 위의 이리듐(녹슬지 않는 판관)처럼 단단하지만 판결이 아니라 풀이 — 바람에 흩날리는 긴 머리 / 무릎까지 땋은 굵은 머리 / 두 고리 머리"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 둘로 갈라진 눈 덮인 산을 지키는 겨울의 용기사 예복 — 물방울처럼 늘어나다 깨끗하게 둘로 쪼개지는 핵, 눈 덮인 숲의 쓰러진 나무 둥치 위에서 풀어낸 생각, 끝내 인간성을 잃지 않은 마음을 담은 온몸을 덮는 용비늘 갑옷과 뿔 모양 어깨 · 머리 장식의 짐승 같은 위용의 실루엣. 노출: 맨어깨와 맨팔, 깊게 열린 목선, 허벅지까지 드러난 다리",
+      "주요 색상": "겨울 눈빛 흰색, 쇠빛 회색, 푸른 보랏빛 갈라짐 빛, 갈라진 자리의 잉걸불 빨강",
+      "주요 소재": "가운데에서 깨끗하게 둘로 갈라진 눈빛 흰 용비늘 판갑, 쇠빛 회색 비늘 테두리, 갈라진 이음매의 푸른 보랏빛 빛줄, 흰 털 테두리 비단",
+      "상의": "가장자리가 뿔처럼 솟은 쇠빛 회색 용비늘 목가리개, 목가리개 아래로 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 몸에 맞는 눈빛 흰 용비늘 흉갑과 그 안의 불투명한 짙은 남보라 비단이 덮음 — 흉갑 가운데를 세로로 가르는 가는 푸른 보랏빛 빛줄, 양쪽 어깨에 대칭으로 솟은 뿔 모양 비늘 견갑, 견갑 아래로 드러난 맨어깨와 맨팔, 팔뚝의 비늘 팔 보호대",
+      "하의": "흉갑과 이어진 짧은 비늘 허리갑과 그 아래 둘로 갈라져 겹친 짧은 흰 · 남보라 비단 자락, 허벅지까지 드러난 다리, 무릎을 덮는 쇠빛 비늘 무릎갑",
+      "신발": "정강이를 덮는 눈빛 흰 비늘 장화와 발목의 잉걸불 빨강 테두리",
+      "액세서리": "바람에 흩날리는 긴 머리 위의 작은 뿔 모양 쇠빛 머리 장식, 귀의 둘로 갈라진 물방울 모양 은 귀걸이, 흉갑에 새긴 \"Mt\"와 \"109\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "갈라진 비늘 이음매에서 새어 나오는 옅은 푸른 보랏빛, 어깨에 내려앉는 고운 눈송이"
+     },
+     "4": {
+      "액션": "둘로 갈라진 눈 덮인 산 사이 좁은 돌다리 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 조용하지만 꺾이지 않는 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "바람에 옆으로 길게 흩날리는 아주 긴 머리와 한쪽 눈 위로 길게 내려오는 앞머리, 갈라진 비단 자락이 찬바람에 흔들림",
+      "광원": "눈 덮인 산에 쏟아지는 밝고 맑은 한낮 햇빛, 흰 비늘과 눈밭에 되비치는 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 산의 갈라진 틈에서 솟는 푸른 보랏빛",
+      "장면 팔레트": "맑은 하늘색, 눈빛 흰색, 쇠빛 회색, 푸른 보랏빛 한 줄, 잉걸불 빨강 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 신탁의 별지도에서 한 줄 금이 그어져 둘로 갈라진 빈칸, 한가운데가 깨끗하게 쪼개져 쌍둥이 봉우리로 선 눈 덮인 산, 갈라진 틈에서 푸른 보랏빛이 솟는 겨울 숲과 그 앞에 쓰러진 나무 둥치. 글자는 \"Mt\"와 \"109\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛 속에 반짝이며 흩날리는 고운 눈가루, 산의 틈에서 피어오르는 푸른 보랏빛 김, 인물과 햇빛이 비치는 눈 덮인 돌다리"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1910년 눈 덮인 북쪽 바닷가 겨울 연구소의 꿋꿋한 물리학자 — 물방울처럼 떨리다 둘로 쪼개지는 무거운 핵, 쓰러진 나무 둥치 위에서 종이 쪽지로 풀어낸 생각, 망명지에서도 굽히지 않은 마음을 담은 밝고 화사한 빅토리아풍 리벳 철갑 의상. 노출: 걷어 올린 소매의 맨팔, 흉갑 위로 쇄골과 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "크림빛 백색, 쇠빛 회색, 눈빛 흰색, 푸른 보랏빛, 잉걸불 빨강 한 점",
+      "주요 소재": "크림빛 실크 블라우스, 리벳 박힌 쇠빛 회색 철판 흉갑, 가운데 이음선을 따라 둘로 나뉜 흉갑 판, 흰 털 테두리, 놋쇠 리벳",
+      "상의": "흉골까지 단추를 풀어 쇄골과 자연스러운 가슴골이 보이는 크림빛 실크 블라우스와 팔꿈치 위로 걷어 올린 소매, 그 위에 가슴과 몸통을 빈틈없이 덮는 리벳 박힌 쇠빛 회색 철판 흉갑 — 가운데 세로 이음선으로 깔끔하게 둘로 나뉜 판과 이음선의 가는 푸른 보랏빛 유리 띠, 양쪽 어깨에 대칭으로 얹힌 넓은 철 어깨판과 흰 털 테두리",
+      "하의": "앞은 무릎 위로 짧고 뒤가 크게 부푼 크림빛 · 쇠빛 회색 버슬 스커트 — 뒤 부풀림이 둘로 갈라져 겹침, 스커트 단을 두른 리벳 띠, 허리의 짙은 갈색 가죽 벨트와 놋쇠 버클",
+      "신발": "끈으로 묶는 무거운 쇠빛 회색 가죽 장화와 흰 털 테두리",
+      "액세서리": "무릎까지 내려오는 아주 굵은 한 갈래 땋은 머리 끝을 묶은 놋쇠 고리, 목에 건 둘로 갈라진 유리 물방울 펜던트, 흉갑 위 놋쇠판에 새긴 \"Mt\"와 \"109\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "흉갑 이음선에서 새어 나오는 옅은 푸른 보랏빛, 어깨판 위에 내려앉은 하얀 눈송이"
+     },
+     "4": {
+      "액션": "눈 덮인 소나무 숲 속 철판 관측 오두막 앞 밟아 다진 눈길 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 조용하고 꿋꿋한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "무릎까지 내려오는 아주 굵은 한 갈래 땋은 머리와 가운데에서 갈라진 앞머리, 버슬 스커트가 걸음에 맞춰 가볍게 흔들림",
+      "광원": "눈밭에 쏟아지는 밝고 맑은 겨울 햇빛, 철판 흉갑과 눈밭에 반사된 밝은 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 오두막 창 안 시연 장치의 옅은 푸른 보랏빛",
+      "장면 팔레트": "밝은 하늘색, 눈빛 흰색, 크림빛, 쇠빛 회색, 푸른 보랏빛 한 점 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1910년 눈 덮인 북쪽 바닷가 마을의 겨울 연구소 — 소나무 숲 속 리벳 철판 관측 오두막, 창 너머 은빛 물방울이 둘로 갈라지는 놋쇠 · 유리 시연 장치, 눈 위에 쓰러진 나무 둥치와 흩어진 종이 쪽지. 글자는 \"Mt\"와 \"109\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛 속에 반짝이며 날리는 고운 눈가루, 오두막 굴뚝에서 오르는 하얀 연기, 인물과 햇빛이 비치는 밟아 다진 눈길"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "날씬한 몸통에 팔뚝과 종아리 장갑만 크게 부푼 기계 팔다리의 미래형 메카 슈트 — 물방울처럼 늘어나다 깨끗하게 둘로 쪼개지는 핵, 쪼개질 때 쏟아지는 큰 힘, 그 힘을 무기로 쓰지 않은 손을 담은 장갑",
+      "주요 색상": "눈빛 흰 장갑, 쇠빛 회색, 푸른 보랏빛 이음선 발광, 잉걸불 빨강 포인트",
+      "주요 소재": "단단한 눈빛 흰 장갑(snow-white armor), 쇠빛 회색 안쪽 판, 세로로 둘로 갈라진 거대한 건틀릿과 부츠(split power gauntlets and boots), 갈라진 틈의 푸른 보랏빛 발광",
+      "상의": "쇠빛 회색 기계식 칼라와 가운데 작은 코어 — 물방울이 허리처럼 잘록해지다 둘로 갈라지는 모양, 쇄골과 가슴 윗부분이 드러나는 입체적인 흉부 장갑, 복부까지 빈틈없이 덮는 몸에 붙는 짙은 남보라 슈트(날씬한 몸통), 작고 낮은 어깨 장갑, 팔꿈치부터 손등까지 거대하게 부푼 흰 기계 건틀릿 — 길이 방향으로 깨끗하게 둘로 갈라져 그 틈에서 푸른 보랏빛이 비침",
+      "하의": "상의와 연결된 하이컷 골반 장갑, 허벅지 일부가 드러나는 구조, 무릎 아래부터 거대하게 부푼 흰 종아리 장갑과 그 가운데의 갈라진 빛 틈, 정밀한 무릎 관절",
+      "신발": "종아리 장갑과 이어진 거대한 흰 기계 부츠와 갈라진 자리의 잉걸불 빨강 테두리",
+      "액세서리": "두 고리 머리를 덮지 않는 귀 옆의 작은 푸른 보랏빛 센서, 한쪽 건틀릿 바깥면에 새긴 \"Mt\"와 \"109\"",
+      "장비·소품": "없음 — 두 손은 비어 있음",
+      "부가 요소": "건틀릿과 부츠의 갈라진 틈에서 새어 나오는 푸른 보랏빛, 장갑 둘레에 눈처럼 떠도는 하얀 빛 가루"
+     },
+     "4": {
+      "액션": "두 반쪽 위성을 잇는 다리 도시의 하얀 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 큰 힘을 조용히 다스리는 듯 차분한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "정수리 높이 고정한 두 개의 고리 머리와 짧은 베이비 뱅, 고리 아래로 늘어진 머리끝이 걸음에 맞춰 흔들림",
+      "광원": "커다란 하늘 창으로 드는 맑고 밝은 빛, 흰 장갑과 흰 갑판에 맺힌 또렷한 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 갈라진 틈의 푸른 보랏빛 보조광",
+      "장면 팔레트": "밝은 흰색, 쇠빛 회색, 푸른 보랏빛 한 줄, 잉걸불 빨강 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 쪼개진 위성의 도시 — 깨끗하게 둘로 갈라진 작은 위성의 두 반쪽 사이에 걸린 거대한 다리 도시, 갈라진 단면에서 흘러나오는 푸른 보랏빛 에너지, 공중에 눈처럼 떠도는 하얀 빛 가루. 글자는 \"Mt\"와 \"109\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "공중에 눈처럼 떠도는 하얀 빛 가루, 갈라진 단면을 따라 흐르는 푸른 보랏빛 빛줄기, 인물과 흰빛이 비치는 반질한 흰 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "dragon_scale",
+    "steampunk": "ironclad",
+    "mecha": "power_limbs"
+   }
+  },
+  {
+   "key": "ds",
+   "persona": "곧은 길의 도시의 나라. 1994년 11월 다름슈타트의 연구소(GSI)에서 호프만의 연구진이 납에 니켈 이온을 쏘아 원자 몇 개를 처음 만들었고, 그 도시의 이름을 받았다 — 길게 곧게 뻗은 선형 가속기로 무거운 이온을 달려 보륨 · 하슘 · 마이트너륨 · 다름슈타튬 · 뢴트게늄 · 코페르니슘, 새 원소 여섯을 찾은 연구소의 도시다. 다름슈타트는 1899년 언덕 위에 예술가 마을을 세운 유겐트슈틸의 도시로, 다섯 손가락 지붕의 결혼 기념탑(1908)과 금빛 모자이크가 언덕에 서 있고, 1882년 세계에서 처음으로 대학에 전기 공학 강좌를 연 도시이기도 하다. 백금의 아래 — 곧은 길을 달려 무거운 것을 빚는, 멋을 아는 자신만만한 장인.",
+   "traits": {
+    "ko": [
+     "「다름슈타트의 원소」 — 1994, 곧게 뻗은 선형 가속기로 새 원소 여섯(107~112)을 찾은 연구소의 도시",
+     "납에 니켈 이온을 쏘아 맺은 원자 몇 개 · 백금의 아래",
+     "1899 언덕 위 예술가 마을 — 다섯 손가락 지붕의 탑(1908)과 금빛 모자이크",
+     "1882 세계 처음 대학에서 전기 공학을 가르친 도시"
+    ],
+    "en": "darmstadtium: a heavy synthetic metal below platinum, first made in 1994 by striking lead with nickel ions fired down a long straight accelerator in a research city that found six new elements, and named for that city, where an art-nouveau artists' colony was built on a hill in 1899 around a tall brick tower crowned with five rounded fingers and walls of golden mosaic, and where electrical engineering was first taught as a university subject"
+   },
+   "palette": {
+    "en": "art-nouveau gold mosaic, deep plum, ion-beam turquoise, warm brick red"
+   },
+   "worlds": {
+    "fantasy": {
+     "ko": "예언된 나라 — 신탁의 별지도에서 백금 아래 빈칸으로 남은 언덕 위 예술가의 도시, 다섯 손가락 지붕의 높은 벽돌 탑과 금빛 모자이크 예배당, 언덕 아래로 곧게 뻗은 빛의 회랑을 따라 끝까지 달려가는 청록 불꽃",
+     "en": "a prophesied kingdom that does not yet exist: an artists' city on a hill, still a blank square below platinum on an oracle's star-chart, a tall brick tower crowned with five rounded fingers, a chapel of golden mosaic, and a long straight colonnade of light running down the hill where turquoise sparks race to the far end",
+     "scenes": [
+      {
+       "key": "tower",
+       "ko": "다섯 손가락 지붕 탑 아래",
+       "en": "below a tall brick tower crowned with five rounded fingers"
+      },
+      {
+       "key": "mosaic",
+       "ko": "금빛 모자이크 예배당",
+       "en": "inside a chapel of golden mosaic"
+      },
+      {
+       "key": "colonnade",
+       "ko": "곧게 뻗은 빛의 회랑",
+       "en": "in a long straight colonnade where turquoise sparks race"
+      }
+     ]
+    },
+    "steampunk": {
+     "ko": "1908 무렵 공과 대학 위 언덕의 예술가 마을 — 막 완공된 다섯 손가락 지붕의 벽돌 탑, 금빛 모자이크 분수, 언덕 아래 전기관에 곧게 줄지은 놋쇠 코일 관 속을 끝에서 끝으로 달리는 청록 불꽃",
+     "en": "around 1908, an art-nouveau artists' colony on a hill above a technical college: a newly finished brick tower crowned with five rounded fingers, a golden mosaic fountain, and below the hill an electrical hall where a long straight line of brass coil tubes sends turquoise sparks racing end to end",
+     "scenes": [
+      {
+       "key": "hall",
+       "ko": "놋쇠 코일 관이 곧게 줄지은 전기관",
+       "en": "in an electrical hall along a long straight line of brass coil tubes"
+      },
+      {
+       "key": "fountain",
+       "ko": "금빛 모자이크 분수",
+       "en": "beside a golden mosaic fountain in an artists' colony"
+      },
+      {
+       "key": "hilltop",
+       "ko": "다섯 손가락 지붕 탑 앞 언덕",
+       "en": "on the hilltop before a brick tower with five rounded fingers"
+      }
+     ]
+    },
+    "mecha": {
+     "ko": "2200 직선 가속 도시 — 지평선까지 곧게 뻗은 수 킬로미터의 가속 통로를 따라 세운 도시, 통로를 따라 달리는 청록 이온 빛줄기, 무거운 빛줄기가 부딪는 금빛 모자이크 패널의 표적 홀",
+     "en": "year 2200, a linear accelerator city: a city built along a straight accelerator corridor kilometres long running to the horizon, a turquoise ion beam racing down it, and a target hall clad in golden mosaic panels where heavy beams collide",
+     "scenes": [
+      {
+       "key": "corridor",
+       "ko": "지평선까지 뻗은 가속 통로 옆",
+       "en": "beside a straight accelerator corridor running to the horizon"
+      },
+      {
+       "key": "target",
+       "ko": "금빛 모자이크 표적 홀",
+       "en": "in a target hall clad in golden mosaic panels"
+      },
+      {
+       "key": "spires",
+       "ko": "다섯 갈래 둥근 끝의 관제탑 아래",
+       "en": "at the foot of a control tower crowned with five rounded spires"
+      }
+     ],
+     "design": "deep plum and gold-mosaic knight plate with big rounded pauldrons and layered plates below the waist, every plate inlaid with tiny glinting gold tesserae, a straight turquoise ion-beam line running down the centre from collar to hem, warm brick-red trim, a slender crown-like head ornament with five rounded finger-like points instead of a helmet; the plates must read as solid armor, not a gown"
+    }
+   },
+   "families": [],
+   "hold": {
+    "en": "a small square golden mosaic tile set in a brick-red frame, one turquoise tessera at its centre"
+   },
+   "look": {
+    "face": {
+     "face_shape": "heart",
+     "eyes": "cat",
+     "brows": "arched_thin",
+     "nose": "petite_straight",
+     "lips": "plush_pout",
+     "eye_color": "jade",
+     "age": "mid_20s",
+     "impression": "glamorous",
+     "skin_tone": "olive",
+     "eye_size": "medium",
+     "eye_tilt": "up",
+     "mark": "winged_liner",
+     "expr": "smug"
+    },
+    "silhouette": {
+     "body": "pear_curvy",
+     "hair": "side_ponytail",
+     "hair_color": "darmstadtium_mosaic"
+    },
+    "worlds": {
+     "fantasy": {
+      "face": {
+       "face_shape": "heart",
+       "eyes": "cat"
+      },
+      "silhouette": {
+       "hair": "side_ponytail",
+       "bangs": "side_swept"
+      }
+     },
+     "steampunk": {
+      "face": {
+       "face_shape": "round",
+       "eyes": "almond_wide"
+      },
+      "silhouette": {
+       "hair": "spiky_wild",
+       "bangs": "asymmetric"
+      }
+     },
+     "mecha": {
+      "face": {
+       "face_shape": "diamond",
+       "eyes": "narrow_upturned"
+      },
+      "silhouette": {
+       "hair": "messy_bun",
+       "bangs": "wispy"
+      }
+     }
+    },
+    "why": "곧은 청록 한 줄과 작은 금빛 모자이크 조각 같은 반짝임이 흩뿌려진 깊은 자두빛 머리, 비취빛 눈 — 금빛 모자이크 위를 곧게 달리는 이온 빔. 곧은 길을 달려 무거운 것을 빚는 멋쟁이 장인 → 풍만한 하체의 서양배형 몸, 화려한 인상 · 하트형 얼굴 · 고양이 눈 · 가는 아치 눈썹 · 작고 곧은 코 · 도톰한 입술 · 날개 아이라인 · 올리브빛 피부 · 의기양양한 얼굴, 스물 중반. 바로 위 백금(남을 바꾸는 촉매)이 조용하다면 이쪽은 자신만만하고, 짝 하슘(같은 연구소 도시 둘레 숲의 공녀)이 숲과 성이라면 이쪽은 도시와 예술가 마을 — 사이드 포니테일 / 거칠게 뻗친 머리 / 메시 번"
+   },
+   "struct": {
+    "fantasy": {
+     "3": {
+      "철학": "하이 판타지 예언된 나라, 언덕 위 예술가 도시를 지키는 성기사의 판금 예복 — 곧게 뻗은 빛의 회랑을 달려 무거운 별을 빚는 불꽃, 다섯 손가락 지붕의 탑과 금빛 모자이크, 새 원소 여섯을 찾은 도시의 자부심을 담은, 판금 갑옷 위 긴 문장 겉옷과 발목까지 내려오는 흰 망토의 곧고 성스러운 실루엣. 노출: 견갑 아래 맨팔, 흉갑 위로 깊게 열린 목선, 문장 겉옷 옆트임 사이로 보이는 허벅지 일부",
+      "주요 색상": "금빛 모자이크, 깊은 자두빛, 이온 빔 청록, 따뜻한 벽돌 빨강, 흰 망토",
+      "주요 소재": "작은 금빛 모자이크 조각을 박은 판금, 깊은 자두빛 문장 겉옷, 흰 양모 망토, 벽돌빛 가죽 띠와 청록 자수",
+      "상의": "몸에 맞는 금빛 판금 흉갑 위로 깊게 열린 목선과 자연스러운 가슴골, 가슴과 몸통은 허리까지 흉갑과 불투명한 자두빛 누빔 천이 덮음 — 흉갑 가장자리에 박힌 작은 금빛 모자이크 조각, 양어깨의 둥근 금빛 견갑, 견갑 아래 드러난 맨팔과 손목의 판금 팔 보호대",
+      "하의": "허리 아래 금빛 판금 허리갑 위로 앞뒤에 늘어진 긴 깊은 자두빛 문장 겉옷 — 금실로 수놓은 다섯 손가락 지붕의 탑과 그 가운데를 곧게 가르는 청록 한 줄 — 옆트임 사이로 보이는 허벅지 일부, 무릎 아래의 판금 다리 갑옷",
+      "신발": "판금 다리 갑옷과 이어진 금빛 판금 장화",
+      "액세서리": "한쪽 어깨 위로 넘긴 사이드 포니테일을 묶은 금빛 모자이크 머리 장식, 목의 청록 유리 구슬 목걸이, 흉갑 가운데에 새긴 \"Ds\"와 \"110\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "발목까지 내려오는 흰 양모 망토와 벽돌빛 가죽 걸쇠, 망토 안감에 박힌 작은 금빛 모자이크가 햇빛에 반짝임"
+     },
+     "4": {
+      "액션": "다섯 손가락 지붕의 높은 벽돌 탑 아래 돌바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 자부심 있게 곧은 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "한쪽 어깨 위로 넘긴 사이드 포니테일과 한쪽으로 쓸어 넘긴 옆 앞머리, 흰 망토 자락이 언덕 바람에 흔들림",
+      "광원": "언덕 위로 쏟아지는 밝고 따뜻한 한낮 햇빛, 금빛 판금과 모자이크에 되비치는 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 빛의 회랑을 달리는 청록 불꽃의 보조광",
+      "장면 팔레트": "맑은 하늘색, 금빛, 깊은 자두빛, 벽돌 빨강, 청록 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "예언된 나라 — 신탁의 별지도에서 백금 아래 빈칸으로 남은 언덕 위 예술가의 도시, 다섯 손가락 지붕의 높은 벽돌 탑과 금빛 모자이크 예배당, 언덕 아래로 곧게 뻗은 빛의 회랑을 따라 끝까지 달려가는 청록 불꽃. 글자는 \"Ds\"와 \"110\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛 속에 반짝이는 작은 금빛 모자이크 조각, 회랑을 따라 곧게 달리는 청록 불꽃 줄기, 인물과 햇빛이 비치는 반질한 돌바닥"
+     }
+    },
+    "steampunk": {
+     "3": {
+      "철학": "공상 모험 이야기 속 1908년 언덕 위 예술가 마을과 공과 대학의 전기 기술자 — 곧게 줄지은 놋쇠 코일 관을 끝에서 끝으로 달리는 청록 불꽃, 다섯 손가락 지붕의 탑과 금빛 모자이크, 전기 공학을 처음 가르친 도시를 담은 밝고 화사한 빅토리아풍 의상, 두꺼운 가죽 작업 앞치마와 걷어 올린 소매, 공구 멜빵, 한 팔의 큰 장갑의 현장 기술자 실루엣. 노출: 걷어 올린 소매의 맨팔, 흉골까지 열린 목선, 무릎 위로 드러난 다리",
+      "주요 색상": "깊은 자두빛, 크림빛 블라우스, 짙은 갈색 가죽, 금빛 모자이크 포인트, 청록 불꽃",
+      "주요 소재": "두꺼운 짙은 갈색 가죽 작업 앞치마, 크림빛 실크 블라우스, 공구를 꽂은 가죽 멜빵, 한 팔을 덮는 커다란 가죽 · 놋쇠 절연 장갑, 앞치마 가슴판의 작은 금빛 모자이크",
+      "상의": "흉골까지 단추를 풀어 자연스러운 가슴골이 보이는 크림빛 실크 블라우스가 가슴과 몸통을 덮음, 팔꿈치 위로 걷어 올린 소매의 맨팔, 가슴을 가로지르는 가죽 공구 멜빵 — 작은 놋쇠 렌치와 구리선 타래가 나란히 꽂힘, 한쪽 팔만 팔꿈치까지 덮는 커다란 가죽 · 놋쇠 절연 장갑",
+      "하의": "허리에서 무릎 위까지 내려오는 두꺼운 짙은 갈색 가죽 작업 앞치마와 그 아래 다리가 드러나는 짧은 자두빛 스커트, 허리의 놋쇠 버클 벨트",
+      "신발": "끈으로 묶는 짙은 갈색 가죽 굽 부츠",
+      "액세서리": "크고 거칠게 뻗친 머리에 꽂은 작은 금빛 모자이크 핀, 목에 맨 자두빛 리본, 앞치마 가슴판의 금빛 모자이크 사이 놋쇠판에 새긴 \"Ds\"와 \"110\"",
+      "장비·소품": "없음 — 두 손은 비어 있고 아무것도 들지 않는다",
+      "부가 요소": "장갑 손끝에서 이따금 튀는 작은 청록 불티, 벨트에 매단 작은 놋쇠 전류계"
+     },
+     "4": {
+      "액션": "놋쇠 코일 관이 곧게 줄지은 전기관의 반질한 타일 바닥 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 자신만만하게 성큼 내딛는 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "크고 거칠게 뻗친 머리와 비대칭 앞머리, 가죽 앞치마가 걸음에 맞춰 묵직하게 흔들림",
+      "광원": "높은 창으로 쏟아지는 밝고 따뜻한 햇빛, 놋쇠 코일 관과 타일 바닥에 반사된 따뜻한 빛(bounce light), 머리카락 가장자리의 가는 역광(rim light), 관 속을 달리는 청록 불꽃의 보조광",
+      "장면 팔레트": "밝은 하늘색, 크림빛 벽, 깊은 자두빛, 금빛 모자이크, 청록 한 점 — 밝고 화사한 파스텔 톤(high-key pastel)",
+      "배경": "공상 모험 이야기 속 1908년 공과 대학 위 언덕의 예술가 마을 — 창밖 언덕에 막 완공된 다섯 손가락 지붕의 벽돌 탑과 금빛 모자이크 분수, 전기관 안에 곧게 줄지은 놋쇠 코일 관 속을 끝에서 끝으로 달리는 청록 불꽃. 글자는 \"Ds\"와 \"110\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "햇빛 속에 떠도는 고운 먼지, 코일 관 유리창마다 비치는 청록 빛줄기, 인물과 햇빛이 비치는 반질한 타일 바닥"
+     }
+    },
+    "mecha": {
+     "3": {
+      "철학": "중세 기사 판금을 닮은 미래형 메카 갑주 — 지평선까지 곧게 뻗은 가속 통로를 달리는 무거운 이온, 금빛 모자이크 표적 홀에서 맺히는 새 원소, 다섯 손가락 지붕의 탑을 닮은 관을 담은 장갑",
+      "주요 색상": "깊은 자두빛 장갑, 금빛 모자이크, 이온 빔 청록 발광, 따뜻한 벽돌 빨강 포인트",
+      "주요 소재": "깊은 자두빛 판금 장갑(deep plum knight plate), 판마다 박힌 작은 금빛 모자이크 조각(gold tesserae), 칼라에서 치맛단까지 곧게 내려오는 청록 이온 빔 발광선, 벽돌빛 테두리",
+      "상의": "자두빛 기계식 칼라와 중앙의 청록 발광 코어, 쇄골과 가슴 윗부분이 드러나는 둥근 기사형 흉부 장갑과 가운데를 곧게 가르는 청록 빛줄, 복부까지 빈틈없이 덮는 몸에 붙는 짙은 자두빛 슈트, 금빛 모자이크를 박은 둥글고 큰 판금 어깨판(pauldrons), 분절된 팔 장갑",
+      "하의": "허리 아래로 겹친 짧은 자두빛 판금 장갑판과 벽돌빛 테두리, 하이컷 골반 장갑, 허벅지 일부가 드러나는 구조, 무릎을 감싼 둥근 판금과 정밀한 관절",
+      "신발": "발끝이 둥근 판금 사바톤 모양의 자두빛 장갑 부츠와 청록 발광 줄",
+      "액세서리": "메시 번을 덮지 않는, 투구 대신의 가는 금빛 관 모양 머리 장식 — 다섯 손가락처럼 솟은 둥근 끝, 가슴판에 새긴 \"Ds\"와 \"110\"",
+      "장비·소품": "없음 — 두 손은 비어 있음",
+      "부가 요소": "가운데 청록 빛줄을 따라 곧게 달리는 작은 빛 알갱이, 어깨판 모자이크 조각마다 맺힌 작은 금빛 반짝임"
+     },
+     "4": {
+      "액션": "지평선까지 곧게 뻗은 가속 통로 옆 하얀 갑판 위에서 카메라를 향해 천천히 한 걸음 내딛는 동작, 곧고 자신만만한 걸음",
+      "손동작": "양손을 몸 옆에 두고 손가락을 자연스럽게 느슨하게 굽힘",
+      "머리카락·의상 움직임": "잔머리가 흘러내리는 느슨한 메시 번과 이마가 비치는 시스루 앞머리, 잔머리가 통로의 바람에 가볍게 흔들림",
+      "광원": "유리 지붕으로 드는 맑고 밝은 낮 햇빛, 자두빛 장갑과 흰 갑판에 맺힌 또렷한 반사광(bounce light), 머리카락 가장자리의 가는 역광(rim light), 가속 통로를 달리는 청록 빔의 보조광",
+      "장면 팔레트": "밝은 흰색, 깊은 자두빛, 금빛 모자이크, 청록 한 줄, 벽돌 빨강 한 점 — 밝고 화사한 톤(high-key)",
+      "배경": "2200년 직선 가속 도시 — 지평선까지 곧게 뻗은 수 킬로미터의 가속 통로를 따라 세운 도시, 통로를 따라 달리는 청록 이온 빛줄기, 금빛 모자이크 패널로 덮인 표적 홀과 다섯 갈래 둥근 끝의 관제탑. 글자는 \"Ds\"와 \"110\" 말고는 쓰지 않는다. 생물·두 번째 인물 없음",
+      "환경 효과": "통로를 따라 곧게 그어진 청록 빛의 잔상, 공중에 떠도는 작은 금빛 반짝임, 인물과 청록빛이 비치는 반질한 흰 갑판"
+     }
+    }
+   },
+   "sil": {
+    "fantasy": "paladin_cape",
+    "steampunk": "boiler_engineer",
+    "mecha": "knight_plate"
+   }
   }
  ]
 }

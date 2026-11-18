@@ -8430,6 +8430,406 @@
      }
     }
    }
+  },
+  "lr": {
+   "root": {
+    "ko": "로렌슘 = 사이클로트론을 만든 로런스 — 빙빙 돌며 한 바퀴마다 빨라지는 고리를 다루는 사람",
+    "from": "name"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "물레 실잣는 방적공",
+     "base": "nation_workshop",
+     "place": "a spinner's cottage workshop of her element's kingdom — a big wooden spinning wheel by the window, baskets of fleece and skeins of dyed yarn hanging from the beams",
+     "activity": "she is the spinner sitting sideways at the whirring spinning wheel, drawing out a fine thread with both hands",
+     "preset": "bench_fix",
+     "use": "sig_both",
+     "prop": "a tuft of soft fleece twisting into fresh thread",
+     "outfit": {
+      "bold": "a spinner look fitted to her body — a low-cut laced bodice over a short chemise, a short wool skirt and a knotted headscarf",
+      "moderate": "a spinner look — a laced bodice over a sleeveless chemise, a knee-length wool skirt and a knotted headscarf",
+      "low": "a spinner look — a long-sleeved wool dress, a linen apron and a knotted headscarf"
+     }
+    },
+    "steampunk": {
+     "job_ko": "솜사탕 장수",
+     "base": "nation_square",
+     "place": "a fairground square of her element's kingdom — striped tents, strings of bulbs and a brass cotton-candy machine with a spinning bowl",
+     "activity": "she is the cotton-candy seller twirling a fresh cloud of spun sugar onto a stick",
+     "preset": "lookback_raise",
+     "use": "sig_raise",
+     "prop": "a big pink cloud of cotton candy on a stick",
+     "outfit": {
+      "bold": "a fairground vendor look fitted to her body — a cropped striped blouse, a short flared skirt, a little apron and buttoned boots",
+      "moderate": "a fairground vendor look — a fitted sleeveless striped blouse, a knee-length flared skirt, a little apron and buttoned boots",
+      "low": "a fairground vendor look — a long-sleeved striped blouse, a long flared skirt, a little apron and buttoned boots"
+     }
+    },
+    "mecha": {
+     "job_ko": "회전초밥집 요리사",
+     "base": "nation_inn",
+     "place": "a conveyor-belt sushi bar of her element's kingdom — a loop of little plates gliding round the counter, a glass case of fresh fish and warm paper lanterns",
+     "activity": "she is the sushi chef pressing rice and fish just before setting a plate onto the turning belt",
+     "preset": "counter_work",
+     "use": "sig_both",
+     "prop": "a small plate of fresh sushi",
+     "outfit": {
+      "bold": "a sushi chef look fitted to her body — a cropped white chef's wrap top, a short dark apron skirt and a folded headband",
+      "moderate": "a sushi chef look — a fitted short-sleeved white chef's wrap top, a dark knee-length apron and a folded headband",
+      "low": "a sushi chef look — a long-sleeved white chef's jacket, dark trousers, a long apron and a folded headband"
+     }
+    }
+   }
+  },
+  "rf": {
+   "root": {
+    "ko": "러더포듐 = 꽃잎보다 얇은 금박에 쏜 알갱이가 되튕겨 돌아온 러더퍼드의 실험 — 얇은 금을 다루고, 되돌아오는 공을 받아치는 사람",
+    "from": "story"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "금박 장인",
+     "base": "nation_workshop",
+     "place": "a gold-beater's workshop of her element's kingdom — a heavy stone anvil, stacks of thin parchment booklets and sheets of gold leaf drifting in the light",
+     "activity": "she is the gold-leaf artisan lifting a sheet of gold leaf thinner than a petal on a soft brush",
+     "preset": "counter_work",
+     "use": "sig_both",
+     "prop": "a sheet of gold leaf on a soft gilder's brush",
+     "outfit": {
+      "bold": "a gold-beater look fitted to her body — a low-cut linen chemise, a short leather apron skirt, a wide belt and bare arms dusted with gold",
+      "moderate": "a gold-beater look — a sleeveless linen chemise, a knee-length leather apron over a skirt and a wide belt",
+      "low": "a gold-beater look — a long-sleeved linen shirt, a long leather apron over a wool skirt and cloth sleeve guards"
+     }
+    },
+    "steampunk": {
+     "job_ko": "당구 살롱의 당구 고수",
+     "base": "nation_inn",
+     "place": "a billiard saloon of her element's kingdom — a green-baize table under brass lamps, polished ivory-white balls and a rack of cues on the panelled wall",
+     "activity": "she is the billiard champion resting on a high stool between shots, chalking the tip of her cue",
+     "preset": "chair_cross_prop",
+     "use": "sig_hold",
+     "prop": "a polished wooden billiard cue",
+     "outfit": {
+      "bold": "a billiard champion look fitted to her body — a cropped satin waistcoat over a sheer blouse, a short pencil skirt, sleeve garters and heeled boots",
+      "moderate": "a billiard champion look — a fitted satin waistcoat over a sleeveless blouse, a knee-length pencil skirt, sleeve garters and heeled boots",
+      "low": "a billiard champion look — a long-sleeved blouse, a buttoned satin waistcoat, tailored trousers and heeled boots"
+     }
+    },
+    "mecha": {
+     "job_ko": "스쿼시 선수",
+     "base": "nation_training",
+     "place": "a glass-walled squash court of her element's kingdom — white walls with red lines, a polished wooden floor and bright overhead lights",
+     "activity": "she is the squash player turning to meet the ball as it comes flying straight back off the front wall",
+     "preset": "lookback_raise",
+     "use": "sig_raise",
+     "prop": "a squash racket",
+     "outfit": {
+      "bold": "a squash player look fitted to her body — a cropped sports top, a short pleated skort, a wristband and court shoes",
+      "moderate": "a squash player look — a fitted sleeveless sports top, a pleated skort, a wristband and court shoes",
+      "low": "a squash player look — a fitted long-sleeved sports top, knee-length leggings under a skort and court shoes"
+     }
+    }
+   }
+  },
+  "db": {
+   "root": {
+    "ko": "더브늄 = 두 강이 만나는 숲 속 연구 도시 두브나(이름 속 옛말 「참나무」) — 강을 건너고, 참나무를 다루는 사람",
+    "from": "name"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "뗏목 몰이꾼",
+     "base": "nation_harbor",
+     "place": "a timber landing of her element's kingdom where two great rivers meet — log rafts tied up at the bank and oak forest on the far shore",
+     "activity": "she is the raftswoman striding along a big log raft with her long pole",
+     "preset": "stride_prop",
+     "use": "sig_hold",
+     "prop": "a long wooden raft pole",
+     "outfit": {
+      "bold": "a raftswoman look fitted to her body — a cropped laced linen top, short rolled breeches, a wide leather belt and bare feet",
+      "moderate": "a raftswoman look — a sleeveless laced linen top, rolled knee-length breeches, a wide leather belt and soft boots",
+      "low": "a raftswoman look — a long-sleeved linen shirt, a wool vest, rolled breeches and soft boots"
+     }
+    },
+    "steampunk": {
+     "job_ko": "참나무 술통 장인",
+     "base": "nation_workshop",
+     "place": "a cooper's workshop of her element's kingdom — oak staves stacked by the wall, iron hoops on hooks and a small fire for bending the wood",
+     "activity": "she is the cooper fitting an iron hoop over a new oak barrel",
+     "preset": "bench_fix",
+     "use": "tool_fix",
+     "prop": "a cooper's mallet and an iron hoop",
+     "outfit": {
+      "bold": "a cooper look fitted to her body — a cropped work shirt knotted at the waist, a short leather apron over short breeches and boots",
+      "moderate": "a cooper look — a fitted sleeveless work shirt, a leather apron over knee breeches and boots",
+      "low": "a cooper look — a long-sleeved work shirt, a waistcoat, a long leather apron over trousers and boots"
+     }
+    },
+    "mecha": {
+     "job_ko": "웨이크보드 강사",
+     "base": "nation_harbor",
+     "place": "a riverside wakeboard pontoon of her element's kingdom — a floating deck, a towline cable over the water and boards racked by the rail",
+     "activity": "she is the wakeboard instructor waiting on the pontoon for the next run, her board propped beside her",
+     "preset": "hip_contra",
+     "outfit": {
+      "bold": "a wakeboard instructor look fitted to her body — a cropped rash top over a bikini top, short board shorts and a waist leash",
+      "moderate": "a wakeboard instructor look — a fitted sleeveless rash top, board shorts and a buoyancy vest left open",
+      "low": "a wakeboard instructor look — a long-sleeved rash guard, knee-length board shorts and a zipped buoyancy vest"
+     }
+    }
+   }
+  },
+  "sg": {
+   "root": {
+    "ko": "시보귬 = 원소 열 개를 찾고 표 아래에 새 줄을 덧붙인 시보그(먼 길을 걷던 사람) — 길을 내고 칸을 넓히는 사람",
+    "from": "story"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "숲길 개척꾼",
+     "base": "nation_forest",
+     "place": "a new trail being cut through the woods of her element's kingdom — fresh stone steps, a cairn of marker stones and a view opening at the far end",
+     "activity": "she is the trailblazer kneeling to set a new marker stone at the edge of the path",
+     "preset": "half_kneel_use",
+     "use": "sig_hold",
+     "prop": "a flat trail-marker stone",
+     "outfit": {
+      "bold": "a trailblazer look fitted to her body — a cropped laced jerkin over a short linen top, short breeches, a tool belt and laced boots",
+      "moderate": "a trailblazer look — a sleeveless laced jerkin, knee breeches, a tool belt and laced boots",
+      "low": "a trailblazer look — a long-sleeved linen shirt, a hooded cape, long breeches and laced boots"
+     }
+    },
+    "steampunk": {
+     "job_ko": "박물관 표본 큐레이터",
+     "base": "nation_study",
+     "place": "a natural history museum gallery of her element's kingdom — tall glass cabinets of pressed flowers and minerals, and a new row of empty drawers fitted along the bottom",
+     "activity": "she is the museum curator reaching up on tiptoe to slot a new specimen drawer into a tall cabinet",
+     "preset": "reach_shelf",
+     "outfit": {
+      "bold": "a curator look fitted to her body — a sheer blouse with rolled sleeves, a short fitted skirt, a brass-buttoned waistcoat and heeled boots",
+      "moderate": "a curator look — a sleeveless blouse, a knee-length fitted skirt, a brass-buttoned waistcoat and heeled boots",
+      "low": "a curator look — a long-sleeved high-necked blouse, a long skirt, a brass-buttoned waistcoat and heeled boots"
+     }
+    },
+    "mecha": {
+     "job_ko": "정리 수납 전문가",
+     "base": "nation_room",
+     "place": "a bright walk-in closet of her element's kingdom — open shelves, neatly folded clothes and rows of matching storage boxes",
+     "activity": "she is the home organizer crouching to fit a new row of matching storage boxes onto a low shelf",
+     "preset": "squat_prop",
+     "use": "sig_hold",
+     "prop": "a small woven storage box",
+     "outfit": {
+      "bold": "a home organizer look fitted to her body — a cropped fitted tee, short denim shorts and white sneakers",
+      "moderate": "a home organizer look — a fitted tee, a knee-length denim skirt and white sneakers",
+      "low": "a home organizer look — a long-sleeved knit top, wide trousers and white sneakers"
+     }
+    }
+   }
+  },
+  "bh": {
+   "root": {
+    "ko": "보륨 = 보어의 층층 궤도 — 정해진 층에만 서고, 한 층 건너뛸 때마다 빛을 내는 것",
+    "from": "story"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "산비탈 다랑논 농부",
+     "base": "nation_field",
+     "place": "terraced rice paddies of her element's kingdom stepping down a hillside — each level a mirror of water catching the sky",
+     "activity": "she is the terrace farmer kneeling at the edge of one level to plant a row of young rice",
+     "preset": "half_kneel_use",
+     "use": "sig_hold",
+     "prop": "a bundle of young rice seedlings",
+     "outfit": {
+      "bold": "a terrace farmer look fitted to her body — a cropped wrap top, short rolled trousers, a woven sash and a wide straw hat",
+      "moderate": "a terrace farmer look — a sleeveless wrap top, rolled knee-length trousers, a woven sash and a wide straw hat",
+      "low": "a terrace farmer look — a long-sleeved wrap jacket, rolled trousers, a woven sash and a wide straw hat"
+     }
+    },
+    "steampunk": {
+     "job_ko": "층층 케이크 제과사",
+     "base": "nation_kitchen",
+     "place": "a pâtisserie kitchen of her element's kingdom — a tall tiered cake on a turntable, bowls of icing and copper pans on the wall",
+     "activity": "she is the cake maker piping a ring of icing around one tier of a tall layered cake",
+     "preset": "counter_work",
+     "use": "sig_both",
+     "prop": "a piping bag of white icing",
+     "outfit": {
+      "bold": "a pastry cook look fitted to her body — a cropped white blouse with puffed sleeves, a short skirt under a frilled apron and a little cap",
+      "moderate": "a pastry cook look — a fitted sleeveless white blouse, a knee-length skirt under a frilled apron and a little cap",
+      "low": "a pastry cook look — a long-sleeved white blouse, a long skirt under a frilled apron and a little cap"
+     }
+    },
+    "mecha": {
+     "job_ko": "하이 다이빙 선수",
+     "base": "nation_training",
+     "place": "an indoor diving hall of her element's kingdom — a tall tower of diving platforms at fixed heights above a clear blue pool",
+     "activity": "she is the high diver standing at the edge of a platform, gauging the drop to the level below",
+     "preset": "step_pause",
+     "outfit": {
+      "bold": "a high diver look fitted to her body — a high-cut competition swimsuit with an open back",
+      "moderate": "a high diver look — a sleek one-piece competition swimsuit",
+      "low": "a high diver look — a long-sleeved one-piece training swimsuit with a zipped track jacket over it"
+     }
+    }
+   }
+  },
+  "hs": {
+   "root": {
+    "ko": "하슘 = 헤센(하시아) — 깊은 숲과 성, 그림 형제가 옛이야기를 모은 동화의 길",
+    "from": "name"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "생강 과자집 과자 장인",
+     "base": "nation_kitchen",
+     "place": "a forest bakery kitchen of her element's kingdom — a little gingerbread cottage taking shape on the table, trays of spiced biscuits and a warm brick oven",
+     "activity": "she is the gingerbread maker pressing a candied window onto a little gingerbread house",
+     "preset": "counter_work",
+     "use": "sig_both",
+     "prop": "a small gingerbread house",
+     "outfit": {
+      "bold": "a forest baker look fitted to her body — a low-cut laced bodice over a short chemise, a short skirt under a white apron and a headscarf",
+      "moderate": "a forest baker look — a laced bodice over a sleeveless chemise, a knee-length skirt under a white apron and a headscarf",
+      "low": "a forest baker look — a long-sleeved dirndl-style dress, a white apron and a headscarf"
+     }
+    },
+    "steampunk": {
+     "job_ko": "호수 유람선 선장",
+     "base": "nation_harbor",
+     "place": "a lake steamer pier of her element's kingdom — a white paddle steamer at the jetty and a castle on the wooded ridge across the water",
+     "activity": "she is the lake steamer captain checking her pocket watch before the boat casts off",
+     "preset": "pocket_look",
+     "use": "sig_hold",
+     "prop": "a brass pocket watch",
+     "outfit": {
+      "bold": "a steamer captain look fitted to her body — a cropped naval jacket over a sheer blouse, a short skirt, a captain's cap and heeled boots",
+      "moderate": "a steamer captain look — a fitted naval jacket over a sleeveless blouse, a knee-length skirt, a captain's cap and heeled boots",
+      "low": "a steamer captain look — a buttoned naval jacket over a high-necked blouse, a long skirt, a captain's cap and heeled boots"
+     }
+    },
+    "mecha": {
+     "job_ko": "놀이공원 성 퍼레이드 배우",
+     "base": "nation_square",
+     "place": "a theme park square of her element's kingdom — a fairy-tale castle with pastel towers, bunting and a parked parade float",
+     "activity": "she is the castle parade performer waving toward the camera from the parade route",
+     "preset": "wave_chest",
+     "outfit": {
+      "bold": "a parade princess look fitted to her body — an off-shoulder fitted mini gown, a jewelled tiara and long gloves",
+      "moderate": "a parade princess look — a sleeveless fitted gown to the knee, a jewelled tiara and long gloves",
+      "low": "a parade princess look — a long-sleeved ball gown, a jewelled tiara and long gloves"
+     }
+    }
+   }
+  },
+  "mt": {
+   "root": {
+    "ko": "마이트너륨 = 핵이 떨리는 물방울처럼 둘로 쪼개진다는 것을 처음 풀어낸 마이트너 — 깔끔하게 둘로 가르는 사람",
+    "from": "story"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "호수 얼음 채빙꾼",
+     "base": "nation_field",
+     "place": "a frozen lake of her element's kingdom in deep winter — sawn blocks of clear ice stacked on sledges and pine forest along the shore",
+     "activity": "she is the ice cutter kneeling on the frozen lake to split a clear block of ice cleanly in two",
+     "preset": "half_kneel_use",
+     "use": "sig_hold",
+     "prop": "a long ice saw",
+     "outfit": {
+      "bold": "an ice cutter look fitted to her body — a cropped fur-trimmed jerkin over a short wool top, short wool breeches, thick wool socks and fur boots",
+      "moderate": "an ice cutter look — a sleeveless fur-trimmed jerkin over a fitted wool top, knee breeches and fur boots",
+      "low": "an ice cutter look — a long-sleeved wool tunic, a fur-trimmed hooded cape, breeches and fur boots"
+     }
+    },
+    "steampunk": {
+     "job_ko": "지붕 슬레이트 석판공",
+     "base": "nation_workshop",
+     "place": "a slate quarry workshop of her element's kingdom — stacks of thin grey roof slates, a splitting block and a rack of broad chisels",
+     "activity": "she is the slate splitter tapping a chisel to split a block of slate into two thin sheets",
+     "preset": "bench_fix",
+     "use": "sig_both",
+     "prop": "a slate block and a broad chisel",
+     "outfit": {
+      "bold": "a slate splitter look fitted to her body — a cropped work shirt with rolled sleeves, a short leather apron over short breeches and boots",
+      "moderate": "a slate splitter look — a sleeveless work shirt, a leather apron over knee breeches and boots",
+      "low": "a slate splitter look — a long-sleeved work shirt, a waistcoat, a long leather apron over trousers and boots"
+     }
+    },
+    "mecha": {
+     "job_ko": "반반 치킨집 사장",
+     "base": "nation_inn",
+     "place": "a cosy fried chicken shop of her element's kingdom — a steel counter, fryer baskets and a glowing neon sign in the shape of a drumstick",
+     "activity": "she is the chicken shop owner packing a box split half-and-half between two kinds of fried chicken",
+     "preset": "counter_work",
+     "use": "sig_both",
+     "prop": "a half-and-half fried chicken box",
+     "outfit": {
+      "bold": "a chicken shop owner look fitted to her body — a cropped fitted tee, a short apron over denim shorts and a bandana",
+      "moderate": "a chicken shop owner look — a fitted tee, a knee-length apron over jeans and a bandana",
+      "low": "a chicken shop owner look — a long-sleeved shirt, a long apron over jeans and a bandana"
+     }
+    }
+   }
+  },
+  "ds": {
+   "root": {
+    "ko": "다름슈타튬 = 다름슈타트 — 무거운 것을 곧게 달려 맞히는 가속기의 도시이자 금빛 모자이크 예술가 마을",
+    "from": "name"
+   },
+   "mode": "per_world",
+   "worlds": {
+    "fantasy": {
+     "job_ko": "금빛 모자이크 장인",
+     "base": "nation_temple",
+     "place": "a chapel of her element's kingdom being clad in mosaic — a half-finished wall of golden tesserae, trays of coloured glass pieces and a wooden scaffold",
+     "activity": "she is the mosaic artisan holding a golden tessera up to the light before setting it into the wall",
+     "preset": "light_check",
+     "use": "sig_raise",
+     "prop": "a small golden mosaic tile",
+     "outfit": {
+      "bold": "a mosaic artisan look fitted to her body — a cropped linen top knotted at the waist, a short work skirt, a tool belt and sandals",
+      "moderate": "a mosaic artisan look — a sleeveless linen top, a knee-length work skirt, a tool belt and sandals",
+      "low": "a mosaic artisan look — a long-sleeved linen smock, a long skirt, a tool belt and sandals"
+     }
+    },
+    "steampunk": {
+     "job_ko": "아르누보 석판 인쇄공",
+     "base": "nation_workshop",
+     "place": "a lithographic print shop of her element's kingdom — a heavy press, flat printing stones and fresh prints of flowing floral patterns drying on lines",
+     "activity": "she is the lithographer lifting a fresh floral print from the printing stone",
+     "preset": "stand_use",
+     "use": "sig_both",
+     "prop": "a fresh floral print sheet",
+     "outfit": {
+      "bold": "a lithographer look fitted to her body — a cropped blouse with rolled sleeves, a short ink-stained apron skirt and heeled boots",
+      "moderate": "a lithographer look — a sleeveless blouse, a knee-length skirt under an ink-stained apron and heeled boots",
+      "low": "a lithographer look — a long-sleeved blouse, a long skirt under an ink-stained apron and heeled boots"
+     }
+    },
+    "mecha": {
+     "job_ko": "컬링 선수",
+     "base": "nation_training",
+     "place": "a curling rink of her element's kingdom — a sheet of pebbled ice, round target rings at the far end and polished granite stones",
+     "activity": "she is the curler crouching low behind a stone, lining up the throw toward the far target",
+     "preset": "squat_prop",
+     "use": "sig_hold",
+     "prop": "a polished curling stone",
+     "outfit": {
+      "bold": "a curler look fitted to her body — a cropped fitted team jacket over a sports top, slim stretch pants and curling shoes",
+      "moderate": "a curler look — a fitted team jacket over a sports top, slim stretch pants and curling shoes",
+      "low": "a curler look — a zipped long-sleeved team jacket, slim stretch pants, gloves and curling shoes"
+     }
+    }
+   }
   }
  }
 }
