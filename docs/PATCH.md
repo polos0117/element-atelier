@@ -11,6 +11,10 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-19 · claude · 칸 채우기 검사 말을 낱말 표로 — tests/words.cjs 통과
+- 같은 날 넣은 칸 채우기 검사(worldFillErrors · freeFillErrors)의 한글 오류 말이 조립부 코드에 박혀 tests/words.cjs 가 깨져 있었다(원소 근본 B 묶음 검사에서 드러남)
+- 말은 lib/prompt-spec.js 의 GPT 설계 주문 표(msg)로 옮기고 조립부는 FM(열쇠)로 읽는다 — 글은 그대로라 검사 · 도구 출력은 같다. ?v= 올림
+
 ## 2026-11-19 · claude · 그림 저장소 셋째 element-atelier-img-3 연결 — 둘째는 닫힘
 - 사용자 「원소랑 삼국지 이미지 저장소 3번 다 만들어놨으니 연결도 시켜줘」 — element-atelier-img-2 가 약 0.96 GB 로 찼다
 - element-atelier-img-3 에 README · .nojekyll · 썸네일 워크플로(img-2 와 같은 꼴, 크기 경고는 img-4 를 가리킨다)
