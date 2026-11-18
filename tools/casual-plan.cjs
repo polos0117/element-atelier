@@ -318,6 +318,9 @@ const POSE_WEIGHT = 0.4, ACT_MOST = 2;
 /* 어색한 조합(⚠ — 표 awkward: 수영복으로 작업 자리, 휴양지 차림으로 현장 …)인 의상 계열은 덜 고른다(2026-11-13 — 새 장소 · 새 계열이 새 모순이 되지 않게). 묶음마다 한 장까지는 여전히 된다 */
 const AWKWARD_WEIGHT = 0.15;
 const wOf = n => n ? 1 / Math.pow(1 + n, 3) : WEIGHT_UNUSED;
+/* 자세 · 몸 방향 · 카메라 높이 짝(2026-11-18 사용자 C) — 셋을 따로 세면 고르게 퍼져도 「서서 · 정면 · 눈높이」 짝이 34% 로 몰렸다. 짝 횟수(전체 기록 + 묶음)로 덜고, 그 짝은 반으로 */
+const comboKey = c => [c.posture || '', c.body || '', c.camera || ''].join('|');
+const standFrontEye = c => c.posture === 'stand' && (c.body === 'front' || c.body === 'front_3q') && c.camera === 'eye';
 /* 옷 계열 무게 — 목욕 차림(수건 · 페슈테말 · 찜질복 · 가운)이 계획 12.7% · 등록 10.8% 로 계열 가운데 가장 많았다(사용자 2026-11-09 「수건 감는 옷 많이 나오던데 이전부터」).
    목욕 계열 장소 · 세계 안 목욕탕이 많아 그렇다 — 고를 때 무게를 줄이고, 한 카드의 세 세계 통틀어 한 장까지(check) */
 const FAM_WEIGHT = { bath: 0.25 };
@@ -332,7 +335,7 @@ function lean(r, list, count, key = x => x, factor = () => 1) {
 /* 소품 동작 무게(2026-11-18 행동 단계 — 사용자 「F부터 진행해줘」) — 덜 쓴 소품(제곱) × 덜 쓴 동작. 준비 · 하는 중 · 마무리 단계 동작(stage)은 조금 더,
    단계 없이 그냥 들고 있는 동작(hold)은 조금 덜 — 소품이 달라도 늘 「들고 서 있기」 로 보였다 */
 function useWeight(k, n, U) { const u = C2.use(T2, k); return 1 / Math.pow(1 + n(u.prop), 2) / (1 + ((((U && U.use) || {})[k]) || 0)) * (u.stage ? 1.3 : u.kind === 'hold' ? 0.8 : 1); }
-const EMPTY_USAGE = () => ({ prop: {}, use: {}, place: {}, item: {}, preset: {}, posture: {}, expr: {}, ofam: {}, path: {}, time: {}, light: {}, weather: {} });
+const EMPTY_USAGE = () => ({ prop: {}, use: {}, place: {}, item: {}, preset: {}, posture: {}, expr: {}, ofam: {}, path: {}, time: {}, light: {}, weather: {}, combo: {}, moment: {} });
 const usageOf0 = u => (u && (u.place || u.prop || u.preset)) ? { ...EMPTY_USAGE(), ...u } : { ...EMPTY_USAGE(), prop: u || {} };
 /* 새로 더한 옷 계열(쓴 횟수 0)은 다른 계열의 가운데 값에서 시작한다 — 안 그러면 「안 쓴 쪽 먼저」 무게로 모든 묶음에 들어갔다(2026-11-03 동탄룩 72묶음 중 72) */
 const FAMS = (tree.outfits || []).map(o => o.key);
@@ -374,7 +377,7 @@ function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = ''
   if (!presets.length) return null;
   const rp = list => pick(r, list);
   /* 자세 추천 — 그 추천과 그 자세의 횟수를 함께(선 자세가 절반이 넘었다 — 2026-11-01 기록 434장) */
-  const pw = presets.map(p => wOf(U.preset[p.key] || 0) * Math.sqrt(wOf(U.posture[p.posture] || 0)) * wOf(U.path[pathKey(p.key, sc.place)] || 0) * (p.pose ? POSE_WEIGHT : 1));
+  const pw = presets.map(p => wOf(U.preset[p.key] || 0) * Math.sqrt(wOf(U.posture[p.posture] || 0)) * wOf(U.path[pathKey(p.key, sc.place)] || 0) * (p.pose ? POSE_WEIGHT : 1) * Math.sqrt(wOf((U.combo || {})[comboKey(p)] || 0)) * (standFrontEye(p) ? 0.5 : 1));
   let px = r() * pw.reduce((a, b) => a + b, 0), chosen = presets[presets.length - 1];
   for (let i = 0; i < presets.length; i++) { px -= pw[i]; if (px < 0) { chosen = presets[i]; break; } }
   sc = C2.repair(T2, C2.applyPreset(T2, sc, chosen.key), g, rp);
@@ -550,6 +553,21 @@ const situAtPlace = (k, c) => C2.situOk(T2, c, by(T.CASUAL.situations, k));   /*
    조건은 표 ambience(시간대는 하늘 · 창이 있는 곳, 등불은 실내, 밤 고정 장소는 밤 시간대만, 날씨는 하늘 · 창이 있는 곳 …)와 모듈 C2.ambience 가 쥔다.
    묶음 안에서 덜 쓴 값부터. 장면 고르기와 따로 된 난수라 옛 씨앗의 장면(장소 · 옷 · 자세)은 그대로다 */
 const AMBIENT = ['time', 'weather', 'hair', 'light', 'spot', 'depth', 'view'];
+/* 순간(2026-11-18 사용자 D) — 노출과 상관없는 작은 사건 하나(표 moments). 일반 컷 가운데 몇 장에(자유 설계 · 상황 노출 · 게임 코스프레 컷은 빼고 — 한 컷에 작은 사건은 하나),
+   전체 기록 + 묶음에서 덜 쓴 것. 장면(장소 · 프레이밍 · 시간대 · 날씨)이 다 정해진 뒤 */
+const MOMENT_RATE = 0.4, MOMENT_MAX = 2;
+function momentize(cuts, old = [], ra = Math.random, usage = null) {
+  const U0 = usage ? usageOf(usage) : null, g = (U0 && U0.moment) || {}, here = {};
+  [...old, ...cuts].forEach(c => { if (c.moment) here[c.moment] = (here[c.moment] || 0) + 1; });
+  let n = cuts.filter(c => c.moment).length;
+  for (const c of cuts) {
+    if (n >= MOMENT_MAX || c.moment || c.ofree || c.sfree || c.situ || c.cosplay || ra() >= MOMENT_RATE) continue;
+    const list = C2.moments(T2, c); if (!list.length) continue;
+    const sc = k => 3 * (here[k] || 0) + (g[k] || 0), min = Math.min(...list.map(sc)), pool = list.filter(k => sc(k) - min < 1);
+    c.moment = pool[Math.floor(ra() * pool.length)]; here[c.moment] = (here[c.moment] || 0) + 1; n++;
+  }
+  return cuts;
+}
 function ambient(cuts, old = [], ra = Math.random, usage = null) {
   /* 전체 기록 비율(2026-11-18 사용자 A) — 그림 저장소의 다른 카드 컷에서 센 횟수를 0 ~ 1 로(가장 많이 쓴 값이 1). 묶음 안 횟수 다음으로 본다 */
   const U0 = usage ? usageOf(usage) : null, global = {};
@@ -712,7 +730,7 @@ function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, 
     for (let i = 0; i < slots.length; i++) {
       let got = null;
       for (let k = 0; k < 60 && !got; k++) {
-        const U0 = usageOf(usage), here = { ...U0, prop: { ...U0.prop }, ofam: { ...U0.ofam } }; cuts.forEach(c => { const u = C2.use(T2, c.use); if (u) here.prop[u.prop] = (here.prop[u.prop] || 0) + 10; here.ofam[c.ofam] = (here.ofam[c.ofam] || 0) + 10; });   /* 묶음 안에서 이미 고른 옷 계열은 다시 덜 고른다(동탄룩 한 장까지) */
+        const U0 = usageOf(usage), here = { ...U0, prop: { ...U0.prop }, ofam: { ...U0.ofam }, combo: { ...(U0.combo || {}) } }; cuts.forEach(c => { if (c.posture) here.combo[comboKey(c)] = (here.combo[comboKey(c)] || 0) + 2; const u = C2.use(T2, c.use); if (u) here.prop[u.prop] = (here.prop[u.prop] || 0) + 10; here.ofam[c.ofam] = (here.ofam[c.ofam] || 0) + 10; });   /* 묶음 안에서 이미 고른 옷 계열은 다시 덜 고른다(동탄룩 한 장까지) */
         const want = wants[i] || '', sc = slot(r, card, want, { frame: frames[i], wantSig: i === sigAt && !want, era: eras[i], usage: here, rUse, cut: cos ? cos.cut : '' });
         if (!sc) continue;
         const cand = { n: slots[i], ...sc };
@@ -725,7 +743,7 @@ function plan(card, slots, old, { seed = Date.now(), required = '', usage = {}, 
     if (cuts.length === slots.length && !check(cuts, card, old, others).filter(e => !/^갈래 자유 컷이 없다/.test(e)).length) { colorize(cuts, old, others, rng((seed ^ mix ^ 0x27d4eb2f) >>> 0)); shadeize(cuts, card, old, shadeUsed, rng((seed ^ mix ^ 0x4cf5ad43) >>> 0)); denierize(cuts, rng((seed ^ mix ^ 0x165667b1) >>> 0));
       /* 상황 노출 — 필수가 아니다(2026-11-15). 이미 없으면 장면 컷 한 장(정해 둔 칸 · 코스프레 · 얼굴 클로즈업이 아닌, 맞는 상황이 있는 컷)에 SITU_RATE 로 */
       const rs = rng((seed ^ mix ^ 0x3c6ef372) >>> 0), sPool = old.some(c => c.situ) ? [] : cuts.map((c, i) => i).filter(i => i >= wants.length && !requiredType(cuts[i]) && !isCosplay(cuts[i]) && !SITU_NO_FRAME.includes(cuts[i].frame) && P.situsFor(outfitEn(cuts[i])).some(k => situAtPlace(k, cuts[i])));
-      situate(cuts, sPool.length && rs() < SITU_RATE ? sPool[Math.floor(rs() * sPool.length)] : -1, old, others, rs); ambient(cuts, old, rng((seed ^ mix ^ 0x7f4a7c15) >>> 0), usage);
+      situate(cuts, sPool.length && rs() < SITU_RATE ? sPool[Math.floor(rs() * sPool.length)] : -1, old, others, rs); ambient(cuts, old, rng((seed ^ mix ^ 0x7f4a7c15) >>> 0), usage); momentize(cuts, old, rng((seed ^ mix ^ 0x2545f491) >>> 0), usage);
       /* 상황 노출 늘 한 장(2026-11-16 「늘 1장은 나오게」) — 장면 컷이 있는데 맞는 옷이 없어 못 얹었으면 다른 묶음으로(그 세계에 이미 상황 컷이 있으면 그대로) */
       if (SITU_RATE >= 1 && !old.some(c => c.situ) && cuts.some((c, i) => i >= wants.length && !requiredType(c) && !isCosplay(c)) && !cuts.some(c => c.situ)) continue;
       const free = makeFree(card.key, freeNums, freeKinds, cuts, old, others, recent, rng((seed ^ mix ^ 0x1b873593) >>> 0));
@@ -801,7 +819,7 @@ function sceneUsage(dir, skip) {
       if (!sc) continue;
       const u = C2.use(T2, sc.use);
       if (u && u.prop !== 'signature') { add(out.prop, u.prop); add(out.use, sc.use); }
-      add(out.time, sc.time); add(out.light, sc.light); add(out.weather, sc.weather);   /* 시간대 · 빛 · 날씨(2026-11-18 A — 전체 기록 비율) */
+      add(out.time, sc.time); add(out.light, sc.light); add(out.weather, sc.weather); if (sc.posture) add(out.combo, comboKey(sc)); add(out.moment, sc.moment);   /* 시간대 · 빛 · 날씨(2026-11-18 A — 전체 기록 비율) */
       add(out.place, sc.place); add(out.item, sc.item); add(out.preset, sc.preset); add(out.posture, sc.posture); add(out.expr, sc.expr); add(out.ofam, sc.ofam);
       if (sc.preset && sc.place) add(out.path, pathKey(sc.preset, sc.place));
     }
