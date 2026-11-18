@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-18 · claude · 세계컷 GPT 설계 — 칸 채우기(우리 설계 지시문 + 헤어스타일 · 실루엣 칸)
+- 사용자 2026-11-18 「세계컷은 gpt한테 너무 위임하면 안되겠다」 → 「크게는 우리거를 따르는데, 헤어스타일, 의상은 무조건 다르게. 나머지는 같아도되고, 달라도되고 … 의상만 우리 실루엣 안에서만 고르게하고」 → 「응 이대로 진행해줘」(삼국지 공방과 같은 꼴).
+- lib/prompt-element.js buildWorldFree — 머리말(WORLD_FREE.fill) + 우리 설계 지시문의 헤어스타일 글 → [HAIRSTYLE: …], 실루엣 글 → [COSTUME SILHOUETTE: …](원소 성격 묶음에서 우리 것 뺀 글 그대로 — 지시문에서 조금 바뀐 실루엣 글은 앞 구절로 찾는다), 주민은 대신 Costume variation 줄. Design idea · Stance and hands · Setting detail 줄. 카드 × 세계 480 틀 모두 칸이 제자리.
+- worldFillErrors · worldFillPicks · tools/world-fill-check.cjs. 묶음 안내 · docs/IMAGE_AUTOMATION.md · tests/prompt-element.cjs 를 칸 채우기로. 같은 날 앞서 넣은 A안 · B안 · 「얼굴은 우리와 다르게」 는 이것으로 바뀌었다(buildWorldFreeOld 로 남김).
+
 ## 2026-11-18 · claude · 세계컷 GPT 주문 — 몸 방향 고정(3/4)
 - 사용자 2026-11-18 관은병 메카 「자세도 정면을 보는 자세로만 나오던데 … 우리는 약간 옆으로 튼 자세잖아」 → 「추천대로해줘」. 주문엔 자세가 자유였고 몸 방향 말이 없었으며, B안의 「steady pose」 가 정면으로 밀었다(4번 「Stable frontal stance」).
 - WORLD_FREE.pose — 「Pose (body direction fixed — ours)」: 우리 설계와 같은 몸 방향(살짝 틀어 약 3/4, 얼굴은 보는 쪽, 정면으로 딱 서지 않게)만 고정, 다리 · 손 · 몸짓은 맡은 쪽. B안 문구는 「역할이 드러나는 자세, 몸 방향은 Pose 줄대로」.

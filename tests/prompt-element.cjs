@@ -528,9 +528,14 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
 /* 임의 설계 주문(2026-11-09 — 세계 그림 네 장 중 둘) — 정해 둔 것만, 설계표 얼굴 · 실루엣은 없다, 우리 실루엣 목록 가운데 그 카드 원소 성격 묶음만 싣는다 · 메카는 장갑판 줄 */
 {
   for (const key of ['fe', 'fe-steel', 'fe-steel-sword', 'og']) for (const w of P.worldsOf(D, key)) {
-    const t = P.buildWorldFree(D, SN, key, w, { style: SN.default }), our = P.build(D, SN, key, w, {}), her = (our.match(/^(?:Her|Face — her own): (.*)$/m) || [])[1] || '';   /* 칸 꼴은 「Face — her own: 」 */
-    assert(t.startsWith('Design brief') && t.includes('1024×1536') && t.includes(T.WORLD_FREE.free) && t.includes('Costume — Design B, your second design: first settle a post or role in this world that comes from ' + (P.card(D, key).tier === 'citizen' ? T.WORLD_FREE.sourceCitizen : T.WORLD_FREE.sourceRoot)) && (w !== 'mecha' || t.includes(T.WORLD_FREE.secondMecha)) && t.includes(T.WORLD_FREE.check) && (P.card(D, key).tier === 'citizen' ? t.includes(T.WORLD_FREE.citizenCostume) : (P.silPool(P.card(D, key), w).length < T.SILHOUETTES[w].length && T.SILHOUETTES[w].every(x => t.includes(x.en.split(' — ')[0].replace(/\.$/, '')) === P.silPool(P.card(D, key), w).includes(x)))) && (w === 'mecha') === t.includes(T.WORLD_FREE.mecha) && /\n\nHair colour \(fixed — ours\): [a-z]/.test(t) && !/hair colour, hairstyle/.test(t) && /\n\nCostume colours \(ours\): /.test(t) && t.includes('Exposure (fixed): bold'), key + ' ' + w + ' 설계 주문');
-    assert(her && !t.includes(her.slice(0, 40)) && !/Outfit silhouette:|^Silhouette: /m.test(t), key + ' ' + w + ' 설계표 얼굴 · 실루엣 없음');
+    /* 2026-11-18 칸 채우기 — 머리말 + 우리 설계 지시문의 칸만 비운 틀. 채운 글은 칸 말고 바뀐 줄이 없어야 통과(주민은 실루엣 칸 대신 Costume variation) */
+    const t = P.buildWorldFree(D, SN, key, w, { style: SN.default }), tpl = P.worldFillTemplate(D, SN, key, w, { style: SN.default }), cit = !!P.card(D, key).citizen;
+    assert(t.startsWith('Design brief — fill-in design for ') && t.endsWith(tpl) && /^Must differ — hairstyle: /m.test(t) && /^Required — design idea: /m.test(t) && tpl.includes('[HAIRSTYLE: …]') && /^Design idea: …$/m.test(tpl), key + ' ' + w + ' 칸 채우기 주문 꼴');
+    assert(cit ? /^Costume variation: …$/m.test(tpl) && !tpl.includes('[COSTUME SILHOUETTE: …]') : tpl.includes('[COSTUME SILHOUETTE: …]') && /^Must differ — costume silhouette: /m.test(t), key + ' ' + w + ' 실루엣 칸(주민은 Costume variation)');
+    const pick = cit ? '' : t.match(/word for word \(ours is not on this list\): 1\) ([^;]+?)(?:; 2\)|\.\n)/)[1];
+    const good = 'SUMMARY: x\n' + tpl.replace('[HAIRSTYLE: …]', 'a sleek low chignon').replace('[COSTUME SILHOUETTE: …]', pick).replace('Costume variation: …', 'Costume variation: a shorter layered build of the same object').replace('Design idea: …', 'Design idea: plates layered like crystals').replace('Stance and hands: …\n', '').replace('Setting detail: …', 'Setting detail: a forge glow behind her.');
+    assert.equal(JSON.stringify(P.worldFillErrors(D, SN, key, w, good, { style: SN.default })), '[]', key + ' ' + w + ' 채운 글 통과');
+    assert(P.worldFillErrors(D, SN, key, w, good.replace(/^(Light: )/m, '$1bright daylight; '), { style: SN.default }).some(e => /줄이 바뀌었다/.test(e)), key + ' ' + w + ' 칸 밖이 바뀌면 걸린다');
   }
   console.log('PASS 임의 설계 주문');
 }
