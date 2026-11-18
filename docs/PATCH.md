@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-18 · claude · 세계컷 GPT 설계 2단계 — B안(역할 · 기능 출발, 목록 밖 외곽 허용)
+- 사용자 2026-11-18 「응 허용하고 이순서대로 진행해줘」 — 세계컷 GPT 설계안 2단계: 둘째 GPT 설계(-gpt2)는 B안 — 목록 밖 외곽 허용.
+- lib/prompt-spec.js WORLD_FREE.second → 「Costume — Design B」: 원소의 쓰임(주민은 그 물건의 쓰임)에서 나온 직책 · 역할을 먼저, 그에 맞는 외곽(목록 밖도), 어깨 · 허리 · 하체 외곽 하나는 A안과 다르게, 장비 배치 · 배경 단서 하나, 메카는 단단한 전신 장갑 안에서 새 외곽.
+- 묶음 안내 · docs/IMAGE_AUTOMATION.md 를 A · B 안으로, 기록 generation.plan. tests/prompt-element.cjs 주문 검사를 새 글로.
+
 ## 2026-11-18 · claude · 세계컷 GPT 설계 1단계 — A안 문구 · 우리 설계와 얼굴 · 외곽 대조
 - 사용자 2026-11-18 「응 허용하고 이순서대로 진행해줘」 — 세계컷 GPT 설계안(A: 지정 실루엣에서 소재 · 상징을 의상 구조로, B: 역할 · 기능에서 출발해 목록 밖 외곽도) 1단계.
 - lib/prompt-spec.js WORLD_FREE.costume — 「Design A, your first design」: 원소의 물성 · 상징의 시각 특징 하나를 겹침 · 단면 · 절개 · 여밈 · 장갑판 배열에, 전신에서 먼저 읽히는 윤곽을 지시문에 적는다.
