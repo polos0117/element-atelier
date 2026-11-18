@@ -11,6 +11,12 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-19 · claude · 그림 저장소 셋째 element-atelier-img-3 연결 — 둘째는 닫힘
+- 사용자 「원소랑 삼국지 이미지 저장소 3번 다 만들어놨으니 연결도 시켜줘」 — element-atelier-img-2 가 약 0.96 GB 로 찼다
+- element-atelier-img-3 에 README · .nojekyll · 썸네일 워크플로(img-2 와 같은 꼴, 크기 경고는 img-4 를 가리킨다)
+- lib/img.js BASES · tools/register-images.py SHARDS(EXTRA_DIRS img-3) · 그림 등록 워크플로(img-repo-3 받기 · img-3 잇기) · .gitignore · img.js ?v=12. 테마(themes/)는 img-2 그대로
+- 문서 IMAGE_RULES 저장소 표 · AGENTS · IMAGE_AUTOMATION. 검사 img-shards · register-images 통과
+
 ## 2026-11-18 · claude · 세계컷 GPT 설계 — 체형 칸 · 피부색 허용
 - 사용자 「피부랑 체형까지는 바꿈 허용해줘」 → 「응 A로 진행해줘」(우리 체형 목록 안에서만)
 - 칸 채우기 틀의 우리 체형 글(Body and hair 줄 「… build」)을 [BUILD: …] 칸으로 — 주문에 우리 체형 목록(VOCAB_EN.body 전부 + build)을 싣고 하나를 글 그대로, 우리 것 그대로도 된다

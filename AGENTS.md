@@ -92,7 +92,7 @@
 
 ### 5. 그림은 이 저장소에 두지 않는다
 
-새 그림은 `element-atelier-img-2` 에 올린다(2026-11-13 — 첫 저장소 `element-atelier-img` 는 차서 닫힘: 교체만 · 기록 · 잠금 · 배경 · 화풍 비교는 계속 거기, IMAGE_RULES 3절 표). `img/` · `img-2/` 는 `.gitignore` 에 있다. 원본 PNG 는 올리지 않는다.
+새 그림은 `element-atelier-img-3` 에 올린다(2026-11-18 — 사용자 「원소랑 삼국지 이미지 저장소 3번 다 만들어놨으니 연결도 시켜줘」. 첫 저장소 `element-atelier-img` 는 2026-11-13 부터 닫힘: 교체만 · 기록 · 잠금 · 배경 · 화풍 비교는 계속 거기, 둘째 `element-atelier-img-2` 는 2026-11-18 부터 닫힘: 교체만 · 테마는 거기, IMAGE_RULES 3절 표). `img/` · `img-2/` · `img-3/` 는 `.gitignore` 에 있다. 원본 PNG 는 올리지 않는다.
 그림 규칙은 `IMAGE_RULES.md`. 그림 저장소에 올리면 썸네일(`element-atelier-img` 워크플로)과 등록(`그림 등록` 워크플로 · `tools/register-images.py`)이 알아서 된다 — `data/img.json` 은 손으로 고치지 않는다.
 일상컷 색인 `data/casual-index.json`(허브 「일상컷 목록」 이 읽는다 — 컷마다 필수 갈래 · 의상 갈래 · 옷 · 색 · 게임 코스프레 · 자유 설계 Outfit 줄, 우리 값은 한글)은 `tools/casual-index.cjs` 가 그림 저장소 records 의 일상컷 기록 · 계획에서 쓰고 `그림 등록` 워크플로가 같은 자리에서 다시 써 같이 커밋한다(2026-11-17) — 손으로 고치지 않는다, 자리에서는 `node tools/casual-index.cjs`.
 

@@ -45,8 +45,9 @@ IMG_DIR = "img"
 # 어느 파일이 몇 번 저장소에 있는지는 img.json 의 where 에 적는다(0 번은 적지 않는다 — 옛 주소 그대로).
 # 새 그림은 "열린 저장소" 에만 받는다: 체크아웃에 있는 저장소 가운데 번호가 가장 큰 것.
 # 닫힌 저장소에는 이미 있는 이름의 교체만 받는다 — 새 이름이 오면 등록 전체를 멈춘다.
-SHARDS = ["element-atelier-img", "element-atelier-img-2"]
-EXTRA_DIRS = ["img-2"]
+# 2026-11-18 셋 — element-atelier-img-2 도 닫힘(교체만), element-atelier-img-3 열림(사용자 「원소랑 삼국지 이미지 저장소 3번 다 만들어놨으니 연결도 시켜줘」)
+SHARDS = ["element-atelier-img", "element-atelier-img-2", "element-atelier-img-3"]
+EXTRA_DIRS = ["img-2", "img-3"]
 
 # 연출컷(action)은 받지 않는다 — 이름에 끼면 "이름 꼴이 안 맞는다" 로 선다
 PAT = re.compile(r"^(.+?)_(m|f|casual(\d+)|extra(\d+))\.webp$", re.I)
