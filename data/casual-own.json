@@ -7456,8 +7456,8 @@
      "base": "nation_market",
      "place": "a limited-release sneaker shop of her element's kingdom — a lit wall of single display shoes and a long queue outside the glass",
      "activity": "she is the sneaker shop clerk presenting the one pair everyone queued all night for",
-     "preset": "lookback_raise",
-     "use": "sig_raise",
+     "preset": "camera_shot",
+     "use": "sig_both",
      "prop": "a single rare sneaker",
      "outfit": {
       "bold": "a sneaker clerk look fitted to her body — a cropped shop tee, a short pleated skirt and fresh sneakers",
