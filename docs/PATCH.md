@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-19 · claude · 세계컷 GPT 설계 — 얼굴 칸 여덟(우리와 다르게 · 두 장도 다르게)
+- 사용자 「같아도 되고 달라도 된다고 했더니 거의 같게 그리는거 같아 … gpt 세계컷에 얼굴까지 우리거랑 다르게 … GPT A랑 B가 또 다르게」 → 「Face 쪽은 다 다르게로 하자」 → 「응 진행해줘」 — 삼국지와 같은 꼴
+- lib/prompt-element.js — 칸 채우기 틀의 Face 줄을 칸 여덟으로, 주문에 칸마다 우리 목록(우리 것 · wide_smile 뺌). worldFillErrors — 목록 밖 · 빈 칸 · 두 설계 칸마다 같음은 오류. 옛 FILL_SPLIT · fillRe 를 한 칸 표(slotTable · slotRe)로. worldFillFace 내보냄
+- lib/prompt-spec.js WORLD_FREE.fill.face · two · free(표정 줄만 자유) · msg. 안내 묶음 차례표 · IMAGE_AUTOMATION · world-fill-check 머리. 검사 prompt-element. ?v= prompt-spec 55 · prompt-element 49
+
 ## 2026-11-19 · claude · 세계컷 설계 — 크게 웃는 표정 · 웃는 입 없앰
 - 사용자 「원소 세계컷 설계에 러더포듐같이 웃는 표정 좀 없애줘」 → 「응 이대로해줘」
 - data/element-design.json — 표정 laughing · laughing_open 열 곳(근본 알루미늄 · 플루오린 · 토륨 · 프랑슘 · 러더포듐 · 칼륨 · 프라세오디뮴, 산소 가문 피, 주민 모닥불 · 술통)을 confident · determined · proud · calm · focused · curious 로, 입 wide_smile 스물여덟 곳(근본 열여섯 · 수소 가문 풍선 · 주민 열하나)을 soft_medium · plush_pout · thin_bow 로. look.why 에 바꾼 까닭, 「활짝 웃는 입」 말은 「다문 입」
