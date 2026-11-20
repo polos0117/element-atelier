@@ -169,7 +169,7 @@ assert.equal(P.build(D, S, 'fe', 'modern', {}), '');
   assert(t3.includes('STYLE: ' + v3.text) && f3.includes(v3.face['impression.cute']) && f3.includes(v3.face['eye_size.large']) && f3.includes(v3.face['nose.small_button']) && f3.includes(v3.face['mark.blush']), '적혈구 v3 얼굴 낱말 ' + f3);
   assert(!f3.includes('a cute, bright-eyed sweetness') && !f3.includes('rosy flushed cheeks'), '옛 낱말은 빠진다');
   const t2 = P.build(D, S2, 'o-blood-cell', 'mecha', { style: 'game_keyart' });
-  assert(t2.includes('STYLE: ' + v2.text) && t2.includes('a cute, bright-eyed sweetness') && t2.includes('small button nose') && t2.includes('rosy flushed cheeks'), 'v2 는 옛 지시문 그대로');
+  assert(t2.includes('STYLE: ' + v2.text) && t2.includes('a cute, bright-eyed sweetness') && t2.includes('a nose with a soft, rounded tip, of natural size') && t2.includes('rosy flushed cheeks'), 'v2 는 옛 지시문 그대로');
   /* v3b — 놀람을 낮추고 FACE 끝에 한 마디(같은 날 「2번은 넣어주고」) */
   const m3 = P.build(D, S3, 'o-fire-match', 'mecha', { style: 'game_keyart' });
   assert(m3.includes(v3.expr.surprised) && !m3.includes('mouth open in a small round shape') && m3.split('\n').find(l => l.startsWith('FACE')).includes(v3.face_tail), '성냥 v3 놀람 · FACE 끝');
