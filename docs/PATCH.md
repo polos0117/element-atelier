@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-20 · claude · 일상컷 고개 · 몸 좌우 — 몸 · 고개 · 시선을 따로, 묶음 안에 좌우를 나눔
+- 사용자 「도시공방 경복궁 사이버펑크야. 고치려면 공통으로 고쳐줘」. GPT 검토 — 일상컷 시선은 정해도 고개 좌우를 안 적어 모델이 참고 그림 각도를 그대로 따라 컷마다 같은 각도였다. 네 공방 같이 고침.
+- lib/casual-tree-v2.js — turns · turnText · spreadTurns 추가(scene.turn = 코끝이 향하는 화면 쪽 front · left · right). 몸 · 고개를 따로 적고 「각도는 이 줄을 따르고 붙인 그림을 따르지 않는다」 한 줄. 옆모습에서 두 손 쓰임이 같으면 turn 쪽을 본다.
+- 계획기 — 분위기 단계 끝에 spreadTurns 로 묶음 안 좌우를 고르게 나눔(자유 설계 칸 빼고). 조립부 COMPOSITION 줄이 turnText 를 씀, SCENE_V2 에 turn. ?v= 올림.
+
 ## 2026-11-20 · claude · core v7 — 얼굴 낱말에서 크기 말을 빼고 모양 · 방향만
 - 사용자 「이건 공통적으로 손볼 부분 같긴한데」 → 「이건 지금 고치자」 → 「옮겨주고」. style-atelier core/v7 — VOCAB_EN 얼굴 낱말(face_shape · eyes · brows · nose · lips 스물다섯)과 FACE_DESIGN.eye_size 에서 크기 말을 빼고, 이목구비 크기는 자연스러운 범위 · 차이는 눈꼬리 · 눈썹 곡선 · 입꼬리 · 턱선으로(예: square_soft · broad_soft · wide_smile · round_large). 도시 공방 해치 스팀펑크 시험에서 각진 얼굴 · 넓은 코 · 넓은 입 · 긴 아몬드 눈이 겹쳐 넓적하게 나왔다. 열쇠는 그대로 — 이 공방 lib/ 끝 core 블록을 node core/sync.cjs 로 v7 로 옮겼다(블록은 손으로 고치지 않는다). 이미 그린 그림은 그대로.
 
