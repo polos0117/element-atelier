@@ -388,7 +388,7 @@ function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = ''
   }
   const items = C2.choices(T2, sc, 'item', g);
   if (reqType === 'cosplay') { if (!items.includes(cosItem(cut))) return null; sc.item = cosItem(cut); }   /* 재단은 pickCosplay 가 정했다 */
-  else sc.item = items.length ? lean(r, items, U.item) : '';
+  else { const pool = C2.classLean ? C2.classLean(T2, sc.ofam, items, k => (U.item || {})[k] || 0) : items; sc.item = pool.length ? lean(r, pool, U.item) : ''; }   /* 실루엣 갈래 — 덜 쓴 갈래의 옷 먼저(공용 모듈 classLean, 2026-11-23) */
   sc = C2.repair(T2, sc, g, rp);
   if (!wantSig && sc.use && !sigProp(sc)) {
     const alt = C2.choices(T2, sc, 'use', g).filter(k => C2.use(T2, k).prop !== 'signature');
