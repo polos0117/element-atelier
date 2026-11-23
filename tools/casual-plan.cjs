@@ -353,6 +353,9 @@ const usageOf = u => {
   return x;
 };
 const pathKey = (preset, place) => preset + '@' + place;
+/* 화면비(2026-11-23 사용자 「배경이 보이니까 더 시원하네」 → 「다른 공방도 조금씩 해보자」) — 눕는 자세 · 환경 컷 3:2, 허리 위 · 3/4 1:1, 나머지 2:3(표 aspect_rules · 공용 모듈 aspectFor).
+   자유 설계 칸 · 게임 코스프레는 2:3. 이미 그린 컷(기록에 aspect 가 없거나 2:3)은 그대로 */
+const aspectOf = sc => C2.aspectFor ? C2.aspectFor(T2, sc) : '2:3';
 
 /* 한 칸 — 시대 · 장소 · 의상 · 옷, 그 장소에서 쓸 수 있는 자세 추천 하나(frame 을 주면 그 프레이밍의 추천만).
    wantSig 면 소품 동작을 그 원소의 물건으로. 소품 동작은 덜 쓴 소품 쪽으로(무게 1/(1+횟수)², 따로 된 난수 흐름 — game 과 같다).
@@ -410,7 +413,7 @@ function slot(r, card, reqType, { frame = '', wantSig = false, era: wantEra = ''
   if (wantSig && !sigProp(sc)) return null;
   const body = by(tree2.body, sc.body), head = by(tree2.head, sc.head);
   sc.expr = body && body.face_hidden && !(head && head.look_back) ? '' : pick(r, EXPRS);   /* 표정은 고르게 — 덜 쓴 쪽 무게(lean)를 걸면 덜 쓴 극단 표정으로 쏠렸다(2026-11-03) */
-  sc.axes = { ...FIXED_AXES }; sc.aspect = '2:3'; sc.unlocked = [];
+  sc.axes = { ...FIXED_AXES }; sc.aspect = aspectOf(sc); sc.unlocked = [];   /* 화면비 — 자세 · 프레이밍이 정해진 뒤(공용 모듈 aspectFor, 2026-11-23) */
   return sc;
 }
 
@@ -510,6 +513,8 @@ function check(cuts, card, base = [], others = []) {
     const ok = outfitKey(c); if (ok && others.some(o => outfitKey(o) === ok)) errs.push(`칸 ${c.n || '?'}: 옷 ${ok} 는 다른 세계 · 다른 묶음이 입은 옷`);
     if (c.ofam === 'bath' && others.some(o => o.ofam === 'bath')) errs.push(`칸 ${c.n || '?'}: 목욕 차림은 한 카드의 세계 셋 통틀어 한 장까지(2026-11-09)`);
   }
+  /* 화면비 — 새 컷은 계획대로(aspectFor). 이미 그린 컷은 2:3 이라 2:3 도 받는다. 자유 설계 칸은 칸을 정한 뒤 2:3 으로 맞춘다 */
+  for (const c of cuts) if (c.aspect && c.aspect !== '2:3' && !c.ofree && !c.sfree && c.aspect !== aspectOf(c)) errs.push(`칸 ${c.n || '?'}: 화면비 ${c.aspect} 가 계획(${aspectOf(c)})과 다르다`);
   return errs;
 }
 /* 옷 색 갈래(2026-11-08 「일상컷 생성 옵션에 의상색 관련 다양성은 없었나?」 → 「응 넣어줘」) — 색이 박히지 않은 옷마다 서로 다른 갈래를 준다.
@@ -689,7 +694,7 @@ function ownCut(card, world, level = OWN_LEVELS[0], rr = Math.random) {
   for (const k of AMBIENT) if (!sc[k]) delete sc[k];
   const body = by(tree2.body, sc.body), head = by(tree2.head, sc.head);
   return { ...sc, n: OWN_N, own: world, ...(row.prop ? { prop: '0', ownProp: row.prop } : {}), placeText: row.place, scene: row.activity, outfit: row.outfit[level] || row.outfit[OWN_LEVELS[0]], preset: row.preset,
-    expr: body && body.face_hidden && !(head && head.look_back) ? '' : EXPRS[Math.floor(rr() * EXPRS.length)], axes: { ...FIXED_AXES, skin_exposure: level }, aspect: '2:3', unlocked: [] };
+    expr: body && body.face_hidden && !(head && head.look_back) ? '' : EXPRS[Math.floor(rr() * EXPRS.length)], axes: { ...FIXED_AXES, skin_exposure: level }, aspect: aspectOf(sc), unlocked: [] };
 }
 const MUST = /^(필수 갈래가 없다|먼 컷|가까운 컷|그 원소의 물건을 든 컷이 없다|시대가 |게임 코스프레 컷이 없다|갈래 자유 컷이 없다)/;
 /* cosplayUsed — 세 공방의 쓴 코스프레(cosplayUsage)에 이번에 짠 다른 세계의 것을 더한 목록. 비우면 아무도 안 쓴 것으로 본다(검사는 그렇게 돈다) */
@@ -848,7 +853,7 @@ function line(c) {
   const p = C2.place(T2, c.place) || {}, f = CT.family(tree, c.ofam) || {}, it = CT.item(tree, c.ofam, c.item), u = C2.use(T2, c.use), pr = by(tree2.presets, c.preset);
   const ko = (list, k) => (by(list, k) || {}).ko || k || '—', hand = k => k === 'prop' ? '소품' : ko(tree2.hands, k);
   return `${c.old ? '  (있음)' : '  '} ${c.n} ${requiredType(c) || isCosplay(c) ? '★' : ' '}${C2.awkward(T2, c.ofam, c.place).length ? '⚠' : ' '} ${(CT.era(tree, c.era) || {}).ko} · ${p.ko} · ${f.ko}${it ? '(' + it.ko + ')' : ''} │ ${pr ? pr.ko : '—'} │ ` +
-    `${ko(tree2.postures, c.posture)} · ${c.frame} · ${ko(tree2.body, c.body)} · ${ko(tree2.head, c.head)} · 오른손 ${hand(c.right)} · 왼손 ${hand(c.left)}${u ? ' · ' + ko(tree2.props, u.prop) + ' ' + u.ko : ''}${c.legs ? ' · ' + ko(tree2.legs, c.legs) : ''}${c.gaze ? ' · 시선 ' + ko(tree2.gaze, c.gaze) : ''}${c.shade ? ' · 색 ' + (shadeRow(c) || {}).ko : ''}${c.situ ? ' · 상황 ' + ko(T.CASUAL.situations, c.situ) : ''}${c.ofree ? ' · 옷 자유(노출 의상을 GPT · Claude 가)' : ''}${isCosplay(c) ? ' · 코스프레 ' + cosplayKo(c.cosplay) + (c.cosplay && c.cosplay.again ? ' · 더 없으면 ' + c.cosplay.again.character + '(2회차)' : '') : ''}`;
+    `${ko(tree2.postures, c.posture)} · ${c.frame} ${c.aspect || '2:3'} · ${ko(tree2.body, c.body)} · ${ko(tree2.head, c.head)} · 오른손 ${hand(c.right)} · 왼손 ${hand(c.left)}${u ? ' · ' + ko(tree2.props, u.prop) + ' ' + u.ko : ''}${c.legs ? ' · ' + ko(tree2.legs, c.legs) : ''}${c.gaze ? ' · 시선 ' + ko(tree2.gaze, c.gaze) : ''}${c.shade ? ' · 색 ' + (shadeRow(c) || {}).ko : ''}${c.situ ? ' · 상황 ' + ko(T.CASUAL.situations, c.situ) : ''}${c.ofree ? ' · 옷 자유(노출 의상을 GPT · Claude 가)' : ''}${isCosplay(c) ? ' · 코스프레 ' + cosplayKo(c.cosplay) + (c.cosplay && c.cosplay.again ? ' · 더 없으면 ' + c.cosplay.again.character + '(2회차)' : '') : ''}`;
 }
 
 /* ══ 옛 계획의 코스프레 다시 정하기(2026-11-16 — 등장인물 많은 게임도 계획기가 캐릭터를 정한다. 그 전에 짜 둔 계획의 pick 칸 「…」 을 새 규칙으로).
@@ -1019,5 +1024,5 @@ function main(argv) {
   }
   return 0;
 }
-module.exports = { shadeUsage, shadeize, shadeRow, cosplayReposOk, cosplayOpen, recosplayList, pendingCosplay, recosplayCut, planFilesOf, COSPLAY, COS_FAM, cosPlace, cosplayPaths, COS_SWIM, COSPLAY_ROOTS, isCosplay, cosItem, cutOfItem, cosplayRow, cosplayUsage, cosplayTally, cosplayFull, pickCosplay, cosplayAgain, withAgain, againScene, againPrompt, SITU_RATE, refFree, ownCut, ownRow, OWN_N, OWN_LEVELS, ambient, POSE_WEIGHT, cardOf, plan, colorize, denierize, situate, makeFree, sceneText, freeText, recentScenes, SITUS, DENIERS, outfitEn, COLORS, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, sceneUsage, CASUAL_N, STYLE, WEIGHT_UNUSED, EXPOSE_TYPES };
+module.exports = { aspectOf, shadeUsage, shadeize, shadeRow, cosplayReposOk, cosplayOpen, recosplayList, pendingCosplay, recosplayCut, planFilesOf, COSPLAY, COS_FAM, cosPlace, cosplayPaths, COS_SWIM, COSPLAY_ROOTS, isCosplay, cosItem, cutOfItem, cosplayRow, cosplayUsage, cosplayTally, cosplayFull, pickCosplay, cosplayAgain, withAgain, againScene, againPrompt, SITU_RATE, refFree, ownCut, ownRow, OWN_N, OWN_LEVELS, ambient, POSE_WEIGHT, cardOf, plan, colorize, denierize, situate, makeFree, sceneText, freeText, recentScenes, SITUS, DENIERS, outfitEn, COLORS, check, record, recordRel, oldCuts, freeSlots, registered, requiredType, propUsage, sceneUsage, CASUAL_N, STYLE, WEIGHT_UNUSED, EXPOSE_TYPES };
 if (require.main === module) process.exit(main(process.argv.slice(2)));

@@ -55,7 +55,8 @@ for (const key of pickKeys) {
       assert.equal(rec.record, `records/${key}/${w}-casual${c.n}.${C.STYLE}-ui.json`);
       assert.equal(rec.ref, `${key}_${w}_${C.STYLE}_f.webp`, '참고 그림은 그 세계 그림');
       assert(rec.prompt.length > 500 && rec.treeV === 2 && rec.world === w);
-      if (SHORT) assert(rec.prompt.includes(TS.CASUAL.short.face) && rec.prompt.includes('1024×1536') && /\n\nStyle: /.test(rec.prompt) && rec.prompt.includes(C.isCosplay(c) ? TS.CASUAL.cosplay.short : TS.CASUAL.short.headwear) && !/^(?:WARDROBE|ANGLE|OUTPUT|AGE|ANATOMY):/m.test(rec.prompt), '짧은 일상컷');
+      assert.equal(c.aspect, C.aspectOf(c), key + ' ' + w + ' 칸 ' + c.n + ' 화면비는 aspectFor(2026-11-23)');
+      if (SHORT) assert(rec.prompt.includes(TS.CASUAL.short.face) && rec.prompt.includes(TS.CASUAL.short.outputs[c.aspect || '2:3']) && /\n\nStyle: /.test(rec.prompt) && rec.prompt.includes(C.isCosplay(c) ? TS.CASUAL.cosplay.short : TS.CASUAL.short.headwear) && !/^(?:WARDROBE|ANGLE|OUTPUT|AGE|ANATOMY):/m.test(rec.prompt), '짧은 일상컷');
       const ol = (rec.prompt.match(/^Outfit: .*$/m) || [''])[0], CL = TS.CASUAL.colors.find(x => x.key === c.color);
       if (C.isCosplay(c)) {   /* 코스프레 Outfit 줄 — 목록 글(게임 이름), 원소 옷 줄 없음 */
         const g = C.COSPLAY.games.find(x => x.key === c.cosplay.game);

@@ -106,7 +106,7 @@
 .record textarea {min-height:180px}
 .status {min-height:20px;margin:6px 0 0;color:var(--ok);font-size:12px}
 .art-preview {margin-top:12px;display:flex;gap:10px;align-items:flex-start}
-.art-preview img {width:120px;aspect-ratio:2/3;object-fit:cover;border-radius:8px;border:1px solid var(--line)}
+.art-preview img {width:120px;aspect-ratio:2/3;object-fit:contain;background:var(--card2);border-radius:8px;border:1px solid var(--line)}
 .art-preview p {margin:0;color:var(--muted);font-size:12px}
 
 /* 일상컷 줄 — 세계 셋 아래, 같은 칸 크기로 이어 붙는다 */
@@ -145,6 +145,7 @@
 .ek-card .obj {margin:-2px 0 8px;color:var(--muted);font-size:12px;line-height:1.5}
 .worlds.main {max-width:560px}
 .worlds.casuals {grid-template-columns:repeat(auto-fill,minmax(112px,1fr));margin-top:8px}
+.worlds.casuals .slot .face img {object-fit:contain;object-position:center}   /* 칸은 2:3 그대로 — 1:1 · 3:2 일상컷(2026-11-23)은 자르지 않고 칸 안에 */
 .slot .cap {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
 .slot.dead {opacity:.45;border-style:dashed;cursor:default;align-self:start}
 .slot.dead .face {aspect-ratio:auto;height:44px}
