@@ -11,6 +11,14 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-24 · claude · 크게 보기 — 휴대폰 가로로 들면 그림만 가득 · 세로에선 꽉 채우기
+- lib/fill-view.js — 새 공용 훅(삼국지 · 원소 · 도시 · 포켓몬 공방이 글자 하나 다르지 않게). 사용자 「1:1이 모바일에선 티가 잘 안나는것같네」 → 「2번만 할까」 → 「1번도 같이하자」. 그림의 가로세로 비가 맞춤 칸 비의 1.4배를 넘을 때만(폰 세로의 1:1 · 3:2) 「⤢ 꽉 채우기」 — 그림 높이를 칸 높이에 맞춰 펴고 옆으로 굴려 본다(가운데부터). 두 번 누르기(손가락 · 마우스)로도, 그림이 바뀌거나 화면 크기가 바뀌면 맞춤으로. 2:3 · PC · 펼친 폴드 · 가로 화면엔 안 뜬다
+- lib/walk-card.js — 한 장(크게 보기)에 꽉 채우기: 단추 줄에 단추, 켜면 밀어 넘기기 · 홀로는 쉬고(‹ › · ← → 는 그대로, 넘기면 맞춤 · 넘기기 전환 없이), 닫기 단추에 lb-close
+- lib/walk.css — 꽉 채우기 칸 · 그림 touch-action. 휴대폰 가로(높이 500 이하)면 위 막대 · 도구 단추 · 위 줄 · 글 판 · 단추 줄을 숨기고 그림만 화면 높이 가득, 닫기(와 꽉 채우기)만 오른쪽 위 반투명
+- lib/words.js — dex.fill · dex.fit
+- tests/fill-view.cjs — 새 화면 검사(폰 세로 1:1 · 2:3, PC, 폰 가로 1:1 · 3:2)
+- index.html · alchemy.html · prompt.html · styles.html · lib/walk.js — words.js ?v=34 · walk.css ?v=18 · walk.js ?v=19 · walk-card.js ?v=7
+
 ## 2026-11-23 · claude · 그림 등록 실패 고침 — 등록 검사가 PIL 없이 돈다
 - tests/register-images.py — 크기 시험 그림을 PIL 대신 webp 머리말(VP8X)로 직접 쓴다. Actions 에 PIL 이 없어 화면비 작업(같은 날) 뒤 「그림 등록」 이 검사 단계에서 ModuleNotFoundError 로 모두 멈췄다
 

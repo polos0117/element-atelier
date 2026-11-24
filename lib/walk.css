@@ -199,6 +199,24 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 .walk .w-card .lb-cnote .cnote-more:focus-visible {outline:2px solid var(--accent,#fff);outline-offset:2px}
 /* 그림이 안 와도(404) 칸이 무너지지 않게 — ‹ › 가 위 글에 겹치지 않는다(그림은 마지막 실패에 숨긴다, lib/walk-data.js imgFail) */
 .walk .w-card .lb-stage {flex:none;min-width:min(100%,240px);min-height:min(50dvh,360px)}
+/* 꽉 채우기(lib/fill-view.js, 2026-11-24) — 휴대폰 세로에서 1:1 · 3:2 그림을 칸 높이(그림의 max-height)에 맞춰 펴고 옆으로 민다. 맞춤 보기의 모양은 그대로 */
+.walk .w-card .lb-stage img {touch-action:manipulation}   /* 두 번 누르기가 브라우저 확대로 새지 않게 */
+.walk .w-card .lb-stage.is-fill {width:100%}
+.walk .w-card .fill-scroll {display:block;flex:none;width:100%;max-width:100%;height:var(--fill-h);overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;touch-action:pan-x pinch-zoom;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.walk .w-card .fill-scroll > img {display:block;width:var(--fill-w)!important;height:var(--fill-h)!important;max-width:none!important;max-height:none!important;margin:0;border-radius:0;touch-action:pan-x pinch-zoom}
+.walk .w-card .fill-toggle[aria-pressed="true"] {border-color:#fff;background:#fff2}
+/* 휴대폰 가로(2026-11-24 「1번도 같이」) — 그림만 화면 가득. 한 장이 위 막대까지 덮고, 위 줄 · 일상컷 한 줄 · 글 판 · 아래 단추 줄은 숨긴다.
+   닫기(와 꽉 채우기가 뜨면 그것)만 오른쪽 위에 반투명으로, ‹ › 는 그대로 그림 위 */
+@media (orientation:landscape) and (max-height:500px) {
+  html[data-layer="card"] :is(.w-bar,.tb-open) {display:none}   /* 한 장이 떠 있으면 위 막대 · 도구 단추도 숨긴다(한 장은 w-main 안이라 막대를 덮지 못한다) */
+  .walk .lightbox.w-card {top:0;justify-content:center;overflow:hidden;padding:6px}
+  .walk .w-card :is(.lb-top,.w-lore) {display:none}
+  .walk .w-card .lb-stage {min-height:0}
+  .walk .w-card .lb-stage img {max-width:100%;max-height:calc(100dvh - 12px)}
+  .walk .w-card .bar {position:fixed;top:6px;right:6px;z-index:3;gap:6px;max-width:none}
+  .walk .w-card .bar > :not(.lb-close):not(.fill-toggle) {display:none}
+  .walk .w-card .bar > :is(.lb-close,.fill-toggle) {min-width:44px;background:#0006;border-color:#fff5;backdrop-filter:blur(4px)}
+}
 
 /* 가문 층 — 옛 전시관 .g-family · .g-hero · .g-cits 를 옮겨 이름을 바꿈. 넓으면 가문주 | 글 두 칸, 좁으면 한 칸 */
 .w-pic {position:relative;display:block;aspect-ratio:2/3;overflow:hidden;border-radius:10px;background:#ffffff08 center/cover no-repeat}
