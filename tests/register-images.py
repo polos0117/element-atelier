@@ -72,6 +72,37 @@ with tempfile.TemporaryDirectory() as d:
     code, s_p, out = run(s_c, d, ['--prune'])
     assert code == 0 and 'byForm' not in s_p['img']['og']['byStyle'][S], out
 
+    # 전경(2026-11-24) — <나라>_<세계>_<화풍>_vista.webp 는 그 세계 몫의 vista 칸. 세계 그림 · 일상컷과 따로, 세계 그림 없는 세계에도 산다
+    vis = {w: f'fe_{w}_{S}_vista.webp' for w in ('fantasy', 'mecha')}
+    hv = f'h_steampunk_{S}_vista.webp'
+    for n in (*vis.values(), hv): (Path(d) / n).touch()
+    code, s_v, out = run(saved, d, day='2026-11-24')
+    assert code == 0, out
+    fv = s_v['img']['fe']['byStyle'][S]['byForm']
+    assert {w: fv[w].get('vista') for w in fv} == {'fantasy': vis['fantasy'], 'steampunk': None, 'mecha': vis['mecha']}, fv
+    assert fv['fantasy']['f'] == root['fantasy'] and fv['mecha']['casual']['f'] == [cas[1], cas[0]], '전경이 세계 그림 · 일상컷 자리를 건드리지 않는다'
+    assert list(fv['mecha']) == ['f', 'casual', 'vista'], ('칸 차례', list(fv['mecha']))
+    assert s_v['img']['h']['byStyle'][S]['byForm'] == {'steampunk': {'vista': hv}}, '세계 그림 없이 전경만 있는 세계 칸'
+    assert {f: s_v['added'][f] for f in (*vis.values(), hv)} == {f: '2026-11-24' for f in (*vis.values(), hv)} and '· vista' in out, out
+    code, again, out = run(s_v, d)
+    assert code == 0 and again['img'] == s_v['img'] and again['added'] == s_v['added'], ('다시 돌려도 그대로', out)
+    for n in (*vis.values(), hv): (Path(d) / n).unlink()
+    code, s_vp, out = run(s_v, d, ['--prune'])
+    assert code == 0 and 'h' not in s_vp['img'] and not any('vista' in x for x in s_vp['img']['fe']['byStyle'][S]['byForm'].values()), out
+    assert not any(f in s_vp['added'] for f in (*vis.values(), hv)), '지운 전경은 날짜도 빠진다'
+    for bad, why in [(f'fe-steel_fantasy_{S}_vista.webp', '전경은 나라(근본)에만'),        # 가문주 카드에는 전경이 없다
+                     (f'fe-steel-sword_mecha_{S}_vista.webp', '전경은 나라(근본)에만'),   # 주민도
+                     (f'fe_{S}_vista.webp', '세계 열쇠가 없다'),
+                     (f'fe_fantasy_vista.webp', '화풍 열쇠가 없다'),
+                     (f'fe_modern_{S}_vista.webp', '그런 나라가 없다'),
+                     (f'zz_fantasy_{S}_vista.webp', '그런 나라가 없다'),
+                     (f'fe_fantasy_{S}_f_vista.webp', '그런 나라가 없다'),            # 성별 표시를 붙이지 않는다
+                     (f'fe_fantasy_{S}_vista2.webp', '이름 꼴')]:
+        p = Path(d) / bad; p.touch()
+        code, s2, out = run(saved, d)
+        assert code == 1 and s2 is None and why in out, (bad, out)
+        p.unlink()
+
     # 틀린 이름은 하나라도 있으면 아무것도 저장하지 않는다
     for bad, why in [(f'fe_modern_{S}_f.webp', '그런 카드가 없다'),            # 없는 세계 → 카드 이름으로 읽혀 실패
                      (f'zz_fantasy_{S}_f.webp', '그런 카드가 없다'),            # 없는 나라
@@ -173,7 +204,7 @@ with tempfile.TemporaryDirectory() as t:
             got = reg.history_dates(str(clone))
         assert got == want, (name, got)
 print('PASS 그림 등록: 근본·가문주·주민의 세계 그림(fantasy·steampunk·mecha)·일상컷·특별컷 자리 · 다시 돌려도 그대로'
-      ' · 일상컷은 세계 몫 안(참고 그림 = 세계 그림)·세계 없는 옛 시안은 화풍 몫 · 없는 세계·카드·화풍·성별 표시·밑줄 열쇠·세계 없는 세계 그림·세계 붙은 특별컷·연출컷·같은 자리는 저장 안 함'
+      ' · 일상컷은 세계 몫 안(참고 그림 = 세계 그림)·세계 없는 옛 시안은 화풍 몫 · 전경(_vista — 세계 몫 vista 칸 · 전경만 있는 세계 · --prune · 가문 · 주민 · 세계 · 화풍 · 성별 표시) · 없는 세계·카드·화풍·성별 표시·밑줄 열쇠·세계 없는 세계 그림·세계 붙은 특별컷·연출컷·같은 자리는 저장 안 함'
       ' · 등록한 날(새 것만 오늘·있던 날짜 그대로·지어내지 않음·틀린 날짜 버림·--check·--prune) · git 이력 채우기(교체·지운 것·얕은 저장소 경계)')
 
 # 크기(2026-11-23 일상컷 화면비) — 세계 그림은 1024×1536 하나, 일상컷은 셋(1024×1536 · 1024×1024 · 1536×1024) 가운데 하나이고 기록(계획)에 화면비가 있으면 그 크기
@@ -190,8 +221,9 @@ with _tf.TemporaryDirectory() as _t:
     _pic('a_w_s_f.webp', (1024, 1536)); _pic('b_w_s_f.webp', (1024, 1024))                       # 세계 그림이 정사각 — 걸림
     _pic('a_w_s_f_casual1.webp', (1536, 1024)); _pic('a_w_s_f_casual2.webp', (1024, 1024))        # 2 는 계획이 3:2 — 걸림
     _pic('a_w_s_f_casual3.webp', (1024, 1536)); _pic('a_w_s_f_casual4.webp', (1200, 900))         # 기록 없는 옛 컷 2:3 · 받지 않는 크기
+    _pic('a_w_s_vista.webp', (1536, 1024)); _pic('b_w_s_vista.webp', (1024, 1536))                # 전경은 3:2 하나 — 세로 전경은 걸림(2026-11-24)
     for _n in (1, 2): (_rec / f'w-casual{_n}.s-ui.json').write_text(_json.dumps({'file': f'a_w_s_f_casual{_n}.webp', 'scene': {'aspect': '3:2'}}), encoding='utf-8')
     _bad = {b[0]: b[3] for b in reg.roster.art_size([str(_img)])}
-    assert set(_bad) == {'b_w_s_f.webp', 'a_w_s_f_casual2.webp', 'a_w_s_f_casual4.webp'}, _bad
-    assert '3:2' in _bad['a_w_s_f_casual2.webp'], _bad
-print('PASS 그림 크기: 세계 그림 2:3 · 일상컷 셋 · 계획 화면비(기록 scene.aspect)')
+    assert set(_bad) == {'b_w_s_f.webp', 'a_w_s_f_casual2.webp', 'a_w_s_f_casual4.webp', 'b_w_s_vista.webp'}, _bad
+    assert '3:2' in _bad['a_w_s_f_casual2.webp'] and '전경은 1536×1024' in _bad['b_w_s_vista.webp'], _bad
+print('PASS 그림 크기: 세계 그림 2:3 · 일상컷 셋 · 계획 화면비(기록 scene.aspect) · 전경 3:2')

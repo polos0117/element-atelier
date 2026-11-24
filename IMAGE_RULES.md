@@ -160,6 +160,9 @@ game·pkm 이 쓰는 일상컷 트리 버전2(`lib/casual-tree-v2.js`, 설계는
 ```
 <카드>_<세계>_<화풍>_f.webp           세계 그림 — 세계는 fantasy · steampunk · mecha
 <카드>_<세계>_<화풍>_f_casual3.webp   일상컷 3 — 그 세계 그림을 참고 그림으로 붙인 것(생성기 덧붙임 칸의 「일상컷 번호」). 화풍은 그 세계 그림의 화풍.
+<나라>_<세계>_<화풍>_vista.webp      전경(2026-11-24 — 도시 공방에서 옮김, 철 시험) — 그 나라 그 세계의 풍경 한 장, 사람 · 글자 없음 · 가로 3:2 1536×1024 · 성별 표시 없음.
+                                     나라(근본) 열쇠에만. 지시문 `node tools/vista-prompt.cjs <나라> <세계>`(그대로 보낸다), 기록 records/<나라>/<세계>-vista.<화풍>-api.json(--record 바탕 + generation).
+                                     나라 층 궤도의 전경 무대 배경 — 빈 자리 · 진행에 안 센다
                                      번호는 세계마다 따로 1 부터(이름에 세계가 있어 겹치지 않는다 — 2026-10-31. 그 전 카드는 카드 안에서 이어 붙인 번호 그대로 둔다)
 예) fe_fantasy_game_cgi_f.webp · fe-steel_mecha_game_cgi_f.webp · fe_mecha_game_cgi_f_casual1.webp · fe-rust-armor_fantasy_game_keyart_f.webp(시안)
 ```

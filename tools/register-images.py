@@ -8,6 +8,9 @@
     <카드>_<세계>_<화풍>_f_casual3.webp   일상컷 3 — 그 세계 그림을 참고 그림으로 붙인 것이라 세계를 탄다(사용자 2026-10-30). 그 세계 몫(byForm) 안의 casual 에 든다
     <카드>_<화풍>_f_casual3.webp         (옛 꼴) 세계 없는 일상컷 — 참고 그림 없이 뽑은 시안 셋. 화풍 몫의 casual 에 그대로 둔다. 새로 만들지 않는다
     <카드>_<화풍>_f_extra1.webp          특별컷 1 — 선택(세계 없이)
+    <나라>_<세계>_<화풍>_vista.webp     전경(2026-11-24 — 도시 공방에서 옮김, 철 시험) — 그 나라 그 세계의 풍경 한 장, 사람 없음 · 3:2 1536×1024. 나라 층 궤도의 배경.
+                                         나라(근본) 열쇠에만 — 가문 · 주민에는 없다. 그 세계 몫(byForm) 안의 vista 에 든다. 일상컷이 아니고
+                                         빈 자리 · 진행(세계 그림 + 일상 일곱)에도 안 세며, 사람이 아니라 성별 표시가 없다
   예) fe_fantasy_game_cgi_f.webp · fe-steel-sword_mecha_game_cgi_f.webp · fe_mecha_game_cgi_f_casual1.webp · og_game_keyart_f_casual1.webp(시안)
 개방(_open)도 연출컷(action)도 없다 — 카드 하나에 세계 셋과 일상컷이 전부다.
 성별 표시(_f)는 반드시 붙인다 — 지금은 여성만 만들지만 남성을 더해도 옛 파일의 뜻이 안 바뀐다.
@@ -51,6 +54,8 @@ EXTRA_DIRS = ["img-2", "img-3"]
 
 # 연출컷(action)은 받지 않는다 — 이름에 끼면 "이름 꼴이 안 맞는다" 로 선다
 PAT = re.compile(r"^(.+?)_(m|f|casual(\d+)|extra(\d+))\.webp$", re.I)
+# 전경 — 사람이 아니라 성별 표시가 없다. <나라>_<세계>_<화풍>_vista.webp(2026-11-24). 크기는 tools/roster.py VISTA_SIZE
+VISTA = re.compile(r"^(.+)_vista\.webp$")
 # 화풍 견본. 카드 그림이 아니다
 SKIP = re.compile(r"^style-")
 DATE = re.compile(r"^\d{4}-\d{2}-\d{2}(?:T\d{2}:\d{2}\+09:00)?$")   # 날짜만(옛 등록) 또는 한국 시각까지(2026-11-15 — 도감 「신규 생성」 이 시간순으로)
@@ -166,7 +171,7 @@ def buckets(img):
             yield x
 
 
-SLOTS = ("m", "f", "face", "casual", "extra", "byForm")
+SLOTS = ("m", "f", "face", "casual", "extra", "vista", "byForm")   # vista — 세계 몫의 전경(2026-11-24)
 
 
 def tidy(img, styles, forms=()):
@@ -201,7 +206,7 @@ def listed_files(img):
     out = set()
 
     def take(d):
-        for k in ("m", "f"):
+        for k in ("m", "f", "vista"):
             if d.get(k):
                 out.add(d[k])
         for k in ("casual", "extra"):
@@ -257,9 +262,29 @@ def main():
             unknown.append((f, "닫힌 그림 저장소 %s 에 새 그림 — 새 그림은 %s 에 올린다(이미 있는 이름의 교체만 닫힌 저장소에 둔다)"
                             % (SHARDS[owner[f]], SHARDS[open_at])))
             continue
+        v = VISTA.match(f)
+        if v:
+            head, style = split_style(v.group(1), styles)
+            head, form = split_form(head, forms)
+            if roster.SEP in head and head in idx:
+                unknown.append((f, "전경은 나라(근본)에만 — 가문 · 주민 카드에는 전경이 없다(<나라>_<세계>_<화풍>_vista.webp)"))
+                continue
+            if head not in idx:
+                unknown.append((f, "그런 나라가 없다 — 전경은 <나라>_<세계>_<화풍>_vista.webp(성별 표시 없이)"))
+                continue
+            if not style or not form:
+                unknown.append((f, "전경에 %s 열쇠가 없다 — <나라>_<세계>_<화풍>_vista.webp" % ("화풍" if not style else "세계")))
+                continue
+            e = img.setdefault(head, {}).setdefault("byStyle", {}).setdefault(style, {}).setdefault("byForm", {}).setdefault(form, {})
+            if e.get("vista"):
+                unknown.append((f, "전경 슬롯 중복: " + e["vista"]))
+                continue
+            e["vista"] = f
+            added.append((head + " · " + styles[style] + " · " + form + " · vista", f))
+            continue
         m = PAT.match(f)
         if not m:
-            unknown.append((f, "이름 꼴이 안 맞는다(<카드>_<세계>_<화풍>_f.webp · <카드>_<세계>_<화풍>_f_casualN.webp)"))
+            unknown.append((f, "이름 꼴이 안 맞는다(<카드>_<세계>_<화풍>_f.webp · <카드>_<세계>_<화풍>_f_casualN.webp · 전경 <나라>_<세계>_<화풍>_vista.webp)"))
             continue
         kind = m.group(2).lower()
         head, gender = split_gender(m.group(1))
@@ -335,7 +360,7 @@ def main():
     if a.prune and ghosts:
         gone = set(ghosts)
         for e in buckets(img):
-            for k in ("m", "f"):
+            for k in ("m", "f", "vista"):
                 if e.get(k) in gone:
                     del e[k]
             for k in ("casual", "extra"):
@@ -357,7 +382,7 @@ def main():
         for b in bs.values():
             bf = b.get("byForm")
             if bf is not None:
-                for k in [k for k, x in bf.items() if not x or not any(x.get(s) for s in ("m", "f", "casual"))]:
+                for k in [k for k, x in bf.items() if not x or not any(x.get(s) for s in ("m", "f", "casual", "vista"))]:
                     del bf[k]
                 if not bf:
                     del b["byForm"]
@@ -366,6 +391,7 @@ def main():
         if not bs:
             del v["byStyle"]
 
+    img = {k: v for k, v in img.items() if v}      # 그림이 다 빠진 카드 칸도 지운다(전경만 있던 나라를 --prune 한 뒤, 2026-11-24)
     tidy(img, styles, forms)
     # 등록한 날 — 적혀 있는 그림만 남긴다(--prune 으로 빠진 그림은 날짜도 빠진다). 새로 적힌 것만 오늘
     final = listed_files(img)
@@ -417,8 +443,8 @@ def main():
             print("     %-44s %s" % (f, why))
     odd = roster.art_size([IMG_DIR] + [d for d in EXTRA_DIRS if os.path.isdir(d)])
     if odd:
-        print("  크기가 안 맞는 그림 %d(세계 그림 %d×%d · 일상컷은 계획 화면비대로)"
-              % (len(odd), roster.ART_SIZE[0], roster.ART_SIZE[1]))
+        print("  크기가 안 맞는 그림 %d(세계 그림 %d×%d · 일상컷은 계획 화면비대로 · 전경 %d×%d)"
+              % (len(odd), roster.ART_SIZE[0], roster.ART_SIZE[1], roster.VISTA_SIZE[0], roster.VISTA_SIZE[1]))
         for name, w, h, why in odd[:10]:
             print("     %-44s %d×%d — %s" % (name, w, h, why))
     if missing and os.environ.get("GITHUB_ACTIONS"):
@@ -457,7 +483,7 @@ def annotate(added, ghosts, unknown, pruned, odd=()):
         if ghosts:
             f.write("- 적혀 있는데 파일이 없는 것 **%d**\n" % len(ghosts))
         if odd:
-            f.write("- 크기가 안 맞는 그림 **%d** — 세계 그림은 %d×%d, 일상컷은 계획 화면비대로(1024×1536 · 1024×1024 · 1536×1024)\n"
+            f.write("- 크기가 안 맞는 그림 **%d** — 세계 그림은 %d×%d, 일상컷은 계획 화면비대로(1024×1536 · 1024×1024 · 1536×1024), 전경은 1536×1024\n"
                     % (len(odd), roster.ART_SIZE[0], roster.ART_SIZE[1]))
             for name, w, h, why in odd:
                 f.write("  - `%s` — %d×%d · %s\n" % (name, w, h, why))

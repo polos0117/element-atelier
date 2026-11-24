@@ -26,8 +26,8 @@ function serve() {
 const launch = () => chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
 
 async function open(browser, base, url, opt = {}) {
-  const { viewport = COVER, reduced = false, noWebGL = false, blockPixi = false, failURL = null, pref = null, slowImg = 0, now = 0 } = opt;
-  const ctx = await browser.newContext({ viewport, ...(reduced ? { reducedMotion: 'reduce' } : {}) });
+  const { viewport = COVER, reduced = false, noWebGL = false, blockPixi = false, failURL = null, pref = null, slowImg = 0, now = 0, fulfill = [], touch = false, scale = 0 } = opt;
+  const ctx = await browser.newContext({ viewport, ...(reduced ? { reducedMotion: 'reduce' } : {}), ...(touch ? { hasTouch: true, isMobile: true } : {}), ...(scale ? { deviceScaleFactor: scale } : {}) });
   /* 시계 옮기기(2026-11-15 — 도감 「신규 생성」 은 지금부터 1일 안이라 검사가 날짜에 따라 바뀌지 않게). now = 그 페이지의 Date.now() 가 될 때(ms) */
   if (now) await ctx.addInitScript(t => { const real = Date.now.bind(Date), off = t - real(); Date.now = () => real() + off; }, now);
   if (noWebGL) await ctx.addInitScript(() => {
@@ -41,6 +41,9 @@ async function open(browser, base, url, opt = {}) {
   await ctx.route('**/*', async r => {
     const u = r.request().url(), bare = u.split('?')[0];
     if (failURL && failURL.test(u)) return r.fulfill({ status: 404, body: '' });
+    /* fulfill = [{ url: RegExp, status?, body?, contentType? }] — 주소 하나를 정해 둔 답으로(가짜 등록부 · 전경 그림 — 2026-11-24 tests/vista-screen.cjs) */
+    const fx = fulfill.find(f => f.url.test(u));
+    if (fx) return r.fulfill({ status: fx.status || 200, contentType: fx.contentType || 'application/octet-stream', headers: { 'Access-Control-Allow-Origin': '*' }, body: fx.body || '' });
     if (u.startsWith(base)) return r.continue();
     if (blockPixi && /pixi/.test(u)) return r.abort();
     if (/\.(webp|png)(\?.*)?$/.test(u)) {

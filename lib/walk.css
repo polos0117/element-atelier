@@ -145,6 +145,81 @@ html[data-motion="off"] .w-table .pcell.on {animation-name:none}
 .w-traits {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px;padding:0;list-style:none}
 .w-traits li {padding:4px 10px;border:1px solid var(--w-line);border-radius:999px;color:var(--w-mute);font-size:13px}
 
+/* ── 전경 무대(2026-11-24 — 도시 공방의 도시 무대 전경을 옮김, 철 시험. lib/walk-orbit.js VistaStage) — 그 나라 그 세계 전경이 있을 때만 궤도 위에.
+   전경 위는 늘 어두운 막(위 · 아래 그라디언트). 휴대폰은 막대 아래부터 화면 끝까지(양옆 여백 없이), 700px 이상은 둥근 판.
+   휴대폰 세로: 3:2 그림을 높이에 맞춰 천천히 좌우로(50초, 움직임 켬일 때만 — 끔 · 기기 움직임 줄이기면 가운데에 멈춤). 넓은 화면은 멈춘 cover.
+   아래 1/4 은 카드 띠(근본 → 가문주) — 오른쪽 아래 떠 있는 도구 단추를 피해 「전경」 단추는 왼쪽, 띠 끝에 여백 */
+html[data-vista] .w-orbit {margin-inline:calc(-1 * var(--w-pad));padding-inline:var(--w-pad)}   /* 궤도 층의 자르기(overflow-x:clip)를 화면 끝까지 넓혀 전경이 여백 밖으로 나가게 */
+.w-nation.has-vista {row-gap:28px}
+.w-vista {--v-glass:rgb(7 8 12 / .62);--v-line:rgb(255 255 255 / .42);
+  grid-column:1/-1;position:relative;isolation:isolate;box-sizing:border-box;display:flex;flex-direction:column;margin:-16px calc(-1 * var(--w-pad)) 0;
+  height:clamp(440px,calc(100dvh - var(--w-bar-h,64px)),920px);color:var(--w-ink);overflow:hidden;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.w-vista-bg {position:absolute;inset:0;z-index:-1;background:#0b0d14 var(--vista) 50% 50%/cover no-repeat}
+.w-vista-bg::after {content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgb(7 8 12 / .8) 0,rgb(7 8 12 / .4) 24%,transparent 42%,transparent 56%,rgb(7 8 12 / .46) 72%,rgb(7 8 12 / .9) 100%)}
+.w-vista-top {padding:12px var(--w-pad) 0;text-shadow:0 1px 3px rgb(0 0 0 / .75)}
+.w-vtitle {position:relative}
+.w-vtitle .w-sym span {font-size:clamp(40px,7vw,72px)}
+.w-vtitle .w-sym small {color:var(--w-ink)}
+.w-vtitle h1 {display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin:4px 0 6px;font-size:clamp(24px,3.4vw,36px);line-height:1.15}
+.w-vtitle h1 small {font-size:15px;font-weight:400;color:var(--w-ink);opacity:.85}
+.w-vtitle .w-facts {display:inline-block;margin:0;padding:4px 0;border-block:1px solid var(--v-line);color:var(--w-ink);opacity:.9}
+.w-vsteps {display:none;position:absolute;top:0;right:-6px}
+.w-vsteps button {width:44px;height:44px;border:1px solid var(--v-line);border-radius:12px;margin-left:6px;background:var(--v-glass);color:var(--w-ink);font-size:22px;line-height:1;cursor:pointer}
+/* 아래 — 「전경」 단추 줄 · 카드 띠. 구경 중에도 단추는 남는다(눌린 채) */
+.w-vista-foot {position:relative;z-index:4;margin-top:auto}
+.w-vista-tools {display:flex;gap:6px;padding:0 var(--w-pad)}
+.w-vista-tools button,.w-look-close {min-width:44px;min-height:44px;padding:0 16px;border-radius:22px;border:1px solid var(--v-line);background:var(--v-glass);color:var(--w-ink);font-size:13.5px;font-weight:700;cursor:pointer;
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.w-vista-tools button[aria-pressed="true"] {background:var(--w-acc);border-color:var(--w-acc);color:var(--w-on-acc)}
+.w-vista-strip {list-style:none;display:flex;gap:8px;margin:0;padding:8px calc(var(--w-pad) + 64px) 14px var(--w-pad);overflow-x:auto;scroll-snap-type:x proximity;scroll-padding-inline:var(--w-pad);scrollbar-width:none;overscroll-behavior-x:contain}
+.w-vista-strip::-webkit-scrollbar {display:none}
+.w-vista-strip li {flex:0 0 auto;scroll-snap-align:start;padding-top:6px}
+.w-vcard {display:flex;flex-direction:column;width:88px;padding:0;border-radius:12px;border:1.5px solid color-mix(in srgb,var(--accent) 65%,transparent);background:var(--v-glass);color:var(--w-ink);text-align:left;cursor:pointer;overflow:hidden;
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.w-vcard.is-root {width:100px;border-width:2px;border-color:var(--w-acc)}
+.w-vcard.empty {border-style:dashed;border-color:#ffffff66}
+.w-vcard-fig {position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:108px;overflow:hidden;font-size:10.5px;color:var(--w-mute)}
+.w-vcard.is-root .w-vcard-fig {height:122px}
+.w-vcard-fig img {width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block}
+.w-vcard-fig.is-empty {background:repeating-linear-gradient(135deg,transparent 0 6px,rgb(255 255 255 / .07) 6px 8px)}
+.w-vcard-fig.is-empty i {width:16px;height:16px;border-radius:50%;border:1.5px dashed #ffffff80}
+.w-vcard-fig .w-from {bottom:6px;font-size:10px}
+.w-vcard b {padding:6px 8px 0;font-size:12.5px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.w-vcard-sym {margin-right:4px;color:var(--w-acc)}
+.w-vcard small {padding:2px 8px 7px;font-size:11px;color:var(--w-mute)}
+.w-vcard:hover,.w-vcard:focus-visible {transform:translateY(-4px);box-shadow:0 0 16px color-mix(in srgb,var(--accent) 55%,transparent)}
+html[data-motion="on"] .w-vcard {transition:transform .2s,box-shadow .2s}
+/* 전경 구경 — 이름 · 띠를 감추고(움직임 켬이면 흐리게) 그림을 무대 높이에 맞춰 펴 옆으로 밀어 본다. 손가락은 기본 옆 스크롤, 마우스는 끌기 */
+.w-vista-look {position:absolute;inset:0;z-index:3;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;touch-action:pan-x;scrollbar-width:thin;cursor:grab;background:#0b0d14}
+.w-vista-look img {display:block;height:100%;width:auto;min-width:100%;max-width:none;object-fit:cover;-webkit-user-drag:none;pointer-events:none}
+.w-look-close {position:absolute;left:var(--w-pad);top:12px;z-index:5;font-size:14px}
+.w-look-hint {position:absolute;left:50%;top:66px;z-index:5;margin:0;transform:translateX(-50%);padding:6px 12px;border-radius:14px;background:var(--v-glass);font-size:11.5px;font-weight:700;white-space:nowrap;pointer-events:none}
+.w-vista.is-look .w-vista-top,.w-vista.is-look .w-vista-strip {opacity:0;visibility:hidden;pointer-events:none}
+.w-vista.is-look .w-vista-bg {animation:none!important}
+html[data-motion="on"] .w-vista-top,html[data-motion="on"] .w-vista-strip {transition:opacity .3s,visibility .3s}
+html[data-motion="on"] .w-vista-look,html[data-motion="on"] .w-look-close,html[data-motion="on"] .w-look-hint {animation:w-fade .3s ease-out both}
+@keyframes w-fade {from {opacity:0}}
+@media (orientation:portrait) and (max-width:699px) {html[data-motion="on"] .w-vista-bg {animation:w-pan 50s ease-in-out infinite alternate}}
+@keyframes w-pan {from {background-position:0% 50%} to {background-position:100% 50%}}
+@media (prefers-reduced-motion:reduce) {.w-vista-bg,.w-vista-look,.w-look-close,.w-look-hint {animation:none!important} .w-vcard,.w-vista-top,.w-vista-strip {transition:none!important}}
+/* 펼친 폴드 · 태블릿 · PC(700px 이상) — 둥근 판, 띠 끝 여백은 도구 단추 몫만큼 그대로 */
+@media (min-width:700px) {
+  .w-vista {margin:0;border-radius:16px;height:clamp(440px,calc(100dvh - var(--w-bar-h,64px) - 48px),720px);border:1px solid var(--w-line)}
+  .w-vista-top {padding:20px 28px 0} .w-vista-tools {padding:0 28px} .w-vista-strip {padding:8px 92px 18px 28px;scroll-padding-inline:28px;gap:10px}
+  .w-vcard {width:100px} .w-vcard-fig {height:124px} .w-vcard.is-root {width:116px} .w-vcard.is-root .w-vcard-fig {height:140px}
+  .w-look-close {left:28px;top:16px}
+}
+/* 좁은 화면(600px 이하)의 전경 있는 나라 층 — 머리를 한 줄로(주기율표로 · 세계 셋). 지금 자리 이름 · ‹ › 는 전경의 이름 줄로 옮긴다(이름 옆 ‹ ›). 다른 층 · 전경 없는 나라는 그대로 */
+@media (max-width:600px) {
+  html[data-vista][data-layer="orbit"] .w-bar {grid-template-columns:auto minmax(0,1fr);padding-block:4px}
+  html[data-vista][data-layer="orbit"] .w-worlds {grid-column:2;grid-row:1}
+  html[data-vista][data-layer="orbit"] :is(.w-where,.w-tools) {grid-area:1/1}   /* 도구 단추는 떠 있다(position:fixed) — 빈 칸이 둘째 줄을 만들지 않게 */
+  html[data-vista][data-layer="orbit"] .w-worlds button {padding:0 4px;font-size:12.5px}
+  html[data-vista][data-layer="orbit"] :is(.w-crumbs button[aria-current],.w-crumbs i,.w-steps) {display:none}
+  html[data-vista][data-layer="orbit"] .w-vsteps {display:flex}
+  html[data-vista][data-layer="orbit"] .w-vtitle .w-sym {padding-right:110px}
+}
+
 /* 효과 ② — 고리가 아주 천천히 돌고(가문주 원은 거꾸로 같은 속도로 돌아 똑바로 선다), 손대면 멈춤(.held — lib/walk-orbit.js). 움직임이 꺼지면 없음 */
 .w-orbit-ring {animation:w-spin 180s linear infinite}
 .w-node {animation:w-unspin 180s linear infinite}

@@ -131,6 +131,7 @@ node tests/patch.cjs                    # 패치 기록 모양
 python3 tests/register-images.py        # 그림 등록 — 이름 꼴·자리·등록한 날·틀린 이름은 저장 안 함
 python3 tests/make-thumbs.py            # 썸네일 도구
 node tests/img-shards.cjs               # 그림 주소·등록기·워크플로·.gitignore 가 같은 저장소 차례
+node tests/prompt-vista.cjs             # 전경 지시문(2026-11-24) — 나라 × 세계 × 화풍, 사람 · 그녀 · 글자 없음 · Avoid · 400 낱말 · 파일 이름 · 철 그린 글 = 조립기
 
 # 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
 CHROMIUM_PATH=<chrome> node tests/prompt-pack-screen.cjs   # 지시문 묶음(tools/prompt-pack.cjs)의 기록을 생성기에 넣으면 같은 지시문 · 같은 번호 · 틀린 설정은 안 씀
@@ -149,6 +150,7 @@ ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-list.cjs      # �
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-family.cjs    # 가문 · 효과 ⑤
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-card.cjs      # 한 장(글 판 · 세계 넘기기) · 옛 gallery.html
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-world.cjs     # 효과 ③ 세계 바꾸기 전환
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/vista-screen.cjs    # 나라 층 전경 무대(2026-11-24) — 배경 · 카드 띠 · 흐름 · 구경 · 머리 한 줄 · 폴드 · PC · 전경 없는 나라 그대로
 ```
 
 ### 목록(옛 도감)과 즐겨찾기(2026-10-31 · 2026-11-12 원소 공방 안으로)

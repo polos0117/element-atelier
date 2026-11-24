@@ -11,6 +11,7 @@ import json, os, re
 
 DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 ART_SIZE = (1024, 1536)          # 2:3 세로. 모든 그림은 이 크기로 맞춘다
+VISTA_SIZE = (1536, 1024)        # 3:2 가로. 전경(_vista)은 늘 이 크기(2026-11-24)
 SEP = "-"                        # 층 사이의 글자. 밑줄(_)은 파일 이름 칸 사이에 쓰므로 열쇠 안에는 못 쓴다
 
 
@@ -102,6 +103,7 @@ def _webp_size(rel):
 # 그림 API 가 받는 크기 셋뿐. 세계 그림(초상)은 ART_SIZE 하나, 이미 그린 일상컷은 2:3 그대로
 ASPECT_SIZES = {"2:3": (1024, 1536), "1:1": (1024, 1024), "3:2": (1536, 1024)}
 CASUAL_FILE = re.compile(r"_casual\d+\.webp$")
+VISTA_FILE = re.compile(r"_vista\.webp$")
 CASUAL_RECORD = re.compile(r"-casual\d+\.[A-Za-z0-9_]+-ui\.json$")
 
 
@@ -129,7 +131,7 @@ def planned_aspects(dirs=("img",)):
 
 def art_size(dirs=("img",)):
     """[(이름, 가로, 세로, 왜)…] — 크기가 안 맞는 그림. 세계 그림은 ART_SIZE(2:3) 하나, 일상컷은 ASPECT_SIZES 셋 가운데 하나이고
-    기록(계획)에 화면비가 있으면 그 크기(2026-11-23)."""
+    기록(계획)에 화면비가 있으면 그 크기(2026-11-23). 전경(_vista)은 VISTA_SIZE(3:2) 하나(2026-11-24)."""
     root, bad, plan = os.path.dirname(DIR), [], None
     for d in dirs:
         full = d if os.path.isabs(d) else os.path.join(root, d)
@@ -142,6 +144,10 @@ def art_size(dirs=("img",)):
             if not s:
                 continue
             s = tuple(s)
+            if VISTA_FILE.search(f):
+                if s != VISTA_SIZE:
+                    bad.append((f, s[0], s[1], "전경은 %d×%d" % VISTA_SIZE))
+                continue
             if not CASUAL_FILE.search(f):
                 if s != ART_SIZE:
                     bad.append((f, s[0], s[1], "세계 그림은 %d×%d" % ART_SIZE))

@@ -9,16 +9,16 @@ const ctx = { window: {} }; vm.createContext(ctx);
 vm.runInContext(fs.readFileSync('lib/img.js', 'utf8'), ctx);
 const A = ctx.window.AtelierImg;
 const doc = JSON.parse(fs.readFileSync('data/img.json', 'utf8'));
-// 세계 그림은 byForm 안에 있다(fantasy · steampunk · mecha). 연출컷은 없다
+// 세계 그림은 byForm 안에 있다(fantasy · steampunk · mecha) — 전경(vista, 2026-11-24)도 같은 세계 몫. 연출컷은 없다
 const files = [...new Set(Object.values(doc.img).flatMap(e => A.allShotsOf(e).concat(
-  ...Object.values(A.styleMap(e)).flatMap(b => Object.values(A.formMap(b)).flatMap(f => [f.f, f.m]))
+  ...Object.values(A.styleMap(e)).flatMap(b => Object.values(A.formMap(b)).flatMap(f => [f.f, f.m, f.vista]))
 )).filter(Boolean))];
 
 const FIRST = 'https://polos0117.github.io/element-atelier-img/img/';
 const enc = f => encodeURIComponent(f).replace(/'/g, '%27');
 A.setShards(doc);
 assert.equal(A.BASE, FIRST);
-for (const f of files.concat(['fe_fantasy_game_keyart_f.webp'])) {
+for (const f of files.concat(['fe_fantasy_game_keyart_f.webp', 'fe_fantasy_jp_paint_anime_vista.webp'])) {
   if ((doc.where || {})[f]) continue;
   assert.equal(A.imgURL(f), FIRST + enc(f), f);
   assert.equal(A.thumbURL(f), FIRST + 'thumb/' + enc(f), f);

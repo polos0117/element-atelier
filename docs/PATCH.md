@@ -11,6 +11,17 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-24 · claude · 원소 전경 — 철 시험(전경 지시문 · 등록 · 나라 화면)
+- lib/prompt-spec.js — 사용자 「원소공방도 한 세계 정도 만들어보자」 → 「나라 하나 × 세 세계」(철). 도시 공방 전경을 옮겼다: 파일 이름 틀 FILES.vista(<나라>_<세계>_<화풍>_vista.webp — 성별 표시 없음), 전경 글 T.VISTA(머리 · 장소 · 곁 장소 · 원소 결 · 색 · 구도(아래 1/4 잔잔하게 — 카드 자리) · 사람 · 글자 없음 · Avoid · 3:2 Output)
+- lib/prompt-element.js — buildVista · vistaFile · vistaRecord · vistaAvoid · vistaStyle · herCut: 장소 = 설계표 worlds.<세계>.en, 곁 장소 = scenes, 원소 결 = traits.en 첫 마디(뒤 나라들의 내력 글은 이름 머리를 떼고 30 낱말 안), 색 = palette.en(원소 재질 색이라 장소에도 맞다), Avoid = 그 세계 옷 줄의 「No …」 − 옷 낱말. 설계표 글의 그녀 마디(behind her · she stokes …)는 덜어 낸다. 나라(근본) 열쇠에만
+- data/style.json — 기본 화풍 jp_paint_anime v1 에 vista 칸(풍경용 화풍 한 줄)
+- tools/vista-prompt.cjs — 새 도구. <나라> [세계] [--record] — 세계 하나면 지시문만(도시 공방에서 머리줄이 섞여 간 일)
+- tools/register-images.py · tools/roster.py — _vista.webp 를 그 세계 몫(byForm.<세계>.vista)에 등록(나라에만 · 성별 표시 없음 · 1536×1024 크기 검사 · 빈 자리 · 진행에 안 셈), 전경만 있던 나라를 --prune 하면 빈 카드 칸도 지움
+- lib/walk-orbit.js · lib/walk.css · lib/words.js — 나라 층 궤도에 전경 무대: 그 세계 전경이 있으면 궤도 위에 전경(cover · 위아래 어둠 막) · 나라 이름 · 사실 칸이 그 위로 · 아래 1/4 에 근본 + 가문주 카드 띠(그림 → 한 장 · 가문, 없으면 목록의 그 칸) · 휴대폰 세로 천천히 좌우로(움직임 끔이면 멈춤) · 「전경」 구경(단추 · 배경 길게 누르기, 돌아가기 · Esc · 한 번 누르기로 나옴) · 휴대폰 머리 한 줄(지금 자리 이름 · ‹ › 는 전경 이름 줄로) · 700px 이상 둥근 판. 궤도 · 보기 고르개 · 나라 글은 그 아래 그대로, 전경 없는 나라는 예전 그대로
+- index.html · lib/walk.js · lib/walk-family.js · lib/walk-list.js · prompt.html · styles.html · alchemy.html — ?v= 올림
+- tests/prompt-vista.cjs · tests/vista-screen.cjs — 새 검사. tests/register-images.py(전경 자리 · 틀린 이름 · 3:2 크기) · tests/img-shards.cjs(전경 주소) · tests/lib/harness.cjs(fulfill · touch · scale 손잡이)
+- IMAGE_RULES.md · DESIGN.md — 전경 파일 이름 · 나라 층 전경 한 줄
+
 ## 2026-11-24 · claude · 크게 보기 — 휴대폰 가로로 들면 그림만 가득 · 세로에선 꽉 채우기
 - lib/fill-view.js — 새 공용 훅(삼국지 · 원소 · 도시 · 포켓몬 공방이 글자 하나 다르지 않게). 사용자 「1:1이 모바일에선 티가 잘 안나는것같네」 → 「2번만 할까」 → 「1번도 같이하자」. 그림의 가로세로 비가 맞춤 칸 비의 1.4배를 넘을 때만(폰 세로의 1:1 · 3:2) 「⤢ 꽉 채우기」 — 그림 높이를 칸 높이에 맞춰 펴고 옆으로 굴려 본다(가운데부터). 두 번 누르기(손가락 · 마우스)로도, 그림이 바뀌거나 화면 크기가 바뀌면 맞춤으로. 2:3 · PC · 펼친 폴드 · 가로 화면엔 안 뜬다
 - lib/walk-card.js — 한 장(크게 보기)에 꽉 채우기: 단추 줄에 단추, 켜면 밀어 넘기기 · 홀로는 쉬고(‹ › · ← → 는 그대로, 넘기면 맞춤 · 넘기기 전환 없이), 닫기 단추에 lb-close
