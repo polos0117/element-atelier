@@ -129,15 +129,59 @@
   },
   "bike": {
    "ko": "자전거 · 바이크",
-   "en": "a bicycle or motorbike to sit on"
+   "en": "a parked bicycle, scooter or motorbike to sit on"
   },
   "car": {
    "ko": "세워 둔 차",
-   "en": "a parked car beside her"
+   "en": "a parked vehicle beside her to lean on or load"
   },
   "fire": {
    "ko": "모닥불 · 화로",
    "en": "a campfire or brazier"
+  },
+  "upright": {
+   "ko": "서서 움직일 만큼 트인 자리",
+   "en": "room to stand upright and walk"
+  },
+  "saddle": {
+   "ko": "올라타 앉는 안장 · 자리(자전거 · 바이크 · 말 · 낙타 · 회전목마)",
+   "en": "a saddle or seat to sit astride — a bicycle, scooter, horse, camel or carousel horse"
+  },
+  "handlebar": {
+   "ko": "잡을 핸들",
+   "en": "handlebars to hold"
+  },
+  "reins": {
+   "ko": "고삐",
+   "en": "the reins of a horse or camel"
+  },
+  "board": {
+   "ko": "올라서는 보드(서핑 · 스케이트 · 스노 · 웨이크 · 패들 · 킥보드)",
+   "en": "a board to stand on — a surf, skate, snow, wake, paddle or kick-scooter board"
+  },
+  "tow_rope": {
+   "ko": "끌어 주는 줄의 손잡이(웨이크보드 · 수상스키)",
+   "en": "the handle of a tow rope"
+  },
+  "ride_bar": {
+   "ko": "놀이기구 안전바 · 행글라이더 손잡이 바",
+   "en": "a ride's padded safety bar or a glider's control bar to grip"
+  },
+  "pole": {
+   "ko": "잡을 기둥(회전목마 · 트램)",
+   "en": "an upright pole to hold"
+  },
+  "skates": {
+   "ko": "스케이트를 탈 매끈한 바닥",
+   "en": "a smooth surface to skate on"
+  },
+  "boat": {
+   "ko": "앉아 타는 작은 배(카약 · 카누 · 래프팅)",
+   "en": "a small boat to sit low in"
+  },
+  "flight_harness": {
+   "ko": "매달려 앉는 하네스(패러글라이더 · 짚라인)",
+   "en": "a flight or zipline harness to sit in"
   }
  },
  "frames": {
@@ -468,6 +512,14 @@
    "needs": [
     "water"
    ]
+  },
+  {
+   "key": "back_vehicle",
+   "ko": "등을 탈것 옆면에",
+   "en": "her back rests against the side of the parked vehicle",
+   "needs": [
+    "car"
+   ]
   }
  ],
  "postures": [
@@ -476,7 +528,9 @@
    "ko": "서기",
    "family": "stand",
    "en": "standing",
-   "needs": [],
+   "needs": [
+    "upright"
+   ],
    "supports": [
     "none"
    ],
@@ -496,7 +550,8 @@
    "family": "stand",
    "en": "standing, leaning back against a wall",
    "needs": [
-    "wall"
+    "wall",
+    "upright"
    ],
    "supports": [
     "back_wall"
@@ -517,7 +572,8 @@
    "family": "stand",
    "en": "standing at a waist-high railing or sill",
    "needs": [
-    "rail_waist"
+    "rail_waist",
+    "upright"
    ],
    "supports": [
     "none"
@@ -537,7 +593,9 @@
    "ko": "걷기",
    "family": "walk",
    "en": "walking",
-   "needs": [],
+   "needs": [
+    "upright"
+   ],
    "supports": [
     "none"
    ],
@@ -622,7 +680,8 @@
    "family": "sit",
    "en": "seated on the saddle of the parked bike, one foot down on the ground",
    "needs": [
-    "bike"
+    "bike",
+    "upright"
    ],
    "supports": [
     "none"
@@ -863,6 +922,9 @@
     "three_quarter",
     "full_body",
     "environmental"
+   ],
+   "needs": [
+    "upright"
    ]
   },
   {
@@ -871,7 +933,8 @@
    "family": "stand",
    "en": "standing close to a high shelf or line, reaching up to it",
    "needs": [
-    "shelf_high"
+    "shelf_high",
+    "upright"
    ],
    "supports": [
     "none"
@@ -924,6 +987,168 @@
     "arms_crossed",
     "prop"
    ]
+  },
+  {
+   "key": "lean_vehicle",
+   "ko": "세워 둔 탈것에 기대 서기",
+   "family": "stand",
+   "en": "standing, leaning back against the side of the parked vehicle",
+   "needs": [
+    "car",
+    "upright"
+   ],
+   "supports": [
+    "back_vehicle"
+   ],
+   "frames": [
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ]
+  },
+  {
+   "key": "ride_side",
+   "ko": "세워 둔 바이크에 옆으로 걸터앉기",
+   "family": "sit",
+   "en": "perched side-saddle on the seat of the parked bike, both legs to one side, her feet on the ground",
+   "needs": [
+    "bike",
+    "upright"
+   ],
+   "supports": [
+    "none"
+   ],
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ]
+  },
+  {
+   "key": "ride_astride",
+   "ko": "올라타 앉기(천천히 달림)",
+   "family": "sit",
+   "en": "seated astride, upright and balanced, both feet on the footrests or in the stirrups as it moves at an easy pace",
+   "needs": [
+    "saddle"
+   ],
+   "supports": [
+    "none"
+   ],
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "hands": [
+    "handle_both",
+    "handle_one",
+    "reins_both",
+    "rein_one",
+    "pole_hold",
+    "wave",
+    "prop"
+   ]
+  },
+  {
+   "key": "board_stand",
+   "ko": "보드 위에 균형 잡고 서기",
+   "family": "stand",
+   "en": "standing balanced on her board, feet set apart across it, knees softly bent, her silhouette steady",
+   "needs": [
+    "board"
+   ],
+   "supports": [
+    "none"
+   ],
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "hands": [
+    "balance_both",
+    "rope_both",
+    "handle_both",
+    "natural",
+    "wave",
+    "prop"
+   ]
+  },
+  {
+   "key": "skate_glide",
+   "ko": "스케이트로 미끄러지기",
+   "family": "stand",
+   "en": "gliding forward on her skates, balanced, knees softly bent",
+   "needs": [
+    "skates",
+    "upright"
+   ],
+   "supports": [
+    "none"
+   ],
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "hands": [
+    "balance_both",
+    "natural",
+    "wave",
+    "v_sign",
+    "hair_tuck",
+    "prop"
+   ]
+  },
+  {
+   "key": "sit_boat",
+   "ko": "작은 배에 낮게 앉기",
+   "family": "sit",
+   "en": "seated low in the small boat, her back upright, legs stretched forward inside it",
+   "needs": [
+    "boat"
+   ],
+   "supports": [
+    "none"
+   ],
+   "frames": [
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ]
+  },
+  {
+   "key": "sit_harness",
+   "ko": "하네스에 매달려 앉기",
+   "family": "sit",
+   "en": "seated in the flight harness high above the ground, her legs hanging free",
+   "needs": [
+    "flight_harness"
+   ],
+   "supports": [
+    "none"
+   ],
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "hands": [
+    "lines_both",
+    "line_one",
+    "wave",
+    "v_sign",
+    "prop"
+   ]
   }
  ],
  "hands": [
@@ -950,7 +1175,9 @@
     "lean_rail",
     "walk",
     "lean_counter",
-    "step_up"
+    "step_up",
+    "lean_vehicle",
+    "skate_glide"
    ]
   },
   {
@@ -963,7 +1190,8 @@
     "lean_wall",
     "walk",
     "lean_counter",
-    "step_up"
+    "step_up",
+    "lean_vehicle"
    ]
   },
   {
@@ -981,7 +1209,9 @@
     "lean_counter",
     "sit_lean",
     "sit_sideways",
-    "step_up"
+    "step_up",
+    "lean_vehicle",
+    "ride_side"
    ],
    "outfit": "pocket"
   },
@@ -1089,7 +1319,8 @@
     "lean_counter",
     "sit_lean",
     "sit_sideways",
-    "step_up"
+    "step_up",
+    "ride_side"
    ]
   },
   {
@@ -1233,7 +1464,9 @@
     "squat",
     "sit_lean",
     "sit_sideways",
-    "half_kneel"
+    "half_kneel",
+    "ride_side",
+    "sit_boat"
    ]
   },
   {
@@ -1248,7 +1481,8 @@
    ],
    "postures": [
     "soak",
-    "sit_edge"
+    "sit_edge",
+    "sit_boat"
    ]
   },
   {
@@ -1265,7 +1499,8 @@
     "lean_counter",
     "sit_lean",
     "sit_sideways",
-    "step_up"
+    "step_up",
+    "lean_vehicle"
    ]
   },
   {
@@ -1321,11 +1556,14 @@
    "zone": "chest",
    "both": true,
    "en": "both hands hold the handlebars in front of her",
-   "needs": [
-    "bike"
-   ],
    "postures": [
-    "ride_seat"
+    "ride_seat",
+    "ride_astride",
+    "board_stand"
+   ],
+   "needs_any": [
+    "bike",
+    "handlebar"
    ]
   },
   {
@@ -1367,6 +1605,138 @@
    "zone": "face",
    "outfit": "glasses",
    "en": "her own {side} fingertips nudge the frame of her glasses"
+  },
+  {
+   "key": "handle_one",
+   "ko": "한 손으로 핸들",
+   "zone": "chest",
+   "en": "her own {side} hand rests on the handlebar",
+   "needs_any": [
+    "bike",
+    "handlebar"
+   ],
+   "postures": [
+    "ride_seat",
+    "ride_astride",
+    "walk",
+    "stand",
+    "ride_side"
+   ]
+  },
+  {
+   "key": "reins_both",
+   "ko": "두 손으로 고삐",
+   "zone": "chest",
+   "both": true,
+   "en": "both hands hold the reins loosely in front of her",
+   "needs": [
+    "reins"
+   ],
+   "postures": [
+    "ride_astride"
+   ]
+  },
+  {
+   "key": "rein_one",
+   "ko": "한 손으로 고삐",
+   "zone": "chest",
+   "en": "her own {side} hand holds the reins",
+   "needs": [
+    "reins"
+   ],
+   "postures": [
+    "ride_astride"
+   ]
+  },
+  {
+   "key": "pole_hold",
+   "ko": "기둥 잡기",
+   "zone": "chest",
+   "en": "her own {side} hand holds the brass pole beside her",
+   "needs": [
+    "pole"
+   ],
+   "postures": [
+    "ride_astride",
+    "stand",
+    "sit_chair"
+   ]
+  },
+  {
+   "key": "bar_both",
+   "ko": "두 손으로 바 잡기",
+   "zone": "chest",
+   "both": true,
+   "en": "both hands grip the bar in front of her",
+   "needs": [
+    "ride_bar"
+   ],
+   "postures": [
+    "sit_chair",
+    "stand"
+   ]
+  },
+  {
+   "key": "balance_both",
+   "ko": "두 팔 벌려 균형",
+   "zone": "chest",
+   "both": true,
+   "en": "both arms are held out wide for balance",
+   "postures": [
+    "board_stand",
+    "skate_glide"
+   ]
+  },
+  {
+   "key": "rope_both",
+   "ko": "두 손으로 견인줄 손잡이",
+   "zone": "chest",
+   "both": true,
+   "en": "both hands grip the tow-rope handle in front of her",
+   "needs": [
+    "tow_rope"
+   ],
+   "postures": [
+    "board_stand"
+   ]
+  },
+  {
+   "key": "lines_both",
+   "ko": "두 손으로 줄 잡기",
+   "zone": "chest",
+   "both": true,
+   "en": "both hands hold the lines above her shoulders",
+   "needs": [
+    "flight_harness"
+   ],
+   "postures": [
+    "sit_harness"
+   ]
+  },
+  {
+   "key": "line_one",
+   "ko": "한 손으로 줄 잡기",
+   "zone": "chest",
+   "en": "her own {side} hand holds the line above her shoulder",
+   "needs": [
+    "flight_harness"
+   ],
+   "postures": [
+    "sit_harness"
+   ]
+  },
+  {
+   "key": "roof_rest",
+   "ko": "탈것 지붕에 팔 얹기",
+   "zone": "chest",
+   "en": "her own {side} forearm rests on the roof of the parked vehicle",
+   "needs": [
+    "car"
+   ],
+   "postures": [
+    "stand",
+    "lean_vehicle"
+   ]
   }
  ],
  "legs": [
@@ -1383,7 +1753,8 @@
     "lean_wall",
     "lean_rail",
     "lean_counter",
-    "reach_up"
+    "reach_up",
+    "lean_vehicle"
    ]
   },
   {
@@ -1397,7 +1768,8 @@
    "postures": [
     "stand",
     "lean_wall",
-    "lean_rail"
+    "lean_rail",
+    "lean_vehicle"
    ]
   },
   {
@@ -1474,7 +1846,8 @@
     "sit_chair",
     "sit_edge",
     "sit_lean",
-    "sit_sideways"
+    "sit_sideways",
+    "ride_side"
    ],
    "feet": false,
    "en": "legs crossed at the knee"
@@ -1504,7 +1877,8 @@
     "sit_floor",
     "kneel",
     "sit_lean",
-    "sit_sideways"
+    "sit_sideways",
+    "ride_side"
    ],
    "feet": false,
    "en": "knees together, feet slightly apart"
@@ -1633,10 +2007,84 @@
     "stand",
     "lean_wall",
     "lean_counter",
-    "sit_sideways"
+    "sit_sideways",
+    "lean_vehicle",
+    "ride_side"
    ],
    "feet": true,
    "en": "both legs held close together, one ankle crossed over the other at the feet"
+  },
+  {
+   "key": "astride_feet",
+   "ko": "양쪽으로 다리 · 발판",
+   "families": [
+    "sit"
+   ],
+   "postures": [
+    "ride_astride"
+   ],
+   "feet": true,
+   "en": "one leg on either side of the seat, feet resting on the footrests or in the stirrups"
+  },
+  {
+   "key": "foot_down",
+   "ko": "한 발 땅에",
+   "families": [
+    "sit"
+   ],
+   "postures": [
+    "ride_seat"
+   ],
+   "feet": true,
+   "en": "one foot down flat on the ground, the other resting on the footrest"
+  },
+  {
+   "key": "board_knees",
+   "ko": "보드 위 무릎 굽힘",
+   "families": [
+    "stand"
+   ],
+   "postures": [
+    "board_stand"
+   ],
+   "feet": true,
+   "en": "knees softly bent, feet planted apart across the board"
+  },
+  {
+   "key": "skate_push",
+   "ko": "한 발 밀기",
+   "families": [
+    "stand"
+   ],
+   "postures": [
+    "skate_glide"
+   ],
+   "feet": true,
+   "en": "one skate pushing off behind her, the other gliding forward"
+  },
+  {
+   "key": "harness_dangle",
+   "ko": "다리 늘어뜨림(하네스)",
+   "families": [
+    "sit"
+   ],
+   "postures": [
+    "sit_harness"
+   ],
+   "feet": true,
+   "en": "legs hanging loose below the harness, ankles relaxed"
+  },
+  {
+   "key": "boat_legs",
+   "ko": "배 안에 다리 뻗기",
+   "families": [
+    "sit"
+   ],
+   "postures": [
+    "sit_boat"
+   ],
+   "feet": false,
+   "en": "legs stretched forward inside the boat, knees softly raised"
   }
  ],
  "places": {
@@ -1648,14 +2096,16 @@
    "indoor",
    "window",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "home_bath": [
    "edge",
    "shallow_water",
    "wall",
    "indoor",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "home_kitchen": [
    "rail_waist",
@@ -1667,7 +2117,8 @@
    "window",
    "shelf_high",
    "stool",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "home_living": [
    "chair",
@@ -1678,7 +2129,8 @@
    "indoor",
    "window",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "home_balcony": [
    "rail_waist",
@@ -1687,7 +2139,8 @@
    "floor",
    "sky",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "home_entry": [
    "wall",
@@ -1698,21 +2151,24 @@
    "stool",
    "doorway",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "street_alley": [
    "wall",
    "edge",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "street_market": [
    "rail_waist",
    "wall",
    "sky",
    "shelf_high",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "street_cafe": [
    "chair",
@@ -1722,7 +2178,8 @@
    "indoor",
    "window",
    "stool",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "street_shop": [
    "rail_waist",
@@ -1730,14 +2187,16 @@
    "indoor",
    "window",
    "shelf_high",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "street_station": [
    "wall",
    "chair",
    "rail_waist",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "street_laundromat": [
    "chair",
@@ -1748,7 +2207,8 @@
    "window",
    "night",
    "shelf_high",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "street_rooftop": [
    "rail_waist",
@@ -1756,7 +2216,8 @@
    "floor",
    "wall",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "street_park": [
    "chair",
@@ -1766,7 +2227,8 @@
    "sky",
    "stool",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "site_lab": [
    "chair",
@@ -1778,7 +2240,8 @@
    "indoor",
    "window",
    "shelf_high",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_furnace": [
    "floor",
@@ -1787,7 +2250,8 @@
    "edge",
    "worktable",
    "indoor",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_mine": [
    "floor",
@@ -1795,14 +2259,16 @@
    "edge",
    "indoor",
    "shelf_high",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_saltpan": [
    "floor",
    "shallow_water",
    "edge",
    "sky",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_refinery": [
    "floor",
@@ -1812,7 +2278,8 @@
    "sky",
    "timed",
    "stairs",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_control": [
    "chair",
@@ -1821,7 +2288,8 @@
    "wall",
    "floor",
    "indoor",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_mint": [
    "table",
@@ -1831,7 +2299,8 @@
    "rail_waist",
    "indoor",
    "doorway",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_observatory": [
    "rail_waist",
@@ -1843,7 +2312,8 @@
    "indoor",
    "window",
    "night",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_hydrogen": [
    "floor",
@@ -1851,7 +2321,8 @@
    "rail_waist",
    "sky",
    "timed",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_kiln": [
    "worktable",
@@ -1862,7 +2333,8 @@
    "indoor",
    "shelf_high",
    "stool",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "studio_art": [
    "chair",
@@ -1873,7 +2345,8 @@
    "window",
    "shelf_high",
    "stool",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "studio_sound": [
    "chair",
@@ -1881,7 +2354,8 @@
    "wall",
    "worktable",
    "indoor",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "water_pool": [
    "water",
@@ -1891,7 +2365,8 @@
    "chair",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "water_beach": [
    "floor",
@@ -1900,7 +2375,8 @@
    "deep_water",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "water_river": [
    "edge",
@@ -1908,7 +2384,8 @@
    "water",
    "deep_water",
    "sky",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "water_resort": [
    "lie",
@@ -1918,7 +2395,8 @@
    "deep_water",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "water_yacht": [
    "rail_waist",
@@ -1927,7 +2405,8 @@
    "water",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "water_waterfall": [
    "water",
@@ -1936,7 +2415,8 @@
    "floor",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "water_infinity": [
    "water",
@@ -1945,14 +2425,16 @@
    "lie",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "spa_onsen": [
    "water",
    "edge",
    "wall",
    "sky",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "spa_cedar": [
    "water",
@@ -1960,7 +2442,8 @@
    "wall",
    "indoor",
    "window",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "spa_sauna": [
    "edge",
@@ -1968,7 +2451,8 @@
    "lie",
    "indoor",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "spa_jjimjil": [
    "floor",
@@ -1976,7 +2460,8 @@
    "wall",
    "indoor",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "spa_hammam": [
    "edge",
@@ -1984,7 +2469,8 @@
    "wall",
    "indoor",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "spa_lounge": [
    "lie",
@@ -1992,34 +2478,39 @@
    "table",
    "indoor",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "spa_footbath": [
    "edge",
    "shallow_water",
    "sky",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "sports_gym": [
    "wall",
    "floor",
    "edge",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "sports_court": [
    "floor",
    "edge",
    "wall",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "sports_track": [
    "floor",
    "edge",
    "wall",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "sports_studio": [
    "floor",
@@ -2027,20 +2518,24 @@
    "rail_waist",
    "indoor",
    "k_public",
-   "soft"
+   "soft",
+   "upright"
   ],
   "sports_wall": [
    "wall",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "sports_rink": [
    "rail_waist",
    "edge",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright",
+   "skates"
   ],
   "night_bar": [
    "chair",
@@ -2050,7 +2545,8 @@
    "indoor",
    "night",
    "stool",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "night_club": [
    "wall",
@@ -2058,7 +2554,8 @@
    "edge",
    "indoor",
    "night",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "night_karaoke": [
    "chair",
@@ -2066,7 +2563,8 @@
    "wall",
    "indoor",
    "night",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "night_jazz": [
    "chair",
@@ -2076,7 +2574,8 @@
    "indoor",
    "night",
    "stool",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "night_taxi": [
    "chair",
@@ -2091,7 +2590,8 @@
    "edge",
    "sky",
    "night",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "night_powder": [
    "chair",
@@ -2099,7 +2599,8 @@
    "wall",
    "indoor",
    "night",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "stage_festival": [
    "wall",
@@ -2107,7 +2608,8 @@
    "rail_waist",
    "sky",
    "shelf_high",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "stage_fireworks": [
    "rail_waist",
@@ -2115,20 +2617,23 @@
    "edge",
    "sky",
    "night",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "stage_dance": [
    "floor",
    "wall",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "stage_redcarpet": [
    "wall",
    "rail_waist",
    "sky",
    "night",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "stage_wedding": [
    "chair",
@@ -2137,21 +2642,24 @@
    "edge",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "stage_event": [
    "chair",
    "table",
    "wall",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "stage_convention": [
    "chair",
    "table",
    "wall",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "evening_hotel": [
    "lie",
@@ -2162,7 +2670,8 @@
    "indoor",
    "window",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "evening_penthouse": [
    "lie",
@@ -2174,7 +2683,8 @@
    "window",
    "night",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "evening_opera": [
    "chair",
@@ -2182,7 +2692,8 @@
    "wall",
    "indoor",
    "stairs",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "evening_gala": [
    "chair",
@@ -2190,7 +2701,8 @@
    "wall",
    "indoor",
    "night",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "evening_museum": [
    "wall",
@@ -2198,7 +2710,8 @@
    "edge",
    "indoor",
    "night",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "travel_trail": [
    "floor",
@@ -2206,7 +2719,8 @@
    "wall",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "travel_rural_station": [
    "chair",
@@ -2214,14 +2728,16 @@
    "rail_waist",
    "sky",
    "stool",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "travel_ferry": [
    "rail_waist",
    "chair",
    "edge",
    "sky",
-   "k_vehicle"
+   "k_vehicle",
+   "upright"
   ],
   "travel_camp": [
    "chair",
@@ -2230,7 +2746,8 @@
    "sky",
    "fire",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "travel_lake": [
    "edge",
@@ -2240,14 +2757,16 @@
    "lie",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "travel_lookout": [
    "rail_waist",
    "edge",
    "wall",
    "sky",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "travel_lodge": [
    "chair",
@@ -2259,7 +2778,8 @@
    "window",
    "stool",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "travel_cablecar": [
    "chair",
@@ -2267,14 +2787,16 @@
    "wall",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "travel_dunes": [
    "floor",
    "lie",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "travel_coast": [
    "rail_waist",
@@ -2282,7 +2804,8 @@
    "floor",
    "sky",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_room": [
    "lie",
@@ -2293,7 +2816,8 @@
    "indoor",
    "window",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_market": [
    "rail_waist",
@@ -2301,7 +2825,8 @@
    "edge",
    "sky",
    "shelf_high",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_field": [
    "floor",
@@ -2310,7 +2835,8 @@
    "wall",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_square": [
    "wall",
@@ -2318,13 +2844,15 @@
    "floor",
    "sky",
    "stairs",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_bath": [
    "water",
    "edge",
    "sky",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "nation_roof": [
    "edge",
@@ -2333,7 +2861,8 @@
    "rail_waist",
    "sky",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_inn": [
    "chair",
@@ -2343,7 +2872,8 @@
    "indoor",
    "night",
    "stool",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "fx_studio": [
    "chair",
@@ -2353,20 +2883,23 @@
    "lie",
    "indoor",
    "k_stage",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_runway": [
    "floor",
    "indoor",
    "k_stage",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_ballroom": [
    "chair",
    "wall",
    "rail_waist",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "fx_starstage": [
    "floor",
@@ -2374,7 +2907,8 @@
    "sky",
    "night",
    "k_stage",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_forest": [
    "floor",
@@ -2383,7 +2917,8 @@
    "wall",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_spa": [
    "water",
@@ -2391,7 +2926,8 @@
    "edge",
    "indoor",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_observatory": [
    "rail_waist",
@@ -2400,7 +2936,8 @@
    "indoor",
    "window",
    "night",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "fx_circus": [
    "floor",
@@ -2408,7 +2945,8 @@
    "wall",
    "indoor",
    "k_stage",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_castle": [
    "edge",
@@ -2416,7 +2954,8 @@
    "wall",
    "indoor",
    "stairs",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "fx_chapel": [
    "chair",
@@ -2424,14 +2963,16 @@
    "edge",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "street_grocery": [
    "rail_waist",
    "wall",
    "indoor",
    "shelf_high",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "street_mall": [
    "rail_waist",
@@ -2439,7 +2980,8 @@
    "wall",
    "chair",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "night_livehouse": [
    "wall",
@@ -2447,27 +2989,31 @@
    "edge",
    "indoor",
    "night",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "stage_open_air": [
    "chair",
    "edge",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "stage_show": [
    "chair",
    "wall",
    "edge",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "sports_range": [
    "rail_waist",
    "wall",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "fx_retro_home": [
    "chair",
@@ -2478,7 +3024,8 @@
    "indoor",
    "window",
    "k_stage",
-   "soft"
+   "soft",
+   "upright"
   ],
   "library_reading": [
    "chair",
@@ -2488,7 +3035,8 @@
    "indoor",
    "window",
    "shelf_high",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "greenhouse": [
    "worktable",
@@ -2499,7 +3047,8 @@
    "window",
    "shelf_high",
    "stool",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "bakery_kitchen": [
    "worktable",
@@ -2507,7 +3056,8 @@
    "rail_waist",
    "indoor",
    "shelf_high",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "lodge_terrace": [
    "rail_waist",
@@ -2517,7 +3067,8 @@
    "sky",
    "stool",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "train_sleeper": [
    "lie",
@@ -2529,7 +3080,8 @@
    "window",
    "night",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "tailor_room": [
    "worktable",
@@ -2539,7 +3091,8 @@
    "indoor",
    "window",
    "shelf_high",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "backstage_dressing": [
    "chair",
@@ -2548,7 +3101,8 @@
    "rail_waist",
    "indoor",
    "shelf_high",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "fx_cloudpavilion": [
    "rail_waist",
@@ -2556,7 +3110,8 @@
    "wall",
    "sky",
    "timed",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "fx_ice": [
    "edge",
@@ -2564,7 +3119,8 @@
    "wall",
    "indoor",
    "stairs",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "fx_lanternriver": [
    "floor",
@@ -2575,7 +3131,8 @@
    "night",
    "stairs",
    "k_stage",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_library": [
    "edge",
@@ -2584,14 +3141,16 @@
    "indoor",
    "shelf_high",
    "stairs",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "fx_mirror": [
    "chair",
    "wall",
    "rail_waist",
    "indoor",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "fx_moonpond": [
    "water",
@@ -2601,7 +3160,8 @@
    "night",
    "stairs",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_skygarden": [
    "floor",
@@ -2612,7 +3172,8 @@
    "shelf_high",
    "stairs",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_underwater": [
    "edge",
@@ -2622,7 +3183,8 @@
    "window",
    "stairs",
    "doorway",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "fx_jungle_ruins": [
    "floor",
@@ -2633,7 +3195,8 @@
    "shelf_high",
    "stairs",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_marble_bath": [
    "water",
@@ -2641,7 +3204,8 @@
    "edge",
    "indoor",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_marble_temple": [
    "floor",
@@ -2650,7 +3214,8 @@
    "wall",
    "sky",
    "k_stage",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_oasis": [
    "floor",
@@ -2658,7 +3223,8 @@
    "sky",
    "timed",
    "k_water",
-   "soft"
+   "soft",
+   "upright"
   ],
   "fx_pirate_ship": [
    "edge",
@@ -2666,7 +3232,8 @@
    "wall",
    "sky",
    "stairs",
-   "k_vehicle"
+   "k_vehicle",
+   "upright"
   ],
   "street_diner": [
    "chair",
@@ -2677,7 +3244,8 @@
    "window",
    "night",
    "stool",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "street_office": [
    "chair",
@@ -2687,7 +3255,8 @@
    "indoor",
    "window",
    "timed",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "travel_airport": [
    "wall",
@@ -2696,7 +3265,8 @@
    "indoor",
    "window",
    "stool",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "travel_ranch": [
    "chair",
@@ -2704,7 +3274,8 @@
    "lie",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_forest": [
    "floor",
@@ -2713,7 +3284,8 @@
    "wall",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_garden": [
    "floor",
@@ -2722,14 +3294,16 @@
    "wall",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_harbor": [
    "wall",
    "edge",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_bridge": [
    "edge",
@@ -2738,7 +3312,8 @@
    "rail_waist",
    "sky",
    "k_street",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_study": [
    "chair",
@@ -2749,7 +3324,8 @@
    "window",
    "shelf_high",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_temple": [
    "chair",
@@ -2757,7 +3333,8 @@
    "wall",
    "floor",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "nation_camp": [
    "chair",
@@ -2767,7 +3344,8 @@
    "sky",
    "fire",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_kitchen": [
    "rail_waist",
@@ -2777,7 +3355,8 @@
    "worktable",
    "indoor",
    "shelf_high",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "nation_training": [
    "wall",
@@ -2785,7 +3364,8 @@
    "edge",
    "sky",
    "stool",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "repair_kiosk": [
    "worktable",
@@ -2797,7 +3377,8 @@
    "indoor",
    "window",
    "doorway",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "maintenance_shed": [
    "worktable",
@@ -2809,7 +3390,8 @@
    "indoor",
    "doorway",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "pool_gear_room": [
    "edge",
@@ -2819,7 +3401,8 @@
    "shelf_high",
    "indoor",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "drying_terrace": [
    "floor",
@@ -2830,7 +3413,8 @@
    "shelf_high",
    "sky",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "museum_workshop": [
    "table",
@@ -2841,7 +3425,8 @@
    "floor",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "stair_landing": [
    "stairs",
@@ -2851,7 +3436,8 @@
    "rail_waist",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "home_closet": [
    "stool",
@@ -2860,7 +3446,8 @@
    "shelf_high",
    "indoor",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "home_veranda": [
    "floor",
@@ -2871,7 +3458,8 @@
    "indoor",
    "window",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "street_bookstall": [
    "table",
@@ -2881,7 +3469,8 @@
    "floor",
    "shelf_high",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "street_bus_stop": [
    "chair",
@@ -2889,7 +3478,8 @@
    "wall",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "street_bike_path": [
    "edge",
@@ -2899,7 +3489,8 @@
    "sky",
    "bike",
    "k_nature",
-   "soft"
+   "soft",
+   "upright"
   ],
   "water_indoor_pool": [
    "edge",
@@ -2909,7 +3500,8 @@
    "deep_water",
    "indoor",
    "window",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "site_shipyard": [
    "floor",
@@ -2918,7 +3510,8 @@
    "rail_waist",
    "stairs",
    "sky",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_dam": [
    "floor",
@@ -2926,7 +3519,8 @@
    "edge",
    "wall",
    "sky",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_pharmacy": [
    "worktable",
@@ -2938,7 +3532,8 @@
    "rail_waist",
    "indoor",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_jeweler": [
    "worktable",
@@ -2949,7 +3544,8 @@
    "floor",
    "indoor",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_windfarm": [
    "floor",
@@ -2957,7 +3553,8 @@
    "edge",
    "stairs",
    "sky",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_darkroom": [
    "worktable",
@@ -2968,7 +3565,8 @@
    "shelf_high",
    "indoor",
    "timed",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_brewery": [
    "floor",
@@ -2977,7 +3575,8 @@
    "stairs",
    "edge",
    "indoor",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_quarry": [
    "floor",
@@ -2985,7 +3584,8 @@
    "stairs",
    "wall",
    "sky",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "site_perfumery": [
    "worktable",
@@ -2997,7 +3597,8 @@
    "shelf_high",
    "indoor",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "nation_workshop": [
    "worktable",
@@ -3009,7 +3610,8 @@
    "doorway",
    "indoor",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "nation_stairs": [
    "stairs",
@@ -3018,7 +3620,8 @@
    "floor",
    "rail_waist",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_laundry": [
    "floor",
@@ -3027,7 +3630,8 @@
    "shelf_high",
    "shallow_water",
    "sky",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "nation_balcony": [
    "chair",
@@ -3037,7 +3641,8 @@
    "floor",
    "sky",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "nation_platform": [
    "chair",
@@ -3047,7 +3652,8 @@
    "wall",
    "rail_waist",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_greenhouse": [
    "worktable",
@@ -3059,7 +3665,8 @@
    "indoor",
    "window",
    "k_private",
-   "soft"
+   "soft",
+   "upright"
   ],
   "car_seat": [
    "chair",
@@ -3073,7 +3680,8 @@
    "floor",
    "wall",
    "sky",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "subway_platform": [
    "chair",
@@ -3081,7 +3689,8 @@
    "wall",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "subway_car": [
    "chair",
@@ -3089,7 +3698,8 @@
    "wall",
    "indoor",
    "window",
-   "k_vehicle"
+   "k_vehicle",
+   "upright"
   ],
   "street_noodle_stall": [
    "table",
@@ -3098,7 +3708,8 @@
    "floor",
    "sky",
    "night",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_tackroom": [
    "worktable",
@@ -3110,14 +3721,16 @@
    "doorway",
    "indoor",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "nation_cockpit": [
    "chair",
    "wheel",
    "indoor",
    "window",
-   "k_vehicle"
+   "k_vehicle",
+   "upright"
   ],
   "nation_hangar": [
    "worktable",
@@ -3129,7 +3742,8 @@
    "floor",
    "shelf_high",
    "indoor",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "nation_airship_deck": [
    "wheel",
@@ -3138,7 +3752,8 @@
    "floor",
    "wall",
    "sky",
-   "k_vehicle"
+   "k_vehicle",
+   "upright"
   ],
   "nation_clockwork_shop": [
    "worktable",
@@ -3149,7 +3764,8 @@
    "shelf_high",
    "indoor",
    "window",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "nation_steam_carriage": [
    "chair",
@@ -3158,7 +3774,8 @@
    "shelf_high",
    "indoor",
    "window",
-   "k_vehicle"
+   "k_vehicle",
+   "upright"
   ],
   "nation_steam_tavern": [
    "table",
@@ -3169,7 +3786,8 @@
    "floor",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "site_neon_workshop": [
    "worktable",
@@ -3180,14 +3798,16 @@
    "shelf_high",
    "indoor",
    "timed",
-   "k_work"
+   "k_work",
+   "upright"
   ],
   "arcade_hall": [
    "chair",
    "wall",
    "rail_waist",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "zoo_walk": [
    "rail_waist",
@@ -3195,21 +3815,24 @@
    "edge",
    "floor",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "zoo_feeding": [
    "rail_waist",
    "edge",
    "floor",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "aquarium_tunnel": [
    "rail_waist",
    "wall",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "aquarium_tank": [
    "chair",
@@ -3217,7 +3840,8 @@
    "wall",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "aquarium_jelly": [
    "rail_waist",
@@ -3225,7 +3849,8 @@
    "edge",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "cafe_cat": [
    "chair",
@@ -3236,7 +3861,8 @@
    "indoor",
    "window",
    "soft",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "cafe_dog": [
    "chair",
@@ -3246,7 +3872,8 @@
    "floor",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "park_pond": [
    "chair",
@@ -3255,7 +3882,8 @@
    "floor",
    "sky",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "pet_cat_home": [
    "chair",
@@ -3266,21 +3894,24 @@
    "indoor",
    "window",
    "soft",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "pet_dog_walk": [
    "chair",
    "edge",
    "floor",
    "sky",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "pet_dove_square": [
    "edge",
    "wall",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "pet_rabbit": [
    "chair",
@@ -3288,7 +3919,8 @@
    "floor",
    "sky",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "pet_fish": [
    "chair",
@@ -3299,7 +3931,8 @@
    "indoor",
    "window",
    "soft",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "pet_horse": [
    "wall",
@@ -3308,7 +3941,8 @@
    "floor",
    "sky",
    "doorway",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "amuse_carousel": [
    "rail_waist",
@@ -3316,7 +3950,8 @@
    "edge",
    "floor",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "amuse_wheel": [
    "chair",
@@ -3331,7 +3966,8 @@
    "edge",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "amuse_parade": [
    "rail_waist",
@@ -3339,7 +3975,8 @@
    "wall",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "amuse_snack": [
    "chair",
@@ -3348,7 +3985,8 @@
    "wall",
    "shelf_high",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "amuse_night": [
    "rail_waist",
@@ -3357,7 +3995,8 @@
    "floor",
    "sky",
    "night",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "nation_menagerie": [
    "rail_waist",
@@ -3365,7 +4004,8 @@
    "edge",
    "floor",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "nation_biodome": [
    "rail_waist",
@@ -3373,7 +4013,8 @@
    "edge",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "nation_aquarium": [
    "rail_waist",
@@ -3381,7 +4022,8 @@
    "edge",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "nation_stable": [
    "wall",
@@ -3390,7 +4032,8 @@
    "floor",
    "sky",
    "doorway",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "nation_fair": [
    "rail_waist",
@@ -3398,14 +4041,16 @@
    "edge",
    "floor",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "cinema_seats": [
    "chair",
    "wall",
    "stairs",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "cinema_lobby": [
    "rail_waist",
@@ -3413,7 +4058,8 @@
    "chair",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "bowling_lane": [
    "chair",
@@ -3422,7 +4068,8 @@
    "floor",
    "shelf_high",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "boardgame_cafe": [
    "chair",
@@ -3432,7 +4079,8 @@
    "floor",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "escape_room": [
    "chair",
@@ -3442,7 +4090,8 @@
    "floor",
    "indoor",
    "doorway",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "theme_cafe": [
    "chair",
@@ -3451,7 +4100,8 @@
    "wall",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "pc_bang": [
    "chair",
@@ -3459,7 +4109,8 @@
    "wall",
    "indoor",
    "night",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "ice_rink": [
    "rail_waist",
@@ -3468,14 +4119,17 @@
    "floor",
    "wall",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright",
+   "skates"
   ],
   "ski_slope": [
    "floor",
    "edge",
    "sky",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "ski_lift": [
    "chair",
@@ -3488,7 +4142,8 @@
    "rail_waist",
    "sky",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "waterpark_wave": [
    "water",
@@ -3498,7 +4153,9 @@
    "lie",
    "sky",
    "soft",
-   "k_water"
+   "k_water",
+   "upright",
+   "board"
   ],
   "waterpark_slide": [
    "water",
@@ -3506,7 +4163,8 @@
    "floor",
    "stairs",
    "sky",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "pool_party": [
    "water",
@@ -3517,7 +4175,8 @@
    "rail_waist",
    "sky",
    "soft",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "beach_club": [
    "lie",
@@ -3529,7 +4188,8 @@
    "rail_waist",
    "sky",
    "soft",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "hotspring_pool": [
    "water",
@@ -3537,7 +4197,8 @@
    "lie",
    "sky",
    "soft",
-   "k_water"
+   "k_water",
+   "upright"
   ],
   "bath_changing": [
    "chair",
@@ -3545,7 +4206,8 @@
    "wall",
    "rail_waist",
    "indoor",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "glamping_tent": [
    "lie",
@@ -3554,7 +4216,8 @@
    "wall",
    "indoor",
    "doorway",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "glamping_deck": [
    "chair",
@@ -3565,7 +4228,8 @@
    "water",
    "deep_water",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "ryokan_room": [
    "floor",
@@ -3575,7 +4239,8 @@
    "wall",
    "indoor",
    "window",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "suite_balcony": [
    "lie",
@@ -3585,7 +4250,8 @@
    "sky",
    "night",
    "soft",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "window_seat": [
    "chair",
@@ -3595,14 +4261,16 @@
    "window",
    "indoor",
    "wall",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "gallery_white": [
    "chair",
    "wall",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "bookstore_aisle": [
    "chair",
@@ -3611,7 +4279,8 @@
    "stairs",
    "floor",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "flower_shop": [
    "worktable",
@@ -3621,7 +4290,8 @@
    "shelf_high",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "flower_market": [
    "rail_waist",
@@ -3629,7 +4299,8 @@
    "floor",
    "shelf_high",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "photo_studio": [
    "stool",
@@ -3638,7 +4309,8 @@
    "wall",
    "soft",
    "indoor",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "boudoir_set": [
    "lie",
@@ -3648,7 +4320,8 @@
    "window",
    "indoor",
    "soft",
-   "k_stage"
+   "k_stage",
+   "upright"
   ],
   "hair_salon": [
    "chair",
@@ -3656,7 +4329,8 @@
    "rail_waist",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "nail_salon": [
    "chair",
@@ -3665,28 +4339,32 @@
    "shelf_high",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "fitting_room": [
    "stool",
    "edge",
    "wall",
    "indoor",
-   "k_private"
+   "k_private",
+   "upright"
   ],
   "ballpark_stands": [
    "chair",
    "rail_waist",
    "stairs",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "football_stands": [
    "chair",
    "rail_waist",
    "stairs",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "esports_arena": [
    "chair",
@@ -3695,7 +4373,8 @@
    "stairs",
    "indoor",
    "night",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "golf_range": [
    "chair",
@@ -3703,14 +4382,16 @@
    "floor",
    "rail_waist",
    "sky",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "golf_course": [
    "floor",
    "edge",
    "sky",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "fencing_piste": [
    "floor",
@@ -3718,7 +4399,8 @@
    "chair",
    "shelf_high",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "lecture_hall": [
    "chair",
@@ -3727,7 +4409,8 @@
    "stairs",
    "indoor",
    "window",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "campus_lawn": [
    "floor",
@@ -3736,7 +4419,8 @@
    "chair",
    "sky",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "festival_booth": [
    "rail_waist",
@@ -3745,7 +4429,8 @@
    "wall",
    "sky",
    "shelf_high",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_theatre": [
    "chair",
@@ -3753,14 +4438,16 @@
    "rail_waist",
    "stairs",
    "indoor",
-   "k_public"
+   "k_public",
+   "upright"
   ],
   "nation_snowfield": [
    "floor",
    "edge",
    "sky",
    "soft",
-   "k_nature"
+   "k_nature",
+   "upright"
   ],
   "nation_flower": [
    "rail_waist",
@@ -3768,7 +4455,8 @@
    "floor",
    "shelf_high",
    "sky",
-   "k_street"
+   "k_street",
+   "upright"
   ],
   "nation_salon": [
    "chair",
@@ -3778,7 +4466,439 @@
    "indoor",
    "window",
    "soft",
-   "k_private"
+   "k_private",
+   "upright"
+  ],
+  "car_kerb": [
+   "car",
+   "wall",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "car_wash_home": [
+   "car",
+   "floor",
+   "wall",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "car_trunk": [
+   "car",
+   "edge",
+   "floor",
+   "wall",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "car_door": [
+   "car",
+   "floor",
+   "wall",
+   "k_street",
+   "upright"
+  ],
+  "car_convertible": [
+   "chair",
+   "sky",
+   "k_vehicle"
+  ],
+  "camper_van": [
+   "edge",
+   "chair",
+   "lie",
+   "soft",
+   "sky",
+   "night",
+   "stairs",
+   "k_private",
+   "upright"
+  ],
+  "food_truck": [
+   "rail_waist",
+   "wall",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "golf_cart": [
+   "chair",
+   "edge",
+   "floor",
+   "sky",
+   "k_nature",
+   "upright"
+  ],
+  "scooter_cafe": [
+   "bike",
+   "chair",
+   "table",
+   "wall",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "moto_layby": [
+   "bike",
+   "rail_waist",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "bike_basket": [
+   "bike",
+   "saddle",
+   "handlebar",
+   "floor",
+   "wall",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "bike_riverside": [
+   "bike",
+   "saddle",
+   "handlebar",
+   "edge",
+   "wall",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "ekick_scooter": [
+   "board",
+   "handlebar",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "roller_boardwalk": [
+   "skates",
+   "rail_waist",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "skate_park": [
+   "board",
+   "edge",
+   "floor",
+   "wall",
+   "stairs",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "surf_beach": [
+   "board",
+   "floor",
+   "soft",
+   "edge",
+   "water",
+   "deep_water",
+   "lie",
+   "sky",
+   "k_water",
+   "upright"
+  ],
+  "wave_pool_surf": [
+   "board",
+   "water",
+   "deep_water",
+   "edge",
+   "floor",
+   "sky",
+   "k_water",
+   "upright"
+  ],
+  "wake_lake": [
+   "board",
+   "tow_rope",
+   "water",
+   "deep_water",
+   "sky",
+   "k_water"
+  ],
+  "waterski_bay": [
+   "board",
+   "tow_rope",
+   "water",
+   "deep_water",
+   "sky",
+   "k_water"
+  ],
+  "sup_cove": [
+   "board",
+   "water",
+   "deep_water",
+   "sky",
+   "k_water"
+  ],
+  "kayak_river": [
+   "boat",
+   "water",
+   "deep_water",
+   "sky",
+   "k_water"
+  ],
+  "raft_river": [
+   "boat",
+   "water",
+   "sky",
+   "k_water"
+  ],
+  "jetski_jetty": [
+   "saddle",
+   "handlebar",
+   "edge",
+   "water",
+   "deep_water",
+   "sky",
+   "k_water"
+  ],
+  "banana_boat": [
+   "saddle",
+   "handlebar",
+   "water",
+   "deep_water",
+   "sky",
+   "k_water"
+  ],
+  "swan_boat": [
+   "chair",
+   "water",
+   "sky",
+   "k_nature"
+  ],
+  "canal_gondola": [
+   "chair",
+   "water",
+   "sky",
+   "k_vehicle"
+  ],
+  "yacht_helm": [
+   "wheel",
+   "rail_waist",
+   "edge",
+   "sky",
+   "k_water",
+   "upright"
+  ],
+  "plane_window": [
+   "chair",
+   "table",
+   "window",
+   "indoor",
+   "k_vehicle"
+  ],
+  "plane_stairs": [
+   "stairs",
+   "rail_waist",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "plane_cockpit": [
+   "chair",
+   "wheel",
+   "window",
+   "indoor",
+   "k_vehicle"
+  ],
+  "airship_deck": [
+   "rail_waist",
+   "chair",
+   "wall",
+   "sky",
+   "k_vehicle",
+   "upright"
+  ],
+  "airship_cabin": [
+   "chair",
+   "table",
+   "window",
+   "wall",
+   "indoor",
+   "k_vehicle",
+   "upright"
+  ],
+  "glider_launch": [
+   "ride_bar",
+   "floor",
+   "sky",
+   "k_nature",
+   "upright"
+  ],
+  "paraglider_sky": [
+   "flight_harness",
+   "sky",
+   "k_nature"
+  ],
+  "zipline": [
+   "flight_harness",
+   "sky",
+   "k_nature"
+  ],
+  "balloon_basket": [
+   "rail_waist",
+   "sky",
+   "k_vehicle",
+   "upright"
+  ],
+  "snowboard_slope": [
+   "board",
+   "floor",
+   "soft",
+   "edge",
+   "sky",
+   "k_nature",
+   "upright"
+  ],
+  "ride_bumper": [
+   "chair",
+   "wheel",
+   "indoor",
+   "k_vehicle"
+  ],
+  "ride_pirate": [
+   "chair",
+   "ride_bar",
+   "sky",
+   "k_vehicle"
+  ],
+  "ride_droptower": [
+   "chair",
+   "ride_bar",
+   "sky",
+   "k_vehicle"
+  ],
+  "ride_teacup": [
+   "chair",
+   "wheel",
+   "sky",
+   "k_vehicle"
+  ],
+  "ride_coaster": [
+   "chair",
+   "ride_bar",
+   "sky",
+   "k_vehicle"
+  ],
+  "ride_carousel": [
+   "saddle",
+   "pole",
+   "k_public"
+  ],
+  "tram_stop": [
+   "chair",
+   "wall",
+   "floor",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "tram_inside": [
+   "chair",
+   "pole",
+   "strap_rail",
+   "window",
+   "indoor",
+   "k_vehicle",
+   "upright"
+  ],
+  "pedicab": [
+   "chair",
+   "sky",
+   "k_vehicle"
+  ],
+  "horse_trail": [
+   "saddle",
+   "reins",
+   "sky",
+   "k_nature"
+  ],
+  "camel_ride": [
+   "saddle",
+   "reins",
+   "sky",
+   "k_nature"
+  ],
+  "carriage_ride": [
+   "chair",
+   "sky",
+   "k_vehicle"
+  ],
+  "nation_carriage": [
+   "car",
+   "floor",
+   "wall",
+   "sky",
+   "k_street",
+   "upright"
+  ],
+  "nation_waveboard": [
+   "board",
+   "water",
+   "deep_water",
+   "sky",
+   "k_water"
+  ],
+  "nation_skyship": [
+   "rail_waist",
+   "chair",
+   "sky",
+   "k_vehicle",
+   "upright"
+  ],
+  "nation_glider": [
+   "ride_bar",
+   "floor",
+   "sky",
+   "k_nature",
+   "upright"
+  ],
+  "nation_balloon": [
+   "rail_waist",
+   "sky",
+   "k_vehicle",
+   "upright"
+  ],
+  "nation_fair_ride": [
+   "chair",
+   "ride_bar",
+   "sky",
+   "k_vehicle"
+  ],
+  "nation_boat_ride": [
+   "chair",
+   "water",
+   "sky",
+   "k_nature"
+  ],
+  "nation_horse_ride": [
+   "saddle",
+   "reins",
+   "sky",
+   "k_nature"
+  ],
+  "nation_bike": [
+   "bike",
+   "saddle",
+   "handlebar",
+   "floor",
+   "wall",
+   "sky",
+   "k_street",
+   "upright"
   ]
  },
  "props": [
@@ -3834,7 +4954,14 @@
     "theme_cafe",
     "ryokan_room",
     "nation_theatre",
-    "nation_salon"
+    "nation_salon",
+    "camper_van",
+    "food_truck",
+    "plane_window",
+    "airship_cabin",
+    "tram_stop",
+    "scooter_cafe",
+    "car_kerb"
    ]
   },
   {
@@ -3855,7 +4982,10 @@
     "pool_party",
     "beach_club",
     "suite_balcony",
-    "boudoir_set"
+    "boudoir_set",
+    "airship_cabin",
+    "airship_deck",
+    "yacht_helm"
    ]
   },
   {
@@ -3906,7 +5036,31 @@
     "window_seat",
     "glamping_tent",
     "glamping_deck",
-    "suite_balcony"
+    "suite_balcony",
+    "car_kerb",
+    "car_trunk",
+    "car_door",
+    "car_convertible",
+    "camper_van",
+    "food_truck",
+    "golf_cart",
+    "scooter_cafe",
+    "moto_layby",
+    "bike_basket",
+    "bike_riverside",
+    "ekick_scooter",
+    "roller_boardwalk",
+    "skate_park",
+    "plane_window",
+    "plane_stairs",
+    "airship_cabin",
+    "tram_stop",
+    "tram_inside",
+    "pedicab",
+    "ride_carousel",
+    "ride_teacup",
+    "canal_gondola",
+    "swan_boat"
    ]
   },
   {
@@ -3953,7 +5107,12 @@
     "ryokan_room",
     "lecture_hall",
     "campus_lawn",
-    "boardgame_cafe"
+    "boardgame_cafe",
+    "plane_window",
+    "tram_inside",
+    "camper_van",
+    "airship_cabin",
+    "canal_gondola"
    ]
   },
   {
@@ -4005,7 +5164,26 @@
     "ballpark_stands",
     "football_stands",
     "nation_snowfield",
-    "nation_flower"
+    "nation_flower",
+    "car_kerb",
+    "car_convertible",
+    "camper_van",
+    "moto_layby",
+    "bike_basket",
+    "skate_park",
+    "surf_beach",
+    "yacht_helm",
+    "airship_deck",
+    "balloon_basket",
+    "glider_launch",
+    "snowboard_slope",
+    "plane_window",
+    "pedicab",
+    "camel_ride",
+    "canal_gondola",
+    "tram_stop",
+    "nation_skyship",
+    "nation_balloon"
    ]
   },
   {
@@ -4031,7 +5209,10 @@
     "pet_dog_walk",
     "golf_course",
     "flower_market",
-    "campus_lawn"
+    "campus_lawn",
+    "tram_stop",
+    "canal_gondola",
+    "pedicab"
    ]
   },
   {
@@ -4062,7 +5243,8 @@
     "waterpark_wave",
     "waterpark_slide",
     "pool_party",
-    "beach_club"
+    "beach_club",
+    "wave_pool_surf"
    ]
   },
   {
@@ -4093,7 +5275,13 @@
     "hotspring_pool",
     "bath_changing",
     "fencing_piste",
-    "golf_range"
+    "golf_range",
+    "surf_beach",
+    "wave_pool_surf",
+    "jetski_jetty",
+    "banana_boat",
+    "sup_cove",
+    "car_wash_home"
    ]
   },
   {
@@ -4111,7 +5299,10 @@
     "fx_mirror",
     "ballpark_stands",
     "ryokan_room",
-    "festival_booth"
+    "festival_booth",
+    "pedicab",
+    "canal_gondola",
+    "camel_ride"
    ]
   },
   {
@@ -4154,7 +5345,9 @@
     "nation_roof",
     "site_observatory",
     "fx_cloudpavilion",
-    "nation_airship_deck"
+    "nation_airship_deck",
+    "airship_deck",
+    "nation_skyship"
    ]
   },
   {
@@ -4179,7 +5372,10 @@
     "flower_market",
     "photo_studio",
     "boudoir_set",
-    "nation_flower"
+    "nation_flower",
+    "bike_basket",
+    "car_door",
+    "carriage_ride"
    ]
   },
   {
@@ -4194,7 +5390,9 @@
     "flower_market",
     "bookstore_aisle",
     "fitting_room",
-    "hair_salon"
+    "hair_salon",
+    "car_trunk",
+    "tram_stop"
    ]
   },
   {
@@ -4214,7 +5412,11 @@
     "campus_lawn",
     "festival_booth",
     "waterpark_wave",
-    "beach_club"
+    "beach_club",
+    "food_truck",
+    "car_kerb",
+    "roller_boardwalk",
+    "ride_carousel"
    ]
   },
   {
@@ -4246,7 +5448,8 @@
     "nation_airship_deck",
     "escape_room",
     "glamping_deck",
-    "glamping_tent"
+    "glamping_tent",
+    "camper_van"
    ]
   },
   {
@@ -4300,7 +5503,18 @@
     "ice_rink",
     "ski_slope",
     "bowling_lane",
-    "campus_lawn"
+    "campus_lawn",
+    "skate_park",
+    "roller_boardwalk",
+    "bike_riverside",
+    "bike_basket",
+    "snowboard_slope",
+    "glider_launch",
+    "golf_cart",
+    "kayak_river",
+    "horse_trail",
+    "camel_ride",
+    "ekick_scooter"
    ]
   },
   {
@@ -4423,7 +5637,8 @@
     "backstage_dressing",
     "flower_shop",
     "flower_market",
-    "nation_flower"
+    "nation_flower",
+    "bike_basket"
    ]
   },
   {
@@ -4731,7 +5946,8 @@
    "ko": "세차 스펀지",
    "en": "a soapy sponge",
    "places": [
-    "car_wash"
+    "car_wash",
+    "car_wash_home"
    ]
   },
   {
@@ -4796,7 +6012,9 @@
     "@night",
     "@amusement",
     "festival_booth",
-    "ballpark_stands"
+    "ballpark_stands",
+    "ride_carousel",
+    "ride_teacup"
    ],
    "eras": [
     "now",
@@ -4943,7 +6161,8 @@
     "ballpark_stands",
     "football_stands",
     "esports_arena",
-    "nation_theatre"
+    "nation_theatre",
+    "ride_teacup"
    ],
    "eras": [
     "now",
@@ -5060,7 +6279,13 @@
     "waterpark_wave",
     "waterpark_slide",
     "pool_party",
-    "beach_club"
+    "beach_club",
+    "surf_beach",
+    "wave_pool_surf",
+    "banana_boat",
+    "jetski_jetty",
+    "kayak_river",
+    "sup_cove"
    ],
    "eras": [
     "now"
@@ -5074,7 +6299,8 @@
     "ski_slope",
     "ski_lift",
     "sled_hill",
-    "lodge_terrace"
+    "lodge_terrace",
+    "snowboard_slope"
    ]
   },
   {
@@ -5089,7 +6315,9 @@
     "glamping_deck",
     "glamping_tent",
     "window_seat",
-    "nation_snowfield"
+    "nation_snowfield",
+    "snowboard_slope",
+    "camper_van"
    ]
   },
   {
@@ -5110,7 +6338,10 @@
     "@amusement",
     "theme_cafe",
     "festival_booth",
-    "photo_studio"
+    "photo_studio",
+    "ride_carousel",
+    "ride_teacup",
+    "ride_bumper"
    ],
    "eras": [
     "now",
@@ -5124,7 +6355,8 @@
    "places": [
     "@amusement",
     "festival_booth",
-    "theme_cafe"
+    "theme_cafe",
+    "ride_carousel"
    ]
   },
   {
@@ -5196,7 +6428,123 @@
    "en": "a golf club",
    "places": [
     "golf_range",
-    "golf_course"
+    "golf_course",
+    "golf_cart"
+   ]
+  },
+  {
+   "key": "helmet",
+   "ko": "헬멧",
+   "en": "an open-face riding helmet",
+   "places": [
+    "scooter_cafe",
+    "moto_layby",
+    "bike_basket",
+    "bike_riverside",
+    "ekick_scooter",
+    "skate_park",
+    "horse_trail",
+    "glider_launch",
+    "snowboard_slope",
+    "raft_river",
+    "kayak_river",
+    "nation_bike"
+   ]
+  },
+  {
+   "key": "luggage",
+   "ko": "여행 가방",
+   "en": "a hard-shell travel suitcase",
+   "places": [
+    "car_trunk",
+    "plane_stairs",
+    "tram_stop",
+    "camper_van",
+    "car_door",
+    "nation_carriage"
+   ],
+   "eras": [
+    "now",
+    "site"
+   ]
+  },
+  {
+   "key": "hose",
+   "ko": "물 호스",
+   "en": "a garden hose with a spray nozzle",
+   "places": [
+    "car_wash_home",
+    "car_wash"
+   ],
+   "eras": [
+    "now",
+    "site"
+   ]
+  },
+  {
+   "key": "surfboard",
+   "ko": "서프보드",
+   "en": "a longboard surfboard",
+   "places": [
+    "surf_beach",
+    "wave_pool_surf",
+    "water_beach"
+   ]
+  },
+  {
+   "key": "skateboard",
+   "ko": "스케이트보드",
+   "en": "a skateboard",
+   "places": [
+    "skate_park"
+   ]
+  },
+  {
+   "key": "roller_skates",
+   "ko": "롤러스케이트",
+   "en": "a pair of roller skates tied by their laces",
+   "places": [
+    "roller_boardwalk",
+    "sports_rink"
+   ]
+  },
+  {
+   "key": "snowboard",
+   "ko": "스노보드",
+   "en": "a snowboard",
+   "places": [
+    "snowboard_slope",
+    "ski_slope"
+   ]
+  },
+  {
+   "key": "paddle",
+   "ko": "노 · 패들",
+   "en": "a long paddle",
+   "places": [
+    "sup_cove",
+    "kayak_river",
+    "raft_river"
+   ]
+  },
+  {
+   "key": "ticket",
+   "ko": "표 · 승차권",
+   "en": "a paper ticket",
+   "places": [
+    "tram_stop",
+    "tram_inside",
+    "plane_stairs",
+    "plane_window",
+    "airship_cabin",
+    "airship_deck",
+    "travel_cablecar",
+    "ride_carousel",
+    "ride_teacup",
+    "ride_bumper",
+    "amuse_coaster",
+    "amuse_carousel",
+    "amuse_wheel"
    ]
   }
  ],
@@ -5235,7 +6583,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "lean_vehicle",
+    "ride_side"
    ]
   },
   {
@@ -5272,7 +6622,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "lean_vehicle",
+    "ride_side"
    ]
   },
   {
@@ -5384,7 +6736,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "lean_vehicle",
+    "ride_side"
    ],
    "gaze": "at_prop"
   },
@@ -5417,7 +6771,9 @@
     "lean_counter",
     "sit_lean",
     "sit_sideways",
-    "step_up"
+    "step_up",
+    "ride_side",
+    "sit_harness"
    ]
   },
   {
@@ -5489,7 +6845,8 @@
     "lean_wall",
     "sit_lean",
     "sit_sideways",
-    "half_kneel"
+    "half_kneel",
+    "sit_boat"
    ],
    "gaze": "at_prop"
   },
@@ -5512,7 +6869,8 @@
     "lean_rail",
     "walk",
     "lean_counter",
-    "step_up"
+    "step_up",
+    "ride_side"
    ]
   },
   {
@@ -5782,7 +7140,8 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "sit_boat"
    ]
   },
   {
@@ -5967,7 +7326,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "ride_side",
+    "ride_astride"
    ]
   },
   {
@@ -6058,7 +7419,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "ride_side",
+    "ride_astride"
    ]
   },
   {
@@ -6095,7 +7458,8 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "ride_astride"
    ]
   },
   {
@@ -6220,7 +7584,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "ride_side",
+    "ride_astride"
    ]
   },
   {
@@ -6254,7 +7620,8 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "ride_side"
    ]
   },
   {
@@ -6411,7 +7778,8 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "sit_boat"
    ]
   },
   {
@@ -7971,7 +9339,7 @@
    "hands": "one",
    "zone": "chest",
    "ko": "차 문을 스펀지로 닦는다",
-   "en": "wipes the door of the car beside her with {prop}",
+   "en": "wipes the door of the vehicle beside her with {prop}",
    "frames": [
     "waist_up",
     "three_quarter",
@@ -7981,7 +9349,8 @@
    "postures": [
     "stand",
     "squat",
-    "half_kneel"
+    "half_kneel",
+    "lean_vehicle"
    ],
    "gaze": "at_prop",
    "needs": [
@@ -8004,7 +9373,8 @@
    "postures": [
     "stand",
     "walk",
-    "lean_wall"
+    "lean_wall",
+    "lean_vehicle"
    ]
   },
   {
@@ -10493,7 +11863,8 @@
     "sit_floor",
     "kneel",
     "half_kneel",
-    "squat"
+    "squat",
+    "ride_astride"
    ],
    "stage": "doing",
    "stage_ko": "하는 중",
@@ -12181,7 +13552,8 @@
     "sit_edge",
     "sit_sideways",
     "sit_lean",
-    "recline"
+    "recline",
+    "ride_astride"
    ]
   },
   {
@@ -12649,6 +14021,635 @@
     "walk",
     "step_up"
    ]
+  },
+  {
+   "key": "helmet_carry",
+   "prop": "helmet",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "hips",
+   "ko": "헬멧을 턱끈째 들고 간다",
+   "en": "carries {prop} by its chin strap at her side",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "step_up",
+    "lean_vehicle",
+    "ride_side"
+   ]
+  },
+  {
+   "key": "helmet_hug",
+   "prop": "helmet",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "chest",
+   "ko": "헬멧을 옆구리에 낀다",
+   "en": "holds {prop} tucked against her side",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "step_up",
+    "lean_vehicle",
+    "ride_side",
+    "ride_seat",
+    "sit_chair",
+    "sit_edge",
+    "sit_sideways"
+   ]
+  },
+  {
+   "key": "helmet_on",
+   "prop": "helmet",
+   "kind": "both",
+   "hands": "both",
+   "zone": "overhead",
+   "ko": "헬멧을 쓴다",
+   "en": "settles {prop} onto her head",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "step_up",
+    "lean_vehicle",
+    "ride_side",
+    "ride_seat",
+    "sit_chair",
+    "sit_edge",
+    "sit_sideways"
+   ],
+   "stage": "prep",
+   "stage_ko": "준비",
+   "grip": {
+    "right": "holds the right side of the shell",
+    "left": "holds the left side of the shell"
+   }
+  },
+  {
+   "key": "helmet_strap",
+   "prop": "helmet",
+   "kind": "both",
+   "hands": "both",
+   "zone": "face",
+   "ko": "헬멧 턱끈을 채운다",
+   "en": "fastens the chin strap of {prop} under her jaw",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "step_up",
+    "lean_vehicle",
+    "ride_side",
+    "ride_seat",
+    "sit_chair",
+    "sit_edge",
+    "sit_sideways"
+   ],
+   "stage": "prep",
+   "stage_ko": "준비",
+   "grip": {
+    "right": "pulls the strap end",
+    "left": "holds the buckle"
+   },
+   "gaze": "down"
+  },
+  {
+   "key": "luggage_roll",
+   "prop": "luggage",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "hips",
+   "ko": "여행 가방을 끌고 간다",
+   "en": "pulls {prop} along behind her by its handle",
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "walk",
+    "lean_vehicle"
+   ]
+  },
+  {
+   "key": "luggage_lift",
+   "prop": "luggage",
+   "kind": "both",
+   "hands": "both",
+   "zone": "chest",
+   "ko": "여행 가방을 짐칸에 싣는다",
+   "en": "lifts {prop} into the open luggage space",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_vehicle"
+   ],
+   "stage": "doing",
+   "stage_ko": "하는 중",
+   "grip": {
+    "right": "grips the top handle",
+    "left": "supports the base"
+   },
+   "needs": [
+    "car"
+   ]
+  },
+  {
+   "key": "luggage_sit",
+   "prop": "luggage",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "lap",
+   "ko": "여행 가방 손잡이에 손을 얹는다",
+   "en": "rests one hand on the handle of {prop} beside her",
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "sit_edge",
+    "sit_chair",
+    "sit_sideways"
+   ]
+  },
+  {
+   "key": "hose_spray",
+   "prop": "hose",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "waist",
+   "ko": "호스로 물을 뿌린다",
+   "en": "sprays a fan of water from {prop} over the vehicle",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "step_up"
+   ],
+   "stage": "doing",
+   "stage_ko": "하는 중",
+   "needs": [
+    "car"
+   ]
+  },
+  {
+   "key": "hose_coil",
+   "prop": "hose",
+   "kind": "both",
+   "hands": "both",
+   "zone": "chest",
+   "ko": "호스를 팔에 감는다",
+   "en": "coils {prop} loosely over her forearm",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_vehicle",
+    "lean_wall"
+   ],
+   "stage": "finish",
+   "stage_ko": "마무리",
+   "grip": {
+    "right": "loops the hose",
+    "left": "holds the coils"
+   }
+  },
+  {
+   "key": "surf_carry",
+   "prop": "surfboard",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "hips",
+   "ko": "서프보드를 옆구리에 끼고 간다",
+   "en": "carries {prop} under one arm",
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "walk"
+   ]
+  },
+  {
+   "key": "surf_upright",
+   "prop": "surfboard",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "chest",
+   "ko": "서프보드를 세워 짚는다",
+   "en": "stands {prop} upright beside her, one hand on its nose",
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_rail"
+   ]
+  },
+  {
+   "key": "surf_wax",
+   "prop": "surfboard",
+   "kind": "both",
+   "hands": "both",
+   "zone": "waist",
+   "ko": "서프보드에 왁스를 바른다",
+   "en": "rubs a bar of wax along the deck of {prop}",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "kneel",
+    "squat",
+    "half_kneel",
+    "sit_floor"
+   ],
+   "stage": "prep",
+   "stage_ko": "준비",
+   "gaze": "at_prop",
+   "grip": {
+    "right": "rubs the wax bar in small circles",
+    "left": "steadies the rail of the board"
+   }
+  },
+  {
+   "key": "surf_head",
+   "prop": "surfboard",
+   "kind": "both",
+   "hands": "both",
+   "zone": "overhead",
+   "ko": "서프보드를 머리에 인다",
+   "en": "balances {prop} on her head",
+   "frames": [
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "walk",
+    "stand"
+   ],
+   "grip": {
+    "right": "steadies the near rail",
+    "left": "steadies the far rail"
+   }
+  },
+  {
+   "key": "skate_carry",
+   "prop": "skateboard",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "hips",
+   "ko": "스케이트보드를 트럭째 들고 간다",
+   "en": "carries {prop} by its trucks at her side",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "walk",
+    "lean_wall",
+    "step_up"
+   ]
+  },
+  {
+   "key": "skate_spin",
+   "prop": "skateboard",
+   "kind": "both",
+   "hands": "both",
+   "zone": "waist",
+   "ko": "스케이트보드 바퀴를 돌려 본다",
+   "en": "spins one wheel of {prop} with a fingertip",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "sit_edge",
+    "sit_floor",
+    "squat",
+    "sit_sideways"
+   ],
+   "stage": "prep",
+   "stage_ko": "준비",
+   "gaze": "at_prop",
+   "grip": {
+    "right": "spins the wheel",
+    "left": "holds the deck"
+   }
+  },
+  {
+   "key": "rskates_carry",
+   "prop": "roller_skates",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "hips",
+   "ko": "롤러스케이트를 끈째 들고 간다",
+   "en": "carries {prop} by the knotted laces at her side",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "walk"
+   ]
+  },
+  {
+   "key": "rskates_lace",
+   "prop": "roller_skates",
+   "kind": "both",
+   "hands": "both",
+   "zone": "waist",
+   "ko": "롤러스케이트 끈을 조인다",
+   "en": "pulls the laces of {prop} tight",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "sit_chair",
+    "sit_edge",
+    "sit_sideways",
+    "sit_floor",
+    "half_kneel"
+   ],
+   "stage": "prep",
+   "stage_ko": "준비",
+   "gaze": "at_prop",
+   "grip": {
+    "right": "pulls one lace",
+    "left": "pulls the other lace"
+   }
+  },
+  {
+   "key": "snowb_carry",
+   "prop": "snowboard",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "hips",
+   "ko": "스노보드를 세워 들고 간다",
+   "en": "carries {prop} upright at her side",
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "walk"
+   ]
+  },
+  {
+   "key": "snowb_bind",
+   "prop": "snowboard",
+   "kind": "both",
+   "hands": "both",
+   "zone": "waist",
+   "ko": "스노보드 바인딩을 조인다",
+   "en": "buckles the binding straps of {prop}",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "sit_floor",
+    "kneel",
+    "squat"
+   ],
+   "stage": "prep",
+   "stage_ko": "준비",
+   "gaze": "at_prop",
+   "grip": {
+    "right": "pulls the strap tight",
+    "left": "holds the binding"
+   }
+  },
+  {
+   "key": "paddle_stroke",
+   "prop": "paddle",
+   "kind": "both",
+   "hands": "both",
+   "zone": "chest",
+   "ko": "노를 저어 나아간다",
+   "en": "dips {prop} into the water in a slow stroke",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "board_stand",
+    "sit_boat"
+   ],
+   "stage": "doing",
+   "stage_ko": "하는 중",
+   "grip": {
+    "right": "grips the upper shaft",
+    "left": "grips the lower shaft"
+   }
+  },
+  {
+   "key": "paddle_rest",
+   "prop": "paddle",
+   "kind": "both",
+   "hands": "both",
+   "zone": "waist",
+   "ko": "노를 무릎에 가로 얹는다",
+   "en": "rests {prop} across her lap",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "sit_boat"
+   ],
+   "grip": {
+    "right": "holds one end of the shaft",
+    "left": "holds the other end of the shaft"
+   }
+  },
+  {
+   "key": "paddle_carry",
+   "prop": "paddle",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "hips",
+   "ko": "노를 세워 들고 간다",
+   "en": "carries {prop} upright beside her",
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "walk"
+   ]
+  },
+  {
+   "key": "ticket_check",
+   "prop": "ticket",
+   "kind": "hold",
+   "hands": "one",
+   "zone": "chest",
+   "ko": "표의 좌석 번호를 본다",
+   "en": "checks the seat number on {prop}",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "step_up",
+    "sit_chair",
+    "sit_edge",
+    "sit_sideways",
+    "lean_vehicle",
+    "ride_astride"
+   ],
+   "gaze": "at_prop"
+  },
+  {
+   "key": "ticket_show",
+   "prop": "ticket",
+   "kind": "raise",
+   "hands": "one",
+   "zone": "face",
+   "ko": "표를 얼굴 옆에 들어 보인다",
+   "en": "holds up {prop} beside her face",
+   "frames": [
+    "face_close",
+    "detail",
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "stand",
+    "lean_wall",
+    "lean_rail",
+    "walk",
+    "step_up",
+    "sit_chair",
+    "sit_edge",
+    "sit_sideways"
+   ],
+   "stage": "doing",
+   "stage_ko": "하는 중"
+  },
+  {
+   "key": "sled_sit",
+   "prop": "sled",
+   "kind": "both",
+   "hands": "both",
+   "zone": "waist",
+   "ko": "썰매에 앉아 앞줄을 잡는다",
+   "en": "grips the front rope of {prop}, sitting on it",
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ],
+   "postures": [
+    "sit_floor"
+   ],
+   "stage": "prep",
+   "stage_ko": "준비",
+   "grip": {
+    "right": "holds the rope",
+    "left": "holds the rope"
+   }
   }
  ],
  "outfit_features": {
@@ -13258,6 +15259,93 @@
     "nation_salon"
    ],
    "ko": "창가 · 글램핑 텐트 · 료칸 · 스위트 발코니 · 단장방에 수영복(물이 없는 방)"
+  },
+  {
+   "outfits": [
+    "evening",
+    "bridal",
+    "drape",
+    "costume",
+    "halloween"
+   ],
+   "places": [
+    "skate_park",
+    "surf_beach",
+    "wave_pool_surf",
+    "wake_lake",
+    "waterski_bay",
+    "sup_cove",
+    "kayak_river",
+    "raft_river",
+    "jetski_jetty",
+    "banana_boat",
+    "snowboard_slope",
+    "glider_launch",
+    "paraglider_sky",
+    "zipline",
+    "ekick_scooter",
+    "roller_boardwalk",
+    "bike_riverside",
+    "horse_trail",
+    "camel_ride",
+    "nation_waveboard",
+    "nation_glider"
+   ],
+   "ko": "보드 · 물살 · 하늘 · 말 · 자전거에 드레스 · 웨딩 · 무대 · 할로윈 차림"
+  },
+  {
+   "outfits": [
+    "swimwear",
+    "bath",
+    "lingerie",
+    "homewear"
+   ],
+   "places": [
+    "snowboard_slope",
+    "glider_launch",
+    "paraglider_sky",
+    "zipline",
+    "horse_trail",
+    "camel_ride",
+    "swan_boat",
+    "golf_cart",
+    "bike_riverside",
+    "nation_glider",
+    "nation_boat_ride",
+    "nation_horse_ride"
+   ],
+   "ko": "눈밭 · 하늘 · 말 · 오리배 · 골프 카트 · 자전거 길에 수영복 · 목욕 · 란제리풍 · 홈웨어"
+  },
+  {
+   "outfits": [
+    "resort",
+    "evening",
+    "retro"
+   ],
+   "places": [
+    "surf_beach",
+    "wave_pool_surf",
+    "waterski_bay",
+    "skate_park",
+    "snowboard_slope",
+    "jetski_jetty",
+    "banana_boat"
+   ],
+   "ko": "서핑 해변 · 서핑 풀 · 수상스키 · 스케이트 파크 · 스노보드 · 제트스키 · 바나나보트에 휴양지 · 드레스 · 레트로 차림(보드 · 탈 것을 타는 자리)"
+  },
+  {
+   "outfits": [
+    "active",
+    "workwear",
+    "adventure"
+   ],
+   "places": [
+    "car_door",
+    "airship_cabin",
+    "canal_gondola",
+    "carriage_ride"
+   ],
+   "ko": "차에서 내리기 · 비행선 라운지 · 곤돌라 · 마차에 운동 · 작업 · 모험 차림"
   }
  ],
  "presets": [
@@ -14591,6 +16679,462 @@
    "legs": "",
    "gaze": "screen_right",
    "act": "ready"
+  },
+  {
+   "key": "vehicle_lean",
+   "ko": "탈것에 기대 서기",
+   "posture": "lean_vehicle",
+   "support": "back_vehicle",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "roof_rest",
+   "left": "down",
+   "legs": "stand_relaxed",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "vehicle_lean_far",
+   "ko": "탈것에 기대 먼 곳 보기",
+   "posture": "lean_vehicle",
+   "support": "back_vehicle",
+   "frame": "full_body",
+   "body": "side",
+   "head": "with_body",
+   "camera": "low",
+   "right": "arms_crossed",
+   "left": "arms_crossed",
+   "legs": "contrapposto",
+   "gaze": "horizon",
+   "act": "rest"
+  },
+  {
+   "key": "vehicle_lean_prop",
+   "ko": "탈것에 기대 소품 들기",
+   "posture": "lean_vehicle",
+   "support": "back_vehicle",
+   "frame": "waist_up",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "hip",
+   "legs": "",
+   "gaze": "at_prop",
+   "act": "rest",
+   "prop_kind": "hold"
+  },
+  {
+   "key": "side_saddle",
+   "ko": "바이크에 옆으로 걸터앉기",
+   "posture": "ride_side",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "lap",
+   "legs": "ankles_crossed",
+   "gaze": "camera",
+   "act": "rest",
+   "prop_kind": "hold"
+  },
+  {
+   "key": "side_saddle_high",
+   "ko": "바이크에 걸터앉아 내려다봄",
+   "posture": "ride_side",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "high",
+   "right": "handle_one",
+   "left": "lap",
+   "legs": "knees_together",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "astride_ride",
+   "ko": "올라타 핸들 잡고 달리기",
+   "posture": "ride_astride",
+   "support": "none",
+   "frame": "full_body",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "handle_both",
+   "left": "handle_both",
+   "legs": "astride_feet",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "astride_reins",
+   "ko": "고삐 잡고 타기",
+   "posture": "ride_astride",
+   "support": "none",
+   "frame": "environmental",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "reins_both",
+   "left": "reins_both",
+   "legs": "astride_feet",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "astride_rein_wave",
+   "ko": "한 손 고삐 · 한 손 인사",
+   "posture": "ride_astride",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "low",
+   "right": "rein_one",
+   "left": "wave",
+   "legs": "",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "astride_pole",
+   "ko": "기둥 잡고 회전목마",
+   "posture": "ride_astride",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "pole_hold",
+   "left": "prop",
+   "legs": "",
+   "gaze": "camera",
+   "act": "ride",
+   "prop_kind": "hold"
+  },
+  {
+   "key": "astride_handle_prop",
+   "ko": "한 손 핸들 · 한 손 소품",
+   "posture": "ride_astride",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "handle_one",
+   "left": "prop",
+   "legs": "",
+   "gaze": "camera",
+   "act": "ride",
+   "prop_kind": "hold"
+  },
+  {
+   "key": "board_ride",
+   "ko": "보드 타기 — 두 팔 균형",
+   "posture": "board_stand",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "low",
+   "right": "balance_both",
+   "left": "balance_both",
+   "legs": "board_knees",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "board_ride_far",
+   "ko": "보드 타기 — 풍경 속",
+   "posture": "board_stand",
+   "support": "none",
+   "frame": "environmental",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "balance_both",
+   "left": "balance_both",
+   "legs": "board_knees",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "board_tow",
+   "ko": "견인줄 잡고 보드",
+   "posture": "board_stand",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "rope_both",
+   "left": "rope_both",
+   "legs": "board_knees",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "board_handle",
+   "ko": "킥보드 핸들 잡고",
+   "posture": "board_stand",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "handle_both",
+   "left": "handle_both",
+   "legs": "board_knees",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "board_paddle",
+   "ko": "보드 위에서 노 젓기",
+   "posture": "board_stand",
+   "support": "none",
+   "frame": "environmental",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "high",
+   "right": "prop",
+   "left": "prop",
+   "legs": "board_knees",
+   "gaze": "horizon",
+   "act": "ride",
+   "prop_kind": "both"
+  },
+  {
+   "key": "board_wave",
+   "ko": "보드 위에서 손 흔들기",
+   "posture": "board_stand",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "wave",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "skate_glide_full",
+   "ko": "스케이트로 미끄러지기",
+   "posture": "skate_glide",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "low",
+   "right": "balance_both",
+   "left": "balance_both",
+   "legs": "skate_push",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "skate_glide_wave",
+   "ko": "스케이트 타며 손 흔들기",
+   "posture": "skate_glide",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "wave",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "ride_bar_seat",
+   "ko": "안전바 잡고 앉기",
+   "posture": "sit_chair",
+   "support": "back_seat",
+   "frame": "waist_up",
+   "body": "front",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "bar_both",
+   "left": "bar_both",
+   "legs": "",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "ride_bar_high",
+   "ko": "안전바 잡고 내려다봄",
+   "posture": "sit_chair",
+   "support": "back_seat",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "high",
+   "right": "bar_both",
+   "left": "bar_both",
+   "legs": "",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "glider_launch_run",
+   "ko": "행글라이더 바 잡고 서기",
+   "posture": "stand",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "low",
+   "right": "bar_both",
+   "left": "bar_both",
+   "legs": "step_forward",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "harness_fly",
+   "ko": "하네스에 매달려 날기",
+   "posture": "sit_harness",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "low",
+   "right": "lines_both",
+   "left": "lines_both",
+   "legs": "harness_dangle",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "harness_far",
+   "ko": "하네스 — 풍경 속",
+   "posture": "sit_harness",
+   "support": "none",
+   "frame": "environmental",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "lines_both",
+   "left": "lines_both",
+   "legs": "harness_dangle",
+   "gaze": "screen_left",
+   "act": "ride"
+  },
+  {
+   "key": "harness_vsign",
+   "ko": "줄 잡고 브이",
+   "posture": "sit_harness",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "front",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "line_one",
+   "left": "v_sign",
+   "legs": "",
+   "gaze": "camera",
+   "act": "ride"
+  },
+  {
+   "key": "boat_paddle",
+   "ko": "배에서 노 젓기",
+   "posture": "sit_boat",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "prop",
+   "legs": "",
+   "gaze": "horizon",
+   "act": "ride",
+   "prop_kind": "both"
+  },
+  {
+   "key": "boat_trail",
+   "ko": "배에서 물에 손 담그기",
+   "posture": "sit_boat",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "water_trail",
+   "left": "natural",
+   "legs": "",
+   "gaze": "down",
+   "act": "rest"
+  },
+  {
+   "key": "boat_far",
+   "ko": "배에 앉아 — 풍경 속",
+   "posture": "sit_boat",
+   "support": "none",
+   "frame": "environmental",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "high",
+   "right": "natural",
+   "left": "natural",
+   "legs": "boat_legs",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "wheel_side",
+   "ko": "운전대 잡고 옆모습",
+   "posture": "sit_chair",
+   "support": "back_seat",
+   "frame": "three_quarter",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "wheel_both",
+   "left": "wheel_both",
+   "legs": "",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "helm_stand",
+   "ko": "키 잡고 서기",
+   "posture": "stand",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "low",
+   "right": "wheel_both",
+   "left": "wheel_both",
+   "legs": "stand_relaxed",
+   "gaze": "horizon",
+   "act": "ride"
+  },
+  {
+   "key": "walk_bike",
+   "ko": "핸들 잡고 끌며 걷기",
+   "posture": "walk",
+   "support": "none",
+   "frame": "full_body",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "handle_one",
+   "left": "down",
+   "legs": "walk_stride",
+   "gaze": "horizon",
+   "act": "walk"
   }
  ],
  "expressions": {
@@ -17272,12 +19816,16 @@
     "postures": [
      "lie_front",
      "lie_side",
-     "recline"
+     "recline",
+     "board_stand",
+     "ride_astride",
+     "sit_harness",
+     "skate_glide"
     ],
     "frames": [
      "environmental"
     ],
-    "why": "눕는 자세 · 환경 컷 — 2:3 에서 답답했고 3:2 가 가장 좋았다"
+    "why": "눕는 자세 · 환경 컷 — 2:3 에서 답답했고 3:2 가 가장 좋았다 · 보드 · 올라타기 · 하네스 · 스케이트(2026-11-24)도 옆으로 긴 몸과 풍경이 장면이라 3:2"
    },
    {
     "aspect": "1:1",
