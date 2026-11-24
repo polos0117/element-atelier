@@ -11,6 +11,14 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-24 · claude · 들어갈 때 로딩 화면 — 전경 · 이름 · 빛 입자(픽시)
+- lib/splash.js — 새 공용 모듈(도시 공방과 글자 하나 다르지 않게). 주기율표 나라 카드 「들어가기」(궤도로)에서 그 나라 그 세계 전경을 받기 시작 → 600ms 안에 풀리면 어두워졌다가(0.18초) 그 뒤에서 나라로 들어가고, 전경이 어둠에서 떠오르며 천천히 다가온다(1.0 → 1.06) · 세계 줄 · 「Fe 26 · 철」(기호는 분류 색) · 설계표 성격 첫 마디(40자 이하) · 막대 · 빛 입자(PixiJS — lib/walk-fx.js loadPixi 그대로, 판타지 빛 알갱이 · 불티, 스팀펑크 김 · 불꽃, 메카 차가운 빛줄 · 자료 알갱이, 150 이하 · 틱 하나 · 끝나면 지움). 모두 1.6초, 누르기 · 아무 키면 곧바로. 움직임 끔 · 전경 없음 · 목록으로 들어가기 · 이 탭에서 본 나라 × 세계(element_splash_v1) · 그림이 늦으면 없음. PixiJS 를 못 받으면 입자만 빠진다. 덮개 aria-hidden + polite 알림 한 줄, 끝나면 초점은 나라 이름(사용자 「진짜 게임 로딩화면 같네」 → 「응 넣어줘. 이미 도구도 있을텐데. 픽시같은거」)
+- lib/splash.css — 덮개 겉모습(공용). lib/walk.css — 덮개 변수(땅 강조색) · 기호 · 번호 · 점(?v=20)
+- lib/walk-table.js — 나라 카드 「들어가기」가 enterWithSplash 로(① 출발 자리는 그대로), walk.js ?v=21 · walk-table ?v=9
+- index.html — splash.css 링크. lib/words.js — splash.live · splash.skip(?v=36, 네 쪽)
+- tests/splash-screen.cjs — 새 검사(휴대폰 · PC 처음 한 번 · 다시 · 세계 바꿈 · 건너뛰기 셋 · 움직임 줄이기 · 전경 없는 나라 · 목록 · PixiJS 막힘 · 느린 그림 · 404 · 깊은 주소)
+- DESIGN.md · AGENTS.md — 효과 · 검사 줄
+
 ## 2026-11-24 · claude · 원소 전경 — 철 시험(전경 지시문 · 등록 · 나라 화면)
 - lib/prompt-spec.js — 사용자 「원소공방도 한 세계 정도 만들어보자」 → 「나라 하나 × 세 세계」(철). 도시 공방 전경을 옮겼다: 파일 이름 틀 FILES.vista(<나라>_<세계>_<화풍>_vista.webp — 성별 표시 없음), 전경 글 T.VISTA(머리 · 장소 · 곁 장소 · 원소 결 · 색 · 구도(아래 1/4 잔잔하게 — 카드 자리) · 사람 · 글자 없음 · Avoid · 3:2 Output)
 - lib/prompt-element.js — buildVista · vistaFile · vistaRecord · vistaAvoid · vistaStyle · herCut: 장소 = 설계표 worlds.<세계>.en, 곁 장소 = scenes, 원소 결 = traits.en 첫 마디(뒤 나라들의 내력 글은 이름 머리를 떼고 30 낱말 안), 색 = palette.en(원소 재질 색이라 장소에도 맞다), Avoid = 그 세계 옷 줄의 「No …」 − 옷 낱말. 설계표 글의 그녀 마디(behind her · she stokes …)는 덜어 낸다. 나라(근본) 열쇠에만

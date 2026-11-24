@@ -396,3 +396,6 @@ html[data-motion="off"] .w-shift {display:none}
 .walk .toc-jump .jump.new {position:relative;border-color:#fff}
 .walk .toc-jump .jump.new::after {content:'';position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 0 1px #0b0d14,0 0 4px #fff}
 .w-tile.new .nm {padding-right:24px}
+/* ── 들어갈 때 로딩 화면(2026-11-24 — lib/splash.js · lib/splash.css, 주기율표 → 나라) — 「Fe 26 · 철」: 기호는 분류 색, 번호는 작게. 세계 줄 · 막대는 땅 강조색 */
+.sp {--sp-accent:var(--w-acc);--sp-ink:#fff;--sp-weight:700}
+.sp-title .sp-sym {color:var(--cat,var(--accent))} .sp-title .sp-num {margin-left:.06em;font-size:.36em;vertical-align:.95em;opacity:.85} .sp-title .sp-dot {margin:0 .14em;font-size:.6em;vertical-align:.22em;opacity:.55}

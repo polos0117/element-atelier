@@ -37,6 +37,7 @@
 - 공간 다섯의 장식 틀(`--frame`, 그림 저장소 `backgrounds/frames/frame-<공간>.webp` — 투명 여백을 잘라낸 9칸 틀, 자르기 %는 기록 `processing`), 그림 단추(`--ui-*`, 그림 저장소 `backgrounds/ui/ui-<공간>-<title|main|btn|round>.webp`)와 제목 글꼴(`--gallery-serif` — 실험실 · 제어실 Orbit · 천문대 Hahmlet · 연금술 공방 Song Myung · 광산 Black Han Sans)은 `lib/material.css` 한 곳. 본문 글꼴은 IBM Plex Sans KR(400 · 700 두 굵기). 제목 글꼴은 `lib/workspace-theme.js` 가 지금 공간의 것 하나만 붙이고, 글꼴 줄은 전부 화면 그리기를 막지 않는다(`media="print"` → onload — 2026-11-02 「화면 로딩이 엄청 느린데」 — 다섯 글꼴을 모든 화면이 받아 글꼴 목록만 514KB 였다).
 - 원소 공방의 층(주기율표 · 궤도 · 목록 · 가문 · 한 장)은 어두운 바탕(`#07080c`, `lib/walk.css`) — 장식 틀 `--frame` · 그림 단추 `--ui-*` 를 쓰지 않는다(`index.html` 은 `material.css` · `room.css` 를 싣지 않는다). 강조색은 공간의 `var(--accent)` 하나, 분류 색은 `lib/walk.css` 의 `[data-cat]` 한 곳. 효과 다섯은 `lib/walk-fx.js` 한 곳에서 `AtelierWalk.motionOn()`(기기의 움직임 줄이기 · 도구 상자의 움직임 끄기)을 본다 — CSS 효과는 `html[data-motion="off"]` 로 끈다.
 - 움직임은 `lib/motion-fx.js`(툭 나타나기 · 차례로 · 날아와 커지기 · 퍼지기 · 선 그리기 · 깃발 꽂기) — Motion 작은 판(`lib/vendor/motion-mini.mjs`, animate + spring, 손으로 고치지 않는다)을 쓴다. 위치 · 크기 · 투명도만, 움직임 줄이기면 끈다. sam-atelier 와 글자 하나 다르지 않게 같이.
+- 들어갈 때 로딩 화면 `lib/splash.js` · `lib/splash.css`(2026-11-24)는 도시 공방(city-atelier)과 글자 하나 다르지 않게 같이 — 공방 몫(낱말 · 움직임 · PixiJS · 기억 열쇠)은 부르는 쪽(`lib/walk-table.js`)이, 색 · 글꼴은 `lib/walk.css` 의 `--sp-*` 가.
 - 디자인 점검 skill: `.claude/skills/frontend-design`(방향 · 글꼴 · 테두리), `.claude/skills/ui-ux-pro-max`(글꼴 짝 · 스타일 · UX 규칙 검색 — `python3 .claude/skills/ui-ux-pro-max/scripts/search.py "<질문>" --domain typography`), `.claude/skills/web-design-guidelines`(규칙 점검). sam-atelier 에서 옮겼다(2026-11-02).
 
 ## 지켜야 할 것
@@ -151,6 +152,7 @@ ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-family.cjs    # �
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-card.cjs      # 한 장(글 판 · 세계 넘기기) · 옛 gallery.html
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-world.cjs     # 효과 ③ 세계 바꾸기 전환
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/vista-screen.cjs    # 나라 층 전경 무대(2026-11-24) — 배경 · 카드 띠 · 흐름 · 구경 · 머리 한 줄 · 폴드 · PC · 전경 없는 나라 그대로
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/splash-screen.cjs   # 들어갈 때 로딩 화면(lib/splash.js · PixiJS — 도시 공방과 같은 파일) — 처음 한 번 · 2초 안에 걷힘 · 건너뛰기 · 움직임 줄이기 · 전경 없음 · 목록 · PixiJS 막힘 · 느린 그림 · 깊은 주소
 ```
 
 ### 목록(옛 도감)과 즐겨찾기(2026-10-31 · 2026-11-12 원소 공방 안으로)
