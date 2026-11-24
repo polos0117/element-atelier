@@ -1,0 +1,1922 @@
+{
+ "version": 1,
+ "date": "2026-11-24",
+ "note": "원소 월드맵 배치표 — 나라 118 을 원소 성질 · 페르소나로 대륙 › 지역에 둔다(사용자 2026-11-24 「성향 배치로 가고 배치표 먼저 짜줘」 → 「이대로 진행하고 … 판타지 대륙 지도부터 만들어줘」). 세계 셋이 지형 하나를 나눈다(세계별 장소는 보류). map.<세계> 는 그 세계 지도 그림 위 자리(그림 좌표 0~1 — 대륙 상자 x · y · w · h · 이름 자리 label, 지역 점 x · y). 검사 python3 tools/world-map.py check",
+ "source": "data/element-design.json (판타지 세계 글 · 페르소나 기준)",
+ "continents": [
+  {
+   "key": "sky_isles",
+   "ko": "하늘 군도",
+   "layer": "sky",
+   "position": "above the central continent (floating islands tethered by ropes over the central forest on the surface map)",
+   "en": "A scattered archipelago of floating islands drifting above a sea of clouds, each tethered to the forest below by long ropes, with slow balloon-lanterns and pale morning light between them.",
+   "why_ko": "수소 「늘 위로 오르는 나라」 · 헬륨 「늘 조금 떠 있는」 · 알루미늄 「하늘 항구」와 비활성 귀족 기체 — 가벼운 것들이 가운데 대륙 위에 뜬다. 수소섬은 밧줄로 숨 쉬는 숲에 매여 있다(물 · 기름 · 나무 동맹의 줄)."
+  },
+  {
+   "key": "heartland",
+   "ko": "가운데 대륙",
+   "layer": "surface",
+   "position": "center",
+   "en": "A broad green central continent of breathing forests meeting a western sea, aurora-lit wheat plains to the north, a sulphur-yellow volcanic upland to the south and a smoky iron mountain range along its eastern edge.",
+   "why_ko": "탄소 「모든 나라와 손잡는 외교 대국」을 한가운데에. 생명(C N O P S)과 철(Fe)을 한 대륙에 두어 강철 · 녹 · 피 · 불 동맹이 대륙을 건너지 않는다."
+  },
+  {
+   "key": "ore_east",
+   "ko": "광맥 대륙",
+   "layer": "surface",
+   "position": "east",
+   "en": "A rugged eastern continent of titanic grey mountain ranges, a platinum river winding between white cliffs, golden moonlit highlands and warm bronze-coloured plains running down to a southern coast.",
+   "why_ko": "철 산성 동쪽 너머의 금속 대륙 — 내화 금속의 높은 산맥, 백금족 여섯의 강, 화폐 금속의 고원, 구리 · 아연 광석의 평야."
+  },
+  {
+   "key": "salt_sands",
+   "ko": "소금 모래 대륙",
+   "layer": "surface",
+   "position": "south-west",
+   "en": "A sun-bleached south-western continent of white salt flats, singing dunes and red desert hills along a desert river, edged by pale chalky sea cliffs and purple-tinged harbour lagoons.",
+   "why_ko": "나트륨 「소금 사막」 · 붕소 「붕사 사막」 · 규소 「노래하는 모래」의 사막과, 할로젠 「상인 족」의 해안. 바닷물 원소를 물밑이 아니라 소금 사막 · 해안에 둔 것은 페르소나가 그렇기 때문."
+  },
+  {
+   "key": "rare_north",
+   "ko": "희토 북녘",
+   "layer": "surface",
+   "position": "north",
+   "en": "A cool northern continent of mist-veiled valleys and grain fields, lake-strewn birch country and island cities under the midnight sun, pink-glass sea cliffs and a frozen sea under a low red sun.",
+   "why_ko": "란타넘족 페르소나가 모두 땅 위(안개 골짜기 · 들 · 호수 · 섬)라 지하가 아니라 북녘 대륙. 이테르비 마을 이름의 나라들과 북쪽 알칼리(Li Rb Cs)가 함께."
+  },
+  {
+   "key": "glow_south",
+   "ko": "빛살 남녘",
+   "layer": "surface",
+   "position": "south-east",
+   "en": "A hushed southern land of dark mountains and deep valleys where stones glow faint blue and green on their own, of red-brick arcades on glowing hillsides, ending in grey cathedral cloisters and a wide tidal shore.",
+   "why_ko": "자연 방사성 원소(Ac Pa Th Ra Po)가 우라늄 붕괴 사슬을 따라 내려가 납(「모든 붕괴가 끝나 쉬는」)에서 멈춘다. 페르소나가 황무지가 아니라 빛나는 신전 · 골짜기라 「빛살」 땅으로."
+  },
+  {
+   "key": "deep_under",
+   "ko": "땅속 깊은 나라",
+   "layer": "underground",
+   "position": "beneath the iron range and the southern glow lands (a great mine-chasm mouth at the south-eastern foot of the iron range on the surface map)",
+   "en": "Vast caverns and mine galleries beneath the eastern mountains, lit by cobalt-blue crystal walls and a twilight underground garden, sinking deeper into veins of eerie green-glowing crystal.",
+   "why_ko": "코발트 「푸른 지하 왕국」 · 탄탈럼 「저승 정원」 · 우라늄 「산 밑 묻힌 왕국」처럼 페르소나가 땅속인 나라만. 라돈은 가장 무거운 기체라 하늘이 아니라 지하 저장실에."
+  },
+  {
+   "key": "under_sea",
+   "ko": "물밑 왕국",
+   "layer": "undersea",
+   "position": "beneath the southern sea, between the salt-sand continent and the south-east glow lands (a glowing coral whirlpool on the surface map)",
+   "en": "A sunlit coral realm beneath the southern sea, with white limestone reef palaces, pearl lagoons, rings of atolls breaking the surface and a deep blue trench falling away into darkness.",
+   "why_ko": "설계표에서 바다 왕국을 말하는 나라는 칼슘 「산호초의 바다 왕국」 · 넵투늄 「바다의 왕국 자리」뿐 — 거기에 산호 환초의 아인슈타이늄 · 플레로븀. 작은 왕국이다(열린 질문 1)."
+  },
+  {
+   "key": "prophecy_rim",
+   "ko": "예언의 테두리",
+   "layer": "surface",
+   "position": "outer rim encircling the whole map",
+   "en": "A ring of half-drawn lands around the outer edge of the world, painted like an unfinished star chart, with coasts, forests, fortresses and rivers fading into dotted outlines and empty starry space.",
+   "why_ko": "93번 이후 나라의 판타지 글이 모두 「예언된 나라 — 별지도의 빈칸」. 지도 가장자리에 점선으로만 그려진 땅으로 둘렀다(바다 셋 Np Es Fl 은 물밑)."
+  }
+ ],
+ "regions": [
+  {
+   "key": "sky_starfire",
+   "ko": "별불 하늘섬",
+   "continent": "sky_isles",
+   "en": "Floating islands holding a temple of a star's pale fire, an eclipse shrine on a cloud-piercing peak, and airship docks with feather-light silver frames.",
+   "why_ko": "수소 · 헬륨 · 알루미늄 — 별불 신전, 일식 신전, 비행선 부두. 수소 기구 곁의 하늘 항구.",
+   "adjacent": [
+    "sky_noble",
+    "c_forest",
+    "c_fields"
+   ]
+  },
+  {
+   "key": "sky_noble",
+   "ko": "잠든 귀족의 구름섬",
+   "continent": "sky_isles",
+   "en": "Quiet high islands of white fortresses and lavender-aired archives half sunk in silver mist, with a lone lighthouse island at the far edge beaming blue into the night.",
+   "why_ko": "비활성 귀족 넷 — 무엇과도 섞이지 않고 높이 떠 있다. 공기의 아르곤은 질소 밀밭 바로 위.",
+   "adjacent": [
+    "sky_starfire",
+    "c_fields"
+   ]
+  },
+  {
+   "key": "c_forest",
+   "ko": "숨 쉬는 숲",
+   "continent": "heartland",
+   "en": "A vast breathing forest of giant translucent leaves and charcoal-burner glades that reaches down to a coral-white western shore.",
+   "why_ko": "탄소 · 산소 · 마그네슘 · 탈륨 — 숨 · 불 · 나무 · 잎. 숲이 바다에 닿는 해안.",
+   "adjacent": [
+    "sky_starfire",
+    "c_fields",
+    "c_sulfur",
+    "c_forge",
+    "sw_salt",
+    "under_reef"
+   ]
+  },
+  {
+   "key": "c_fields",
+   "ko": "오로라 밀밭",
+   "continent": "heartland",
+   "en": "Endless wheat plains and ash-dark highland slopes sprouting green under curtains of violet aurora, with terraced earth fields climbing toward the hills.",
+   "why_ko": "질소 · 인 · 칼륨 — 비료 셋이 한 들판. 텔루륨(대지)의 계단 밭.",
+   "adjacent": [
+    "c_forest",
+    "c_sulfur",
+    "n_mistvale",
+    "sky_starfire",
+    "sky_noble"
+   ]
+  },
+  {
+   "key": "c_sulfur",
+   "ko": "유황 불산",
+   "continent": "heartland",
+   "en": "A volcanic upland of yellow sulphur-crusted crater lakes, blue night flames on the slopes and blood-red cinnabar cliffs.",
+   "why_ko": "황과 그 황화물의 나라들 — 진사(Hg) · 웅황 · 계관석(As), 같은 16족 셀레늄.",
+   "adjacent": [
+    "c_forest",
+    "c_fields",
+    "c_forge",
+    "e_gold",
+    "sw_mirage",
+    "s_afterglow"
+   ]
+  },
+  {
+   "key": "c_forge",
+   "ko": "대장간 산성",
+   "continent": "heartland",
+   "en": "A smoky iron mountain range of forge fortresses, rivers of molten metal in stone channels and meteorite basins along the eastern edge of the continent.",
+   "why_ko": "철과 강철을 만드는 것들 — 니켈 · 크로뮴 · 망가니즈(스테인리스 · 망간강).",
+   "adjacent": [
+    "c_forest",
+    "c_sulfur",
+    "e_titan",
+    "e_bronze",
+    "ug_kobold"
+   ]
+  },
+  {
+   "key": "e_titan",
+   "ko": "거인 산맥",
+   "continent": "ore_east",
+   "en": "The highest grey mountain range in the world, peaks carved into giant thrones, black forge-citadels, weeping cliffs with rainbows and deep canyons lined with castles.",
+   "why_ko": "내화 금속 — 타이타늄(거인) · 텅스텐 · 몰리브데넘 · 나이오븀, 몰리브데넘 광석에서 나온 레늄 · 테크네튬.",
+   "adjacent": [
+    "c_forge",
+    "ug_kobold",
+    "e_platinum"
+   ]
+  },
+  {
+   "key": "e_platinum",
+   "ko": "백금 강",
+   "continent": "ore_east",
+   "en": "A clear river glittering with white grains winding between pale cliffs, its banks lined with six sister castles from the great to the small.",
+   "why_ko": "백금족 여섯 — 루테늄 「언니 다섯의 성들 끝」 그대로.",
+   "adjacent": [
+    "e_titan",
+    "e_gold"
+   ]
+  },
+  {
+   "key": "e_gold",
+   "ko": "황금 달빛 고원",
+   "continent": "ore_east",
+   "en": "High plateaus of gold-leaf temples and still silver mirror lakes under a large moon, with fir-dark ridges of silver mines.",
+   "why_ko": "화폐 금속(금 · 은)과 은광석의 저마늄.",
+   "adjacent": [
+    "e_platinum",
+    "e_bronze",
+    "c_sulfur"
+   ]
+  },
+  {
+   "key": "e_bronze",
+   "ko": "청동 평야",
+   "continent": "ore_east",
+   "en": "Warm bronze-coloured plains and moorland running down to a sea coast, with copper-green temple domes, tin streams, grey-blue fortress passes and yellow flower fields.",
+   "why_ko": "청동(구리+주석) · 놋쇠(구리+아연), 그리고 아연 광석에서 찾은 카드뮴 · 인듐 · 갈륨.",
+   "adjacent": [
+    "e_gold",
+    "c_forge",
+    "s_cloister",
+    "rim_sunrise"
+   ]
+  },
+  {
+   "key": "sw_salt",
+   "ko": "흰 소금 사막",
+   "continent": "salt_sands",
+   "en": "Blinding white salt flats and dry borax lakes giving way to great singing dunes and glass towers fused by lightning.",
+   "why_ko": "소금 · 붕사 · 모래 — 나트륨 · 붕소 · 규소.",
+   "adjacent": [
+    "sw_mirage",
+    "sw_bleach",
+    "c_forest"
+   ]
+  },
+  {
+   "key": "sw_mirage",
+   "ko": "신기루 강",
+   "continent": "salt_sands",
+   "en": "A sun-baked desert river between red rock hills, riverbank temples under a hard blue sky and silver towers shimmering in the heat haze beyond the dunes.",
+   "why_ko": "안티모니 「사막 강」 · 지르코늄 「붉은 사막 언덕」 · 디스프로슘 「신기루 너머」.",
+   "adjacent": [
+    "sw_salt",
+    "sw_port",
+    "c_sulfur"
+   ]
+  },
+  {
+   "key": "sw_bleach",
+   "ko": "표백 절벽 해안",
+   "continent": "salt_sands",
+   "en": "A bright bleached coast of white bath temples and drying linen, hexagonal sea-blue crystal cliffs and violet-green fluorite canyons, with a forbidden pale-green fog marsh behind the walls.",
+   "why_ko": "할로젠 상인 족 가운데 사나운 쪽(F Cl)과 달콤한 독의 베릴(Be).",
+   "adjacent": [
+    "sw_salt",
+    "sw_port",
+    "under_reef"
+   ]
+  },
+  {
+   "key": "sw_port",
+   "ko": "자줏빛 항구",
+   "continent": "salt_sands",
+   "en": "Trading harbour lagoons glinting red-brown and purple, piles of dye shells, seaweed-strewn shores with violet smoke beacons and a canal port mirrored in dark water.",
+   "why_ko": "브로민 · 아이오딘 상인 항구와 「상인들의 배가 드나드는」 하프늄 쌍둥이 항구.",
+   "adjacent": [
+    "sw_mirage",
+    "sw_bleach",
+    "under_reef"
+   ]
+  },
+  {
+   "key": "n_mistvale",
+   "ko": "안개 장막 골짜기",
+   "continent": "rare_north",
+   "en": "Mist-veiled valleys of golden grain and green leek fields, floating lodestones circling under twin moons and lantern-lit villages beneath a cloud-wrapped mountain.",
+   "why_ko": "란타넘족 앞자리 — 숨은 맏이 La, 쌍둥이 Pr Nd, 빈칸 Pm, 자석 Sm.",
+   "adjacent": [
+    "c_fields",
+    "n_towers",
+    "n_lakes",
+    "rim_castles"
+   ]
+  },
+  {
+   "key": "n_towers",
+   "ko": "네 자매 탑 해안",
+   "continent": "rare_north",
+   "en": "A northern sea coast where four crystal towers of different heights stand along the cliffs, pink-glass palaces and singing harp bridges between them.",
+   "why_ko": "이트륨 「키 작은 동생 탑 셋」 — 이테르비 넷(Y Tb Er Yb).",
+   "adjacent": [
+    "n_mistvale",
+    "n_lakes",
+    "n_ice"
+   ]
+  },
+  {
+   "key": "n_lakes",
+   "ko": "백야의 호수와 섬",
+   "continent": "rare_north",
+   "en": "Lake-strewn birch country and island cities joined by bridges and canals under the midnight sun, ending at black sea cliffs at the northern end of the world.",
+   "why_ko": "긴 겨울 호수(Gd) · 섬 도시(Ho Lu) · 세상 끝 툴레(Tm) · 백야 경기장(Sc) · 숨은 빛(Eu).",
+   "adjacent": [
+    "n_mistvale",
+    "n_towers",
+    "n_ice",
+    "rim_castles"
+   ]
+  },
+  {
+   "key": "n_ice",
+   "ko": "붉은 낮해 얼음 협만",
+   "continent": "rare_north",
+   "en": "Fjords of pink-white cliffs and a frozen sea under a deep red sun hanging low all day, with a sky-blue sundial plateau above.",
+   "why_ko": "북쪽 알칼리 셋 — 리튬 협만 · 루비듐 얼음 바다 · 세슘 시간 고원.",
+   "adjacent": [
+    "n_towers",
+    "n_lakes",
+    "rim_rivers"
+   ]
+  },
+  {
+   "key": "s_rayvale",
+   "ko": "빛살 골짜기",
+   "continent": "glow_south",
+   "en": "Dark pitch-black mountains and storm-crowned peaks around a valley where a silver hall fans out pale blue rays even by day.",
+   "why_ko": "악티늄 · 프로트악티늄 · 토륨 — 우라늄 산의 품.",
+   "adjacent": [
+    "s_afterglow",
+    "s_cloister",
+    "ug_star"
+   ]
+  },
+  {
+   "key": "s_afterglow",
+   "ko": "잔불 언덕",
+   "continent": "glow_south",
+   "en": "Hillsides of heavy white pebbles that glow after dusk, red-brick arcades, a festival loch under crimson fireworks and a white temple that shines blue at night.",
+   "why_ko": "스스로 / 해를 머금고 빛나는 알칼리 토류 셋(Sr Ba Ra).",
+   "adjacent": [
+    "s_rayvale",
+    "s_cloister",
+    "c_sulfur",
+    "ug_star"
+   ]
+  },
+  {
+   "key": "s_cloister",
+   "ko": "멈춘 시간의 회랑",
+   "continent": "glow_south",
+   "en": "Grey lead-roofed cathedral cloisters with rose windows, rainbow staircase palaces, a hidden fortress on a rock pass and a tidal island reached only at low tide.",
+   "why_ko": "붕괴가 멈추는 자리 — 납 · 비스무트 · 폴로늄, 악티늄에서 갈라져 나온 프랑슘의 갯벌.",
+   "adjacent": [
+    "s_rayvale",
+    "s_afterglow",
+    "e_bronze",
+    "ug_star"
+   ]
+  },
+  {
+   "key": "ug_kobold",
+   "ko": "코볼트 갱도",
+   "continent": "deep_under",
+   "en": "Mine galleries walled with pink crystal blooms and cobalt-blue glass, opening into a twilight underground garden around a still, receding pool.",
+   "why_ko": "땅속이 페르소나인 금속 둘 — 철 산성과 거인 산맥 밑.",
+   "adjacent": [
+    "c_forge",
+    "e_titan",
+    "ug_star"
+   ]
+  },
+  {
+   "key": "ug_star",
+   "ko": "잠든 별 광맥",
+   "continent": "deep_under",
+   "en": "Deep caverns of green-glowing crystal veins behind lead doors, stone cellars where invisible mist pools, and dark ember-specks flickering in every crack.",
+   "why_ko": "우라늄 붕괴 사슬의 뿌리 — 우라늄 · 라돈 · 아스타틴.",
+   "adjacent": [
+    "ug_kobold",
+    "s_rayvale",
+    "s_afterglow",
+    "s_cloister",
+    "rim_underworld"
+   ]
+  },
+  {
+   "key": "under_reef",
+   "ko": "산호 궁정과 해구",
+   "continent": "under_sea",
+   "en": "White coral reef palaces and pearl lagoons, rings of atolls above, and at the far end a trident-shaped blue stone gate rising from a dark trench.",
+   "why_ko": "칼슘 산호 궁정 · 산호 환초 둘 · 넵투늄 해구.",
+   "adjacent": [
+    "c_forest",
+    "sw_bleach",
+    "sw_port",
+    "rim_west",
+    "rim_underworld"
+   ]
+  },
+  {
+   "key": "rim_west",
+   "ko": "서쪽 끝 미지 해안",
+   "continent": "prophecy_rim",
+   "en": "An undrawn western coast of forest-edge cabins with watch lanterns, a golden island cliff-fortress and a hundred-step fire citadel, fading into dotted sea-chart lines.",
+   "why_ko": "옛 바다 지도 서쪽 끝의 셋(Am Cf Fm).",
+   "adjacent": [
+    "under_reef",
+    "rim_atlas",
+    "rim_castles"
+   ]
+  },
+  {
+   "key": "rim_atlas",
+   "ko": "예언의 서고",
+   "continent": "prophecy_rim",
+   "en": "Hilltop academies, stone-drawer archive fortresses, ring fortresses and gold-leaf castles at the last row of an unfinished star map.",
+   "why_ko": "표를 짓고 넓히는 학자들의 나라(Bk Md Sg Rf Lr).",
+   "adjacent": [
+    "rim_west",
+    "rim_underworld"
+   ]
+  },
+  {
+   "key": "rim_underworld",
+   "ko": "명계의 문",
+   "continent": "prophecy_rim",
+   "en": "Dark stone gates lit by self-burning lamps, red sandstone dunes under a small white sun, an obsidian hall in a shattered black mountain and a ghost city flickering in the void.",
+   "why_ko": "저승 · 붉은 별 · 폭약 산 · 주기율표 끝(Pu Cm No Og).",
+   "adjacent": [
+    "rim_atlas",
+    "under_reef",
+    "ug_star",
+    "rim_sunrise"
+   ]
+  },
+  {
+   "key": "rim_castles",
+   "ko": "숲과 성의 영방",
+   "continent": "prophecy_rim",
+   "en": "Deep beech and oak forest realms with red sandstone castles, concentric ring walls, a split snow mountain, an artist city on a hill and a translucent glass kingdom.",
+   "why_ko": "숲과 성의 영방 Hs 와 그 이웃 넷.",
+   "adjacent": [
+    "n_mistvale",
+    "n_lakes",
+    "rim_west",
+    "rim_rivers"
+   ]
+  },
+  {
+   "key": "rim_rivers",
+   "ko": "두 강의 땅",
+   "continent": "prophecy_rim",
+   "en": "Long winter forests and frozen rivers where two great rivers meet, a red-brick fortress with golden domes, blue misty mountain ranges and golden vineyard valleys.",
+   "why_ko": "두 강이 만나는 곶 Db 와 강 · 산 · 골짜기의 셋.",
+   "adjacent": [
+    "rim_castles",
+    "n_ice",
+    "rim_sunrise"
+   ]
+  },
+  {
+   "key": "rim_sunrise",
+   "ko": "해 뜨는 끝섬",
+   "continent": "prophecy_rim",
+   "en": "An island at the far eastern edge where the first sunrise strikes red lacquered gates, and a round sky palace with a golden sun at its centre.",
+   "why_ko": "해의 나라 둘(Nh Cn) — 둘 다 아연 빛살로 태어났다.",
+   "adjacent": [
+    "rim_rivers",
+    "e_bronze",
+    "rim_underworld"
+   ]
+  }
+ ],
+ "nations": {
+  "fe": {
+   "region": "c_forge",
+   "why_ko": "「공업과 전쟁의 대국」 산성 — 탄소(강철) · 산소(녹 · 피)와 바로 이웃",
+   "neighbours": [
+    "c",
+    "o",
+    "cr",
+    "mn",
+    "ni",
+    "zn"
+   ]
+  },
+  "h": {
+   "region": "sky_starfire",
+   "why_ko": "「늘 위로 오르는 나라」 — 밧줄로 숲에 매인 하늘섬, 군도의 맏이",
+   "neighbours": [
+    "he",
+    "c",
+    "o",
+    "al"
+   ]
+  },
+  "o": {
+   "region": "c_forest",
+   "why_ko": "「바다와 숲의 나라」 — 숲이 바다에 닿는 해안, 물 · 녹 · 피 · 불이 다 닿는다",
+   "neighbours": [
+    "h",
+    "c",
+    "mg",
+    "s",
+    "ca",
+    "fe"
+   ]
+  },
+  "c": {
+   "region": "c_forest",
+   "why_ko": "「모든 나라와 손잡는 외교 대국」 — 세계 한가운데, 강철 · 불 · 기름 · 나무 동맹의 매듭",
+   "neighbours": [
+    "h",
+    "n",
+    "o",
+    "mg",
+    "si",
+    "fe"
+   ]
+  },
+  "na": {
+   "region": "sw_salt",
+   "why_ko": "「소금 사막의 전사 부족」 — 바닷가 염소와 소금 동맹",
+   "neighbours": [
+    "b",
+    "si",
+    "cl"
+   ]
+  },
+  "au": {
+   "region": "e_gold",
+   "why_ko": "「황금 왕국」 — 백금 강 위 고원, 은 · 구리와 화폐 금속 한 줄",
+   "neighbours": [
+    "cu",
+    "ag",
+    "pt",
+    "hg"
+   ]
+  },
+  "og": {
+   "region": "rim_underworld",
+   "why_ko": "「주기율표 끝」 유령 왕국 — 테두리 맨 밑 허공",
+   "neighbours": [
+    "no",
+    "lr"
+   ]
+  },
+  "he": {
+   "region": "sky_starfire",
+   "why_ko": "「늘 땅에서 조금 떠 있는」 귀족 — 구름 위로 솟은 일식 신전",
+   "neighbours": [
+    "h",
+    "ne",
+    "al"
+   ]
+  },
+  "si": {
+   "region": "sw_salt",
+   "why_ko": "「노래하는 모래의 사막」 — 탄소와 같은 14족이라 가운데 대륙과 국경",
+   "neighbours": [
+    "b",
+    "c",
+    "na",
+    "zr"
+   ]
+  },
+  "s": {
+   "region": "c_sulfur",
+   "why_ko": "「화산 왕국」 — 유황 분화구, 불산의 한가운데",
+   "neighbours": [
+    "o",
+    "as",
+    "se",
+    "hg"
+   ]
+  },
+  "cl": {
+   "region": "sw_bleach",
+   "why_ko": "「정화의 나라」 밝은 바닷가 — 나트륨과 소금 동맹, 연둣빛 안개 늪",
+   "neighbours": [
+    "be",
+    "f",
+    "na",
+    "br"
+   ]
+  },
+  "ca": {
+   "region": "under_reef",
+   "why_ko": "「산호초의 바다 왕국」 — 물밑 궁정, 산소의 산호 신전과 이웃",
+   "neighbours": [
+    "be",
+    "o",
+    "mg",
+    "i",
+    "es",
+    "fl"
+   ]
+  },
+  "cu": {
+   "region": "e_bronze",
+   "why_ko": "「청동기의 섬 왕국」 — 주석(청동) · 아연(놋쇠)과 평야를 연다",
+   "neighbours": [
+    "ni",
+    "zn",
+    "sn",
+    "au"
+   ]
+  },
+  "ag": {
+   "region": "e_gold",
+   "why_ko": "「달빛 왕국」 은 호수 — 금의 짝, 셀레늄(달)과 고개 너머",
+   "neighbours": [
+    "ge",
+    "se",
+    "pd",
+    "au"
+   ]
+  },
+  "u": {
+   "region": "ug_star",
+   "why_ko": "「산 밑 깊은 곳의 묻힌 왕국」 — 빛살 남녘 아래, 붕괴 사슬의 뿌리",
+   "neighbours": [
+    "pb",
+    "at",
+    "rn",
+    "th",
+    "pa",
+    "pu"
+   ]
+  },
+  "n": {
+   "region": "c_fields",
+   "why_ko": "「오로라 아래 밀밭」 — 공기 78% · 비료라 인 · 칼륨과 한 들판",
+   "neighbours": [
+    "c",
+    "p",
+    "ar",
+    "k"
+   ]
+  },
+  "ne": {
+   "region": "sky_noble",
+   "why_ko": "얼어붙은 공기에서 솟은 흰 성채 — 섞이지 않는 귀족섬",
+   "neighbours": [
+    "he",
+    "ar",
+    "xe"
+   ]
+  },
+  "p": {
+   "region": "c_fields",
+   "why_ko": "뼈와 DNA의 뼈대 · 비료 — 질소 · 칼륨 곁, 인광 연금술 탑",
+   "neighbours": [
+    "n",
+    "k",
+    "as"
+   ]
+  },
+  "li": {
+   "region": "n_ice",
+   "why_ko": "「북쪽 협만 왕국」 — 검은 호수에 뜬 성채, 알칼리 전사들의 맏이",
+   "neighbours": [
+    "rb",
+    "cs",
+    "tm"
+   ]
+  },
+  "zn": {
+   "region": "e_bronze",
+   "why_ko": "「쇠를 지키는 수호 기사단」 — 철 산성 바로 옆 고개(도금), 구리와 놋쇠",
+   "neighbours": [
+    "fe",
+    "cu",
+    "cd",
+    "cn",
+    "nh"
+   ]
+  },
+  "sn": {
+   "region": "e_bronze",
+   "why_ko": "「주석 개울의 바닷가 황야」 — 구리의 짝, 땜납으로 납 회랑과 닿는다",
+   "neighbours": [
+    "cu",
+    "in",
+    "pb"
+   ]
+  },
+  "pb": {
+   "region": "s_cloister",
+   "why_ko": "「모든 붕괴가 끝나 쉬는」 대성당 — 우라늄 사슬의 끝",
+   "neighbours": [
+    "sr",
+    "sn",
+    "ba",
+    "bi",
+    "po",
+    "u"
+   ]
+  },
+  "hg": {
+   "region": "c_sulfur",
+   "why_ko": "「진사(HgS) 절벽」의 궁전 — 황과 한 몸, 금과 섞이는 아말감이라 황금 고원 쪽",
+   "neighbours": [
+    "s",
+    "au",
+    "tl"
+   ]
+  },
+  "al": {
+   "region": "sky_starfire",
+   "why_ko": "「하늘 항구 왕국」 — 수소 기구 곁에서 비행선 뼈대를 대는 하늘의 일꾼",
+   "neighbours": [
+    "h",
+    "he",
+    "mg"
+   ]
+  },
+  "mg": {
+   "region": "c_forest",
+   "why_ko": "「살아 있는 잎의 숲」 — 엽록소 한가운데의 금속, 숲의 지붕",
+   "neighbours": [
+    "c",
+    "o",
+    "al",
+    "ca",
+    "tl"
+   ]
+  },
+  "ti": {
+   "region": "e_titan",
+   "why_ko": "「잠든 거인들의 산맥」 — 거인 산맥의 주봉",
+   "neighbours": [
+    "v",
+    "nb",
+    "w"
+   ]
+  },
+  "ni": {
+   "region": "c_forge",
+   "why_ko": "「하늘에서 떨어진 쇠별」 — 운석에서도 지구 핵에서도 철과 함께",
+   "neighbours": [
+    "cr",
+    "fe",
+    "co",
+    "cu"
+   ]
+  },
+  "pt": {
+   "region": "e_platinum",
+   "why_ko": "「변하지 않는 잣대의 궁정」 — 백금 강의 맏이",
+   "neighbours": [
+    "rh",
+    "pd",
+    "ir",
+    "au"
+   ]
+  },
+  "w": {
+   "region": "e_titan",
+   "why_ko": "「꺼지지 않는 불의 늑대 산」 — 가장 높은 녹는점, 산맥의 대장간",
+   "neighbours": [
+    "ti",
+    "mo",
+    "ta",
+    "re"
+   ]
+  },
+  "cr": {
+   "region": "c_forge",
+   "why_ko": "쇠에 섞이면 녹슬지 않는 스테인리스 — 철 산성 안 색의 왕국",
+   "neighbours": [
+    "v",
+    "mn",
+    "fe",
+    "ni"
+   ]
+  },
+  "co": {
+   "region": "ug_kobold",
+   "why_ko": "「코볼트들의 푸른 지하 왕국」 — 철 산성 밑 갱도, 니켈의 짝",
+   "neighbours": [
+    "mn",
+    "ni",
+    "ta"
+   ]
+  },
+  "f": {
+   "region": "sw_bleach",
+   "why_ko": "「형석 협곡의 약탈 상단」 — 상인 족 맏이, 해안 안쪽 협곡",
+   "neighbours": [
+    "be",
+    "cl"
+   ]
+  },
+  "i": {
+   "region": "sw_port",
+   "why_ko": "「바닷말 해안의 치유사」 — 물밑 산호 숲 바로 위 해안",
+   "neighbours": [
+    "ca",
+    "br",
+    "hf"
+   ]
+  },
+  "br": {
+   "region": "sw_port",
+   "why_ko": "「자줏빛 돛의 염료 상인 항구」 — 소금 다 내준 간수 속, 염소 곁",
+   "neighbours": [
+    "cl",
+    "i",
+    "hf"
+   ]
+  },
+  "ar": {
+   "region": "sky_noble",
+   "why_ko": "공기 1%의 졸린 수호 귀족 — 질소 밀밭 바로 위 하늘의 고요한 서고",
+   "neighbours": [
+    "n",
+    "ne",
+    "kr"
+   ]
+  },
+  "xe": {
+   "region": "sky_noble",
+   "why_ko": "「아는 지도 끝에 선 이방 귀족」 — 군도 가장 먼 등대섬",
+   "neighbours": [
+    "ne",
+    "kr"
+   ]
+  },
+  "b": {
+   "region": "sw_salt",
+   "why_ko": "「흰 붕사 소금 사막의 대상 요새」 — 마른 소금 호수",
+   "neighbours": [
+    "na",
+    "si"
+   ]
+  },
+  "as": {
+   "region": "c_sulfur",
+   "why_ko": "웅황 · 계관석(비소 황화물) 신전 — 황 곁, 콜의 안티모니와 국경",
+   "neighbours": [
+    "p",
+    "s",
+    "sb"
+   ]
+  },
+  "se": {
+   "region": "c_sulfur",
+   "why_ko": "달(selene) — 텔루륨(대지)의 짝이라 들판 쪽 비탈, 황과 같은 16족",
+   "neighbours": [
+    "s",
+    "ag",
+    "te"
+   ]
+  },
+  "k": {
+   "region": "c_fields",
+   "why_ko": "「잿더미 숲의 고원 부족」 — 불탄 땅을 다시 푸르게, 숲과 들의 경계",
+   "neighbours": [
+    "n",
+    "p",
+    "te",
+    "ce",
+    "tl"
+   ]
+  },
+  "mn": {
+   "region": "c_forge",
+   "why_ko": "「맞을수록 단단해지는」 망간강 성기사 — 철 곁 동굴 벽화 성채",
+   "neighbours": [
+    "cr",
+    "fe",
+    "co"
+   ]
+  },
+  "bi": {
+   "region": "s_cloister",
+   "why_ko": "「무지개 계단의 왕궁」 — 「납 곁에 사는」 나라",
+   "neighbours": [
+    "pb",
+    "po",
+    "at"
+   ]
+  },
+  "ra": {
+   "region": "s_afterglow",
+   "why_ko": "「스스로 빛나는 신전 도시」 — 바륨과 꼭 닮은 빛나는 돌의 언덕",
+   "neighbours": [
+    "sr",
+    "ba",
+    "po",
+    "rn",
+    "fr",
+    "ac"
+   ]
+  },
+  "pu": {
+   "region": "rim_underworld",
+   "why_ko": "「저승의 왕」의 관문 — 우라늄 · 넵투늄에 이은 행성 사슬",
+   "neighbours": [
+    "u",
+    "np",
+    "cm"
+   ]
+  },
+  "ir": {
+   "region": "e_platinum",
+   "why_ko": "「크레이터 위 무지개 성」 — 백금과 함께 킬로그램 원기",
+   "neighbours": [
+    "rh",
+    "os",
+    "pt"
+   ]
+  },
+  "nd": {
+   "region": "n_mistvale",
+   "why_ko": "「쌍둥이 달 아래 자석 돌」 — 프라세오디뮴의 쌍둥이, 사마륨과 자석 이웃",
+   "neighbours": [
+    "la",
+    "pr",
+    "pm",
+    "sm"
+   ]
+  },
+  "be": {
+   "region": "sw_bleach",
+   "why_ko": "「육각 베릴 바다 절벽」 — 달콤한 독의 정원, 물밑 산호와 맞닿은 절벽",
+   "neighbours": [
+    "f",
+    "cl",
+    "ca"
+   ]
+  },
+  "ga": {
+   "region": "e_bronze",
+   "why_ko": "「햇살에 녹는 남녘 왕국」 — 섬아연석의 에카알루미늄, 평야 남쪽 끝",
+   "neighbours": [
+    "ge",
+    "cd",
+    "in"
+   ]
+  },
+  "ge": {
+   "region": "e_gold",
+   "why_ko": "「하늘 군주의 은광」 — 은광석에서 찾은 에카규소, 갈륨과 예언 짝",
+   "neighbours": [
+    "ga",
+    "ag",
+    "in"
+   ]
+  },
+  "v": {
+   "region": "e_titan",
+   "why_ko": "네 빛깔 샘의 북쪽 골짜기 — 크로뮴 곁 산맥 들머리(강철 합금)",
+   "neighbours": [
+    "ti",
+    "cr",
+    "nb"
+   ]
+  },
+  "mo": {
+   "region": "e_titan",
+   "why_ko": "「강철 뼈대의 산성」 — 레늄 · 테크네튬을 낳은 광석의 산",
+   "neighbours": [
+    "tc",
+    "w",
+    "re"
+   ]
+  },
+  "os": {
+   "region": "e_platinum",
+   "why_ko": "「제 무게에 가라앉는」 가장 빽빽한 요새 — 이리듐과 같은 찌꺼기에서",
+   "neighbours": [
+    "ru",
+    "re",
+    "ir"
+   ]
+  },
+  "pd": {
+   "region": "e_platinum",
+   "why_ko": "「수호 신상의 성채」 — 백금 광석의 새 은, 은 고원 쪽 강가",
+   "neighbours": [
+    "ru",
+    "rh",
+    "ag",
+    "pt"
+   ]
+  },
+  "ta": {
+   "region": "ug_kobold",
+   "why_ko": "「물러나는 연못의 저승 정원」 — 딸 니오베의 우는 산 바로 밑",
+   "neighbours": [
+    "co",
+    "nb",
+    "w"
+   ]
+  },
+  "nb": {
+   "region": "e_titan",
+   "why_ko": "「우는 바위의 산」(니오베) — 아버지 탄탈로스의 정원이 바로 밑 갱도",
+   "neighbours": [
+    "ti",
+    "v",
+    "ta"
+   ]
+  },
+  "cs": {
+   "region": "n_ice",
+   "why_ko": "「하늘색 빛줄기의 시간 사원」 고원 — 루비듐의 형, 1초의 잣대",
+   "neighbours": [
+    "li",
+    "rb",
+    "yb"
+   ]
+  },
+  "rb": {
+   "region": "n_ice",
+   "why_ko": "「붉은 낮해의 얼음 왕국」 — 얼어붙은 바다 위 얼음 궁전",
+   "neighbours": [
+    "li",
+    "cs"
+   ]
+  },
+  "sr": {
+   "region": "s_afterglow",
+   "why_ko": "진홍 불꽃 축제의 납 광산 골짜기 — 축광 돌, 납 회랑 쪽",
+   "neighbours": [
+    "ba",
+    "pb",
+    "ra"
+   ]
+  },
+  "ba": {
+   "region": "s_afterglow",
+   "why_ko": "「해를 품는 돌」의 붉은 회랑 — 라듐과 함께 걸러진 나라",
+   "neighbours": [
+    "sr",
+    "pb",
+    "ra"
+   ]
+  },
+  "kr": {
+   "region": "sky_noble",
+   "why_ko": "「안개에 잠겨 탑 끝만 드러난」 숨은 성 — 구름 바다 속 섬",
+   "neighbours": [
+    "ar",
+    "xe"
+   ]
+  },
+  "rn": {
+   "region": "ug_star",
+   "why_ko": "땅속에서 새어 오르는 숨결 — 가장 무거운 기체라 하늘이 아니라 지하 저장실",
+   "neighbours": [
+    "po",
+    "at",
+    "ra",
+    "u"
+   ]
+  },
+  "te": {
+   "region": "c_fields",
+   "why_ko": "「대지(tellus)의 계단 밭」 — 짝 셀레늄(달)과 고개를 맞댄 들판 끝",
+   "neighbours": [
+    "k",
+    "se",
+    "ce"
+   ]
+  },
+  "sb": {
+   "region": "sw_mirage",
+   "why_ko": "「검은 눈화장의 사막 강 왕국」 — 비소와 같은 독 · 약의 족",
+   "neighbours": [
+    "as",
+    "zr",
+    "dy"
+   ]
+  },
+  "ce": {
+   "region": "n_mistvale",
+   "why_ko": "「곡물 여신의 곳간」 — 가운데 대륙 밀밭과 맞닿은 남쪽 들판",
+   "neighbours": [
+    "k",
+    "te",
+    "la",
+    "pr"
+   ]
+  },
+  "eu": {
+   "region": "n_lakes",
+   "why_ko": "「숨은 빛의 조폐 성채」 — 사마륨 속에서 갈라낸 나라, 호수 지방 들머리",
+   "neighbours": [
+    "sm",
+    "gd"
+   ]
+  },
+  "gd": {
+   "region": "n_lakes",
+   "why_ko": "「긴 겨울의 호수 왕국」 — 호수 지방의 한가운데",
+   "neighbours": [
+    "sc",
+    "sm",
+    "eu",
+    "tb",
+    "ho"
+   ]
+  },
+  "th": {
+   "region": "s_rayvale",
+   "why_ko": "「폭풍 구름 위 천둥 장원」 — 골짜기를 굽어보는 산정",
+   "neighbours": [
+    "ac",
+    "pa",
+    "u"
+   ]
+  },
+  "tc": {
+   "region": "e_titan",
+   "why_ko": "「사람의 손으로 지은」 붉은 별의 탑 — 몰리브데넘에서 처음 만들어졌다",
+   "neighbours": [
+    "mo",
+    "ru",
+    "re"
+   ]
+  },
+  "po": {
+   "region": "s_cloister",
+   "why_ko": "「지도에서 지워진 왕국의 숨은 성채」 — 납 바로 앞 붕괴 단계",
+   "neighbours": [
+    "pb",
+    "bi",
+    "rn",
+    "ra"
+   ]
+  },
+  "cm": {
+   "region": "rim_underworld",
+   "why_ko": "「붉은 떠돌이별」의 사암 문 — 맞잡은 두 인장",
+   "neighbours": [
+    "pu",
+    "bk",
+    "no"
+   ]
+  },
+  "am": {
+   "region": "rim_west",
+   "why_ko": "「옛 바다 지도 서쪽 끝 새 해안」 — 파수 등불의 숲 오두막",
+   "neighbours": [
+    "cf",
+    "fm"
+   ]
+  },
+  "sc": {
+   "region": "n_lakes",
+   "why_ko": "「백야의 북녘 신탁 경기장」 — 북해 절벽 위 흰 빛",
+   "neighbours": [
+    "y",
+    "gd",
+    "tm"
+   ]
+  },
+  "y": {
+   "region": "n_towers",
+   "why_ko": "「네 자매 탑의 맏언니」 — 동생 탑 셋(Tb Er Yb)과 한 해안",
+   "neighbours": [
+    "sc",
+    "la",
+    "tb",
+    "er",
+    "yb"
+   ]
+  },
+  "zr": {
+   "region": "sw_mirage",
+   "why_ko": "「붉은 사막 언덕의 가장 오래된 기억」 — 그림자 쌍둥이 하프늄 항구와 맞닿음",
+   "neighbours": [
+    "si",
+    "sb",
+    "dy",
+    "hf"
+   ]
+  },
+  "hf": {
+   "region": "sw_port",
+   "why_ko": "「그림자 쌍둥이의 항구」 — 상인 배의 부두, 지르코늄 사막 바로 옆",
+   "neighbours": [
+    "br",
+    "zr",
+    "i"
+   ]
+  },
+  "ru": {
+   "region": "e_platinum",
+   "why_ko": "「백금 강 막내」 — 언니 다섯 성들 끝의 작은 탑, 페르소나 그대로",
+   "neighbours": [
+    "tc",
+    "rh",
+    "pd",
+    "os"
+   ]
+  },
+  "rh": {
+   "region": "e_platinum",
+   "why_ko": "「장미 소금의 여왕궁」 — 백금 강의 자매",
+   "neighbours": [
+    "ru",
+    "pd",
+    "ir",
+    "pt"
+   ]
+  },
+  "cd": {
+   "region": "e_bronze",
+   "why_ko": "데우면 노랗게 물드는 아연 가루에서 — 섬아연석 형제",
+   "neighbours": [
+    "zn",
+    "ga",
+    "in"
+   ]
+  },
+  "re": {
+   "region": "e_titan",
+   "why_ko": "「협곡의 마지막 성」 — 몰리브데넘 광석에서, 산맥이 백금 강으로 내려가는 곳",
+   "neighbours": [
+    "mo",
+    "tc",
+    "w",
+    "os"
+   ]
+  },
+  "la": {
+   "region": "n_mistvale",
+   "why_ko": "「안개 베일 뒤 숨은 맏이」 — 열다섯 자리 탁자의 맏이, 골짜기의 주인",
+   "neighbours": [
+    "y",
+    "ce",
+    "pr",
+    "nd"
+   ]
+  },
+  "pr": {
+   "region": "n_mistvale",
+   "why_ko": "「초록 쌍둥이의 들판」 — 네오디뮴과 쌍둥이(디디뮴)",
+   "neighbours": [
+    "la",
+    "ce",
+    "nd"
+   ]
+  },
+  "sm": {
+   "region": "n_mistvale",
+   "why_ko": "「일멘 산 이름의 전당」 — 사람 이름을 새기는 나라라 테두리의 보륨(보어)과도 이웃",
+   "neighbours": [
+    "nd",
+    "pm",
+    "eu",
+    "gd",
+    "bh"
+   ]
+  },
+  "tb": {
+   "region": "n_towers",
+   "why_ko": "「쇠가 노래하는 협곡」 — 네 자매 탑의 동생",
+   "neighbours": [
+    "y",
+    "gd",
+    "er",
+    "yb"
+   ]
+  },
+  "dy": {
+   "region": "sw_mirage",
+   "why_ko": "「신기루 너머의 사막」 — 「얻기 어려운」 나라라 희토 북녘에서 홀로 멀리",
+   "neighbours": [
+    "zr",
+    "sb"
+   ]
+  },
+  "ho": {
+   "region": "n_lakes",
+   "why_ko": "「북쪽 섬 도시」 — 섬과 운하로 이은 왕도",
+   "neighbours": [
+    "gd",
+    "tm",
+    "lu"
+   ]
+  },
+  "er": {
+   "region": "n_towers",
+   "why_ko": "「장밋빛 유리의 바닷가」 — 네 자매 탑의 동생, 빛을 잇는 해안",
+   "neighbours": [
+    "y",
+    "tb",
+    "yb"
+   ]
+  },
+  "tm": {
+   "region": "n_lakes",
+   "why_ko": "「옛 지도 북쪽 끝 툴레」 — 세상 끝 섬",
+   "neighbours": [
+    "li",
+    "sc",
+    "ho"
+   ]
+  },
+  "yb": {
+   "region": "n_towers",
+   "why_ko": "「빛으로 박자를 세는 시간 왕국」 — 네 자매 막내, 세슘 시간 고원과 고개 너머",
+   "neighbours": [
+    "y",
+    "cs",
+    "tb",
+    "er",
+    "lu"
+   ]
+  },
+  "lu": {
+   "region": "n_lakes",
+   "why_ko": "「강 한가운데 섬 도시」 — 이터븀 속에 숨어 있던 막내",
+   "neighbours": [
+    "ho",
+    "yb"
+   ]
+  },
+  "in": {
+   "region": "e_bronze",
+   "why_ko": "섬아연석의 쪽빛 한 줄 — 아연 광석에서, 주석과 투명 유리",
+   "neighbours": [
+    "ga",
+    "ge",
+    "cd",
+    "sn"
+   ]
+  },
+  "tl": {
+   "region": "c_forest",
+   "why_ko": "「첫 새싹의 봄 숲」 — 독 든 금잔이라 숲에서도 유황 불산 쪽 가장자리",
+   "neighbours": [
+    "mg",
+    "k",
+    "hg"
+   ]
+  },
+  "at": {
+   "region": "ug_star",
+   "why_ko": "「온 대륙 바위 틈마다 숨은 불씨」 — 우라늄 사슬 속에만 잠깐 있는 원소",
+   "neighbours": [
+    "bi",
+    "rn",
+    "u"
+   ]
+  },
+  "fr": {
+   "region": "s_cloister",
+   "why_ko": "「썰물에만 길이 열리는 섬」 — 악티늄 붕괴에서 태어난 막내, 회랑 앞 갯벌",
+   "neighbours": [
+    "ra",
+    "ac"
+   ]
+  },
+  "ac": {
+   "region": "s_rayvale",
+   "why_ko": "「열다섯 자리의 빛살 왕궁」 — 골짜기의 왕좌",
+   "neighbours": [
+    "fr",
+    "ra",
+    "th",
+    "pa"
+   ]
+  },
+  "pa": {
+   "region": "s_rayvale",
+   "why_ko": "「우라늄 산 품의 요람 계곡」 — 바로 밑이 잠든 별 광맥",
+   "neighbours": [
+    "ac",
+    "th",
+    "u"
+   ]
+  },
+  "pm": {
+   "region": "n_mistvale",
+   "why_ko": "「신들의 산 아래 등불 마을」 — 네오디뮴과 사마륨 사이의 빈칸",
+   "neighbours": [
+    "nd",
+    "sm"
+   ]
+  },
+  "np": {
+   "region": "under_reef",
+   "why_ko": "「바다의 왕국 자리」 — 깊은 물에서 솟은 삼지창 관문, 해구 끝",
+   "neighbours": [
+    "pu",
+    "fl"
+   ]
+  },
+  "bk": {
+   "region": "rim_atlas",
+   "why_ko": "「학자들의 도시」 — 서고의 들머리, 캘리포늄과 퀴륨 사이",
+   "neighbours": [
+    "cm",
+    "cf",
+    "md"
+   ]
+  },
+  "cf": {
+   "region": "rim_west",
+   "why_ko": "「서쪽 끝 황금 섬」 — 여전사 여왕의 금빛 절벽",
+   "neighbours": [
+    "am",
+    "bk",
+    "fm"
+   ]
+  },
+  "es": {
+   "region": "under_reef",
+   "why_ko": "흰 산호섬들의 고리 — 산호초 위 환초, 페르뮴과 쌍둥이",
+   "neighbours": [
+    "ca",
+    "fm",
+    "fl"
+   ]
+  },
+  "fm": {
+   "region": "rim_west",
+   "why_ko": "「백 계단 꼭대기 불씨의 성채」 — 아인슈타이늄과 쌍둥이, 환초 맞은편",
+   "neighbours": [
+    "am",
+    "cf",
+    "es"
+   ]
+  },
+  "md": {
+   "region": "rim_atlas",
+   "why_ko": "「돌 서랍 격자의 기록 성채」 — 표 그 자체, 서고의 한가운데",
+   "neighbours": [
+    "bk",
+    "lr",
+    "sg"
+   ]
+  },
+  "no": {
+   "region": "rim_underworld",
+   "why_ko": "「폭약에 갈라진 검은 산」 흑요석 전당",
+   "neighbours": [
+    "cm",
+    "lr",
+    "og"
+   ]
+  },
+  "lr": {
+   "region": "rim_atlas",
+   "why_ko": "「별지도 맨 아래 줄 마지막 빈칸」 고리 성채 — 명계 쪽 끝",
+   "neighbours": [
+    "md",
+    "no",
+    "rf",
+    "og"
+   ]
+  },
+  "rf": {
+   "region": "rim_atlas",
+   "why_ko": "「마지막 줄 너머 첫 빈칸의 금박 성」",
+   "neighbours": [
+    "lr",
+    "sg"
+   ]
+  },
+  "db": {
+   "region": "rim_rivers",
+   "why_ko": "「두 강이 만나는 곶」 — 지역의 이름",
+   "neighbours": [
+    "mc",
+    "lv",
+    "ts"
+   ]
+  },
+  "sg": {
+   "region": "rim_atlas",
+   "why_ko": "「지도 가장자리를 넓히는 탐험가」 — 새 줄을 덧붙인 땅",
+   "neighbours": [
+    "md",
+    "rf"
+   ]
+  },
+  "bh": {
+   "region": "rim_castles",
+   "why_ko": "「층층 궤도의 성채」 — 일곱 겹 둥근 성벽",
+   "neighbours": [
+    "sm",
+    "hs",
+    "mt",
+    "rg"
+   ]
+  },
+  "hs": {
+   "region": "rim_castles",
+   "why_ko": "「숲과 성의 영방」 — 지역 이름 그대로",
+   "neighbours": [
+    "bh",
+    "mt",
+    "ds"
+   ]
+  },
+  "mt": {
+   "region": "rim_castles",
+   "why_ko": "「쪼개진 쌍둥이 봉우리」 — 겨울 숲",
+   "neighbours": [
+    "bh",
+    "hs",
+    "ds"
+   ]
+  },
+  "ds": {
+   "region": "rim_castles",
+   "why_ko": "「언덕 위 예술가의 도시」 — 다섯 손가락 지붕 탑",
+   "neighbours": [
+    "hs",
+    "mt",
+    "rg"
+   ]
+  },
+  "rg": {
+   "region": "rim_castles",
+   "why_ko": "「투명한 유리 왕국」 — 뼈대만 비치는 성",
+   "neighbours": [
+    "bh",
+    "ds"
+   ]
+  },
+  "cn": {
+   "region": "rim_sunrise",
+   "why_ko": "「금빛 해를 가운데 둔 하늘 궁전」 — 니호늄과 같은 해의 자리",
+   "neighbours": [
+    "zn",
+    "nh"
+   ]
+  },
+  "nh": {
+   "region": "rim_sunrise",
+   "why_ko": "「세상의 동쪽 끝 해돋이 섬」 — 아연 빛살로 태어나 광맥 대륙 동쪽 끝",
+   "neighbours": [
+    "zn",
+    "cn"
+   ]
+  },
+  "fl": {
+   "region": "under_reef",
+   "why_ko": "「산호초 고리 안 거울 같은 석호」 — 안정의 섬, 해구 쪽 가장자리",
+   "neighbours": [
+    "ca",
+    "np",
+    "es"
+   ]
+  },
+  "mc": {
+   "region": "rim_rivers",
+   "why_ko": "「겨울 숲 너머 붉은 벽돌 성채」",
+   "neighbours": [
+    "db",
+    "lv"
+   ]
+  },
+  "lv": {
+   "region": "rim_rivers",
+   "why_ko": "「포도 덩굴 금빛 골짜기」 — 빛줄기가 모이는 제단",
+   "neighbours": [
+    "db",
+    "mc",
+    "ts"
+   ]
+  },
+  "ts": {
+   "region": "rim_rivers",
+   "why_ko": "「푸른 안개 산맥과 큰 강」 — 흔들 다리",
+   "neighbours": [
+    "db",
+    "lv"
+   ]
+  }
+ },
+ "alliances": [
+  {
+   "family": "steel",
+   "ko": "강철",
+   "nations": [
+    "fe",
+    "c"
+   ],
+   "same_region": false,
+   "same_continent": true,
+   "regions": [
+    "c_forest",
+    "c_forge"
+   ]
+  },
+  {
+   "family": "rust",
+   "ko": "녹",
+   "nations": [
+    "fe",
+    "o"
+   ],
+   "same_region": false,
+   "same_continent": true,
+   "regions": [
+    "c_forest",
+    "c_forge"
+   ]
+  },
+  {
+   "family": "blood",
+   "ko": "피",
+   "nations": [
+    "fe",
+    "o"
+   ],
+   "same_region": false,
+   "same_continent": true,
+   "regions": [
+    "c_forest",
+    "c_forge"
+   ]
+  },
+  {
+   "family": "water",
+   "ko": "물",
+   "nations": [
+    "h",
+    "o"
+   ],
+   "same_region": false,
+   "same_continent": false,
+   "regions": [
+    "c_forest",
+    "sky_starfire"
+   ]
+  },
+  {
+   "family": "oil",
+   "ko": "기름",
+   "nations": [
+    "c",
+    "h"
+   ],
+   "same_region": false,
+   "same_continent": false,
+   "regions": [
+    "c_forest",
+    "sky_starfire"
+   ]
+  },
+  {
+   "family": "fire",
+   "ko": "불",
+   "nations": [
+    "c",
+    "o"
+   ],
+   "same_region": true,
+   "same_continent": true,
+   "regions": [
+    "c_forest"
+   ]
+  },
+  {
+   "family": "wood",
+   "ko": "숲",
+   "nations": [
+    "c",
+    "h",
+    "o"
+   ],
+   "same_region": false,
+   "same_continent": false,
+   "regions": [
+    "c_forest",
+    "sky_starfire"
+   ]
+  },
+  {
+   "family": "salt",
+   "ko": "소금",
+   "nations": [
+    "na",
+    "cl"
+   ],
+   "same_region": false,
+   "same_continent": true,
+   "regions": [
+    "sw_bleach",
+    "sw_salt"
+   ]
+  }
+ ],
+ "alliance_summary": {
+  "total": 8,
+  "same_region": 1,
+  "cross_region_same_continent": 4,
+  "cross_continent": 3
+ },
+ "notes_ko": [
+  "물밑 왕국이 작다(넷). 설계표에서 바다 밑을 말하는 나라는 칼슘 · 넵투늄뿐이고, 바닷물 원소(Na Cl Mg K Br)는 페르소나가 소금 사막 · 해안 · 잎의 숲 · 잿더미 고원 · 염료 항구라 땅 위에 뒀다. 키우려면 후보: 아이오딘(메카 다시마 숲 병원) · 어븀(바다 밑 빛의 길 — 페르소나도 해저 광케이블) · 오스뮴(메카 해구 닻 도시). 대신 어븀은 네 자매 탑에서, 오스뮴은 백금 강 「언니 다섯」에서 빠진다.",
+  "희토류 지하 왕국은 만들지 않았다 — 란타넘족 페르소나가 모두 땅 위(골짜기 · 들 · 호수 · 섬 · 사막)라 「희토 북녘」 대륙으로. 디스프로슘만 사막(「신기루 너머」 · 「얻기 어려운」)이라 소금 모래 대륙에 홀로 — 북녘에 붙일지 묻는다.",
+  "악티늄족 「남쪽 화산 · 방사 황무지」 대신 「빛살 남녘」 — 페르소나가 황무지가 아니라 빛나는 신전 · 요람 골짜기 · 천둥 장원이다. 화산은 황(유황 불산, 가운데 대륙 남쪽)에.",
+  "93번 이후는 「예언의 테두리」 — 지도 가장자리 점선 땅. 대륙이 아니라 고리라서 지역 여섯이 동서남북에 흩어진다(지역끼리는 고리 순서로만 이웃). 넵투늄 · 아인슈타이늄 · 플레로븀은 바다라 물밑 왕국에. 테크네튬(43) · 프로메튬(61)은 합성이지만 몰리브데넘 산 · 란타넘 골짜기 쪽 페르소나라 안쪽에.",
+  "동맹 여덟 가운데 대륙을 건너는 것은 셋(물 H+O · 기름 C+H · 나무 C+H+O) — 모두 수소가 하늘 군도에 있어서다. 하늘섬이 숨 쉬는 숲 바로 위에 밧줄로 매여 있어 실제로는 위아래로 짧다. 강철 · 녹 · 피 · 불 · 소금은 한 대륙 안.",
+  "알루미늄을 하늘 군도에 뒀다(「하늘 항구 왕국」 · 「하늘의 일꾼」). 판타지 글에 붉은 보크사이트 언덕이 있어 땅 위(가운데 대륙)에 두고 하늘 부두만 위로 올리는 안도 있다.",
+  "탈륨은 「첫 새싹의 봄 숲」이라 숲에 뒀지만 독 · 납 곁 원소다. 텔루륨은 「대지」 계단 밭이라 들판, 짝 셀레늄은 황의 불산 — 둘이 지역은 갈려도 이웃이다.",
+  "세계 셋이 지형 하나를 나눈다는 결정에 따라 판타지 글을 기준으로 놓았다. 스팀펑크 · 메카 글은 장소가 다른 나라가 많다(예: 탄탈럼 메카 = 금성 구름 도시, 넵투늄 메카 = 얼음 거인 행성) — 지역 그림의 「세계별 해석」으로 풀지, 메카 세계는 우주 층을 따로 둘지 묻는다.",
+  "테두리의 두 강의 땅은 이웃 나라 줄이 안쪽 대륙과 이어지지 않는다(지역 인접만 — 줄 하나 더 이을 그럴듯한 짝을 못 찾았다). 숲과 성의 영방은 사마륨 「이름의 전당」 — 보륨으로 한 줄. 러더포듐 · 더브늄(이름 다툼), 플레로븀 · 모스코븀(같은 연구 도시)은 고리 반대편이라 이웃이 아니다.",
+  "이름은 지어낸 판타지 지명이다 — 실제 연구소 · 도시 이름, 다른 게임의 지명은 쓰지 않았다. 지역 en 글은 그림용 한 문장이라 사람 · 글자는 없다.",
+  "이웃 수는 2~6, 다 대칭이다. 화면에서 「이웃」을 길로 그릴지, 동맹선만 그릴지는 화면 설계 때."
+ ],
+ "map": {
+  "fantasy": {
+   "image": "backgrounds/maps/world-map_fantasy_jp_paint_anime.webp",
+   "size": [
+    1536,
+    1024
+   ],
+   "continents": {
+    "rare_north": {
+     "x": 0.19,
+     "y": 0.09,
+     "w": 0.59,
+     "h": 0.18,
+     "label": [
+      0.47,
+      0.14
+     ]
+    },
+    "heartland": {
+     "x": 0.14,
+     "y": 0.27,
+     "w": 0.58,
+     "h": 0.43,
+     "label": [
+      0.36,
+      0.5
+     ]
+    },
+    "sky_isles": {
+     "x": 0.25,
+     "y": 0.26,
+     "w": 0.23,
+     "h": 0.14,
+     "label": [
+      0.36,
+      0.285
+     ]
+    },
+    "ore_east": {
+     "x": 0.7,
+     "y": 0.19,
+     "w": 0.27,
+     "h": 0.38,
+     "label": [
+      0.83,
+      0.45
+     ]
+    },
+    "salt_sands": {
+     "x": 0.01,
+     "y": 0.55,
+     "w": 0.36,
+     "h": 0.33,
+     "label": [
+      0.17,
+      0.73
+     ]
+    },
+    "glow_south": {
+     "x": 0.56,
+     "y": 0.58,
+     "w": 0.4,
+     "h": 0.36,
+     "label": [
+      0.8,
+      0.82
+     ]
+    },
+    "deep_under": {
+     "x": 0.58,
+     "y": 0.54,
+     "w": 0.11,
+     "h": 0.11,
+     "label": [
+      0.635,
+      0.6
+     ]
+    },
+    "under_sea": {
+     "x": 0.33,
+     "y": 0.71,
+     "w": 0.26,
+     "h": 0.24,
+     "label": [
+      0.46,
+      0.84
+     ]
+    },
+    "prophecy_rim": {
+     "x": 0,
+     "y": 0,
+     "w": 1,
+     "h": 1,
+     "label": [
+      0.1,
+      0.94
+     ]
+    }
+   },
+   "regions": {
+    "sky_starfire": {
+     "x": 0.31,
+     "y": 0.31
+    },
+    "sky_noble": {
+     "x": 0.45,
+     "y": 0.355
+    },
+    "c_forest": {
+     "x": 0.24,
+     "y": 0.43
+    },
+    "c_fields": {
+     "x": 0.45,
+     "y": 0.31
+    },
+    "c_sulfur": {
+     "x": 0.45,
+     "y": 0.58
+    },
+    "c_forge": {
+     "x": 0.65,
+     "y": 0.44
+    },
+    "e_titan": {
+     "x": 0.77,
+     "y": 0.29
+    },
+    "e_platinum": {
+     "x": 0.82,
+     "y": 0.41
+    },
+    "e_gold": {
+     "x": 0.91,
+     "y": 0.33
+    },
+    "e_bronze": {
+     "x": 0.84,
+     "y": 0.51
+    },
+    "sw_salt": {
+     "x": 0.08,
+     "y": 0.62
+    },
+    "sw_mirage": {
+     "x": 0.21,
+     "y": 0.665
+    },
+    "sw_bleach": {
+     "x": 0.17,
+     "y": 0.8
+    },
+    "sw_port": {
+     "x": 0.31,
+     "y": 0.76
+    },
+    "n_mistvale": {
+     "x": 0.37,
+     "y": 0.19
+    },
+    "n_towers": {
+     "x": 0.24,
+     "y": 0.215
+    },
+    "n_lakes": {
+     "x": 0.51,
+     "y": 0.21
+    },
+    "n_ice": {
+     "x": 0.68,
+     "y": 0.17
+    },
+    "s_rayvale": {
+     "x": 0.66,
+     "y": 0.68
+    },
+    "s_afterglow": {
+     "x": 0.89,
+     "y": 0.63
+    },
+    "s_cloister": {
+     "x": 0.79,
+     "y": 0.75
+    },
+    "ug_kobold": {
+     "x": 0.61,
+     "y": 0.6
+    },
+    "ug_star": {
+     "x": 0.655,
+     "y": 0.615
+    },
+    "under_reef": {
+     "x": 0.46,
+     "y": 0.83
+    },
+    "rim_west": {
+     "x": 0.04,
+     "y": 0.42
+    },
+    "rim_atlas": {
+     "x": 0.05,
+     "y": 0.79
+    },
+    "rim_underworld": {
+     "x": 0.3,
+     "y": 0.95
+    },
+    "rim_castles": {
+     "x": 0.1,
+     "y": 0.17
+    },
+    "rim_rivers": {
+     "x": 0.92,
+     "y": 0.15
+    },
+    "rim_sunrise": {
+     "x": 0.96,
+     "y": 0.57
+    }
+   }
+  }
+ }
+}

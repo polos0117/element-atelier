@@ -11,6 +11,19 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-24 · claude · 원소 월드맵 — 판타지 대륙 지도(배치표 · 지도 그림 · 확대 화면)
+- data/world-map.json — 새 배치표(사용자 「이대로 진행하고 … 우선은 보류. 판타지 대륙 지도부터 만들어줘.」). 초안 모양 그대로(대륙 9 · 지역 30 · 나라 118 · 동맹 8) + version · note, 물밑 왕국 자리는 남쪽 바다로. map.fantasy — 지도 그림을 보고 정한 대륙 상자 · 이름 자리 · 지역 점(그림 좌표 0~1). 하늘 군도 = 가운데 대륙 위 밧줄에 매인 섬들, 물밑 = 남쪽 바다 산호 소용돌이, 땅속 = 쇳물 산맥 남동 기슭 갱도 입구
+- tools/world-map.py — 새 검사기 check(초안 검사 규칙 + 설계표 나라 · 가문 대조 · 동맹 셈 · 지도 자리 0~1 · 지역 점은 땅 위 대륙 상자 안 · 그림 이름)
+- lib/walk-map.js — 새 지도 층(첫 층의 다른 보기 view=map). 그림 끌기 · 휠 · 두 손가락 · ＋ − ⤢ · 키, 대륙 이름(층 배지) → 대륙(c — 지역 이름) → 지역(r — 나라 고리, 켜짐/안개, 동맹 선) → 나라 층(전경 있으면 로딩 화면). 하늘 · 물밑 · 땅속은 그 자리로 다가가 판에 지역 · 나라. 이름 표는 확대해도 같은 크기 · 겹치면 위아래로 비킨다. 움직임 끔이면 바로. 스팀펑크 · 메카는 「준비 중」 + 주기율표
+- lib/walk-core.js — 주소 열쇠 c · r, 층 map(view=map · 나라 밖), 부모(지역 → 대륙 → 온 세상), 검증(배치표에 있는 대륙 · 땅 위 대륙의 지역만), popRoute(뒤로 가기에 view=map 을 잇지 않는다), 기억값에서 view=map 은 안 채운다
+- lib/walk.js — 지도 층 · 지나온 길 「대륙 › <대륙> › <지역>」 · popRoute · 지도 보기는 기기에 기억하지 않음. lib/walk-data.js — 배치표 읽기(못 읽어도 공방은 열림) · litOf
+- lib/walk-table.js — 「주기율표 · 지도」 고르개(FirstView, 역사 칸 없음 — 주기율표가 첫 화면 그대로), 나라로 들어가기를 enterNation 하나로(나라 카드 · 지도가 같이)
+- lib/walk.css — 지도 겉모습(?v=21). lib/words.js — first.* · map.* · layer.*(?v=37, 네 쪽)
+- index.html · alchemy.html · prompt.html · styles.html · dex.html · gallery.html · hall.html · lib/walk-*.js — ?v= 올림(walk-core 7 · walk-data 7 · walk-orbit 9 · walk 22 …)
+- 그림 저장소 element-atelier-img — backgrounds/maps/world-map_fantasy_jp_paint_anime.webp(API gpt-image-2.6-sunburst · 1536×1024 · quality high · 한 번에, 다시 그리지 않음) · 기록 records/backgrounds/world-map_fantasy_jp_paint_anime.json(지시문 · 사용량 · sha). 궤도 그림처럼 배경 자리라 등록(img/ · data/img.json)하지 않는다
+- tests/world-map.cjs · tests/map-screen.cjs — 새 검사. tests/walk-core.cjs — 지도 주소 · 뒤로 가기
+- AGENTS.md · DESIGN.md · IMAGE_RULES.md — 지도 층 · 검사 줄 · 지도 그림 자리
+
 ## 2026-11-24 · claude · 들어갈 때 로딩 화면 — 전경 · 이름 · 빛 입자(픽시)
 - lib/splash.js — 새 공용 모듈(도시 공방과 글자 하나 다르지 않게). 주기율표 나라 카드 「들어가기」(궤도로)에서 그 나라 그 세계 전경을 받기 시작 → 600ms 안에 풀리면 어두워졌다가(0.18초) 그 뒤에서 나라로 들어가고, 전경이 어둠에서 떠오르며 천천히 다가온다(1.0 → 1.06) · 세계 줄 · 「Fe 26 · 철」(기호는 분류 색) · 설계표 성격 첫 마디(40자 이하) · 막대 · 빛 입자(PixiJS — lib/walk-fx.js loadPixi 그대로, 판타지 빛 알갱이 · 불티, 스팀펑크 김 · 불꽃, 메카 차가운 빛줄 · 자료 알갱이, 150 이하 · 틱 하나 · 끝나면 지움). 모두 1.6초, 누르기 · 아무 키면 곧바로. 움직임 끔 · 전경 없음 · 목록으로 들어가기 · 이 탭에서 본 나라 × 세계(element_splash_v1) · 그림이 늦으면 없음. PixiJS 를 못 받으면 입자만 빠진다. 덮개 aria-hidden + polite 알림 한 줄, 끝나면 초점은 나라 이름(사용자 「진짜 게임 로딩화면 같네」 → 「응 넣어줘. 이미 도구도 있을텐데. 픽시같은거」)
 - lib/splash.css — 덮개 겉모습(공용). lib/walk.css — 덮개 변수(땅 강조색) · 기호 · 번호 · 점(?v=20)

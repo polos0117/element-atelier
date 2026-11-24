@@ -23,6 +23,7 @@
 | 화면 | 파일 | 무엇 |
 |---|---|---|
 | 원소 공방 | `index.html` · `lib/walk*.js` · `lib/walk.css` | 「넘기는 곳이 아니라 들어가는 곳」(2026-11-12, 설계 `docs/superpowers/specs/2026-11-12-element-walk-in-design.md`, 뼈대는 `DESIGN.md`) — 한 화면에서 주기율표 → 나라(궤도 · 목록) → 가문 → 한 장으로 확대해 들어간다. 주소 쿼리가 층을 정한다 `?n=&mode=&f=&card=&pic=&at=&w=&st=&view=`(`lib/walk-core.js` — 순수 함수, node 로도 돈다). 아래로 들어가면 역사 한 칸, 옆으로(세계 · 화풍 · 보기 · ‹ › · 그림 넘기기)는 칸 없이 — 뒤로 가기는 늘 한 층 위. 위 막대 하나(지나온 길 · 세계 고르개 · 도구). 층마다 모듈 하나 — 주기율표 · 나라 카드 `walk-table` · 궤도 `walk-orbit`(궤도 그림 `backgrounds/orbits/orbit-<나라>.webp`, 없으면 점선 고리) · 목록 `walk-list`(옛 도감 — 화풍 고르개 · 일상컷 · 빈 자리 → 생성기) · 가문 `walk-family` · 한 장 `walk-card`(글 판 · 홀로 · 하트 · 세계 넘기기). 효과 다섯은 `lib/walk-fx.js` 한 곳. 옛 `hall.html` · `dex.html` · `gallery.html` 은 새 주소로 넘기는 껍데기 |
+| 지도 | `lib/walk-map.js` · `data/world-map.json` · `tools/world-map.py` | 첫 층의 다른 보기(2026-11-24 — 주기율표 옆 「지도」, `?view=map&w=fantasy&c=<대륙>&r=<지역>`). 배치표(대륙 9 · 지역 30 · 나라 118 · 동맹 — 원소 성질 · 페르소나로 둠, 세계 셋이 땅 하나)의 `map.<세계>` 자리를 지도 그림(그림 저장소 `backgrounds/maps/`, 등록 그림 아님) 위에 — 대륙 → 지역 → 나라 고리(켜짐/안개 · 동맹 선) → 나라 층. 지도 그림은 아직 판타지만(다른 세계는 「준비 중」 + 주기율표). 배치표를 고치면 `python3 tools/world-map.py check` |
 | 도구 상자 | `lib/toolbox.js` · `lib/toolbox.css` | 오른쪽 아래 「도구」 단추 하나 → 아래에서 오르는 판: 합성 · 화풍 · 프롬프트 · 즐겨찾기(수) · 설정(공간 · 밀도 · 움직임) · 패치 기록. 도구 화면(`alchemy.html` · `styles.html` · `prompt.html`)의 머리는 가는 막대 `ToolBar`(「← 돌아가기」 = 들어오기 전 층 · 도구 이름 · 도구 상자). 탭 줄은 없다 |
 | 화풍 비교 | `styles.html` · `data/style-compare.json` · `tools/style-compare.py` | 도구 상자의 「화풍」(2026-11-07 — 삼국지 공방과 같이). 묶음(rounds)마다 같은 카드를 화풍별 세계 그림 셋 + 일상컷(근접 · 원거리)으로, 보기 화풍별 · 세계별 · 크게 보기. 그림은 그림 저장소 `style-test/compare/<묶음 열쇠>/`(등록 그림 아님). **묶음은 더하기만** — 열쇠는 날짜, 같은 날 또 올리면 날짜-2 …, 세션마다 세계 하나씩 같은 열쇠로 `put` 하면 합쳐진다(IMAGE_RULES 화풍 비교 절) |
 | 프롬프트 | `prompt.html` · `lib/studio.js` · `lib/studio.css`(판) · `lib/prompt-spec.js`(표) · `lib/prompt-element.js`(조립) · `lib/casual-tree.js` · `lib/casual-tree-v2.js` · `data/casual-tree.json` · `data/casual-tree-v2.json`(일상컷 트리) · `data/game-cosplay.json`(게임 코스프레 목록 — 원본 game-atelier, 고치지 않는다) | 생성기 — 공방 모음 통합 생성기 꼴(한 단계씩, 칩·판·폰 아래 막대·시트). 나라 › 카드(근본·가문주·주민) › 갈래(세계 그림 · 일상컷) › 단계 → 지시문·올릴 파일 이름·기록 JSON. 세계 그림은 세계 → 덧붙임. 일상컷은 트리 버전2 — 시대 → 장소 → 계절·날씨 → 의상 → 옷 → (게임 코스프레면 게임 — 옷 색 · 데니어 · 상황 없이, 2026-11-15) → 자세 추천 → 몸 자세 → 받침 → 프레이밍 → 몸·머리 방향 → 카메라 → 오른손·왼손 → 소품 동작 → 다리 → 시선 → 표정 → 덧붙임. 해방(트리 밖 + 까닭)·랜덤·여기부터 다시·처음부터. 고른 것은 이 브라우저에(`element_studio_v1`), 주소 `?card=&o=&world=` |
@@ -132,6 +133,8 @@ node tests/patch.cjs                    # 패치 기록 모양
 python3 tests/register-images.py        # 그림 등록 — 이름 꼴·자리·등록한 날·틀린 이름은 저장 안 함
 python3 tests/make-thumbs.py            # 썸네일 도구
 node tests/img-shards.cjs               # 그림 주소·등록기·워크플로·.gitignore 가 같은 저장소 차례
+python3 tools/world-map.py check        # 월드맵 배치표(2026-11-24) — 나라 118 한 번씩 · 지역 · 이웃 · 동맹 · 지도 자리
+node tests/world-map.cjs                # 배치표 검사기가 규칙마다 거는지
 node tests/prompt-vista.cjs             # 전경 지시문(2026-11-24) — 나라 × 세계 × 화풍, 사람 · 그녀 · 글자 없음 · Avoid · 400 낱말 · 파일 이름 · 철 그린 글 = 조립기
 
 # 브라우저 — ESM_DIR 에 preact 가 든 node_modules, CHROMIUM_PATH 에 브라우저
@@ -152,6 +155,7 @@ ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-family.cjs    # �
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-card.cjs      # 한 장(글 판 · 세계 넘기기) · 옛 gallery.html
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/walk-world.cjs     # 효과 ③ 세계 바꾸기 전환
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/vista-screen.cjs    # 나라 층 전경 무대(2026-11-24) — 배경 · 카드 띠 · 흐름 · 구경 · 머리 한 줄 · 폴드 · PC · 전경 없는 나라 그대로
+ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/map-screen.cjs      # 지도 층(2026-11-24) — 깊은 주소 · 대륙 · 지역 · 나라 고리(겹침 · 켜짐/안개 · 동맹 선) · 뒤로 · 나라로 · 하늘 판 · 손 · 움직임 줄이기 · 준비 중 · 넘침
 ESM_DIR=<node_modules> CHROMIUM_PATH=<chrome> node tests/splash-screen.cjs   # 들어갈 때 로딩 화면(lib/splash.js · PixiJS — 도시 공방과 같은 파일) — 처음 한 번 · 2초 안에 걷힘 · 건너뛰기 · 움직임 줄이기 · 전경 없음 · 목록 · PixiJS 막힘 · 느린 그림 · 깊은 주소
 ```
 

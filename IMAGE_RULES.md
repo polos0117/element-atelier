@@ -160,6 +160,8 @@ game·pkm 이 쓰는 일상컷 트리 버전2(`lib/casual-tree-v2.js`, 설계는
 ```
 <카드>_<세계>_<화풍>_f.webp           세계 그림 — 세계는 fantasy · steampunk · mecha
 <카드>_<세계>_<화풍>_f_casual3.webp   일상컷 3 — 그 세계 그림을 참고 그림으로 붙인 것(생성기 덧붙임 칸의 「일상컷 번호」). 화풍은 그 세계 그림의 화풍.
+backgrounds/maps/world-map_<세계>_<화풍>.webp   월드맵(2026-11-24 — 판타지 하나) — 첫 그림 저장소(element-atelier-img)의 배경 자리, 등록 그림 아님(img/ · data/img.json 밖).
+                                     가로 3:2 1536×1024 · 글자 · 사람 없음, 기록 records/backgrounds/world-map_<세계>_<화풍>.json. 자리는 data/world-map.json 의 map.<세계>(그림을 보고 정한다)
 <나라>_<세계>_<화풍>_vista.webp      전경(2026-11-24 — 도시 공방에서 옮김, 철 시험) — 그 나라 그 세계의 풍경 한 장, 사람 · 글자 없음 · 가로 3:2 1536×1024 · 성별 표시 없음.
                                      나라(근본) 열쇠에만. 지시문 `node tools/vista-prompt.cjs <나라> <세계>`(그대로 보낸다), 기록 records/<나라>/<세계>-vista.<화풍>-api.json(--record 바탕 + generation).
                                      나라 층 궤도의 전경 무대 배경 — 빈 자리 · 진행에 안 센다

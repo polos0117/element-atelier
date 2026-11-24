@@ -399,3 +399,74 @@ html[data-motion="off"] .w-shift {display:none}
 /* ── 들어갈 때 로딩 화면(2026-11-24 — lib/splash.js · lib/splash.css, 주기율표 → 나라) — 「Fe 26 · 철」: 기호는 분류 색, 번호는 작게. 세계 줄 · 막대는 땅 강조색 */
 .sp {--sp-accent:var(--w-acc);--sp-ink:#fff;--sp-weight:700}
 .sp-title .sp-sym {color:var(--cat,var(--accent))} .sp-title .sp-num {margin-left:.06em;font-size:.36em;vertical-align:.95em;opacity:.85} .sp-title .sp-dot {margin:0 .14em;font-size:.6em;vertical-align:.22em;opacity:.55}
+
+/* ── 첫 화면 보기 · 지도(2026-11-24 — lib/walk-map.js) ── 주기율표 · 지도 고르개는 궤도/목록 고르개와 같은 꼴. 지도는 위 막대 아래 화면 가득(옆 여백 없음),
+   그림 위 위 줄(고르개 · 위로) · 오른쪽 크기 단추 · 아래 글 판. 이름 표는 확대해도 같은 크기(--s 로 되돌린다) */
+.w-first {display:inline-grid;grid-template-columns:1fr 1fr;padding:3px;border:1px solid var(--w-line);border-radius:999px;background:#0b0d14cc;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.w-first button {min-height:44px;min-width:76px;padding:0 14px;border:0;border-radius:999px;background:none;color:var(--w-mute);font-size:14px;font-weight:600;cursor:pointer}
+.w-first button[aria-pressed="true"] {background:var(--w-acc);color:var(--w-on-acc)}
+.w-table-layer > .w-first {margin:0 0 10px}
+.w-map-soon {margin:0 0 10px;padding:10px 12px;border:1px solid color-mix(in srgb,var(--w-acc) 45%,transparent);border-radius:12px;background:#ffffff0a;font-size:13.5px}
+html[data-layer="map"] .w-main {max-width:none;padding:0}
+html[data-layer="map"] .w-scenery::after {opacity:.8}
+.w-map {position:relative;height:calc(100vh - var(--w-bar-h,56px));height:calc(100dvh - var(--w-bar-h,56px));min-height:320px;overflow:hidden}
+.w-map-stage {position:absolute;inset:0;overflow:hidden;touch-action:none;cursor:grab;background:radial-gradient(ellipse at 50% 45%,#122033,#07080c 75%);-webkit-user-select:none;user-select:none}
+.w-map-stage:active {cursor:grabbing}
+.w-map-stage:focus-visible {outline:2px solid var(--w-acc);outline-offset:-4px;border-radius:0}
+.w-map-layer {position:absolute;left:0;top:0;transform-origin:0 0;--k:calc(1 / var(--s,1))}
+.w-map-layer.is-moving {will-change:transform}
+.w-map-img {display:block;width:100%;height:100%;pointer-events:none}
+.w-map-focus {position:absolute;border:2px dashed #ffffffb3;border-radius:22%;box-shadow:0 0 0 9999px #07080c66;pointer-events:none}
+/* 이름 표 — 대륙 · 지역. 한 점에 가운데, 확대를 되돌려 같은 크기 */
+.w-ml {position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:44px;min-width:44px;padding:4px 12px;
+  transform:translate(-50%,-50%) scale(var(--k)) translateY(var(--dy,0px));border:1px solid #ffffff40;border-radius:999px;background:#0b0d14b8;color:#fff;cursor:pointer;white-space:nowrap;
+  font-size:14px;font-weight:700;line-height:1.15;text-shadow:0 1px 2px #000;box-shadow:0 2px 10px #0008;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+.w-ml:hover {border-color:var(--w-acc)}
+.w-ml small {font-size:11px;font-weight:400;color:#d9d6e4}
+.w-ml.is-anchor {flex-direction:row;gap:6px;padding-left:6px;border-style:dashed}
+.w-ml-badge {display:inline-block;padding:2px 7px;border-radius:999px;font-style:normal;font-size:11px;font-weight:800;background:#fff;color:#0b0d14}
+.w-ml[data-layer="sky"] .w-ml-badge,.w-map-panel[data-layer="sky"] .w-ml-badge {background:#cfe8ff}
+.w-ml[data-layer="undersea"] .w-ml-badge,.w-map-panel[data-layer="undersea"] .w-ml-badge {background:#7fe3d6}
+.w-ml[data-layer="underground"] .w-ml-badge,.w-map-panel[data-layer="underground"] .w-ml-badge {background:#9be37f}
+.w-mr {border-radius:14px}
+.w-mr-dot {position:absolute;z-index:1;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px #0b0d14aa,0 0 8px #fff;transform:scale(var(--k));pointer-events:none}
+/* 나라 고리 — 지역 점 둘레(자리는 코드가 화면 px 로), 켜짐은 분류 색 빛, 안개는 흐리고 뿌옇게 */
+.w-mk-ring {position:absolute;z-index:3;width:0;height:0;transform:scale(var(--k))}
+.w-mk-lines {position:absolute;overflow:visible;pointer-events:none}
+.w-mk-lines line {stroke:var(--w-acc);stroke-width:2.5;stroke-dasharray:6 5;stroke-linecap:round;filter:drop-shadow(0 0 3px #000)}
+.w-mk-dot {position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px #0b0d14aa,0 0 12px #fff}
+.w-mk {position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;width:76px;height:64px;margin:-32px 0 0 -38px;padding:2px;box-sizing:border-box;
+  border:1.5px solid var(--cat);border-radius:14px;background:color-mix(in srgb,var(--cat) 30%,#0b0d14e6);color:#fff;cursor:pointer;line-height:1.1;
+  box-shadow:0 0 14px color-mix(in srgb,var(--cat) 70%,transparent),0 3px 10px #000a}
+.w-mk b {font-size:22px} .w-mk span {max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:600}
+.w-mk.is-fog,.w-pn.is-fog {border-style:dashed;border-color:#ffffff59;background:#9aa3b526;color:#d9dde6;box-shadow:none;-webkit-backdrop-filter:blur(4px) saturate(.4);backdrop-filter:blur(4px) saturate(.4)}
+.w-mk.is-fog b,.w-pn.is-fog b {color:#c9ced8;opacity:.8}
+.w-mk.is-lit b,.w-pn.is-lit b {color:color-mix(in srgb,var(--cat) 55%,#fff);text-shadow:0 0 8px var(--cat)}
+.w-mk:hover,.w-mk:focus-visible {outline:2px solid #fff;outline-offset:2px}
+.w-mk-ally {position:absolute;left:0;top:0;transform:translate(-50%,calc(var(--ally-y,140px)));margin:0;padding:3px 10px;border-radius:999px;background:#0b0d14cc;color:var(--w-acc);font-size:12px;font-weight:700;white-space:nowrap;pointer-events:none}
+/* 위 줄 · 크기 단추 · 글 판 · 하늘 · 물밑 · 땅속 판 */
+.w-map-top {position:absolute;z-index:5;top:10px;left:12px;right:72px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;pointer-events:none}
+.w-map-top > * {pointer-events:auto}
+.w-map-up {min-height:44px;padding:0 14px;border:1px solid var(--w-line);border-radius:999px;background:#0b0d14cc;color:var(--w-ink);font-size:14px;font-weight:600;cursor:pointer}
+.w-map-zoom {position:absolute;z-index:5;top:10px;right:12px;display:flex;flex-direction:column;gap:6px}
+.w-map-zoom button {width:44px;height:44px;border:1px solid var(--w-line);border-radius:12px;background:#0b0d14cc;color:var(--w-ink);font-size:20px;line-height:1;cursor:pointer}
+.w-map-zoom button:hover,.w-map-up:hover {border-color:var(--w-acc)}
+.w-map-cap {position:absolute;z-index:4;left:12px;right:84px;bottom:12px;max-width:520px;padding:10px 14px;border:1px solid var(--w-line);border-radius:16px;background:#0b0d14e0;pointer-events:none}
+.w-map-cap h2,.w-map-panel h2 {display:flex;align-items:baseline;gap:8px;margin:0;font-size:18px}
+.w-map-cap h2 small {font-size:12.5px;font-weight:400;color:var(--w-mute)}
+.w-map-sub {margin:2px 0 0;color:var(--w-acc);font-size:12.5px;font-weight:600}
+.w-map-why {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;margin:4px 0 0;color:#d4d0de;font-size:12.5px;line-height:1.5}
+.w-map-panel {position:absolute;z-index:6;left:0;right:0;bottom:0;max-height:50%;overflow:auto;overscroll-behavior:contain;padding:14px 14px 88px;box-sizing:border-box;
+  border-top:1px solid var(--w-line);border-radius:18px 18px 0 0;background:#0b0d14f2}
+.w-map-panel h2 {align-items:center}
+.w-map-panel .w-map-why {-webkit-line-clamp:3}
+.w-map-preg h3 {display:flex;align-items:baseline;gap:8px;margin:12px 0 6px;font-size:14px}
+.w-map-preg h3 small {color:var(--w-mute);font-size:12px;font-weight:400}
+.w-map-pnats {display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:6px}
+.w-pn {display:flex;align-items:center;gap:6px;min-height:44px;padding:4px 8px;border:1.5px solid var(--cat);border-radius:12px;background:color-mix(in srgb,var(--cat) 22%,#0b0d14);color:#fff;cursor:pointer;text-align:left}
+.w-pn b {font-size:17px} .w-pn span {min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px}
+.w-map-fail {position:absolute;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);margin:0;padding:8px 12px;border-radius:10px;background:#0b0d14e0;color:var(--w-mute);font-size:13px}
+@media (min-width:900px) {
+  .w-map-panel {left:auto;top:166px;right:12px;bottom:84px;width:356px;max-height:none;padding-bottom:14px;border:1px solid var(--w-line);border-radius:18px}
+  .w-map-cap {bottom:16px;right:auto;width:min(520px,calc(100% - 120px))}
+}

@@ -54,4 +54,22 @@ assert.equal(R.particleCap(344), 24); assert.equal(R.particleCap(1280), 48);
 // 합성의 카드 열기는 새 주소로 바로(A9 — 옛 dex.html 넘김을 거치지 않는다)
 const ALC = require('node:fs').readFileSync(require('node:path').join(__dirname, '..', 'alchemy.html'), 'utf8');
 assert(!/['"]dex\.html/.test(ALC), 'alchemy.html 에 옛 dex.html 링크가 없다'); assert(ALC.includes("'index.html?n='+l.nation+'&mode=list&'"), 'alchemy.html — 목록의 그 카드로');
-console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례 · 입자 종류/상한');
+// 지도(2026-11-24) — 첫 층의 다른 보기 view=map, 대륙 c · 지역 r 은 아래 칸. 배치표가 없으면 c · r 을 지운다
+const M = require('../data/world-map.json'), mdoc = { d: D, s: S, m: M }, mv = s => R.routeSearch(R.validate(r(s), mdoc));
+assert.equal(R.layerOf(r('?view=map')), 'map'); assert.equal(R.layerOf(r('?view=map&w=fantasy&c=heartland&r=c_forge')), 'map'); assert.equal(R.layerOf(r('?view=casual')), 'table');
+assert.equal(R.routeSearch(r('?r=c_forge&c=heartland&view=map&w=fantasy')), '?w=fantasy&view=map&c=heartland&r=c_forge');
+assert.equal(R.routeSearch(R.parentOf(r('?view=map&w=fantasy&c=heartland&r=c_forge'))), '?w=fantasy&view=map&c=heartland');
+assert.equal(R.routeSearch(R.parentOf(r('?view=map&c=heartland'))), '?view=map'); assert.equal(R.parentOf(r('?view=map')), null);
+assert.deepEqual(R.ancestors(r('?view=map&c=heartland&r=c_forge')).map(x => x.c + '/' + x.r), ['/', 'heartland/', 'heartland/c_forge']);
+assert.equal(mv('?view=map&w=fantasy&c=heartland&r=c_forge'), '?w=fantasy&view=map&c=heartland&r=c_forge');
+assert.equal(mv('?view=map&c=heartland&r=e_gold'), '?view=map&c=heartland', '다른 대륙의 지역은 지운다');
+assert.equal(mv('?view=map&c=nope&r=c_forge'), '?view=map'); assert.equal(mv('?view=map&c=sky_isles&r=sky_noble'), '?view=map&c=sky_isles', '하늘 · 물밑 · 땅속은 대륙까지만');
+assert.equal(mv('?c=heartland&r=c_forge'), '', '지도 밖의 c · r 은 지운다'); assert.equal(mv('?n=fe&view=map&c=heartland'), '?n=fe&mode=orbit', '나라 안엔 view=map 없음');
+assert.equal(v('?view=map&c=heartland'), '?view=map', '배치표 없이 — c 지움');
+assert.equal(R.resolve(r(''), { view: 'map' }).view, '', '지도는 기억하지 않는다'); assert.equal(R.resolve(r(''), { view: 'casual' }).view, 'casual');
+// 뒤로 가기 — 지도 칸이면 지도, 지도에서 옛 칸이면 그 칸의 보기. 나머지 전역 값은 지금 것
+const pr = (u, now) => R.routeSearch(R.popRoute(r(u), r(now)));
+assert.equal(pr('?view=map&c=heartland&r=c_forge', '?n=fe&mode=orbit&w=mecha'), '?w=mecha&view=map&c=heartland&r=c_forge');
+assert.equal(pr('?view=casual', '?view=map&w=steampunk'), '?w=steampunk&view=casual');
+assert.equal(pr('?n=fe&mode=list&view=world', '?n=fe&mode=list&view=casual&w=mecha'), '?n=fe&mode=list&w=mecha&view=casual');
+console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례 · 입자 종류/상한 · 지도(층 · 대륙 · 지역 · 뒤로 가기)');
