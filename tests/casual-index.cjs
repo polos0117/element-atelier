@@ -24,7 +24,8 @@ put('fe', 'fantasy-casual2.blocked.json', { why: 'blocked' });   /* -ui 가 아�
 put('fe', 'fantasy-casual3.jp_paint_anime-ui.json', R('fantasy', 3, '2026-11-16', { era: 'now', place: 'home_living', ofam: 'game_cosplay', item: 'gc_crop_set', cosplay: { game: 'war_of_genesis_3', character: 'scheherazade', cut: 'crop_set', round: 1 } },
   { cosplay: { game: 'war_of_genesis_3', character: 'scheherazade', cut: 'crop_set' } }, { card: 'fe' }));
 /* 상황 노출 — 코스프레가 있는 묶음이라 필수 아님 */
-put('fe', 'fantasy-casual4.jp_paint_anime-ui.json', R('fantasy', 4, '2026-11-16', { era: 'now', place: 'street_mall', ofam: 'everyday', item: 'jeans_tee', situ: 'wet' }, {}, { card: 'fe' }));
+put('fe', 'fantasy-casual4.jp_paint_anime-ui.json', R('fantasy', 4, '2026-11-16', { era: 'now', place: 'street_mall', ofam: 'everyday', item: 'jeans_tee', situ: 'wet',
+  posture: 'stand', frame: 'waist_up', body: 'front', camera: 'eye', gaze: 'camera', expr: 'calm', use: 'cup_hold', prop: 'cup', time: 'night', light: 'side', ostyle: { material: 'satin', acc: 'nope' }, aspect: '2:3', right: 'prop', left: 'out', support: 'none', head: 'tilt' }, {}, { card: 'fe' }));
 /* 자유 설계 — 옷 자유(덩어리 글의 채운 Outfit 줄) · 갈래 자유(칸 묶음 꼴) */
 put('fe', 'fantasy-casual6.jp_paint_anime-ui.json', R('fantasy', 6, '2026-11-16', { sfree: true, ofree: true },
   { free_design: 'FREE DESIGN: …\nPlace: a kiosk\nOutfit: A plum cropped mechanic romper.', free_prompt: 'x\nOutfit: A plum cropped mechanic romper. (a revealing …)' }, { card: 'fe' }));
@@ -56,8 +57,22 @@ const at = (card, world, n) => ix.rows.find(r => r.card === card && r.world === 
 /* 1. 꼴 — 칸 다 있음(빼지 않고 null) */
 assert.equal(ix.version, 1); assert.equal(ix.atelier, 'element'); assert.deepEqual(ix.source, ['element-atelier-img']); assert(!isNaN(Date.parse(ix.built)));
 const KEYS = ['card', 'name', 'world', 'worldKo', 'n', 'date', 'style', 'path', 'required', 'requiredKo', 'family', 'familyKo', 'item', 'itemKo', 'shade', 'shadeKo', 'cosplay', 'free'];
+/* 장면 풀이 s(2026-11-25) — 줄 끝, 있을 때만. 칸은 짧은 열쇠, 빈 칸 · undefined 없음, 우리 값은 한글(en: 1 이면 GPT 가 지은 영어) */
+const S_KEYS = ['pl', 'act', 'fr', 'ex', 'gz', 'bd', 'cam', 'ln', 'lt', 'mo', 'cp', 'si', 'os', 'tm', 'ss', 'wt', 'era', 'ar', 'en'];
+function sShape(r) {
+  if (!('s' in r)) return;
+  assert.ok(r.s && Object.keys(r.s).length, r.path + ' s 가 있으면 비지 않는다');
+  for (const [k, v] of Object.entries(r.s)) {
+    assert.ok(S_KEYS.includes(k), r.path + ' s 칸 ' + k);
+    if (k === 'en') { assert.equal(v, 1); continue; }
+    assert.equal(typeof v, 'string'); assert.ok(v.trim() && !/undefined|null|\[object/.test(v), r.path + ' s.' + k + ' = ' + v);
+    if (!['ln', 'ar'].includes(k) && !(r.s.en && ['pl', 'act', 'fr'].includes(k))) assert.match(v, v === '3/4' ? /^3\/4$/ : /[가-힣]/, r.path + ' s.' + k + ' 한글');
+  }
+}
 for (const r of ix.rows) {
-  assert.deepEqual(Object.keys(r), KEYS, r.path);
+  sShape(r);
+  assert.deepEqual(Object.keys(r).filter(k => k !== 's'), KEYS, r.path);
+  if ('s' in r) assert.equal(Object.keys(r).pop(), 's', 's 는 줄 끝');
   if (r.cosplay) assert.deepEqual(Object.keys(r.cosplay), ['game', 'gameKo', 'character', 'characterKo', 'cut', 'cutKo', 'by', 'round']);
   if (r.free) assert.deepEqual(Object.keys(r.free), ['kind', 'kindKo', 'outfit']);
 }
@@ -108,6 +123,13 @@ const m2 = at('fe-steel', 'mecha', 2);
 assert.deepEqual(m2.free, { kind: 'ofree', kindKo: '옷 자유', outfit: 'a coral-pink bandeau playsuit' }, '옛 옷 자유 — free_outfit'); assert.equal(m2.item, null, '옛 옷 자유의 장면 옷은 쓰지 않았다');
 assert.equal(at('fe-steel', 'steampunk', 3).free.outfit, null, '「…」 그대로면 null');
 assert.equal(I.outfitLine({ free_prompt: 'Outfit family (required): lingerie\nOutfit: a red slip' }), 'a red slip', 'Outfit family 줄은 아니다');
+
+/* 6-1. 장면 풀이 — 둘째 줄(장소 · 하는 일 · 구도) + 더 보기. 손 · 받침 · 고개는 싣지 않는다, 표에 없는 값(acc nope)은 뺀다. 자유 설계 컷은 GPT 가 채운 줄만(영어, en) */
+assert.deepEqual(at('fe', 'fantasy', 4).s, { pl: '쇼핑몰', act: '잔을 든다', fr: '허리 위', ex: '차분함', gz: '카메라', bd: '정면', cam: '눈높이', ln: '50mm 표준', lt: '옆 빛', si: '젖은 옷', os: '윤기 나는 새틴', tm: '밤', era: '지금 현실', ar: '2:3' });
+assert.deepEqual(at('fe', 'fantasy', 6).s, { pl: 'a kiosk', en: 1 }, '장면 자유 — 채운 Place 줄만');
+assert.deepEqual(at('fe', 'fantasy', 7).s, { pl: 'a dock', en: 1 });
+assert.equal('s' in at('fe-steel', 'steampunk', 3), false, '「…」 빈 틀뿐 — s 없음');
+assert.deepEqual(at('fe', 'fantasy', 1).s, { pl: '쇼핑몰', era: '지금 현실' }, '옛 기록 — 있는 칸만');
 
 /* 7. 차례 — 날짜 새것 먼저, 같으면 카드 · 세계 · 번호 */
 const order = ix.rows.map(r => r.date + ' ' + r.card + ' ' + r.world + ' ' + r.n);

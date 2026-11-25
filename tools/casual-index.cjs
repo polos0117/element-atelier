@@ -5,6 +5,7 @@
    세 공방(삼국지 · 원소 · pkm)이 같은 꼴을 쓰고 허브 casual.html 이 그 꼴만 읽는다:
      { version: 1, atelier: "element", built, source: [그림 저장소], rows: [{ card, name, world, worldKo, n, date, style, path, required, requiredKo,
        family, familyKo, item, itemKo, shade, shadeKo, cosplay: null|{ game, gameKo, character, characterKo, cut, cutKo, by, round }, free: null|{ kind, kindKo, outfit } }] }
+     s(2026-11-25, 있을 때만 — 장면 풀이: 장소 · 하는 일 · 구도 + 더 보기 칸, 빈 칸은 뺀다)는 tools/casual-detail.cjs(네 공방 같은 파일)가 짓는다.
    - 기록: records/<카드>/<세계>-casualN.<화풍>-ui.json(옛 세계 없는 casualN.<화풍>-ui.json 도). 같은 카드 · 세계 · 번호 · 화풍의 곁가지(-ui 앞뒤에 꼬리가 붙은 것 — 다시 그림 · 막힘 · bold …)는
      한 컷으로 합친다(꼬리 없는 것이 먼저, 없으면 날짜 늦은 것). history · revisions 같은 아래 폴더는 안 본다.
    - 필수: 그 컷이 든 계획 파일(<세계>-casual-plan*.json · casualN-replan …, 화풍이 같은 것 — 장면이 맞는 것 · 다시 짠 것 · 지난 판이 아닌 것 먼저)의 required 글에 그 컷의 갈래가 있으면.
@@ -27,6 +28,7 @@ const T = ctx.window.AtelierSpec, CT = ctx.window.AtelierCasualTree, P = ctx.win
 const D = JSON.parse(read('data/element-design.json')), S = JSON.parse(read('data/style.json')), tree = JSON.parse(read('data/casual-tree.json'));
 const CP = require('./casual-plan.cjs');
 const COSPLAY = CP.COSPLAY;
+const DETAIL = require('./casual-detail.cjs')(ROOT);   /* 장면 풀이 s(2026-11-25 — 크게 보기 둘째 줄 · 더 보기) */
 
 const ATELIER = 'element', IMG_DEFAULT = path.join(ROOT, '..', 'element-atelier-img');
 const STYLES = new Set(Object.keys(S.styles || {}));
@@ -140,6 +142,7 @@ function rowOf(cardKey, cut, plan, source) {
     row.cosplay = { game, gameKo: (gameOf(game) || {}).ko || null, character, characterKo: characterKo(game, character), cut: cut2, cutKo: cutKo(cut2),
       by: sChar ? 'planner' : 'gpt', round: s && s.round != null ? s.round : null };
   }
+  const det = DETAIL(sc, rec, cardKey); if (det) row.s = det;
   return row;
 }
 
