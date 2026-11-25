@@ -11,6 +11,22 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-25 · claude · 원소 월드맵 다듬기 — 휴대폰 대륙 확대 · 동맹선 · 지나온 길 · 확대 한도 · 첫 방문 로딩 화면
+- lib/walk-map.js — ① 휴대폰(높이 맞춤)에서 대륙을 누르면 「contain」 상자 맞춤이라 온 세상(0.71)보다 작게(0.35) 줄어 위아래 빈 띠가 생겼다: 대륙 · 지역 · 판 배율의 바닥을 온 세상 배율로(넘치는 상자는 옆으로 밀어 본다), 지역은 고리가 가리는 자리 밖으로 나갈 때만 그만큼 민다 ② 온 세상 「동맹」 단추 — 동맹 여덟을 나라 자리끼리 굽은 선(같은 두 곳 사이는 번갈아 굽힘, 굵기는 확대와 무관), 선을 누르거나 마우스를 대면 「물 동맹 · 수소 · 산소」, 아래 줄(넓은 화면은 위 줄)에서 하나씩 고르기. 대륙 · 지역 · 하늘 판에서는 화면에 없는 동맹 상대를 가장자리 표 「→ 탄소 · 산소 (숨 쉬는 숲)」 「→ 수소 (하늘 군도)」(곳마다 하나 · 화살은 그쪽으로 · 나라 표시 · 이름 표를 비켜 놓음) — 누르면 그곳으로 다가간다 ④ 넓은 화면(900 px 이상)의 확대 한도 = max(온 세상, 1.6 ÷ devicePixelRatio) — 1536 px 그림이 기기 픽셀 1.6 배 넘게 늘지 않는다(＋ · 휠 · 두 손가락 · 지역 모두) ⑤ 지역 · 판에 나라가 보이면 · 나라 표시에 손 · 초점이 닿으면 전경을 미리 받는다. 다듬기 셋: 하늘 · 물밑 · 땅속 판 닫기(× 단추 · 테두리 밖 빈 땅 누르기 · 판 안에서도 Esc), 누른 이름 표가 사라져도 초점은 지도 판(Tab 으로 화면 밖 표에 가면 판이 굴러 좌표가 어긋나던 것 — 굴린 만큼 지도를 옮긴다), 화면 끝에 걸린 이름 표(휴대폰 「땅속」 · 대륙 양 끝 지역)는 표만 안으로
+- lib/walk-table.js — prefetchVista: 로딩 화면이 나올 자리(궤도 · 움직임 켬 · 이 탭에서 처음)일 때만 낮은 우선으로 한 번, 데이터 절약(saveData)이면 없음. 나라 카드를 열면 받는다(「들어가기」 첫 누르기에도 600ms 규칙에 안 걸린다 — 그림이 0.9초 걸려도 뜬다)
+- lib/walk-core.js — ③ 지도에서 들어온 나라는 c · r(그 나라의 대륙 · 지역일 때만, 하늘 · 물밑 · 땅속은 대륙까지)을 남기고 위가 그 지도 칸 → 지나온 길 「지도 › 가운데 대륙 › 대장간 산성 › 철 Fe」, 길을 누르면 그 지도 칸(역사를 거슬러), 브라우저 뒤로는 전처럼 지역
+- lib/walk.js — 바꿔 쓰기(‹ › 등)로 위 칸이 바뀌면 역사 칸 수를 0 으로(지도에서 온 나라의 옆 나라에서 길 「주기율표」 가 지역으로 거슬러 오르지 않게). walk-map ?v=2 · walk-table ?v=11
+- lib/words.js — 지나온 길 첫 칸 「대륙」 → 「지도」, 동맹 · 가장자리 표 · 판 닫기 낱말
+- lib/walk.css — 동맹 선 · 가장자리 표 · 판 닫기, 지도 그림 image-rendering auto, 이름 표 --dx. index.html — walk.css ?v=23 · walk-core ?v=8 · words ?v=38 · walk ?v=23
+- tests/map-screen.cjs — (c) 휴대폰 대륙 · 지역 배율 ≥ 온 세상 · 빈 띠 없음 (d) 가장자리 표 (f) 지나온 길 · 길 누르기 · 옆 나라 (l) 미리 받기(지역 · 나라 카드 · 느린 그림에도 로딩 화면 · saveData) (m) 동맹 선 8 (n) 1280 DPR 1 → 1.6 · DPR 2 → 0.8 (o) 판 닫기 · 초점. tests/walk-core.cjs — 지도에서 온 나라의 주소 · 위 · 조상
+- DESIGN.md · AGENTS.md — 지도 줄에 다듬은 것
+
+## 2026-11-25 · claude · 허브 즐겨찾기 — 크게 보기 꽉 채우기 · 가로 보기 · 한도
+- lib/favorites.js — style-atelier shared 판(원본이 공방 모음에서 shared 로): 3000칸, 가득이면 오래된 것을 빼지 않고 거절 · error() · message() · room(), 저장 공간 모자람(QuotaExceededError)은 'quota'(담아 둔 칸 그대로)
+- lib/fill-view.js · lib/fill-core.js(새) — shared 판: 셈 · 두 번 누르기를 몸통 fill-core.js 로 뗐다(동작 같음 — tests/fill-view.cjs 통과)
+- lib/walk-card.js — 하트 알림이 가득 · 저장 공간이면 그 말(FAV.message()), fill-view ?v=2 · walk-card ?v=9(lib/walk.js) · favorites ?v=2(index · styles · alchemy; prompt.html 은 읽기만이라 그대로)
+- AGENTS.md — 공용 파일 목록에 fill-core.js · favorites.js
+
 ## 2026-11-25 · claude · 공용 파일 한 곳에서 — style-atelier shared · sync
 - lib/casual-tree-v2.js — style-atelier shared 판(표 `raise_one` 이 있을 때만 거르는 줄 하나 더함 — 이 공방 표엔 없어 동작 그대로)
 - AGENTS.md — 공용 파일(트리 둘 · fill-view · splash)은 style-atelier `shared/` 에서만 고치고 `node shared/sync.cjs` 로 옮긴다
