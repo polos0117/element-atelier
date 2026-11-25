@@ -366,7 +366,7 @@ const cupUse = tree2.prop_uses.find(u => u.hands === 'both' && !tree2.props.find
 const propPlace = tree.places.find(p => p.eras.includes(eras[0]) && C2.useFits(t2, { treeV: 2, era: eras[0], place: p.key, posture: cupUse.postures[0], frame: cupUse.frames[cupUse.frames.length - 1], right: 'prop', left: 'prop' }, cupUse, 2, null));
 if (propPlace) {
   const pt = P.buildCasual(D, S, 'fe-steel', { ...base(eras[0]), place: propPlace.key, posture: cupUse.postures[0], support: 'none', frame: cupUse.frames[cupUse.frames.length - 1], body: 'front_3q', head: 'with_body', camera: 'eye', right: 'prop', left: 'prop', use: cupUse.key, unlocked: ['support'] }, opts);
-  assert(pt.includes('RIGHT HAND: her own right hand is in PROP.') && pt.includes('LEFT HAND: her own left hand is in PROP.') && pt.includes('PROP: with both hands she '), '두 손 소품 ' + cupUse.key);
+  assert(/^RIGHT HAND: her own right hand is in PROP( — one unbroken arm from shoulder to hand[^\n]*)?\.$/m.test(pt) && /^LEFT HAND: her own left hand is in PROP( — one unbroken arm from shoulder to hand[^\n]*)?\.$/m.test(pt) && pt.includes('PROP: with both hands she '), '두 손 소품 ' + cupUse.key);   /* 2026-11-25 — 일하는 팔은 한 줄로(armText) 말이 붙는다 */
 }
 /* 표정 — 시선 말 떼기 */
 assert.equal(P.exprNoGaze('one mouth corner lifted higher than the other, lips closed, gaze slightly to the side'), 'one mouth corner lifted higher than the other, lips closed');   /* 옛 글로 시선 떼기를 본다 — 표정 표는 core v1(2026-11-11, 시선 말 없음) */
