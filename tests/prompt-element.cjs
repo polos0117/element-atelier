@@ -242,7 +242,7 @@ const checkCasual = (key, sc, txt, label, world) => {
   /* 게임하는 자리 · 동작(오락실 · PC방 · e스포츠 · 보드게임 카페 2026-11-23, 게임기 · PC 게임 2026-11-25 사용자 「아 게임기나 pc로 게임하는 장면도」)은 게임 말이 장면 글이다 */
   const gameScene = /arcade|pc_bang|esports|boardgame/.test(sc.place || '') || /^(handheld_|pad_play|pc_)/.test(sc.use || '');
   if ((ownTables || !sc.random) && !gameScene) assert(!GAME_WORDS.test(noStyle), label + ' 게임 말 — ' + (noStyle.match(GAME_WORDS) || [])[0]);
-  assert(words(txt) <= 1400, label + ' 길이 ' + words(txt) + ' 낱말');   /* … → 1400(2026-11-26 — 배경 인물을 같은 장면 안에 · 동물 금지 풀기) · 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) → 1300(2026-11-15 체형 FIGURE 줄 — 글은 줄이지 않고 상한을 올린다) → 1350(2026-11-25 — 동물 동반 장소 1310, 뒷모습 · 돌아보기 줄) */
+  assert(words(txt) <= 1450, label + ' 길이 ' + words(txt) + ' 낱말');   /* … → 1400(2026-11-26 — 배경 인물을 같은 장면 안에 · 동물 금지 풀기) → 1450(같은 날 세계 장면 — 장소 · 순간 글) · 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) → 1300(2026-11-15 체형 FIGURE 줄 — 글은 줄이지 않고 상한을 올린다) → 1350(2026-11-25 — 동물 동반 장소 1310, 뒷모습 · 돌아보기 줄) */
   const close = T.CLOSE_FRAMES.includes(sc.frame);
   assert.equal(txt.includes('CROP: '), close, label + ' 가까운 컷만 CROP');
   assert.equal(txt.includes(CL.anatomyClose), close, label + ' 가까운 컷 몸 줄');
