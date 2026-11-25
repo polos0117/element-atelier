@@ -229,7 +229,9 @@ const checkCasual = (key, sc, txt, label, world) => {
   /* 그 원소의 기호 · 원자 번호만 읽혀도 된다(사용자 2026-10-31) — ONE MAIN FIGURE 줄이 그 둘을 채워 싣는다 */
   const fig = CL.figure.replace('{symbol}', c.element.symbol).replace('{number}', c.element.number);
   assert(fig.includes('(' + c.element.symbol + ') and atomic number (' + c.element.number + ')') && !/No text, no lettering, no numbers/.test(txt), label + ' 기호 · 원자 번호만 허용');
-  for (const line of [CL.output, CL.angle, fig, CL.body, CL.hands, 'SCENE (chosen):\n']) assert(txt.includes(line), label + ' 에 ' + line.slice(0, 20) + ' 가 없다');
+  const figC = CL.figureCompanion && CL.figureCompanion.replace('{symbol}', c.element.symbol).replace('{number}', c.element.number);   /* 동물 동반 장소(말 타기 · 돌봄 — creatureKind companion)는 한 사람 + 동물 줄(2026-11-25 랜덤 표본이 처음 걸렸다) */
+  assert(txt.includes(fig) || (figC && txt.includes(figC)), label + ' 에 ONE MAIN FIGURE 줄(또는 동물 동반 줄)이 없다');
+  for (const line of [CL.output, CL.angle, CL.body, CL.hands, 'SCENE (chosen):\n']) assert(txt.includes(line), label + ' 에 ' + line.slice(0, 20) + ' 가 없다');
   assert(scene.includes('POSTURE: ') && scene.includes('COMPOSITION: ') && /^(RIGHT|LEFT|BOTH) HANDS?: /m.test(scene) || !(sc.right || sc.left), label + ' 자세·구도·손 줄');
   assert(txt.includes(c.element.en), label + ' 나라 이름 ' + c.element.en);
   if (c.tier === 'citizen') assert(txt.includes(c.citizen.object.en.trim()) && txt.includes('a citizen of the ' + c.element.en + ' Nation'), label + ' 주민의 물건');
@@ -240,7 +242,7 @@ const checkCasual = (key, sc, txt, label, world) => {
   /* 게임하는 자리 · 동작(오락실 · PC방 · e스포츠 · 보드게임 카페 2026-11-23, 게임기 · PC 게임 2026-11-25 사용자 「아 게임기나 pc로 게임하는 장면도」)은 게임 말이 장면 글이다 */
   const gameScene = /arcade|pc_bang|esports|boardgame/.test(sc.place || '') || /^(handheld_|pad_play|pc_)/.test(sc.use || '');
   if ((ownTables || !sc.random) && !gameScene) assert(!GAME_WORDS.test(noStyle), label + ' 게임 말 — ' + (noStyle.match(GAME_WORDS) || [])[0]);
-  assert(words(txt) <= 1300, label + ' 길이 ' + words(txt) + ' 낱말');   /* 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) → 1300(2026-11-15 체형 FIGURE 줄 — 글은 줄이지 않고 상한을 올린다) */
+  assert(words(txt) <= 1350, label + ' 길이 ' + words(txt) + ' 낱말');   /* 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) → 1300(2026-11-15 체형 FIGURE 줄 — 글은 줄이지 않고 상한을 올린다) → 1350(2026-11-25 — 동물 동반 장소 1310, 뒷모습 · 돌아보기 줄) */
   const close = T.CLOSE_FRAMES.includes(sc.frame);
   assert.equal(txt.includes('CROP: '), close, label + ' 가까운 컷만 CROP');
   assert.equal(txt.includes(CL.anatomyClose), close, label + ' 가까운 컷 몸 줄');
