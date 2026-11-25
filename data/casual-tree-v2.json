@@ -411,7 +411,8 @@
    "families": [
     "lie",
     "sit",
-    "low"
+    "low",
+    "float"
    ]
   }
  ],
@@ -1546,6 +1547,60 @@
     "three_quarter",
     "full_body"
    ]
+  },
+  {
+   "key": "float_flip",
+   "ko": "무중력으로 거꾸로 떠 있기",
+   "family": "float",
+   "en": "floating upside down in weightlessness relative to the camera — her head toward the bottom of the frame, her hair fanning out around her face, her body relaxed and drifting",
+   "needs": [
+    "zero_g"
+   ],
+   "supports": [
+    "zero_g"
+   ],
+   "frames": [
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ]
+  },
+  {
+   "key": "float_curl",
+   "ko": "무중력 공중제비로 몸 말기",
+   "family": "float",
+   "en": "curled mid-somersault in weightlessness, knees drawn to her chest, slowly turning in the air",
+   "needs": [
+    "zero_g"
+   ],
+   "supports": [
+    "zero_g"
+   ],
+   "frames": [
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ]
+  },
+  {
+   "key": "float_cross",
+   "ko": "허공에 책상다리로 떠 앉기",
+   "family": "float",
+   "en": "floating cross-legged in mid-air as if seated on nothing, drifting gently",
+   "needs": [
+    "zero_g"
+   ],
+   "supports": [
+    "zero_g"
+   ],
+   "frames": [
+    "chest_up",
+    "waist_up",
+    "three_quarter",
+    "full_body",
+    "environmental"
+   ]
   }
  ],
  "hands": [
@@ -1576,7 +1631,8 @@
     "lean_vehicle",
     "skate_glide",
     "lean_in",
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ]
   },
   {
@@ -1592,7 +1648,8 @@
     "step_up",
     "lean_vehicle",
     "lean_in",
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ]
   },
   {
@@ -1613,7 +1670,8 @@
     "step_up",
     "lean_vehicle",
     "ride_side",
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ],
    "outfit": "pocket"
   },
@@ -1723,7 +1781,8 @@
     "sit_sideways",
     "step_up",
     "ride_side",
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ]
   },
   {
@@ -1776,7 +1835,8 @@
     "lean_rail",
     "stand",
     "lean_counter",
-    "step_up"
+    "step_up",
+    "float_zg"
    ]
   },
   {
@@ -1791,7 +1851,8 @@
     "stand",
     "lean_counter",
     "step_up",
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ]
   },
   {
@@ -1908,7 +1969,8 @@
     "sit_sideways",
     "step_up",
     "lean_vehicle",
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ]
   },
   {
@@ -5491,7 +5553,8 @@
    "indoor",
    "window",
    "wall",
-   "timed"
+   "timed",
+   "rail_waist"
   ],
   "nation_orbit_cupola": [
    "zero_g",
@@ -5719,7 +5782,10 @@
     "tram_inside",
     "camper_van",
     "airship_cabin",
-    "canal_gondola"
+    "canal_gondola",
+    "nation_orbit_lounge",
+    "nation_orbit_cupola",
+    "nation_orbit_berth"
    ]
   },
   {
@@ -6211,7 +6277,10 @@
     "street_bookstall",
     "lecture_hall",
     "campus_lawn",
-    "escape_room"
+    "escape_room",
+    "nation_orbit_lounge",
+    "nation_orbit_cupola",
+    "nation_orbit_berth"
    ]
   },
   {
@@ -7652,7 +7721,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "step_up"
+    "step_up",
+    "float_cross",
+    "float_zg"
    ]
   },
   {
@@ -7688,7 +7759,9 @@
     "sit_lean",
     "sit_sideways",
     "half_kneel",
-    "sit_boat"
+    "sit_boat",
+    "float_cross",
+    "float_zg"
    ],
    "gaze": "at_prop"
   },
@@ -8688,7 +8761,9 @@
     "stand",
     "lean_counter",
     "sit_sideways",
-    "half_kneel"
+    "half_kneel",
+    "float_cross",
+    "float_zg"
    ],
    "gaze": "at_prop",
    "needs_any": [
@@ -16476,7 +16551,8 @@
     "environmental"
    ],
    "postures": [
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ]
   },
   {
@@ -16497,7 +16573,8 @@
     "environmental"
    ],
    "postures": [
-    "float_zg"
+    "float_zg",
+    "float_cross"
    ]
   }
  ],
@@ -19939,6 +20016,188 @@
    "legs": "",
    "gaze": "down",
    "act": "rest"
+  },
+  {
+   "key": "zg_read",
+   "ko": "떠서 책 읽기",
+   "posture": "float_cross",
+   "support": "zero_g",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "prop",
+   "left": "prop",
+   "prop_kind": "both",
+   "legs": "",
+   "gaze": "at_prop",
+   "act": "rest"
+  },
+  {
+   "key": "zg_window_close",
+   "ko": "관측창에 손 대고 가까이",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "chest_up",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "wall_palm",
+   "left": "natural",
+   "legs": "",
+   "gaze": "window",
+   "act": "look"
+  },
+  {
+   "key": "zg_wave",
+   "ko": "떠서 손 흔들기",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "waist_up",
+   "body": "front",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "wave",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "zg_vsign",
+   "ko": "떠서 브이",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "v_sign",
+   "left": "natural",
+   "legs": "float_tucked",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "zg_hair_tuck",
+   "ko": "떠오른 머리 귀 뒤로 넘기기",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "chest_up",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "hair_tuck",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "zg_rail",
+   "ko": "손잡이 잡고 떠 있기",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "rail",
+   "left": "natural",
+   "legs": "float_drift",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "zg_lookback",
+   "ko": "떠서 어깨 너머 돌아보기",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "three_quarter",
+   "body": "rear_3q",
+   "head": "over_shoulder",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "float_tucked",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "zg_flip",
+   "ko": "거꾸로 떠서 웃기",
+   "posture": "float_flip",
+   "support": "zero_g",
+   "frame": "full_body",
+   "body": "front",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "zg_curl",
+   "ko": "공중제비 도는 중",
+   "posture": "float_curl",
+   "support": "zero_g",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "zg_cross_sip",
+   "ko": "허공에 책상다리로 파우치 음료",
+   "posture": "float_cross",
+   "support": "zero_g",
+   "frame": "three_quarter",
+   "body": "front",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "prop",
+   "left": "natural",
+   "prop_kind": "raise",
+   "legs": "",
+   "gaze": "camera",
+   "act": "sip"
+  },
+  {
+   "key": "zg_sleep_wide",
+   "ko": "침낭에서 잠든 모습 3/4",
+   "posture": "zg_sleep",
+   "support": "zero_g",
+   "frame": "three_quarter",
+   "body": "front",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "",
+   "gaze": "down",
+   "act": "rest"
+  },
+  {
+   "key": "zg_top",
+   "ko": "위에서 내려다본 무중력",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "full_body",
+   "body": "front",
+   "head": "tilt",
+   "camera": "top",
+   "right": "natural",
+   "left": "natural",
+   "legs": "float_drift",
+   "gaze": "camera",
+   "act": "pose"
   }
  ],
  "expressions": {
