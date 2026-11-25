@@ -11,6 +11,13 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-26 · claude · 일상컷 머리 연출 13가지 · 짧은 머리 거르기
+- lib/prompt-spec.js — 사용자 「일상컷 머리연출도」: 일상컷 머리 연출 5 → 13(반묶음 · 똥머리 · 옆으로 묶기 · 양갈래 · 핀으로 틀어올림 · 한쪽으로 넘김 · 귀 뒤로 넘김 · 머리띠)
+- data/casual-tree-v2.json — ambience.hair 에 긴 머리만(long — 묶음 · 땋음 · 반묶음 · 똥머리 · 옆 · 양갈래 · 핀), ambience.short_hairs(짧은 커트 · 픽시 · 단발 · 비대칭 단발 · 핑거 웨이브 · 삐죽 · 올백 · 언더컷 · 울프컷)
+- lib/casual-tree-v2.js — style-atelier shared 원본에서 sync: ambience — 설계 헤어스타일(opts.hairKey)이 표 short_hairs 가운데면 긴 머리 연출(hair.*.long)을 안 고른다
+- tools/casual-plan.cjs — 계획기가 그 세계 설계 헤어스타일을 넘긴다(장수 120명 × 일곱 컷 시험: 머리 연출 209컷에 13가지 고르게, 짧은 머리에 긴 연출 0)
+- lib/prompt-element.js — hairKey · lib/prompt-spec.js 한글 표 ko.chair 여덟 · ?v — prompt-spec 63 · casual-tree-v2 23 · prompt-element 57
+
 ## 2026-11-26 · claude · GPT 세계컷 주문서에 머리 갈래
 - lib/prompt-spec.js · lib/prompt-element.js — 사용자 「원소공방에서 gpt가 만드는 세계컷은 어때? 인물마다 헤어스타일이 다 비슷한 느낌이던데」 → 「머리만 해주고」: GPT 설계 38장이 거의 다 어깨~가슴 길이로 푼 머리 + 옆 앞머리였다. WORLD_FREE.hairFamilies(올림 · 땋기 · 묶음 · 쌍 · 아주 긴 · 짧은 · 모양 · 반묶음 여덟) · fill.family — 설계 1 · 2 에 다른 갈래를 카드 · 세계로 돌려 가며(우리 설계 갈래는 뺀다, 354 짝에 갈래마다 71~111번), 그 기본값은 막는다(hairFamilyPair)
 - docs/IMAGE_AUTOMATION.md — GPT 설계 기록엔 주문서가 아니라 GPT 가 채운 지시문(free_prompt) · SUMMARY 줄(summary) · 머리 갈래(hair_family)
