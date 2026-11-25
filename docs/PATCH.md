@@ -11,6 +11,10 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-25 · claude · 뒷모습 상체 비틀림 막기
+- lib/casual-tree-v2.js — style-atelier shared 원본에서 sync: 뒷모습 비틀림 막기(backLock) — 「몸방향 뒤, 시선먼곳, 카메라 눈높이 일 때, 자세는 뒷모습을 보이며 걸어가는 자세인데, 상체는 카메라쪽으로 돌아있어서 기괴한 이미지들이 있네」. 몸이 뒤쪽이면 COMPOSITION 줄에 어깨 · 가슴 · 엉덩이가 한 줄로 돌아가고 허리 비틀림 없음, 노출은 뒤에서 보이는 곳만
+- prompt.html — casual-tree-v2.js ?v=19
+
 ## 2026-11-25 · claude · 일상컷 색인에 실루엣 갈래
 - tools/casual-index.cjs · data/casual-index.json — 색인 줄에 cls · clsKo(수영복 · 란제리 · 역할극 … 계열의 재단 갈래 — 하드웨어 · 쿠튀르 장식 · 크롭 투피스 …). 공방 허브 「전체 그림 찾기」 의 「실루엣 갈래」 거르기가 읽는다(사용자 「실루엣 갈래도 색인에 넣어줘」)
 
