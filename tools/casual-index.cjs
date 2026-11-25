@@ -48,6 +48,14 @@ const nz = v => (v == null || v === '' ? null : v);
 const worldKo = w => ((T.WORLDS || []).find(x => x.key === w) || {}).ko || '';
 const cardKo = key => { const c = P.card(D, key); return c ? c.ko : key; };
 const famKo = k => k ? (((CT.family(tree, k)) || {}).ko || null) : null;
+/* 실루엣 갈래(2026-11-25 사용자 「실루엣 갈래도 색인에 넣어줘」) — 옷의 cls(수영복 · 란제리 · 역할극 … 계열의 classes) · 한글 이름 */
+const CLS_TREE = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'data', 'casual-tree.json'), 'utf8'));
+function clsOf(fam, k) {
+  const f = fam && (CLS_TREE.outfits || []).find((o) => o.key === fam), it = f && k && (f.items || []).find((i) => i.key === k), c = it && it.cls;
+  if (!c) return {};
+  const cl = (f.classes || []).find((x) => x.key === c);
+  return { cls: c, clsKo: (cl && cl.ko) || c };
+}
 const itemKo = (fam, k) => (fam && k) ? ((CT.item(tree, fam, k) || {}).ko || null) : null;
 const SHADES = new Map(); for (const g of (T.CASUAL.colors || [])) for (const s of (g.shades || [])) SHADES.set(s.key, s.ko);
 const situKo = k => { const s = (T.CASUAL.situations || []).find(x => x.key === k); return s ? String(s.ko).split(' — ')[0] : k; };
@@ -133,7 +141,7 @@ function rowOf(cardKey, cut, plan, source) {
     if (freeKind === 'gfree') { row.family = sc.gfree; row.familyKo = famKo(sc.gfree); }   /* 갈래 자유 — 갈래는 우리가, 옷은 GPT 가 */
     row.free = { kind: freeKind, kindKo: KIND_KO[freeKind], outfit: outfitLine(gen) };
   } else {
-    row.family = nz(sc.ofam); row.familyKo = famKo(sc.ofam); row.item = nz(sc.item); row.itemKo = itemKo(sc.ofam, sc.item);
+    row.family = nz(sc.ofam); row.familyKo = famKo(sc.ofam); row.item = nz(sc.item); row.itemKo = itemKo(sc.ofam, sc.item); Object.assign(row, clsOf(sc.ofam, sc.item));
     row.shade = nz(sc.shade); row.shadeKo = sc.shade ? (SHADES.get(sc.shade) || null) : null;
   }
   const s = sc.cosplay, g = gen.cosplay;
