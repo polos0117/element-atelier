@@ -67,9 +67,16 @@ assert.equal(mv('?view=map&c=nope&r=c_forge'), '?view=map'); assert.equal(mv('?v
 assert.equal(mv('?c=heartland&r=c_forge'), '', '지도 밖의 c · r 은 지운다'); assert.equal(mv('?n=fe&view=map&c=heartland'), '?n=fe&mode=orbit', '나라 안엔 view=map 없음');
 assert.equal(v('?view=map&c=heartland'), '?view=map', '배치표 없이 — c 지움');
 assert.equal(R.resolve(r(''), { view: 'map' }).view, '', '지도는 기억하지 않는다'); assert.equal(R.resolve(r(''), { view: 'casual' }).view, 'casual');
+// 지도에서 들어온 나라(2026-11-25) — 그 나라의 대륙 · 지역이면 c · r 이 남고, 위는 그 지도 칸(지나온 길 「지도 › 대륙 › 지역 › 나라」)
+assert.equal(mv('?n=fe&w=fantasy&c=heartland&r=c_forge'), '?n=fe&mode=orbit&w=fantasy&c=heartland&r=c_forge', '지도에서 온 철');
+assert.equal(mv('?n=fe&c=heartland&r=c_forest'), '?n=fe&mode=orbit', '다른 지역이면 지운다'); assert.equal(mv('?n=fe&c=ore_east&r=e_gold'), '?n=fe&mode=orbit', '다른 대륙');
+assert.equal(mv('?n=h&c=sky_isles'), '?n=h&mode=orbit&c=sky_isles', '하늘 군도의 수소 — 대륙까지'); assert.equal(mv('?n=h&c=sky_isles&r=sky_starfire'), '?n=h&mode=orbit', '하늘 · 물밑 · 땅속엔 지역 없음');
+assert.equal(R.routeSearch(R.parentOf(r('?n=fe&mode=orbit&w=fantasy&c=heartland&r=c_forge&view=casual'))), '?w=fantasy&view=map&c=heartland&r=c_forge', '위는 그 지역 지도');
+assert.deepEqual(R.ancestors(r('?n=fe&mode=orbit&f=steel&c=heartland&r=c_forge')).map(R.layerOf), ['map', 'map', 'map', 'orbit', 'family']);
+assert.deepEqual(R.ancestors(r('?n=h&mode=orbit&c=sky_isles')).map(x => R.layerOf(x) + ':' + x.c), ['map:', 'map:sky_isles', 'orbit:sky_isles']);
 // 뒤로 가기 — 지도 칸이면 지도, 지도에서 옛 칸이면 그 칸의 보기. 나머지 전역 값은 지금 것
 const pr = (u, now) => R.routeSearch(R.popRoute(r(u), r(now)));
 assert.equal(pr('?view=map&c=heartland&r=c_forge', '?n=fe&mode=orbit&w=mecha'), '?w=mecha&view=map&c=heartland&r=c_forge');
 assert.equal(pr('?view=casual', '?view=map&w=steampunk'), '?w=steampunk&view=casual');
 assert.equal(pr('?n=fe&mode=list&view=world', '?n=fe&mode=list&view=casual&w=mecha'), '?n=fe&mode=list&w=mecha&view=casual');
-console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례 · 입자 종류/상한 · 지도(층 · 대륙 · 지역 · 뒤로 가기)');
+console.log('PASS walk-core: 주소 읽기/쓰기 · 층 · 부모/조상 · 기억값 · 검증 · 옛 주소 셋 · 세계 · 가까운 나라 칸 · 나라 차례 · 입자 종류/상한 · 지도(층 · 대륙 · 지역 · 지도에서 온 나라 · 뒤로 가기)');

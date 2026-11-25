@@ -415,11 +415,11 @@ html[data-layer="map"] .w-scenery::after {opacity:.8}
 .w-map-stage:focus-visible {outline:2px solid var(--w-acc);outline-offset:-4px;border-radius:0}
 .w-map-layer {position:absolute;left:0;top:0;transform-origin:0 0;--k:calc(1 / var(--s,1))}
 .w-map-layer.is-moving {will-change:transform}
-.w-map-img {display:block;width:100%;height:100%;pointer-events:none}
+.w-map-img {display:block;width:100%;height:100%;pointer-events:none;image-rendering:auto}   /* 넓은 화면은 확대 한도가 기기 픽셀 1.6 배(walk-map maxS) — 부드럽게 늘린다 */
 .w-map-focus {position:absolute;border:2px dashed #ffffffb3;border-radius:22%;box-shadow:0 0 0 9999px #07080c66;pointer-events:none}
 /* 이름 표 — 대륙 · 지역. 한 점에 가운데, 확대를 되돌려 같은 크기 */
 .w-ml {position:absolute;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:44px;min-width:44px;padding:4px 12px;
-  transform:translate(-50%,-50%) scale(var(--k)) translateY(var(--dy,0px));border:1px solid #ffffff40;border-radius:999px;background:#0b0d14b8;color:#fff;cursor:pointer;white-space:nowrap;
+  transform:translate(-50%,-50%) scale(var(--k)) translate(var(--dx,0px),var(--dy,0px));border:1px solid #ffffff40;border-radius:999px;background:#0b0d14b8;color:#fff;cursor:pointer;white-space:nowrap;
   font-size:14px;font-weight:700;line-height:1.15;text-shadow:0 1px 2px #000;box-shadow:0 2px 10px #0008;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
 .w-ml:hover {border-color:var(--w-acc)}
 .w-ml small {font-size:11px;font-weight:400;color:#d9d6e4}
@@ -443,6 +443,30 @@ html[data-layer="map"] .w-scenery::after {opacity:.8}
 .w-mk.is-fog b,.w-pn.is-fog b {color:#c9ced8;opacity:.8}
 .w-mk.is-lit b,.w-pn.is-lit b {color:color-mix(in srgb,var(--cat) 55%,#fff);text-shadow:0 0 8px var(--cat)}
 .w-mk:hover,.w-mk:focus-visible {outline:2px solid #fff;outline-offset:2px}
+/* 온 세상 동맹 선(2026-11-25) — 굽은 선은 확대와 상관없이 같은 굵기, 넓은 투명 선이 누르는 자리. 고른 하나는 밝게 · 나머지는 흐리게, 이름 표는 굽은 선 가운데 */
+.w-ma {position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
+.w-ma path {fill:none;vector-effect:non-scaling-stroke}
+.w-ma-hit {stroke:transparent;stroke-width:22;pointer-events:stroke;cursor:pointer}
+.w-ma-line {stroke:var(--w-acc);stroke-width:2.2;stroke-opacity:.75;stroke-linecap:round;filter:drop-shadow(0 0 2px #000c);transition:stroke-opacity .2s,stroke-width .2s}
+.w-ma g.is-on .w-ma-line {stroke:#fff;stroke-opacity:1;stroke-width:3.4}
+.w-ma g.is-dim .w-ma-line {stroke-opacity:.28}
+.w-ma-end {position:absolute;z-index:1;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:var(--w-acc);box-shadow:0 0 0 2px #0b0d14cc;transform:scale(var(--k));pointer-events:none}
+.w-ma-end.is-on {background:#fff;box-shadow:0 0 0 2px #0b0d14cc,0 0 10px #fff}
+.w-ma-tag {position:absolute;z-index:3;margin:0;padding:4px 10px;border:1px solid var(--w-acc);border-radius:999px;background:#0b0d14e6;color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap;
+  transform:translate(-50%,-50%) scale(var(--k));pointer-events:none}
+.w-map-allies {min-height:44px;padding:0 14px;border:1px solid var(--w-line);border-radius:999px;background:#0b0d14cc;color:var(--w-ink);font-size:14px;font-weight:600;cursor:pointer}
+.w-map-allies[aria-pressed="true"] {border-color:var(--w-acc);background:var(--w-acc);color:var(--w-on-acc)}
+.w-ma-list {position:absolute;z-index:5;left:12px;right:84px;bottom:12px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:2px}
+.w-ma-list::-webkit-scrollbar {display:none}
+.w-ma-list button {flex:none;min-height:44px;padding:0 12px;border:1px solid var(--w-line);border-radius:999px;background:#0b0d14e0;color:var(--w-ink);font-size:13px;font-weight:600;cursor:pointer}
+.w-ma-list button[aria-pressed="true"] {border-color:#fff;color:#fff;box-shadow:0 0 0 1px #fff inset}
+/* 화면 밖 동맹 상대 — 가장자리 표(자리는 코드가 화면 px 로), 화살은 상대 쪽으로 돈다 */
+.w-map-edges {position:absolute;inset:0;z-index:4;pointer-events:none}
+.w-me {position:absolute;left:0;top:0;display:flex;align-items:center;gap:6px;max-width:min(240px,calc(100vw - 120px));min-height:44px;padding:0 12px 0 10px;box-sizing:border-box;
+  border:1px dashed var(--w-acc);border-radius:999px;background:#0b0d14e6;color:#fff;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer;pointer-events:auto;box-shadow:0 2px 10px #0009}
+.w-me span {min-width:0;overflow:hidden;text-overflow:ellipsis}
+.w-me-arrow {flex:none;display:inline-block;font-style:normal;color:var(--w-acc);transform:rotate(var(--a,0rad))}
+.w-me:hover,.w-me:focus-visible {border-style:solid;outline:none}
 .w-mk-ally {position:absolute;left:0;top:0;transform:translate(-50%,calc(var(--ally-y,140px)));margin:0;padding:3px 10px;border-radius:999px;background:#0b0d14cc;color:var(--w-acc);font-size:12px;font-weight:700;white-space:nowrap;pointer-events:none}
 /* 위 줄 · 크기 단추 · 글 판 · 하늘 · 물밑 · 땅속 판 */
 .w-map-top {position:absolute;z-index:5;top:10px;left:12px;right:72px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;pointer-events:none}
@@ -459,6 +483,7 @@ html[data-layer="map"] .w-scenery::after {opacity:.8}
 .w-map-panel {position:absolute;z-index:6;left:0;right:0;bottom:0;max-height:50%;overflow:auto;overscroll-behavior:contain;padding:14px 14px 88px;box-sizing:border-box;
   border-top:1px solid var(--w-line);border-radius:18px 18px 0 0;background:#0b0d14f2}
 .w-map-panel h2 {align-items:center}
+.w-map-pclose {margin-left:auto;flex:none;width:44px;height:44px;border:1px solid var(--w-line);border-radius:12px;background:none;color:var(--w-ink);font-size:22px;line-height:1;cursor:pointer}
 .w-map-panel .w-map-why {-webkit-line-clamp:3}
 .w-map-preg h3 {display:flex;align-items:baseline;gap:8px;margin:12px 0 6px;font-size:14px}
 .w-map-preg h3 small {color:var(--w-mute);font-size:12px;font-weight:400}
@@ -469,4 +494,5 @@ html[data-layer="map"] .w-scenery::after {opacity:.8}
 @media (min-width:900px) {
   .w-map-panel {left:auto;top:166px;right:12px;bottom:84px;width:356px;max-height:none;padding-bottom:14px;border:1px solid var(--w-line);border-radius:18px}
   .w-map-cap {bottom:16px;right:auto;width:min(520px,calc(100% - 120px))}
+  .w-ma-list {top:10px;bottom:auto;left:auto;right:72px;max-width:calc(100% - 420px);flex-wrap:wrap;justify-content:flex-end}   /* 넓은 화면은 위 줄 오른쪽 — 아래의 대륙 이름(예언의 테두리)을 가리지 않게 */
 }
