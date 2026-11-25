@@ -237,7 +237,9 @@ const checkCasual = (key, sc, txt, label, world) => {
   if (c.tier === 'root') assert(txt.includes('the personification of ' + c.element.en + ' (' + c.element.symbol + ')'), label + ' 근본');
   assert(!/[가-힣]/.test(txt.replace(/\([^)]*\)/g, '')), label + ' 한국어(괄호 밖)');
   const noStyle = txt.split('\n\n').filter(l => !l.startsWith('STYLE: ')).join('\n\n');
-  if (ownTables || !sc.random) assert(!GAME_WORDS.test(noStyle), label + ' 게임 말 — ' + (noStyle.match(GAME_WORDS) || [])[0]);
+  /* 게임하는 자리 · 동작(오락실 · PC방 · e스포츠 · 보드게임 카페 2026-11-23, 게임기 · PC 게임 2026-11-25 사용자 「아 게임기나 pc로 게임하는 장면도」)은 게임 말이 장면 글이다 */
+  const gameScene = /arcade|pc_bang|esports|boardgame/.test(sc.place || '') || /^(handheld_|pad_play|pc_)/.test(sc.use || '');
+  if ((ownTables || !sc.random) && !gameScene) assert(!GAME_WORDS.test(noStyle), label + ' 게임 말 — ' + (noStyle.match(GAME_WORDS) || [])[0]);
   assert(words(txt) <= 1300, label + ' 길이 ' + words(txt) + ' 낱말');   /* 1200 → 1250(2026-11-07 — 일상컷 얼굴 길이 문장이 더해졌다) → 1300(2026-11-15 체형 FIGURE 줄 — 글은 줄이지 않고 상한을 올린다) */
   const close = T.CLOSE_FRAMES.includes(sc.frame);
   assert.equal(txt.includes('CROP: '), close, label + ' 가까운 컷만 CROP');
@@ -542,5 +544,12 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
   }
   console.log('PASS 임의 설계 주문');
 }
+/* 놀이터(k_kids, 2026-11-25) — 노출 축을 많이(bold)로 줘도 드러내는 노출 글 · 상황 노출이 없고, 배경 아이들 · 덮인 옷 줄이 실린다 */
+for (const key of P.cards(D).slice(0, 3)) {
+  const txt = P.buildCasual(D, S, key, { treeV: 2, era: 'now', place: 'playground', ofam: 'everyday', situ: 'wet', axes: { skin_exposure: 'bold' }, posture: 'swing_sit', frame: 'full_body' }, optsFor(key));
+  assert(/children may appear only as small, soft-focus background figures/.test(txt) && /fully non-revealing/.test(txt), key + ' 놀이터 아이들 · 덮인 옷 줄');
+  assert(!/most revealing|natural cleavage|more scene-appropriate shoulder|skin clearly showing|Situation: right now/i.test(txt), key + ' 놀이터 노출 글\n' + txt);
+}
+
 console.log('PASS 옮긴 화풍: kv ' + nk + '장 · 영어 틀 ' + TXT.length + '판');
 }

@@ -71,7 +71,7 @@ assert(!tree.places.some(p => 'since' in p), 'since 를 가진 장소가 없다'
 assert.deepEqual(CT.places(tree, 'release', { facts: { year: 1990 } }), [], '없는 시대엔 장소가 없다(걸리지 않는다)');
 assert(CT.places(tree, 'site', null).some(p => p.key === 'site_lab') && !CT.places(tree, 'site', null).some(p => p.key === 'home_living'), '현장 시대엔 현장만');
 { const NP = CT.places(tree, 'nation', null);   /* 2026-11-23 — 나라 안 묶음 열여섯(2026-11-09 삼국지에서 아홉) + 다른 묶음의 나라 안 장소 아홉(동물 정원 · 생태관 · 수족관 · 마구간 · 놀이 장터 · 극장 · 눈 언덕 · 꽃 시장 · 단장방) · 2026-11-24 탈 것 아홉(수레 · 물 위 보드 · 하늘배 · 글라이더 · 풍선 · 장터 놀이기구 · 놀잇배 · 말 타기 · 두 바퀴) */
-  assert(NP.every(p => p.key.startsWith('nation_')) && NP.filter(p => p.group === 'nation').length === 16 && NP.length === 34, '나라 안 시대엔 나라 안 장소만 — 나라 안 묶음 열여섯 + 아홉 + 탈 것 아홉'); }
+  assert(NP.every(p => p.key.startsWith('nation_')) && NP.filter(p => p.group === 'nation').length === 17 && NP.length === 35, '나라 안 시대엔 나라 안 장소만 — 나라 안 묶음 열일곱(2026-11-25 공놀이 마당) + 아홉 + 탈 것 아홉'); }
 assert(CT.places(tree, 'now', null).some(p => p.key === 'site_lab') && !CT.places(tree, 'now', null).some(p => p.key === 'nation_room'), '현장은 지금 현실에도, 나라 안은 나라 안에만');
 /* 필수 갈래의 「그 세계 안」 규칙은 required.world(모듈 worldRule — game 의 in_game 자리) */
 assert.equal(CT.worldRule(tree).era, 'nation');
