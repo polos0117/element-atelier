@@ -11,6 +11,11 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-26 · claude · GPT 세계컷 주문서 머리 갈래 — 네 공방 같은 꼴
+- lib/prompt-spec.js — 네 공방 같은 꼴로: 기본값 막는 문구(어깨 위로 푼 머리 + 옆 앞머리 · 머리 장식, 아주 긴 머리 갈래는 빼고) · hairFamilies 에 rx
+- docs/IMAGE_AUTOMATION.md — 같은 말
+- ?v — prompt-spec 64
+
 ## 2026-11-26 · claude · 일상컷 머리 연출 13가지 · 짧은 머리 거르기
 - lib/prompt-spec.js — 사용자 「일상컷 머리연출도」: 일상컷 머리 연출 5 → 13(반묶음 · 똥머리 · 옆으로 묶기 · 양갈래 · 핀으로 틀어올림 · 한쪽으로 넘김 · 귀 뒤로 넘김 · 머리띠)
 - data/casual-tree-v2.json — ambience.hair 에 긴 머리만(long — 묶음 · 땋음 · 반묶음 · 똥머리 · 옆 · 양갈래 · 핀), ambience.short_hairs(짧은 커트 · 픽시 · 단발 · 비대칭 단발 · 핑거 웨이브 · 삐죽 · 올백 · 언더컷 · 울프컷)
