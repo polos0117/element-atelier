@@ -238,7 +238,7 @@ html[data-motion="off"] .w-orbit-ring,html[data-motion="off"] .w-node {animation
 .w-list .ek-section {margin:0;padding:16px clamp(12px,3vw,24px);border-radius:18px}
 .w-list .ek-card {scroll-margin-top:calc(var(--w-bar-h,0px) + 64px)}
 /* 조작 줄 — 두 줄(화풍 한 줄 · 보기 한 줄), 아무것도 옆으로 잘리지 않는다(옛 폰 규칙의 옆으로 밀기 · 흐림을 걷는다) */
-.walk .dex-toc {position:static;margin:12px 0 0;padding:10px 0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-block:1px solid var(--line);display:grid;gap:8px}
+.walk .dex-toc {position:static;margin:12px 0 0;padding:10px 0;background:none;-webkit-backdrop-filter:none;backdrop-filter:none;border-block:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr);gap:8px}   /* 칸 하나를 섹션 폭에 묶는다 — 긴 화풍 이름(고르개 option)이 칸을 넓혀 폰에서 가로로 넘쳤다(2026-11-25) */
 .walk .toc-row {flex-wrap:wrap;overflow:visible;padding-right:0;-webkit-mask-image:none;mask-image:none}
 .walk .style-pick {flex:1 1 100%;min-width:0;min-height:44px}
 .walk .style-pick select {flex:1;min-width:0;max-width:none;min-height:44px}

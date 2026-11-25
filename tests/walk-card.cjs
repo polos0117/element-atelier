@@ -58,8 +58,11 @@ const threeWorlds = (() => { for (const [k, e] of Object.entries(IMGJ.img)) for 
     {
       const { page: p, errors, ctx } = await open(br, base, '/index.html?n=fe&mode=orbit&card=fe'); await p.waitForSelector('.lb-stage img');
       const btns = await p.locator('.w-card .bar > *').evaluateAll(es => es.map(e => {
-        const r = document.createRange(); r.selectNodeContents(e); const tops = new Set([...r.getClientRects()].filter(x => x.width > 0).map(x => Math.round(x.top)));
-        return { t: e.textContent.trim(), h: e.getBoundingClientRect().height, lines: tops.size };
+        const r = document.createRange(); r.selectNodeContents(e);
+        /* 줄 수 = 글 상자의 윗변이 반 줄 넘게 떨어진 무리 수 — 글꼴이 없어 대신 쓴 글꼴의 ♡ 는 같은 줄에서도 상자가 2px 높아(656 · 658) 윗변을 그대로 세면 두 줄로 셌다(2026-11-25) */
+        const half = parseFloat(getComputedStyle(e).fontSize) / 2, tops = [...r.getClientRects()].filter(x => x.width > 0).map(x => x.top).sort((a, b) => a - b);
+        const lines = tops.reduce((n, t, i) => n + (i === 0 || t - tops[i - 1] > half ? 1 : 0), 0);
+        return { t: e.textContent.trim(), h: e.getBoundingClientRect().height, lines };
       }));
       assert.equal(btns.length, 4, '근본 한 장 — 홀로 · 즐겨찾기 · 지시문 · 닫기 ' + JSON.stringify(btns));
       for (const b of btns) { assert.equal(b.lines, 1, '단추 글은 한 줄 ' + JSON.stringify(b)); assert(b.h >= 44 && b.h <= 48, '단추 높이 ' + JSON.stringify(b)); }

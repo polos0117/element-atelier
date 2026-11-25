@@ -18,7 +18,9 @@ const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b =>
     for (const e of await p.locator('.w-node.empty').all()) assert.match(await e.textContent(), /아직 그림 없음/);
     assert.match(await p.getAttribute('img.w-orbit-img', 'src'), /orbits\/orbit-fe\.webp$/);
     assert.equal(await p.locator('.w-ring-dash').count(), 0); assert.equal(await p.locator('.w-ring-line').count(), 1);
-    for (const b of await p.locator('.w-node, .w-nucleus, .w-mode button, [data-step]').all()) { const r = await b.boundingBox(); assert(r.width >= 44 && r.height >= 44); }
+    /* 전경이 있는 나라(철 — 2026-11-24)의 폰 머리는 막대의 ‹ › 를 감추고 전경 이름 줄(.w-vsteps)로 옮긴다 — 보이는 것만 재고, ‹ › 는 어딘가에 하나씩 보인다 */
+    for (const b of await p.locator('.w-node, .w-nucleus, .w-mode button, [data-step]').all()) { if (!(await b.isVisible())) continue; const r = await b.boundingBox(); assert(r.width >= 44 && r.height >= 44); }
+    for (const k of ['prev', 'next']) assert.equal(await p.locator(`[data-step="${k}"]:visible`).count(), 1, '‹ › 하나씩 ' + k);
     assert(await noOverflow(p), '덮개 넘침 없음');
     // 코드가 그린 고리 — 그림이 없는 나라는 그 그림을 부르지도 않는다
     const noOrb = D.nations.find(n => !ORB.includes(n.key)).key;
@@ -38,7 +40,7 @@ const anyPic = k => Object.values(((IMGJ.img[k] || {}).byStyle) || {}).some(b =>
     // ‹ › — 주기율표 번호 차례, 역사는 그대로, 뒤로 가기는 주기율표
     assert.deepEqual(await p.locator('.w-crumbs button').allTextContents(), ['주기율표', '철 Fe']);
     const len = await p.evaluate(() => history.length);
-    await p.click('[data-step="next"]'); await p.waitForURL(/n=co&/);   /* 철 다음은 코발트(2026-11-13 — 그 전엔 구리) */ assert.equal(await p.evaluate(() => history.length), len);
+    await p.click('[data-step="next"]:visible');   /* 전경 있는 철은 폰에서 전경 이름 줄의 ›(막대의 ‹ › 는 감춤) */ await p.waitForURL(/n=co&/);   /* 철 다음은 코발트(2026-11-13 — 그 전엔 구리) */ assert.equal(await p.evaluate(() => history.length), len);
     // 궤도로 / 목록으로 — 역사 그대로, 기기에 기억
     await p.click('.w-mode [data-mode="list"]'); await p.waitForFunction(() => document.documentElement.dataset.layer === 'list');
     assert.equal(await p.evaluate(() => history.length), len); assert.equal(JSON.parse(await p.evaluate(() => localStorage.getItem('element_dex_v1'))).mode, 'list');

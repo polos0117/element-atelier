@@ -11,6 +11,13 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-25 · claude · 오래 깨진 검사 정리
+- lib/walk.css · index.html — 목록 층 조작 줄(`.walk .dex-toc`, 격자)에 칸 폭 `minmax(0,1fr)`: 긴 화풍 이름(고르개 option — 기본 「일본 유화 애니 · 기본 · 3장」)이 격자 칸을 넓혀 폰 344 에서 쪽이 354 로 가로 넘쳤다(실제 버그 — walk-list 「조작 줄이 344 안」 · walk-card noOverflow 둘 다 이것). walk.css ?v=22.
+- tests/walk-orbit.cjs — 전경이 생긴 철(11-24)은 폰에서 막대의 ‹ › 를 감추고 전경 이름 줄(.w-vsteps)로 옮긴다: 보이는 단추만 44px 를 재고 ‹ › 가 하나씩 보이는지 보며, 다음 나라는 보이는 › 로 누른다(옛 검사는 감춘 단추의 상자 null 에서 멈췄다).
+- tests/walk-particles.cjs — 철의 첫 화면은 전경 무대이고 궤도는 그 아래라 입자는 붙되 멈춰 있다(화면 밖 멈춤 — 설계대로). 처음엔 멈춤을 보고 궤도로 굴린 뒤 도는지 본다.
+- tests/walk-card.cjs — 단추 글 줄 수를 글 상자 윗변이 반 줄 넘게 떨어진 무리로 센다: 대신 쓴 글꼴의 ♡ 상자가 같은 줄에서 2px 높아 두 줄로 셌다(검사 환경의 글꼴 탓).
+- tests/walk-tools.cjs · tests/walk-world.cjs — 고치지 않음(환경): walk-tools 는 ESM_DIR 에 phaser@4.2.1 사본이 없으면 합성 화면이 안 떠 멈춘다(preact · pixi.js@8.19.0 · phaser@4.2.1 셋이 든 node_modules 로 돌린다). walk-world 는 혼자 돌리면 통과, 브라우저 여섯을 한꺼번에 띄우면 입자 기다림이 시간을 넘긴다 — 하나씩 돌린다.
+
 ## 2026-11-24 · claude · 일상컷 노출 문장 — 삼국지 수준으로
 - lib/prompt-spec.js — 짧은 판 일상컷 CASUAL.short.expose 과감 = 삼국지 skin_exposure 과감 글 + 최대 존재감, 보통도 같은 결(사용자 「삼국지랑 도시공방이랑 의상 수위가 다른거 같지?」 → 「공방들 다 삼국지 수준으로 맞춰줘」 — 옷 데이터는 같은데 「과감」 뒤에 붙는 노출 문장이 공방마다 달랐다)
 

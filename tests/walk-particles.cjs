@@ -10,7 +10,10 @@ const { COVER, WIDE, serve, launch, open, shot } = require('./lib/harness.cjs');
     const part = p => p.evaluate(() => AtelierWalkFx.particles);
     let { page: p, errors, requests } = await open(br, base, '/index.html?n=fe&mode=orbit');
     await p.waitForSelector('canvas.w-particles', { timeout: 20000 });
-    let s = await part(p); assert.equal(s.kind, 'ember'); assert(s.count <= 24 && s.running);
+    /* 철은 전경이 있다(2026-11-24) — 첫 화면은 전경 무대, 궤도는 그 아래라 입자는 붙되 멈춰 있다가(화면 밖 멈춤) 궤도로 굴리면 돈다 */
+    let s = await part(p); assert.equal(s.kind, 'ember'); assert(s.count <= 24 && !s.running, '전경 아래 궤도 — 멈춤 ' + JSON.stringify(s));
+    await p.locator('.w-stage').scrollIntoViewIfNeeded(); await p.waitForFunction(() => AtelierWalkFx.particles && AtelierWalkFx.particles.running);
+    s = await part(p); assert(s.count <= 24 && s.running);
     assert.equal(requests.filter(u => /pixi/.test(u)).length, 1);
     await shot(p, 'particles-fe');
     for (const [n, k] of [['h', 'breeze'], ['og', 'mote'], ['si', 'glint'], ['u', 'flicker']]) {
