@@ -11,6 +11,10 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-26 · claude · GPT 세계컷 주문서에 머리 갈래
+- lib/prompt-spec.js · lib/prompt-element.js — 사용자 「원소공방에서 gpt가 만드는 세계컷은 어때? 인물마다 헤어스타일이 다 비슷한 느낌이던데」 → 「머리만 해주고」: GPT 설계 38장이 거의 다 어깨~가슴 길이로 푼 머리 + 옆 앞머리였다. WORLD_FREE.hairFamilies(올림 · 땋기 · 묶음 · 쌍 · 아주 긴 · 짧은 · 모양 · 반묶음 여덟) · fill.family — 설계 1 · 2 에 다른 갈래를 카드 · 세계로 돌려 가며(우리 설계 갈래는 뺀다, 354 짝에 갈래마다 71~111번), 그 기본값은 막는다(hairFamilyPair)
+- docs/IMAGE_AUTOMATION.md — GPT 설계 기록엔 주문서가 아니라 GPT 가 채운 지시문(free_prompt) · SUMMARY 줄(summary) · 머리 갈래(hair_family)
+
 ## 2026-11-25 · claude · 팔이 더 생기거나 잘리는 것 막기 — 카메라 쪽 팔 · 한 줄 팔
 - lib/casual-tree-v2.js — style-atelier shared 원본에서 sync: 손 줄 끝말 — 뒤 3/4 몸에도 카메라 쪽 팔(일하는 손 쪽 · 화면 그쪽) · 먼 팔(몸 뒤로 거의 숨고 손만 엉덩이 옆), 돌아보는 어깨도 일하는 손 쪽. 소품 · 손짓 손은 「어깨에서 손까지 한 팔, 아래팔을 소매 · 리본 · 장식이 덮지 않음」, 옆에 내려 드는 소품은 「몸 옆에 붙여, 카메라 쪽으로 내밀지 않음」
 - prompt.html — casual-tree-v2.js ?v=22
