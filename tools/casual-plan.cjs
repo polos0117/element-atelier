@@ -700,6 +700,7 @@ function freeText(text) {
   return place.replace(/\.$/, '') + (act && !/…/.test(act) ? ' — ' + act.replace(/\.$/, '') : '');
 }
 /* 최근 장면 — 그림 저장소의 모든 카드 일상컷 기록을 올린 날(imported, 없으면 date) 늦은 차례로, 같은 글은 한 번, n 개까지 */
+const RECENT_CLIP = 240;
 function recentScenes(dir, n = RECENT_N) {
   if (!dir || !fs.existsSync(dir)) return [];
   const rows = [];
@@ -709,7 +710,7 @@ function recentScenes(dir, n = RECENT_N) {
       let r; try { r = JSON.parse(fs.readFileSync(path.join(dir, k, f), 'utf8')); } catch (e) { continue; }
       if (!r || !r.scene) continue;
       const gen = r.generation || {}, text = r.scene.sfree ? freeText(gen.free_design || gen.free_prompt) : sceneText(r.scene, holdOfKey(r.card || k));
-      if (text) rows.push({ when: String(r.imported || r.date || ''), at: k + '/' + f, text });
+      if (text) rows.push({ when: String(r.imported || r.date || ''), at: k + '/' + f, text: text.length > RECENT_CLIP ? text.slice(0, RECENT_CLIP).replace(/[\s,;—-]+\S*$/, '') : text });   /* GPT 자유 설계 장면은 길 수 있다 — 피할 장면 줄이 길어지지 않게 자른다(2026-11-26 337자) */
     }
   }
   rows.sort((a, b) => b.when.localeCompare(a.when) || b.at.localeCompare(a.at));

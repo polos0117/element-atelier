@@ -11,6 +11,13 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-26 · claude · 세계 장면 추천은 그 세계 장소에서만
+- data/casual-tree-v2.json — 사용자 「피티룸에 정령의 숲 발담구기가 왜 나와?」(원소 — 옷가게 피팅룸에 추천 mg_spring 「정령의 샘에 발 담그기」: 추천은 자세 조합뿐이라 걸터앉을 데만 있으면 어디서나 골라졌다): 세계 장면 추천(mg_ · sp_ · cp_ · wx_ · mc_ · zg_)에 needs — 마법 magic · 증기 steam · 메카 mech · 무중력 zero_g, 정령의 샘은 magic + water. 망원경 들여다보기(spyglass_look)에 gaze into_prop(빠져 있어 sp_spyglass 가 증기 장소에서 한 번도 안 맞았다), mc_catwalk 시선 위 → 먼 곳(위는 하늘이 있어야 — 실내 격납고)
+- lib/casual-tree-v2.js — 공용(style-atelier/shared): 추천 needs
+- tools/casual-tree-v2.py — places-all 이 추천 needs 를 보고, 검사가 needs 열쇠를 장소 특징 표에서 찾는다
+- prompt.html 들 — casual-tree-v2.js ?v=need1
+- tools/casual-plan.cjs — 최근 장면(피할 장면 줄)을 240자에서 자른다 — GPT 자유 설계 장면 337자 하나가 그림 저장소에 들어와 tests/casual-plan(최근 장면 300자 아래)이 걸렸다
+
 ## 2026-11-26 · claude · 등 돌려 걸터앉기 — 다리는 난간 너머
 - data/casual-tree-v2.json — 사용자 「이렇게 뒷모습 걸터앉는 씬에서 다리 연결이 부자연스러운데 어떻게 해?」(원소 다이아몬드 판타지 일상2 — 추천 edge_rear: 등을 보이고 걸터앉아 다리를 늘어뜨리고 전신 「발까지 프레임 안」 이라, 난간 너머로 가야 할 다리를 화면 쪽으로 끌어내려 허리에서 꺾였다): 다리 dangle_far(등 돌려 걸터앉으면 다리는 가장자리 너머로 내려 가려진다 — 엉덩이 · 허벅지 위만 걸침, 발 안 보임, 정면 · 3/4 · 옆 몸엔 못 씀), 다리 dangle 은 등(back)과 못 묶는다(not_bodies). 등 · 뒤 3/4 로 걸터앉아 늘어뜨리던 추천(edge_rear · mg_isle · mc_palm_back)은 dangle_far · 3/4 구도(무릎 위까지)로
 - lib/casual-tree-v2.js — 공용(style-atelier/shared): 다리 칸 not_bodies
