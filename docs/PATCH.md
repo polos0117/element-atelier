@@ -11,6 +11,12 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-26 · claude · 등 돌려 걸터앉기 — 다리는 난간 너머
+- data/casual-tree-v2.json — 사용자 「이렇게 뒷모습 걸터앉는 씬에서 다리 연결이 부자연스러운데 어떻게 해?」(원소 다이아몬드 판타지 일상2 — 추천 edge_rear: 등을 보이고 걸터앉아 다리를 늘어뜨리고 전신 「발까지 프레임 안」 이라, 난간 너머로 가야 할 다리를 화면 쪽으로 끌어내려 허리에서 꺾였다): 다리 dangle_far(등 돌려 걸터앉으면 다리는 가장자리 너머로 내려 가려진다 — 엉덩이 · 허벅지 위만 걸침, 발 안 보임, 정면 · 3/4 · 옆 몸엔 못 씀), 다리 dangle 은 등(back)과 못 묶는다(not_bodies). 등 · 뒤 3/4 로 걸터앉아 늘어뜨리던 추천(edge_rear · mg_isle · mc_palm_back)은 dangle_far · 3/4 구도(무릎 위까지)로
+- lib/casual-tree-v2.js — 공용(style-atelier/shared): 다리 칸 not_bodies
+- tools/casual-tree-v2.py — 다리 not_bodies 를 보고 추천을 잡는다
+- prompt.html 들 — casual-tree-v2.js ?v=far1
+
 ## 2026-11-26 · claude · 선반 컷 — 위에서 내려다보기(높은 칸 · 아래 칸)
 - data/casual-tree-v2.json — 사용자 「선반 위에 물건을 꺼낼때 카메라가 위에서 내려다보고 있는 컷은 없지?」 → 「응 둘 다 넣어줘」(선반 추천 셋은 아래에서 · 눈높이뿐이었다): 추천 셋 — shelf_high_look(높은 선반에 손 뻗다 어깨 너머로 올려다보기, 위에서 · 3/4) · shelf_low_squat(쪼그려 아래 칸에서 꺼내며 올려다보기, 위에서 · 전신) · shelf_low_kneel(한쪽 무릎 꿇고 아래 칸 꺼내기, 위에서 · 3/4). 손 low_shelf(아래 칸에서 물건 꺼내기 — 높은 선반이 있는 곳 shelf_high 에서만, 쪼그려 · 무릎 꿇기 자세)
 
