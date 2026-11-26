@@ -238,6 +238,10 @@
   "mech": {
    "ko": "메카 세계 장소",
    "en": "a place of the mecha world"
+  },
+  "holo_table": {
+   "ko": "홀로그램 작전 테이블",
+   "en": "a glowing holographic table"
   }
  },
  "frames": {
@@ -433,7 +437,8 @@
     "sit",
     "low",
     "float"
-   ]
+   ],
+   "no_body": true
   }
  ],
  "gaze": [
@@ -747,7 +752,7 @@
    "key": "sit_sideways",
    "ko": "스툴·벤치에 옆으로 걸터앉기",
    "family": "sit",
-   "en": "seated sideways on a stool or bench, her torso turned toward the camera",
+   "en": "seated sideways on a stool or bench",
    "needs_any": [
     "stool",
     "edge"
@@ -855,7 +860,7 @@
    "key": "squat",
    "ko": "쪼그려 앉기",
    "family": "low",
-   "en": "crouching low on her heels",
+   "en": "crouching down low",
    "needs": [
     "floor"
    ],
@@ -1067,7 +1072,7 @@
    "key": "sit_lean",
    "ko": "앉아 앞으로 기울이기",
    "family": "sit",
-   "en": "seated, leaning slightly forward toward the table, forearms near its edge",
+   "en": "seated, leaning slightly forward toward the table",
    "needs": [
     "chair",
     "table"
@@ -2402,7 +2407,7 @@
    "ko": "홀로그램 지도 짚기",
    "zone": "chest",
    "needs": [
-    "mech"
+    "holo_table"
    ],
    "en": "her own {side} fingertips touch a glowing holographic map floating above the table, turning it slowly"
   },
@@ -4102,7 +4107,8 @@
    "sky",
    "stool",
    "k_work",
-   "upright"
+   "upright",
+   "chair"
   ],
   "repair_kiosk": [
    "worktable",
@@ -4292,7 +4298,8 @@
    "stairs",
    "sky",
    "k_work",
-   "upright"
+   "upright",
+   "soft"
   ],
   "site_darkroom": [
    "worktable",
@@ -4951,7 +4958,8 @@
    "rail_waist",
    "indoor",
    "k_private",
-   "upright"
+   "upright",
+   "shelf_high"
   ],
   "glamping_tent": [
    "lie",
@@ -5865,7 +5873,8 @@
    "wall",
    "upright",
    "wfeat",
-   "mech"
+   "mech",
+   "holo_table"
   ],
   "nation_pilot_locker": [
    "chair",
@@ -5874,7 +5883,8 @@
    "upright",
    "k_private",
    "wfeat",
-   "mech"
+   "mech",
+   "shelf_high"
   ],
   "nation_spaceport_lounge": [
    "chair",
@@ -7915,10 +7925,8 @@
     "nation_mech_palm",
     "nation_mech_catwalk",
     "nation_launch_deck",
-    "nation_colony_park",
     "nation_bridge_holo",
     "nation_pilot_locker",
-    "nation_spaceport_lounge",
     "nation_cockpit",
     "nation_hangar"
    ]
@@ -12195,11 +12203,11 @@
   {
    "key": "sketch_measure",
    "prop": "sketchbook",
-   "kind": "raise",
-   "hands": "one",
+   "kind": "both",
+   "hands": "both",
    "zone": "face",
    "ko": "연필을 세워 대상의 비례를 잰다",
-   "en": "holds a pencil out at arm's length to measure her subject, {prop} tucked under her other arm",
+   "en": "measures her subject with a pencil held out at arm's length, {prop} tucked under her other arm",
    "frames": [
     "face_close",
     "detail",
@@ -12222,7 +12230,11 @@
     "recline"
    ],
    "stage": "prep",
-   "stage_ko": "준비"
+   "stage_ko": "준비",
+   "grip": {
+    "right": "holds the pencil out at arm's length",
+    "left": "clamps the sketchbook against her side"
+   }
   },
   {
    "key": "sketch_show",
@@ -17341,6 +17353,9 @@
    "postures": [
     "stand",
     "lean_rail"
+   ],
+   "places": [
+    "nation_tube_post"
    ]
   },
   {
@@ -18621,7 +18636,7 @@
   },
   {
    "key": "counter_cup",
-   "ko": "카운터에서 소품 보기",
+   "ko": "난간 · 창턱에 기대 소품 보기",
    "posture": "lean_rail",
    "support": "none",
    "frame": "waist_up",
@@ -18979,7 +18994,7 @@
   },
   {
    "key": "lounger_drink",
-   "ko": "선베드에 누워 소품 들기",
+   "ko": "기대 누워 소품 들기",
    "posture": "recline",
    "support": "back_lounger",
    "frame": "environmental",
@@ -19011,7 +19026,7 @@
   },
   {
    "key": "bench_sit",
-   "ko": "벤치에 앉아 옆 보기",
+   "ko": "앉아서 옆 보기",
    "posture": "sit_chair",
    "support": "none",
    "frame": "environmental",
@@ -20887,6 +20902,9 @@
    "act": "sip",
    "needs": [
     "zero_g"
+   ],
+   "uses": [
+    "pouch_sip"
    ]
   },
   {
@@ -21123,6 +21141,9 @@
    "act": "sip",
    "needs": [
     "zero_g"
+   ],
+   "uses": [
+    "pouch_sip"
    ]
   },
   {
@@ -21250,11 +21271,14 @@
    "act": "rest",
    "needs": [
     "magic"
+   ],
+   "uses": [
+    "spellbook_read"
    ]
   },
   {
    "key": "mg_library",
-   "ko": "서고 의자에서 마법서",
+   "ko": "의자에 앉아 마법서 읽기",
    "posture": "sit_chair",
    "support": "back_seat",
    "frame": "waist_up",
@@ -21269,6 +21293,9 @@
    "act": "rest",
    "needs": [
     "magic"
+   ],
+   "uses": [
+    "spellbook_read"
    ]
   },
   {
@@ -21287,6 +21314,9 @@
    "act": "rest",
    "needs": [
     "magic"
+   ],
+   "places": [
+    "nation_isle_edge"
    ]
   },
   {
@@ -21306,6 +21336,9 @@
    "needs": [
     "magic",
     "water"
+   ],
+   "places": [
+    "nation_spirit_spring"
    ]
   },
   {
@@ -21325,6 +21358,9 @@
    "act": "look",
    "needs": [
     "magic"
+   ],
+   "uses": [
+    "potion_light"
    ]
   },
   {
@@ -21344,11 +21380,14 @@
    "act": "pose",
    "needs": [
     "magic"
+   ],
+   "uses": [
+    "wand_flick"
    ]
   },
   {
    "key": "mg_lantern",
-   "ko": "별 등불 들고 숲길",
+   "ko": "별 등불 들고 걷기",
    "posture": "walk",
    "support": "none",
    "frame": "full_body",
@@ -21363,6 +21402,9 @@
    "act": "walk",
    "needs": [
     "magic"
+   ],
+   "uses": [
+    "star_lantern_carry"
    ]
   },
   {
@@ -21381,11 +21423,14 @@
    "act": "look",
    "needs": [
     "steam"
+   ],
+   "places": [
+    "nation_steam_balloon"
    ]
   },
   {
    "key": "sp_spyglass",
-   "ko": "망원경으로 하늘 보기",
+   "ko": "망원경 들여다보기",
    "posture": "stand",
    "support": "none",
    "frame": "waist_up",
@@ -21400,11 +21445,14 @@
    "act": "look",
    "needs": [
     "steam"
+   ],
+   "uses": [
+    "spyglass_look"
    ]
   },
   {
    "key": "sp_gears",
-   "ko": "톱니 사이 걸터앉아 렌치",
+   "ko": "걸터앉아 렌치로 조이기",
    "posture": "sit_edge",
    "support": "hip_edge",
    "frame": "full_body",
@@ -21419,6 +21467,9 @@
    "act": "fix",
    "needs": [
     "steam"
+   ],
+   "uses": [
+    "wrench_turn"
    ]
   },
   {
@@ -21438,6 +21489,9 @@
    "act": "look",
    "needs": [
     "steam"
+   ],
+   "uses": [
+    "watch_open"
    ]
   },
   {
@@ -21456,6 +21510,9 @@
    "act": "look",
    "needs": [
     "steam"
+   ],
+   "places": [
+    "nation_diving_bell"
    ]
   },
   {
@@ -21478,7 +21535,7 @@
   },
   {
    "key": "sp_blueprint",
-   "ko": "작업대에 설계도 펼치기",
+   "ko": "설계도 펼치기",
    "posture": "lean_counter",
    "support": "none",
    "frame": "three_quarter",
@@ -21493,6 +21550,9 @@
    "act": "chore",
    "needs": [
     "steam"
+   ],
+   "uses": [
+    "blueprint_open"
    ]
   },
   {
@@ -21512,6 +21572,9 @@
    "act": "fix",
    "needs": [
     "steam"
+   ],
+   "uses": [
+    "key_wind"
    ]
   },
   {
@@ -21531,6 +21594,12 @@
    "act": "chore",
    "needs": [
     "steam"
+   ],
+   "places": [
+    "nation_tube_post"
+   ],
+   "uses": [
+    "capsule_catch"
    ]
   },
   {
@@ -21549,6 +21618,9 @@
    "act": "pose",
    "needs": [
     "steam"
+   ],
+   "places": [
+    "nation_steam_balloon"
    ]
   },
   {
@@ -21567,6 +21639,9 @@
    "act": "rest",
    "needs": [
     "mech"
+   ],
+   "places": [
+    "nation_mech_palm"
    ]
   },
   {
@@ -21585,6 +21660,9 @@
    "act": "look",
    "needs": [
     "mech"
+   ],
+   "places": [
+    "nation_mech_palm"
    ]
   },
   {
@@ -21603,11 +21681,14 @@
    "act": "look",
    "needs": [
     "mech"
+   ],
+   "places": [
+    "nation_mech_catwalk"
    ]
   },
   {
    "key": "mc_helmet",
-   "ko": "발진 갑판에서 헬멧 끼고 서기",
+   "ko": "헬멧 끼고 서기",
    "posture": "stand",
    "support": "none",
    "frame": "full_body",
@@ -21622,11 +21703,14 @@
    "act": "ready",
    "needs": [
     "mech"
+   ],
+   "uses": [
+    "phelmet_hug"
    ]
   },
   {
    "key": "mc_deck_walk",
-   "ko": "발진 갑판을 헬멧 들고 걷기",
+   "ko": "헬멧 들고 걷기",
    "posture": "walk",
    "support": "none",
    "frame": "full_body",
@@ -21641,6 +21725,9 @@
    "act": "walk",
    "needs": [
     "mech"
+   ],
+   "uses": [
+    "phelmet_carry"
    ]
   },
   {
@@ -21659,6 +21746,9 @@
    "act": "rest",
    "needs": [
     "mech"
+   ],
+   "places": [
+    "nation_colony_park"
    ]
   },
   {
@@ -21677,11 +21767,14 @@
    "act": "look",
    "needs": [
     "mech"
+   ],
+   "places": [
+    "nation_bridge_holo"
    ]
   },
   {
    "key": "mc_locker",
-   "ko": "대기실 벤치에서 헬멧 안고",
+   "ko": "앉아서 헬멧 안고",
    "posture": "sit_chair",
    "support": "none",
    "frame": "waist_up",
@@ -21696,6 +21789,9 @@
    "act": "ready",
    "needs": [
     "mech"
+   ],
+   "uses": [
+    "phelmet_hug"
    ]
   },
   {
@@ -21714,6 +21810,9 @@
    "act": "look",
    "needs": [
     "mech"
+   ],
+   "places": [
+    "nation_spaceport_lounge"
    ]
   },
   {
@@ -21732,6 +21831,9 @@
    "act": "look",
    "needs": [
     "mech"
+   ],
+   "places": [
+    "nation_cockpit"
    ]
   },
   {
@@ -21778,6 +21880,440 @@
    "legs": "",
    "gaze": "camera",
    "act": "chore"
+  },
+  {
+   "key": "stand_hold_full",
+   "ko": "서서 소품 들고 짝다리(전신)",
+   "posture": "stand",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "hip",
+   "prop_kind": "hold",
+   "legs": "contrapposto",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "stand_raise_3q",
+   "ko": "소품을 높이 든 3/4",
+   "posture": "stand",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "low",
+   "right": "prop",
+   "left": "natural",
+   "prop_kind": "raise",
+   "legs": "",
+   "gaze": "",
+   "act": "look"
+  },
+  {
+   "key": "edge_prop",
+   "ko": "걸터앉아 소품 보기",
+   "posture": "sit_edge",
+   "support": "hip_edge",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "prop",
+   "left": "edge_brace",
+   "prop_kind": "hold",
+   "legs": "knees_together",
+   "gaze": "at_prop",
+   "act": "rest"
+  },
+  {
+   "key": "edge_both",
+   "ko": "걸터앉아 두 손으로 소품 쓰기",
+   "posture": "sit_edge",
+   "support": "hip_edge",
+   "frame": "three_quarter",
+   "body": "front",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "prop",
+   "prop_kind": "both",
+   "legs": "",
+   "gaze": "",
+   "act": "fix"
+  },
+  {
+   "key": "kneel_work",
+   "ko": "무릎 꿇고 두 손으로 일하기",
+   "posture": "kneel",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "prop",
+   "prop_kind": "both",
+   "legs": "",
+   "gaze": "",
+   "act": "fix"
+  },
+  {
+   "key": "desk_work",
+   "ko": "앉아서 두 손으로 일하기",
+   "posture": "sit_lean",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "prop",
+   "prop_kind": "both",
+   "legs": "",
+   "gaze": "",
+   "act": "fix"
+  },
+  {
+   "key": "floor_both",
+   "ko": "바닥에 앉아 두 손으로 소품 쓰기",
+   "posture": "sit_floor",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "high",
+   "right": "prop",
+   "left": "prop",
+   "prop_kind": "both",
+   "legs": "",
+   "gaze": "",
+   "act": "fix"
+  },
+  {
+   "key": "soak_both",
+   "ko": "물에 담그고 두 손으로 소품",
+   "posture": "soak",
+   "support": "water",
+   "frame": "waist_up",
+   "body": "front",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "prop",
+   "left": "prop",
+   "prop_kind": "both",
+   "legs": "",
+   "gaze": "",
+   "act": "rest"
+  },
+  {
+   "key": "soak_prop",
+   "ko": "물에 담그고 소품 들기",
+   "posture": "soak",
+   "support": "water",
+   "frame": "waist_up",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "prop",
+   "left": "water_trail",
+   "prop_kind": "hold",
+   "legs": "",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "zg_hold",
+   "ko": "떠서 소품 들고",
+   "posture": "float_zg",
+   "support": "zero_g",
+   "frame": "waist_up",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "prop",
+   "left": "natural",
+   "prop_kind": "hold",
+   "legs": "",
+   "gaze": "camera",
+   "act": "rest",
+   "needs": [
+    "zero_g"
+   ]
+  },
+  {
+   "key": "rail_rear",
+   "ko": "난간에 기대 풍경 보는 뒷모습",
+   "posture": "lean_rail",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "back",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "stand_relaxed",
+   "gaze": "horizon",
+   "act": "look"
+  },
+  {
+   "key": "stand_rear_env",
+   "ko": "서서 풍경 보는 뒷모습 — 풍경 속",
+   "posture": "stand",
+   "support": "none",
+   "frame": "environmental",
+   "body": "back",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "stand_relaxed",
+   "gaze": "horizon",
+   "act": "look"
+  },
+  {
+   "key": "floor_rear",
+   "ko": "바닥에 앉아 풍경 보는 뒷모습",
+   "posture": "sit_floor",
+   "support": "none",
+   "frame": "environmental",
+   "body": "back",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "",
+   "gaze": "horizon",
+   "act": "rest"
+  },
+  {
+   "key": "wall_low",
+   "ko": "벽에 기대 선 전신 — 아래에서",
+   "posture": "lean_wall",
+   "support": "back_wall",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "low",
+   "right": "hip",
+   "left": "down",
+   "legs": "contrapposto",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "rail_high",
+   "ko": "난간에 기대 올려다보기 — 위에서",
+   "posture": "lean_rail",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "high",
+   "right": "rail",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "look"
+  },
+  {
+   "key": "chair_low",
+   "ko": "다리 꼬고 앉아 — 아래에서",
+   "posture": "sit_chair",
+   "support": "back_seat",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "with_body",
+   "camera": "low",
+   "right": "lap",
+   "left": "natural",
+   "legs": "cross_legs",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "edge_low",
+   "ko": "걸터앉아 내려다보기 — 아래에서",
+   "posture": "sit_edge",
+   "support": "hip_edge",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "low",
+   "right": "edge_brace",
+   "left": "natural",
+   "legs": "dangle",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "edge_env_side",
+   "ko": "걸터앉아 — 풍경 속 옆모습",
+   "posture": "sit_edge",
+   "support": "hip_edge",
+   "frame": "environmental",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "edge_brace_both",
+   "left": "edge_brace_both",
+   "legs": "dangle",
+   "gaze": "horizon",
+   "act": "rest"
+  },
+  {
+   "key": "floor_top",
+   "ko": "바닥에 앉아 올려다보기 — 바로 위에서",
+   "posture": "sit_floor",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front",
+   "head": "tilt",
+   "camera": "top",
+   "right": "floor_brace",
+   "left": "lap",
+   "legs": "legs_bent_side",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "recline_top",
+   "ko": "기대 누워 — 바로 위에서",
+   "posture": "recline",
+   "support": "back_lounger",
+   "frame": "three_quarter",
+   "body": "front",
+   "head": "tilt",
+   "camera": "top",
+   "right": "behind_head",
+   "left": "natural",
+   "legs": "knee_up",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "lie_side_top",
+   "ko": "옆으로 누워 — 바로 위에서",
+   "posture": "lie_side",
+   "support": "side_floor",
+   "frame": "full_body",
+   "body": "front",
+   "head": "with_body",
+   "camera": "top",
+   "right": "floor_front",
+   "left": "head_rest",
+   "legs": "legs_bent_side",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "lean_in_high",
+   "ko": "숙여 올려다보기 — 위에서",
+   "posture": "lean_in",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "front",
+   "head": "tilt",
+   "camera": "high",
+   "right": "natural",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "walk_high",
+   "ko": "걷다 올려다보기 — 위에서",
+   "posture": "walk",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "high",
+   "right": "natural",
+   "left": "down",
+   "legs": "walk_stride",
+   "gaze": "camera",
+   "act": "walk"
+  },
+  {
+   "key": "step_lookback",
+   "ko": "계단 오르다 돌아보기",
+   "posture": "step_up",
+   "support": "none",
+   "frame": "full_body",
+   "body": "rear_3q",
+   "head": "over_shoulder",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "",
+   "gaze": "camera",
+   "act": "walk"
+  },
+  {
+   "key": "stand_window",
+   "ko": "창가에 서서 창밖 보기",
+   "posture": "stand",
+   "support": "none",
+   "frame": "waist_up",
+   "body": "side",
+   "head": "with_body",
+   "camera": "eye",
+   "right": "natural",
+   "left": "natural",
+   "legs": "",
+   "gaze": "window",
+   "act": "look"
+  },
+  {
+   "key": "squat_eye",
+   "ko": "쪼그려 앉아 볼에 손",
+   "posture": "squat",
+   "support": "none",
+   "frame": "full_body",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "cheek",
+   "left": "lap",
+   "legs": "squat_heels",
+   "gaze": "camera",
+   "act": "rest"
+  },
+  {
+   "key": "stand_high_3q",
+   "ko": "서서 올려다보기 — 위에서(3/4)",
+   "posture": "stand",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front",
+   "head": "tilt",
+   "camera": "high",
+   "right": "hair_tuck",
+   "left": "down",
+   "legs": "",
+   "gaze": "camera",
+   "act": "pose"
+  },
+  {
+   "key": "half_kneel_both",
+   "ko": "한쪽 무릎 꿇고 두 손으로 소품 쓰기",
+   "posture": "half_kneel",
+   "support": "none",
+   "frame": "three_quarter",
+   "body": "front_3q",
+   "head": "tilt",
+   "camera": "eye",
+   "right": "prop",
+   "left": "prop",
+   "prop_kind": "both",
+   "legs": "",
+   "gaze": "",
+   "act": "fix"
   }
  ],
  "expressions": {
@@ -24013,10 +24549,7 @@
     "full_body"
    ],
    "places": [
-    "nation_isle_edge",
     "nation_magic_library",
-    "nation_spirit_spring",
-    "nation_moon_glade",
     "nation_potion_lab"
    ]
   },
@@ -24031,11 +24564,7 @@
     "environmental"
    ],
    "places": [
-    "nation_isle_edge",
-    "nation_magic_library",
-    "nation_spirit_spring",
-    "nation_moon_glade",
-    "nation_potion_lab"
+    "nation_magic_library"
    ]
   },
   {
@@ -24050,11 +24579,9 @@
     "environmental"
    ],
    "places": [
-    "nation_isle_edge",
-    "nation_magic_library",
     "nation_spirit_spring",
     "nation_moon_glade",
-    "nation_potion_lab"
+    "nation_isle_edge"
    ]
   },
   {
@@ -24086,11 +24613,9 @@
     "environmental"
    ],
    "places": [
-    "nation_isle_edge",
-    "nation_magic_library",
-    "nation_spirit_spring",
     "nation_moon_glade",
-    "nation_potion_lab"
+    "nation_isle_edge",
+    "nation_spirit_spring"
    ]
   },
   {
@@ -24105,11 +24630,10 @@
     "environmental"
    ],
    "places": [
-    "nation_steam_balloon",
     "nation_clock_gears",
-    "nation_diving_bell",
     "nation_inventor_lab",
-    "nation_tube_post"
+    "nation_tube_post",
+    "nation_diving_bell"
    ]
   },
   {
@@ -24123,11 +24647,8 @@
     "full_body"
    ],
    "places": [
-    "nation_steam_balloon",
     "nation_clock_gears",
-    "nation_diving_bell",
-    "nation_inventor_lab",
-    "nation_tube_post"
+    "nation_inventor_lab"
    ]
   },
   {
@@ -24141,10 +24662,7 @@
    ],
    "places": [
     "nation_steam_balloon",
-    "nation_clock_gears",
-    "nation_diving_bell",
-    "nation_inventor_lab",
-    "nation_tube_post"
+    "nation_clock_gears"
    ]
   },
   {
@@ -24160,13 +24678,8 @@
    "places": [
     "nation_mech_palm",
     "nation_mech_catwalk",
-    "nation_launch_deck",
-    "nation_colony_park",
-    "nation_bridge_holo",
-    "nation_pilot_locker",
-    "nation_spaceport_lounge",
-    "nation_cockpit",
-    "nation_hangar"
+    "nation_hangar",
+    "nation_launch_deck"
    ]
   },
   {
@@ -24181,15 +24694,9 @@
     "environmental"
    ],
    "places": [
-    "nation_mech_palm",
+    "nation_hangar",
     "nation_mech_catwalk",
-    "nation_launch_deck",
-    "nation_colony_park",
-    "nation_bridge_holo",
-    "nation_pilot_locker",
-    "nation_spaceport_lounge",
-    "nation_cockpit",
-    "nation_hangar"
+    "nation_mech_palm"
    ]
   },
   {
@@ -24202,15 +24709,8 @@
     "environmental"
    ],
    "places": [
-    "nation_mech_palm",
-    "nation_mech_catwalk",
-    "nation_launch_deck",
-    "nation_colony_park",
-    "nation_bridge_holo",
-    "nation_pilot_locker",
     "nation_spaceport_lounge",
-    "nation_cockpit",
-    "nation_hangar"
+    "nation_launch_deck"
    ]
   },
   {
@@ -24224,15 +24724,7 @@
     "environmental"
    ],
    "places": [
-    "nation_mech_palm",
-    "nation_mech_catwalk",
-    "nation_launch_deck",
-    "nation_colony_park",
-    "nation_bridge_holo",
-    "nation_pilot_locker",
-    "nation_spaceport_lounge",
-    "nation_cockpit",
-    "nation_hangar"
+    "nation_colony_park"
    ]
   },
   {
@@ -24246,15 +24738,8 @@
     "three_quarter"
    ],
    "places": [
-    "nation_mech_palm",
-    "nation_mech_catwalk",
-    "nation_launch_deck",
-    "nation_colony_park",
     "nation_bridge_holo",
-    "nation_pilot_locker",
-    "nation_spaceport_lounge",
-    "nation_cockpit",
-    "nation_hangar"
+    "nation_cockpit"
    ]
   }
  ],
