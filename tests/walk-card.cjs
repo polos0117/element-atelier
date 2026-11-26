@@ -32,20 +32,25 @@ const threeWorlds = (() => { for (const [k, e] of Object.entries(IMGJ.img)) for 
       await slot(CN.files[0]).waitFor();
       assert.equal(await p.locator('.cnote').count(), 0, '목록 칸엔 한 줄이 없다'); assert.equal(fetched, 0, '목록을 그릴 때 색인을 안 받는다');
       await slot(CN.files[0]).click(); const note = p.locator('.w-card .lb-cnote'); await note.waitFor();
-      const l1 = note.locator('.cnote-l1'), l2 = note.locator('.cnote-l2'), more = note.locator('.cnote-more'), list = note.locator('.cnote-list');
+      const l1 = note.locator('.cnote-l1'), l2 = note.locator('.cnote-l2'), more = note.locator('.cnote-more'), sheet = p.locator('.cnote-sheet'), list = sheet.locator('.cnote-list');
       assert.equal(fetched, 1, '처음 열 때 색인 한 번'); assert.equal((await l1.textContent()).trim(), '필수 · 나라 안 — 백리스 라운지 · 스톤 베이지', '첫 줄 — 필수 · 옷 · 색');
       assert.equal((await l2.textContent()).trim(), '나라의 부엌 · 잔을 든다 · 허리 위', '둘째 줄 — 장소 · 하는 일 · 구도(2026-11-25)');
-      assert.equal(await more.getAttribute('aria-expanded'), 'false'); assert.equal(await list.isVisible(), false, '처음엔 접힘');
+      assert.equal(await more.getAttribute('aria-expanded'), 'false'); assert.equal(await sheet.count(), 0, '처음엔 접힘');
       { const bb = await more.boundingBox(); assert(bb.height >= 44 && bb.width >= 44, '더 보기 단추 44px ' + JSON.stringify(bb)); }
-      await more.click(); assert.equal(await more.getAttribute('aria-expanded'), 'true'); assert.deepEqual(await list.locator('dt').allTextContents(), ['표정', '빛', '시간대', '시대', '화면비']);
-      assert.equal(await p.evaluate(() => document.documentElement.dataset.layer), 'card', '펼쳐도 한 장 그대로');
+      /* 더 보기는 그림 위에 겹치는 판(2026-11-26) — 그림은 그대로, Esc 는 판만 닫는다 */
+      const imgBox = async () => JSON.stringify(Object.values(await p.locator('.w-card .lb-stage img').boundingBox()).map(Math.round)), img0 = await imgBox();
+      await more.click(); assert.equal(await more.getAttribute('aria-expanded'), 'true'); await sheet.waitFor(); assert.deepEqual(await list.locator('dt').allTextContents(), ['표정', '빛', '시간대', '시대', '화면비']);
+      assert.equal(await imgBox(), img0, '판이 떠도 그림 자리 · 크기는 그대로');
+      await p.keyboard.press('Escape'); assert.equal(await sheet.count(), 0, 'Esc 는 판만 닫는다');
+      assert.equal(await p.evaluate(() => document.documentElement.dataset.layer), 'card', '판을 닫아도 한 장 그대로');
       await p.keyboard.press('ArrowRight'); await p.waitForFunction(() => /코스프레/.test((document.querySelector('.lb-cnote') || {}).textContent || ''));
       assert.equal(await l1.locator('b').textContent(), '필수 · 게임 코스프레'); assert.match(await l1.textContent(), /— 스트리트 파이터 II · E\. Honda · 란제리GPT 고름$/, '코스프레 — 캐릭터는 영어 그대로 · GPT 고름');
       assert.equal(await l2.count(), 0, '장면 풀이가 없는 옛 줄 — 첫 줄만');
       await p.keyboard.press('ArrowRight'); await p.waitForFunction(() => /옷 자유/.test((document.querySelector('.lb-cnote') || {}).textContent || ''));
-      assert.equal(await l1.locator('b').textContent(), '옷 자유'); assert.equal(await more.getAttribute('aria-expanded'), 'true', '펼침은 이 탭 동안 기억한다');
-      assert.equal(await l1.locator('span[lang="en"]').textContent(), CN.outfit, '펼친 채면 Outfit 도 다(영어 그대로)'); assert.equal(await l2.locator('span[lang="en"]').textContent(), 'a rooftop garden');
-      await more.click(); assert((await l1.locator('span[lang="en"]').textContent()).endsWith('…'), '접으면 긴 Outfit 은 줄여 보인다');
+      assert.equal(await l1.locator('b').textContent(), '옷 자유'); assert.equal(await more.getAttribute('aria-expanded'), 'false', '펼침은 기억하지 않는다(2026-11-26)');
+      assert((await l1.locator('span[lang="en"]').textContent()).endsWith('…'), '긴 Outfit 은 줄여 보인다'); assert.equal(await l2.locator('span[lang="en"]').textContent(), 'a rooftop garden');
+      await more.click(); await sheet.waitFor(); assert.equal(await sheet.locator('.cnote-l1 span[lang="en"]').textContent(), CN.outfit, '판에는 Outfit 이 다(영어 그대로)');
+      await sheet.locator('.cnote-close').click(); assert.equal(await sheet.count(), 0, '닫기');
       await p.keyboard.press('ArrowRight'); await p.waitForFunction(f => ((document.querySelector('.w-card .lb-stage img') || {}).getAttribute('src') || '').endsWith(encodeURIComponent(f)), CN.files[3]);
       assert.equal(await p.locator('.lb-cnote').count(), 0, '색인에 없는 컷은 아무것도 안 보인다'); assert.equal(fetched, 1, '색인은 한 번만');
       { const nb = await p.locator('.w-card .lb-top').boundingBox(); assert(nb.x >= 0 && nb.x + nb.width <= viewport.width + 1, '일상컷 한 줄 옆 넘침 ' + JSON.stringify(nb)); }   /* 쪽 전체 넘침은 아래 목록 층 것(344 조작 줄 — 원래 실패)이라 한 장의 위 줄만 잰다 */ assert.deepEqual(errors, []); await ctx.close();
