@@ -11,6 +11,9 @@ Total output lines: 1252
 이 안내글은 첫 `##` 앞이라 읽히지 않는다. `node tests/patch.cjs` 가 모양을 본다.
 
 
+## 2026-11-26 · claude · 세계 장면 — 메카 장소 넓히기(중력 있는 곳)
+- data/casual-tree-v2.json · data/casual-tree.json — 사용자 「응 원소공방에도 넣어줘」(삼국지와 같은 메카 장소): 메카 세계에만(worlds_only mecha, 묶음 mech) 장소 일곱 — 나라의 거대 메카 손바닥 위 · 격납고 캣워크 · 출격 발진 갑판 · 콜로니 회전 거주구 공원 · 함교 홀로그램 작전 테이블 · 파일럿 대기실 · 우주항 창가 라운지. 조종석 · 격납고 정비대도 세계 장면(wfeat · mech). 손 홀로그램 지도 짚기(메카 장소에서만), 소품 파일럿 헬멧, 컵 · 공구 · 책 · 폰을 새 장소로, 순간 다섯(메카의 눈빛 · 용접 불꽃 · 셔틀 발사 궤적 · 콜로니 하늘빛 · 홀로그램 빛), 추천 열(mc_*), 어색한 조합. fe 메카 여섯 묶음에 세계 장면 넷 → 여섯(무중력 정거장만이었다)
+
 ## 2026-11-26 · claude · 공용 casual-tree.js 받기(세계 장면 장소)
 - lib/casual-tree.js — 공용(style-atelier/shared) 그대로: isRequired 가 required.world.scene_places 를 본다(삼국지 2026-11-26). 이 공방 표엔 그 칸이 없어 하는 일은 같다
 - prompt.html — casual-tree.js ?v=req1
