@@ -88,7 +88,7 @@ for (const key of pickKeys) {
 assert(situSeen.size >= 2, '상황 둘 넘게(2026-11-15 필수에서 빠짐 · 2026-11-16 일반 컷 한 장에 늘) — ' + [...situSeen]);
 assert(cosSeen.size >= 3, '코스프레 게임이 여럿 — ' + [...cosSeen]);
 assert(['adventure', 'drape', 'resort', 'workwear'].filter(f => famSeen.has(f)).length >= 1, '새 계열 넷 가운데 하나 넘게(2026-11-13 — 계열이 늘고 장소 종류 조건이 생겨 표본 묶음에 넷이 다 들지는 않는다 · 2026-11-15 장면 컷 한 장이 코스프레로 정해져 둘 → 하나) — ' + [...famSeen]);
-assert(dn.fit > 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 비율 ' + dn.set + '/' + dn.fit);
+assert(dn.fit >= 5 && dn.set / dn.fit > 0.3 && dn.set / dn.fit < 0.9, '데니어 비율 ' + dn.set + '/' + dn.fit);   /* 5 이상(2026-11-27 — 추천이 늘어 난수 길이 바뀌자 카드 넷 · 씨앗 하나 표본에서 딱 5) */
 /* 셋째 필수 — 코스프레가 없으면 잡는다 · 옛 묶음(상황 노출 필수 시절 — 코스프레 없이 상황 노출 컷)은 통과 · 옛 다섯 장 묶음은 셋째 없이 맞다 */
 { const cd = C.cardOf('fe'); cd.world = 'fantasy'; const cuts = C.plan(cd, SIX, [], { seed: 4 }).cuts, gen = cuts.find(c => !c.sfree && !C.requiredType(c) && !C.isCosplay(c) && c.frame !== 'face_close' && P.situFits('wet', C.outfitEn(c)));
   assert(cuts.some(C.isCosplay), '여섯 장 묶음에 코스프레');
