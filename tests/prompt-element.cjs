@@ -544,6 +544,22 @@ const SNS = Object.assign({}, SN, { default: 'mmorpg2d' });   /* 구조판 검�
     assert(P.worldFillErrors(D, SN, key, w, good.replace('slender build', 'a giant muscular build'), { style: SN.default }).some(e => /체형이 우리 체형 목록의 글이 아니다/.test(e)), key + ' ' + w + ' 목록 밖 체형은 걸린다');
     assert(P.worldFillErrors(D, SN, key, w, good.replace(/^(Light: )/m, '$1bright daylight; '), { style: SN.default }).some(e => /줄이 바뀌었다/.test(e)), key + ' ' + w + ' 칸 밖이 바뀌면 걸린다');
   }
+  /* 세 세계 겹치지 않게(2026-11-27 「gpt 설계가 3가지 세계에서 겹치지 않게」 → 「얼굴 조합만 다르게」) — 머리 갈래가 사는 세계끼리 다 다르고,
+     다른 세계 글과 헤어스타일 · 실루엣이 같거나 얼굴 칸이 넷 이상 같으면 걸린다. 셋까지는 통과 */
+  for (const key of P.cards(D)) { const fam = Object.values(P.hairFamilyPlan(D, key)).flat().map(f => f.key); assert(fam.length === 2 * P.worldsOf(D, key).length && new Set(fam).size === fam.length, key + ' 머리 갈래 세계끼리 안 겹침 ' + fam); }
+  { const key = 'fe', [w1, w2] = P.worldsOf(D, key), opt = { style: SN.default };
+    const fillOf = (w, hair, n) => { const t = P.buildWorldFree(D, SN, key, w, opt), tpl = P.worldFillTemplate(D, SN, key, w, opt), fo = Object.values(P.worldFillFace(D, key, w));
+      const sil = t.match(/word for word \(ours is not on this list\): 1\) ([^;]+?)(?:; 2\)|\.\n)/)[1];
+      return 'SUMMARY: x\n' + tpl.replace('[HAIRSTYLE: …]', hair).replace('[COSTUME SILHOUETTE: …]', sil).replace('Design idea: …', 'Design idea: plates layered like crystals').replace('Stance and hands: …\n', '').replace('Setting detail: …', 'Setting detail: a forge glow behind her.').replace('[BUILD: …]', 'slender build')
+        .replace(/\[(IMPRESSION|SKIN TONE|FACE SHAPE|EYE SHAPE|EYE COLOUR|BROWS|NOSE|LIPS): …\]/g, (m0, lab) => { const x = fo.find(y => y.label === lab); return x.list[(n[lab] || 0) % x.list.length]; }); };
+    const a = fillOf(w1, 'a sleek low chignon', {}), shift = { IMPRESSION: 3, 'SKIN TONE': 1, 'FACE SHAPE': 2, 'EYE SHAPE': 2, 'EYE COLOUR': 5 }, prior = [{ world: w1, tag: 'gpt1', text: a }];
+    assert.equal(JSON.stringify(P.worldFillErrors(D, SN, key, w2, fillOf(w2, 'twin braids looped at the nape', shift), Object.assign({ prior }, opt))), '[]', '다른 세계 — 얼굴 셋까지 같으면 통과');
+    assert(P.worldFillErrors(D, SN, key, w2, fillOf(w2, 'a sleek low chignon', shift), Object.assign({ prior }, opt)).some(e => /다른 세계 GPT 설계와 헤어스타일이 같다/.test(e)), '다른 세계와 같은 헤어스타일은 걸린다');
+    assert(P.worldFillErrors(D, SN, key, w2, fillOf(w2, 'twin braids looped at the nape', { IMPRESSION: 3 }), Object.assign({ prior }, opt)).some(e => /얼굴 칸이 넷 이상 같다/.test(e)), '다른 세계와 얼굴 넷 이상 같으면 걸린다');
+    const brief = P.buildWorldFree(D, SN, key, w2, Object.assign({ prior }, opt));
+    assert(brief.includes(T.WORLD_FREE.fill.worlds) && /^Already written for her other worlds — keep clear of these: 1\) \w+ gpt1 — hairstyle a sleek low chignon; silhouette /m.test(brief), '주문 — 세 세계 줄 · 다른 세계 설계 줄');
+    assert(!/^Already written/m.test(P.buildWorldFree(D, SN, key, w1, opt)), '다른 세계 글이 없으면 그 줄 없음');
+  }
   console.log('PASS 임의 설계 주문');
 }
 /* 놀이터(k_kids, 2026-11-25) — 노출 축을 많이(bold)로 줘도 드러내는 노출 글 · 상황 노출이 없고, 배경 아이들 · 덮인 옷 줄이 실린다 */
